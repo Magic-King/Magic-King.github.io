@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Markdown Syntax]]></title>
+    <url>%2F2019%2F05%2F14%2FMarkdown-Syntax%2F</url>
+    <content type="text"><![CDATA[Markdown Syntax 本文参考 Markdown基本语法(简书) Markdown官方文档 Markdown 支持两种标题的语法，类 Setext 和类 atx 形式。 12345678Atx形式# 这是一级标题## 这是二级标题### 这是三级标题#### 这是四级标题##### 这是五级标题###### 这是六级标题 这是一级标题这是二级标题这是三级标题这是四级标题这是五级标题这是六级标题1234567Setext形式This is an H1=============This is an H2------------- This is an H1This is an H2 1234**这是加粗的文字***这是倾斜的文字*`***这是斜体加粗的文字***~~这是加删除线的文字~~ 加粗测试 倾斜测试 斜体加粗测试 删除线测试 1234&gt;这是引用的内容&gt;&gt;这是引用的内容&gt;&gt;&gt;多重引用&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;这是引用的内容 引用测试一 引用测试二 多重引用 引用测试 分割线 1234-------******** 只要三个以上就可以 1234![图片alt](图片地址 ''图片title'')图片alt就是显示在图片下面的文字，相当于对图片内容的解释。图片title是图片的标题，当鼠标移到图片上时显示的内容。title可加可不加 12![blockchain](https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=702257389,1274025419&amp;fm=27&amp;gp=0.jpg "区块链") 12[超链接名](超链接地址 "超链接title")title可加可不加 12[简书](http://jianshu.com)[百度](http://baidu.com) baidu 注：Markdown本身语法不支持链接在新页面中打开，貌似简书做了处理，是可以的。别的平台可能就不行了，如果想要在新页面中打开的话可以用html语言的a标签代替。 1234&lt;a href=&quot;超链接地址&quot; target=&quot;_blank&quot;&gt;超链接名&lt;/a&gt;示例&lt;a href=&quot;https://www.jianshu.com/u/1f5ac0cf6a8b&quot; target=&quot;_blank&quot;&gt;简书&lt;/a&gt; 简书 1234567无序列表用任一种皆可- 列表内容+ 列表内容* 列表内容注意：- + * 跟内容之间都要有一个空格 列表 列表 列表 列表 1234567有序列表内容1.列表内容2.列表内容3.列表内容注意：序号跟内容之间要有空格 第一点 第二点 第三点 12345678910111213141516171819**上一级和下一级之间敲三个空格即可**- 一级无序列表内容 - 二级无序列表内容 - 二级无序列表内容 - 二级无序列表内容- 一级无序列表内容 1. 二级有序列表内容 2. 二级有序列表内容 3. 二级有序列表内容1. 一级有序列表内容 - 二级无序列表内容 - 二级无序列表内容 - 二级无序列表内容2. 一级有序列表内容 1. 二级有序列表内容 2. 二级有序列表内容 3. 二级有序列表内容 上一级和下一级之间敲三个空格即可 一级无序列表内容 二级无序列表内容 二级无序列表内容 二级无序列表内容 一级无序列表内容 二级有序列表内容 二级有序列表内容 二级有序列表内容 一级有序列表内容 二级无序列表内容 二级无序列表内容 二级无序列表内容 一级有序列表内容 二级有序列表内容 二级有序列表内容 二级有序列表内容 1234567891011表头|表头|表头---|:--:|---:内容|内容|内容内容|内容|内容第二行分割表头和内容。- 有一个就行，为了对齐，多加了几个文字默认居左-两边加：表示文字居中-右边加：表示文字居右注：原生的语法两边都要用 | 包起来。此处省略 12345姓名|技能|排行--|:--:|--:刘备|哭|大哥关羽|打|二哥张飞|骂|三弟 姓名 技能 排行 刘备 哭 大哥 关羽 打 二哥 张飞 骂 三弟 单行代码 1`代码内容` int main(){return 0;} 代码块 12345(```)language 代码... 代码... 代码...(```) 注：为了防止转译，前后三个反引号处加了小括号，实际是没有的。这里只是用来演示，实际中去掉两边小括号即可。 123456#include&lt;iostream&gt;using namespace std;int main()&#123; cout&lt;&lt; "hello markdown"; return 0;&#125; 流程图 123456789```flowst=&gt;start: 开始op=&gt;operation: My Operationcond=&gt;condition: Yes or No?e=&gt;endst-&gt;op-&gt;condcond(yes)-&gt;econd(no)-&gt;op&amp;``` 12345678st=&gt;start: 开始op=&gt;operation: My Operationcond=&gt;condition: Yes or No?e=&gt;endst-&gt;op-&gt;condcond(yes)-&gt;econd(no)-&gt;op&amp; `]]></content>
+      <categories>
+        <category>Markdown</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Hello World]]></title>
     <url>%2F2019%2F05%2F13%2Fhello-world%2F</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
