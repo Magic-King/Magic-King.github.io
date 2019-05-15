@@ -1532,6 +1532,7 @@ pre .javascript .function {
 }
 .post-button {
   margin-top: 40px;
+  background: transparent;
 }
 .posts-expand .post-tags {
   margin-top: 40px;
@@ -1769,7 +1770,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #d5fff2;
+  background: #ff22fb;
 }
 .feed-link,
 .chat {
@@ -2386,7 +2387,7 @@ ul.breadcrumb li+li:last-child {
   overflow: hidden;
   padding: 0;
   width: 240px;
-  background: #fff;
+  background: rgba(255,255,255,0.7);
   box-shadow: initial;
   border-radius: initial;
 }
