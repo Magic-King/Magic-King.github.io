@@ -71,7 +71,7 @@
 
 <link rel="stylesheet" href="{{ url_for(theme.css) }}/main.css?v={{ version }}"/>
 
-<!--><-->
+<!--  -->
 <script>
     (function(){
         if('{{ page.password }}'){
