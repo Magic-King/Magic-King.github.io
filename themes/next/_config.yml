@@ -1005,7 +1005,7 @@ canvas_nest:
   color: "0,0,255" # RGB values, use ',' to separate
   opacity: 0.5 # the opacity of line: 0~1
   zIndex: -2 # z-index property of the background
-  count: 999 # the number of lines
+  count: 666 # the number of lines
 
 # JavaScript 3D library.
 # Dependencies: https://github.com/theme-next/theme-next-three
