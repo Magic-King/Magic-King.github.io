@@ -1532,7 +1532,7 @@ pre .javascript .function {
 }
 .post-button {
   margin-top: 40px;
-  background: rgba(255,255,255,0.7);
+  background: transparent;
 }
 .posts-expand .post-tags {
   margin-top: 40px;
@@ -1770,7 +1770,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #6cfff6;
+  background: #ff9383;
 }
 .feed-link,
 .chat {
