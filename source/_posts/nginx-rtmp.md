@@ -212,24 +212,29 @@ on_play
 描述：设置 HTTP 播放回调。每次一个客户分发播放命令时，一个 HTTP 请求异步发送，命令处理会挂起 - 直到它返回结果码。之后再解析 HTTP 结果码。
 
 * HTTP 2XX 返回码的话继续 RTMP 会话。
+
 * HTTP 3XX 返回码的话 重定向 RTMP 到另一个流，这个流的名字在 HTTP 返回头的 Location 获取。如果新流的名字起始于 rtmp:// 然后远程 relay 会被创建。relay 要求 IP 地址是指定的而不是域名，并且只工作在 1.3.10 版本以上的 nginx。另请参考 notify_relay_redirect。
+
 * 其他返回码的话 RTMP 连接丢弃。
 重定向例子：
-http {
-    ...
-    location /local_redirect {
+
+
+
+  ```
+ http {
+  
+  location /local_redirect {
         rewrite ^.*$ newname? permanent;
     }
     location /remote_redirect {
         # no domain name here, only ip
         rewrite ^.*$ rtmp://192.168.1.123/someapp/somename? permanent;
     }
-    ...
-}
-
-
-rtmp {
-    ...
+  
+  }
+  
+  
+  rtmp {
     application myapp1 {
         live on;
         # stream will be redirected to 'newname'
@@ -241,8 +246,13 @@ rtmp {
         # requires nginx >= 1.3.10
         on_play http://localhost:8080/remote_redirect;
     }
-    ...
+
 }
+  
+  ```
+
+
+
 HTTP 请求接收到一些个参数。在 application/x-www-form-urlencoded MIME 类型下使用 POST 方法。以下参数会被传送给调用者：
 * call=play。
 * addr - 客户端 IP 地址。
@@ -264,5 +274,4 @@ on_play http://example.com/my_callback;
 * obs
 * 手机端:快直播
 * ffmpeg推流（没用过）
-
 
