@@ -20,6 +20,10 @@ categories: Markdown
 > [Markdown基本语法(简书)](<https://www.jianshu.com/p/191d1e21f7ed>)
 >
 > [Markdown官方文档](www.markdown.cn)
+>
+> [Markdown语法html支持](<https://www.jianshu.com/p/b03a8d7b1719#fnref1>)
+>
+> [Markdown部分详细用法](<http://www.pianshen.com/article/2061138675/#_51>)
 
 
 
@@ -79,6 +83,22 @@ This is an H1
 
 This is an H2
 -------------
+
+
+
+## 根据标题生成目录
+
+```markdown
+[TOC]  根据标题自动生成目录
+```
+
+
+
+[TOC]
+
+
+
+
 
 
 
@@ -199,6 +219,37 @@ u=702257389,1274025419&fm=27&gp=0.jpg "区块链")
 
 
 
+
+
+### 插入带有链接的图片
+
+```markdown
+[[图片上传失败...(image-f83b77-1542510791300)]](http://www.baidu.com){:target="_blank"}       // 内链式
+
+[[图片上传失败...(image-4dc956-1542510791300)]][5]{:target="_blank"}                      // 引用式
+[5]: http://www.baidu.com
+```
+
+
+
+[[图片上传失败...(image-f83b77-1542510791300)]](htttp://www.baidu.com){:target="_blank"}
+
+内链式
+
+
+
+[[图片上传失败...(image-f83b77-1542510791300)]][5]{:target="blank"}
+
+[5]:http://www.baidu.com/
+
+
+
+外链式
+
+
+
+
+
 ------
 
 
@@ -237,6 +288,37 @@ title可加可不加
 ```
 
 <a href="https://www.jianshu.com/u/1f5ac0cf6a8b" target="_blank">简书</a>
+
+
+
+------
+
+
+
+## 视频插入
+
+注：Markdown 语法是不支持直接插入视频的
+ 普遍的做法是 插入HTML的 iframe 框架，通过网站自带的分享功能获取，如果没有可以尝试第二种方法
+ 第二是伪造播放界面，实质是插入视频图片，然后通过点击跳转到相关页面
+
+**代码1**
+ 注：多数第三方平台不支持插入`<iframe>`视频
+
+```markdown
+<iframe height=498 width=510 src='http://player.youku.com/embed/XMjgzNzM0NTYxNg==' frameborder=0 'allowfullscreen'></iframe>
+```
+
+
+
+**代码2**
+
+```markdown
+[[图片上传失败...(image-49aefe-1542510791300)]](http://v.youku.com/v_show/id_XMjgzNzM0NTYxNg==.html?spm=a2htv.20009910.contentHolderUnit2.A&from=y1.3-tv-grid-1007-9910.86804.1-2#paction){:target="_blank"}
+```
+
+
+
+
 
 
 
@@ -385,6 +467,10 @@ title可加可不加
 
 
 
+Typora编辑器中可以直接使用crtl+T，或者在菜单段落中找到表格生成
+
+
+
 ------
 
 
@@ -430,11 +516,61 @@ int main(){
 
 
 
+### 格式化代码html版
+
+```markdown
+<pre>
+## 这是一个不起作用的标题
+</pre>
+
+```
+
+
+
+<pre>## 这是一个不起作用的标题</pre>
+
+
+
+
+
 ------
 
 
 
 ## 流程图
+
+
+
+注：** `st=>start: 开始` 的`：`后面保持空格**
+
+| 形参    | 实参                          | 含义                          |
+| ------- | ----------------------------- | ----------------------------- |
+| tag     | st                            | 标签 (可以自定义)             |
+| =>      | =>                            | 赋值                          |
+| type    | start                         | 类型  (6种类型)               |
+| content | 开始                          | 描述内容 (可以自定义)         |
+| :>url   | `http://www.baidu.com[blank]` | 链接与跳转方式 **兼容性很差** |
+
+| 6种类型     | 含义   |
+| ----------- | ------ |
+| start       | 启动   |
+| end         | 结束   |
+| operation   | 程序   |
+| subroutine  | 子程序 |
+| condition   | 条件   |
+| inputoutput | 输出   |
+
+
+
+| 形参          | 实参        | 含义                                                         |
+| ------------- | ----------- | ------------------------------------------------------------ |
+| ->            | ->          | 连接                                                         |
+| condition     | c1          | 条件                                                         |
+| (布尔值,方向) | (yes,right) | 如果满足向右连接，4种方向：right ，left，up ，down 默认为：down |
+
+注：operation (程序); subroutine (子程序) ;condition (条件)，都可以在括号里加入连接方向。
+
+
 
 
 
@@ -462,6 +598,187 @@ cond(yes)->e
 cond(no)->op
 &```
 ```
+
+
+
+
+
+
+
+## 选项框
+
+```markdown
+- [x] 选项一
+- [ ] 选项二  
+需要注意的是：-、[x]、和选择一之间都要有空格，如果不下x[ ]中也要有空格
+
+```
+
+
+
+- [x] 选项一
+- [ ] 选项二
+
+
+
+
+
+------
+
+
+
+## 数学公式
+
+
+
+支持LaTex的数学公式，参考[<https://www.jianshu.com/p/2bbec51d756f>](<https://www.jianshu.com/p/2bbec51d756f>)
+
+数学公式（MathJax)，参考[<https://www.jianshu.com/p/a0aa94ef8ab2>](<https://www.jianshu.com/p/a0aa94ef8ab2>)
+
+
+
+注：1个$左对齐，2个居中
+
+```markdown
+$$ x \href{why-equal.html}{=} y^2 + 1 $$
+$ x = {-b \pm \sqrt{b^2-4ac} \over 2a}. $
+```
+
+
+$$
+x \href{why-equal.html}{=} y^2 +1
+$$
+
+
+使用Typora的时候可以直接使用 $$+回车，或者用crtl+shift+M生成公式块（在段落菜单中的公式块）
+
+参考[<https://blog.csdn.net/mingzhuo_126/article/details/82722455>](<https://blog.csdn.net/mingzhuo_126/article/details/82722455>)
+
+
+
+------
+
+
+
+## 脚注
+
+
+
+```markdown
+Markdown[^1]
+[^1]: Markdown是一种纯文本标记语言        // 在文章最后面显示脚注
+```
+
+
+
+Markdown[^1]
+
+[^1]: markdown是一种纯文本标记语言
+
+
+
+------
+
+## 锚点
+
+注：只有**标题**支持锚点， 跳转目录方括号后 保持空格
+
+```markdown
+[公式标题锚点](#1)
+
+### [需要跳转的目录] {#1}    // 方括号后保持空格
+```
+
+
+
+[脚注标题锚点](#1)
+
+### [脚注]{#1}
+
+
+
+
+
+------
+
+## 自动邮箱链接
+
+
+
+```markdown
+<xxx@outlook.com>
+```
+
+<xxx@outlook.com>
+
+
+
+------
+
+
+
+
+
+## 时序图
+
+**代码1**
+
+```
+​```sequence
+A->>B: 你好
+Note left of A: 我在左边     // 注释方向，只有左右，没有上下
+Note right of B: 我在右边
+B-->A: 很高兴认识你
+​```
+```
+
+**演示**
+
+
+
+![img](https:////upload-images.jianshu.io/upload_images/6912209-784ce9bb7beb6672.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/393/format/webp)
+
+
+
+**代码详解**
+
+注：`A->>B: 你好`   后面可以不写文字，但是一定要在最后加上`：`
+ Note left of A 代表注释在A的左边
+
+| 符号 | 含义     |
+| ---- | -------- |
+| `-`  | 实线     |
+| `>`  | 实心箭头 |
+| `--` | 虚线     |
+| `>>` | 空心箭头 |
+
+**代码2**
+
+```
+    ```sequence
+    起床->吃饭: 稀饭油条
+    吃饭->上班: 不要迟到了
+    上班->午餐: 吃撑了
+    上班->下班:
+    Note right of 下班: 下班了
+    下班->回家:
+    Note right of 回家: 到家了
+    回家-->>起床:
+    Note left of 起床: 新的一天
+```
+
+
+
+
+
+**演示**
+
+![img](https://upload-images.jianshu.io/upload_images/6912209-f109a13fcf7e2ccb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/577/format/webp)
+
+
+
+
+
 
 
 
