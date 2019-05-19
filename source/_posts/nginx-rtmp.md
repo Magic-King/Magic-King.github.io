@@ -15,11 +15,11 @@ categories: nginx
 
 ## 服务器安装配置
 
-pass
 
 
 
->windows安装包(已编译好的版本)参考：
+
+>**windows安装包(已编译好的版本)参考：**
 >
 >[nginx for windows](<http://nginx-win.ecsds.eu/>)
 >
@@ -29,7 +29,7 @@ pass
 
 
 
->搬运源码（未编译）
+>**搬运源码（未编译）**
 >
 >[Car-eye-RTMP-server(github)](<https://github.com/Car-eye-team/Car-eye-RTMP-server>)
 >
@@ -39,7 +39,7 @@ pass
 
 
 
-> nginx+rtmp在windows下编译
+> **nginx+rtmp在windows下编译**
 >
 > [Windows下编译nginx-rtmp-module](<https://www.cnblogs.com/KendoCross/p/7585654.html>)
 >
@@ -47,13 +47,15 @@ pass
 
 
 
-> CentOS搭建nginx+rtmp服务器
+> **CentOS搭建nginx+rtmp服务器**
 >
 > [nginx+rtmp直播流服务搭建 centos7](<https://www.jianshu.com/p/0a4a34d9eb8f>)
 >
 > [centos7 Nginx+rtmp 搭建流媒体服务器](<https://blog.csdn.net/sz76211822/article/details/79225716>)
 
 linux下建议将nginx.conf中的http端口改为1024以上，好像是80端口每次运行都需要su权限。
+
+
 
 
 
