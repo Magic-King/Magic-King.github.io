@@ -157,11 +157,156 @@ message: Welcome to my blog, enter password to read.
 
 * ### Coding
 
+  >#### Editor
+  >
+  >- Atom
+  >- Notepad++
+  >- (vim)
+  >- (subline)
+  >- Typora(Markdown)
+  >- (VScode)
+  >
+  >
+  >
+  >#### language
+  >
+  >- java
+  >
+  >- gcc
+  >
+  >- python
+  >
+  >- (shell)
+  >
+  >- (dos)
+  >
+  >- (arm)
+  >
+  >
+  >
+  >#### ssh
+  >
+  >- PuTTY
+  >- XShell
+  >- 8uftp
+  >
+  >
+  >
+  >
+  >
+  >#### Revision Control
+  >
+  >- git
+  >- Mercurial(hg)
+  >- (svn)
+  >
+  >
+  >
+  >#### Terminal
+  >
+  >- cygwin
+  >- cmder
+  >- MinGW
+  >- (Power Shell)
+  >- (Git Bash)
+  >
+  >
+  >
+  >#### IDE
+  >
+  >- eclipse
+  >- IDEA
+  >- CodeBlock
+  >- CLion
+  >- PyCharm
+  >
+  >
+  >
+  >#### Databases
+  >- Mysql
+  >- Navicat
+  >
+  >
+  >
+  >#### Vmware
+  >
+  >- ubuntu 18.04LTS &16.04LTS & seedUbuntu
+  >- CentOS7
+  >- Kali-Linux
+  >- win10
+  >- win7
+  >- winXP
+  >
+  >
+  >
+  >- IDA Pro
+  >- Wireshark
+  >- Burp_Suite_Pro
+  >
+  >
+  >
+  >
+  >
+  >
+  >
+  >**To be continue**
+  >
+  >
   >
   >
   >
 
 
+
+* ### Magic App
+
+	>
+	>
+	>- gpg4win
+	>- bandzip
+	>- XMind
+	>- CCleaner
+	>- ShadowSocks(ssr)
+	>- Sync
+	>
+	>
+	>
+	>
+	>
+	>- YY
+	>- 网易UU加速器
+	>- (Moss)
+	>
+	>
+	>
+	>
+	>
+	>#### Internet Explore
+	>
+	>- Chrome
+	>- FireFox
+	>
+	>
+	>
+	>
+	>
+	>#### Adobe
+	>
+	>- PhoteShop
+	>- AE
+	>- Pr
+	>- Flash Player
+	>
+	>
+	>
+	>
+	>
+	>
+	>
+	>**To be continue**
+	>
+	>
+	>
 
 
 
@@ -172,6 +317,19 @@ message: Welcome to my blog, enter password to read.
 
 
 ## <center>**Magic Skill**</center>
+
+
+
+
+
+* Parkour
+* Basketball
+* Panio
+* 
+
+
+
+
 
 
 
