@@ -5,6 +5,7 @@ tags:
 categories: Magic
 description:
 password: Magic
+message: Welcome to my blog, enter password to read.
 ---
 
 

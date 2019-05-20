@@ -57,6 +57,8 @@ linux下建议将nginx.conf中的http端口改为1024以上，好像是80端口�
 
 
 
+[Nginx搭建rtmp流媒体服务器](<https://blog.csdn.net/shuanger_/article/details/48629163>)
+
 
 
 ## nginx服务器常用命令

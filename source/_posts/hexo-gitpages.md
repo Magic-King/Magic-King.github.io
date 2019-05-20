@@ -53,6 +53,8 @@ categories: hexo
 >
 > [hexo的next主题个性化教程:打造炫酷网站](https://www.cnblogs.com/php-linux/p/8416122.html)
 >
+> [hexo的next主题个性化教程：打造炫酷网站](<https://blog.csdn.net/qq_33699981/article/details/72716951>)
+>
 > [【持续更新】hexo next主题优化手册](https://inspurer.github.io/2018/11/11/hexo-next主题优化/)
 >
 > [可参考博客嘤](<https://inspurer.github.io/archives/>)
@@ -997,6 +999,10 @@ theme: landscape //themes文件夹中对应文件夹的名称
 
 
 [文章加密访问](<https://www.jianshu.com/p/44e211829447>)
+
+[hexo-blog-encrypt](<https://github.com/MikeCoder/hexo-blog-encrypt>)
+
+
 
 
 
