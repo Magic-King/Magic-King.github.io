@@ -3,7 +3,7 @@ title: Magic
 date: 2019-05-20 13:14:27
 tags:
 categories: Magic
-description:
+description: It is Magic.
 password: Magic
 message: Welcome to my blog, enter password to read.
 ---
@@ -322,9 +322,15 @@ message: Welcome to my blog, enter password to read.
 
 
 
+* Magic
 * Parkour
 * Basketball
-* Panio
+* Psychology
+
+### -->wish
+
+* Piano
+* 
 * 
 
 
