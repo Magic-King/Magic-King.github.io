@@ -95,6 +95,12 @@ search:
 #    content_limit: 140
 #    content_limit_delim: ''
 
+# Security
+##
+encrypt:
+    enable: true
+    default_abstract: It is Magic.</br>the content has been encrypted, enter the password to read.</br>
+    default_message: Please enter the password to read.
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

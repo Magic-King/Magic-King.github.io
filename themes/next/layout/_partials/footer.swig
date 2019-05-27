@@ -37,6 +37,7 @@
   {% endif %}
 </div>
 
+
 {% if theme.footer.powered.enable %}
   <div class="powered-by">{#
   #}{{ __('footer.powered', next_url('https://hexo.io', 'Hexo', {class: 'theme-link'})) }}{#

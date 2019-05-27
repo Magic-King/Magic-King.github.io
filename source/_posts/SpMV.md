@@ -23,6 +23,8 @@ password:
 >[稀疏矩阵向量乘法x并行编程方法](<http://book.51cto.com/art/201506/480986.htm>)
 >
 >[稀疏矩阵存储格式总结](<https://www.cnblogs.com/xbinworld/p/4273506.html>)
+>
+>[深度学习FPGA加速器设计](<https://mp.weixin.qq.com/s/ZrQd2avGTRsHMxj4wRA3gw>)
 
 
 
