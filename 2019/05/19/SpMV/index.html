@@ -98,13 +98,13 @@
 
 
 
-  <meta name="description" content="稀疏矩阵向量乘 本文参考:  FPGA矩阵计算并行算法与结构(知网) 稀疏矩阵向量乘法xFPGA 稀疏矩阵向量乘法x并行编程方法 稀疏矩阵存储格式总结  在矩阵中，若数值为0的元素数目远远多于非0元素的数目，并且非0元素分布没有规律时，则称该矩阵为稀疏矩阵；与之相反，若非0元素数目占大多数时，则称该矩阵为稠密矩阵。定义非零元素的总数比上矩阵所有元素的总数为矩阵的稠密度。SpMV即 Sparse M">
+  <meta name="description" content="稀疏矩阵向量乘 本文参考:  FPGA矩阵计算并行算法与结构(知网) 稀疏矩阵向量乘法xFPGA 稀疏矩阵向量乘法x并行编程方法 稀疏矩阵存储格式总结 深度学习FPGA加速器设计  在矩阵中，若数值为0的元素数目远远多于非0元素的数目，并且非0元素分布没有规律时，则称该矩阵为稀疏矩阵；与之相反，若非0元素数目占大多数时，则称该矩阵为稠密矩阵。定义非零元素的总数比上矩阵所有元素的总数为矩阵的稠密度。">
 <meta name="keywords" content="SpMV">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpMV">
 <meta property="og:url" content="http://yoursite.com/2019/05/19/SpMV/index.html">
 <meta property="og:site_name" content="Hexo&amp;Magic">
-<meta property="og:description" content="稀疏矩阵向量乘 本文参考:  FPGA矩阵计算并行算法与结构(知网) 稀疏矩阵向量乘法xFPGA 稀疏矩阵向量乘法x并行编程方法 稀疏矩阵存储格式总结  在矩阵中，若数值为0的元素数目远远多于非0元素的数目，并且非0元素分布没有规律时，则称该矩阵为稀疏矩阵；与之相反，若非0元素数目占大多数时，则称该矩阵为稠密矩阵。定义非零元素的总数比上矩阵所有元素的总数为矩阵的稠密度。SpMV即 Sparse M">
+<meta property="og:description" content="稀疏矩阵向量乘 本文参考:  FPGA矩阵计算并行算法与结构(知网) 稀疏矩阵向量乘法xFPGA 稀疏矩阵向量乘法x并行编程方法 稀疏矩阵存储格式总结 深度学习FPGA加速器设计  在矩阵中，若数值为0的元素数目远远多于非0元素的数目，并且非0元素分布没有规律时，则称该矩阵为稀疏矩阵；与之相反，若非0元素数目占大多数时，则称该矩阵为稠密矩阵。定义非零元素的总数比上矩阵所有元素的总数为矩阵的稠密度。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://s8.51cto.com/wyfs02/M02/6E/B9/wKioL1WD-rnzJXs6AAAoveikjls134.jpg">
 <meta property="og:image" content="http://s2.51cto.com/wyfs02/M00/6E/B9/wKioL1WD-r7BqYmdAAB38WzGMbw735.jpg">
@@ -119,10 +119,10 @@
 <meta property="og:image" content="https://xupsh.github.io/pp4fpgas-cn/images/placeholder.png">
 <meta property="og:image" content="https://xupsh.github.io/pp4fpgas-cn/images/spmv_partial_unroll.jpg">
 <meta property="og:image" content="https://xupsh.github.io/pp4fpgas-cn/images/spmv_unrolled_behavior.jpg">
-<meta property="og:updated_time" content="2019-05-20T07:52:14.195Z">
+<meta property="og:updated_time" content="2019-05-23T07:45:32.710Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpMV">
-<meta name="twitter:description" content="稀疏矩阵向量乘 本文参考:  FPGA矩阵计算并行算法与结构(知网) 稀疏矩阵向量乘法xFPGA 稀疏矩阵向量乘法x并行编程方法 稀疏矩阵存储格式总结  在矩阵中，若数值为0的元素数目远远多于非0元素的数目，并且非0元素分布没有规律时，则称该矩阵为稀疏矩阵；与之相反，若非0元素数目占大多数时，则称该矩阵为稠密矩阵。定义非零元素的总数比上矩阵所有元素的总数为矩阵的稠密度。SpMV即 Sparse M">
+<meta name="twitter:description" content="稀疏矩阵向量乘 本文参考:  FPGA矩阵计算并行算法与结构(知网) 稀疏矩阵向量乘法xFPGA 稀疏矩阵向量乘法x并行编程方法 稀疏矩阵存储格式总结 深度学习FPGA加速器设计  在矩阵中，若数值为0的元素数目远远多于非0元素的数目，并且非0元素分布没有规律时，则称该矩阵为稀疏矩阵；与之相反，若非0元素数目占大多数时，则称该矩阵为稠密矩阵。定义非零元素的总数比上矩阵所有元素的总数为矩阵的稠密度。">
 <meta name="twitter:image" content="http://s8.51cto.com/wyfs02/M02/6E/B9/wKioL1WD-rnzJXs6AAAoveikjls134.jpg">
 
 
@@ -447,7 +447,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-20 15:52:14" itemprop="dateModified" datetime="2019-05-20T15:52:14+08:00">2019-05-20</time>
+                <time title="修改时间：2019-05-23 15:45:32" itemprop="dateModified" datetime="2019-05-23T15:45:32+08:00">2019-05-23</time>
               
             
           </span>
@@ -512,6 +512,7 @@
 <p><a href="https://xupsh.github.io/pp4fpgas-cn/06-Sparse-Matrix-Vector-Multiplication.html" target="_blank" rel="noopener">稀疏矩阵向量乘法xFPGA</a></p>
 <p><a href="http://book.51cto.com/art/201506/480986.htm" target="_blank" rel="noopener">稀疏矩阵向量乘法x并行编程方法</a></p>
 <p><a href="https://www.cnblogs.com/xbinworld/p/4273506.html" target="_blank" rel="noopener">稀疏矩阵存储格式总结</a></p>
+<p><a href="https://mp.weixin.qq.com/s/ZrQd2avGTRsHMxj4wRA3gw" target="_blank" rel="noopener">深度学习FPGA加速器设计</a></p>
 </blockquote>
 <p>在矩阵中，若数值为0的元素数目远远多于非0元素的数目，并且非0元素分布没有规律时，则称该矩阵为稀疏矩阵；与之相反，若非0元素数目占大多数时，则称该矩阵为稠密矩阵。定义非零元素的总数比上矩阵所有元素的总数为矩阵的稠密度。<br>SpMV即 Sparse Matrix Vector Multiplication</p>
 <h2 id="稀疏矩阵向量乘法的优化"><a href="#稀疏矩阵向量乘法的优化" class="headerlink" title="稀疏矩阵向量乘法的优化"></a>稀疏矩阵向量乘法的优化</h2><p>稀疏矩阵向量乘法（SPMV）可在很多情况下代替稠密矩阵运算，可以大量节省内存占用，减少计算开销。矩阵向量乘法不同于矩阵和矩阵的乘法，这是完全访存密集型的计算，我们主要的优化方向是提升访存效率或减少访存开销。</p>
@@ -787,7 +788,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
