@@ -7,3 +7,5 @@ git push origin hexo
 hexo d -g
 
 PAUSE
+PAUSE
+PAUSE
