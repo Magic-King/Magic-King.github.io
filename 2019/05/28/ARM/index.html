@@ -1,0 +1,2347 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="ARM指令集详解 引用： ARM指令集详解  1.       汇编1.1.    通用寄存器    寄存器类别 寄存器在汇编中的名称   各模式下实际访问的寄存器           用户 系统 管理 中止 未定义 中断 快中断   通用寄存器和程序计数器 R0(a1)   R0       R1(a2) R1          R2(a3) R2          R3(a4) R3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ARM">
+<meta property="og:url" content="http://yoursite.com/2019/05/28/ARM/index.html">
+<meta property="og:site_name" content="Hexo&amp;Magic">
+<meta property="og:description" content="ARM指令集详解 引用： ARM指令集详解  1.       汇编1.1.    通用寄存器    寄存器类别 寄存器在汇编中的名称   各模式下实际访问的寄存器           用户 系统 管理 中止 未定义 中断 快中断   通用寄存器和程序计数器 R0(a1)   R0       R1(a2) R1          R2(a3) R2          R3(a4) R3">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-my.csdn.net/uploads/201303/25/1364218645_2164.JPG">
+<meta property="og:image" content="https://img-my.csdn.net/uploads/201303/25/1364218711_4613.JPG">
+<meta property="og:image" content="https://img-my.csdn.net/uploads/201303/25/1364218805_9276.JPG">
+<meta property="og:updated_time" content="2019-05-28T15:20:28.057Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ARM">
+<meta name="twitter:description" content="ARM指令集详解 引用： ARM指令集详解  1.       汇编1.1.    通用寄存器    寄存器类别 寄存器在汇编中的名称   各模式下实际访问的寄存器           用户 系统 管理 中止 未定义 中断 快中断   通用寄存器和程序计数器 R0(a1)   R0       R1(a2) R1          R2(a3) R2          R3(a4) R3">
+<meta name="twitter:image" content="https://img-my.csdn.net/uploads/201303/25/1364218645_2164.JPG">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/05/28/ARM/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>ARM | Hexo&Magic</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo&Magic</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/28/ARM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Magic King">
+      <meta itemprop="description" content="Now You See Me!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo&Magic">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ARM
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-28 23:06:13 / 修改时间：23:20:28" itemprop="dateCreated datePublished" datetime="2019-05-28T23:06:13+08:00">2019-05-28</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="ARM指令集详解"><a href="#ARM指令集详解" class="headerlink" title="ARM指令集详解"></a>ARM指令集详解</h1><blockquote>
+<p>引用：</p>
+<p><a href="https://blog.csdn.net/u014069939/article/details/81107340" target="_blank" rel="noopener"><strong>ARM指令集详解</strong></a></p>
+</blockquote>
+<h1 id="1-汇编"><a href="#1-汇编" class="headerlink" title="1.       汇编"></a>1.       汇编</h1><h2 id="1-1-通用寄存器"><a href="#1-1-通用寄存器" class="headerlink" title="1.1.    通用寄存器"></a>1.1.    通用寄存器</h2><p><img src="https://img-my.csdn.net/uploads/201303/25/1364218645_2164.JPG" alt="img"></p>
+<table>
+<thead>
+<tr>
+<th><strong>寄存器类别</strong></th>
+<th><strong>寄存器在汇编中的名称</strong></th>
+<th></th>
+<th></th>
+<th><strong>各模式下实际访问的寄存器</strong></th>
+<th></th>
+<th></th>
+<th></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td><strong>用户</strong></td>
+<td><strong>系统</strong></td>
+<td><strong>管理</strong></td>
+<td><strong>中止</strong></td>
+<td><strong>未定义</strong></td>
+<td><strong>中断</strong></td>
+<td style="text-align:center"><strong>快中断</strong></td>
+</tr>
+<tr>
+<td><strong>通用寄存器和程序计数器</strong></td>
+<td><strong>R0(a1)</strong></td>
+<td></td>
+<td></td>
+<td><strong>R0</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td><strong>R1(a2)</strong></td>
+<td><strong>R1</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td><strong>R2(a3)</strong></td>
+<td><strong>R2</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td><strong>R3(a4)</strong></td>
+<td><strong>R3</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td><strong>R4(v1)</strong></td>
+<td><strong>R4</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td><strong>R5(v2)</strong></td>
+<td><strong>R5</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td><strong>R6(v3)</strong></td>
+<td><strong>R6</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td><strong>R7(v4)</strong></td>
+<td><strong>R7</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td><strong>R8(v5)</strong></td>
+<td><strong>R8</strong></td>
+<td></td>
+<td></td>
+<td><strong>R8_fiq *</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td><strong>R9(SB,v6)</strong></td>
+<td><strong>R9</strong></td>
+<td></td>
+<td></td>
+<td><strong>R9_fiq *</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td><strong>R10(SL,v7)</strong></td>
+<td><strong>R10</strong></td>
+<td></td>
+<td></td>
+<td><strong>R10_fiq *</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td><strong>R11(FP,v8)</strong></td>
+<td><strong>R11</strong></td>
+<td></td>
+<td></td>
+<td><strong>R11_fiq *</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td><strong>R12(IP)</strong></td>
+<td><strong>R12</strong></td>
+<td></td>
+<td></td>
+<td><strong>R12_fiq *</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td><strong>R13(SP)</strong></td>
+<td><strong>R13</strong></td>
+<td></td>
+<td></td>
+<td><strong>R13_svc*</strong></td>
+<td><strong>R13_abt *</strong></td>
+<td><strong>R13_und *</strong></td>
+<td><strong>R13_irq *</strong></td>
+<td style="text-align:center"><strong>R13_fiq *</strong></td>
+</tr>
+<tr>
+<td><strong>R14(LR)</strong></td>
+<td><strong>R14</strong></td>
+<td></td>
+<td></td>
+<td><strong>R14_svc *</strong></td>
+<td><strong>R14_abt *</strong></td>
+<td><strong>R14_und *</strong></td>
+<td><strong>R14_irq *</strong></td>
+<td style="text-align:center"><strong>R14_fiq *</strong></td>
+</tr>
+<tr>
+<td><strong>R15(PC)</strong></td>
+<td><strong>R15</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td><strong>状态寄存器</strong></td>
+<td><strong>R16(CPSR)</strong></td>
+<td></td>
+<td></td>
+<td><strong>CPSR</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td><strong>SPSR</strong></td>
+<td><strong>无</strong></td>
+<td></td>
+<td></td>
+<td><strong>SPSR_svc</strong></td>
+<td><strong>SPSR_abt</strong></td>
+<td><strong>SPSR_und</strong></td>
+<td><strong>SPSR_irq</strong></td>
+<td style="text-align:center"><strong>SPSR_fiq</strong></td>
+</tr>
+</tbody>
+</table>
+<p>通用寄存器</p>
+<p>37个寄存器，31个通用寄存器，6个状态寄存器。</p>
+<p>R12是内部调用暂时寄存器 ip。它在过程链接胶合代码（例如，交互操作胶合代码）中用于此角色。在过程调用之间，可以将它用于任何用途。被调用函数在返回之前不必恢复 r12。</p>
+<p>R13堆栈指针sp，R14返回指针，R15为PC指针, cpsr_c代表的是这32位中的低8位，也就是控制位</p>
+<p>CPSR有4个8位区域：标志域（F）、状态域（S）、扩展域（X）、控制域（C）<br>MSR - Load specified fields of the CPSR or SPSR with an immediate constant, orfrom the contents of a general-purpose register. Syntax: MSR{cond} _, #immed_8rMSR{cond} _, Rm where: cond is an optional condition code. is either CPSR orSPSR. specifies the field or fields to be moved. can be one or more of: ccontrol field mask byte (PSR[7:0]) x extension field mask byte (PSR[15:8]) sstatus field mask byte (PSR[23:16) f flags field mask byte (PSR[31:24]).immed_8r is an expression evaluating to a numeric constant. The constant mustcorrespond to an 8-bit pattern rotated by an even number of bits within a32-bit word. Rm is the source register.</p>
+<p> C 控制域屏蔽字节(psr[7:0]) </p>
+<p>X 扩展域屏蔽字节(psr[15:8]) </p>
+<p>S 状态域屏蔽字节(psr[23:16])</p>
+<p> F 标志域屏蔽字节(psr[31:24])</p>
+<p> <img src="https://img-my.csdn.net/uploads/201303/25/1364218711_4613.JPG" alt="img"></p>
+<p>CPSR寄存器</p>
+<p>FIQ和IRQ的区别？</p>
+<table>
+<thead>
+<tr>
+<th>MODE(以下为二进制)</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10000</td>
+<td>用户模式</td>
+<td>PC,CPSR,R0~R14</td>
+</tr>
+<tr>
+<td>10001</td>
+<td>FIQ</td>
+<td>PC,CPSR,SPSR_fiq，R14_fiq~R8_fiq,R7~R0</td>
+</tr>
+<tr>
+<td>10010</td>
+<td>IRQ</td>
+<td>PC,CPSR,SPSR_irq，R14_irq~R13_irq,R12~R0</td>
+</tr>
+<tr>
+<td>10011</td>
+<td>管理模式(svc)</td>
+<td>PC,CPSR,SPSR_svc，R14_svc~R13_svc,R12~R0</td>
+</tr>
+<tr>
+<td>10111</td>
+<td>终止模式</td>
+<td>PC,CPSR,SPSR_abt，R14_abt~R13_abt,R12~R0</td>
+</tr>
+<tr>
+<td>11011</td>
+<td>未定义</td>
+<td>PC,CPSR,SPSR_und，R14_und~R13_und,R2~R0</td>
+</tr>
+<tr>
+<td>11111</td>
+<td>系统模式(sys)</td>
+<td>PC,CPSR，R14 ~R0</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-2-指令格式"><a href="#1-2-指令格式" class="headerlink" title="1.2.    指令格式"></a>1.2.    指令格式</h2><p>1) 基本格式</p>
+<p>​     <opcode>{<cond>}{S} <rd>,<rn>{,<opcode2>}</opcode2></rn></rd></cond></opcode></p>
+<p>​       其中，&lt;&gt;内的项是必须的，{}内的项是可选的，如<opcode>是指令助记符，是必须的，而{<cond>}为指令执行条件，是可选的，如果不写则使用默认条件AL(无条件执行)。</cond></opcode></p>
+<p>​       opcode  指令助记符，如LDR，STR 等</p>
+<p>​       cond  执行条件，如EQ，NE 等</p>
+<p>​       S  是否影响CPSR 寄存器的值，书写时影响CPSR，否则不影响</p>
+<p>​       Rd  目标寄存器</p>
+<p>​       Rn  第一个操作数的寄存器</p>
+<p>​       operand2  第二个操作数</p>
+<p>​       指令格式举例如下：</p>
+<p>​         LDREX–这条指令主要是从memory中取一个数，然后放到register中，但是相比普通的LDR指令，在于其内在的原子操作特性, 信号量和spin lock这些东西最核心的事情基本上就是load-update-store序列，为了防止并发，必须保证这个序列是原子的，所谓原子，即处理器在执行这个指令序列时，得绝对占有处理器而不能够被切换出去。在ARM上，从V6开始，指令LDREX和STREX就是用来干这事的</p>
+<p>​       LDR R0,[R1] ;读取R1 地址上的存储器单元内容，执行条件AL<br>​        BEQ DATAEVEN ;跳转指令，执行条件EQ，即相等跳转到DATAEVEN<br>​        ADDS R1,R1,#1 ;加法指令，R1＋1＝R1 影响CPSR 寄存器，带有S<br>​        SUBNES R1,R1,#0xD;条件执行减法运算(NE)，R1-0xD=&gt;R1，影响CPSR 寄存器，带有S</p>
+<p>2) 第2个操作数</p>
+<p>​        在ARM 指令中，灵活的使用第2个操作数能提高代码效率，第2个操作数的形式如下：</p>
+<p>​        ＃immed_8r</p>
+<p>​       常数表达式：</p>
+<p>​         该常数必须对应8 位位图，即常数是由一个8 位的常数循环移位偶数位得到。</p>
+<p>​        合法常量：</p>
+<p>​       0x3FC、0、0xF0000000、200、0xF0000001等都是合法常量。</p>
+<p>​       非法常量：</p>
+<p>​       0x1FE、511、0xFFFF、0x1010、0xF0000010等都是非法常量。</p>
+<pre><code>常数表达式应用举例如下：
+</code></pre><p>​       MOV R0,#1 ;R0=1</p>
+<p>​       AND R1,R2,#0x0F ;R2 与0x0F，结果保存在R1</p>
+<p>​       LDR R0，[R1],#-4 ;读取R1 地址上的存储器单元内容，且R1＝R1－4</p>
+<p>​       Rm</p>
+<p>​        寄存器方式，在寄存器方式下操作数即为寄存器的数值。</p>
+<p>​        寄存器方式应用举例：</p>
+<p>​       SUB R1，R1，R2 ；R1-R2=＞R1</p>
+<p>​       MOV PC，R0 ；PC=R0，程序跳转到指定地址</p>
+<p>​       LDR R0，[R1]，-R2 ；读取R1 地址上的存储器单元内容并存入R0，且R1=R1-R2</p>
+<p>​       Rm， shift</p>
+<p>​        寄存器移位方式。将寄存器的移位结果作为操作数，但RM 值保存不变，移位方法如下：</p>
+<p>​       ASR #n  算术右移n 位（1≤n≤32）</p>
+<p>​       LSL #n  逻辑左移n 位（1≤n≤31）</p>
+<p>​       LSR #n  逻辑左移n 位（1≤n≤32）</p>
+<p>​       ROR #n  循环右移n 位（1≤n≤31）</p>
+<p>​       RRX  带扩展的循环右移1位</p>
+<p>​       type Rs  其中，type 为ASR，LSL，和ROR 中的一种；Rs 偏移量寄存器，低8位有效，若其值大于或等于32，则第2 个操作数的结果为0（ASR、ROR例外）。<br>​        寄存器偏移方式应用举例：</p>
+<p>​       ADD R1，R1，R1，LSL #3 ；R1=R1*9</p>
+<p>​       SUB R1，R1，R2，LSR#2 ；R1=R1-R2*4</p>
+<p>​       R15 为处理器的程序计数器PC，一般不要对其进行操作，而且有些指令是不允许使用R15，如UMULL 指令。<br>​        （3）条件码<br>​        使用指令条件码，可实现高效的逻辑操作，提高代码效率。表A-1给出条件码表。</p>
+<p>表A-1  条件码表</p>
+<p>​        对于Thumb指令集，只有B 指令具有条件码执行功能，此指令条件码同表A-?，但如果为无条件执行时，条件码助记符“AL”不在指令中书写。</p>
+<p>​        条件码应用举例如下：</p>
+<p>​        比较两个值大小，并进行相应加1 处理，C 代码为：<br>​        if（a＞b）a++       ;<br>​        else b++           ;<br>​        对应的ARM 指令如下。其中R0为a，R1为b。<br>​        CMP R0，R1        ; R0 与R1 比较<br>​        ADDHI R0，R0，#1        ; 若R0＞R1，则R0=R0+1<br>​        ADDLS R1，R1，#1        ;若R0＜=R1，则R1=R1+1<br>​        若两个条件均成立，则将这两个数值相加，C代码为：</p>
+<p>​        If(（a!=10）&amp;&amp;(b!=20))a=a+b;</p>
+<p>​        对应的ARM 指令如下，其中R0 为a，R1为b。<br>​        CMP R0,#10            ; 比较R0 是否为10<br>​        CMPNE R1,#20        ; 若R0 不为10，则比较R1 是否20<br>​        ADDNE R0,R0,R1        ; 若R0 不为10 且R1 不为20，指令执行，R0=R0+R1</p>
+<h2 id="1-3-指令集"><a href="#1-3-指令集" class="headerlink" title="1.3.    指令集"></a>1.3.    指令集</h2><h3 id="1-3-1-ARM-存储器访问指令"><a href="#1-3-1-ARM-存储器访问指令" class="headerlink" title="1.3.1.   ARM 存储器访问指令"></a>1.3.1.   ARM 存储器访问指令</h3><p>​        ARM 处理是加载/存储体系结构的典型的RISC处理器，对存储器的访问只能使用加载和存储指令实现。ARM 的加载/存储指令是可以实现字、半字、无符/有符字节操作；批量加载/存储指令可实现一条指令加载/存储多个寄存器的内容，大大提高效率；SWP指令是一条寄存器和存储器内容交换的指令，可用于信号量操作等。ARM 处理器是冯?诺依曼存储结构，程序空间、RAM 空间及IO 映射空间统一编址，除对对RAM 操作以外，对外围IO、程序数据的访问均要通过加载/存储指令进行。表A-2给出ARM存储访问指令表。</p>
+<p>表A-2  ARM 存储访问指令表</p>
+<p><img src="https://img-my.csdn.net/uploads/201303/25/1364218805_9276.JPG" alt="img"></p>
+<pre><code>**LDR 和STR**
+加载/存储字和无符号字节指令。使用单一数据传送指令(STR 和LDR)来装载和存储单一字节或字的数据从/到内存。LDR指令用于从内存中读取数据放入寄存器中；STR 指令用于将寄存器中的数据保存到内存。指令格式如下：
+LDR{cond}{T} Rd,&lt;地址&gt;;加载指定地址上的数据(字)，放入Rd中
+STR{cond}{T} Rd,&lt;地址&gt;;存储数据(字)到指定地址的存储单元，要存储的数据在Rd中
+LDR{cond}B{T} Rd,&lt;地址&gt;;加载字节数据，放入Rd中，即Rd最低字节有效，高24位清零
+STR{cond}B{T} Rd,&lt;地址&gt;;存储字节数据，要存储的数据在Rd，最低字节有效
+其中，T 为可选后缀，若指令有T，那么即使处理器是在特权模式下，存储系统也将访问看成是处理器是在用户模式下。T在用户模式下无效，不能与前索引偏移一起使用T。
+LDR/STR 指令寻址是非常灵活的，由两部分组成，一部分为一个基址寄存器，可以为任一个通用寄存器，另一部分为一个地址偏移量。地址偏移量有以下3种格式：
+(1) 立即数。立即数可以是一个无符号数值，这个数据可以加到基址寄存器，也可以从基址寄存器中减去这个数值。指令举例如下：
+LDR R1,[R0,#0x12] ;将R0+0x12 地址处的数据读出，保存到R1中(R0 的值不变)
+LDR R1,[R0,#-0x12];将R0-0x12 地址处的数据读出，保存到R1中(R0 的值不变)
+LDR R1,[R0] ;将R0 地址处的数据读出，保存到R1 中(零偏移)
+(2)寄存器。寄存器中的数值可以加到基址寄存器，也可以从基址寄存器中减去这个数值。指令举例值。指令举例如下：
+LDR R1,[R0,R2] ;将R0+R2 地址的数据计读出，保存到R1中(R0 的值不变)
+LDR R1,[R0,-R2] ;将R0-R2 地址处的数据计读出，保存到R1中(R0 的值不变)
+(3)寄存器及移位常数。寄存器移位后的值可以加到基址寄存器，也可以从基址寄存器中减去这个数值。指令举例如下：
+LDR R1,[R0,R2,LSL #2] ;将R0+R2*4地址处的数据读出，保存到R1中（R0，R2的值不变）
+LDR R1,[R0,-R2,LSL #2];将R0-R2*4地址处的数据计读出，保存到R1中(R0，R2的值不变)
+从寻址方式的地址计算方法分，加载/存储指令有以下4 种形式：
+(1)零偏移。Rn 的值作为传送数据的地址，即地址偏移量为0。指令举例如下：
+LDR Rd,[Rn]
+(2)前索引偏移。在数据传送之前，将偏移量加到Rn 中，其结果作为传送数据的存储地址。若使用后缀“！”，则结果写回到Rn中，且Rn 值不允许为R15。指令举例如下：
+LDR Rd,[Rn,#0x04]!
+LDR Rd,[Rn,#-0x04]
+(3)程序相对偏移。程序相对偏移是索引形式的另一个版本。汇编器由PC 寄存器计算偏移量，并将PC寄存器作为Rn 生成前索引指令。不能使用后缀“！”。指令举例如下：
+LDR Rd,label ;label 为程序标号，label 必须是在当前指令的±4KB范围内
+(4) 后索引偏移。Rn 的值用做传送数据的存储地址。在数据传送后，将偏移量与Rn相加，结果写回到Rn中。Rn 不允许是R15。指令举例如下：
+LDR Rd,[Rn],#0x04
+地址对准--大多数情况下，必须保证用于32 位传送的地址是32 位对准的。
+加载/存储字和无符号字节指令举例如下：
+LDR R2,[R5] ;加载R5 指定地址上的数据(字)，放入R2 中
+STR R1,[R0,#0x04] ;将R1 的数据存储到R0+0x04存储单元，R0 值不变
+LDRB R3,[R2],#1 ;读取R2 地址上的一字节数据，并保存到R3中，R2=R3+1
+STRB R6,[R7] ;读R6 的数据保存到R7 指定的地址中，只存储一字节数据
+加载/存储半字和带符号字节。这类LDR/STR 指令可能加载带符字节\加载带符号半字、加载/存储无符号半字。偏移量格式、寻址方式与加载/存储字和无符号字节指令相同。指令格式如下：
+LDR{cond}SB Rd,&lt;地址&gt; ;加载指定地址上的数据(带符号字节)，放入Rd中
+LDR{cond}SH Rd,&lt;地址&gt; ;加载指定地址上的数据(带符号字节)，放入Rd中
+LDR{cond}H Rd,&lt;地址&gt; ;加载半字数据，放入Rd中，即Rd最低16位有效,高16位清零
+STR{cond}H Rd,&lt;地址&gt; ;存储半字数据，要存储的数据在Rd，最低16位有效
+说明：带符号位半字/字节加载是指带符号位加载扩展到32 位;无符号位半字加载是指零扩展到32位。
+地址对准--对半字传送的地址必须为偶数。非半字对准的半字加载将使Rd 内容不可靠，非半字对准的半字存储将使指定地址的2字节存储内容不可靠。
+</code></pre><p>​        加载/存储半字和带符号字节指令举例如下：</p>
+<p>​        LDRSB R1[R0,R3] ;将R0+R3地址上的字节数据读出到R1，高24 位用符号位扩展<br>​        LDRSH R1,[R9] ;将R9 地址上的半字数据读出到R1，高16位用符号位扩展<br>​        LDRH R6,[R2],#2 ;将R2 地址上的半字数据读出到R6，高16位用零扩展，R2=R2+1<br>​        SHRH R1,[R0,#2]!;将R1 的数据保存到R2+2 地址中，只存储低2字节数据，R0=R0+2<br>​        LDR/STR 指令用于对内存变量的访问，内存缓冲区数据的访问、查表、外设的控制操作等等，若使用LDR 指令加载数据到PC 寄存器，则实现程序跳转功能，这样也就实现了程序散转。<br>​        变量的访问<br>​        NumCount EQU 0x40003000 ;定义变量NumCount<br>​        …<br>​        LDR R0,=NumCount ;使用LDR 伪指令装载NumCount的地址到R0<br>​        LDR R1,[R0] ;取出变量值<br>​        ADD R1,R1,#1 ;NumCount=NumCount+1<br>​        STR R1,[R0] ;保存变量值<br>​        …<br>​        GPIO 设置<br>​        GPIO-BASE EQU 0Xe0028000 ;定义GPIO 寄存器的基地址<br>​        …<br>​        LDR R0,=GPIO-BASE<br>​        LDR R1,=0x00FFFF00 ;装载32 位立即数，即设置值<br>​        STR R1,[R0,#0x0C] ;IODIR=0x00FFFF00， IODIR 的地址为0xE002800C<br>​        MOV R1,#0x00F00000<br>​        STR R1,[R0,#0x04] ;IOSET=0x00F00000，IOSET 的地址为0xE0028004<br>​        …<br>​        程序散转<br>​        …<br>​        MOV R2,R2,LSL #2 ;功能号乘上4，以便查表<br>​        LDR PC,[PC,R2] ;查表取得对应功能子程序地址，并跳转<br>​        NOP<br>​        FUN-TAB DCD FUN-SUB0<br>​        DCD FUN-SUB1<br>​        DCD FUN-SUB2<br>​        …</p>
+<p>​        <strong>LDM和STM</strong><br>​        批量加载/存储指令可以实现在一组寄存器和一块连续的内存单元之间传输数据。LDM为加载多个寄存器，STM 为存储多个寄存器。允许一条指令传送16 个寄存器的任何子集或所有寄存器。指令格式如下：<br>​        LDM{cond}&lt;模式&gt; Rn{!},reglist{^}<br>​        STM{cond}&lt;模式&gt; Rn{!},reglist{^}<br>​        LDM /STM 的主要用途是现场保护、数据复制、参数传送等。其模式有8种，如下所列：(前面4 种用于数据块的传输，后面4 种是堆栈操作)。<br>​        (1) IA：每次传送后地址加4<br>​        (2) IB：每次传送前地址加4<br>​        (3) DA：每次传送后地址减4<br>​        (4) DB：每次传送前地址减4<br>​        (5) FD：满递减堆栈<br>​        (6) ED：空递增堆栈<br>​        (7) FA：满递增堆栈<br>​        (8) EA：空递增堆栈<br>​        其中，寄存器Rn 为基址寄存器，装有传送数据的初始地址，Rn 不允许为R15;后缀“！”表示最后的地址写回到Rn中;寄存器列表reglist 可包含多于一个寄存器或寄存器范围，使用“,”分开，如{R1,R2,R6-R9},寄存器排列由小到大排列；“＾”后缀不允许在用户模式呈系统模式下使用，若在LDM 指令用寄存器列表中包含有PC 时使用，那么除了正常的多寄存器传送外，将SPSR 拷贝到CPSR 中，这可用于异常处理返回；使用“＾”后缀进行数据传送且寄存器列表不包含PC时，加载/存储的是用户模式的寄存器，而不是当前模式的寄存器。<br>​        地址对准――这些指令忽略地址的位[1：0]。<br>​        批量加载/存储指令举例如下：<br>​        LDMIA R0!,{R3-R9} ;加载R0 指向的地址上的多字数据，保存到R3～R9中，R0 值更新<br>​        STMIA R1!,{R3-R9} ;将R3～R9 的数据存储到R1 指向的地址上，R1值更新<br>​        STMFD SP!,{R0-R7,LR} ;现场保存，将R0～R7、LR入栈<br>​        LDMFD SP!,{R0-R7,PC}^;恢复现场，异常处理返回<br>​        在进行数据复制时，先设置好源数据指针，然后使用块拷贝寻址指令LDMIA/STMIA、LDMIB/STMIB、LDMDA/STMDA、LDMDB/STMDB 进行读取和存储。而进行堆栈操作时，则要先设置堆栈指针，一般使用SP 然后使用堆栈寻址指令STMFD/LDMFD、STMED。LDMED、STMFA/LDMFA、STMEA/LDMEA实现堆栈操作。<br>​        多寄存器传送指令示意图如图A-1所示，其中R1为指令执行前的基址寄存器，R1’则为指令执行完后的基址寄存器。</p>
+<p>（a）指令STMIA R1!,{R5-R7}                                （b）指令STMIB R1!,{R5-R7}</p>
+<p>（c）指令STMDA R1!, {R5-R7}                                （d）指令STMDB R1!,{R5-R7}<br>图A-1  多寄存器传送指令示意图</p>
+<p>​        数据是存储在基址寄存器的地址之上还是之下，地址是在存储第一个值之前还是之后增加还是减少。表A-3给出多寄存器传送指令映射示意表。</p>
+<p>表A-3  多寄存器传送指令映射示意表</p>
+<pre><code>使用LDM/STM 进行数据复制例程如下：
+…
+LDR R0,=SrcData ;设置源数据地址
+LDR R1,=DstData ;设置目标地址
+LDMIA R0,{R2-R9} ;加载8 字数据到寄存器R2～R9
+STMIA R1,{R2-R9} ;存储寄存器R2～R9 到目标地址
+</code></pre><p>​        使用LDM/STM 进行现场寄存器保护，常在子程序中或异常处理使用：<br>​        SENDBYTE<br>​        STMFD SP!,{R0-R7,LR} ;寄存器入堆<br>​        …<br>​        BL DELAY ;调用DELAY 子程序<br>​        …<br>​        LDMFD SP!,{R0-R7,PC} ;恢复寄存器，并返回</p>
+<p>​        <strong>SWP</strong><br>​        寄存器和存储器交换指令。SWP指令用于将一个内存单元（该单元地址放在寄存器Rn中）的内容读取到一个寄存器Rd中，同时将另一个寄存器Rm 的内容写入到该内存单元中。使用SWP 可实现信号量操作。<br>​        指令格式如下：<br>​        SWP{cond}{B} Rd,Rm,[Rn]<br>​        其中，B 为可选后缀，若有B，则交换字节，否则交换32 位字：Rd 为数据从存储器加载到的寄存器;Rm的数据用于存储到存储器中，若Rm 与Rn 相同，则为寄存器与存储器内容进行交换;Rn 为要进行数据交换的存储器地址，Rn 不能与Rd 和Rm 相同。<br>​        SWP 指令举例如下：<br>​        SWP R1,R1,[R0] ; 将R1 的内容与R0 指向的存储单元的内容进行交换<br>​        SWP R1,R2,,[R0] ; 将R0 指向的存储单元内容读取一字节数据到R1中(高24 位清零)<br>​                                       ; 并将R2 的内容写入到该内存单元中(最低字节有效)<br>​        使用SWP 指令可以方便地进行信号量的操作：<br>​        12C_SEM EQU 0x40003000<br>​        …<br>​        12C_SEM_WAIT<br>​        MOV R0,#0<br>​        LDR R0,=12C_SEM<br>​        SWP R1,R1,[R0]        ;取出信号量，并设置其为0<br>​        CMP R1,#0            ;判断是否有信号<br>​        BEQ 12C_SEM_WAIT      ;若没有信号，则等待</p>
+<h3 id="1-3-2-ARM-数据处理指令"><a href="#1-3-2-ARM-数据处理指令" class="headerlink" title="1.3.2.   ARM 数据处理指令"></a>1.3.2.   ARM 数据处理指令</h3><p>​        数据处理指令大致可分为3 类：</p>
+<p>（1）     数据传送指令（如MOV、MVN）</p>
+<p>（2）     算术逻辑运算指令（如ADD,SUM,AND）</p>
+<p>（3）     比较指令（如CMP、TST）。</p>
+<p>数据处理指令只能对寄存器的内容进行操作。        所有ARM 数据处理指令均可选择使用S 后缀，以影响状态标志。比较指令CMP、CMN、TST和TEQ不需要后缀S，它们会直接影响状态标志。ARM数据处理指令列于表A-4中。</p>
+<p>表A-4  ARM 数据处理指令</p>
+<pre><code> （1）数据传送指令
+**MOV**
+ 数据传送指令。将8 位图立即数或寄存器(operant2)传送到目标寄存器Rd，可用于移位运算等操作。指令格式如下：
+ MOV{cond}{S} Rd,operand2
+ MOV 指令举例如下：
+ MOV R1#0x10 ;R1=0x10
+ MOV R0,R1 ;R0=R1
+ MOVS R3,R1,LSL #2 ;R3=R1＜＜2，并影响标志位
+ MOV PC,LR   ;PC=LR ，子程序返回
+</code></pre><p>​        <strong>MVN</strong><br>​        数据非传送指令。将8 位图立即数或寄存器(operand2)按位取反后传送到目标寄存器(Rd)，因为其具有取反功能，所以可以装载范围更广的立即数。指令格式如下：<br>​        MVN{cond}{S} Rd,operand2<br>​        MVN 指令举例如下：<br>​        MVN R1,#0xFF ;R1=0xFFFFFF00<br>​        MVN R1,R2 ;将R2 取反，结果存到R1</p>
+<p>​        （2）算术逻辑运算指令<br>​        <strong>ADD</strong><br>​        加法运算指令。将operand2 数据与Rn 的值相加，结果保存到Rd 寄存器。指令格式如下：<br>​        ADD{cond}{S} Rd,Rn,operand2<br>​        ADD 指令举例如下：<br>​        ADDS R1,R1,#1 ;R1=R1+1<br>​        ADD R1,R1,R2 ;R1=R1+R2<br>​        ADDS R3,R1,R2,LSL #2 ;R3=R1+R2＜＜2</p>
+<p>​        <strong>SUB</strong><br>​        减法运算指令。用寄存器Rn 减去operand2。结果保存到Rd 中。指令格式如下：<br>​        SUB{cond}{S} Rd,Rn,operand2<br>​        SUB 指令举例如下：<br>​        SUBS R0,R0,#1 ;R0=R0-1<br>​        SUBS R2,R1,R2 ;R2=R1-R2<br>​        SUB R6,R7,#0x10 ;R6=R7-0x10</p>
+<p>​        <strong>RSB</strong><br>​        逆向减法指令。用寄存器operand2 减法Rn，结果保存到Rd 中。指令格式如下：<br>​        RSB{cond}{S} Rd,Rn,operand2<br>​        SUB 指令举例如下：<br>​        RSB R3,R1,#0xFF00 ;R3=0xFF00-R1<br>​        RSBS R1,R2,R2,LSL #2 ;R1=R2＜＜2-R2=R2×3<br>​        RSB R0,R1,#0 ;R0=-R1</p>
+<p>​        <strong>ADC</strong><br>​        带进位加法指令。将operand2 的数据与Rn 的值相加，再加上CPSR中的C 条件标志位。结果保存到Rd 寄存器。指令格式如下：<br>​        ADC{cond}{S} Rd,Rn,operand2<br>​        ADC 指令举例如下：<br>​        ADDS R0,R0,R2<br>​        ADC R1,R1,R3 ;使用ADC 实现64 位加法，(R1、R0)=(R1、R0)+（R3、R2）</p>
+<p>​        <strong>SBC</strong><br>​        带进位减法指令。用寄存器Rn 减去operand2，再减去CPSR 中的C条件标志位的非（即若C 标志清零，则结果减去1），结果保存到Rd 中。指令格式如下：<br>​        SCB{cond}{S}Rd,Rn,operand2<br>​        SBC 指令举例如下：<br>​        SUBS R0，R0，R2<br>​        SBC R1，R1，R3 ;使用SBC 实现64 位减法，(R1,R0)-(R3,R2)</p>
+<p>​        <strong>RSC</strong><br>​        带进位逆向减法指令。用寄存器operand2 减去Rn，再减去CPSR 中的C条件标志位，结果保存到Rd 中。指令格式如下：<br>​        RSC{cond}{S} Rd,Rn,operand2<br>​        RSC 指令举例如下：<br>​        RSBS R2,R0,#0<br>​        RSC R3,R1,#0 ;使用RSC 指令实现求64 位数值的负数</p>
+<p>​        <strong>AND</strong><br>​        逻辑与操作指令。将operand2 值与寄存器Rn 的值按位作逻辑与操作，结果保存到Rd中。指令格式如下：<br>​        AND{cond}{S} Rd,Rn,operand2<br>​        AND 指令举例如下：<br>​        ANDS R0,R0,#x01 ;R0=R0&amp;0x01，取出最低位数据<br>​        AND R2,R1,R3 ;R2=R1&amp;R3</p>
+<p>​       <strong>ORR</strong><br>​        逻辑或操作指令。将operand2 的值与寄存器Rn的值按位作逻辑或操作，结果保存到Rd 中。指令格式如下：<br>​        ORR{cond}{S} Rd,Rn,operand2<br>​        ORR 指令举例如下：<br>​        ORR R0,R0,#x0F ;将R0 的低4 位置1<br>​        MOV R1,R2,LSR #4<br>​        ORR R3,R1,R3,LSL #8 ;使用ORR 指令将近R2 的高8位数据移入到R3 低8 位中</p>
+<p>​        <strong>EOR</strong><br>​        逻辑异或操作指令。将operand2 的值与寄存器Rn 的值按位作逻辑异或操作，结果保存到Rd中。指令格式如下：<br>​        EOR{cond}{S}Rd,Rn,operand2<br>​        EOR 指令举例如下：<br>​        EOR R1,R1,#0x0F ;将R1 的低4 位取反<br>​        EOR R2,R1,R0 ;R2=R1^R0<br>​        EORS R0,R5,#0x01 ;将R5 和0x01 进行逻辑异或，结果保存到R0，并影响标志位</p>
+<p>​        <strong>BIC</strong><br>​        位清除指令。将寄存器Rn 的值与operand2 的值的反码按位作逻辑与操作，结果保存到Rd中。指令格式如下：<br>​        BIC{cond}{S}Rd,Rn,operand2<br>​        BIC 指令举例如下：<br>​        BIC R1,R1,#0x0F ;将R1 的低4 位清零，其它位不变<br>​        BIC R1,R2,R3 ;将拭的反码和R2 相逻辑与，结果保存到R1</p>
+<p>​        （3）比较指令<br>​        <strong>CMP</strong><br>​        比较指令。指令使用寄存器Rn 的值减去operand2 的值，根据操作的结果更新CPSR中的相应条件标志位，以便后面的指令根据相应的条件标志来判断是否执行。指令格式如下：<br>​        CMP{cond} Rn,operand2<br>​        CMP 指令举例如下：<br>​        CMP R1,#10 ;R1 与10 比较，设置相关标志位<br>​        CMP R1,R2 ;R1 与R2 比较，设置相关标志位<br>​        CMP 指令与SUBS 指令的区别在于CMP 指令不保存运算结果。在进行两个数据大小判断时，常用CMP指令及相应的条件码来操作。</p>
+<p>​        <strong>CMN</strong><br>​        负数比较指令。指令使用寄存器Rn 与值加上operand2 的值，根据操作的结果更新CPSR中的相应条件标志位，以便后面的指令根据相应的条件标志来判断是否执行，指令格式如下：<br>​        CMN{cond} Rn,operand2<br>​        CMN R0,#1 ;R0+1,判断R0 是否为1 的补码，若是Z 置位<br>​        CMN 指令与ADDS 指令的区别在于CMN 指令不保存运算结果。CMN指令可用于负数比较，比如CMNR0，#1 指令则表示R0 与-1 比较，若R0 为-(即1 的补码)，则Z 置位，否则Z复位。</p>
+<p>​        <strong>TST</strong><br>​        位<a href="http://lib.csdn.net/base/softwaretest" target="_blank" rel="noopener">测试</a>指令。指令将寄存器Rn 的值与operand2 的值按位作逻辑与操作，根据操作的结果更新CPSR中相应的条件标志位(当结果为0时，EQ位被设置)，以便后面指令根据相应的条件标志来判断是否执行。指令格式如下：<br>​        TST{cond} Rn,operand2<br>​        TST 指令举例如下：<br>​        TST R0,#0x01 ;判断R0 的最低位是否为0<br>​        TST R1,#0x0F ;判断R1 的低4 位是否为0<br>​        TST 指令与ANDS 指令的区别在于TST4 指令不保存运算结果。TST指令通常于EQ、NE条件码配合使用，当所有测试位均为0 时，EQ 有效，而只要有一个测试为不为0，则NE 有效。</p>
+<p>​        <strong>TEQ</strong><br>​        相等测试指令。指令寄存器Rn 的值与operand2 的值按位作逻辑异或操作，根据操作的结果更新CPSR中相应条件标志位，以便后面的指令根据相应的条件标志来判断是否执行。指令格式如下：<br>​        TEQ{cond} Rn,operand2<br>​        TEQ 指令举例如下：<br>​        TEQ R0,R1 ;比较R0 与R1 是否相等(不影响V 位和C 位)<br>​        TST 指令与EORS 指令的区别在于TST 指令不保存运算结果。使用TEQ进行相等测试，常与EQNE 条件码配合使用，当两个数据相等时，EQ 有效，否则NE 有效。</p>
+<p>​        （4）乘法指令<br>​        ARM7TDMI(-S)具有32×32 乘法指令、32×32 乘加指令、32×32结果为64 位的乘法指令。表A-5给出全部的ARM 乘法指令。</p>
+<p>表A-5  全部的ARM 乘法指令</p>
+<pre><code>**MUL**
+32 位乘法指令。指令将Rm 和Rs 中的值相乘，结果的低32 位保存到Rd中。指令格式如下：
+MUL{cond}{S} Rd,Rm,Rs
+MUL 指令举例如下：
+MUL R1,R2,R3 ;R1=R2×R3
+MULS R0,R3,R7 ;R0=R3×R7，同时设置CPSR 中的N位和Z 位
+</code></pre><p>​        <strong>MLA</strong><br>​        32 位乘加指令。指令将Rm 和Rs 中的值相乘，再将乘积加上第3 个操作数，结果的低32位保存到Rd 中。指令格式如下：<br>​        MLA{cond}{S} Rd,Rm,Rs,Rn<br>​        MLA 指令举例如下：<br>​        MLA R1,R2,R3,R0 ;R1=R2×R3+10</p>
+<p>​        <strong>UMULL</strong><br>​        64 位无符号乘法指令。指令将Rm 和Rs 中的值作无符号数相乘，结果的低32位保存到RsLo 中，而高32 位保存到RdHi 中。指令格式如下：<br>​        UMULL{cond}{S} RdLo,RdHi,Rm,Rs<br>​        UMULL 指令举例如下：<br>​        UMULL R0,R1,R5,R8 ;(R1、R0)=R5×R8</p>
+<p>​        <strong>UMLAL</strong><br>​        64 位无符号乘加指令。指令将Rm 和Rs 中的值作无符号数相乘，64 位乘积与RdHi、RdLo相加，结果的低32 位保存到RdLo 中，而高32 位保存到RdHi 中。指令格式如下：<br>​        UMLAL{cond}{S} RdLo,RdHi,Rm,Rs<br>​        UMLAL 指令举例如下：<br>​        UMLAL R0,R1,R5,R8;(R1,R0)=R5×R8+(R1,R0)</p>
+<p>​        <strong>SMULL</strong><br>​        64 位有符号乘法指令。指令将Rm 和Rs 中的值作有符号数相乘，结果的低32位保存到RdLo 中，而高32 位保存到RdHi 中。指令格式如下：<br>​        SMULL{cond}{S} RdLo,RdHi,Rm,Rs<br>​        SMULL 指令举例如下：<br>​        SMULL R2,R3,R7,R6 ;(R3,R2)=R7×R6</p>
+<p>​        <strong>SMLAL</strong><br>​        64 位有符号乘加指令。指令将Rm 和Rs 中的值作有符号数相乘，64 位乘积与RdHi、RdLo，相加，结果的低32位保存到RdLo 中，而高32 位保存到RdHi 中。指令格式如下：<br>​        SMLAL{cond}{S} RdLo,RdHi,Rm,Rs<br>​        SMLAL 指令举例如下：<br>​        SMLAL R2,R3,R7,R6;(R3,R2)=R7×R6+(R3,R2)</p>
+<h3 id="1-3-3-ARM-跳转指令"><a href="#1-3-3-ARM-跳转指令" class="headerlink" title="1.3.3.   ARM 跳转指令"></a>1.3.3.   ARM 跳转指令</h3><p>​     两种方式可以实现程序的跳转：</p>
+<p>（1）     使用跳转指令直接跳转，跳转指令有跳转指令B，带链接的跳转指令BL ，带状态切换的跳转指令BX。</p>
+<p>（2）   直接向PC 寄存器赋值实现跳转。</p>
+<p>表A-6给出全部的ARM跳转指令。</p>
+<p>表A-6  ARM跳转指令</p>
+<p>​        <strong>B</strong>    跳转指令，跳转到指定的地址执行程序。</p>
+<p>   B{cond} label</p>
+<p>   举例如下：</p>
+<p>​       B WAITA ;跳转到WAITA 标号处</p>
+<p>​       B 0x1234 ;跳转到绝对地址0x1234 处</p>
+<p>​        跳转到指令B 限制在当前指令的±32Mb 的范围内。</p>
+<p>​        <strong>BL</strong>       带链接的跳转指令。指令将下一条指令的地址拷贝到R14(即LR)链接寄存器中，然后跳转到指定地址运行程序。<br>​        BL{cond} label</p>
+<p>​       举例如下：</p>
+<p>​       BL DELAY</p>
+<p>​        跳转指令B 限制在当前指令的±32MB 的范围内。BL 指令用于子程序调用。</p>
+<p>​       <strong>BX</strong>       带状态切换的跳转指令。跳转到Rm 指定的地址执行程序，若Rm 的位[0]为1，则跳转时自动将CPSR 中的标志T 置位，即把目标地址的代码解释为Thumb代码;若Rm 的位[0]为0，则跳转时自动将CPSR 中的标志T 复位，即把目标地址的代码解释为ARM代码。指令格式如下：<br>​        BX{cond} Rm<br>​       举例如下：<br>​        ADRL R0,ThumbFun+1<br>​        BX R0 ;跳转到R0 指定的地址，并根据R0 的最低位来切换处理器状态</p>
+<p>​         BLX</p>
+<p>​         BLX目标地址：跳转，改变状态及保存PC值</p>
+<h3 id="1-3-4-ARM-协处理器指令"><a href="#1-3-4-ARM-协处理器指令" class="headerlink" title="1.3.4.   ARM 协处理器指令"></a>1.3.4.   ARM 协处理器指令</h3><p>5              ARM 支持协处理器操作，协处理器的控制要通过协处理器命令实现。表A-7给出全部的ARM协处理器指令。</p>
+<p>表A-7  ARM 协处理器指令</p>
+<pre><code>**CDP**
+协处理器数据操作指令。ARM 处理器通过CDP 指令通知ARM 协处理器执行特定的操作。该操作由协处理器完成，即对命令的参数的解释与协处理器有关，指令的使用取决于协处理器。若协处理器不能成功地执行该操作，将产生未定义指令异常中断。指令格式如下：
+CDP{cond}coproc,opcodel,CRd,CRn,CRm{,opcode2}
+其中： coproc 指令操作的协处理器名。标准名为pn,n 为0～15。
+opcodel 协处理器的特定操作码。
+CRd 作为目标寄存器的协处理器寄存器。
+CRN 存放第1 个操作数的协处理器寄存器。
+CRm 存放第2 个操作数的协处理器寄存器。
+Opcode2 可选的协处理器特定操作码。
+CDP 指令举例如下：
+CDP p7,0,c0,c2,c3,0 ;协处理器7 操作，操作码为0，可选操作码为0
+CDP p6,1,c3,c4,c5 ;协处理器操作，操作码为1
+</code></pre><p>​        <strong>LDC</strong><br>​        协处理器数据读取指令。LDC指令从某一连续的内存单元将数据读取到协处理器的寄存器中。协处理器数据的数据的传送，由协处理器来控传送的字数。若协处理器不能成功地执行该操作，将产生未定义指令异常中断。指令格式如下：<br>​        LDC{cond}{L} coproc,CRd,&lt;地址&gt;<br>​        其中： L 可选后缀，指明是长整数传送。<br>​        coproc 指令操作的协处理器名。标准名为pn，n 为0～15<br>​        CRd 作为目标寄存的协处理器寄存器。<br>​        &lt;地址&gt; 指定的内存地址<br>​        LDC 指令举例如下：<br>​        LDC p5,c2,[R2,#4];读取R2+4指向的内存单元的数据，传送到协处理器p5的c2寄存器中<br>​        LDC p6,c2,[R1] ;读取是指向的内存单元的数据，传送到协处理器p6的c2 寄存器中</p>
+<p>​        <strong>STC</strong><br>​        协处理器数据写入指令。STC指令将协处理器的寄存器数据写入到某一连续的内存单元中。进行协处理器数据的数据传送，由协处理器来控制传送的字数。若协处理器不能成功地执行该操作，将产生未定义指令异常中断。指令格式如下：<br>​        STC{cond}{L} coproc,CRd,&lt;地址&gt;<br>​        其中： L 可选后缀，指明是长整数传送。<br>​        coproc 指令操作的协处理器名。标准名为pn，n 为0～15<br>​        CRd 作为目标寄存的协处理器寄存器。<br>​        &lt;地址&gt; 指定的内存地址<br>​        STC 指令举例如下：<br>​        STC p5,c1,[R0]<br>​        STC p5,c1,[Ro,#-0x04]<br>​        <strong>MCR</strong><br>​        ARM寄存器到协处理器寄存器的数据传送指令。MCR 指令将ARM 处理器的寄存器中的数据传送到协处理器的寄存器中。若协处理器不能成功地执行该操作，将产生未定义指令异常中断。指令格式如下：<br>​        MCR{cond}coproc,opcodel,Rd,CRn,CRm{,opcode2}<br>​        其中：coproc 指令操作的协处理器名。标准名为pn，n 为0～15。<br>​        cpcodel 协处理器的特定操作码。<br>​        RD 作为目标寄存器。<br>​        CRn 存放第1 个操作数的协处理器寄存器<br>​        CRm 存放第2 个操作数的协处理器寄存器。<br>​        Opcode2 可选的协处理器特定操作码。<br>​        MCR 指令举例如下：<br>​        MCR p6,2,R7,c1,c2,<br>​        MCR P7,0,R1,c3,c2,1,</p>
+<p>​        <strong>MRC</strong><br>​        协处理器寄存器到ARM寄存器到的数据传送指令。MRC 指令将协处理器寄存器中的数据传送到ARM 处理器的寄存器中。若协处理器不能成功地执行该操作。将产生未定义异常中断。指令格式如下：<br>​        MRC {cond}coproc,opcodel,Rd,CRn,CRm{,opcode2}<br>​        其中：coproc 指令操作的协处理器名。标准名为pn，n为0～15。<br>​        opcodel 协处理器的特定操作码。<br>​        Rd 作为目标寄存器。<br>​        CRn 存放第1 个操作数的协处理器寄存器。<br>​        CRm 存放第2 个操作数的协处理器寄存器。<br>​        opcode2 可选的协处理器特定操作码。<br>​        MRC 指令举例如下：<br>​        MRC p5,2,R2,c3,c2<br>​        MRC p7,0,R0,c1,c2,1</p>
+<h3 id="1-3-5-ARM-杂项指令"><a href="#1-3-5-ARM-杂项指令" class="headerlink" title="1.3.5.   ARM 杂项指令"></a>1.3.5.   ARM 杂项指令</h3><p>​        表A-8给出全部的ARM协处理器指令。</p>
+<p>表A-8 ARM杂项指令</p>
+<pre><code>**SWI**
+软中断指令。SWI 指令用于产生软中断，从而实现在用户模式变换到管理模式，CPSR保存到管理模式的SPSR中，执行转移到SWI 向量，在其它模式下也可使用SWI 指令，处理同样地切换到管理模式。指令格式如下：
+SWI{cond} immed_24
+其中：immed_24 24 位立即数，值为0～16777215 之间的整数。
+SWI 指令举例如下：
+SWI 0 ;软中断，中断立即数为0
+SWI 0x123456 ;软中断，中断立即数为0x123456
+使用SWI 指令时，通常使用以下两种方法进行传递参数，SWI 异常中断处理程序就可以提供相关的服务，这两种方法均是用户软件协定。SWI异常中断处理程序要通过读取引起软中断的SWI 指令，以取得24 位立即数。
+（A）指令24 位的立即数指定了用户请求的服务类型，参数通过用寄存器传递。
+MOV R0,#34     ;设置了功能号为34
+SWI 12        ;调用12 号软中断
+（B）指令中的24 位立即数被忽略，用户请求的服务类型由寄存器R0 的值决定，参数通过其它的通用寄存器传递。
+MOV R0,#12     ;调用12 号软中断
+MOV R1,#34     ;设置子功能号为34
+SWI 0       ;
+在SWI 异常中断处理程序中，取出SWI 立即数的步骤为：首先确定引起软中断的SWI指令是ARM指令还时Thumb 指令，这可通过对SPSR 访问得到：然后要取得该SWI 指令的地址，这可通过访问LR 寄存器得到：接着读出指令，分解出立即数。
+读出SWI 立即数：
+T_bit EQU 0x20
+SWI_Hander
+STMFD SP!,{R0_R3,R12,LR}        ;现场保护
+MRS R0,SPSR                    ;读取SPSR
+STMFD SP!,{R0}                    ;保存SPSR
+TST R0,#T_bit                    ;测试T标志位
+LDRNEH R0,[LR,#-2]                ;若是Thumb指令，读取指令码(16 位)
+BICNE R0,R0,#0xFF00            ;取得Thumb 指令的8 位立即数
+LDREQ R0,[LR,#-4]                ;若是ARM 指令，读取指令码(32 位)
+BICNQ R0,R0,#0xFF00000            ;取得ARM 指令的24 位立即数
+…
+LDMFD SP!,{R0-R3,R12,PC}^ ;SWI 异常中断返回
+</code></pre><p>​        <strong>MRS</strong><br>​        读状态寄存器指令。在ARM 处理器中，只有MRS 指令可以状态寄存器CPSR或SPSR读出到通用寄存器中。指令格式如下：<br>​        MRS{cond} Rd ,psr<br>​        其中： Rd 目标寄存器。Rd 不允许为R15。<br>​        psr CPSR 或SPSR<br>​        MRS指令举例如下：<br>​        MRS R1,CPSR     ;将CPSR状态寄存器读取，保存到R1 中<br>​        MRS R2,SPSR     ;将SPSR状态寄存器读取，保存到R2 中<br>​        MRS 指令读取CPSR，可用来判断ALU 的状态标志，或IRQ、FIQ中断是否允许等；在异常处理程序中，读SPSR 可知道进行异常前的处理器状态等。MRS 与MSR 配合使用，实现CPSR 或SPSR 寄存器的读—修改—写操作，可用来进行处理器模式切换()，允许/禁止IRQ/FIQ中断等设置。另外，进程切换或允许异常中断嵌套时，也需要使用MRS 指令读取SPSR 状态值。保存起来。<br>​        使能IRQ 中断例程：<br>​        ENABLE_IRQ<br>​        MRS R0,CPSR<br>​        BIC R0。R0,#0x80<br>​        MSR CPSR_c,R0<br>​        MOV PC,LR<br>​        禁能IRQ 中断例程：<br>​        DISABLE_IRQ<br>​        MRS R0,CPSR<br>​        ORR R0,R0,#0x80<br>​        MSR CPSR_c,R0<br>​        MOV PC,LR</p>
+<p>​        <strong>MSR</strong><br>​        写状态寄存器指令。在ARM 处理器中。只有MSR 指令可以直接设置状态寄存器CPSR或SPSR。指令格式如下：<br>​        MSR{cond} psr_fields,#immed_8r<br>​        MSR{cond} psr_fields,Rm<br>​        其中： psr CPSR 或SPSR<br>​        fields 指定传送的区域。Fields 可以是以下的一种或多种(字母必须为小写)：<br>​        c 控制域屏蔽字节(psr[7…0])<br>​        x 扩展域屏蔽字节(psr[15…8])<br>​        s 状态域屏蔽字节(psr[23。…16])<br>​        f 标志域屏蔽字节(psr[31…24])<br>​        immed_8r 要传送到状态寄存器指定域的立即数，8 位。<br>​        Rm 要传送到状态寄存器指定域的数据的源寄存器。<br>​        MSR 指令举例如下：<br>​        MSR CPSR_c,#0xD3 ;CPSR[7…0]=0xD3，即切换到管理模式。<br>​        MSR CPSR_cxsf,R3 ;CPSR=R3<br>​        只有在特权模式下才能修改状态寄存器。<br>​        程序中不能通过MSR 指令直接修改CPSR 中的T 控制位来实现ARM 状态/Thumb状态的切换，必须使用BX 指令完成处理器状态的切换(因为BX 指令属转移指令，它会打断流水线状态，实现处理器状态切换)。MRS 与MSR 配合使用，实现CPSR或SPSR 寄存器的读-修改-写操作，可用来进行处理器模式切换、允许/禁止IRQ/FIQ 中断等设置。<br>​        堆栈指令实始化例程：<br>​        INITSTACK<br>​        MOV R0,LR ;保存返回地址<br>​        ;设置管理模式堆栈<br>​        MSR CPSR_c,#0xD3<br>​        LDR SP,StackSvc<br>​                      ;设置中断模式堆栈<br>​        MSR CPSR_c,#0xD2<br>​        LDR SP,StackIrq<br>​        …</p>
+<h3 id="1-3-6-ARM-伪指令"><a href="#1-3-6-ARM-伪指令" class="headerlink" title="1.3.6.   ARM 伪指令"></a>1.3.6.   ARM 伪指令</h3><p>​       ARM 伪指令不是ARM 指令集中的指令，只是为了编程方便编译器定义了伪指令，使用时可以像其它ARM 指令一样使用，但在编译时这些指令将被等效的ARM 指令代替。ARM伪指令有四条，分别为ADR 伪指令、ADRL 伪指令、LDR 伪指令和NOP 伪指令。<br>​        <strong>ADR</strong><br>​        小范围的地址读取伪指令。ADR 指令将基于PC 相对偏移的地址值读取到寄存器中。在汇编编译源程序时，ADR伪指令被编译器替换成一条合适的指令。通常，编译器用一条ADD 指令或SUB 指令来实现该ADR 伪指令的功能，若不能用一条指令实现，则产生错误，编译失败。<br>​        ADR 伪指令格式如下：<br>​        ADR{cond} register,exper<br>​        其中：register 加载的目标寄存器。<br>​        exper 地址表达式。当地址值是非字地齐时，取值范围-255～255 字节之间；当地址是字对齐时，取值范围-1020～1020字节之间。<br>​        对于基于PC 相对偏移的地址值时，给定范围是相对当前指令地址后两个字处(因为ARM7TDMI为三级流水线)。<br>​        ADR 伪指令举例如下：<br>​        LOOP MOV R1, #0xF0<br>​        …<br>​        ADR R2, LOOP        ;将LOOP 的地址放入R2<br>​        ADR R3, LOOP+4<br>​        可以用ADR 加载地址，实现查表：<br>​        …<br>​        ADR R0,DISP_TAB     ;加载转换表地址<br>​        LDRB R1,[R0,R2]     ;使用R2作为参数，进行查表<br>​        …<br>​        DISP_TAB<br>​        DCB0Xc0,0xF9,0xA4,0xB0,0x99,0x92,0x82,0xF8,0x80,0x90</p>
+<p>​        <strong>ADRL</strong><br>​        中等范围的地址读取伪指令。ADRL 指令将基于PC 相对偏移的地址值或基于寄存器相对偏移的地址值读取到寄存器中，比ADR伪指令可以读取更大范围的地址。在汇编编译源程序时，ADRL 伪指令被编译器替换成两个条合适的指令。若不能用两条指令实现ADRL 伪指令功能，则产生错误，编译失败。ADRL伪指令格式如下：<br>​        ADR{cond} register,exper<br>​        其中：register 加载的目标寄存器。<br>​        expr 地址表达式。当地址值是非字对齐时，取范围-64K～64K 字节之间；当地址值是字对齐时，取值范围-256K～256K字节之间。<br>​        ADRL 伪指令举例如下：<br>​        ADRL R0,DATA_BUF<br>​        …<br>​        ADRL R1 DATA_BUF+80<br>​        …<br>​        DATA_BUF<br>​        SPACE 100     ;定义100 字节缓冲区<br>​        可以且用ADRL 加载地址，实现程序跳转，中等范围地址的加载：<br>​        …<br>​        ADR LR,RETURNI            ;设置返回地址<br>​        ADRL R1Thumb_Sub+1        ;取得了Thumb 子程序入口地址，且R1 的0 位置1<br>​        BX R1                    ;调用Thumb子程序，并切换处理器状态<br>​        RETURNI<br>​        …<br>​        CODE16<br>​        Thumb_Sub<br>​        MOV R1,#10<br>​        …</p>
+<p>​        <strong>LDR</strong><br>​        大范围的地址读取伪指令。LDR 伪指令用于加载32 位的立即数或一个地址值到指定寄存器。在汇编编译源程序时，LDR伪指令被编译器替换成一条合适的指令。若加载的常数未超出MOV 或MVN 的范围，则使用MOV 或MVN 指令代替该LDR 伪指令，否则汇编器将常量放入字池，并使用一条程序相对偏移的LDR指令从文字池读出常量。LDR 伪指令格式如下：<br>​        LDR{cond} register,=expr/label_expr<br>​        其中：register 加载的目标寄存器<br>​        expr 32 位立即数。<br>​        label_expr 基于PC 的地址表达式或外部表达式。<br>​        LADR 伪指令举例如下：。<br>​        LDR R0,=0x123456        ;加载32 位立即数0x12345678<br>​        LDR R0,=DATA_BUF+60    ;加载DATA_BUF 地址+60<br>​        …<br>​        LTORG                    ;声明文字池<br>​        伪指令LDR 常用于加载芯片外围功能部件的寄存器地址(32 位立即数)，以实现各种控制操作加载32位立即数：<br>​        …<br>​        LDR R0,=IOPIN ;加载GPIO 寄存器IOPIN 的地址<br>​        LDR R1,[R0] ;读取IOPIN 寄存器的值<br>​        …<br>​        LDR R0,=IOSET<br>​        LDR R1,=0x00500500<br>​        STR R1,[R0] ;IOSET=0x00500500<br>​        …<br>​        从PC 到文字池的偏移量必须小于4KB。与ARM 指令的LDR 相比，伪指令的LDR的参数有“=”号</p>
+<p>​        <strong>NOP</strong><br>​        空操作伪指令。NOP 伪指令在汇编时将会被代替成ARM 中的空操作，比如可能为“MOV R0, R0”指令等，NOP 伪指令格式如下：<br>​        NOP<br>​        NOP<br>​        NOP<br>​        NOP<br>​        SUBS R1, R1, #1<br>​        BNE DELAY1<br>​        …</p>
+<h2 id="1-4-寻址方式"><a href="#1-4-寻址方式" class="headerlink" title="1.4.    寻址方式"></a>1.4.    寻址方式</h2><h3 id="1-4-1-立即数寻址"><a href="#1-4-1-立即数寻址" class="headerlink" title="1.4.1.   立即数寻址"></a>1.4.1.   立即数寻址</h3><p>立即数前面有“#”号，并且如果是十六进制数则在“#”后添加“0x”或“&amp;”，二进制数“#”后面加“%”。</p>
+<h3 id="1-4-2-寄存器寻址"><a href="#1-4-2-寄存器寻址" class="headerlink" title="1.4.2.   寄存器寻址"></a>1.4.2.   寄存器寻址</h3><h3 id="1-4-3-寄存器间接寻址"><a href="#1-4-3-寄存器间接寻址" class="headerlink" title="1.4.3.   寄存器间接寻址"></a>1.4.3.   寄存器间接寻址</h3><p>以寄存器中的值作为操作数的地址，而操作数本身放在存储器中。</p>
+<p>例如：ADD R0，R1，[R2]</p>
+<h3 id="1-4-4-基址变址寻址"><a href="#1-4-4-基址变址寻址" class="headerlink" title="1.4.4.   基址变址寻址"></a>1.4.4.   基址变址寻址</h3><p>将寄存器的内容与指令中给出的地址偏移量相加，从而得到一个操作数的有效地址。</p>
+<p>例如：LDR R0，[R1，#4]  R0&lt;-[R1+4]</p>
+<h3 id="1-4-5-多寄存器寻址"><a href="#1-4-5-多寄存器寻址" class="headerlink" title="1.4.5.   多寄存器寻址"></a>1.4.5.   多寄存器寻址</h3><p>一条指令可以完成多个寄存器值得传递，一条指令传送最多16个通用寄存器的值。</p>
+<p>LDMIA  R0，{R1，R2，R3，R4}</p>
+<h3 id="1-4-6-相对寻址"><a href="#1-4-6-相对寻址" class="headerlink" title="1.4.6.   相对寻址"></a>1.4.6.   相对寻址</h3><p>以程序计数器PC的值作为基地址，指令中的地址标号作为偏移量，将两者相加后得到的操作数的有效地址。</p>
+<p>例如：BL NEXT;</p>
+<h3 id="1-4-7-堆栈寻址"><a href="#1-4-7-堆栈寻址" class="headerlink" title="1.4.7.   堆栈寻址"></a>1.4.7.   堆栈寻址</h3><p>使用一个堆栈指针的专用寄存器指示当前操作位置</p>
+<p>递增堆栈：向高地址方向生长</p>
+<p>递减堆栈：向低地址方向生长</p>
+<p>满堆栈：堆栈指针指向最后压入堆栈的有效数据</p>
+<p>空堆栈：堆栈指针指向下一个要放入数据的空位置</p>
+<h1 id="2-GNU-ARM混编"><a href="#2-GNU-ARM混编" class="headerlink" title="2.       GNU ARM混编"></a>2.       GNU ARM混编</h1><p>​         汇编源程序一般用于系统最基本的初始化：初始化堆栈指针、设置页表、操作 ARM的协处理器等。这些初始化工作完成后就可以跳转到C代码main函数中执行。</p>
+<h2 id="1-1-GNU汇编语言语句格式"><a href="#1-1-GNU汇编语言语句格式" class="headerlink" title="1.1.     GNU汇编语言语句格式"></a>1.1.     GNU汇编语言语句格式</h2><p>​    任何<a href="http://lib.csdn.net/base/linux" target="_blank" rel="noopener">Linux</a>汇编行都是如下结构：<strong>[<label>:][<instruction or directive pseudo-instruction>} @comment</instruction></label></strong></p>
+<p>l        instruction为指令</p>
+<p>l        directive为伪操作</p>
+<p>l        pseudo-instruction为伪指令</p>
+<p>l        <strong><label>:</label></strong>为标号, GNU汇编中，任何以冒号结尾的标识符都被认为是一个标号，而不一定非要在一行的开始。</p>
+<p>l        comment为语句的注释</p>
+<p>下面定义一个”add”的函数，最终返回两个参数的和：</p>
+<p>.section.text, “x”</p>
+<p>.globaladd      @ give the symbol “add” externallinkage</p>
+<p>add:</p>
+<p>​    ADD r0, r0, r1 @ add input arguments</p>
+<p>​    MOV pc, lr  @ return from subroutine</p>
+<p>@ endof program</p>
+<p>注意：</p>
+<p>l         ARM指令，伪指令，伪操作，寄存器名可以全部为大写字母，也可全部为小写字母，但不可大小写混用。</p>
+<p>l         如果语句太长，可以将一条语句分几行来书写，在行末用“\”表示换行（即下一行与本行为同一语句）。“\”后不能有任何字符，包含空格和制表符（Tab)。</p>
+<h2 id="1-2-GNU汇编程序中的标号symbol（或label）"><a href="#1-2-GNU汇编程序中的标号symbol（或label）" class="headerlink" title="1.2.     GNU汇编程序中的标号symbol（或label）"></a>1.2.     GNU汇编程序中的标号symbol（或label）</h2><p>​    标号只能由a～z，A～Z，0～9，“<strong>.</strong>”，_等（由点、字母、数字、下划线等组成，除局部标号外，不能以数字开头）字符组成。</p>
+<p>Symbol的本质：代表它所在的地址,因此也可以当作变量或者函数来使用。</p>
+<p>l         段内标号的地址值在汇编时确定；</p>
+<p>l         段外标号的地址值在连接时确定。</p>
+<p>Symbol的分类：3类（依据标号的生成方式）。</p>
+<p><strong><1></1></strong>    基于PC的标号。基于PC的标号是位于目标指令前的标号或者程序中数据定义伪操作前的标号。这种标号在汇编时将被处理成PC值加上（或减去）一个数字常量，常用于表示跳转指令<strong>”b”</strong>等的目标地址，或者代码段中所嵌入的少量数据。</p>
+<p><strong><2></2></strong>    基于寄存器的标号。基于寄存器的标号常用MAP和FIELD来定义，也可以用EQU来定义。这种标号在汇编时将被处理成寄存器的值加上（或减去）一个数字常量，常用于访问数据段中的数据。</p>
+<p><strong><3></3></strong>    绝对地址。绝对地址是一个32位数据。它可以寻址的范围为[0，232-1]即可以直接寻址整个内存空间。</p>
+<p><strong>特别说明：</strong>局部标号Symbol</p>
+<p>​    局部标号主要在局部范围内使用，而且局部标号可以重复出现。它由两部组成：开头是一个0-99直接的数字，后面紧接一个通常表示该局部变量作用范围的符号。局部变量的作用范围通常为当前段，也可以用<strong>ROUT</strong>来定义局部变量的作用范围。</p>
+<p>​    局部变量定义的语法格式：<strong>N{routname}</strong></p>
+<p>l         N：为0~99之间的数字。</p>
+<p>l         routname：当前局部范围的名称（为符号），通常为该变量作用范围的名称（用ROUT伪操作定义的）。</p>
+<p>​    局部变量引用的语法格式：<strong>%{F|B}{A|T}N{routname}</strong></p>
+<p>l         %：表示引用操作</p>
+<p>l         N：为局部变量的数字号</p>
+<p>l         routname：为当前作用范围的名称（用ROUT伪操作定义的）</p>
+<p>l         F：指示编译器只向前搜索</p>
+<p>l         B：指示编译器只向后搜索</p>
+<p>l         A：指示编译器搜索宏的所有嵌套层次</p>
+<p>l         T：指示编译器搜索宏的当前层次</p>
+<p>例：使用局部符号的例子，一段循环程序</p>
+<p>subs r0, r0, #1 @每次循环使r0=r0-1</p>
+<p>bne 1F      @跳转到1标号去执行</p>
+<p>注意：</p>
+<p>l         如果F和B都没有指定，编译器先向前搜索，再向后搜索</p>
+<p>l         如果A和T都没有指定，编译器搜索所有从当前层次到宏的最高层次，比当前层次低的层次不再搜索。</p>
+<p>l         如果指定了routname，编译器向前搜索最近的ROUT伪操作，若routname与该ROUT伪操作定义的名称不匹配，编译器报告错误，汇编失败。</p>
+<h2 id="1-3-GNU汇编程序中的分段"><a href="#1-3-GNU汇编程序中的分段" class="headerlink" title="1.3.     GNU汇编程序中的分段"></a>1.3.     GNU汇编程序中的分段</h2><p><strong><1></1></strong>    .section伪操作</p>
+<p>.section &lt;section_name&gt; {,”<flags>”}</flags></p>
+<p>Startsa new code or data section. Sections in GNU are called .text, a code section, .data, an initializeddata section, and .bss, an uninitialized data section.</p>
+<p>Thesesections have default flags, and the linker understands the default names(similardirective to the armasm directive AREA).The following are allowable <strong>.section flags</strong> for ELF format files:</p>
+<p><flag>     Meaning</flag></p>
+<p>a       allowable section</p>
+<p>w       writable section</p>
+<p>x       executable section</p>
+<p>中文解释：</p>
+<p>用户可以通过.section伪操作来自定义一个段,格式如下：</p>
+<p><strong>.section section_name [,”flags”[, %type[,flag_specific_arguments]]]</strong></p>
+<p>  每一个段以段名为开始, 以下一个段名或者文件结尾为结束。这些段都有缺省的标志（flags），连接器可以识别这些标志。(与arm asm中的AREA相同)。下面是ELF格式允许的段标志flags：</p>
+<p>&lt;标志&gt;     含义</p>
+<p>a          允许段</p>
+<p>w          可写段</p>
+<p>x          执行段</p>
+<p>例：定义一个“段”</p>
+<p>.section.mysection    @自定义数据段，段名为 “.mysection”</p>
+<p>.align  2</p>
+<p>strtemp:</p>
+<p>​     .ascii “Temp string \n\0” @对这一句的理解，我觉得应该是：将”Temp string \n\0”这个字符串存储在以标号strtemp为起始地址的一段内存空间里</p>
+<p><strong><2></2></strong>    汇编系统预定义的段名</p>
+<p>l         .text     @代码段</p>
+<p>l         .data    @初始化数据段.data Read-write initialized long data.</p>
+<p>l         .bss     @未初始化数据段</p>
+<p>l         .sdata   @ .sdata Read-write initialized short data.</p>
+<p>l         .sbss    @</p>
+<p>注意：源程序中.bss段应该在.text段之前。</p>
+<h2 id="1-4-GNU汇编语言定义入口点"><a href="#1-4-GNU汇编语言定义入口点" class="headerlink" title="1.4.     GNU汇编语言定义入口点"></a>1.4.     GNU汇编语言定义入口点</h2><p>汇编程序的缺省入口是<strong>_start</strong>标号，<strong>用户也可以在连接脚本文件中用ENTRY标志指明其它入口点</strong>。</p>
+<p>例：定义入口点</p>
+<p>.section .data</p>
+<p>&lt; initialized data here&gt;</p>
+<p>.section .bss</p>
+<p>&lt; uninitialized data here&gt;</p>
+<p>.section .text</p>
+<p>.globl  _start</p>
+<p>_start:</p>
+<instruction code goes here>
+
+
+
+<h2 id="1-5-GNU汇编程序中的宏定义"><a href="#1-5-GNU汇编程序中的宏定义" class="headerlink" title="1.5.     GNU汇编程序中的宏定义"></a>1.5.     GNU汇编程序中的宏定义</h2><p>格式如下：</p>
+<p>.macro 宏名参数名列表  @伪指令.macro定义一个宏</p>
+<p>宏体</p>
+<p>.endm                   @.endm表示宏结束</p>
+<p>​    如果宏使用参数,那么在宏体中使用该参数时添加前缀<strong>“\”</strong>。宏定义时的参数还可以使用默认值。可以使用.exitm伪指令来退出宏。</p>
+<p>例：宏定义</p>
+<p>.macroSHIFTLEFT a, b</p>
+<p>.if \b&lt; 0</p>
+<p>MOV \a,\a, ASR #-\b</p>
+<p>.exitm</p>
+<p>.endif</p>
+<p>MOV \a,\a, LSL #\b</p>
+<p>.endm</p>
+<h2 id="1-6-GNU汇编程序中的常数"><a href="#1-6-GNU汇编程序中的常数" class="headerlink" title="1.6.     GNU汇编程序中的常数"></a>1.6.     GNU汇编程序中的常数</h2><p><strong><1></1></strong>    十进制数以非0数字开头,如:123和9876；</p>
+<p><strong><2></2></strong>    二进制数以0b开头,其中字母也可以为大写；</p>
+<p><strong><3></3></strong>    八进制数以0开始,如:0456,0123；</p>
+<p><strong><4></4></strong>    十六进制数以0x开头,如:0xabcd,0X123f；</p>
+<p><strong><5></5></strong>    字符串常量需要用引号括起来,中间也可以使用转义字符,如: “You are welcome!\n”；</p>
+<p><strong><6></6></strong>    当前地址以“<strong>.</strong>”表示,在<strong>GNU</strong>汇编程序中可以使用这个符号代表当前指令的地址；</p>
+<p><strong><7></7></strong>    表达式：在汇编程序中的表达式可以使用常数或者数值, “-”表示取负数, “~”表示取补,“&lt;&gt;”表示不相等,其他的符号如:+、-、*、/、%、&lt;、&lt;&lt;、&gt;、&gt;&gt;、|、&amp;、^、!、==、&gt;=、&lt;=、&amp;&amp;、|| 跟C语言中的用法相似。</p>
+<h2 id="1-7-GNU-ARM汇编的常用伪操作"><a href="#1-7-GNU-ARM汇编的常用伪操作" class="headerlink" title="1.7.     GNU ARM汇编的常用伪操作"></a>1.7.     GNU ARM汇编的常用伪操作</h2><p>​    在前面已经提到过了一些为操作，还有下面一些为操作：</p>
+<p>l         数据定义伪操作： .byte，.short，.long，.quad，.float，.string/.asciz/.ascii，重复定义伪操作.rept，赋值语句.equ/.set ；</p>
+<p>l         函数的定义；</p>
+<p>l         对齐方式伪操作 .align；</p>
+<p>l         源文件结束伪操作.end；</p>
+<p>l         .include伪操作；</p>
+<p>l         if伪操作；</p>
+<p>l         .global/ .globl 伪操作；</p>
+<p>l         .type伪操作；</p>
+<p>l         列表控制语句；</p>
+<p>别于<strong>GNU</strong> <strong>AS</strong>汇编的通用伪操作,下面是ARM特有的伪操作：</p>
+<p>.reg ，.unreq ，.code ，.thumb ，.thumb_func ，.thumb_set， .ltorg ，.pool</p>
+<p><strong><1></1></strong>    数据定义伪操作</p>
+<p>l        .byte:单字节定义，如：.byte 1,2,0b01,0x34,072,’s’ ；</p>
+<p>l        .short:定义双字节数据，如:.short 0x1234,60000 ；</p>
+<p>l        .long:定义4字节数据，如:.long 0x12345678,23876565</p>
+<p>l        .quad:定义8字节，如:.quad 0x1234567890abcd</p>
+<p>l        .float：定义浮点数，如：.float <strong>0f</strong>-314159265358979323846264338327\</p>
+<p>​    95028841971.693993751E-40 @ <strong>- pi</strong></p>
+<p>l        .string/.asciz/.ascii：定义多个字符串，如:</p>
+<p>.string “abcd”,”efgh”, “hello!”</p>
+<p>.asciz “qwer”,”sun”, “world!”</p>
+<p>.ascii “welcome\0”</p>
+<p>​     注意：ascii伪操作定义的字符串需要自行添加结尾字符’\0’。</p>
+<p>l        .rept:重复定义伪操作, 格式如下：</p>
+<p> .rept 重复次数</p>
+<p>  数据定义</p>
+<p> .endr @结束重复定义</p>
+<p>  例：</p>
+<p> .rept 3</p>
+<p> .byte 0x23</p>
+<p> .endr</p>
+<p>l        .equ/.set: 赋值语句, 格式如下：</p>
+<p>  .equ(.set)变量名，表达式</p>
+<p>  例：</p>
+<p> .equ abc, 3 @让abc=3</p>
+<p><strong><2></2></strong>    函数的定义伪操作</p>
+<p>l         函数的定义,格式如下：</p>
+<p>  函数名<strong>:</strong></p>
+<p>  函数体</p>
+<p>  返回语句</p>
+<p>​    一般的,<strong>函数如果需要在其他文件中调用, 需要用到.global伪操作将函数声明为全局函数。</strong>为了不至于在其他程序在调用某个C函数时发生混乱,对寄存器的使用我们需要遵循APCS准则。函数编译器将处理函数代码为一段.global的汇编码。</p>
+<p>l         函数的编写应当遵循如下规则：</p>
+<p><strong>a.</strong>         a1-a4寄存器（参数、结果或暂存寄存器，r0到r3 的同义字）以及浮点寄存器f0-f3(如果存在浮点协处理器)在函数中是不必保存的；</p>
+<p><strong>b.</strong>         如果函数返回一个不大于一个字大小的值，则在函数结束时应该把这个值送到 r0 中；</p>
+<p><strong>c.</strong>         如果函数返回一个浮点数，则在函数结束时把它放入浮点寄存器f0中；</p>
+<p><strong>d.</strong>         如果函数的过程改动了sp（堆栈指针，r13）、fp（框架指针，r11）、sl（堆栈限制，r10）、lr（连接寄存器，r14）、v1-v8（变量寄存器，r4 到 r11）和 f4-f7,那么函数结束时这些寄存器应当被恢复为包含在进入函数时它所持有的值。</p>
+<p><strong><3></3></strong>    .align .end .include .incbin伪操作</p>
+<p>l        .align:用来指定数据的对齐方式,格式如下:</p>
+<p>​         .align [absexpr1, absexpr2]</p>
+<p>​      以某种对齐方式,<strong>在未使用的存储区域填充值</strong>. <strong>第一个值表示对齐方式,4, 8,16或 32.第二个表达式值表示填充的值。</strong></p>
+<p>l        .end:表明源文件的结束。</p>
+<p>l        .include:可以将指定的文件在使用.include 的地方展开,一般是头文件,例如:</p>
+<p>​         .include “myarmasm.h”</p>
+<p>l        .incbin伪操作可以将原封不动的一个二进制文件编译到当前文件中,使用方法如下:</p>
+<p>​         .incbin”file”[,skip[,count]]</p>
+<p>​         skip表明是从文件开始跳过skip个字节开始读取文件,count是读取的字数.</p>
+<p><strong><4></4></strong>    ..if伪操作</p>
+<p>​    根据一个表达式的值来决定是否要编译下面的代码, 用.endif伪操作来表示条件判断的结束,中间可以使用.else来决定.if的条件不满足的情况下应该编译哪一部分代码。</p>
+<p>.if有多个变种:</p>
+<p>.ifdefsymbol           @判断symbol是否定义</p>
+<p>.ifcstring1,string2      @字符串string1和string2是否相等,字符串可以用单引号括起来</p>
+<p>.ifeqexpression        @判断expression的值是否为0</p>
+<p>.ifeqsstring1,string2    @判断string1和string2是否相等,字符串必须用双引号括起来</p>
+<p>.ifgeexpression        @判断expression的值是否大于等于0</p>
+<p>.ifgtabsolute expression @判断expression的值是否大于0</p>
+<p>.ifleexpression        @判断expression的值是否小于等于0</p>
+<p>.ifltabsolute expression    @判断expression的值是否小于0</p>
+<p>.ifncstring1,string2        @判断string1和string2是否不相等, 其用法跟.ifc恰好相反。</p>
+<p>.ifndefsymbol, .ifnotdef symbol @判断是否没有定义symbol, 跟.ifdef恰好相反</p>
+<p>.ifneexpression          @如果expression的值不是0, 那么编译器将编译下面的代码</p>
+<p>.ifnesstring1,string2      @如果字符串string1和string2不相等, 那么编译器将编译下面的代码.</p>
+<p><strong><5></5></strong>    .global .type .title .list</p>
+<p>l        .global/ .globl ：用来定义一个全局的符号，格式如下:</p>
+<p>​          .global symbol 或者 .globl symbol</p>
+<p>l         .type：用来指定一个符号的类型是函数类型或者是对象类型, 对象类型一般是数据, 格式如下:</p>
+<p>​          .type 符号, 类型描述</p>
+<p>例：</p>
+<p>.globla</p>
+<p>.data</p>
+<p>.align4</p>
+<p>.typea, @object</p>
+<p>.sizea, 4</p>
+<p>a:</p>
+<p>.long10</p>
+<p>例：</p>
+<p>.section.text</p>
+<p>.typeasmfunc, @function</p>
+<p>.globlasmfunc</p>
+<p>asmfunc:</p>
+<p>mov pc,lr</p>
+<p><strong><6></6></strong>    列表控制语句:</p>
+<p>.title：用来指定汇编列表的标题,例如:</p>
+<p>  .title “my program”</p>
+<p>.list：用来输出列表文件.</p>
+<p><strong><7></7></strong>    ARM特有的伪操作</p>
+<p>l         .reg: 用来给寄存器赋予别名,格式如下:</p>
+<p>​       别名 .req 寄存器名</p>
+<p>l         .unreq: 用来取消一个寄存器的别名,格式如下:</p>
+<p>.unreq 寄存器别名</p>
+<p>​    注意被取消的别名必须事先定义过,否则编译器就会报错,这个伪操作也可以用来取消系统预制的别名, 例如r0, 但如果没有必要的话不推荐那样做。</p>
+<p>l         .code伪操作用来选择ARM或者Thumb指令集,格式如下:</p>
+<p>.code 表达式</p>
+<p>　　如果表达式的值为16则表明下面的指令为Thumb指令,如果表达式的值为32则表明下面的指令为ARM指令.</p>
+<p>l         .thumb伪操作等同于.code 16, 表明使用Thumb指令, 类似的.arm等同于.code 32</p>
+<p>l         .force_thumb伪操作用来强制目标处理器选择thumb的指令集而不管处理器是否支持</p>
+<p>l         .thumb_func伪操作用来指明一个函数是thumb指令集的函数</p>
+<p>l         .thumb_set伪操作的作用类似于.set, 可以用来给一个标志起一个别名, 比.set功能增加的一点是可以把一个标志标记为thumb函数的入口, 这点功能等同于.thumb_func</p>
+<p>l         .ltorg用于声明一个数据缓冲池(literal pool)的开始,它可以分配很大的空间。</p>
+<p>l         .pool的作用等同.ltorg</p>
+<p>l         .space&lt;number_of_bytes&gt; {,&lt;fill_byte&gt;}</p>
+<p>​    分配number_of_bytes字节的数据空间，并填充其值为fill_byte，若未指定该值，缺省填充0。（与armasm中的SPACE功能相同）</p>
+<p>l         .word <word1>{,<word2>} …<strong>插入一个32-bit的数据队列。</strong>（与armasm中的DCD功能相同）<strong>可以使用.word把标识符作为常量使用。</strong></word2></word1></p>
+<p>例：</p>
+<p>Start:</p>
+<p>valueOfStart:</p>
+<p>​     .word Start</p>
+<p><strong>这样程序的开头Start便被存入了内存变量valueOfStart中。</strong></p>
+<p>l         .hword<short1> {,<short2>} …</short2></short1></p>
+<p>   插入一个16-bit的数据队列。（与armasm中的DCW相同）</p>
+<h2 id="1-8-GNU-ARM汇编特殊字符和语法"><a href="#1-8-GNU-ARM汇编特殊字符和语法" class="headerlink" title="1.8.     GNU ARM汇编特殊字符和语法"></a>1.8.     GNU ARM汇编特殊字符和语法</h2><p><1>    代码行中的注释符号: ‘@’</1></p>
+<p><2>    整行注释符号: ‘#’</2></p>
+<p><3>    语句分离符号: ‘;’</3></p>
+<p><4>    立即数前缀: ‘#’ 或 ‘$’</4></p>
+<h1 id="3-ARM-GCC-内嵌汇编"><a href="#3-ARM-GCC-内嵌汇编" class="headerlink" title="3.       ARM GCC 内嵌汇编"></a>3.       ARM GCC 内嵌汇编</h1><p>对于基于ARM的RISC处理器，GNUC编译器提供了在C代码中内嵌汇编的功能。这种非常酷的特性提供了C代码没有的功能，比如手动优化软件关键部分的代码、使用相关的处理器指令。这里设想了读者是熟练编写ARM汇编程序读者，因为该片文档不是ARM汇编手册。同样也不是<a href="http://lib.csdn.net/base/c" target="_blank" rel="noopener">C语言</a>手册。这篇文档假设使用的是GCC 4 的版本，但是对于早期的版本也有效。</p>
+<p>GCCasm 声明</p>
+<p>让我们以一个简单的例子开始。就像C中的声明一样，下面的声明代码可能出现在你的代码中。</p>
+<p>/<em>NOP 例子 </em>/</p>
+<p>asm(“movr0,r0”);</p>
+<p>该语句的作用是将r0移动到r0中。换句话讲他并不干任何事。典型的就是NOP指令，作用就是短时的延时。</p>
+<p>请接着阅读和学习这篇文档，因为该声明并不像你想象的和其他的C语句一样。内嵌汇编使用汇编指令就像在纯汇编程序中使用的方法一样。可以在一个asm声明中写多个汇编指令。但是为了增加程序的可读性，最好将每一个汇编指令单独放一行。</p>
+<p>asm(</p>
+<p>“mov r0, r0\n\t”</p>
+<p>“mov r0, r0\n\t”</p>
+<p>“mov r0, r0\n\t”</p>
+<p>“mov r0, r0”</p>
+<p>);</p>
+<p>换行符和制表符的使用可以使得指令列表看起来变得美观。你第一次看起来可能有点怪异，但是当C编译器编译C语句的是候，它就是按照上面（换行和制表）生成汇编的。到目前为止，汇编指令和你写的纯汇编程序中的代码没什么区别。但是对比其它的C声明，asm的常量和寄存器的处理是不一样的。通用的内嵌汇编模版是这样的。</p>
+<p>asm(code : output operand list : input operand list : clobberlist);</p>
+<p><strong>汇编和C语句这间的联系是通过上面asm声明中可选的outputoperand list和input operand list</strong>。Clobber list后面再讲。</p>
+<p>下面是将<a href="http://lib.csdn.net/base/c" target="_blank" rel="noopener">c语言</a>的一个整型变量传递给汇编，逻辑左移一位后在传递给C语言的另外一个整型变量。</p>
+<p>/<em> Rotating bits example </em>/</p>
+<p>asm(“mov %[result], %[value], ror #1” :[result] “=r” (y) : [value] “r” (x));</p>
+<p>每一个asm语句被冒号（:）分成了四个部分。</p>
+<p>汇编指令放在第一部分中的“”中间。</p>
+<p>“mov %[result], %[value], ror #1”</p>
+<p>接下来是冒号后的可选择的output operand list，<strong>每一个条目是由一对[]（方括号）和被他包括的符号名组成，它后面跟着限制性字符串，再后面是圆括号和它括着的C变量</strong>。这个例子中只有一个条目。</p>
+<p>[result] “=r” (y)</p>
+<p>接着冒号后面是输入操作符列表，它的语法和输入操作列表一样</p>
+<p>[value] “r” (x)</p>
+<p>破坏符列表，在本例中没有使用</p>
+<p>就像上面的NOP例子，asm声明的4个部分中，<strong>只要最尾部没有使用的部分都可以省略。但是有有一点要注意的是，上面的4个部分中只要后面的还要使用，前面的部分没有使用也不能省略，必须空但是保留冒号</strong>。下面的一个例子就是设置ARMSoc的CPSR寄存器，它有input但是没有output operand。</p>
+<p>asm(“msr cpsr,%[ps]” : : [ps]”r”(status))</p>
+<p>即使汇编代码没有使用，代码部分也要保留空字符串。下面的例子<strong>使用了一个特别的破坏符，目的就是告诉编译器内存被修改过</strong>了。这里的破坏符在下面的优化部分在讲解。</p>
+<p>asm(“”:::”memory”);</p>
+<p><strong>为了增加代码的可读性，你可以使用换行，空格，还有C风格的注释</strong>。</p>
+<p>asm(“mov %[result], %[value], ror#1”</p>
+<p>​           : [result]”=r” (y) /<em>Rotation result. </em>/</p>
+<p>​           : [value]”r” (x) /<em>Rotated value. </em>/</p>
+<p>​           : /<em> No clobbers </em>/</p>
+<p>);</p>
+<p><strong>在代码部分%后面跟着的是后面两个部分方括号中的符号，它指的是相同符号操作列表中的一个条目</strong>。</p>
+<p>%[result]表示第二部分的C变量y，%[value]表示三部分的C变量x；</p>
+<p>符号操作符的名字使用了独立的命名空间。这就意味着它使用的是其他的符号表。简单一点就是说你不必关心使用的符号名在C代码中已经使用了。在早期的C代码中，循环移位的例子必须要这么写：</p>
+<p>asm(“mov %0, %1, ror #1” :”=r” (result) : “r” (value))</p>
+<p>在汇编代码中操作数的引用使用的是%后面跟一个数字，%1代表第一个操作数，%2代码第二个操作数，往后的类推。这个方法目前最新的编译器还是支持的。但是它不便于维护代码。试想一下，你写了大量的汇编指令的代码，要是你想插入一个操作数，那么你就不得不从新修改操作数编号。</p>
+<p>优化C代码</p>
+<p>有两种情况决定了你必须使用汇编。1st，C限制了你更加贴近底层操作硬件，比如，C中没有直接修改程序状态寄存器（PSR）的声明。2nd就是要写出更加优化的代码。毫无疑问GNUC代码优化器做的很好，但是他的结果和我们手工写的汇编代码相差很远。</p>
+<p>这一部分有一点很重要，也是被别人忽视最多的就是：我们在C代码中通过内嵌汇编指令添加的汇编代码，也是要被C编译器的优化器处理的。让我们下面做个试验来看看吧。</p>
+<p>下面是代码实例。</p>
+<p>bigtree@just:~/embedded/basic-C$ arm-<a href="http://lib.csdn.net/base/linux" target="_blank" rel="noopener">linux</a>-gcc -c test.c</p>
+<p>bigtree@just:~/embedded/basic-C$ arm-linux-objdump -D test.o</p>
+<p>编译器选择r3作为循环移位使用。它也完全可以选择为每一个C变量分配寄存器。Load或者store一个值并不显式的进行。下面是其它编译器的编译结果。</p>
+<p>E420A0E1 mov r2, r4, ror #1 @ y, x</p>
+<p>编译器为每一个操作数选择一个相应的寄存器，将操作过的值cache到r4中，然后传递该值到r2中。这个过程你能理解不？</p>
+<p>有的时候这个过程变得更加糟糕。有时候编译器甚至完全抛弃你嵌入的汇编代码。C编译器的这种行为，取决于代码优化器的策略和嵌入汇编所处的上下文。如果在内嵌汇编语句中不使用任何输出部分，那么C代码优化器很有可能将该内嵌语句完全删除。比如NOP例子，我们可以使用它作为延时操作，但是对于编译器认为这影响了程序的执行速速，认为它是没有任何意义的。</p>
+<p>上面的解决方法还是有的。那就是<strong>使用volatile关键字。它的作用就是禁止优化器优化</strong>。将NOP例子修改过后如下：</p>
+<p>/<em> NOP example, revised </em>/</p>
+<p><strong>asm volatile(“movr0, r0”);</strong></p>
+<p>下面还有更多的烦恼等着我们。一个设计精细的优化器可能重新排列代码。看下面的代码：</p>
+<p>i++;</p>
+<p>if (j == 1)</p>
+<p>x += 3;</p>
+<p>i++;</p>
+<p>优化器肯定是要从新组织代码的，两个i++并没有对if的条件产生影响。更进一步的来讲，i的值增加2，仅仅使用一条ARM汇编指令。因而代码要重新组织如下：</p>
+<p>if (j == 1)</p>
+<p>   x += 3;</p>
+<p>i += 2;</p>
+<p>这样节省了一条ARM指令。结果是：这些操作并没有得到许可。</p>
+<p>这些将对你的代码产生很到的影响，这将在下面介绍。下面的代码是c乘b，其中c和b中的一个或者两个可能会被中断处理程序修改。进入该代码前先禁止中断，执行完该代码后再开启中断。</p>
+<p>asm volatile(“mrs r12,cpsr\n\t”</p>
+<p>   “orr r12, r12, #0xC0\n\t”</p>
+<p>   “msr cpsr_c, r12\n\t” ::: “r12”, “cc”);</p>
+<p>c <em>= b; /</em> This may fail. */</p>
+<p>asm volatile(“mrs r12, cpsr\n”</p>
+<p>   “bic r12, r12, #0xC0\n”</p>
+<p>   “msr cpsr_c, r12” ::: “r12”, “cc”);</p>
+<p>但是不幸的是针对上面的代码，优化器决定先执行乘法然后执行两个内嵌汇编，或相反。这样将会使得我们的代码变得毫无意义。</p>
+<p>我们可以使用clobberlist帮忙。上面例子中的clobber list如下：</p>
+<p><strong>“r12”,”cc”</strong></p>
+<p><strong>上面的clobber list将会将向编译器传达如下信息，修改了r12和程序状态寄存器的标志位。Btw，直接指明使用的寄存器，将有可能阻止了最好的优化结果。通常你只要传递一个变量，然后让编译器自己选择适合的寄存器。另外寄存器名，cc（condition registor 状态寄存器标志位），memory都是在clobber list上有效的关键字</strong>。<strong>它用来向编译器指明，内嵌汇编指令改变了内存中的值</strong>。这将强迫编译器在执行汇编代码前存储所有缓存的值，然后在执行完汇编代码后重新加载该值。这将保留程序的执行顺序，因为在使用了带有memory clobber的asm声明后，所有变量的内容都是不可预测的。</p>
+<p>asm volatile(“mrs r12,cpsr\n\t”</p>
+<p>   “orr r12, r12, #0xC0\n\t”</p>
+<p>   “msr cpsr_c, r12\n\t” :: : “r12”, “cc”,”memory”);</p>
+<p>c <em>= b; /</em> This is safe. */</p>
+<p>asm volatile(“mrs r12, cpsr\n”</p>
+<p>   “bic r12, r12, #0xC0\n”</p>
+<p>   “msr cpsr_c, r12” ::: “r12”, “cc”,”memory”);</p>
+<p>使所有的缓存的值都无效，只是局部最优（suboptimal）。你可以有选择性的添加dummyoperand 来人工添加依赖。</p>
+<p>asm volatile(“mrs r12,cpsr\n\t”</p>
+<p>   “orr r12, r12, #0xC0\n\t”</p>
+<p>   “msr cpsr_c, r12\n\t” : “=X” (b) :: “r12”,”cc”);</p>
+<p>c <em>= b; /</em> This is safe. */</p>
+<p>asm volatile(“mrs r12</p>
+<p>上面的第一个asm试图修改变量先b，第二个asm试图修改c。这将保留三个语句的执行顺序，而不要使缓存的变量无效。</p>
+<p>理解优化器对内嵌汇编的影响很重要。如果你读到这里还是云里雾里，最好是在看下个主题之前再把这段文章读几遍^_^。</p>
+<p>Input and output operands</p>
+<p>前面我们学到，每一个input和output operand，由被方括号[]中的符号名，限制字符串，圆括号中的C表达式构成。</p>
+<p>这些限制性字符串有哪些，为什么我们需要他们？你应该知道每一条汇编指令只接受特定类型的操作数。例如：跳转指令期望的跳转目标地址。不是所有的内存地址都是有效的。因为最后的opcode只接受24位偏移。但矛盾的是跳转指令和数据交换指令都希望寄存器中存储的是32位的目标地址。在所有的例子中，C传给operand的可能是函数指针。所以面对传给内嵌汇编的常量、指针、变量，编译器必须要知道怎样组织到汇编代码中。</p>
+<p>对于ARM核的处理器，GCC 4 提供了一下的限制。</p>
+<table>
+<thead>
+<tr>
+<th>Constraint</th>
+<th>Usage in ARM state</th>
+<th>Usage in Thumb state</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>f</td>
+<td>Floating point registers f0 .. f7</td>
+<td>Not available</td>
+</tr>
+<tr>
+<td>G</td>
+<td>Immediate floating point constant</td>
+<td>Not available</td>
+</tr>
+<tr>
+<td>H</td>
+<td>Same a G, but negated</td>
+<td>Not available</td>
+</tr>
+<tr>
+<td>I</td>
+<td>Immediate value in data processing instructionse.g. ORR R0, R0, #operand</td>
+<td>Constant in the range 0 .. 255e.g. SWI operand</td>
+</tr>
+<tr>
+<td>J</td>
+<td>Indexing constants -4095 .. 4095e.g. LDR R1, [PC, #operand]</td>
+<td>Constant in the range -255 .. -1e.g. SUB R0, R0, #operand</td>
+</tr>
+<tr>
+<td>K</td>
+<td>Same as I, but inverted</td>
+<td>Same as I, but shifted</td>
+</tr>
+<tr>
+<td>L</td>
+<td>Same as I, but negated</td>
+<td>Constant in the range -7 .. 7e.g. SUB R0, R1, #operand</td>
+</tr>
+<tr>
+<td>l</td>
+<td>Same as r</td>
+<td>Registers r0..r7e.g. PUSH operand</td>
+</tr>
+<tr>
+<td>M</td>
+<td>Constant in the range of 0 .. 32 or a power of 2e.g. MOV R2, R1, ROR #operand</td>
+<td>Constant that is a multiple of 4 in the range of 0 .. 1020e.g. ADD R0, SP, #operand</td>
+</tr>
+<tr>
+<td>m</td>
+<td>Any valid memory address</td>
+<td></td>
+</tr>
+<tr>
+<td>N</td>
+<td>Not available</td>
+<td>Constant in the range of 0 .. 31e.g. LSL R0, R1, #operand</td>
+</tr>
+<tr>
+<td>o</td>
+<td>Not available</td>
+<td>Constant that is a multiple of 4 in the range of -508 .. 508e.g. ADD SP, #operand</td>
+</tr>
+<tr>
+<td>r</td>
+<td>General register r0 .. r15e.g. SUB operand1, operand2, operand3</td>
+<td>Not available</td>
+</tr>
+<tr>
+<td>W</td>
+<td>Vector floating point registers s0 .. s31</td>
+<td>Not available</td>
+</tr>
+<tr>
+<td>X</td>
+<td>Any operand</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>= ：Write-only operand, usually used for all output operands+ ：Read-write operand, must be listed as an output operand&amp; ：A register that should be used for output only</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Output operands必须为write-only，相应C表达式的值必须是左值。Input operands必须为read-only。C编译器是没有能力做这个检查。</p>
+<p>比较严格的规则是：不要试图向input operand写。但是如果你想要使用相同的operand作为input和output。限制性modifier（+）可以达到效果。例子如下：</p>
+<p>asm(“mov %[value], %[value], ror #1” : [value]”+r” (y))</p>
+<p>和上面例子不一样的是，最后的结果存储在input variable中。</p>
+<p>可能modifier + 不支持早期的编译器版本。庆幸的是这里提供了其他解决办法，该方法在最新的编译器中依然有效。<strong>对于input operators有可能使用单一的数字n在限制字符串中。使用数字n可以告诉编译器使用的第n个operand，operand都是以0开始计数</strong>。下面是例子：</p>
+<p>asm(“mov %0, %0, ror #1” : “=r” (value) :”0” (value))</p>
+<p><strong>限制性字符串“0”告诉编译器，使用和第一个output operand使用同样input register。</strong></p>
+<p>请注意，在相反的情况下不会自动实现。如果我没告诉编译器那样做，编译器也有可能为input和output选择相同的寄存器。第一个例子中就为input和output选择了r3。</p>
+<p>在多数情况下这没有什么，但是如果在input使用前output已经被修改过了，这将是致命的。在input和output使用不同寄存器的情况下，你必须使用&amp;modifier来限制outputoperand。下面是代码示例：</p>
+<p>asm volatile(“ldr %0, [%1]””\n\t”</p>
+<p>​             “str %2, [%1, #4]””\n\t”</p>
+<p>​             : “=&amp;r” (rdv)</p>
+<p>​            : “r”(&amp;table), “r” (wdv)</p>
+<p>​             : “memory”);</p>
+<p>在以张表中读取一个值然后在写到该表的另一个位置。</p>
+<p>其他</p>
+<p><strong>内嵌汇编作为预处理宏</strong></p>
+<p>要是经常使用使用部分汇编，最好的方法是将它以宏的形式定义在头文件中。使用该头文件在严格的ANSI模式下会出现警告。为了避免该类问题<strong>，可以使用<strong>asm</strong>代替asm，<strong>volatile</strong>代替volatile</strong>。这可以等同于别名。下面就是个例程：</p>
+<p>#define BYTESWAP(val) \</p>
+<p>   <strong>asm</strong> <strong>volatile</strong> ( \</p>
+<p>​       “eor r3, %1, %1, ror #16\n\t” \</p>
+<p>​       “bic r3, r3, #0x00FF0000\n\t” \</p>
+<p>​       “mov %0, %1, ror #8\n\t” \</p>
+<p>​       “eor %0, %0, r3, lsr #8” \</p>
+<p>​       : “=r” (val) \</p>
+<p>​       : “0”(val) \</p>
+<p>​       : “r3”, “cc” \</p>
+<p>);</p>
+<p><strong>C 桩函数</strong></p>
+<p>宏定义包含的是相同的代码。这在大型routine中是不可以接受的。这种情况下最好定义个桩函数。</p>
+<p>unsigned long ByteSwap(unsigned longval)</p>
+<p>{</p>
+<p>asm volatile (</p>
+<p>​       “eor r3, %1, %1, ror #16\n\t”</p>
+<p>​       “bic r3, r3, #0x00FF0000\n\t”</p>
+<p>​       “mov %0, %1, ror #8\n\t”</p>
+<p>​       “eor %0, %0, r3, lsr #8”</p>
+<p>​       : “=r” (val)</p>
+<p>​       : “0”(val)</p>
+<p>​       : “r3”</p>
+<p>);</p>
+<p>return val;</p>
+<p>}</p>
+<p><strong>替换C变量的符号名</strong></p>
+<p>默认的情况下，GCC使用同函数或者变量相同的符号名。你可以使用asm声明，为汇编代码指定一个不同的符号名</p>
+<p>unsigned long value asm(“clock”) = 3686400</p>
+<p>这个声明告诉编译器使用了符号名clock代替了具体的值。</p>
+<p><strong>替换C函数的符号名</strong></p>
+<p>为了改变函数名，你需要一个原型声明，因为编译器不接受在函数定义中出现asm关键字。</p>
+<p>extern long Calc(void) asm (“CALCULATE”)</p>
+<p>调用函数calc()将会创建调用函数CALCULATE的汇编指令。</p>
+<p><strong>强制使用特定的寄存器</strong></p>
+<p>局部变量可能存储在一个寄存器中。你可以利用内嵌汇编为该变量指定一个特定的寄存器。</p>
+<p>void Count(void) {</p>
+<p>register unsigned char counterasm(“r3”);</p>
+<p>… some code…</p>
+<p>asm volatile(“eor r3, r3,r3”);</p>
+<p>… more code…</p>
+<p>}</p>
+<p>汇编指令“eor r3, r3, r3”，会将r3清零。Waring：该例子在到多数情况下是有问题的，因为这将和优化器相冲突。因为GCC不会预留其它寄存器。要是优化器认为该变量在以后一段时间没有使用，那么该寄存器将会被再次使用。但是编译器并没有能力去检查是否和编译器预先定义的寄存器有冲突。如果你用这种方式指定了太多的寄存器，编译器将会在代码生成的时候耗尽寄存器的。</p>
+<p><strong>临时使用寄存器</strong></p>
+<p>如果你使用了寄存器，而你没有在input或output operand传递，那么你就必须向编译器指明这些。下面的例子中使用r3作为scratch 寄存器，通过在clobber list中写r3，来让编译器得知使用该寄存器。由于ands指令跟新了状态寄存器的标志位，使用cc在clobber list中指明。</p>
+<p>asm volatile(</p>
+<p>   “ands r3, %1, #3” “\n\t”</p>
+<p>   “eor %0, %0, r3” “\n\t”</p>
+<p>   “addne %0, #4”</p>
+<p>   : “=r” (len)</p>
+<p>   : “0” (len)</p>
+<p>   : “cc”, “r3”</p>
+<p> );</p>
+<p>最好的方法是使用桩函数并且使用局部临时变量</p>
+<p>寄存器的用途</p>
+<p>比较好的方法是分析编译后的汇编列表，并且学习C 编译器生成的代码。下面的列表是编译器将ARM核寄存器的典型用途，知道这些将有助于理解代码。</p>
+<table>
+<thead>
+<tr>
+<th>Register</th>
+<th>Alt. Name</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>r0</td>
+<td>a1</td>
+<td>First function argumentInteger function resultScratch register</td>
+</tr>
+<tr>
+<td>r1</td>
+<td>a2</td>
+<td>Second function argumentScratch register</td>
+</tr>
+<tr>
+<td>r2</td>
+<td>a3</td>
+<td>Third function argumentScratch register</td>
+</tr>
+<tr>
+<td>r3</td>
+<td>a4</td>
+<td>Fourth function argumentScratch register</td>
+</tr>
+<tr>
+<td>r4</td>
+<td>v1</td>
+<td>Register variable</td>
+</tr>
+<tr>
+<td>r5</td>
+<td>v2</td>
+<td>Register variable</td>
+</tr>
+<tr>
+<td>r6</td>
+<td>v3</td>
+<td>Register variable</td>
+</tr>
+<tr>
+<td>r7</td>
+<td>v4</td>
+<td>Register variable</td>
+</tr>
+<tr>
+<td>r8</td>
+<td>v5</td>
+<td>Register variable=</td>
+</tr>
+<tr>
+<td>r9</td>
+<td>v6</td>
+<td>rfpRegister variableReal frame pointer</td>
+</tr>
+<tr>
+<td>r10</td>
+<td>sl</td>
+<td>Stack limit</td>
+</tr>
+<tr>
+<td>r11</td>
+<td>fp</td>
+<td>Argument pointer</td>
+</tr>
+<tr>
+<td>r12</td>
+<td>ip</td>
+<td>Temporary workspace</td>
+</tr>
+<tr>
+<td>r13</td>
+<td>sp</td>
+<td>Stack pointer</td>
+</tr>
+<tr>
+<td>r14</td>
+<td>lr</td>
+<td>Link register Workspace</td>
+</tr>
+<tr>
+<td>r15</td>
+<td>pc</td>
+<td>Program counter</td>
+</tr>
+</tbody>
+</table>
+</instruction>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/27/LOVE/" rel="next" title="LOVE">
+                <i class="fa fa-chevron-left"></i> LOVE
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Magic King">
+            
+              <p class="site-author-name" itemprop="name">Magic King</p>
+              <div class="site-description motion-element" itemprop="description">Now You See Me!</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Magic-King" title="GitHub &rarr; https://github.com/Magic-King" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ARM指令集详解"><span class="nav-number">1.</span> <span class="nav-text">ARM指令集详解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-汇编"><span class="nav-number">2.</span> <span class="nav-text">1.       汇编</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-通用寄存器"><span class="nav-number">2.1.</span> <span class="nav-text">1.1.    通用寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-指令格式"><span class="nav-number">2.2.</span> <span class="nav-text">1.2.    指令格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-指令集"><span class="nav-number">2.3.</span> <span class="nav-text">1.3.    指令集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1-ARM-存储器访问指令"><span class="nav-number">2.3.1.</span> <span class="nav-text">1.3.1.   ARM 存储器访问指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-2-ARM-数据处理指令"><span class="nav-number">2.3.2.</span> <span class="nav-text">1.3.2.   ARM 数据处理指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-3-ARM-跳转指令"><span class="nav-number">2.3.3.</span> <span class="nav-text">1.3.3.   ARM 跳转指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-4-ARM-协处理器指令"><span class="nav-number">2.3.4.</span> <span class="nav-text">1.3.4.   ARM 协处理器指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-5-ARM-杂项指令"><span class="nav-number">2.3.5.</span> <span class="nav-text">1.3.5.   ARM 杂项指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-6-ARM-伪指令"><span class="nav-number">2.3.6.</span> <span class="nav-text">1.3.6.   ARM 伪指令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-寻址方式"><span class="nav-number">2.4.</span> <span class="nav-text">1.4.    寻址方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-1-立即数寻址"><span class="nav-number">2.4.1.</span> <span class="nav-text">1.4.1.   立即数寻址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-2-寄存器寻址"><span class="nav-number">2.4.2.</span> <span class="nav-text">1.4.2.   寄存器寻址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-3-寄存器间接寻址"><span class="nav-number">2.4.3.</span> <span class="nav-text">1.4.3.   寄存器间接寻址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-4-基址变址寻址"><span class="nav-number">2.4.4.</span> <span class="nav-text">1.4.4.   基址变址寻址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-5-多寄存器寻址"><span class="nav-number">2.4.5.</span> <span class="nav-text">1.4.5.   多寄存器寻址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-6-相对寻址"><span class="nav-number">2.4.6.</span> <span class="nav-text">1.4.6.   相对寻址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-7-堆栈寻址"><span class="nav-number">2.4.7.</span> <span class="nav-text">1.4.7.   堆栈寻址</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-GNU-ARM混编"><span class="nav-number">3.</span> <span class="nav-text">2.       GNU ARM混编</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-GNU汇编语言语句格式"><span class="nav-number">3.1.</span> <span class="nav-text">1.1.     GNU汇编语言语句格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-GNU汇编程序中的标号symbol（或label）"><span class="nav-number">3.2.</span> <span class="nav-text">1.2.     GNU汇编程序中的标号symbol（或label）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-GNU汇编程序中的分段"><span class="nav-number">3.3.</span> <span class="nav-text">1.3.     GNU汇编程序中的分段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-GNU汇编语言定义入口点"><span class="nav-number">3.4.</span> <span class="nav-text">1.4.     GNU汇编语言定义入口点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-GNU汇编程序中的宏定义"><span class="nav-number">3.5.</span> <span class="nav-text">1.5.     GNU汇编程序中的宏定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-GNU汇编程序中的常数"><span class="nav-number">3.6.</span> <span class="nav-text">1.6.     GNU汇编程序中的常数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-GNU-ARM汇编的常用伪操作"><span class="nav-number">3.7.</span> <span class="nav-text">1.7.     GNU ARM汇编的常用伪操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-8-GNU-ARM汇编特殊字符和语法"><span class="nav-number">3.8.</span> <span class="nav-text">1.8.     GNU ARM汇编特殊字符和语法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-ARM-GCC-内嵌汇编"><span class="nav-number">4.</span> <span class="nav-text">3.       ARM GCC 内嵌汇编</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Magic King</span>
+
+  
+
+  
+</div>
+
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0 </div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-2" count="666" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+</body>
+</html>
