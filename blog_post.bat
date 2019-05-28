@@ -4,8 +4,6 @@ git add .
 git commit -m "Blog update"
 git push origin hexo
 
-hexo d -g
+@echo git sync finished
 
-PAUSE
-PAUSE
-PAUSE
+hexo d -g
