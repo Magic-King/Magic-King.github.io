@@ -25,9 +25,10 @@ password:
 
 ## 1.1.    通用寄存器
 
-![Register](ARM\arm.JPG)
+![Register](ARM/arm.JPG)
 
- 
+
+
 
 
 
@@ -258,7 +259,7 @@ password:
 </table>
 
 
-![register](ARM\arm_allRegister.png)
+![register](ARM/arm_allRegister.png)
 
 
 
@@ -286,11 +287,11 @@ S 状态域屏蔽字节(psr[23:16])
 
  
 
- ![img](ARM\register.JPG)
+ ![img](ARM/register.JPG)
 
  
 
-![register](ARM\arm_register.png)
+![register](ARM/arm_register.png)
 
 
 
@@ -439,7 +440,7 @@ FIQ和IRQ的区别？
 
 表A-2  ARM 存储访问指令表
 
-![img](D:\0\hexo\source\_posts\ARM\arm储存访问指令表.JPG)
+![img](ARM/arm储存访问指令表.JPG)
 
  
 
