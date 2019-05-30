@@ -25,7 +25,7 @@ password:
 
 ## 1.1.    通用寄存器
 
-![Register](D:\0\hexo\source\_posts\ARM\arm.JPG)
+![Register](ARM\arm.JPG)
 
  
 
@@ -258,7 +258,7 @@ password:
 </table>
 
 
-![register](D:\0\hexo\source\_posts\ARM\arm_allRegister.png)
+![register](ARM\arm_allRegister.png)
 
 
 
@@ -286,11 +286,11 @@ S 状态域屏蔽字节(psr[23:16])
 
  
 
- ![img](D:\0\hexo\source\_posts\ARM\register.JPG)
+ ![img](ARM\register.JPG)
 
  
 
-![register](D:\0\hexo\source\_posts\ARM\arm_register.png)
+![register](ARM\arm_register.png)
 
 
 
@@ -362,13 +362,13 @@ FIQ和IRQ的区别？
 ​       0x1FE、511、0xFFFF、0x1010、0xF0000010等都是非法常量。
 
 
-        常数表达式应用举例如下：
+​		常数表达式应用举例如下：
 
 ​       `MOV R0,#1 ;R0=1`
 
-​       AND R1,R2,#0x0F ;R2 与0x0F，结果保存在R1
+​       `AND R1,R2,#0x0F ;`R2 与0x0F，结果保存在R1
 
-​       LDR R0，[R1],#-4 ;读取R1 地址上的存储器单元内容，且R1＝R1－4
+​       `LDR R0，[R1],#-4 ;`读取R1 地址上的存储器单元内容，且R1＝R1－4
 
 ​       Rm
 
@@ -376,11 +376,11 @@ FIQ和IRQ的区别？
 
 ​        寄存器方式应用举例：
 
-​       SUB R1，R1，R2 ；R1-R2=＞R1
+​       `SUB R1，R1，R2 ；R1-R2=＞R1`
 
-​       MOV PC，R0 ；PC=R0，程序跳转到指定地址
+​       `MOV PC，R0 ；`PC=R0，程序跳转到指定地址
 
-​       LDR R0，[R1]，-R2 ；读取R1 地址上的存储器单元内容并存入R0，且R1=R1-R2
+​       `LDR R0，[R1]，-R2 ；`读取R1 地址上的存储器单元内容并存入R0，且R1=R1-R2
 
 ​       Rm， shift
 
