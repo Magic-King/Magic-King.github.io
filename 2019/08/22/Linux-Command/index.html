@@ -98,18 +98,47 @@
 
 
 
-  <meta name="description" content="Linux Command Note 参考： 黑马程序员-linux从入门到精通">
+  <meta name="description" content="Linux Study Note 参考： 黑马程序员-linux从入门到精通  Linux系统的文件linux一切皆文件 文件操作种类：创建文件、编辑文件、保存文件、关闭文件、重命名文件、删除文件、恢复文件 文件目录结构Bin：全称binary，含义是二进制。该目录中存储的都是一些二进制文件，文件都是可以被运行的。 Dev：该目录中主要存放的是外接设备，例如盘、其他的光盘等。在其中的外接设备是不能">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux_Command">
 <meta property="og:url" content="http://yoursite.com/2019/08/22/Linux-Command/index.html">
 <meta property="og:site_name" content="Hexo&amp;Magic">
-<meta property="og:description" content="Linux Command Note 参考： 黑马程序员-linux从入门到精通">
+<meta property="og:description" content="Linux Study Note 参考： 黑马程序员-linux从入门到精通  Linux系统的文件linux一切皆文件 文件操作种类：创建文件、编辑文件、保存文件、关闭文件、重命名文件、删除文件、恢复文件 文件目录结构Bin：全称binary，含义是二进制。该目录中存储的都是一些二进制文件，文件都是可以被运行的。 Dev：该目录中主要存放的是外接设备，例如盘、其他的光盘等。在其中的外接设备是不能">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-23T12:46:27.241Z">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/ls_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/ls_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/ls_3.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/ls_4.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/ls_5.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/pwd.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/cd_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/cd_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/cd_3.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/mkdir_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/mkdir_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/touch_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/touch_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/touch_3.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/cp_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/cp_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/mv_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/mv_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/mv_3.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/rm_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/rm_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/rm_3.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/rm_4.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/rm_5.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/cdx_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/cdx_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/cat_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/cat_2.png">
+<meta property="og:updated_time" content="2019-08-23T14:00:07.952Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux_Command">
-<meta name="twitter:description" content="Linux Command Note 参考： 黑马程序员-linux从入门到精通">
+<meta name="twitter:description" content="Linux Study Note 参考： 黑马程序员-linux从入门到精通  Linux系统的文件linux一切皆文件 文件操作种类：创建文件、编辑文件、保存文件、关闭文件、重命名文件、删除文件、恢复文件 文件目录结构Bin：全称binary，含义是二进制。该目录中存储的都是一些二进制文件，文件都是可以被运行的。 Dev：该目录中主要存放的是外接设备，例如盘、其他的光盘等。在其中的外接设备是不能">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/22/Linux-Command/ls_1.png">
 
 
 
@@ -433,7 +462,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-23 20:46:27" itemprop="dateModified" datetime="2019-08-23T20:46:27+08:00">2019-08-23</time>
+                <time title="修改时间：2019-08-23 22:00:07" itemprop="dateModified" datetime="2019-08-23T22:00:07+08:00">2019-08-23</time>
               
             
           </span>
@@ -492,10 +521,109 @@
       
 
       
-        <h1 id="Linux-Command-Note"><a href="#Linux-Command-Note" class="headerlink" title="Linux Command Note"></a>Linux Command Note</h1><blockquote>
+        <h1 id="Linux-Study-Note"><a href="#Linux-Study-Note" class="headerlink" title="Linux Study Note"></a>Linux Study Note</h1><blockquote>
 <p>参考：</p>
 <p><a href="https://www.bilibili.com/video/av23360560?from=search&amp;seid=11213656872957708813" target="_blank" rel="noopener">黑马程序员-linux从入门到精通</a></p>
 </blockquote>
+<h2 id="Linux系统的文件"><a href="#Linux系统的文件" class="headerlink" title="Linux系统的文件"></a>Linux系统的文件</h2><p>linux一切皆文件</p>
+<p>文件操作种类：创建文件、编辑文件、保存文件、关闭文件、重命名文件、删除文件、恢复文件</p>
+<h3 id="文件目录结构"><a href="#文件目录结构" class="headerlink" title="文件目录结构"></a>文件目录结构</h3><p>Bin：全称binary，含义是二进制。该目录中存储的都是一些二进制文件，文件都是可以被运行的。</p>
+<p>Dev：该目录中主要存放的是外接设备，例如盘、其他的光盘等。在其中的外接设备是不能直接被使用的，需要<strong>挂载（类似windows下的分配盘符</strong>。</p>
+<p>Etc：该目录主要存储一些配置文件。</p>
+<p>Home：表示“家”，表示<strong>除了root用户以外其他用户的家目录</strong>，类似于windows下的User/用户目录。</p>
+<p>Proc：process，表示进程，该目录中存储的是Linux运行时候的进程。</p>
+<p>Root：该目录是root用户自己的家目录。</p>
+<p>Sbin：全称super binary，该目录也是存储一些可以被执行的二进制文件，但是必须得有super权限的用户才能执行。</p>
+<p>Tmp：表示“临时”的，当系统运行时候产生的临时文件会在这个目录存着。</p>
+<p>Usr：全称是User Software Resource，注意不是user的缩写。存放的是用户自己安装的软件。类似于windows下的program files。</p>
+<p>Var：存放的程序/系统的日志文件的目录。</p>
+<p>Mnt：当外接设备需要挂载的时候，就需要挂载到mnt目录下。</p>
+<h2 id="Linux的基本指令"><a href="#Linux的基本指令" class="headerlink" title="Linux的基本指令"></a>Linux的基本指令</h2><p>linux指令指在linux终端（命令行）中输入的内容。</p>
+<p>一个完整的指令的标准格式：Linux通用的格式</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>指令主体 (空格) [选项] (空格) [操作对象]</span><br></pre></td></tr></table></figure>
+<p>一个指令可以包含多个选项，操作对象也可以是多个。</p>
+<h4 id="1-ls指令"><a href="#1-ls指令" class="headerlink" title="1.ls指令"></a>1.<code>ls</code>指令</h4><p>含义：ls（list）</p>
+<h5 id="用法1：-ls"><a href="#用法1：-ls" class="headerlink" title="用法1：#ls"></a>用法1：#ls</h5><p>含义：列出当前工作目录下的所有文件/文件夹的名称</p>
+<p><img src="/2019/08/22/Linux-Command/ls_1.png" alt></p>
+<h5 id="用法2：-ls-路径"><a href="#用法2：-ls-路径" class="headerlink" title="用法2：#ls    路径"></a>用法2：#ls    路径</h5><p>含义：列出指定路径下的所有文件/文件夹的名称</p>
+<p>路径分为相对路径和绝对路径</p>
+<p><img src="/2019/08/22/Linux-Command/ls_2.png" alt></p>
+<h5 id="用法3：-ls-选项-路径"><a href="#用法3：-ls-选项-路径" class="headerlink" title="用法3：#ls    选项    路径"></a>用法3：#ls    选项    路径</h5><p>含义：在列出指定路径下的文件/文件夹的名称，并以指定的格式进行显示。</p>
+<p>常见的语法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>ls -l 路径</span><br><span class="line"><span class="meta">#</span>ls -la 路径</span><br></pre></td></tr></table></figure>
+<p>选项解释：</p>
+<p>​         -l：表示list，表示以详细列表的形式进行展示</p>
+<p>​         -a：表示all，显示所有的文件/文件夹（包含了隐藏文件/文件夹）</p>
+<p><img src="/2019/08/22/Linux-Command/ls_3.png" alt="img"></p>
+<p>上述列表中的第一列表示文档类型，<strong>其中 “ - ” 表示改行对应的文档类型为文件，“ d ” 表示文档类型为文件夹</strong>。</p>
+<p><img src="/2019/08/22/Linux-Command/ls_4.png" alt></p>
+<p><strong>在Linux中，隐藏文档一般以 “ . ” 开头。</strong> </p>
+<h5 id="用法4：-ls-lh-路径"><a href="#用法4：-ls-lh-路径" class="headerlink" title="用法4：#ls    -lh    路径"></a>用法4：#ls    -lh    路径</h5><p>含义：列出指定路径下的所有文件/文件夹的名称，以列表的形式并且在显示文档大小的时候以<strong>可读性较高的形式显示</strong></p>
+<p><img src="/2019/08/22/Linux-Command/ls_5.png" alt></p>
+<p>ls列出的结果颜色说明，<strong>其中蓝色的名称表示文件夹，黑色的表示文件，绿色的其权限为拥有所有权限</strong></p>
+<h4 id="2-pwd指令"><a href="#2-pwd指令" class="headerlink" title="2.pwd指令"></a>2.<code>pwd</code>指令</h4><p>用法：#pwd                    （print working directory，打印当前工作目录）</p>
+<p><img src="/2019/08/22/Linux-Command/pwd.png" alt></p>
+<h4 id="3-cd指令"><a href="#3-cd指令" class="headerlink" title="3.cd指令"></a>3.<code>cd</code>指令</h4><p>命令：#cd            （change directory，改变目录）</p>
+<p>作用：用于切换当前的工作目录</p>
+<h5 id="语法：-cd-路径"><a href="#语法：-cd-路径" class="headerlink" title="语法：#cd    路径"></a>语法：#cd    路径</h5><p>P.S. 在linux中有一个特殊符号~，用于表示当前用户的家目录</p>
+<p><img src="/2019/08/22/Linux-Command/cd_1.png" alt></p>
+<p><img src="/2019/08/22/Linux-Command/cd_2.png" alt></p>
+<p><img src="/2019/08/22/Linux-Command/cd_3.png" alt></p>
+<h4 id="4-mkdir指令"><a href="#4-mkdir指令" class="headerlink" title="4.mkdir指令"></a>4.<code>mkdir</code>指令</h4><p>指令：mkdir        （make directory，创建目录）</p>
+<h5 id="语法1：-mkdir-路径"><a href="#语法1：-mkdir-路径" class="headerlink" title="语法1：#mkdir    路径"></a>语法1：#mkdir    路径</h5><p>路径，可以是文件夹名称也可以是包含名称的一个完整路径</p>
+<p>假如是文件夹名称，则在当前目录下创建该文件夹</p>
+<h5 id="语法2：-mkdir-p-路径"><a href="#语法2：-mkdir-p-路径" class="headerlink" title="语法2：#mkdir    -p    路径"></a>语法2：#mkdir    -p    路径</h5><p>含义：<strong>当一次性创建多层不存在的目录的时候</strong>，添加-p参数，否则会报错</p>
+<p><img src="/2019/08/22/Linux-Command/mkdir_1.png" alt></p>
+<h5 id="语法3：-mkdir-路径1-路径2-路径3-…"><a href="#语法3：-mkdir-路径1-路径2-路径3-…" class="headerlink" title="语法3：#mkdir    路径1    路径2    路径3    …"></a>语法3：#mkdir    路径1    路径2    路径3    …</h5><p>表示一次性创建多个目录</p>
+<p><img src="/2019/08/22/Linux-Command/mkdir_2.png" alt></p>
+<h4 id="5-touch指令"><a href="#5-touch指令" class="headerlink" title="5.touch指令"></a>5.<code>touch</code>指令</h4><p>作用：创建文件</p>
+<p>语法：#touch    文件路径</p>
+<p>路径可以是直接的文件名也可以是路径</p>
+<p><img src="/2019/08/22/Linux-Command/touch_1.png" alt></p>
+<p>一次性创建多个文件</p>
+<p><img src="/2019/08/22/Linux-Command/touch_2.png" alt></p>
+<p><img src="/2019/08/22/Linux-Command/touch_3.png" alt></p>
+<h4 id="6-cp指令"><a href="#6-cp指令" class="headerlink" title="6.cp指令"></a>6.<code>cp</code>指令</h4><p>指令含义：cp        （copy，复制）</p>
+<p>作用：复制文件/文件夹到指定位置</p>
+<h5 id="语法：-cp-被复制的文档路径-文档被复制到的路径"><a href="#语法：-cp-被复制的文档路径-文档被复制到的路径" class="headerlink" title="语法：#cp    被复制的文档路径    文档被复制到的路径"></a>语法：#cp    被复制的文档路径    文档被复制到的路径</h5><p>简单来说就是#cp    源地址    目的地址</p>
+<p><img src="/2019/08/22/Linux-Command/cp_1.png" alt></p>
+<p><strong>注意：Linux在复制过程中是可以重新对新位置的文件进行重命名的，但是如果不是必须的需要，则建议保持前后名称一致。</strong></p>
+<p><strong>当使用cp命令进行文件夹复制操作的时候需要添加选项“-r”（-r表示递归复制），否则目录将被忽略</strong></p>
+<p><img src="/2019/08/22/Linux-Command/cp_2.png" alt></p>
+<h4 id="7-mv指令"><a href="#7-mv指令" class="headerlink" title="7.mv指令"></a>7.<code>mv</code>指令</h4><p>指令含义：mv        （move，移动，剪切）</p>
+<p>作用：移动文档到新的位置</p>
+<h5 id="语法：-mv-需要移动的文件路径-需要保存的位置路径"><a href="#语法：-mv-需要移动的文件路径-需要保存的位置路径" class="headerlink" title="语法：#mv    需要移动的文件路径    需要保存的位置路径"></a>语法：#mv    需要移动的文件路径    需要保存的位置路径</h5><p><img src="/2019/08/22/Linux-Command/mv_1.png" alt></p>
+<p><img src="/2019/08/22/Linux-Command/mv_2.png" alt></p>
+<p>注：在Linux中重命名的命令也是mv，语法和移动语法一样。</p>
+<p><img src="/2019/08/22/Linux-Command/mv_3.png" alt></p>
+<h4 id="8-rm指令"><a href="#8-rm指令" class="headerlink" title="8.rm指令"></a>8.<code>rm</code>指令</h4><p>指令含义：rm        （remove，移除，删除）</p>
+<h5 id="语法：-rm-选项-需要移除的文件路径"><a href="#语法：-rm-选项-需要移除的文件路径" class="headerlink" title="语法：#rm    选项    需要移除的文件路径"></a>语法：#rm    选项    需要移除的文件路径</h5><p>选项：    -f：force，强制删除，不提示是否删除</p>
+<p>​                -r：表示递归</p>
+<p>在删除的时候如果不带选项，会提示是否删除，如果需要确认则输入“y/yes”，否则输入</p>
+<p><strong>注意：如果在删除的时候不想频繁的确认，则可以在指令中添加选项“-f”，表示force（强制）。</strong></p>
+<p><img src="/2019/08/22/Linux-Command/rm_1.png" alt></p>
+<p><img src="/2019/08/22/Linux-Command/rm_2.png" alt></p>
+<p>删除一个文件夹：</p>
+<p><img src="/2019/08/22/Linux-Command/rm_3.png" alt></p>
+<p><strong>注意：删除一个目录的时候需要做递归删除，并且一般也不需要进行删除确认询问，所以移除目录的时候一般需要使用-rf选项。</strong></p>
+<p>删除多个文件：</p>
+<p><img src="/2019/08/22/Linux-Command/rm_4.png" alt></p>
+<p>删除一个目录下具有公共特性的文件，例如都以Linux开头</p>
+<p><img src="/2019/08/22/Linux-Command/rm_5.png" alt></p>
+<p>其中<strong>*称之为通配符，意思表示任意的字符，Linux*，则表示只要文件以Linux开头，后续字符则不管</strong>。</p>
+<h4 id="9-vim指令"><a href="#9-vim指令" class="headerlink" title="9.vim指令"></a>9.<code>vim</code>指令</h4><p>指令：vim    （Vim是一款文本编辑器，号称编辑器之神）</p>
+<h5 id="语法：-vim-文件路径"><a href="#语法：-vim-文件路径" class="headerlink" title="语法：#vim    文件路径"></a>语法：#vim    文件路径</h5><p>作用：可以打开一个文件，文件不存在时，可以创建该文件</p>
+<p>vim其他用法参考本文后续。</p>
+<h4 id="10-输出重定向"><a href="#10-输出重定向" class="headerlink" title="10.输出重定向"></a>10.输出重定向</h4><p><strong>一般命令的输出都会显示在终端中，有些时候需要将一些命令的执行结果想要保存到文件中进行后续的分析/统计，则这时候需要使用到的输出重定向技术。</strong></p>
+<p>>：覆输出，会覆盖掉原先的文件内容</p>
+<p>>&gt;：追加输出，不会覆盖原始文件内容，会在原始内容末尾继续添加</p>
+<h5 id="语法：-正常执行的指令-gt-gt-gt-文件的路径"><a href="#语法：-正常执行的指令-gt-gt-gt-文件的路径" class="headerlink" title="语法：#正常执行的指令 &gt; / &gt;&gt;文件的路径"></a>语法：#正常执行的指令 &gt; / &gt;&gt;文件的路径</h5><p>注意：文件可以不存在，不存在则新建</p>
+<p><img src="/2019/08/22/Linux-Command/cdx_1.png" alt></p>
+<p><img src="/2019/08/22/Linux-Command/cdx_2.png" alt></p>
+<h4 id="11-cat指令"><a href="#11-cat指令" class="headerlink" title="11.cat指令"></a>11.<code>cat</code>指令</h4><p>作用1：cat有直接打开一个文件的功能。</p>
+<h5 id="语法1：-cat-文件的路径"><a href="#语法1：-cat-文件的路径" class="headerlink" title="语法1：#cat    文件的路径"></a>语法1：#cat    文件的路径</h5><p><img src="/2019/08/22/Linux-Command/cat_1.png" alt></p>
+<p>作用2：cat还可以对文件惊醒合并</p>
+<h5 id="语法2：-cat-待合并的文件路径1-待合并的文件路径2-…-文件路径n-gt-合并之后的文件路径"><a href="#语法2：-cat-待合并的文件路径1-待合并的文件路径2-…-文件路径n-gt-合并之后的文件路径" class="headerlink" title="语法2：#cat    待合并的文件路径1    待合并的文件路径2    …    文件路径n    &gt;    合并之后的文件路径"></a>语法2：#cat    待合并的文件路径1    待合并的文件路径2    …    文件路径n    &gt;    合并之后的文件路径</h5><p><img src="/2019/08/22/Linux-Command/cat_2.png" alt></p>
 
       
     </div>
@@ -730,7 +858,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux-Command-Note"><span class="nav-number">1.</span> <span class="nav-text">Linux Command Note</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux-Study-Note"><span class="nav-number">1.</span> <span class="nav-text">Linux Study Note</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统的文件"><span class="nav-number">1.1.</span> <span class="nav-text">Linux系统的文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件目录结构"><span class="nav-number">1.1.1.</span> <span class="nav-text">文件目录结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux的基本指令"><span class="nav-number">1.2.</span> <span class="nav-text">Linux的基本指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-ls指令"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">1.ls指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#用法1：-ls"><span class="nav-number">1.2.0.1.1.</span> <span class="nav-text">用法1：#ls</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用法2：-ls-路径"><span class="nav-number">1.2.0.1.2.</span> <span class="nav-text">用法2：#ls    路径</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用法3：-ls-选项-路径"><span class="nav-number">1.2.0.1.3.</span> <span class="nav-text">用法3：#ls    选项    路径</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用法4：-ls-lh-路径"><span class="nav-number">1.2.0.1.4.</span> <span class="nav-text">用法4：#ls    -lh    路径</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-pwd指令"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">2.pwd指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-cd指令"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">3.cd指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-cd-路径"><span class="nav-number">1.2.0.3.1.</span> <span class="nav-text">语法：#cd    路径</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-mkdir指令"><span class="nav-number">1.2.0.4.</span> <span class="nav-text">4.mkdir指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法1：-mkdir-路径"><span class="nav-number">1.2.0.4.1.</span> <span class="nav-text">语法1：#mkdir    路径</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#语法2：-mkdir-p-路径"><span class="nav-number">1.2.0.4.2.</span> <span class="nav-text">语法2：#mkdir    -p    路径</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#语法3：-mkdir-路径1-路径2-路径3-…"><span class="nav-number">1.2.0.4.3.</span> <span class="nav-text">语法3：#mkdir    路径1    路径2    路径3    …</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-touch指令"><span class="nav-number">1.2.0.5.</span> <span class="nav-text">5.touch指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-cp指令"><span class="nav-number">1.2.0.6.</span> <span class="nav-text">6.cp指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-cp-被复制的文档路径-文档被复制到的路径"><span class="nav-number">1.2.0.6.1.</span> <span class="nav-text">语法：#cp    被复制的文档路径    文档被复制到的路径</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-mv指令"><span class="nav-number">1.2.0.7.</span> <span class="nav-text">7.mv指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-mv-需要移动的文件路径-需要保存的位置路径"><span class="nav-number">1.2.0.7.1.</span> <span class="nav-text">语法：#mv    需要移动的文件路径    需要保存的位置路径</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-rm指令"><span class="nav-number">1.2.0.8.</span> <span class="nav-text">8.rm指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-rm-选项-需要移除的文件路径"><span class="nav-number">1.2.0.8.1.</span> <span class="nav-text">语法：#rm    选项    需要移除的文件路径</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-vim指令"><span class="nav-number">1.2.0.9.</span> <span class="nav-text">9.vim指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-vim-文件路径"><span class="nav-number">1.2.0.9.1.</span> <span class="nav-text">语法：#vim    文件路径</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-输出重定向"><span class="nav-number">1.2.0.10.</span> <span class="nav-text">10.输出重定向</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-正常执行的指令-gt-gt-gt-文件的路径"><span class="nav-number">1.2.0.10.1.</span> <span class="nav-text">语法：#正常执行的指令 &gt; / &gt;&gt;文件的路径</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-cat指令"><span class="nav-number">1.2.0.11.</span> <span class="nav-text">11.cat指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法1：-cat-文件的路径"><span class="nav-number">1.2.0.11.1.</span> <span class="nav-text">语法1：#cat    文件的路径</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#语法2：-cat-待合并的文件路径1-待合并的文件路径2-…-文件路径n-gt-合并之后的文件路径"><span class="nav-number">1.2.0.11.2.</span> <span class="nav-text">语法2：#cat    待合并的文件路径1    待合并的文件路径2    …    文件路径n    &gt;    合并之后的文件路径</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
