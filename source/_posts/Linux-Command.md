@@ -764,57 +764,320 @@ P：表示将结果按照CPU使用率从高到低进行降序排列
 
 #### 27.`du -sh`指令
 
+作用：查看目录的真实大小
+
+##### 语法：#du	-sh	目录路径
+
+选项含义：
+
+​		-s：summaries，只显示汇总的大小
+
+​		-h：表示以高可读性的形式进行显示
+
+
+
+![](Linux-Command/du_1.png)
+
+![](Linux-Command/du_2.png)
 
 
 
 
 
+#### 28.`find`指令
+
+作用：用于查找文件（参数贼多，55个）
+
+##### 语法：#find	路径范围	选项	选项的值
+
+选项：
+
+​	-name：按照文件名称进行搜索（支持模糊搜索）
+
+​	-type：按照文件的类型进行搜索（文件类型：“-”表示文件，在使用find的使用需要用f来替换；“d”表示文件夹）
+
+![](Linux-Command/find_1.png)
+
+![](Linux-Command/find_2.png)
+
+注：*为通配符，匹配所有字符
+
+![](Linux-Command/find_3.png)
+
+![](Linux-Command/find_4.png)
+
+
+
+#### 29.`service`指令
+
+作用：用于控制一些软件的服务启动、停止、重启
+
+##### 语法：#service	服务名	start/stop/restart
+
+例：启动本机安装的Apache，其服务名为httpd
+
+![](Linux-Command/service_1.png)
+
+
+
+* 其服务启动规则可自己编写，后续将会专门开一篇讲述
 
 
 
 
 
+#### 30.`kill`指令
+
+作用：表示杀死进程（当遇到僵尸进程或者处于某些原因需要关闭进程的时候）
+
+##### 语法：#kill	进程的PID（需要配合ps一起使用）
+
+![](Linux-Command/kill_1.png)
+
+与kill相似的命令：#killall
+
+##### 语法：#killall	进程名称
+
+![](Linux-Command/kill_2.png)
 
 
 
 
 
+#### 31.`ifconfig`指令
+
+作用：用于操作网卡相关的指令
+
+语法：#ifconfig（获取网卡信息）
+
+注意该命令在windows环境下为ipconfig
+
+Eth0表示Linux中的一个网卡，eth0是其名称。Lo（**loop，本地回还网卡，其ip地址一般都是127.0.0.1**）也是一个网卡名称。注意：inet addr就是网卡的ip地址。
+
+![](Linux-Command/ifconfig_1.png)
+
+![](Linux-Command/ifconfig_2.png)
 
 
 
 
 
+#### 32.`reboot`指令
+
+作用：重启计算机
+
+##### 语法1：#reboot
+
+重启
+
+##### 语法2：#reboot	-w
+
+模拟重启，但是不重启（只写关机与开机的日志信息）
 
 
 
 
 
+#### 33.`shutdown`指令
+
+作用：关机（慎用）
+
+##### 语法1：#shutdown	-h	now	"关机提示"
+
+##### 			 #shutdown	-h	time(14:41)	"关机提示"
+
+![](Linux-Command/shutdown_1.png)
+
+如果想要取消关机计划的话，则可以按照以下方式去尝试：
+
+**①针对于centos7.x之前的版本：ctrl+c**
+
+**②针对于centos7.x（包含）之后的版本：#shutdown  -c**
+
+>除了shutdown关机以外，还有以下几个关机命令
+>
+>`#init	0`
+>
+>`#halt`
+>
+>`#poweroff`
+>
+>
 
 
 
 
 
+#### 34.`uptime`指令
+
+作用：输出计算机的持续在线时间（计算机从开机到现在运行的时间）
+
+##### 语法：#uptime
+
+![](Linux-Command/uptime_1.png)
 
 
 
 
 
+#### 35.`uname`指令
+
+作用：获取计算机操作系统的相关信息
+
+##### 语法1：#uname
+
+获取操作系统类型
+
+##### 语法2：#uname	-a
+
+-a：表示all，表示获取全部的系统信息（**类型、全部主机名、内核版本、发布时间、开源计划**）
+
+![](Linux-Command/uname_1.png)
 
 
 
 
 
+#### 36.`netstat	-tnlp`指令
 
+作用：查看网络连接状态
 
+##### 语法：#netstat	-tnlp
 
+![](Linux-Command/netstat_1.png)
 
-
-
-
-
-
-
-
+```shell
+选项说明：
+	-t：表示只列出tcp协议的连接；
+	-n：表示将地址从字母组合转化成ip地址，将协议转化成端口号来显示；
+	-l：表示过滤出“state（状态）”列中其值为LISTEN（监听）的连接；
+	-p：表示显示发起连接的进程pid和进程名称；
 ```
 
-```
+
+
+
+
+#### 37.`man`指令
+
+作用：manual，手册（包含了Linux中全部的命令手册，英文）
+
+##### 语法：#man	命令
+
+退出按下q键
+
+例：#man	cp
+
+
+
+
+
+
+
+
+
+## 编辑器之神——Vim编辑器
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
