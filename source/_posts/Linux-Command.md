@@ -1,5 +1,5 @@
 ---
-title: Linux_Command
+title: Linux Note
 date: 2019-08-22 22:21:03
 tags: linux
 categories: linux
