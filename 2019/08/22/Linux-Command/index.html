@@ -101,7 +101,7 @@
   <meta name="description" content="Linux Study Note 参考： 黑马程序员-linux从入门到精通  Linux系统的文件linux一切皆文件 文件操作种类：创建文件、编辑文件、保存文件、关闭文件、重命名文件、删除文件、恢复文件 文件目录结构Bin：全称binary，含义是二进制。该目录中存储的都是一些二进制文件，文件都是可以被运行的。 Dev：该目录中主要存放的是外接设备，例如盘、其他的光盘等。在其中的外接设备是不能">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux_Command">
+<meta property="og:title" content="Linux Note">
 <meta property="og:url" content="http://yoursite.com/2019/08/22/Linux-Command/index.html">
 <meta property="og:site_name" content="Hexo&amp;Magic">
 <meta property="og:description" content="Linux Study Note 参考： 黑马程序员-linux从入门到精通  Linux系统的文件linux一切皆文件 文件操作种类：创建文件、编辑文件、保存文件、关闭文件、重命名文件、删除文件、恢复文件 文件目录结构Bin：全称binary，含义是二进制。该目录中存储的都是一些二进制文件，文件都是可以被运行的。 Dev：该目录中主要存放的是外接设备，例如盘、其他的光盘等。在其中的外接设备是不能">
@@ -162,9 +162,9 @@
 <meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/uptime_1.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/uname_1.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/22/Linux-Command/netstat_1.png">
-<meta property="og:updated_time" content="2019-08-31T06:56:34.365Z">
+<meta property="og:updated_time" content="2019-09-04T15:12:44.349Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux_Command">
+<meta name="twitter:title" content="Linux Note">
 <meta name="twitter:description" content="Linux Study Note 参考： 黑马程序员-linux从入门到精通  Linux系统的文件linux一切皆文件 文件操作种类：创建文件、编辑文件、保存文件、关闭文件、重命名文件、删除文件、恢复文件 文件目录结构Bin：全称binary，含义是二进制。该目录中存储的都是一些二进制文件，文件都是可以被运行的。 Dev：该目录中主要存放的是外接设备，例如盘、其他的光盘等。在其中的外接设备是不能">
 <meta name="twitter:image" content="http://yoursite.com/2019/08/22/Linux-Command/ls_1.png">
 
@@ -184,7 +184,7 @@
   };
 </script>
 
-  <title>Linux_Command | Hexo&Magic</title>
+  <title>Linux Note | Hexo&Magic</title>
   
 
 
@@ -447,7 +447,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux_Command
+          <h1 class="post-title" itemprop="name headline">Linux Note
 
               
             
@@ -490,7 +490,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-31 14:56:34" itemprop="dateModified" datetime="2019-08-31T14:56:34+08:00">2019-08-31</time>
+                <time title="修改时间：2019-09-04 23:12:44" itemprop="dateModified" datetime="2019-09-04T23:12:44+08:00">2019-09-04</time>
               
             
           </span>
@@ -568,7 +568,7 @@
 <p>Mnt：当外接设备需要挂载的时候，就需要挂载到mnt目录下。</p>
 <h2 id="Linux的基本指令"><a href="#Linux的基本指令" class="headerlink" title="Linux的基本指令"></a>Linux的基本指令</h2><p>linux指令指在linux终端（命令行）中输入的内容。</p>
 <p>一个完整的指令的标准格式：Linux通用的格式</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>指令主体 (空格) [选项] (空格) [操作对象]</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">指令主体 (空格) [选项] (空格) [操作对象]</span></span><br></pre></td></tr></table></figure>
 <p>一个指令可以包含多个选项，操作对象也可以是多个。</p>
 <h4 id="1-ls指令"><a href="#1-ls指令" class="headerlink" title="1.ls指令"></a>1.<code>ls</code>指令</h4><p>含义：ls（list）</p>
 <h5 id="用法1：-ls"><a href="#用法1：-ls" class="headerlink" title="用法1：#ls"></a>用法1：#ls</h5><p>含义：列出当前工作目录下的所有文件/文件夹的名称</p>
@@ -578,7 +578,7 @@
 <p><img src="/2019/08/22/Linux-Command/ls_2.png" alt></p>
 <h5 id="用法3：-ls-选项-路径"><a href="#用法3：-ls-选项-路径" class="headerlink" title="用法3：#ls    选项    路径"></a>用法3：#ls    选项    路径</h5><p>含义：在列出指定路径下的文件/文件夹的名称，并以指定的格式进行显示。</p>
 <p>常见的语法：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>ls -l 路径</span><br><span class="line"><span class="meta">#</span>ls -la 路径</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">ls -l 路径</span></span><br><span class="line"><span class="meta">#</span><span class="bash">ls -la 路径</span></span><br></pre></td></tr></table></figure>
 <p>选项解释：</p>
 <p>​         -l：表示list，表示以详细列表的形式进行展示</p>
 <p>​         -a：表示all，显示所有的文件/文件夹（包含了隐藏文件/文件夹）</p>
@@ -683,7 +683,7 @@
 <p>输出的形式：2019-08-24    20:13:14</p>
 <h5 id="语法4：-date-d-“-1-day”-“-Y-m-d-H-M-S”"><a href="#语法4：-date-d-“-1-day”-“-Y-m-d-H-M-S”" class="headerlink" title="语法4：#date    -d    “-1  day”    “+%Y-%m-%d  %H:%M:%S”"></a>语法4：#date    -d    “-1  day”    “+%Y-%m-%d  %H:%M:%S”</h5><p>用于获取之前或者之后的某个时间（备份）</p>
 <p>符号的可选值：+（之后）、-（之前）</p>
-<p>单位的可选值：day（天）、month（月份）、year（年）<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span>F：表示完整的年月日</span><br><span class="line"></span><br><span class="line"><span class="meta">%</span>T：表示完整的时分秒</span><br><span class="line"></span><br><span class="line"><span class="meta">%</span>Y：表示四位年份</span><br><span class="line"></span><br><span class="line"><span class="meta">%</span>m：表示两位月份（带前导0）</span><br><span class="line"></span><br><span class="line"><span class="meta">%</span>d：表示日期（带前导0）</span><br><span class="line"></span><br><span class="line"><span class="meta">%</span>H：表示小时（带前导0）</span><br><span class="line"></span><br><span class="line"><span class="meta">%</span>M：表示分钟（带前导0）</span><br><span class="line"></span><br><span class="line"><span class="meta">%</span>S：表示秒数（带前导0）</span><br><span class="line"></span><br><span class="line">(以下摘自#date --help)</span><br><span class="line"><span class="meta">  %</span>%	一个文字的 %</span><br><span class="line"><span class="meta">  %</span>a	当前locale 的星期名缩写(例如： 日，代表星期日)</span><br><span class="line"><span class="meta">  %</span>A	当前locale 的星期名全称 (如：星期日)</span><br><span class="line"><span class="meta">  %</span>b	当前locale 的月名缩写 (如：一，代表一月)</span><br><span class="line"><span class="meta">  %</span>B	当前locale 的月名全称 (如：一月)</span><br><span class="line"><span class="meta">  %</span>c	当前locale 的日期和时间 (如：2005年3月3日 星期四 23:05:25)</span><br><span class="line"><span class="meta">  %</span>C	世纪；比如 %Y，通常为省略当前年份的后两位数字(例如：20)</span><br><span class="line"><span class="meta">  %</span>d	按月计的日期(例如：01)</span><br><span class="line"><span class="meta">  %</span>D	按月计的日期；等于%m/%d/%y</span><br><span class="line"><span class="meta">  %</span>e	按月计的日期，添加空格，等于%_d</span><br><span class="line"><span class="meta">  %</span>F	完整日期格式，等价于 %Y-%m-%d</span><br><span class="line"><span class="meta">  %</span>g	ISO-8601 格式年份的最后两位 (参见%G)</span><br><span class="line"><span class="meta">  %</span>G	ISO-8601 格式年份 (参见%V)，一般只和 %V 结合使用</span><br><span class="line"><span class="meta">  %</span>h	等于%b</span><br><span class="line"><span class="meta">  %</span>H	小时(00-23)</span><br><span class="line"><span class="meta">  %</span>I	小时(00-12)</span><br><span class="line"><span class="meta">  %</span>j	按年计的日期(001-366)</span><br><span class="line"><span class="meta">  %</span>k   hour, space padded ( 0..23); same as %_H</span><br><span class="line"><span class="meta">  %</span>l   hour, space padded ( 1..12); same as %_I</span><br><span class="line"><span class="meta">  %</span>m   month (01..12)</span><br><span class="line"><span class="meta">  %</span>M   minute (00..59)</span><br><span class="line"><span class="meta">  %</span>n	换行</span><br><span class="line"><span class="meta">  %</span>N	纳秒(000000000-999999999)</span><br><span class="line"><span class="meta">  %</span>p	当前locale 下的"上午"或者"下午"，未知时输出为空</span><br><span class="line"><span class="meta">  %</span>P	与%p 类似，但是输出小写字母</span><br><span class="line"><span class="meta">  %</span>r	当前locale 下的 12 小时时钟时间 (如：11:11:04 下午)</span><br><span class="line"><span class="meta">  %</span>R	24 小时时间的时和分，等价于 %H:%M</span><br><span class="line"><span class="meta">  %</span>s	自UTC 时间 1970-01-01 00:00:00 以来所经过的秒数</span><br><span class="line"><span class="meta">  %</span>S	秒(00-60)</span><br><span class="line"><span class="meta">  %</span>t	输出制表符 Tab</span><br><span class="line"><span class="meta">  %</span>T	时间，等于%H:%M:%S</span><br><span class="line"><span class="meta">  %</span>u	星期，1 代表星期一</span><br><span class="line"><span class="meta">  %</span>U	一年中的第几周，以周日为每星期第一天(00-53)</span><br><span class="line"><span class="meta">  %</span>V	ISO-8601 格式规范下的一年中第几周，以周一为每星期第一天(01-53)</span><br><span class="line"><span class="meta">  %</span>w	一星期中的第几日(0-6)，0 代表周一</span><br><span class="line"><span class="meta">  %</span>W	一年中的第几周，以周一为每星期第一天(00-53)</span><br><span class="line"><span class="meta">  %</span>x	当前locale 下的日期描述 (如：12/31/99)</span><br><span class="line"><span class="meta">  %</span>X	当前locale 下的时间描述 (如：23:13:48)</span><br><span class="line"><span class="meta">  %</span>y	年份最后两位数位 (00-99)</span><br><span class="line"><span class="meta">  %</span>Y	年份</span><br><span class="line"><span class="meta">  %</span>z +hhmm		数字时区(例如，-0400)</span><br><span class="line"><span class="meta">  %</span>:z +hh:mm		数字时区(例如，-04:00)</span><br><span class="line"><span class="meta">  %</span>::z +hh:mm:ss	数字时区(例如，-04:00:00)</span><br><span class="line"><span class="meta">  %</span>:::z			数字时区带有必要的精度 (例如，-04，+05:30)</span><br><span class="line"><span class="meta">  %</span>Z			按字母表排序的时区缩写 (例如，EDT)</span><br></pre></td></tr></table></figure></p>
+<p>单位的可选值：day（天）、month（月份）、year（年）<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash">F：表示完整的年月日</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash">T：表示完整的时分秒</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash">Y：表示四位年份</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash">m：表示两位月份（带前导0）</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash">d：表示日期（带前导0）</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash">H：表示小时（带前导0）</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash">M：表示分钟（带前导0）</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash">S：表示秒数（带前导0）</span></span><br><span class="line"></span><br><span class="line">(以下摘自#date --help)</span><br><span class="line"><span class="meta">  %</span><span class="bash">%	一个文字的 %</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">a	当前locale 的星期名缩写(例如： 日，代表星期日)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">A	当前locale 的星期名全称 (如：星期日)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">b	当前locale 的月名缩写 (如：一，代表一月)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">B	当前locale 的月名全称 (如：一月)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">c	当前locale 的日期和时间 (如：2005年3月3日 星期四 23:05:25)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">C	世纪；比如 %Y，通常为省略当前年份的后两位数字(例如：20)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">d	按月计的日期(例如：01)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">D	按月计的日期；等于%m/%d/%y</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">e	按月计的日期，添加空格，等于%_d</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">F	完整日期格式，等价于 %Y-%m-%d</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">g	ISO-8601 格式年份的最后两位 (参见%G)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">G	ISO-8601 格式年份 (参见%V)，一般只和 %V 结合使用</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">h	等于%b</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">H	小时(00-23)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">I	小时(00-12)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">j	按年计的日期(001-366)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">k   hour, space padded ( 0..23); same as %_H</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">l   hour, space padded ( 1..12); same as %_I</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">m   month (01..12)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">M   minute (00..59)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">n	换行</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">N	纳秒(000000000-999999999)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">p	当前locale 下的<span class="string">"上午"</span>或者<span class="string">"下午"</span>，未知时输出为空</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">P	与%p 类似，但是输出小写字母</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">r	当前locale 下的 12 小时时钟时间 (如：11:11:04 下午)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">R	24 小时时间的时和分，等价于 %H:%M</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">s	自UTC 时间 1970-01-01 00:00:00 以来所经过的秒数</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">S	秒(00-60)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">t	输出制表符 Tab</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">T	时间，等于%H:%M:%S</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">u	星期，1 代表星期一</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">U	一年中的第几周，以周日为每星期第一天(00-53)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">V	ISO-8601 格式规范下的一年中第几周，以周一为每星期第一天(01-53)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">w	一星期中的第几日(0-6)，0 代表周一</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">W	一年中的第几周，以周一为每星期第一天(00-53)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">x	当前locale 下的日期描述 (如：12/31/99)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">X	当前locale 下的时间描述 (如：23:13:48)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">y	年份最后两位数位 (00-99)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">Y	年份</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">z +hhmm		数字时区(例如，-0400)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">:z +hh:mm		数字时区(例如，-04:00)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">::z +hh:mm:ss	数字时区(例如，-04:00:00)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">:::z			数字时区带有必要的精度 (例如，-04，+05:30)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">Z			按字母表排序的时区缩写 (例如，EDT)</span></span><br></pre></td></tr></table></figure></p>
 <h4 id="19-cal指令"><a href="#19-cal指令" class="headerlink" title="19.cal指令"></a>19.<code>cal</code>指令</h4><p>作用：用来操作日历的</p>
 <h5 id="语法1：-cal-（等价于-cal-l）"><a href="#语法1：-cal-（等价于-cal-l）" class="headerlink" title="语法1：#cal                （等价于#cal    -l）"></a>语法1：#cal                （等价于#cal    -l）</h5><p>直接输出当前月份日历</p>
 <h5 id="语法2：-cal-3"><a href="#语法2：-cal-3" class="headerlink" title="语法2：#cal    -3"></a>语法2：#cal    -3</h5><p>表示输出上一个月+本月+下个月的日历</p>
@@ -692,7 +692,7 @@
 <h5 id="语法：-clear-或-快捷键-ctrl-L"><a href="#语法：-clear-或-快捷键-ctrl-L" class="headerlink" title="语法：#clear        或         快捷键 ctrl  +  L"></a>语法：#clear        或         快捷键 ctrl  +  L</h5><p>注意：该命令并不是真的清除了之前的信息，而是把之前的信息都隐藏到了最上面，可以通过滚动条继续查看以前的信息。</p>
 <h4 id="21-管道pipe"><a href="#21-管道pipe" class="headerlink" title="21.管道pipe"></a>21.管道pipe</h4><h5 id="管道符："><a href="#管道符：" class="headerlink" title="管道符：    |"></a>管道符：    |</h5><p>作用：管道一般可以用于“<strong>过滤</strong>”，“特殊”，“扩展处理”</p>
 <h5 id="语法：管道不能单独使用，必须需要配合前面的指令一起使用，起作用主要是辅助作用"><a href="#语法：管道不能单独使用，必须需要配合前面的指令一起使用，起作用主要是辅助作用" class="headerlink" title="语法：管道不能单独使用，必须需要配合前面的指令一起使用，起作用主要是辅助作用"></a>语法：管道不能单独使用，必须需要配合前面的指令一起使用，起作用<strong>主要是辅助作用</strong></h5><p><strong>①过滤</strong>案例（<strong>高频率使用</strong>）：需要通过管道查询出根目录下包含“y”字母的文档名称。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>ls	| grep y</span><br><span class="line"></span><br><span class="line">针对上面这个命令说明：</span><br><span class="line">①以管道作为分界线，前面的命令有个输出，后面需要先输入，然后再过滤，最后再输出，通俗的讲就是管道前面的输出就是后面指令的输入；</span><br><span class="line">②grep指令：主要用于过滤</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">ls	| grep y</span></span><br><span class="line"></span><br><span class="line">针对上面这个命令说明：</span><br><span class="line">①以管道作为分界线，前面的命令有个输出，后面需要先输入，然后再过滤，最后再输出，通俗的讲就是管道前面的输出就是后面指令的输入；</span><br><span class="line">②grep指令：主要用于过滤</span><br></pre></td></tr></table></figure>
 <p>②特殊用法案例：通过管道的操作方法来实现<code>less</code>的等价效果（了解）</p>
 <p>之前通过less查看一个文件，可以<code>#less</code> 路径</p>
 <p>现在通过管道还可以这么：<code>#cat 路径|less</code></p>
@@ -831,6 +831,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/09/04/Compiler/" rel="prev" title="Compiler">
+                Compiler <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -900,7 +904,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -931,7 +935,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -966,7 +974,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">9</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
