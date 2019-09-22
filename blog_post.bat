@@ -8,5 +8,5 @@ git push origin hexo
 
 hexo d -g
 
-@pause
+@cmd.exe
 @pause
