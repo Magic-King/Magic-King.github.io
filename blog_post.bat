@@ -7,3 +7,6 @@ git push origin hexo
 @echo git sync finished
 
 hexo d -g
+
+@pause
+@pause
