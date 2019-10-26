@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo&amp;Magic</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2019-10-21T13:29:09.307Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Magic King</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Object-oriented Programming</title>
+    <link href="http://yoursite.com/2019/10/21/Object-oriented-Programming/"/>
+    <id>http://yoursite.com/2019/10/21/Object-oriented-Programming/</id>
+    <published>2019-10-21T12:22:11.000Z</published>
+    <updated>2019-10-21T13:29:09.307Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;虽然一直再写面向对象编程的语言，但是压根没有对象可以面对，希望写完这篇能有对象可以让我面对！！！&lt;/p&gt;
+&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt; 面向对象编程(Object
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>CVE-2019-14287</title>
+    <link href="http://yoursite.com/2019/10/18/CVE-2019-14287/"/>
+    <id>http://yoursite.com/2019/10/18/CVE-2019-14287/</id>
+    <published>2019-10-18T14:59:58.000Z</published>
+    <updated>2019-10-19T13:00:08.873Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;引用：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.sudo.ws/alerts/minus_1_uid.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Potential bypass of Runas us
+      
+    
+    </summary>
+    
+    
+      <category term="CVE" scheme="http://yoursite.com/categories/CVE/"/>
+    
+      <category term="linux" scheme="http://yoursite.com/categories/CVE/linux/"/>
+    
+    
+      <category term="CVE" scheme="http://yoursite.com/tags/CVE/"/>
+    
+      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>pacman</title>
+    <link href="http://yoursite.com/2019/10/11/pacman/"/>
+    <id>http://yoursite.com/2019/10/11/pacman/</id>
+    <published>2019-10-11T13:33:53.000Z</published>
+    <updated>2019-10-11T14:51:59.827Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;包管理工具-Pacman&quot;&gt;&lt;a href=&quot;#包管理工具-Pacman&quot; class=&quot;headerlink&quot; title=&quot;包管理工具 Pacman&quot;&gt;&lt;/a&gt;包管理工具 Pacman&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;参考：&lt;/p&gt;
+&lt;p&gt;&lt;a hre
+      
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://yoursite.com/categories/linux/"/>
+    
+    
+      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+    
+      <category term="ArchLinux" scheme="http://yoursite.com/tags/ArchLinux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js_banned</title>
+    <link href="http://yoursite.com/2019/10/09/js-banned/"/>
+    <id>http://yoursite.com/2019/10/09/js-banned/</id>
+    <published>2019-10-09T10:32:10.000Z</published>
+    <updated>2019-10-09T11:09:52.660Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;序：原本想从网页上搞些网课答案下来，懒得用爬虫，便想直接复制粘贴更方便，结果遭遇了网页的复制和控制台禁用，本着求知的精神，就有了这篇文章。&lt;/p&gt;
+&lt;h1 id=&quot;网页中部分禁用及破解&quot;&gt;&lt;a href=&quot;#网页中部分禁用及破解&quot; class=&quot;headerlink&quot; ti
+      
+    
+    </summary>
+    
+    
+      <category term="web" scheme="http://yoursite.com/categories/web/"/>
+    
+    
+      <category term="web" scheme="http://yoursite.com/tags/web/"/>
+    
+      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>git</title>
+    <link href="http://yoursite.com/2019/09/23/git/"/>
+    <id>http://yoursite.com/2019/09/23/git/</id>
+    <published>2019-09-23T14:39:11.000Z</published>
+    <updated>2019-09-29T14:27:00.458Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Git&quot;&gt;&lt;a href=&quot;#Git&quot; class=&quot;headerlink&quot; title=&quot;Git&quot;&gt;&lt;/a&gt;&lt;center&gt;Git&lt;/center&gt;&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;引用：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.csd
+      
+    
+    </summary>
+    
+    
+      <category term="git" scheme="http://yoursite.com/categories/git/"/>
+    
+    
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Regular Expression</title>
+    <link href="http://yoursite.com/2019/09/22/re/"/>
+    <id>http://yoursite.com/2019/09/22/re/</id>
+    <published>2019-09-22T06:00:51.000Z</published>
+    <updated>2019-09-22T07:17:56.130Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;正则表达式的规则&quot;&gt;&lt;a href=&quot;#正则表达式的规则&quot; class=&quot;headerlink&quot; title=&quot;正则表达式的规则&quot;&gt;&lt;/a&gt;正则表达式的规则&lt;/h2&gt;&lt;p&gt;常用元字符&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text
+      
+    
+    </summary>
+    
+    
+      <category term="re" scheme="http://yoursite.com/categories/re/"/>
+    
+    
+      <category term="Re" scheme="http://yoursite.com/tags/Re/"/>
+    
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Compiler</title>
+    <link href="http://yoursite.com/2019/09/04/Compiler/"/>
+    <id>http://yoursite.com/2019/09/04/Compiler/</id>
+    <published>2019-09-04T15:11:48.000Z</published>
+    <updated>2019-09-17T05:40:43.268Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;引论&quot;&gt;&lt;a href=&quot;#引论&quot; class=&quot;headerlink&quot; title=&quot;引论&quot;&gt;&lt;/a&gt;引论&lt;/h2&gt;&lt;p&gt;编译原理是良好的数学基础和好的工程结构功能的结合。&lt;/p&gt;
+&lt;p&gt;Compiler：编译，述而不作，忠于编写的东西&lt;/p&gt;
+&lt;p&gt;编译器从逻
+      
+    
+    </summary>
+    
+    
+      <category term="Compiler" scheme="http://yoursite.com/categories/Compiler/"/>
+    
+    
+      <category term="Compilier" scheme="http://yoursite.com/tags/Compilier/"/>
+    
+      <category term="StudyNote" scheme="http://yoursite.com/tags/StudyNote/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux Note</title>
+    <link href="http://yoursite.com/2019/08/22/Linux-Command/"/>
+    <id>http://yoursite.com/2019/08/22/Linux-Command/</id>
+    <published>2019-08-22T14:21:03.000Z</published>
+    <updated>2019-09-04T15:12:44.349Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Linux-Study-Note&quot;&gt;&lt;a href=&quot;#Linux-Study-Note&quot; class=&quot;headerlink&quot; title=&quot;Linux Study Note&quot;&gt;&lt;/a&gt;Linux Study Note&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;参
+      
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://yoursite.com/categories/linux/"/>
+    
+    
+      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>url</title>
+    <link href="http://yoursite.com/2019/08/19/url/"/>
+    <id>http://yoursite.com/2019/08/19/url/</id>
+    <published>2019-08-19T15:26:38.000Z</published>
+    <updated>2019-08-19T15:56:21.105Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;URL&quot;&gt;&lt;a href=&quot;#URL&quot; class=&quot;headerlink&quot; title=&quot;URL&quot;&gt;&lt;/a&gt;URL&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;引用：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;[https://zh.wikipedia.org/wiki/%E
+      
+    
+    </summary>
+    
+    
+    
+      <category term="url" scheme="http://yoursite.com/tags/url/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Makefile</title>
+    <link href="http://yoursite.com/2019/06/06/Makefile/"/>
+    <id>http://yoursite.com/2019/06/06/Makefile/</id>
+    <published>2019-06-06T01:11:19.000Z</published>
+    <updated>2019-07-04T10:05:55.396Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Make&quot;&gt;&lt;a href=&quot;#Make&quot; class=&quot;headerlink&quot; title=&quot;Make&quot;&gt;&lt;/a&gt;&lt;center&gt;Make&lt;/center&gt;&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;本文参考：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;&amp;quot;/Mak
+      
+    
+    </summary>
+    
+    
+      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+    
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+    
+      <category term="make" scheme="http://yoursite.com/tags/make/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>IPFS</title>
+    <link href="http://yoursite.com/2019/05/30/IPFS/"/>
+    <id>http://yoursite.com/2019/05/30/IPFS/</id>
+    <published>2019-05-30T14:40:32.000Z</published>
+    <updated>2019-09-04T15:13:38.541Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="Network" scheme="http://yoursite.com/categories/Network/"/>
+    
+    
+      <category term="Network" scheme="http://yoursite.com/tags/Network/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ARM</title>
+    <link href="http://yoursite.com/2019/05/28/ARM/"/>
+    <id>http://yoursite.com/2019/05/28/ARM/</id>
+    <published>2019-05-28T15:06:13.000Z</published>
+    <updated>2019-05-30T09:02:17.289Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;ARM指令集详解&quot;&gt;&lt;a href=&quot;#ARM指令集详解&quot; class=&quot;headerlink&quot; title=&quot;ARM指令集详解&quot;&gt;&lt;/a&gt;ARM指令集详解&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;引用：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>LOVE</title>
+    <link href="http://yoursite.com/2019/05/27/LOVE/"/>
+    <id>http://yoursite.com/2019/05/27/LOVE/</id>
+    <published>2019-05-27T12:13:14.000Z</published>
+    <updated>2019-09-23T14:38:31.997Z</updated>
+    
+    <summary type="html">
+    
+      It is Magic.&lt;/br&gt;the content has been encrypted, enter the password to read.&lt;/br&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Movie</title>
+    <link href="http://yoursite.com/2019/05/27/Movie/"/>
+    <id>http://yoursite.com/2019/05/27/Movie/</id>
+    <published>2019-05-27T08:45:10.000Z</published>
+    <updated>2019-10-11T14:06:01.458Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;To-the-movie&quot;&gt;&lt;a href=&quot;#To-the-movie&quot; class=&quot;headerlink&quot; title=&quot;To the movie&quot;&gt;&lt;/a&gt;To the movie&lt;/h1&gt;&lt;h2 id=&quot;In-the-wanda&quot;&gt;&lt;a href=&quot;#I
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Magic</title>
+    <link href="http://yoursite.com/2019/05/20/Magic/"/>
+    <id>http://yoursite.com/2019/05/20/Magic/</id>
+    <published>2019-05-20T05:14:27.000Z</published>
+    <updated>2019-10-25T15:45:18.145Z</updated>
+    
+    <summary type="html">
+    
+      It is Magic.
+    
+    </summary>
+    
+    
+      <category term="Magic" scheme="http://yoursite.com/categories/Magic/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>SpMV</title>
+    <link href="http://yoursite.com/2019/05/19/SpMV/"/>
+    <id>http://yoursite.com/2019/05/19/SpMV/</id>
+    <published>2019-05-19T08:21:36.000Z</published>
+    <updated>2019-05-23T07:45:32.710Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;稀疏矩阵向量乘&quot;&gt;&lt;a href=&quot;#稀疏矩阵向量乘&quot; class=&quot;headerlink&quot; title=&quot;稀疏矩阵向量乘&quot;&gt;&lt;/a&gt;稀疏矩阵向量乘&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;本文参考: &lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://kns.cnk
+      
+    
+    </summary>
+    
+    
+      <category term="SpMV" scheme="http://yoursite.com/categories/SpMV/"/>
+    
+    
+      <category term="SpMV" scheme="http://yoursite.com/tags/SpMV/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nginx</title>
+    <link href="http://yoursite.com/2019/05/19/Nginx/"/>
+    <id>http://yoursite.com/2019/05/19/Nginx/</id>
+    <published>2019-05-19T06:01:01.000Z</published>
+    <updated>2019-05-19T06:17:56.243Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Nginx安装及配置&quot;&gt;&lt;a href=&quot;#Nginx安装及配置&quot; class=&quot;headerlink&quot; title=&quot;Nginx安装及配置&quot;&gt;&lt;/a&gt;Nginx安装及配置&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;本文参考：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;htt
+      
+    
+    </summary>
+    
+    
+      <category term="nginx" scheme="http://yoursite.com/categories/nginx/"/>
+    
+    
+      <category term="nginx" scheme="http://yoursite.com/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>nginx+rtmp</title>
+    <link href="http://yoursite.com/2019/05/17/nginx-rtmp/"/>
+    <id>http://yoursite.com/2019/05/17/nginx-rtmp/</id>
+    <published>2019-05-17T14:22:38.000Z</published>
+    <updated>2019-05-20T13:55:42.941Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;nginx-rtmp-搭建视频直播服务器&quot;&gt;&lt;a href=&quot;#nginx-rtmp-搭建视频直播服务器&quot; class=&quot;headerlink&quot; title=&quot;nginx+rtmp 搭建视频直播服务器&quot;&gt;&lt;/a&gt;nginx+rtmp 搭建视频直播服务器&lt;/h1&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="nginx" scheme="http://yoursite.com/categories/nginx/"/>
+    
+    
+      <category term="nginx" scheme="http://yoursite.com/tags/nginx/"/>
+    
+      <category term="rtmp" scheme="http://yoursite.com/tags/rtmp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo+gitPages Synchronization</title>
+    <link href="http://yoursite.com/2019/05/16/hexo-gitPages-Synchronization/"/>
+    <id>http://yoursite.com/2019/05/16/hexo-gitPages-Synchronization/</id>
+    <published>2019-05-16T07:30:39.000Z</published>
+    <updated>2019-05-18T08:58:32.587Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Hexo-gitPages-的博客多端同步管理及迁移&quot;&gt;&lt;a href=&quot;#Hexo-gitPages-的博客多端同步管理及迁移&quot; class=&quot;headerlink&quot; title=&quot;Hexo+gitPages 的博客多端同步管理及迁移&quot;&gt;&lt;/a&gt;Hexo+git
+      
+    
+    </summary>
+    
+    
+      <category term="hexo" scheme="http://yoursite.com/categories/hexo/"/>
+    
+    
+      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Markdown Syntax</title>
+    <link href="http://yoursite.com/2019/05/14/Markdown-Syntax/"/>
+    <id>http://yoursite.com/2019/05/14/Markdown-Syntax/</id>
+    <published>2019-05-14T08:43:54.000Z</published>
+    <updated>2019-08-23T13:49:57.403Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Markdown-Syntax&quot;&gt;&lt;a href=&quot;#Markdown-Syntax&quot; class=&quot;headerlink&quot; title=&quot;Markdown Syntax&quot;&gt;&lt;/a&gt;&lt;center&gt;Markdown Syntax&lt;/center&gt;&lt;/h1&gt;&lt;blo
+      
+    
+    </summary>
+    
+    
+      <category term="Markdown" scheme="http://yoursite.com/categories/Markdown/"/>
+    
+    
+      <category term="Markdown" scheme="http://yoursite.com/tags/Markdown/"/>
+    
+  </entry>
+  
+</feed>
