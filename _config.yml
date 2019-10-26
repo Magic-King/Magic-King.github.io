@@ -86,14 +86,14 @@ search:
     limit: 10000
 
 #RSS订阅
-#feed: 
-#    type: atom
-#    path: atom.xml
-#    limit: 20
-#    hub: 
-#    content:
-#    content_limit: 140
-#    content_limit_delim: ''
+feed: 
+    type: atom
+    path: atom.xml
+    limit: 20
+    hub: 
+    content:
+    content_limit: 140
+    content_limit_delim: ''
 
 # Security
 ##

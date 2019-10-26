@@ -17,9 +17,6 @@ message: Welcome to my blog, enter password to read.
 
 
 <center>Now You See ME</center>
-
-
-
 ## <center>**Magic Tree**</center>
 
 
@@ -171,16 +168,12 @@ message: Welcome to my blog, enter password to read.
   >#### language
   >
   >- java
-  >
   >- gcc
-  >
   >- python
-  >
   >- (shell)
-  >
   >- (dos)
-  >
   >- (arm)
+  >- (x86)
   >
   >
   >
@@ -312,6 +305,21 @@ message: Welcome to my blog, enter password to read.
 
 
 
+* ### Magic Rss
+
+	> - 
+	> - 
+	> - 
+	> - 
+	>
+	> 
+
+
+
+
+
+
+
 
 
 
@@ -344,6 +352,25 @@ message: Welcome to my blog, enter password to read.
 
 
 ## <center>**Magic Bag**</center>
+
+
+
+
+
+
+
+
+
+
+
+## <center>Magic House</center>
+
+
+
+* 3D地画
+* 密室
+* 
+* 
 
 
 
