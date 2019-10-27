@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://magic-king.com/"/>
   <updated>2019-10-21T13:29:09.307Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://magic-king.com/</id>
   
   <author>
     <name>Magic King</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Object-oriented Programming</title>
-    <link href="http://yoursite.com/2019/10/21/Object-oriented-Programming/"/>
-    <id>http://yoursite.com/2019/10/21/Object-oriented-Programming/</id>
+    <link href="http://magic-king.com/2019/10/21/Object-oriented-Programming/"/>
+    <id>http://magic-king.com/2019/10/21/Object-oriented-Programming/</id>
     <published>2019-10-21T12:22:11.000Z</published>
     <updated>2019-10-21T13:29:09.307Z</updated>
     
@@ -39,8 +39,8 @@
   
   <entry>
     <title>CVE-2019-14287</title>
-    <link href="http://yoursite.com/2019/10/18/CVE-2019-14287/"/>
-    <id>http://yoursite.com/2019/10/18/CVE-2019-14287/</id>
+    <link href="http://magic-king.com/2019/10/18/CVE-2019-14287/"/>
+    <id>http://magic-king.com/2019/10/18/CVE-2019-14287/</id>
     <published>2019-10-18T14:59:58.000Z</published>
     <updated>2019-10-19T13:00:08.873Z</updated>
     
@@ -56,21 +56,21 @@
     </summary>
     
     
-      <category term="CVE" scheme="http://yoursite.com/categories/CVE/"/>
+      <category term="CVE" scheme="http://magic-king.com/categories/CVE/"/>
     
-      <category term="linux" scheme="http://yoursite.com/categories/CVE/linux/"/>
+      <category term="linux" scheme="http://magic-king.com/categories/CVE/linux/"/>
     
     
-      <category term="CVE" scheme="http://yoursite.com/tags/CVE/"/>
+      <category term="CVE" scheme="http://magic-king.com/tags/CVE/"/>
     
-      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+      <category term="linux" scheme="http://magic-king.com/tags/linux/"/>
     
   </entry>
   
   <entry>
     <title>pacman</title>
-    <link href="http://yoursite.com/2019/10/11/pacman/"/>
-    <id>http://yoursite.com/2019/10/11/pacman/</id>
+    <link href="http://magic-king.com/2019/10/11/pacman/"/>
+    <id>http://magic-king.com/2019/10/11/pacman/</id>
     <published>2019-10-11T13:33:53.000Z</published>
     <updated>2019-10-11T14:51:59.827Z</updated>
     
@@ -86,19 +86,19 @@
     </summary>
     
     
-      <category term="linux" scheme="http://yoursite.com/categories/linux/"/>
+      <category term="linux" scheme="http://magic-king.com/categories/linux/"/>
     
     
-      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+      <category term="linux" scheme="http://magic-king.com/tags/linux/"/>
     
-      <category term="ArchLinux" scheme="http://yoursite.com/tags/ArchLinux/"/>
+      <category term="ArchLinux" scheme="http://magic-king.com/tags/ArchLinux/"/>
     
   </entry>
   
   <entry>
     <title>js_banned</title>
-    <link href="http://yoursite.com/2019/10/09/js-banned/"/>
-    <id>http://yoursite.com/2019/10/09/js-banned/</id>
+    <link href="http://magic-king.com/2019/10/09/js-banned/"/>
+    <id>http://magic-king.com/2019/10/09/js-banned/</id>
     <published>2019-10-09T10:32:10.000Z</published>
     <updated>2019-10-09T11:09:52.660Z</updated>
     
@@ -113,19 +113,19 @@
     </summary>
     
     
-      <category term="web" scheme="http://yoursite.com/categories/web/"/>
+      <category term="web" scheme="http://magic-king.com/categories/web/"/>
     
     
-      <category term="web" scheme="http://yoursite.com/tags/web/"/>
+      <category term="web" scheme="http://magic-king.com/tags/web/"/>
     
-      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
+      <category term="javascript" scheme="http://magic-king.com/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title>git</title>
-    <link href="http://yoursite.com/2019/09/23/git/"/>
-    <id>http://yoursite.com/2019/09/23/git/</id>
+    <link href="http://magic-king.com/2019/09/23/git/"/>
+    <id>http://magic-king.com/2019/09/23/git/</id>
     <published>2019-09-23T14:39:11.000Z</published>
     <updated>2019-09-29T14:27:00.458Z</updated>
     
@@ -141,17 +141,17 @@
     </summary>
     
     
-      <category term="git" scheme="http://yoursite.com/categories/git/"/>
+      <category term="git" scheme="http://magic-king.com/categories/git/"/>
     
     
-      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+      <category term="git" scheme="http://magic-king.com/tags/git/"/>
     
   </entry>
   
   <entry>
     <title>Regular Expression</title>
-    <link href="http://yoursite.com/2019/09/22/re/"/>
-    <id>http://yoursite.com/2019/09/22/re/</id>
+    <link href="http://magic-king.com/2019/09/22/re/"/>
+    <id>http://magic-king.com/2019/09/22/re/</id>
     <published>2019-09-22T06:00:51.000Z</published>
     <updated>2019-09-22T07:17:56.130Z</updated>
     
@@ -169,19 +169,19 @@
     </summary>
     
     
-      <category term="re" scheme="http://yoursite.com/categories/re/"/>
+      <category term="re" scheme="http://magic-king.com/categories/re/"/>
     
     
-      <category term="Re" scheme="http://yoursite.com/tags/Re/"/>
+      <category term="Re" scheme="http://magic-king.com/tags/Re/"/>
     
-      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+      <category term="python" scheme="http://magic-king.com/tags/python/"/>
     
   </entry>
   
   <entry>
     <title>Compiler</title>
-    <link href="http://yoursite.com/2019/09/04/Compiler/"/>
-    <id>http://yoursite.com/2019/09/04/Compiler/</id>
+    <link href="http://magic-king.com/2019/09/04/Compiler/"/>
+    <id>http://magic-king.com/2019/09/04/Compiler/</id>
     <published>2019-09-04T15:11:48.000Z</published>
     <updated>2019-09-17T05:40:43.268Z</updated>
     
@@ -197,19 +197,19 @@
     </summary>
     
     
-      <category term="Compiler" scheme="http://yoursite.com/categories/Compiler/"/>
+      <category term="Compiler" scheme="http://magic-king.com/categories/Compiler/"/>
     
     
-      <category term="Compilier" scheme="http://yoursite.com/tags/Compilier/"/>
+      <category term="Compilier" scheme="http://magic-king.com/tags/Compilier/"/>
     
-      <category term="StudyNote" scheme="http://yoursite.com/tags/StudyNote/"/>
+      <category term="StudyNote" scheme="http://magic-king.com/tags/StudyNote/"/>
     
   </entry>
   
   <entry>
     <title>Linux Note</title>
-    <link href="http://yoursite.com/2019/08/22/Linux-Command/"/>
-    <id>http://yoursite.com/2019/08/22/Linux-Command/</id>
+    <link href="http://magic-king.com/2019/08/22/Linux-Command/"/>
+    <id>http://magic-king.com/2019/08/22/Linux-Command/</id>
     <published>2019-08-22T14:21:03.000Z</published>
     <updated>2019-09-04T15:12:44.349Z</updated>
     
@@ -224,17 +224,17 @@
     </summary>
     
     
-      <category term="linux" scheme="http://yoursite.com/categories/linux/"/>
+      <category term="linux" scheme="http://magic-king.com/categories/linux/"/>
     
     
-      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+      <category term="linux" scheme="http://magic-king.com/tags/linux/"/>
     
   </entry>
   
   <entry>
     <title>url</title>
-    <link href="http://yoursite.com/2019/08/19/url/"/>
-    <id>http://yoursite.com/2019/08/19/url/</id>
+    <link href="http://magic-king.com/2019/08/19/url/"/>
+    <id>http://magic-king.com/2019/08/19/url/</id>
     <published>2019-08-19T15:26:38.000Z</published>
     <updated>2019-08-19T15:56:21.105Z</updated>
     
@@ -251,14 +251,14 @@
     
     
     
-      <category term="url" scheme="http://yoursite.com/tags/url/"/>
+      <category term="url" scheme="http://magic-king.com/tags/url/"/>
     
   </entry>
   
   <entry>
     <title>Makefile</title>
-    <link href="http://yoursite.com/2019/06/06/Makefile/"/>
-    <id>http://yoursite.com/2019/06/06/Makefile/</id>
+    <link href="http://magic-king.com/2019/06/06/Makefile/"/>
+    <id>http://magic-king.com/2019/06/06/Makefile/</id>
     <published>2019-06-06T01:11:19.000Z</published>
     <updated>2019-07-04T10:05:55.396Z</updated>
     
@@ -274,19 +274,19 @@
     </summary>
     
     
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+      <category term="C++" scheme="http://magic-king.com/categories/C/"/>
     
     
-      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+      <category term="c++" scheme="http://magic-king.com/tags/c/"/>
     
-      <category term="make" scheme="http://yoursite.com/tags/make/"/>
+      <category term="make" scheme="http://magic-king.com/tags/make/"/>
     
   </entry>
   
   <entry>
     <title>IPFS</title>
-    <link href="http://yoursite.com/2019/05/30/IPFS/"/>
-    <id>http://yoursite.com/2019/05/30/IPFS/</id>
+    <link href="http://magic-king.com/2019/05/30/IPFS/"/>
+    <id>http://magic-king.com/2019/05/30/IPFS/</id>
     <published>2019-05-30T14:40:32.000Z</published>
     <updated>2019-09-04T15:13:38.541Z</updated>
     
@@ -295,17 +295,17 @@
     </summary>
     
     
-      <category term="Network" scheme="http://yoursite.com/categories/Network/"/>
+      <category term="Network" scheme="http://magic-king.com/categories/Network/"/>
     
     
-      <category term="Network" scheme="http://yoursite.com/tags/Network/"/>
+      <category term="Network" scheme="http://magic-king.com/tags/Network/"/>
     
   </entry>
   
   <entry>
     <title>ARM</title>
-    <link href="http://yoursite.com/2019/05/28/ARM/"/>
-    <id>http://yoursite.com/2019/05/28/ARM/</id>
+    <link href="http://magic-king.com/2019/05/28/ARM/"/>
+    <id>http://magic-king.com/2019/05/28/ARM/</id>
     <published>2019-05-28T15:06:13.000Z</published>
     <updated>2019-05-30T09:02:17.289Z</updated>
     
@@ -326,8 +326,8 @@
   
   <entry>
     <title>LOVE</title>
-    <link href="http://yoursite.com/2019/05/27/LOVE/"/>
-    <id>http://yoursite.com/2019/05/27/LOVE/</id>
+    <link href="http://magic-king.com/2019/05/27/LOVE/"/>
+    <id>http://magic-king.com/2019/05/27/LOVE/</id>
     <published>2019-05-27T12:13:14.000Z</published>
     <updated>2019-09-23T14:38:31.997Z</updated>
     
@@ -343,8 +343,8 @@
   
   <entry>
     <title>Movie</title>
-    <link href="http://yoursite.com/2019/05/27/Movie/"/>
-    <id>http://yoursite.com/2019/05/27/Movie/</id>
+    <link href="http://magic-king.com/2019/05/27/Movie/"/>
+    <id>http://magic-king.com/2019/05/27/Movie/</id>
     <published>2019-05-27T08:45:10.000Z</published>
     <updated>2019-10-11T14:06:01.458Z</updated>
     
@@ -363,8 +363,8 @@
   
   <entry>
     <title>Magic</title>
-    <link href="http://yoursite.com/2019/05/20/Magic/"/>
-    <id>http://yoursite.com/2019/05/20/Magic/</id>
+    <link href="http://magic-king.com/2019/05/20/Magic/"/>
+    <id>http://magic-king.com/2019/05/20/Magic/</id>
     <published>2019-05-20T05:14:27.000Z</published>
     <updated>2019-10-25T15:45:18.145Z</updated>
     
@@ -375,15 +375,15 @@
     </summary>
     
     
-      <category term="Magic" scheme="http://yoursite.com/categories/Magic/"/>
+      <category term="Magic" scheme="http://magic-king.com/categories/Magic/"/>
     
     
   </entry>
   
   <entry>
     <title>SpMV</title>
-    <link href="http://yoursite.com/2019/05/19/SpMV/"/>
-    <id>http://yoursite.com/2019/05/19/SpMV/</id>
+    <link href="http://magic-king.com/2019/05/19/SpMV/"/>
+    <id>http://magic-king.com/2019/05/19/SpMV/</id>
     <published>2019-05-19T08:21:36.000Z</published>
     <updated>2019-05-23T07:45:32.710Z</updated>
     
@@ -399,17 +399,17 @@
     </summary>
     
     
-      <category term="SpMV" scheme="http://yoursite.com/categories/SpMV/"/>
+      <category term="SpMV" scheme="http://magic-king.com/categories/SpMV/"/>
     
     
-      <category term="SpMV" scheme="http://yoursite.com/tags/SpMV/"/>
+      <category term="SpMV" scheme="http://magic-king.com/tags/SpMV/"/>
     
   </entry>
   
   <entry>
     <title>Nginx</title>
-    <link href="http://yoursite.com/2019/05/19/Nginx/"/>
-    <id>http://yoursite.com/2019/05/19/Nginx/</id>
+    <link href="http://magic-king.com/2019/05/19/Nginx/"/>
+    <id>http://magic-king.com/2019/05/19/Nginx/</id>
     <published>2019-05-19T06:01:01.000Z</published>
     <updated>2019-05-19T06:17:56.243Z</updated>
     
@@ -425,17 +425,17 @@
     </summary>
     
     
-      <category term="nginx" scheme="http://yoursite.com/categories/nginx/"/>
+      <category term="nginx" scheme="http://magic-king.com/categories/nginx/"/>
     
     
-      <category term="nginx" scheme="http://yoursite.com/tags/nginx/"/>
+      <category term="nginx" scheme="http://magic-king.com/tags/nginx/"/>
     
   </entry>
   
   <entry>
     <title>nginx+rtmp</title>
-    <link href="http://yoursite.com/2019/05/17/nginx-rtmp/"/>
-    <id>http://yoursite.com/2019/05/17/nginx-rtmp/</id>
+    <link href="http://magic-king.com/2019/05/17/nginx-rtmp/"/>
+    <id>http://magic-king.com/2019/05/17/nginx-rtmp/</id>
     <published>2019-05-17T14:22:38.000Z</published>
     <updated>2019-05-20T13:55:42.941Z</updated>
     
@@ -449,19 +449,19 @@
     </summary>
     
     
-      <category term="nginx" scheme="http://yoursite.com/categories/nginx/"/>
+      <category term="nginx" scheme="http://magic-king.com/categories/nginx/"/>
     
     
-      <category term="nginx" scheme="http://yoursite.com/tags/nginx/"/>
+      <category term="nginx" scheme="http://magic-king.com/tags/nginx/"/>
     
-      <category term="rtmp" scheme="http://yoursite.com/tags/rtmp/"/>
+      <category term="rtmp" scheme="http://magic-king.com/tags/rtmp/"/>
     
   </entry>
   
   <entry>
     <title>hexo+gitPages Synchronization</title>
-    <link href="http://yoursite.com/2019/05/16/hexo-gitPages-Synchronization/"/>
-    <id>http://yoursite.com/2019/05/16/hexo-gitPages-Synchronization/</id>
+    <link href="http://magic-king.com/2019/05/16/hexo-gitPages-Synchronization/"/>
+    <id>http://magic-king.com/2019/05/16/hexo-gitPages-Synchronization/</id>
     <published>2019-05-16T07:30:39.000Z</published>
     <updated>2019-05-18T08:58:32.587Z</updated>
     
@@ -475,17 +475,17 @@
     </summary>
     
     
-      <category term="hexo" scheme="http://yoursite.com/categories/hexo/"/>
+      <category term="hexo" scheme="http://magic-king.com/categories/hexo/"/>
     
     
-      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+      <category term="hexo" scheme="http://magic-king.com/tags/hexo/"/>
     
   </entry>
   
   <entry>
     <title>Markdown Syntax</title>
-    <link href="http://yoursite.com/2019/05/14/Markdown-Syntax/"/>
-    <id>http://yoursite.com/2019/05/14/Markdown-Syntax/</id>
+    <link href="http://magic-king.com/2019/05/14/Markdown-Syntax/"/>
+    <id>http://magic-king.com/2019/05/14/Markdown-Syntax/</id>
     <published>2019-05-14T08:43:54.000Z</published>
     <updated>2019-08-23T13:49:57.403Z</updated>
     
@@ -499,10 +499,10 @@
     </summary>
     
     
-      <category term="Markdown" scheme="http://yoursite.com/categories/Markdown/"/>
+      <category term="Markdown" scheme="http://magic-king.com/categories/Markdown/"/>
     
     
-      <category term="Markdown" scheme="http://yoursite.com/tags/Markdown/"/>
+      <category term="Markdown" scheme="http://magic-king.com/tags/Markdown/"/>
     
   </entry>
   
