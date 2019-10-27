@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="正则表达式的规则常用元字符    代码 说明     . 匹配除换行符以外的任意字符   \w 匹配字母或数字或下划线   \s 匹配任意的空白符   \d 匹配数字   \b 匹配单词的开始或结束   ^ 匹配字符串的开始   $ 匹配字符串的结束    常用限定符    代码/语法 说明     * 重复零次或更多次   + 重复一次或更多次   ? 重复零次或一次   {n} 重复n次">
+<meta name="keywords" content="Re,python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Regular Expression">
+<meta property="og:url" content="http://magic-king.com/2019/09/22/re/index.html">
+<meta property="og:site_name" content="Hexo&amp;Magic">
+<meta property="og:description" content="正则表达式的规则常用元字符    代码 说明     . 匹配除换行符以外的任意字符   \w 匹配字母或数字或下划线   \s 匹配任意的空白符   \d 匹配数字   \b 匹配单词的开始或结束   ^ 匹配字符串的开始   $ 匹配字符串的结束    常用限定符    代码/语法 说明     * 重复零次或更多次   + 重复一次或更多次   ? 重复零次或一次   {n} 重复n次">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-22T07:17:56.130Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Regular Expression">
+<meta name="twitter:description" content="正则表达式的规则常用元字符    代码 说明     . 匹配除换行符以外的任意字符   \w 匹配字母或数字或下划线   \s 匹配任意的空白符   \d 匹配数字   \b 匹配单词的开始或结束   ^ 匹配字符串的开始   $ 匹配字符串的结束    常用限定符    代码/语法 说明     * 重复零次或更多次   + 重复一次或更多次   ? 重复零次或一次   {n} 重复n次">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hexo&Magic" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://magic-king.com/2019/09/22/re/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Regular Expression | Hexo&Magic</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo&Magic</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://magic-king.com/2019/09/22/re/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Magic King">
+      <meta itemprop="description" content="Now You See Me!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo&Magic">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Regular Expression
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-22 14:00:51 / 修改时间：15:17:56" itemprop="dateCreated datePublished" datetime="2019-09-22T14:00:51+08:00">2019-09-22</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/re/" itemprop="url" rel="index"><span itemprop="name">re</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="正则表达式的规则"><a href="#正则表达式的规则" class="headerlink" title="正则表达式的规则"></a>正则表达式的规则</h2><p>常用元字符</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">代码</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">.</td>
+<td style="text-align:left">匹配除换行符以外的任意字符</td>
+</tr>
+<tr>
+<td style="text-align:left">\w</td>
+<td style="text-align:left">匹配字母或数字或下划线</td>
+</tr>
+<tr>
+<td style="text-align:left">\s</td>
+<td style="text-align:left">匹配任意的空白符</td>
+</tr>
+<tr>
+<td style="text-align:left">\d</td>
+<td style="text-align:left">匹配数字</td>
+</tr>
+<tr>
+<td style="text-align:left">\b</td>
+<td style="text-align:left">匹配单词的开始或结束</td>
+</tr>
+<tr>
+<td style="text-align:left">^</td>
+<td style="text-align:left">匹配字符串的开始</td>
+</tr>
+<tr>
+<td style="text-align:left">$</td>
+<td style="text-align:left">匹配字符串的结束</td>
+</tr>
+</tbody>
+</table>
+<p>常用限定符</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">代码/语法</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">*</td>
+<td style="text-align:left">重复零次或更多次</td>
+</tr>
+<tr>
+<td style="text-align:left">+</td>
+<td style="text-align:left">重复一次或更多次</td>
+</tr>
+<tr>
+<td style="text-align:left">?</td>
+<td style="text-align:left">重复零次或一次</td>
+</tr>
+<tr>
+<td style="text-align:left">{n}</td>
+<td style="text-align:left">重复n次</td>
+</tr>
+<tr>
+<td style="text-align:left">{n,}</td>
+<td style="text-align:left">重复n次或更多次</td>
+</tr>
+<tr>
+<td style="text-align:left">{n,m}</td>
+<td style="text-align:left">重复n到m次</td>
+</tr>
+</tbody>
+</table>
+<p>常用反义词</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">代码/语法</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\W</td>
+<td style="text-align:left">匹配任意不是字母，数字，下划线，汉字的字符</td>
+</tr>
+<tr>
+<td style="text-align:left">\S</td>
+<td style="text-align:left">匹配任意不是空白符的字符</td>
+</tr>
+<tr>
+<td style="text-align:left">\D</td>
+<td style="text-align:left">匹配任意非数字的字符</td>
+</tr>
+<tr>
+<td style="text-align:left">\B</td>
+<td style="text-align:left">匹配不是单词开头或结束的位置</td>
+</tr>
+<tr>
+<td style="text-align:left">[^x]</td>
+<td style="text-align:left">匹配除了x以外的任意字符</td>
+</tr>
+<tr>
+<td style="text-align:left">[^aeiou]</td>
+<td style="text-align:left">匹配除了aeiou这几个字母以外的任意字符</td>
+</tr>
+</tbody>
+</table>
+<p><strong>预定义字符集表</strong></p>
+<table>
+<thead>
+<tr>
+<th>\d</th>
+<th>\d匹配任何十进制数，它相当于类[0-9]，\d+如果需要匹配一位或者多位数的数字时用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\D</td>
+<td>\D匹配任何非数字字符，它相当于类[^0-9]</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>\s匹配任何空白字符，它相当于类[\t\n\r\f\v]</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>\S匹配任何非空白字符，它相当于类[^\t\n\r\f\v]</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>\w匹配包括下划线在内任何字母数字字符，它相当于类  <code>{a-z,A-Z,0-9,_}</code></td>
+</tr>
+<tr>
+<td>\W</td>
+<td>\W匹配非任何字母数字字符包括下划线在内，它相当于类 <code>{ ^a-z,A-Z,0-9,_}</code></td>
+</tr>
+<tr>
+<td>\A</td>
+<td>仅匹配字符串开头,同^</td>
+</tr>
+<tr>
+<td>\Z</td>
+<td>仅匹配字符串结尾，同$</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>b匹配一个单词边界，也就是指单词和空格间的位置</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>[^\b]</td>
+</tr>
+</tbody>
+</table>
+<h2 id="常用正则表达式"><a href="#常用正则表达式" class="headerlink" title="常用正则表达式"></a>常用正则表达式</h2><blockquote>
+<p>引用：<a href="http://www.cnblogs.com/zxin/archive/2013/01/26/2877765.html" target="_blank" rel="noopener">史上最全常用正则表达式大全</a></p>
+</blockquote>
+<h3 id="一、校验数字的表达式"><a href="#一、校验数字的表达式" class="headerlink" title="一、校验数字的表达式"></a>一、校验数字的表达式</h3><ol>
+<li><p>数字：<code>^[0-9]*$</code></p>
+</li>
+<li><p>n位的数字：<code>^\d{n}$</code></p>
+</li>
+<li><p>至少n位的数字：<code>^\d{n,}$</code></p>
+</li>
+<li><p>m-n位的数字：<code>^\d{m,n}$</code></p>
+</li>
+<li><p>零和非零开头的数字：<code>^(0|[1-9][0-9]*)$</code></p>
+</li>
+<li><p>非零开头的最多带两位小数的数字：<code>^([1-9][0-9]*)+(.[0-9]{1,2})?$</code></p>
+</li>
+<li><p>带1-2位小数的正数或负数：<code>^(\-)?\d+(\.\d{1,2})?$</code></p>
+</li>
+<li><p>正数、负数、和小数：<code>^(\-|\+)?\d+(\.\d+)?$</code></p>
+</li>
+<li><p>有两位小数的正实数：<code>^[0-9]+(.[0-9]{2})?$</code></p>
+</li>
+<li><p>有1~3位小数的正实数：<code>^[0-9]+(.[0-9]{1,3})?$</code></p>
+</li>
+<li><p>非零的正整数：<code>^[1-9]\d*$</code> 或 <code>^([1-9][0-9]*){1,3}$</code> 或 <code>^\+?[1-9][0-9]*$</code></p>
+</li>
+<li><p>非零的负整数：<code>^\-[1-9][]0-9&quot;*$</code> 或 <code>^-[1-9]\d*$</code></p>
+</li>
+<li><p>非负整数：<code>^\d+$</code> 或 <code>^[1-9]\d*|0$</code></p>
+</li>
+<li><p>非正整数：<code>^-[1-9]\d*|0$</code> 或 <code>^((-\d+)|(0+))$</code></p>
+</li>
+<li><p>非负浮点数：<code>^\d+(\.\d+)?$</code> 或 <code>^[1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0$</code></p>
+</li>
+<li><p>非正浮点数：<code>^((-\d+(\.\d+)?)|(0+(\.0+)?))$</code> 或                                                                <code>^(-([1-9]\d*\.\d*|0\.\d*[1-9]\d*))|0?\.0+|0$</code></p>
+</li>
+<li><p>正浮点数：<code>^[1-9]\d*\.\d*|0\.\d*[1-9]\d*$</code> 或                                                                        <code>^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$</code></p>
+</li>
+<li><p>负浮点数：<code>^-([1-9]\d*\.\d*|0\.\d*[1-9]\d*)$</code> 或 <code>^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$</code></p>
+</li>
+<li><p>浮点数：<code>^(-?\d+)(\.\d+)?$</code> 或 <code>^-?([1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0)$</code></p>
+</li>
+</ol>
+<h3 id="二、校验字符的表达式"><a href="#二、校验字符的表达式" class="headerlink" title="二、校验字符的表达式"></a>二、校验字符的表达式</h3><ol>
+<li><p>汉字：<code>^[\u4e00-\u9fa5]{0,}$</code></p>
+</li>
+<li><p>英文和数字：<code>^[A-Za-z0-9]+$ 或 ^[A-Za-z0-9]{4,40}$</code></p>
+</li>
+<li><p>长度为3-20的所有字符：<code>^.{3,20}$</code></p>
+</li>
+<li><p>由26个英文字母组成的字符串：<code>^[A-Za-z]+$</code></p>
+</li>
+<li><p>由26个大写英文字母组成的字符串：<code>^[A-Z]+$</code></p>
+</li>
+<li><p>由26个小写英文字母组成的字符串：<code>^[a-z]+$</code></p>
+</li>
+<li><p>由数字和26个英文字母组成的字符串：<code>^[A-Za-z0-9]+$</code></p>
+</li>
+<li><p>由数字、26个英文字母或者下划线组成的字符串：<code>^\w+$ 或 ^\w{3,20}$</code></p>
+</li>
+<li><p>中文、英文、数字包括下划线：<code>^[\u4E00-\u9FA5A-Za-z0-9_]+$</code></p>
+</li>
+<li><p>中文、英文、数字但不包括下划线等符号：<code>^[\u4E00-\u9FA5A-Za-z0-9]+$</code>或                                           <code>^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$</code></p>
+</li>
+</ol>
+<ol start="11">
+<li>可以输入含有^%&amp;’,;=?$\”等字符：<code>[^%&amp;&#39;,;=?$\x22]+ 12</code> </li>
+<li>禁止输入含有~的字符：<code>[^~\x22]+</code></li>
+</ol>
+<h3 id="三、特殊需求表达式"><a href="#三、特殊需求表达式" class="headerlink" title="三、特殊需求表达式"></a>三、特殊需求表达式</h3><ol>
+<li><p>Email地址：<code>^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$</code></p>
+</li>
+<li><p>域名：<code>[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(/.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+/.?</code></p>
+</li>
+<li><p>InternetURL：<code>[a-zA-z]+://[^\s]*</code> 或  <code>^http://([\w-]+\.)+[\w-]+(/[\w-./?%&amp;=]*)?$</code></p>
+</li>
+<li><p>手机号码：<code>^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$</code></p>
+</li>
+<li><p>电话号码(“XXX-XXXXXXX”、”XXXX-XXXXXXXX”、”XXX-XXXXXXX”、”XXX-XXXXXXXX”、”XXXXXXX”和”XXXXXXXX)：<code>^(\(\d{3,4}-)|\d{3.4}-)?\d{7,8}$</code></p>
+</li>
+<li><p>国内电话号码(0511-4405222、021-87888822)：<code>\d{3}-\d{8}|\d{4}-\d{7}</code></p>
+</li>
+<li><p>身份证号(15位、18位数字)：<code>^\d{15}|\d{18}$</code></p>
+</li>
+<li><p>短身份证号码(数字、字母x结尾)：<code>^([0-9]){7,18}(x|X)?$</code>或<code>^\d{8,18}|[0-9x]{8,18}|[0-9X]{8,18}?$</code></p>
+</li>
+<li><p>帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线)：<code>^[a-zA-Z][a-zA-Z0-9_]{4,15}$</code></p>
+</li>
+</ol>
+<ol start="10">
+<li><p>密码(以字母开头，长度在6~18之间，只能包含字母、数字和下划线)：<code>^[a-zA-Z]\w{5,17}$</code></p>
+</li>
+<li><p>强密码(必须包含大小写字母和数字的组合，不能使用特殊字符，长度在8-10之间)：                <code>^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,10}$</code></p>
+</li>
+</ol>
+<ol start="12">
+<li><p>日期格式：<code>^\d{4}-\d{1,2}-\d{1,2}</code></p>
+</li>
+<li><p>一年的12个月(01～09和1～12)：<code>^(0?[1-9]|1[0-2])$</code></p>
+</li>
+<li><p>一个月的31天(01～09和1～31)：<code>^((0?[1-9])|((1|2)[0-9])|30|31)$</code></p>
+</li>
+</ol>
+<ol start="15">
+<li><p>钱的输入格式：</p>
+<p>有四种钱的表示形式我们可以接受:”10000.00” 和 “10,000.00”, 和没有 “分” 的 “10000” 和 “10,000”：<code>^[1-9][0-9]*$</code></p>
+<p>这表示任意一个不以0开头的数字,但是,这也意味着一个字符”0”不通过,所以我们采用下面的形式：<code>^(0|[1-9][0-9]*)$</code></p>
+<p>一个0或者一个不以0开头的数字.我们还可以允许开头有一个负号：<code>^(0|-?[1-9][0-9]*)$</code></p>
+<p>这表示一个0或者一个可能为负的开头不为0的数字.让用户以0开头好了.把负号的也去掉,因为钱总不能是负的吧.下面我们要加的是说明可能的小数部分：<code>^[0-9]+(.[0-9]+)?$</code></p>
+<p>必须说明的是,小数点后面至少应该有1位数,所以”10.”是不通过的,但是 “10” 和 “10.2” 是通过的：<code>^[0-9]+(.[0-9]{2})?$</code></p>
+<p>这样我们规定小数点后面必须有两位,如果你认为太苛刻了,可以这样：<code>^[0-9]+(.[0-9]{1,2})?$</code></p>
+<p>这样就允许用户只写一位小数.下面我们该考虑数字中的逗号了,我们可以这样：                            <code>^[0-9]{1,3}(,[0-9]{3})*(.[0-9]{1,2})?$</code></p>
+<p>到3个数字,后面跟着任意个 逗号+3个数字,逗号成为可选,而不是必须：                                               <code>^([0-9]+|[0-9]{1,3}(,[0-9]{3})*)(.[0-9]{1,2})?$</code></p>
+<p>备注：这就是最终结果了,别忘了”+”可以用”*”替代如果你觉得空字符串也可以接受的话(奇怪,为什么?)最后,别忘了在用函数时去掉去掉那个反斜杠,一般的错误都在这里</p>
+</li>
+</ol>
+<ol start="16">
+<li><p>xml文件：<code>^([a-zA-Z]+-?)+[a-zA-Z0-9]+\\.[x|X][m|M][l|L]$</code></p>
+</li>
+<li><p>中文字符的正则表达式：<code>[\u4e00-\u9fa5]</code></p>
+</li>
+<li><p>双字节字符：<code>[^\x00-\xff]</code> (包括汉字在内，可以用来计算字符串的长度(一个双字节字符长度计2，ASCII字符计1))</p>
+</li>
+<li>空白行的正则表达式：<code>\n\s*\r</code>(可以用来删除空白行)*</li>
+<li>HTML标记的正则表达式：<code>&lt;(\S*?)[^&gt;]*&gt;.*?&lt;/\1&gt;|&lt;.*? /&gt;</code> (网上流传的版本太糟糕，上面这个也仅仅能部分，对于复杂的嵌套标记依旧无能为力)</li>
+<li>首尾空白字符的正则表达式：<code>^\s*|\s*$</code>或 <code>(^\s*)|(\s*$)</code> (可以用来删除行首行尾的空白字符(包括空格、制表符、换页符等等)，非常有用的表达式)</li>
+<li>腾讯QQ号：<code>[1-9][0-9]{4,}</code> (腾讯QQ号从10000开始)</li>
+<li>中国邮政编码：<code>[1-9]\d{5}(?!\d)</code> (中国邮政编码为6位数字)</li>
+<li>IP地址：<code>\d+\.\d+\.\d+\.\d+</code> (提取IP地址时有用)</li>
+<li>IP地址：<code>((?:(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d)\\.){3}(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d))</code></li>
+</ol>
+<h2 id="Python-re模块"><a href="#Python-re模块" class="headerlink" title="Python re模块"></a>Python re模块</h2><p>人生苦短，不如Python。</p>
+<blockquote>
+<p>引用：<a href="https://blog.csdn.net/jamfiy/article/details/88139202" target="_blank" rel="noopener">python基础—re模块—正则表达式</a></p>
+</blockquote>
+<p>python从1.5版本起增加re模块为自带的模块，提供了Perl风格的正则表达式模式</p>
+<p>以下是python re库的常用函数</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">函数</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">compile(pattern[, flags])</td>
+<td style="text-align:center">根据包含正则表达式的字符串创建模式对象</td>
+</tr>
+<tr>
+<td style="text-align:center">search(pattern, string[, flags])</td>
+<td style="text-align:center">在字符串中查找模式</td>
+</tr>
+<tr>
+<td style="text-align:center">match(pattern, string[, flags])</td>
+<td style="text-align:center">在字符串开头匹配模式</td>
+</tr>
+<tr>
+<td style="text-align:center">split(pattern, string[, maxsplit=0])</td>
+<td style="text-align:center">根据模式来分割字符串</td>
+</tr>
+<tr>
+<td style="text-align:center">findall(pattern, string)</td>
+<td style="text-align:center">返回一个列表，其中包含字符串中所有与模式匹配的子串</td>
+</tr>
+<tr>
+<td style="text-align:center">sub(pat, repl, string[, count=0])</td>
+<td style="text-align:center">将字符串中与模式pat匹配的子串都替换为repl</td>
+</tr>
+<tr>
+<td style="text-align:center">escape(string)</td>
+<td style="text-align:center">对字符串中所有的正则表达式特殊字符都进行转义</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><h4 id="re-compile"><a href="#re-compile" class="headerlink" title="re.compile()"></a>re.compile()</h4></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">compile 函数用于编译正则表达式，生成一个正则表达式（ Pattern ）对象，供 match() 和 search() 这两个函数使用。</span><br><span class="line"></span><br><span class="line">语法格式为：</span><br><span class="line"></span><br><span class="line">re.compile(pattern[, flags])</span><br><span class="line"></span><br><span class="line">实例</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;<span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pattern = re.compile(<span class="string">r'\d+'</span>) <span class="comment"># 用于匹配至少一个数字</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m = pattern.match(<span class="string">'one12twothree34four'</span>) <span class="comment"># 查找头部，没有匹配</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(m)</span><br><span class="line"></span><br><span class="line"><span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m = pattern.match(<span class="string">'one12twothree34four'</span>, <span class="number">2</span>, <span class="number">10</span>) <span class="comment"># 从'e'的位置开始匹配，没有匹配</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(m)</span><br><span class="line"></span><br><span class="line"><span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m = pattern.match(<span class="string">'one12twothree34four'</span>, <span class="number">3</span>, <span class="number">10</span>) <span class="comment"># 从'1'的位置开始匹配，正好匹配 &gt;&gt;&gt;</span></span><br><span class="line"></span><br><span class="line">print(m) <span class="comment"># 返回一个 Match 对象</span></span><br><span class="line">&lt;_sre.SRE_Match object at <span class="number">0x10a42aac0</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.group(<span class="number">0</span>) <span class="comment"># 可省略 0 '12'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.start(<span class="number">0</span>) <span class="comment"># 可省略 0 3</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.end(<span class="number">0</span>) <span class="comment"># 可省略 0 5</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.span(<span class="number">0</span>) <span class="comment"># 可省略 0 (3, 5)</span></span><br><span class="line"></span><br><span class="line">在上面，当匹配成功时返回一个 Match 对象，其中：</span><br><span class="line"></span><br><span class="line">group([group1, …]) 方法用于获得一个或多个分组匹配的字符串，当要获得整个匹配的子串时，可直接使用 group() 或 group(<span class="number">0</span>)；</span><br><span class="line">start([group]) 方法用于获取分组匹配的子串在整个字符串中的起始位置（子串第一个字符的索引），参数默认值为 <span class="number">0</span>；</span><br><span class="line">end([group]) 方法用于获取分组匹配的子串在整个字符串中的结束位置（子串最后一个字符的索引+<span class="number">1</span>），参数默认值为 <span class="number">0</span>；</span><br><span class="line">span([group]) 方法返回 (start(group), end(group))。</span><br><span class="line">再看看一个例子：</span><br><span class="line"></span><br><span class="line">实例</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;<span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pattern = re.compile(<span class="string">r'([a-z]+) ([a-z]+)'</span>, re.I) <span class="comment"># re.I 表示忽略大小写</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m = pattern.match(<span class="string">'Hello World Wide Web'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(m)<span class="comment"># 匹配成功，返回一个 Match 对象</span></span><br><span class="line">&lt;_sre.SRE_Match object at <span class="number">0x10bea83e8</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.group(<span class="number">0</span>) <span class="comment"># 返回匹配成功的整个子串 'Hello World'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.span(<span class="number">0</span>) <span class="comment"># 返回匹配成功的整个子串的索引 (0, 11)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.group(<span class="number">1</span>) <span class="comment"># 返回第一个分组匹配成功的子串 'Hello'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.span(<span class="number">1</span>) <span class="comment"># 返回第一个分组匹配成功的子串的索引 (0, 5)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.group(<span class="number">2</span>) <span class="comment"># 返回第二个分组匹配成功的子串 'World'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.span(<span class="number">2</span>) <span class="comment"># 返回第二个分组匹配成功的子串 (6, 11)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.groups() <span class="comment"># 等价于 (m.group(1), m.group(2), ...) ('Hello', 'World')</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.group(<span class="number">3</span>) <span class="comment"># 不存在第三个分组</span></span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">IndexError: no such group</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="re-search-amp-re-match"><a href="#re-search-amp-re-match" class="headerlink" title="re.search()&amp;re.match()"></a>re.search()&amp;re.match()</h4></li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br></pre></td><td class="code"><pre><span class="line">re.search 扫描整个字符串并返回第一个成功的匹配。</span><br><span class="line"></span><br><span class="line">函数语法：</span><br><span class="line"></span><br><span class="line">re.search(pattern, string, flags=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">函数参数说明：</span><br><span class="line"></span><br><span class="line">pattern:匹配的正则表达式</span><br><span class="line">string:要匹配的字符串。</span><br><span class="line">flags:标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">匹配成功re.search方法返回一个匹配的对象，否则返回<span class="literal">None</span>。</span><br><span class="line"></span><br><span class="line">我们可以使用group(num) 或 groups() 匹配对象函数来获取匹配表达式。</span><br><span class="line"></span><br><span class="line">匹配对象方法</span><br><span class="line"></span><br><span class="line">group(num=<span class="number">0</span>):匹配的整个表达式的字符串，group() 可以一次输入多个组号，在这种情况下它将返回一个包含那些组所对应值的元组。</span><br><span class="line">groups():返回一个包含所有小组字符串的元组，从 <span class="number">1</span> 到 所含的小组号。</span><br><span class="line"></span><br><span class="line">实例</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">line = <span class="string">"Cats are smarter than dogs"</span>;</span><br><span class="line">searchObj = re.search( <span class="string">r'(.*) are (.*?) .*'</span>, line, re.M|re.I)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> searchObj:</span><br><span class="line">      <span class="keyword">print</span> (<span class="string">"searchObj.group() : "</span>, searchObj.group())</span><br><span class="line">      <span class="keyword">print</span> (<span class="string">"searchObj.group(1) : "</span>, searchObj.group(<span class="number">1</span>))</span><br><span class="line">      <span class="keyword">print</span> (<span class="string">"searchObj.group(2) : "</span>, searchObj.group(<span class="number">2</span>))</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">      print( <span class="string">"Nothing found!!"</span>)</span><br><span class="line"></span><br><span class="line">以上实例执行结果如下：</span><br><span class="line"></span><br><span class="line">searchObj.group() : Cats are smarter than dogs</span><br><span class="line">searchObj.group(<span class="number">1</span>) : Cats</span><br><span class="line">searchObj.group(<span class="number">2</span>) : smarter</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">_____________________________________________________________________________</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">re.match 尝试从字符串的起始位置匹配一个模式，如果不是起始位置匹配成功的话，match()就返回none。</span><br><span class="line"></span><br><span class="line">函数语法：</span><br><span class="line"></span><br><span class="line">re.match(pattern, string, flags=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">函数参数说明：（同re.search一样）</span><br><span class="line"></span><br><span class="line">匹配成功re.match方法返回一个匹配的对象，否则返回<span class="literal">None</span>。</span><br><span class="line"></span><br><span class="line">我们可以使用group(num) 或 groups() 匹配对象函数来获取匹配表达式。</span><br><span class="line"></span><br><span class="line">匹配对象方法：（同re.search一样）</span><br><span class="line"></span><br><span class="line">实例</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">print(re.match(<span class="string">'www'</span>, <span class="string">'www.runoob.com'</span>).span()) <span class="comment"># 在起始位置匹配</span></span><br><span class="line">print(re.match(<span class="string">'com'</span>, <span class="string">'www.runoob.com'</span>)) <span class="comment"># 不在起始位置匹配</span></span><br><span class="line"></span><br><span class="line">以上实例运行输出结果为：</span><br><span class="line">(<span class="number">0</span>, <span class="number">3</span>) </span><br><span class="line"><span class="literal">None</span></span><br><span class="line"></span><br><span class="line">实例</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">line = <span class="string">"Cats are smarter than dogs"</span></span><br><span class="line">matchObj = re.match( <span class="string">r'(.*) are (.*?) .*'</span>, line, re.M|re.I)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> matchObj:</span><br><span class="line">     print(<span class="string">"matchObj.group() : "</span>, matchObj.group())</span><br><span class="line">     print(<span class="string">"matchObj.group(1) : "</span>, matchObj.group(<span class="number">1</span>))</span><br><span class="line">     print(<span class="string">"matchObj.group(2) : "</span>, matchObj.group(<span class="number">2</span>))</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">     print(<span class="string">"No match!!"</span>)</span><br><span class="line"></span><br><span class="line">以上实例执行结果如下：</span><br><span class="line"></span><br><span class="line">matchObj.group() : Cats are smarter than dogs</span><br><span class="line">matchObj.group(<span class="number">1</span>) : Cats</span><br><span class="line">matchObj.group(<span class="number">2</span>) : smarter</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">____________________________________________________________________________</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">re.match与re.search的区别:</span><br><span class="line">re.match只匹配字符串的开始，如果字符串开始不符合正则表达式，则匹配失败，函数返回<span class="literal">None</span>；而re.search匹配整个字符串，直到找到一个匹配。</span><br><span class="line"></span><br><span class="line">实例</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">line = <span class="string">"Cats are smarter than dogs"</span>;</span><br><span class="line">matchObj = re.match( <span class="string">r'dogs'</span>, line, re.M|re.I)</span><br><span class="line"><span class="keyword">if</span> matchObj:</span><br><span class="line">     print(<span class="string">"match --&gt; matchObj.group() : "</span>, matchObj.group())</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">     <span class="keyword">print</span> (<span class="string">"No match!!"</span>)</span><br><span class="line">matchObj = re.search( <span class="string">r'dogs'</span>, line, re.M|re.I)</span><br><span class="line"><span class="keyword">if</span> matchObj:</span><br><span class="line">     print(<span class="string">"search --&gt; matchObj.group() : "</span>, matchObj.group())</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">     print(<span class="string">"No match!!"</span>)</span><br><span class="line"></span><br><span class="line">以上实例运行结果如下：</span><br><span class="line"></span><br><span class="line">No match!!</span><br><span class="line">search --&gt; matchObj.group() : dogs</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="re-split"><a href="#re-split" class="headerlink" title="re.split()"></a>re.split()</h4></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">split 方法按照能够匹配的子串将字符串分割后返回列表，它的使用形式如下：</span><br><span class="line"></span><br><span class="line">re.split(pattern, string[, maxsplit=<span class="number">0</span>, flags=<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">参数:</span><br><span class="line">pattern:匹配的正则表达式</span><br><span class="line">string:要匹配的字符串。</span><br><span class="line">maxsplit:分隔次数，maxsplit=<span class="number">1</span> 分隔一次，默认为 <span class="number">0</span>，不限制次数。</span><br><span class="line">flags:标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。</span><br><span class="line"></span><br><span class="line">实例</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;<span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>re.split(<span class="string">'\W+'</span>, <span class="string">'runoob, runoob, runoob.'</span>)</span><br><span class="line">[<span class="string">'runoob'</span>, <span class="string">'runoob'</span>, <span class="string">'runoob'</span>, <span class="string">''</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>re.split(<span class="string">'(\W+)'</span>, <span class="string">' runoob, runoob, runoob.'</span>)</span><br><span class="line">[<span class="string">''</span>, <span class="string">' '</span>, <span class="string">'runoob'</span>, <span class="string">', '</span>, <span class="string">'runoob'</span>, <span class="string">', '</span>, <span class="string">'runoob'</span>, <span class="string">'.'</span>, <span class="string">''</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>re.split(<span class="string">'\W+'</span>, <span class="string">' runoob, runoob, runoob.'</span>, <span class="number">1</span>)</span><br><span class="line">[<span class="string">''</span>, <span class="string">'runoob, runoob, runoob.'</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>re.split(<span class="string">'a*'</span>, <span class="string">'hello world'</span>) <span class="comment"># 对于一个找不到匹配的字符串而言，split 不会对其作出分割</span></span><br><span class="line">[<span class="string">'hello world'</span>]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="re-sub"><a href="#re-sub" class="headerlink" title="re.sub()"></a>re.sub()</h4></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">Python 的 re 模块提供了re.sub用于替换字符串中的匹配项。</span><br><span class="line"></span><br><span class="line">语法:</span><br><span class="line">re.sub(pattern, repl, string, count=<span class="number">0</span>, flags=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">参数：</span><br><span class="line">pattern : 正则中的模式字符串。</span><br><span class="line">repl : 替换的字符串，也可为一个函数。</span><br><span class="line">string : 要被查找替换的原始字符串。</span><br><span class="line">count : 模式匹配后替换的最大次数，默认 <span class="number">0</span> 表示替换所有的匹配。</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">实例:</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">phone = <span class="string">"2004-959-559 # 这是一个国外电话号码"</span></span><br><span class="line">num = re.sub(<span class="string">r'#.*$'</span>, <span class="string">""</span>, phone)   <span class="comment"># 删除字符串中的 Python注释</span></span><br><span class="line"><span class="keyword">print</span> (<span class="string">"电话号码是: "</span>, num)</span><br><span class="line">num = re.sub(<span class="string">r'\D'</span>, <span class="string">""</span>, phone) <span class="comment"># 删除非数字(-)的字符串</span></span><br><span class="line"><span class="keyword">print</span> (<span class="string">"电话号码是 : "</span>, num)</span><br><span class="line"></span><br><span class="line">以上实例执行结果如下：</span><br><span class="line"></span><br><span class="line">电话号码是: <span class="number">2004</span><span class="number">-959</span><span class="number">-559</span></span><br><span class="line">电话号码是 : <span class="number">2004959559</span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">以下实例中将字符串中的匹配的数字乘以 <span class="number">2</span>：</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">double</span><span class="params">(matched)</span>:</span>   <span class="comment"># 将匹配的数字乘以 2</span></span><br><span class="line">    value = int(matched.group(<span class="string">'value'</span>))</span><br><span class="line">    <span class="keyword">return</span> str(value * <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">s = <span class="string">'A23G4HFD567'</span></span><br><span class="line">print(re.sub(<span class="string">'(?P&lt;value&gt;\d+)'</span>, double, s))</span><br><span class="line"></span><br><span class="line">执行输出结果为：</span><br><span class="line">A46G8HFD1134</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="findall"><a href="#findall" class="headerlink" title="findall()"></a>findall()</h4></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">在字符串中找到正则表达式所匹配的所有子串，并返回一个列表，如果没有找到匹配的，则返回空列表。</span><br><span class="line"></span><br><span class="line">注意： match 和 search 是匹配一次,findall 匹配所有。</span><br><span class="line"></span><br><span class="line">语法格式为：</span><br><span class="line"></span><br><span class="line">findall(string[, pos[, endpos]])</span><br><span class="line"></span><br><span class="line">参数：</span><br><span class="line"></span><br><span class="line">string: 待匹配的字符串。</span><br><span class="line">pos: 可选参数，指定字符串的起始位置，默认为 <span class="number">0</span>。</span><br><span class="line">endpos: 可选参数，指定字符串的结束位置，默认为字符串的长度。</span><br><span class="line">查找字符串中的所有数字：</span><br><span class="line"></span><br><span class="line">实例</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern = re.compile(<span class="string">r'\d+'</span>) <span class="comment"># 查找数字</span></span><br><span class="line">result1 = pattern.findall(<span class="string">'runoob 123 google 456'</span>)</span><br><span class="line">result2 = pattern.findall(<span class="string">'run88oob123google456'</span>, <span class="number">0</span>, <span class="number">10</span>) <span class="comment">#取字符串之中0-10之间的数字出来</span></span><br><span class="line">print(result1，result2)</span><br><span class="line"></span><br><span class="line">输出结果：</span><br><span class="line">[<span class="string">'123'</span>, <span class="string">'456'</span>]，[<span class="string">'88'</span>, <span class="string">'12'</span>]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="re-finditer"><a href="#re-finditer" class="headerlink" title="re.finditer()"></a>re.finditer()</h4></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">和 findall 类似，在字符串中找到正则表达式所匹配的所有子串，并把它们作为一个迭代器返回。</span><br><span class="line"></span><br><span class="line">re.finditer(pattern, string, flags=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">参数:</span><br><span class="line"></span><br><span class="line">pattern:匹配的正则表达式</span><br><span class="line">string:要匹配的字符串。</span><br><span class="line">flags:标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。</span><br><span class="line"></span><br><span class="line">实例</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">it = re.finditer(<span class="string">r"\d+"</span>,<span class="string">"12a32bc43jf3"</span>)</span><br><span class="line"><span class="keyword">for</span> match <span class="keyword">in</span> it:</span><br><span class="line">    <span class="keyword">print</span> (match.group() )</span><br><span class="line"></span><br><span class="line">输出结果：</span><br><span class="line"><span class="number">12</span> <span class="number">32</span> <span class="number">43</span> <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="re-escape"><a href="#re-escape" class="headerlink" title="re.escape()"></a>re.escape()</h4></li>
+</ul>
+<p>re.escape()的主要作用就是将一个字符串变成可以匹配的正则表达式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">re.escape是一个工具函数，用于对字符串中所有可能被视为正则表达式运算符的字符进行转义。使用这个函数的情况有：字符串很长，其中包含大量特殊字符，而你不想输入大量的反斜杠；你从用户那里获取了一个字符串（例如，通过函数input），想将其用于正则表达式中。下面的示例说明了这个函数的工作原理：</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>re.escape(<span class="string">'www.python.org'</span>) </span><br><span class="line"><span class="string">'www\\.python\\.org'</span> </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>re.escape(<span class="string">'But where is the ambiguity?'</span>) </span><br><span class="line"><span class="string">'But\\ where\\ is\\ the\\ ambiuity\\?'</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Re/" rel="tag"># Re</a>
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/04/Compiler/" rel="next" title="Compiler">
+                <i class="fa fa-chevron-left"></i> Compiler
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/23/git/" rel="prev" title="git">
+                git <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Magic King">
+            
+              <p class="site-author-name" itemprop="name">Magic King</p>
+              <div class="site-description motion-element" itemprop="description">Now You See Me!</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Magic-King" title="GitHub &rarr; https://github.com/Magic-King" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式的规则"><span class="nav-number">1.</span> <span class="nav-text">正则表达式的规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用正则表达式"><span class="nav-number">2.</span> <span class="nav-text">常用正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、校验数字的表达式"><span class="nav-number">2.1.</span> <span class="nav-text">一、校验数字的表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、校验字符的表达式"><span class="nav-number">2.2.</span> <span class="nav-text">二、校验字符的表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、特殊需求表达式"><span class="nav-number">2.3.</span> <span class="nav-text">三、特殊需求表达式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python-re模块"><span class="nav-number">3.</span> <span class="nav-text">Python re模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#re-compile"><span class="nav-number">3.0.1.</span> <span class="nav-text">re.compile()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#re-search-amp-re-match"><span class="nav-number">3.0.2.</span> <span class="nav-text">re.search()&amp;re.match()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#re-split"><span class="nav-number">3.0.3.</span> <span class="nav-text">re.split()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#re-sub"><span class="nav-number">3.0.4.</span> <span class="nav-text">re.sub()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#findall"><span class="nav-number">3.0.5.</span> <span class="nav-text">findall()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#re-finditer"><span class="nav-number">3.0.6.</span> <span class="nav-text">re.finditer()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#re-escape"><span class="nav-number">3.0.7.</span> <span class="nav-text">re.escape()</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Magic King</span>
+
+  
+
+  
+</div>
+
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0 </div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-2" count="666" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+</body>
+</html>
