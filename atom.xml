@@ -506,4 +506,48 @@
     
   </entry>
   
+  <entry>
+    <title>hexo+gitpages</title>
+    <link href="http://magic-king.com/2019/05/14/hexo-gitpages/"/>
+    <id>http://magic-king.com/2019/05/14/hexo-gitpages/</id>
+    <published>2019-05-14T08:41:30.000Z</published>
+    <updated>2019-05-20T14:05:13.298Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;hexo-gitPages搭建个人博客&quot;&gt;&lt;a href=&quot;#hexo-gitPages搭建个人博客&quot; class=&quot;headerlink&quot; title=&quot;hexo+gitPages搭建个人博客&quot;&gt;&lt;/a&gt;hexo+gitPages搭建个人博客&lt;/h1&gt;&lt;bloc
+      
+    
+    </summary>
+    
+    
+      <category term="hexo" scheme="http://magic-king.com/categories/hexo/"/>
+    
+    
+      <category term="hexo" scheme="http://magic-king.com/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://magic-king.com/2019/05/13/hello-world/"/>
+    <id>http://magic-king.com/2019/05/13/hello-world/</id>
+    <published>2019-05-13T07:47:10.455Z</published>
+    <updated>2019-05-13T07:47:10.456Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
 </feed>
