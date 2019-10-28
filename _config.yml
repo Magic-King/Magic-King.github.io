@@ -88,7 +88,7 @@ search:
 #RSS订阅
 feed: 
     type: atom
-    path: atom.xml
+    path: /atom.xml
     limit: 0
     hub: 
     content: true
