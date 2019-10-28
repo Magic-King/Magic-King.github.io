@@ -31,7 +31,9 @@ categories: hexo
 >
 > **hexo优化**
 >
-> [hexo博客改装和一些细节优化]([https://www.chakid.com/2018/05/26/hexo%E5%8D%9A%E5%AE%A2%E6%94%B9%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E7%BB%86%E8%8A%82%E4%BC%98%E5%8C%96/](https://www.chakid.com/2018/05/26/hexo博客改装和一些细节优化/))
+> [hexo博客改装和一些细节优化](https://www.chakid.com/2018/05/26/hexo%E5%8D%9A%E5%AE%A2%E6%94%B9%E8%A3%85%E5%92%8C%E4%B8%80%E4%BA%9B%E7%BB%86%E8%8A%82%E4%BC%98%E5%8C%96/)
+>
+> https://www.chakid.com/2018/05/26/hexo博客改装和一些细节优化
 >
 > [Hexo NexT 博客后台管理指南](<https://www.cnblogs.com/xingyunblog/p/8681205.html>)
 >
@@ -283,7 +285,6 @@ Hexo的模板是指在新建的markdown文件中默认填充的内容。例如�
 您可以在 `_config.yml` 中修改大部分的配置。
 
 <iframe src="https://www.youtube.com/embed/A0Enyn70jKU" frameborder="0" allowfullscreen="" style="box-sizing: inherit; margin: 1em 0px; padding: 0px; border: 0px; outline: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; font-size: 15px; vertical-align: baseline;"></iframe>
-
 ### 网站
 
 | 参数          | 描述                                                         |
