@@ -8,4 +8,8 @@ git push origin hexo
 
 hexo d -g
 
+@echo hexo deployed&&generated finished
+
+pause
+
 
