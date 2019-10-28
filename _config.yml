@@ -85,10 +85,14 @@ search:
     format: html
     limit: 10000
 
-#RSS订阅
+# Extensions
+## Plugins: https://hexo.io/plugins/
+# RSS订阅
+plugin:
+  - hexo-generator-feed    
 feed: 
     type: atom
-    path: /atom.xml
+    path: atom.xml
     limit: 0
     hub: 
     content: true
