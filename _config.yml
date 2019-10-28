@@ -87,7 +87,7 @@ search:
 
 
 # RSS订阅
-rss: atom.xml
+#rss: atom.xml
 feed: 
     type: atom
     path: atom.xml
