@@ -86,6 +86,11 @@ search:
     limit: 10000
 
 
+# Extensions
+## Plugins: http://hexo.io/plugins/
+#RSS订阅
+plugin:
+- hexo-generator-feed
 # RSS订阅
 #rss: atom.xml
 feed: 
