@@ -93,14 +93,14 @@ plugin:
 - hexo-generator-feed
 # RSS订阅
 #rss: atom.xml
-#feed: 
-#    type: atom
-#    path: atom.xml
-#    limit: 0
-#    hub: 
-#    content: 
-#    content_limit: 160
-#    content_limit_delim: ''
+feed: 
+    type: atom
+    path: atom.xml
+    limit: 0
+    hub: 
+    content: 
+    content_limit: 160
+    content_limit_delim: ''
 
 # Security
 ##

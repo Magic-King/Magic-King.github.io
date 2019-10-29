@@ -307,6 +307,42 @@ message: Welcome to my blog, enter password to read.
 
 * ### Magic Rss
 
+	> - RssHub： https://docs.rsshub.app/ 
+	> - 
+	> - paper：https://paper.seebug.org/rss/
+	> - FreeBuf：https://www.freebuf.com/feed
+	> - 52pojie.cn： https://www.52pojie.cn/forum.php?mod=rss 
+	> - v2ex周报：http://vdaily.iu.vc/old-weekly.xml
+	> - DEFCON：https://www.defcon.org/defconrss.xml
+	> - SecWiki News：https://www.sec-wiki.com/news/rss
+	> - Exploit-DB.com：https://www.exploit-db.com/rss.xml
+	> - NVD最新八天漏洞（CVE）： https://nvd.nist.gov/feeds/xml/cve/misc/nvd-rss.xml 
+	> - NVD近八天已分析漏洞： https://nvd.nist.gov/feeds/xml/cve/misc/nvd-rss-analyzed.xml 
+	> - 安全客混合主页资讯： https://api.anquanke.com/data/v1/rss 
+	> - 安全客最新漏洞列表： https://rsshub.app/aqk/vul 
+	> - Hacker News：https://news.ycombinator.com/rss
+	> - Sec-news：http://wiki.ioin.in/atom
+	> - 开源中国：https://rsshub.app/oschina/news
+	> - 看雪：https://rsshub.com/pediy/topic/
+	> - 看雪pwn：https://rsshub.com/pediy/topic/pwn/latest
+	> - 看雪编程技术：https://rsshub.com/pediy/topic/coding/latest
+	> - 看雪二进制漏洞：https://rsshub.com/pediy/topic/vuln/latest
+	> - 先知（阿里云）： https://xz.aliyun.com/feed 
+	> - 
+	> - xxshangyx Instagram： https://rss.app/feeds/kM793aE1OC39tJXw.xml 
+	> - 
+	> - ctftime：https://ctftime.org/event/list/upcoming/rss/ 
+	> - 
+	> - weibo：ringzero：https://rsshub.app/weibo/user/1859213130
+	> - 
+	> - 离别歌： https://www.leavesongs.com/rss.php 
+	> - l3m0n： http://feed.cnblogs.com/blog/u/242399/rss/ 
+	> - LoRexxar： https://lorexxar.cn/atom.xml 
+	> - bendawnag： http://bendawang.site/rss.xml 
+	> - wonderkun： https://blog.wonderkun.cc/atom.xml 
+	> - EVILCOS余弦：https://evilcos.me/?feed=rss2
+	> - 
+	> - 
 	> - 
 	> - 
 	> - 
