@@ -308,7 +308,7 @@ message: Welcome to my blog, enter password to read.
 * ### Magic Rss
 
 	> - RssHub： https://docs.rsshub.app/ 
-	> - 
+	> -  
 	> - paper：https://paper.seebug.org/rss/
 	> - FreeBuf：https://www.freebuf.com/feed
 	> - 52pojie.cn： https://www.52pojie.cn/forum.php?mod=rss 
@@ -323,10 +323,10 @@ message: Welcome to my blog, enter password to read.
 	> - Hacker News：https://news.ycombinator.com/rss
 	> - Sec-news：http://wiki.ioin.in/atom
 	> - 开源中国：https://rsshub.app/oschina/news
-	> - 看雪：https://rsshub.com/pediy/topic/
-	> - 看雪pwn：https://rsshub.com/pediy/topic/pwn/latest
-	> - 看雪编程技术：https://rsshub.com/pediy/topic/coding/latest
-	> - 看雪二进制漏洞：https://rsshub.com/pediy/topic/vuln/latest
+	> - 看雪：https://rsshub.app/pediy/topic/
+	> - 看雪pwn：https://rsshub.app/pediy/topic/pwn/latest
+	> - 看雪编程技术：https://rsshub.app/pediy/topic/coding/latest
+	> - 看雪二进制漏洞：https://rsshub.app/pediy/topic/vuln/latest
 	> - 先知（阿里云）： https://xz.aliyun.com/feed 
 	> - 
 	> - xxshangyx Instagram： https://rss.app/feeds/kM793aE1OC39tJXw.xml 
@@ -341,6 +341,7 @@ message: Welcome to my blog, enter password to read.
 	> - bendawnag： http://bendawang.site/rss.xml 
 	> - wonderkun： https://blog.wonderkun.cc/atom.xml 
 	> - EVILCOS余弦：https://evilcos.me/?feed=rss2
+	> - 雨了个雨： https://rsshub.app/hexo/yilia/yulegeyu.com 
 	> - 
 	> - 
 	> - 
