@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2019-10-21T13:29:09.307Z</updated>
+  <updated>2019-11-09T11:28:14.211Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>XCTF-adworld-misc-wp</title>
+    <link href="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/"/>
+    <id>http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/</id>
+    <published>2019-11-08T13:53:39.000Z</published>
+    <updated>2019-11-09T11:28:14.211Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Misc-amp-WriteUp&quot;&gt;&lt;a href=&quot;#Misc-amp-WriteUp&quot; class=&quot;headerlink&quot; title=&quot;Misc&amp;amp;WriteUp&quot;&gt;&lt;/a&gt;&lt;center&gt;Misc&amp;amp;WriteUp&lt;/center&gt;&lt;/h1&gt;&lt;p&gt;msic永远充满了惊喜&lt;/p&gt;
+&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="ctf" scheme="http://magic-king.net/categories/ctf/"/>
+    
+    
+      <category term="ctf" scheme="http://magic-king.net/tags/ctf/"/>
+    
+      <category term="misc" scheme="http://magic-king.net/tags/misc/"/>
+    
+  </entry>
   
   <entry>
     <title>Object-oriented Programming</title>
@@ -334,7 +361,7 @@
     
     <summary type="html">
     
-      It is Magic.&lt;/br&gt;the content has been encrypted, enter the password to read.&lt;/br&gt;
+      It is Magic.&lt;br&gt;the content has been encrypted, enter the password to read.&lt;br&gt;
     
     </summary>
     
@@ -347,7 +374,7 @@
     <link href="http://magic-king.net/2019/05/27/Movie/"/>
     <id>http://magic-king.net/2019/05/27/Movie/</id>
     <published>2019-05-27T08:45:10.000Z</published>
-    <updated>2019-10-11T14:06:01.458Z</updated>
+    <updated>2019-11-09T11:37:07.070Z</updated>
     
     <summary type="html">
     
@@ -367,7 +394,7 @@
     <link href="http://magic-king.net/2019/05/20/Magic/"/>
     <id>http://magic-king.net/2019/05/20/Magic/</id>
     <published>2019-05-20T05:14:27.000Z</published>
-    <updated>2019-10-29T07:00:08.082Z</updated>
+    <updated>2019-10-29T07:54:11.220Z</updated>
     
     <summary type="html">
     

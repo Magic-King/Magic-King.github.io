@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Misc&amp;amp;WriteUpmsic永远充满了惊喜 攻防世界&amp;amp;Misc新手练习区0x01  this_is_flag 题目描述： Most flags are in the form flag{xxx}, for example:flag{th1s_!s_a_d4m0_4la9}    易知flag为：flag{th1s_!s_a_d4m0_4la9} 0x02 ext3 题目描述：">
+<meta name="keywords" content="ctf,misc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XCTF-adworld-misc-wp">
+<meta property="og:url" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/index.html">
+<meta property="og:site_name" content="Hexo&amp;Magic">
+<meta property="og:description" content="Misc&amp;amp;WriteUpmsic永远充满了惊喜 攻防世界&amp;amp;Misc新手练习区0x01  this_is_flag 题目描述： Most flags are in the form flag{xxx}, for example:flag{th1s_!s_a_d4m0_4la9}    易知flag为：flag{th1s_!s_a_d4m0_4la9} 0x02 ext3 题目描述：">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/1.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/2_2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/3.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/3_2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/3_3.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/4.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/4_2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/5.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/5_2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/5_3.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/6.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/6_3.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/6_2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/6_4.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/7.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/7_2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/7_4.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/8.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/8_2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/9.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/10_2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/11.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/12.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/12_2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/12_3.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/12_4.jpg">
+<meta property="og:updated_time" content="2019-11-09T11:28:14.211Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="XCTF-adworld-misc-wp">
+<meta name="twitter:description" content="Misc&amp;amp;WriteUpmsic永远充满了惊喜 攻防世界&amp;amp;Misc新手练习区0x01  this_is_flag 题目描述： Most flags are in the form flag{xxx}, for example:flag{th1s_!s_a_d4m0_4la9}    易知flag为：flag{th1s_!s_a_d4m0_4la9} 0x02 ext3 题目描述：">
+<meta name="twitter:image" content="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/1.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hexo&Magic" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>XCTF-adworld-misc-wp | Hexo&Magic</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo&Magic</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Magic King">
+      <meta itemprop="description" content="Now You See Me!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo&Magic">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">XCTF-adworld-misc-wp
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-08 21:53:39" itemprop="dateCreated datePublished" datetime="2019-11-08T21:53:39+08:00">2019-11-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-11-09 19:28:14" itemprop="dateModified" datetime="2019-11-09T19:28:14+08:00">2019-11-09</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Misc-amp-WriteUp"><a href="#Misc-amp-WriteUp" class="headerlink" title="Misc&amp;WriteUp"></a><center>Misc&amp;WriteUp</center></h1><p>msic永远充满了惊喜</p>
+<h1 id="攻防世界-amp-Misc新手练习区"><a href="#攻防世界-amp-Misc新手练习区" class="headerlink" title="攻防世界&amp;Misc新手练习区"></a><center>攻防世界&amp;Misc新手练习区</center></h1><h2 id="0x01-this-is-flag"><a href="#0x01-this-is-flag" class="headerlink" title="0x01  this_is_flag"></a>0x01  this_is_flag</h2><blockquote>
+<p>题目描述： Most flags are in the form flag{xxx}, for example:flag{th1s_!s_a_d4m0_4la9} </p>
+</blockquote>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/1.jpg" alt></p>
+<p>易知flag为：<code>flag{th1s_!s_a_d4m0_4la9}</code></p>
+<h2 id="0x02-ext3"><a href="#0x02-ext3" class="headerlink" title="0x02 ext3"></a>0x02 ext3</h2><blockquote>
+<p>题目描述： 今天是菜狗的生日，他收到了一个linux系统光盘 </p>
+</blockquote>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/2.jpg" alt></p>
+<p>下载附件得到一个19.5MB的文件，由于题目是ext3，所以联想到将该文件挂载至linux下</p>
+<p>运行<code>mount test /mnt/</code>,然后发现下面有一堆文件</p>
+<p>执行<code>find |grep flag</code>，得到<code>./O7avZhikgKgbF/flag.txt</code></p>
+<p>用<code>cat</code>命令查看文件，得到一串字符<code>ZmxhZ3tzYWpiY2lienNrampjbmJoc2J2Y2pianN6Y3N6Ymt6an0=</code></p>
+<p>明显的base64编码，转码得到flag：<code>flag{sajbcibzskjjcnbhsbvcjbjszcszbkzj}</code></p>
+<hr>
+<p>但是看官方wp，发现是另外一种做法。</p>
+<p>不知道为啥判断附件为img格式，然后用winhex打开该文件搜索flag得到如下</p>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/2_2.jpg" alt></p>
+<p>然后解压该文件（我用bandzip没有打开，改后缀为img装载显示光盘映像已损坏），搜索得到flag.txt，然后其他步骤相同</p>
+<h2 id="0x03-give-you-flag"><a href="#0x03-give-you-flag" class="headerlink" title="0x03  give_you_flag"></a>0x03  give_you_flag</h2><blockquote>
+<p> 题目描述：菜狗找到了文件中的彩蛋很开心，给菜猫发了个表情包 </p>
+</blockquote>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/3.jpg" alt></p>
+<p>下载附件，发现是一个gif文件，打开查看发现在最后几秒闪过一个二维码</p>
+<p>第一次做傻傻地用了linux下convert命令，将gif转到png，发现50多帧都被拆分成一个个png，</p>
+<p>二维码大概在49帧，后面才发现有Stegsolve可以查看图片的每一帧</p>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/3_2.jpg" style="zoom:50%;"></p>
+<p>明显是个二维码，修补其三角定位，得到下图</p>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/3_3.jpg" style="zoom:50%;"></p>
+<p>扫码得到flag：<code>flag{e7d478cf6b915f50ab1277f78502a2c5}</code> </p>
+<h2 id="0x04-pdf"><a href="#0x04-pdf" class="headerlink" title="0x04 pdf"></a>0x04 pdf</h2><blockquote>
+<p> 题目描述：菜猫给了菜狗一张图，说图下面什么都没有 </p>
+</blockquote>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/4.jpg" style="zoom:50%;"></p>
+<p>打开附件是一个pdf，里面是一张图片，推测将pdf转为word格式之后，移走图片，发现flag就在图片底下</p>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/4_2.jpg" style="zoom:50%;"></p>
+<p>易知得到flag：<code>flag{security_through_obscurity}</code></p>
+<h2 id="0x05-stegano"><a href="#0x05-stegano" class="headerlink" title="0x05 stegano"></a>0x05 stegano</h2><blockquote>
+<p> 题目描述：菜狗收到了图后很开心，玩起了pdf 提交格式为flag{xxx}，解密字符需小写 </p>
+</blockquote>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/5.jpg" style="zoom:50%;"></p>
+<p>打开附件发现一份文档</p>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/5_2.jpg" style="zoom: 25%;"></p>
+<p>一开始没有思路，就先用之前的convert命令，将pdf的东西全部复制出来查看，发现</p>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/5_3.jpg" alt></p>
+<p>将AB转换为. - 可得到如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">-.-. --- -. --. .-. .- - ..- .-.. .- - .. --- -. ... --..-- ..-. .-.. .- --. ---... .---- -. ...- .---- ..... .---- -... .-.. ...-- -- ...-- ..... ..... ....- --. ...--</span><br></pre></td></tr></table></figure>
+<p>解摩斯密码得到：<code>CONGRATULATIONSFLAG1NV151BL3M3554G3</code></p>
+<p>flag为：<code>flag{1NV151BL3M3554G3}</code></p>
+<h2 id="0x06-SimpleRAR"><a href="#0x06-SimpleRAR" class="headerlink" title="0x06  SimpleRAR"></a>0x06  SimpleRAR</h2><blockquote>
+<p> 题目描述：菜狗最近学会了拼图，这是他刚拼好的，可是却搞错了一块(ps:双图层) </p>
+</blockquote>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/6.jpg" style="zoom:50%;"></p>
+<p>下载完附件，只有一个文件，打开<code>flag.txt</code> ,里面写着<code>flag is not here</code></p>
+<p>打开winhex查看该rar，发现里面还有一个secret.png，然后根据文件头（或者使用rar修复） 将A8 3C 7A 修改为 A8 3C 74 。 </p>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/6_3.jpg"></p>
+<p>然后解压得到secret.png，打开是一个空白图片，便想到用winhex查看。</p>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/6_2.jpg" alt></p>
+<p>发现文件头是GIF，将后缀改为.gif，然后用Stegsolve分离出两帧图片，分别是二维码的上下部分，还少定位符，补齐定位符，扫码得到flag：<code>flag：flag{yanji4n_bu_we1shi}</code></p>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/6_4.jpg" alt></p>
+<h2 id="0x07-坚持60s"><a href="#0x07-坚持60s" class="headerlink" title="0x07 坚持60s"></a>0x07 坚持60s</h2><blockquote>
+<p> 题目描述：菜狗发现最近菜猫不爱理他，反而迷上了菜鸡 </p>
+</blockquote>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/7.jpg" style="zoom:50%;"></p>
+<p>下下来是一个jar包，用java运行，发现是一个小游戏，根据题目联想需要坚持60s。</p>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/7_2.jpg" style="zoom:25%;"></p>
+<p>玩了几次之后手残放弃，然后解压缩文件，用winhex打开文件搜索flag，在<code>/cn/bjsxt/plane/PlaneGameFrame.class</code>里找到   <code>flag{RGFqaURhbGlfSmlud2FuQ2hpamk=}</code>易知是base64编码，base64decode得到<code>flag{DajiDali_JinwanChiji}</code></p>
+<p>第二种办法，我在找到flag后思考这是misc题也不是逆向题，便觉得这游戏肯定有bug，然后根据常识发现右边和下面的边界可以穿过来躲避障碍，但是完全卡入右边界之后无法返回。</p>
+<p>之后发现到下边只能卡入一半，于是突发思维，将小方块卡入右下角然后留下了一个小角，发现可以成功躲过60s（记得计时，在60s~70s时主动出去死亡即可，然后成功得到flag明文</p>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/7_4.jpg" style="zoom: 25%;"></p>
+<h2 id="0x08-gif"><a href="#0x08-gif" class="headerlink" title="0x08 gif"></a>0x08 gif</h2><blockquote>
+<p> 题目描述：菜狗截获了一张菜鸡发给菜猫的动态图，却发现另有玄机 </p>
+</blockquote>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/8.jpg" style="zoom:50%;"></p>
+<p>得到一个zip包，查看里面有103张黑白色的图片，联想到二进制。</p>
+<p>白色图片代表0，黑色图片代表1。</p>
+<p>01100110前八位二进制换算后为 f 证明思路正确。</p>
+<p>01100110011011000110000101100111011110110100011001110101010011100101111101100111011010010100011001111101</p>
+<p>二进制转字符串得到 flag：<code>flag{FuN_giF}</code></p>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/8_2.jpg" style="zoom:50%;"></p>
+<h2 id="0x09-掀桌子"><a href="#0x09-掀桌子" class="headerlink" title="0x09  掀桌子"></a>0x09  掀桌子</h2><blockquote>
+<p> 题目描述：菜狗截获了一份报文如下c8e9aca0c6f2e5f3e8c4efe7a1a0d4e8e5a0e6ece1e7a0e9f3baa0e8eafae3f9e4eafae2eae4e3eaebfaebe3f5e7e9f3e4e3e8eaf9eaf3e2e4e6f2，生气地掀翻了桌子(╯°□°）╯︵ ┻━┻ </p>
+</blockquote>
+<p> 题目只有描述中这一段字符串有信息，推测是十六进制，写python的转换代码</p>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/9.jpg" alt></p>
+<p> 每两个一组，将16进制转换为10进制，减去128以后输出 ascii。 </p>
+<p>得到<code>Hi, FreshDog! The flag is: hjzcydjzbjdcjkzkcugisdchjyjsbdfr</code></p>
+<h2 id="0x0a-如来十三掌"><a href="#0x0a-如来十三掌" class="headerlink" title="0x0a  如来十三掌"></a>0x0a  如来十三掌</h2><blockquote>
+<p> 题目描述：菜狗为了打败菜猫，学了一套如来十三掌。 </p>
+</blockquote>
+<p>下下来附件是一个docx，发现是一段文字，贼像佛教里的文字</p>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/10_2.jpg" style="zoom: 50%;"></p>
+<p>搜索得到这是一种佛语加密，在网站 <a href="http://keyfc.net/bbs/tools/tudoucode.aspx" target="_blank" rel="noopener">http://keyfc.net/bbs/tools/tudoucode.aspx</a>  <a href="http://keyfc.net/bbs/tools/tudoucode.aspx" target="_blank" rel="noopener"><strong>与佛论禅</strong></a>  可以翻译，但是将全文复制到chrome和firefox打开的网站里都解码失败了，后看他的说明，推测应该在复制过程中会将繁体字转换为简体字，这样你复制后的文字已经不是最初的原文了，所以解不出。试验过在MicrosoftEdge中能够成功解码。</p>
+<p> 解完是一串像base64编码的字符<code>MzkuM3gvMUAwnzuvn3cgozMlMTuvqzAenJchMUAeqzWenzEmLJW9</code>，但是该字符解码得到是一串乱码，然后发现这个字符串需要先用rot13（与题目“如来十三掌”谐音）转一下，然后再base64解码，得到flag。 </p>
+<h2 id="0x0b-base64stego"><a href="#0x0b-base64stego" class="headerlink" title="0x0b  base64stego"></a>0x0b  base64stego</h2><blockquote>
+<p> 题目描述：菜狗经过几天的学习，终于发现了如来十三掌最后一步的精髓 </p>
+</blockquote>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/11.jpg" style="zoom:50%;"></p>
+<p>打开压缩包，压缩包是伪加密的根据ctf-wiki里直接用winhex改一个标志位，或者用winrar修复即可</p>
+<p>是一个<code>stego.txt</code>可以看到很多行的base64编码</p>
+<p>解码出来是在wiki百科上对Steganography的解释</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br></pre></td><td class="code"><pre><span class="line">Steganography is the art and science of</span><br><span class="line"> writing hidden messages in such a way that no one</span><br><span class="line">, apart from the sender and intended recipient, suspe</span><br><span class="line">cts the existence of the mess</span><br><span class="line">age, a form of security through obscurity. T</span><br><span class="line">he word steganography is of Greek origin and means &quot;concea</span><br><span class="line">led writing&quot; from the Greek words steganos meaning &quot;co</span><br><span class="line">vered or protected&quot;, and graphein meaning &quot;to w</span><br><span class="line">rite&quot;. The first recorded use of the term was in 1499 by Joh</span><br><span class="line">annes Trithemius in his Steganographia, a trea</span><br><span class="line">tise on cryptography and steganography disg</span><br><span class="line">uised as a book on magic. Generally, mess</span><br><span class="line">ages will appear to be something else: images, arti</span><br><span class="line">cles, shopping lists, or some ot</span><br><span class="line">her covertext and, classically, the hidden message may be in invi</span><br><span class="line">sible ink between the visible lines of a private letter.</span><br><span class="line"></span><br><span class="line">The</span><br><span class="line"> advantage of steganography, over cr</span><br><span class="line">yptography alone, is that messages do not attract attention</span><br><span class="line"> to themselves. Plainly visible encrypted messages�no matter </span><br><span class="line">how unbreakable�will arouse s</span><br><span class="line">uspicion, and may in themselves be incriminating </span><br><span class="line">in countries where encryption is illegal. Therefore,</span><br><span class="line"> whereas cryptography protects the contents of</span><br><span class="line"> a message, steganography can be said to protect b</span><br><span class="line">oth messages and communicating parties.</span><br><span class="line"></span><br><span class="line">Steganography inclu</span><br><span class="line">des the concealment of information within com</span><br><span class="line">puter files. In digital steganography, electronic communication</span><br><span class="line">s may include steganographic coding insi</span><br><span class="line">de of a transport layer, such as a document file, image fil</span><br><span class="line">e, program or protocol. Media </span><br><span class="line">files are ideal for steganographic transmissio</span><br><span class="line">n because of their large size. As </span><br><span class="line">a simple example, a sender might start with a</span><br><span class="line">n innocuous image file and adjust the color of every 100th pixel </span><br><span class="line">to correspond to a letter in the alphabet, a</span><br><span class="line"> change so subtle that someone not specifically looking f</span><br><span class="line">or it is unlikely to notice it.</span><br><span class="line"></span><br><span class="line">The</span><br><span class="line"> first recorded uses of steganography can be tr</span><br><span class="line">aced back to 440 BC when Herodotus mentions two examples o</span><br><span class="line">f steganography in The Histories of </span><br><span class="line">Herodotus. Demaratus sent a warning about a </span><br><span class="line">forthcoming attack to Greece by w</span><br><span class="line">riting it directly on the wooden backing of a wax tablet bef</span><br><span class="line">ore applying its beeswax surface. Wax tablets were in common use</span><br><span class="line"> then as reusable writing surfaces, sometime</span><br><span class="line">s used for shorthand. Another ancient example is that o</span><br><span class="line">f Histiaeus, who shaved the head of his most trusted s</span><br><span class="line">lave and tattooed a message on it. After his hair had g</span><br><span class="line">rown the message was hidden. The purpose was to</span><br><span class="line"> instigate a revolt against the Persians.</span><br><span class="line"></span><br><span class="line">Steganography has b</span><br><span class="line">een widely used, including in recent historical times and t</span><br><span class="line">he present day. Possible permutations are endless and</span><br><span class="line"> known examples include:</span><br><span class="line">* Hidden messages within wax ta</span><br><span class="line">blets: in ancient Greece, people wrote me</span><br><span class="line">ssages on the wood, then covered it with wax upon which an innocen</span><br><span class="line">t covering message was written</span><br><span class="line">.</span><br><span class="line">* Hidden messages on messenger&apos;s body: also used in ancien</span><br><span class="line">t Greece. Herodotus tells the story o</span><br><span class="line">f a message tattooed on a slave&apos;s shaved head, hidden by the</span><br><span class="line"> growth of his hair, and exposed by shaving his head</span><br><span class="line"> again. The message allegedly carried a warning to Greece abo</span><br><span class="line">ut Persian invasion plans. Th</span><br><span class="line">is method has obvious drawbacks,</span><br><span class="line"> such as delayed transmission while waiting for the s</span><br><span class="line">lave&apos;s hair to grow, and the restrictions o</span><br><span class="line">n the number and size of mess</span><br><span class="line">ages that can be encoded on one person</span><br><span class="line">&apos;s scalp.</span><br><span class="line">* In WWII, the French Resistance sent some messages w</span><br><span class="line">ritten on the backs of couriers </span><br><span class="line">using invisible ink.</span><br><span class="line">* Hidden messages on paper wr</span><br><span class="line">itten in secret inks, under other messages</span><br><span class="line"> or on the blank parts of other</span><br><span class="line"> messages.</span><br><span class="line">* Messages written in Morse code on knitting yarn and </span><br><span class="line">then knitted into a piece of clothing wor</span><br><span class="line">n by a courier.</span><br><span class="line">* Messages written on the back o</span><br><span class="line">f postage stamps.</span><br><span class="line">* During and after</span><br><span class="line"> World War II, espionage agents used photographically p</span><br><span class="line">roduced microdots to send information back and</span><br><span class="line"> forth. Microdots were typically </span><br><span class="line">minute, approximately less than the size of the period prod</span><br><span class="line">uced by a typewriter. WWII microdots needed to be embedded</span><br><span class="line"> in the paper and covered with an adhesive (such as collodion). T</span><br><span class="line">his was reflective and thus detectable </span><br><span class="line">by viewing against glancing light. Alternative techniques included</span><br><span class="line"> inserting microdots into slits cut into the edge of</span><br><span class="line"> post cards.</span><br><span class="line">* During World War II, a spy for </span><br><span class="line">Japan in New York City, Velvalee</span><br><span class="line"> Dickinson, sent information to accommodatio</span><br><span class="line">n addresses in neutral South Americ</span><br><span class="line">a. She was a dealer in dolls, and </span><br><span class="line">her letters discussed how many of this or that doll</span><br><span class="line"> to ship. The stegotext was the doll orders, while the</span><br><span class="line"> concealed &quot;plaintext&quot; was itself enco</span><br><span class="line">ded and gave information about ship movements,</span><br><span class="line"> etc. Her case became somewhat fa</span><br><span class="line">mous and she became known as the</span><br><span class="line"> Doll Woman.</span><br><span class="line">* Cold War count</span><br><span class="line">er-propaganda. In 1968, crew membe</span><br><span class="line">rs of the USS Pueblo (AGER-2) intelligence ship held as pr</span><br><span class="line">isoners by North Korea, communicated in sign</span><br><span class="line"> language during staged photo opport</span><br><span class="line">unities, informing the United States they </span><br><span class="line">were not defectors but rather were being held ca</span><br><span class="line">ptive by the North Koreans. In other photo</span><br><span class="line">s presented to the US, crew members gave &quot;the finger&quot; to </span><br><span class="line">the unsuspecting North Koreans, in an attempt to </span><br><span class="line">discredit photos that showed them smi</span><br><span class="line">ling and comfortable.</span><br><span class="line"></span><br><span class="line">--</span><br><span class="line">http://en.wikipedia.org</span><br><span class="line">/wiki/Steganography</span><br></pre></td></tr></table></figure>
+<p>推测是base64隐写，跑脚本得到flag：<code>flag{Base_sixty_four_point_five}</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">deStego</span><span class="params">(stegoFile)</span>:</span></span><br><span class="line">    b64table = <span class="string">"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"</span></span><br><span class="line">    <span class="keyword">with</span> open(stegoFile,<span class="string">'r'</span>) <span class="keyword">as</span> stegoText:</span><br><span class="line">        message = <span class="string">""</span></span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> stegoText:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                text = line[line.index(<span class="string">"="</span>) - <span class="number">1</span>:<span class="number">-1</span>]</span><br><span class="line">                message += <span class="string">""</span>.join([ bin( <span class="number">0</span> <span class="keyword">if</span> i == <span class="string">'='</span> <span class="keyword">else</span> b64table.find(i))[<span class="number">2</span>:].zfill(<span class="number">6</span>) <span class="keyword">for</span> i <span class="keyword">in</span> text])[<span class="number">2</span> <span class="keyword">if</span> text.count(<span class="string">'='</span>) ==<span class="number">2</span> <span class="keyword">else</span> <span class="number">4</span>:<span class="number">6</span>]  </span><br><span class="line">            <span class="keyword">except</span>:</span><br><span class="line">                <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">""</span>.join([chr(int(message[i:i+<span class="number">8</span>],<span class="number">2</span>)) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(message),<span class="number">8</span>)])</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    <span class="keyword">if</span> len(sys.argv) == <span class="number">2</span>:</span><br><span class="line">        print(deStego(sys.argv[<span class="number">1</span>]))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(deStego(<span class="string">"stego.txt"</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="0x0c-功夫再高也怕菜刀"><a href="#0x0c-功夫再高也怕菜刀" class="headerlink" title="0x0c  功夫再高也怕菜刀"></a>0x0c  功夫再高也怕菜刀</h2><blockquote>
+<p> 题目描述：菜狗决定用菜刀和菜鸡决一死战 </p>
+</blockquote>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/12.jpg" style="zoom:50%;"></p>
+<p>下载附件发现是一个<code>.pcapng</code>文件，是一个wireshark流量包。</p>
+<p>用wireshark打开，<code>ctrl+F</code>查找flag</p>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/12_2.jpg"></p>
+<p>发现里面有zip和flag.txt还有6666.jpg。</p>
+<p>追踪6666.jpg那一行的TCP请求，右键追踪TCP流</p>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/12_3.jpg" alt></p>
+<p>由于图片JPG的文件头是<code>FFD8</code>文件尾是<code>FFD9</code>，将文件另存为 ，然后用文本编辑器，编辑导出的文件，查找并删除第一个jpg文件头（FFD8）和最后一个文件尾（FFD9）之外的字符串，剩下的全是十六进制字符串。然后把十六进制保存为图片，我用的“010 Editor”，打开后新建空白文件，复制图片十六进制字符串到粘贴板，点击菜单栏“Edit-Paste From-Paste From Hex Text”，然后保存为图片就行了，保存后的图片如下图。 </p>
+<p><img src="/2019/11/08/XCTF-adworld-misc-wp/12_4.jpg" alt></p>
+<p>刚才看到里面有存在一个hello.zip，便用foremost处理流量包，分理出一个压缩文件，里面就是flag.txt，为加密文件，联想至刚刚那张复原的图片，用密码<code>Th1s_1s_p4sswd_!!!</code>尝试打开文件，得到flag：<code>flag{3OpWdJ-JP6FzK-koCMAK-VkfWBq-75Un2z}</code></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+            <a href="/tags/misc/" rel="tag"># misc</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/21/Object-oriented-Programming/" rel="next" title="Object-oriented Programming">
+                <i class="fa fa-chevron-left"></i> Object-oriented Programming
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Magic King">
+            
+              <p class="site-author-name" itemprop="name">Magic King</p>
+              <div class="site-description motion-element" itemprop="description">Now You See Me!</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Magic-King" title="GitHub &rarr; https://github.com/Magic-King" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Misc-amp-WriteUp"><span class="nav-number">1.</span> <span class="nav-text">Misc&amp;WriteUp</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#攻防世界-amp-Misc新手练习区"><span class="nav-number">2.</span> <span class="nav-text">攻防世界&amp;Misc新手练习区</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-this-is-flag"><span class="nav-number">2.1.</span> <span class="nav-text">0x01  this_is_flag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-ext3"><span class="nav-number">2.2.</span> <span class="nav-text">0x02 ext3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-give-you-flag"><span class="nav-number">2.3.</span> <span class="nav-text">0x03  give_you_flag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-pdf"><span class="nav-number">2.4.</span> <span class="nav-text">0x04 pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x05-stegano"><span class="nav-number">2.5.</span> <span class="nav-text">0x05 stegano</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x06-SimpleRAR"><span class="nav-number">2.6.</span> <span class="nav-text">0x06  SimpleRAR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x07-坚持60s"><span class="nav-number">2.7.</span> <span class="nav-text">0x07 坚持60s</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x08-gif"><span class="nav-number">2.8.</span> <span class="nav-text">0x08 gif</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x09-掀桌子"><span class="nav-number">2.9.</span> <span class="nav-text">0x09  掀桌子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0a-如来十三掌"><span class="nav-number">2.10.</span> <span class="nav-text">0x0a  如来十三掌</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0b-base64stego"><span class="nav-number">2.11.</span> <span class="nav-text">0x0b  base64stego</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0c-功夫再高也怕菜刀"><span class="nav-number">2.12.</span> <span class="nav-text">0x0c  功夫再高也怕菜刀</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Magic King</span>
+
+  
+
+  
+</div>
+
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0 </div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-2" count="666" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+</body>
+</html>
