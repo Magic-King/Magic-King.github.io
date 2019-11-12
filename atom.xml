@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2019-11-11T11:19:18.162Z</updated>
+  <updated>2019-11-12T11:58:40.595Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>XCTF-adworld-web-wp</title>
+    <link href="http://magic-king.net/2019/11/11/XCTF-adworld-web-wp/"/>
+    <id>http://magic-king.net/2019/11/11/XCTF-adworld-web-wp/</id>
+    <published>2019-11-11T11:26:17.000Z</published>
+    <updated>2019-11-12T11:58:40.595Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Web-amp-WriteUp&quot;&gt;&lt;a href=&quot;#Web-amp-WriteUp&quot; class=&quot;headerlink&quot; title=&quot;Web&amp;amp;WriteUp&quot;&gt;&lt;/a&gt;&lt;center&gt;Web&amp;amp;WriteUp&lt;/center&gt;&lt;/h1&gt;&lt;p&gt;Web如同一座正三角冰山，等着去探索。。。
+      
+    
+    </summary>
+    
+    
+      <category term="ctf" scheme="http://magic-king.net/categories/ctf/"/>
+    
+    
+      <category term="ctf" scheme="http://magic-king.net/tags/ctf/"/>
+    
+      <category term="web" scheme="http://magic-king.net/tags/web/"/>
+    
+  </entry>
   
   <entry>
     <title>XCTF-adworld-crypto-wp</title>
