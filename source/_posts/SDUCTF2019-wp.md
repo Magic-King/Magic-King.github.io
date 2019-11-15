@@ -25,7 +25,7 @@ PS.刚准备写wp又放出来一题QAQ
 
 
 
-# Web
+## <center>Web</center>
 
 
 
@@ -243,7 +243,7 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 
 
 
-# Misc
+## <center>Misc</center>
 
 
 
@@ -303,7 +303,7 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 
 
 
-# PWN
+## <center>PWN</center>
 
 
 
@@ -322,7 +322,7 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 
 
 
-# Crypto
+## <center>Crypto</center>
 
 
 
@@ -393,7 +393,9 @@ ans = hashlib.md5(str(s+mobj).encode('utf-8')).hexdigest()
 
 
 
-# Mobile
+## <center>Mobile</center>
+
+
 
 
 
@@ -421,7 +423,7 @@ ans = hashlib.md5(str(s+mobj).encode('utf-8')).hexdigest()
 
 
 
-# Reverse
+## <center>Reverse</center>
 
 
 
