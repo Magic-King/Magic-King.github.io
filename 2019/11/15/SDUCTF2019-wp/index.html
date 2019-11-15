@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="SDUCTF2019-WriteUp刚入门了ctf2周，便有新生赛玩，真好。 PS.刚准备写wp又放出来一题QAQ ！！！写wp一半又放出题目 Web0x01 最简答的Web题  题目描述：flag就在html里面，右键点击查看源代码即可查看   直接F12查看源码，找到flag  0x02 按钮点击 题目描述： 想方设法点击按钮   进入页面一个灰色的按钮，F12查看源码  删除button标签">
+<meta name="keywords" content="ctf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SDUCTF2019-wp">
+<meta property="og:url" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/index.html">
+<meta property="og:site_name" content="Hexo&amp;Magic">
+<meta property="og:description" content="SDUCTF2019-WriteUp刚入门了ctf2周，便有新生赛玩，真好。 PS.刚准备写wp又放出来一题QAQ ！！！写wp一半又放出题目 Web0x01 最简答的Web题  题目描述：flag就在html里面，右键点击查看源代码即可查看   直接F12查看源码，找到flag  0x02 按钮点击 题目描述： 想方设法点击按钮   进入页面一个灰色的按钮，F12查看源码  删除button标签">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web1.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web2-1.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web2-3.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web2-2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web3.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web4.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web4-1.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web4-2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web6.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web7.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web7-2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web8.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web9.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web9-2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web10.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web10-2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web11.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web11-2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web12.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web12-2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web12-3.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web12-4.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/misc2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/misc3.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/misc4.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/pwn1.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/mobile-apk1.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/mobile-apk2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/re1-java.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/re2-sductf.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/re3-rust-2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/re3-rust-3.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/re3-rust-4.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/re3-rust-5.jpg">
+<meta property="og:updated_time" content="2019-11-15T08:29:42.155Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SDUCTF2019-wp">
+<meta name="twitter:description" content="SDUCTF2019-WriteUp刚入门了ctf2周，便有新生赛玩，真好。 PS.刚准备写wp又放出来一题QAQ ！！！写wp一半又放出题目 Web0x01 最简答的Web题  题目描述：flag就在html里面，右键点击查看源代码即可查看   直接F12查看源码，找到flag  0x02 按钮点击 题目描述： 想方设法点击按钮   进入页面一个灰色的按钮，F12查看源码  删除button标签">
+<meta name="twitter:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web1.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hexo&Magic" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://magic-king.net/2019/11/15/SDUCTF2019-wp/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>SDUCTF2019-wp | Hexo&Magic</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo&Magic</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://magic-king.net/2019/11/15/SDUCTF2019-wp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Magic King">
+      <meta itemprop="description" content="Now You See Me!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo&Magic">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SDUCTF2019-wp
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-15 13:39:00 / 修改时间：16:29:42" itemprop="dateCreated datePublished" datetime="2019-11-15T13:39:00+08:00">2019-11-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="SDUCTF2019-WriteUp"><a href="#SDUCTF2019-WriteUp" class="headerlink" title="SDUCTF2019-WriteUp"></a><center>SDUCTF2019-WriteUp</center></h1><p>刚入门了ctf2周，便有新生赛玩，真好。</p>
+<p>PS.刚准备写wp又放出来一题QAQ</p>
+<p>！！！写wp一半又放出题目</p>
+<h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><h3 id="0x01-最简答的Web题"><a href="#0x01-最简答的Web题" class="headerlink" title="0x01 最简答的Web题"></a>0x01 最简答的Web题</h3><blockquote>
+<p> 题目描述：flag就在html里面，右键点击查看源代码即可查看 </p>
+</blockquote>
+<p>直接F12查看源码，找到flag</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web1.jpg" alt></p>
+<h3 id="0x02-按钮点击"><a href="#0x02-按钮点击" class="headerlink" title="0x02 按钮点击"></a>0x02 按钮点击</h3><blockquote>
+<p>题目描述： 想方设法点击按钮 </p>
+</blockquote>
+<p>进入页面一个灰色的按钮，F12查看源码</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web2-1.jpg" alt></p>
+<p>删除button标签里的disabled即可点击按钮</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">style</span>=<span class="string">"width: 150px; height: 60px; font-size: 30px;"</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">onclick</span>=<span class="string">"c()"</span> <span class="attr">value</span>=<span class="string">"flag"</span> <span class="attr">disabled</span>=<span class="string">""</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web2-3.jpg" alt></p>
+<p>后面好奇，发现flag就在click2.js里，被base64加密过</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web2-2.jpg" alt></p>
+<h3 id="0x03-量子波动速读"><a href="#0x03-量子波动速读" class="headerlink" title="0x03 量子波动速读"></a>0x03 量子波动速读</h3><blockquote>
+<p>题目描述： 你会量子波动速读吗？ </p>
+</blockquote>
+<p>进入页面就一个按钮，点击查看，发现一闪而过的fakeflag</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"window.location.href = 'flag_is_here.html'"</span>&gt;</span></span><br><span class="line">    点击查看flag</span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>源码如上，输入<code>url/flag_is_here.html</code>发现就是刚才一闪而过的页面</p>
+<p>利用burpsuite抓包即可，因为所有请求被burpsuite拦截，所以可以看到<code>/flag_is_here.html</code>但是页面上给的是fake ctf，明显不是flag，查看源码得到flag，我是直接用repeater发一个包获得Response。</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web3.jpg" alt></p>
+<h3 id="0x04-芝麻开门"><a href="#0x04-芝麻开门" class="headerlink" title="0x04 芝麻开门"></a>0x04 芝麻开门</h3><blockquote>
+<p>题目描述： 简单的提交，芝麻开门 </p>
+</blockquote>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web4.jpg" style="zoom:50%;"></p>
+<p>直接复制题目的zhimakaimen进去，返回的是口令错误</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web4-1.jpg" alt></p>
+<p>查看burpsuite拦截的包，好像是因为他的输入框有长度限制，所以少了一个字母</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web4-2.jpg" alt></p>
+<p>利用burpsuite的repeater重新发一个完整的包，得到flag</p>
+<h3 id="0x05-Funny-Button"><a href="#0x05-Funny-Button" class="headerlink" title="0x05 Funny Button"></a>0x05 Funny Button</h3><blockquote>
+<p>题目描述： 有趣的按钮，你能点到吗？ </p>
+</blockquote>
+<p>即示例的题目，删除html的css或js都可以，甚至可以用tab键选中button按钮，点击去就是flag</p>
+<h3 id="0x06-曲奇"><a href="#0x06-曲奇" class="headerlink" title="0x06 曲奇"></a>0x06 曲奇</h3><blockquote>
+<p>题目描述： 你喜欢吃曲奇饼干吗？ </p>
+</blockquote>
+<p>曲奇==cookies，直接查看网站cookies即可</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web6.jpg" alt></p>
+<p>flag即在内容里，注意flag要进行url解码</p>
+<h3 id="0x07-GET"><a href="#0x07-GET" class="headerlink" title="0x07 GET"></a>0x07 GET</h3><blockquote>
+<p>题目描述： 你就是个没有感情的浏览器 </p>
+</blockquote>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web7.jpg" alt></p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web7-2.jpg" alt></p>
+<p>我是一个莫得感情的get机器</p>
+<h3 id="0x08-未来浏览器"><a href="#0x08-未来浏览器" class="headerlink" title="0x08 未来浏览器"></a>0x08 未来浏览器</h3><blockquote>
+<p>题目描述：  小王正在追剧《亲爱的，热爱的》，电脑屏幕。。。。（谁帮我编个） 当他再次醒来。。。。。。。 </p>
+</blockquote>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web8.jpg" alt></p>
+<p>有题目已知，用burpsuite改http头属性<code>User-Agent</code>即可</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">User-Agent</span>: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/6666.6.6666.66 Safari/537.36</span><br></pre></td></tr></table></figure>
+<p>改后发包得到flag</p>
+<h3 id="0x09-POST"><a href="#0x09-POST" class="headerlink" title="0x09 POST"></a>0x09 POST</h3><blockquote>
+<p>题目描述：  你就是一个没有感情的浏览器 </p>
+</blockquote>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web9.jpg" alt></p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web9-2.jpg" style="zoom:50%;"></p>
+<p>我只是一个莫得感情的post机器</p>
+<p>利用firefox插件HackBar发送post请求，或者用burpsuite也行</p>
+<h3 id="0x0a-vim好用啊"><a href="#0x0a-vim好用啊" class="headerlink" title="0x0a vim好用啊"></a>0x0a vim好用啊</h3><blockquote>
+<p>题目描述：  小明同学用vim编辑主页的时候，实验室断电了！ </p>
+</blockquote>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web10.jpg" alt></p>
+<p>由题目得知用vim时断电，用过vim的人都知道，当vim非正常退出时会创建一个保护的缓存文件，现在word也一样。</p>
+<p>直接百度搜vim异常退出的备份文件，因为上次做过类似的，试试<code>index.php.bak</code>和<code>index.php~</code>没用，就百度了一下，得知备份文件格式为<code>.index.php.swp</code>，访问<code>url/.index.php.swp</code>下载文件得到<code>.index.php.swp</code></p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web10-2.jpg" alt></p>
+<p>得知flag在<code>url/vimvimvimvim.php</code>里，果然vim是最好的编辑器（狗头保命</p>
+<h3 id="0x0b-一句话木马"><a href="#0x0b-一句话木马" class="headerlink" title="0x0b 一句话木马"></a>0x0b 一句话木马</h3><blockquote>
+<p>题目描述： 听说过<strong>一句话木马</strong>吗？<br>                    听说过<strong>中国菜刀</strong>吗？<br>                    听说过<strong>中国蚁剑</strong>吗？<br>                    快去了解一下吧！！</p>
+</blockquote>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web11.jpg" alt></p>
+<p>看刀<code>&lt;!--php eval(@$_POST[&quot;cmd&quot;]);--&gt;</code>就可知是一句话木马，对这个稍微了解一下，去github获取中国蚁剑即可</p>
+<p>不过有一个坑，就是他默认访问是<code>index.php</code>，但是通过中国蚁剑连不上，回头看页面，发现在题目中有一个<code>shell.php</code>，于是尝试<code>url/shell.php</code>加上密码<code>cmd</code>，成功连上得到flag</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web11-2.jpg" alt></p>
+<h3 id="0x0c-达拉崩吧"><a href="#0x0c-达拉崩吧" class="headerlink" title="0x0c 达拉崩吧"></a>0x0c 达拉崩吧</h3><blockquote>
+<p>题目描述：  达拉崩吧打怪小游戏 </p>
+</blockquote>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web12.jpg" alt></p>
+<p>进入页面是个小游戏，发现是hackergame2019原题嘤嘤嘤</p>
+<h3 id="原题wp：-https-github-com-ustclug-hackergame2019-writeups-blob-master-official-E8-BE-BE-E6-8B-89-E5-B4-A9-E5-90-A7-E5-A4-A7-E5-86-92-E9-99-A9-README-md"><a href="#原题wp：-https-github-com-ustclug-hackergame2019-writeups-blob-master-official-E8-BE-BE-E6-8B-89-E5-B4-A9-E5-90-A7-E5-A4-A7-E5-86-92-E9-99-A9-README-md" class="headerlink" title="原题wp： https://github.com/ustclug/hackergame2019-writeups/blob/master/official/%E8%BE%BE%E6%8B%89%E5%B4%A9%E5%90%A7%E5%A4%A7%E5%86%92%E9%99%A9/README.md"></a>原题wp： <a href="https://github.com/ustclug/hackergame2019-writeups/blob/master/official/达拉崩吧大冒险/README.md" target="_blank" rel="noopener">https://github.com/ustclug/hackergame2019-writeups/blob/master/official/%E8%BE%BE%E6%8B%89%E5%B4%A9%E5%90%A7%E5%A4%A7%E5%86%92%E9%99%A9/README.md</a></h3><p>不过在买菜这里，有一个大整数溢出，后续会搞懂这个原理</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web12-2.jpg" alt></p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web12-3.jpg" style="zoom:50%;"></p>
+<p>然后得到flag</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web12-4.jpg" alt></p>
+<h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1><h3 id="0x01-Gif"><a href="#0x01-Gif" class="headerlink" title="0x01 Gif"></a>0x01 Gif</h3><blockquote>
+<p>题目描述： Gif你眼神够快吗？ </p>
+</blockquote>
+<p>用StegSolve.jar 打开目标gif，即可逐帧查看，一共六帧，4帧都是flag需要自己拼接。</p>
+<p>拼接完得到flag<code>SDUCTF{Gif_is_very_interesting}</code></p>
+<h3 id="0x02-PDF"><a href="#0x02-PDF" class="headerlink" title="0x02 PDF"></a>0x02 PDF</h3><blockquote>
+<p>题目描述： pdf里面藏了啥？ </p>
+</blockquote>
+<p>跟攻防世界的一题misc一样，随便找个网站将pdf转doc，然后把图片拖开flag就藏在下面。</p>
+<p>或者用一些pdf编辑器也做的到。</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/misc2.jpg" alt></p>
+<h3 id="0x03-今晚月色美吗"><a href="#0x03-今晚月色美吗" class="headerlink" title="0x03 今晚月色美吗"></a>0x03 今晚月色美吗</h3><blockquote>
+<p>题目描述： 小王同学在路上走路，突然发现小朱同学发了一条朋友圈，配图是美美的月亮。于是小王同学心血来潮，掏出手机也拍了一张照片。你觉得月亮有什么奇怪的地方吗？ </p>
+</blockquote>
+<p>用StegSolve查看，原以为是加密，，没想到是藏在不同色差层。</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/misc3.jpg" alt></p>
+<h3 id="0x04-聋子听声音"><a href="#0x04-聋子听声音" class="headerlink" title="0x04 聋子听声音"></a>0x04 聋子听声音</h3><blockquote>
+<p>题目描述：</p>
+</blockquote>
+<p>我这边用的是Audacity，据说AU也可以查看，根据题目描述，音频应该不是隐写，而是藏在频谱图里</p>
+<p>查看频谱图就可得flag</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/misc4.jpg" alt></p>
+<h1 id="PWN"><a href="#PWN" class="headerlink" title="PWN"></a>PWN</h1><h3 id="0x01-Simple-nc"><a href="#0x01-Simple-nc" class="headerlink" title="0x01 Simple nc"></a>0x01 Simple nc</h3><blockquote>
+<p>题目描述： 你会使用nc命令吗?<br>                    可能是全球最简单的pwn题目 </p>
+</blockquote>
+<p><img src="/2019/11/15/SDUCTF2019-wp/pwn1.jpg" alt></p>
+<p>虽然pwn还没入门，不过这确实是最简单得pwn。</p>
+<p>熟悉nc即netcat命令即可，<code>netcat ctf.sec.sdunet.cn 38849</code>直接连上通过<code>ls,cat</code>命令读取flag</p>
+<h1 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h3 id="0x01-Base"><a href="#0x01-Base" class="headerlink" title="0x01 Base"></a>0x01 Base</h3><blockquote>
+<p>题目描述：[<a href="https://baike.baidu.com/item/贝斯/]" target="_blank" rel="noopener">https://baike.baidu.com/item/贝斯/]</a></p>
+<p><a href="https://www.google.com/search?q=ZmxhZ3tiYXNlNjRfaXNfbm90X2FuX2VuY3J5cHRpb25fbWV0aG9kfQ" target="_blank" rel="noopener">奇怪的链接</a></p>
+</blockquote>
+<p>题目直接给了两个链接，不过第二个如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ZmxhZ3tiYXNlNjRfaXNfbm90X2FuX2VuY3J5cHRpb25fbWV0aG9kfQ</span><br></pre></td></tr></table></figure>
+<p>直接扔base64去解码，得到flag：<code>flag{base64_is_not_an_encryption_method}</code></p>
+<h3 id="0x02-诡异的数字"><a href="#0x02-诡异的数字" class="headerlink" title="0x02 诡异的数字"></a>0x02 诡异的数字</h3><blockquote>
+<p>题目描述：摩同学做ctf到深夜，点开这道题却发现网安实验室里的灯突然有规律的时暗时亮，十分诡异。难道这代表着什么？<br>他用颤抖的双手记下了下面这段文字。你能发现其中的奥秘吗？<br>11 111 010 000 0 11111 00 000 11111<br>00 10 1 0 010 0 000 1 00 10 110</p>
+<p>flag格式为sductf{xxxxxxxxxx}</p>
+</blockquote>
+<p>既然是摩同学，那么直接放莫斯解码即可，字符串利用python脚本的<code>str.replae()</code>方法替换成<code>.-</code>即可，即1对应<code>-</code>，2对应<code>.</code>，解得flag。</p>
+<h3 id="0x03-九宫格"><a href="#0x03-九宫格" class="headerlink" title="0x03 九宫格"></a>0x03 九宫格</h3><blockquote>
+<p>题目描述：无论是搜狗输入法还是百度输入法还是QQ输入法还是讯飞输入法还是谷歌输入法还是……….都有9宫格，所以这个题目炒鸡简单</p>
+<p>7426366432983<br>解出来的明文赋值给x</p>
+<p>flag为 flag{ md5(x+md5(x,16), 32) }<br>(结果没有空格，x+ 表示的是x与另一个字符串进行拼接）</p>
+</blockquote>
+<p>一串数字通过经典的九宫格打出来是<code>山东大学</code>四个字</p>
+<p>然后通过python的<code>hashlib.md5()</code>就可以算出flag</p>
+<p>md5的16位百度得知是截取32位md5中间的16位</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line">s = <span class="string">"山东大学"</span></span><br><span class="line">mobj = hashlib.md5(s.encode(<span class="string">'utf-8'</span>)).hexdigest()[<span class="number">8</span>:<span class="number">24</span>]</span><br><span class="line">ans = hashlib.md5(str(s+mobj).encode(<span class="string">'utf-8'</span>)).hexdigest()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = <span class="string">"山东大学"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>mobj = hashlib.md5(s.encode(<span class="string">'utf-8'</span>)).hexdigest()[<span class="number">8</span>:<span class="number">24</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>mobj</span><br><span class="line"><span class="string">'f09383b061bb3c9f'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans = hashlib.md5(str(s+mobj).encode(<span class="string">'utf-8'</span>)).hexdigest()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ans</span><br><span class="line"><span class="string">'ecf506190946c4e8d06d53e14191329e'</span></span><br></pre></td></tr></table></figure>
+<h1 id="Mobile"><a href="#Mobile" class="headerlink" title="Mobile"></a>Mobile</h1><h3 id="0x01-apk1"><a href="#0x01-apk1" class="headerlink" title="0x01 apk1"></a>0x01 apk1</h3><blockquote>
+<p> 题目描述：用着安卓手机，你懂apk吗？ </p>
+</blockquote>
+<p>通过工具<code>d2j-dex2jar</code>和<code>jd-gui</code>两者逆向apk得到flag</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/mobile-apk1.jpg" alt></p>
+<h3 id="0x02-apk2"><a href="#0x02-apk2" class="headerlink" title="0x02 apk2"></a>0x02 apk2</h3><blockquote>
+<p>题目描述： 你真的懂apk吗？ </p>
+</blockquote>
+<p>通过工具<code>d2j-dex2jar</code>和<code>jd-gui</code>两者逆向apk得到flag</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/mobile-apk2.jpg" alt></p>
+<p>然后看代码可知是对字符串进行一个排序，将字符串里的第i位放到s2[i]位，得到结果</p>
+<p>直接写一个python脚本得到flag</p>
+<h1 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h1><h3 id="0x01-Java-jar"><a href="#0x01-Java-jar" class="headerlink" title="0x01 Java jar"></a>0x01 Java jar</h3><blockquote>
+<p>题目描述： 都是java程序员，互相偷个代码谁不会呀！ </p>
+</blockquote>
+<p><img src="/2019/11/15/SDUCTF2019-wp/re1-java.jpg" alt></p>
+<p>下载附件得到jar包，直接解压得到文件，打开<code>main.class</code>，看到flag明文就在main.class里</p>
+<p>0x02</p>
+<blockquote>
+<p>题目描述： C#简直跟java一样，会java就自然上手c#了。 </p>
+</blockquote>
+<p>下载附件得到sductf.exe，拖入辣个女人ida进行逆向，直接得到flag</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/re2-sductf.jpg" alt></p>
+<p>0x03 Rust</p>
+<blockquote>
+<p>题目描述： 你听说过Rust语言吗？<br>                    据说它非常安全。 </p>
+</blockquote>
+<p>没接触过rust语言，不过据说逆向不知道程序逆向结构时，最好自己写个程序HelloWorld进行逆向一波看结构，但是我偷懒了。</p>
+<p>直接百度搜索：rust逆向</p>
+<p> <a href="https://www.anquanke.com/post/id/169970" target="_blank" rel="noopener">https://www.anquanke.com/post/id/169970</a> </p>
+<p> <a href="https://blog.csdn.net/qq_33438733/article/details/81138573" target="_blank" rel="noopener">https://blog.csdn.net/qq_33438733/article/details/81138573</a> </p>
+<p>看完链接之后打开ida，还需要64bit的辣个女人。</p>
+<p>乱逛发现有一个字符串，但是解码出来是一个奇怪的东西，继续找主函数main</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/re3-rust-2.jpg" alt></p>
+<p>主函数入口</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/re3-rust-3.jpg" alt></p>
+<p>点进第一个函数查看流程</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/re3-rust-4.jpg" alt></p>
+<p>既然是逆向，那就从尾部往后面看，果然看到一个判断和一个类似flag的字符串<code>c2R1Y3Rme0lfbDB2ZV9ydXN0X2hoaGh9</code>，base64解码得到flag：<code>sductf{I_l0ve_rust_hhhh}</code></p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/re3-rust-5.jpg" alt></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctf/" rel="tag"># ctf</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/11/XCTF-adworld-web-wp/" rel="next" title="XCTF-adworld-web-wp">
+                <i class="fa fa-chevron-left"></i> XCTF-adworld-web-wp
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Magic King">
+            
+              <p class="site-author-name" itemprop="name">Magic King</p>
+              <div class="site-description motion-element" itemprop="description">Now You See Me!</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Magic-King" title="GitHub &rarr; https://github.com/Magic-King" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SDUCTF2019-WriteUp"><span class="nav-number">1.</span> <span class="nav-text">SDUCTF2019-WriteUp</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web"><span class="nav-number">2.</span> <span class="nav-text">Web</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-最简答的Web题"><span class="nav-number">2.0.1.</span> <span class="nav-text">0x01 最简答的Web题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-按钮点击"><span class="nav-number">2.0.2.</span> <span class="nav-text">0x02 按钮点击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-量子波动速读"><span class="nav-number">2.0.3.</span> <span class="nav-text">0x03 量子波动速读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-芝麻开门"><span class="nav-number">2.0.4.</span> <span class="nav-text">0x04 芝麻开门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x05-Funny-Button"><span class="nav-number">2.0.5.</span> <span class="nav-text">0x05 Funny Button</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x06-曲奇"><span class="nav-number">2.0.6.</span> <span class="nav-text">0x06 曲奇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x07-GET"><span class="nav-number">2.0.7.</span> <span class="nav-text">0x07 GET</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x08-未来浏览器"><span class="nav-number">2.0.8.</span> <span class="nav-text">0x08 未来浏览器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x09-POST"><span class="nav-number">2.0.9.</span> <span class="nav-text">0x09 POST</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x0a-vim好用啊"><span class="nav-number">2.0.10.</span> <span class="nav-text">0x0a vim好用啊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x0b-一句话木马"><span class="nav-number">2.0.11.</span> <span class="nav-text">0x0b 一句话木马</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x0c-达拉崩吧"><span class="nav-number">2.0.12.</span> <span class="nav-text">0x0c 达拉崩吧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原题wp：-https-github-com-ustclug-hackergame2019-writeups-blob-master-official-E8-BE-BE-E6-8B-89-E5-B4-A9-E5-90-A7-E5-A4-A7-E5-86-92-E9-99-A9-README-md"><span class="nav-number">2.0.13.</span> <span class="nav-text">原题wp： https://github.com/ustclug/hackergame2019-writeups/blob/master/official/%E8%BE%BE%E6%8B%89%E5%B4%A9%E5%90%A7%E5%A4%A7%E5%86%92%E9%99%A9/README.md</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#Misc"><span class="nav-number">3.</span> <span class="nav-text">Misc</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-Gif"><span class="nav-number">3.0.1.</span> <span class="nav-text">0x01 Gif</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-PDF"><span class="nav-number">3.0.2.</span> <span class="nav-text">0x02 PDF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-今晚月色美吗"><span class="nav-number">3.0.3.</span> <span class="nav-text">0x03 今晚月色美吗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-聋子听声音"><span class="nav-number">3.0.4.</span> <span class="nav-text">0x04 聋子听声音</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PWN"><span class="nav-number">4.</span> <span class="nav-text">PWN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-Simple-nc"><span class="nav-number">4.0.1.</span> <span class="nav-text">0x01 Simple nc</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Crypto"><span class="nav-number">5.</span> <span class="nav-text">Crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-Base"><span class="nav-number">5.0.1.</span> <span class="nav-text">0x01 Base</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-诡异的数字"><span class="nav-number">5.0.2.</span> <span class="nav-text">0x02 诡异的数字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-九宫格"><span class="nav-number">5.0.3.</span> <span class="nav-text">0x03 九宫格</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mobile"><span class="nav-number">6.</span> <span class="nav-text">Mobile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-apk1"><span class="nav-number">6.0.1.</span> <span class="nav-text">0x01 apk1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-apk2"><span class="nav-number">6.0.2.</span> <span class="nav-text">0x02 apk2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reverse"><span class="nav-number">7.</span> <span class="nav-text">Reverse</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-Java-jar"><span class="nav-number">7.0.1.</span> <span class="nav-text">0x01 Java jar</span></a></li></ol></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Magic King</span>
+
+  
+
+  
+</div>
+
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0 </div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-2" count="666" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+</body>
+</html>
