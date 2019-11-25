@@ -911,6 +911,14 @@ sh.interactive()
 
 pwn自带的flat方法可以拼接字符串避开str连接的错误，flat方法传入一个列表`list[]`，list里放所需要拼接的对象 ： `payload = flat(['a'*24,'bbbb',addr])`
 
+还有执行elf文件，由于我的系统是64bitUbuntu，执行32bitELF文件需要安装以下包
+
+```shell
+sudo apt install lib32ncurses5 lib32z1
+```
+
+
+
 
 
 
