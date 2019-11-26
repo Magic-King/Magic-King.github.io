@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2019-11-19T10:23:31.663Z</updated>
+  <updated>2019-11-26T12:21:41.862Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Le Petit Prince Note</title>
+    <link href="http://magic-king.net/2019/11/26/Le-Petit-Prince-Note/"/>
+    <id>http://magic-king.net/2019/11/26/Le-Petit-Prince-Note/</id>
+    <published>2019-11-26T12:06:22.000Z</published>
+    <updated>2019-11-26T12:21:41.862Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Le-Petit-Prince&quot;&gt;&lt;a href=&quot;#Le-Petit-Prince&quot; class=&quot;headerlink&quot; title=&quot;Le Petit Prince&quot;&gt;&lt;/a&gt;Le Petit Prince&lt;/h1&gt;&lt;p&gt;小王子&lt;/p&gt;
+&lt;p&gt;希望我能如小王子一样，被一朵玫瑰所驯化~&lt;/p&gt;
+&lt;p
+      
+    
+    </summary>
+    
+    
+      <category term="Reading" scheme="http://magic-king.net/categories/Reading/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>SDUCTF2019-wp</title>
