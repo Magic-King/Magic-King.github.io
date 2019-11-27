@@ -223,7 +223,7 @@ CreateObject("WScript.Shell").Run "D:\App\Aria2\aria2c.exe --conf-path=aria2.con
 
 **3**. 管理Aria 2 下载任务
 
-- 首先我们要打开Aria2 的WebUI，即YAWW或者
+- 首先我们要打开Aria2 的WebUI，即YAWW或者AriaNg
 - 然后再页面的设置中将JSON-RPC Path设置为http://localhost:6800/jsonrpc
 - 点保存，即可。
 
