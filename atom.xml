@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2019-11-26T12:21:41.862Z</updated>
+  <updated>2019-11-27T13:07:17.661Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>aria2</title>
+    <link href="http://magic-king.net/2019/11/27/aria2/"/>
+    <id>http://magic-king.net/2019/11/27/aria2/</id>
+    <published>2019-11-27T10:05:33.000Z</published>
+    <updated>2019-11-27T13:07:17.661Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Aria2&quot;&gt;&lt;a href=&quot;#Aria2&quot; class=&quot;headerlink&quot; title=&quot;Aria2&quot;&gt;&lt;/a&gt;Aria2&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;参考：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://aria2.github.io/&quot; target=&quot;_blank&quot; rel=
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Le Petit Prince Note</title>
@@ -461,7 +483,7 @@
     
     <summary type="html">
     
-      It is Magic.&lt;/br&gt;the content has been encrypted, enter the password to read.&lt;/br&gt;
+      It is Magic.&lt;br&gt;the content has been encrypted, enter the password to read.&lt;br&gt;
     
     </summary>
     
