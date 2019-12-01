@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2019-11-27T13:10:28.933Z</updated>
+  <updated>2019-12-01T11:45:12.697Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>tricks</title>
+    <link href="http://magic-king.net/2019/12/01/tricks/"/>
+    <id>http://magic-king.net/2019/12/01/tricks/</id>
+    <published>2019-12-01T11:01:11.000Z</published>
+    <updated>2019-12-01T11:45:12.697Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;To-record-some-strange-tricks&quot;&gt;&lt;a href=&quot;#To-record-some-strange-tricks&quot; class=&quot;headerlink&quot; title=&quot;To record some strange tricks&quot;&gt;&lt;/a&gt;To record some stra
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>aria2</title>
