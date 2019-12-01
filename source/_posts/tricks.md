@@ -65,6 +65,10 @@ math.log(x[,base]) = log(x) / log(base)
 
 哪怕是`math.log(x**y,x)`也会有这个问题。
 
+最有力的证明：
+
+![](tricks\3.jpg)
+
 
 
 ------
