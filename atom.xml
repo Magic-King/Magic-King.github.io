@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2019-12-01T11:46:37.055Z</updated>
+  <updated>2019-12-12T07:41:36.170Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -15,6 +15,21 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DDoS-Javascript</title>
+    <link href="http://magic-king.net/2019/12/12/DDoS-Javascript/"/>
+    <id>http://magic-king.net/2019/12/12/DDoS-Javascript/</id>
+    <published>2019-12-12T07:41:36.000Z</published>
+    <updated>2019-12-12T07:41:36.170Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>tricks</title>
@@ -499,11 +514,11 @@
     <link href="http://magic-king.net/2019/05/27/LOVE/"/>
     <id>http://magic-king.net/2019/05/27/LOVE/</id>
     <published>2019-05-27T12:13:14.000Z</published>
-    <updated>2019-09-23T14:38:31.997Z</updated>
+    <updated>2019-12-10T01:50:30.931Z</updated>
     
     <summary type="html">
     
-      It is Magic.&lt;br&gt;the content has been encrypted, enter the password to read.&lt;br&gt;
+      It is Magic.&lt;/br&gt;the content has been encrypted, enter the password to read.&lt;/br&gt;
     
     </summary>
     
