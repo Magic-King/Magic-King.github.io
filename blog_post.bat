@@ -11,5 +11,6 @@ hexo d -g
 @echo hexo deployed&&generated finished
 
 @pause
-
+@pause
+@pause
 
