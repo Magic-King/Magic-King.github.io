@@ -98,19 +98,27 @@
 
 
 
-  <meta name="description" content="引论编译原理是良好的数学基础和好的工程结构功能的结合。 Compiler：编译，述而不作，忠于编写的东西 编译器从逻辑上可以分成若干阶段，每个阶段把源程序从一种表示变换成另一种表示 1.1什么叫编译程序翻译器（翻译程序）：Translater 能将一种语言程序（源语言程序）转换成另一种等价的语言程序（目标语言程序） 编译器（编译程序）：Compiler 能将一种计算机高级语言程序（源语言程序）转换">
+  <meta name="description" content="一、引论编译原理是良好的数学基础和好的工程结构功能的结合。 Compiler：编译，述而不作，忠于编写的东西 编译器从逻辑上可以分成若干阶段，每个阶段把源程序从一种表示变换成另一种表示 1.1什么叫编译程序翻译器（翻译程序）：Translater 能将一种语言程序（源语言程序）转换成另一种等价的语言程序（目标语言程序） 编译器（编译程序）：Compiler 能将一种计算机高级语言程序（源语言程序）">
 <meta name="keywords" content="Compilier,StudyNote">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Compiler">
 <meta property="og:url" content="http://magic-king.net/2019/09/04/Compiler/index.html">
 <meta property="og:site_name" content="Hexo&amp;Magic">
-<meta property="og:description" content="引论编译原理是良好的数学基础和好的工程结构功能的结合。 Compiler：编译，述而不作，忠于编写的东西 编译器从逻辑上可以分成若干阶段，每个阶段把源程序从一种表示变换成另一种表示 1.1什么叫编译程序翻译器（翻译程序）：Translater 能将一种语言程序（源语言程序）转换成另一种等价的语言程序（目标语言程序） 编译器（编译程序）：Compiler 能将一种计算机高级语言程序（源语言程序）转换">
+<meta property="og:description" content="一、引论编译原理是良好的数学基础和好的工程结构功能的结合。 Compiler：编译，述而不作，忠于编写的东西 编译器从逻辑上可以分成若干阶段，每个阶段把源程序从一种表示变换成另一种表示 1.1什么叫编译程序翻译器（翻译程序）：Translater 能将一种语言程序（源语言程序）转换成另一种等价的语言程序（目标语言程序） 编译器（编译程序）：Compiler 能将一种计算机高级语言程序（源语言程序）">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://magic-king.net/2019/09/04/Compiler/1.2_1.jpg">
-<meta property="og:updated_time" content="2019-12-16T09:02:24.852Z">
+<meta property="og:image" content="http://magic-king.net/2019/09/04/Compiler/2.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/09/04/Compiler/3.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/09/04/Compiler/4.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/09/04/Compiler/5.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/09/04/Compiler/5.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/09/04/Compiler/6.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/09/04/Compiler/7.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/09/04/Compiler/7.jpg">
+<meta property="og:updated_time" content="2019-12-17T13:48:41.506Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Compiler">
-<meta name="twitter:description" content="引论编译原理是良好的数学基础和好的工程结构功能的结合。 Compiler：编译，述而不作，忠于编写的东西 编译器从逻辑上可以分成若干阶段，每个阶段把源程序从一种表示变换成另一种表示 1.1什么叫编译程序翻译器（翻译程序）：Translater 能将一种语言程序（源语言程序）转换成另一种等价的语言程序（目标语言程序） 编译器（编译程序）：Compiler 能将一种计算机高级语言程序（源语言程序）转换">
+<meta name="twitter:description" content="一、引论编译原理是良好的数学基础和好的工程结构功能的结合。 Compiler：编译，述而不作，忠于编写的东西 编译器从逻辑上可以分成若干阶段，每个阶段把源程序从一种表示变换成另一种表示 1.1什么叫编译程序翻译器（翻译程序）：Translater 能将一种语言程序（源语言程序）转换成另一种等价的语言程序（目标语言程序） 编译器（编译程序）：Compiler 能将一种计算机高级语言程序（源语言程序）">
 <meta name="twitter:image" content="http://magic-king.net/2019/09/04/Compiler/1.2_1.jpg">
 
 
@@ -437,7 +445,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-12-16 17:02:24" itemprop="dateModified" datetime="2019-12-16T17:02:24+08:00">2019-12-16</time>
+                <time title="修改时间：2019-12-17 21:48:41" itemprop="dateModified" datetime="2019-12-17T21:48:41+08:00">2019-12-17</time>
               
             
           </span>
@@ -496,9 +504,9 @@
       
 
       
-        <h2 id="引论"><a href="#引论" class="headerlink" title="引论"></a>引论</h2><p>编译原理是良好的数学基础和好的工程结构功能的结合。</p>
+        <h2 id="一、引论"><a href="#一、引论" class="headerlink" title="一、引论"></a>一、引论</h2><p>编译原理是良好的数学基础和好的工程结构功能的结合。</p>
 <p>Compiler：编译，述而不作，忠于编写的东西</p>
-<p>编译器从逻辑上可以分成若干阶段，<strong>每个阶段把源程序从一种表示变换成另一种表示</strong></p>
+<p>编译器从<strong>逻辑</strong>上可以分成若干阶段，<strong>每个阶段把源程序从一种表示变换成另一种表示</strong></p>
 <h3 id="1-1什么叫编译程序"><a href="#1-1什么叫编译程序" class="headerlink" title="1.1什么叫编译程序"></a>1.1什么叫编译程序</h3><p>翻译器（翻译程序）：Translater</p>
 <p>能将一种语言程序（源语言程序）转换成另一种等价的语言程序（目标语言程序）</p>
 <p>编译器（编译程序）：Compiler</p>
@@ -525,7 +533,7 @@
 <p>（2）目标语言，假定目标语言是机器语言，就必须搞清楚硬件的系统结构和操作系统的功能</p>
 <p>（3）编译方法，把一种语言翻译成另一种语言的方法很多，重点</p>
 </blockquote>
-<h2 id="高级语言及其语法描述"><a href="#高级语言及其语法描述" class="headerlink" title="高级语言及其语法描述"></a>高级语言及其语法描述</h2><h3 id="2-1程序语言的语法和语义"><a href="#2-1程序语言的语法和语义" class="headerlink" title="2.1程序语言的语法和语义"></a>2.1程序语言的语法和语义</h3><h4 id="2-1-1语法"><a href="#2-1-1语法" class="headerlink" title="2.1.1语法"></a>2.1.1语法</h4><p>任何语言均可作一个集合。这个集合中的每个元素都是在一定符号集（字母表）上的一个符号串。</p>
+<h2 id="二、高级语言及其语法描述"><a href="#二、高级语言及其语法描述" class="headerlink" title="二、高级语言及其语法描述"></a>二、高级语言及其语法描述</h2><h3 id="2-1程序语言的语法和语义"><a href="#2-1程序语言的语法和语义" class="headerlink" title="2.1程序语言的语法和语义"></a>2.1程序语言的语法和语义</h3><h4 id="2-1-1语法"><a href="#2-1-1语法" class="headerlink" title="2.1.1语法"></a>2.1.1语法</h4><p>任何语言均可作一个集合。这个集合中的每个元素都是在一定符号集（字母表）上的一个符号串。</p>
 <p>对于自然语言来说，他们是定义在某个字母表上的<strong>句子的集合</strong></p>
 <p>对于程序语言来说，他们也是定义在某个字母表上的<strong>句子</strong>的集合。这里的句子，就是一个源程序。</p>
 <p>词法规则：单词符号是语言中具有独立意义的最基本单位。语言的单词符号是由词法规则所确定的，即词法规则规定了单词符号的形成规则。</p>
@@ -542,17 +550,17 @@
 <p>  <strong>符号</strong>：字母表中的元素         例： a，b，c</p>
 <p>  <strong>符号串</strong>：符号的有穷序列       例：a, aa, ac, abc，..</p>
 <p>  <strong>空符号串</strong>：无任何符号的符号串( ε )    </p>
+<p>  <strong>符号串集合</strong>：由符号串构成的集合。</p>
 <blockquote>
 <p><strong>符号串的形式定义</strong></p>
 <p>   有字母表∑，定义：</p>
 <p>  （1）ε是∑上的符号串；</p>
-<p>  （2）若x是∑上的符号串，且a∈ ∑，则ax或xa是 ∑ 上的符号串；</p>
+<p>  （2）若x是∑上的符号串，且<code>a∈ ∑</code>，则<code>ax</code>或<code>xa</code>是 ∑ 上的符号串；</p>
 <p>  （3）y是∑上的符号串，iff（当且仅当）y可由（1）和（2）产生。   </p>
 </blockquote>
-<p>  <strong>符号串集合</strong>：由符号串构成的集合。</p>
 <h4 id="二、符号串和符号串集合的运算"><a href="#二、符号串和符号串集合的运算" class="headerlink" title="二、符号串和符号串集合的运算"></a>二、符号串和符号串集合的运算</h4><p><strong>符号串相等</strong>：若x、y是集合上的两个符号串，则x＝y，iff（当且仅当）组成x的每一个符号和组成y的<strong>每一个</strong>符号依次相等。</p>
-<p><strong>符号串的长度</strong>：若x为符号串，其长度|x|等于组成该符      号串的符号个数。（例：x＝STV， |x|=3）</p>
-<p><strong>符号串的连接</strong>：若x、y是定义在Σ是上的符号串，且x＝XY，y＝YX，则x和y的连接 xy＝XYYX也是Σ上的符号串。（注意：一般<code>xy ≠ yx</code>，但是<code>εx = xε</code>）</p>
+<p><strong>符号串的长度</strong>：若x为符号串，其长度|x|等于组成该符      号串的符号个数。（例：<code>x＝STV， |x|=3</code>）</p>
+<p><strong>符号串的连接</strong>：若x、y是定义在Σ是上的符号串，且<code>x＝XY，y＝YX</code>，则x和y的连接 <code>xy ＝ XYYX</code>也是Σ上的符号串。（注意：一般<code>xy ≠ yx</code>，但是<code>εx = xε</code>）</p>
 <p><strong>符号串集合的乘积运算</strong>：令A、B为符号串集合，定义<code>AB＝{ xy | x∈A, y∈B}</code></p>
 <p><strong>符号串集合的幂运算</strong>：有符号串集合A，定义A<sup>0</sup> ={ε},  A<sup>1</sup>=A,  A<sup>2</sup>=AA,  A<sup>3</sup>=AAA,…… ……,                    A<sup>n</sup>＝A<sup>n-1</sup>A=AA<sup>n-1 </sup> ，n&gt;0</p>
 <p><strong>符号串集合的闭包运算</strong>：设A是符号串集合，定义  A<sup>＋</sup>＝ A<sup>1</sup> ∪ A<sup>2</sup> ∪ A<sup>3</sup> ∪……∪ A<sup>n</sup> ∪……  称为集合A的正则闭包。A*＝ A<sup>0</sup> ∪A<sup>＋ </sup>称为集合A的闭包。（A<sup>0</sup> = { ε } ）</p>
@@ -582,7 +590,456 @@
 <p>&lt;主语&gt;&lt;谓语&gt; =&gt; &lt;代词&gt;&lt;谓语&gt; </p>
 <p>  …… ……</p>
 <p>这种推导一直进行下去，直到所有带&lt; &gt;的符号都由终结符号替代为止。</p>
-
+<blockquote>
+<p><strong>说明</strong>：有若干语法成分同时存在时，我们总是从最左的语法成分进行推导，这称之为<strong>最左推导</strong>，类似的有<strong>最右推导</strong>（一般推导）。</p>
+</blockquote>
+<p><strong>文法</strong>实在<strong>形式上</strong>对句子结构的定义与描述，而未涉及<strong>语义</strong>问题</p>
+<p><strong>4.语法树</strong></p>
+<p>一般用语法树来描述一个句子的语法结构。</p>
+<h4 id="四、文法和语言的形式定义"><a href="#四、文法和语言的形式定义" class="headerlink" title="四、文法和语言的形式定义"></a>四、文法和语言的形式定义</h4><h5 id="1-文法的定义"><a href="#1-文法的定义" class="headerlink" title="1.文法的定义"></a>1.文法的定义</h5><p><strong>定义1:</strong>  文法 G =（V<sub>N</sub>，V<sub>T</sub>，P，Z）</p>
+<p>​            V<sub>N</sub> ：    非终结符号集<br>​            V<sub>T</sub> ：     终结符号集<br>​            P：        产生式或规则的集合<br>​            Z：        开始符号（识别符号）  Z∈VN</p>
+<blockquote>
+<ul>
+<li>产生式：产生式是一个有序对(U, x), 通常写为:</li>
+</ul>
+<p>​       <code>U ::= x</code> 或<code>U ➡ x</code>；   <code>|U| = 1  |x| &gt;= 0</code></p>
+<ul>
+<li><p>非终结符号：出现在产生式的左部,且能推出符号或符号串的那些符号。其全体构成非终结符号集，记为V<sub>N</sub> </p>
+</li>
+<li><p>终结符号：不出现在产生式的左部,且不能推出符号或符号串的那些符号。其全体构成终结符号集，记为V<sub>T</sub> </p>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">无符号整数的文法:</span><br><span class="line">G[&lt;无符号整数&gt;]=（VN，VT，P，Z）</span><br><span class="line">	VN＝&#123;&lt;无符号整数&gt;, &lt;数字串&gt;, &lt;数字&gt;&#125;</span><br><span class="line">	VT  = &#123;0,1,2,3,4,5,6,7,8,9&#125;</span><br><span class="line">	P = &#123;&lt;无符号整数&gt; → &lt;数字串&gt; ;</span><br><span class="line">        &lt;数字串&gt; → &lt;数字串&gt; &lt;数字&gt; ;</span><br><span class="line">        &lt;数字串&gt; → &lt;数字&gt; ;</span><br><span class="line">    	&lt;数字&gt; →0;    &lt;数字&gt; →2; 	&lt;数字&gt; →3;	&lt;数字&gt; →4;	</span><br><span class="line">    	&lt;数字&gt; →5;    &lt;数字&gt; →6;	&lt;数字&gt; →7;	&lt;数字&gt; →8;    &lt;数字&gt; →9; &#125;</span><br><span class="line">	Z = &lt;无符号整数&gt;;</span><br></pre></td></tr></table></figure>
+<p>注：产生式左边符合构成集合V<sub>N</sub>，且Z ∈ V<sub>N</sub></p>
+<p>​        有些产生式有相同的左部，可以合在一起</p>
+<p>​        给定一个文法，实际上只需给出产生式的集合，并指定识别符号（开始符号）</p>
+<h5 id="2-推导与归约"><a href="#2-推导与归约" class="headerlink" title="2.推导与归约"></a>2.推导与归约</h5><p><strong>定义2：</strong>直接推导：</p>
+<p>有文法G：<code>v = xUy</code>，<code>w = xuy</code>，其中x、y∈V*，U∈V<sub>N</sub>，u∈V*，</p>
+<p>若U ::= u∈P，则v &rArr; w，</p>
+<p>若 x = y = ε ， 有 U ::= u， 则U &rArr; u</p>
+<p>x和y是符号串，若使用一次产生式可以从x变换出y，则称x直接推导出y(或者说y是x的直接推导），记为x&rArr;y。</p>
+<p><strong>定义3：</strong> <code>+</code>推导：x和y是符号串，若使用若干次产生式可以从x变换出y，则称x推导出y(或者说y是x的推导），记为x  =<sup>+</sup>=&rArr;y。</p>
+<p>即，若有直接推导序列：x=U0==&gt;U1==&gt;U2==&gt;……==&gt;Un=y,则 x=<sup>+</sup>=&gt;y 。</p>
+<p> <strong>定义4：</strong><code>*</code>推导：x和y是符号串，若使用0次或若干次产生式可以从x变换出y，则称x<em>推导出y(或者说y是x的</em>推导），记为x=<sup>*</sup>=&gt;y。</p>
+<p>如：N=<sup>*</sup>=&gt;N， N=<sup>*</sup>=&gt;109</p>
+<p><strong>定义5：</strong>最右推导&amp;最左推导</p>
+<ul>
+<li><p><strong>最右推导</strong>：若符号串α中有两个以上的非终结符时，对推导的每一步坚持把α中的最右非终结符进行替换，称为最右推导。</p>
+</li>
+<li><p><strong>最左推导</strong>：若符号串α中有两个以上的非终结符时，对推导的每一步坚持把α中的最左非终结符进行替换，称为最左推导。</p>
+</li>
+</ul>
+<p><strong>！！！规范推导＝最右推导</strong></p>
+<p><strong>定义6：</strong>推导的逆过程为归约</p>
+<p>x==&gt;y，可称为x直接推导出y，也可称为y直接归约出x</p>
+<h5 id="3-语言的形式定义"><a href="#3-语言的形式定义" class="headerlink" title="3.语言的形式定义"></a>3.语言的形式定义</h5><p><strong>定义7：</strong>文法G[Z]</p>
+<p>​            （1）<strong>句型</strong>：x是句型 &hArr; Z =<sup>*</sup>=&gt;x,且 x∈V<sup>*</sup>；</p>
+<p>​            （2）<strong>句子</strong>：x是句子 &hArr; Z =<sup>+</sup>=&gt; x, 且 x∈V<sub>T</sub><sup>*</sup>；</p>
+<p>​            （3）<strong>语言</strong>：L（G[Z]）={x| Z=<sup>+</sup>=&gt;x， x∈V<sub>T</sub><sup>*</sup> }；（文法G[z]产生的所有句子的集合）</p>
+<p><strong>定义8：</strong>G和G’是两个不同的文法，若L(G) = L(G’)，则G和G’为<strong>等价文法</strong></p>
+<p>编译感兴趣的问题如下</p>
+<p>给定终极符x，文法G，求x ∈ L(G)？</p>
+<p><img src="/2019/09/04/Compiler/2.jpg" alt="编译感兴趣的问题"></p>
+<p><strong>4.文法分类</strong></p>
+<ul>
+<li>形式语言：用文法和自动机所描述的没有语义的语言</li>
+</ul>
+<p>语言定义： L(G[Z]) = { x | Z=<sup>+</sup>=&gt;x，x∈V<sub>T</sub><sup>*</sup> }</p>
+<p>文法定义：乔姆斯基将所有文法定义为一个<strong>四元组</strong>：G = （V<sub>N</sub>，V<sub>T</sub>，P，Z）</p>
+<blockquote>
+<p>V<sub>N</sub> ：    非终结符号集<br>V<sub>T</sub> ：     终结符号集<br>P：        产生式或规则的集合<br>Z：        开始符号（识别符号）  Z∈VN</p>
+</blockquote>
+<p>文法和语言的分类：0型、1型、2型、3型</p>
+<p><strong>定义9：</strong> 0型文法</p>
+<blockquote>
+<p>P： u  &rarr; v ，其中 u ∈ V<sup>+</sup>，v ∈ V<sup>*</sup></p>
+<p>0型文法称为<strong>短语结构文法</strong>。产生式的左部和右部都可以是符号串，一个短语可以产生另一个短语。</p>
+<p>0型语言：L0，这种语言可以用<strong>图灵机（Turing）</strong>接受</p>
+</blockquote>
+<p><strong>定义10：</strong>1型文法</p>
+<blockquote>
+<p>P： xUy &rarr; xuy ，其中 U ∈V<sub>N</sub>，x、y、u ∈ V<sup>*</sup></p>
+<p>1型文法称为<strong>上下文有关</strong>或上下文敏感。即只有在x、y这样的上下文中才能将U改写为u</p>
+<p>1型语言：L1，这种语言可以有一种<strong>线性界限自动机</strong>接受</p>
+</blockquote>
+<p><strong>定义11：</strong>2型文法</p>
+<blockquote>
+<p>P： U &rarr; u ，其中 U ∈ V<sub>N</sub> ，u ∈ V<sup>*</sup></p>
+<p>2型文法称为<strong>上下文无关文法</strong>。即把U改写为u时，不必考虑上下文。</p>
+<p>注意：2型文法与BNF表示相等价。</p>
+<p>2型语言：L2，这种语言可以由<strong>下推自动机</strong>接受</p>
+</blockquote>
+<p><strong>定义12：</strong>3型文法</p>
+<blockquote>
+<p>（左线型） P： U &rarr; T | U &rarr; wT ，其中 U、w ∈ V<sub>N</sub> ，T ∈ V<sub>T</sub> </p>
+<p>（右线性）P： U &rarr; T | U &rarr; Tw ，其中 U、w ∈ V<sub>N</sub> ，T ∈ V<sub>T</sub> </p>
+<p>3型文法称为<strong>正则文法</strong>。它是对2型文法进行进一步的限制</p>
+<p>3型语言：L3，又称正则语言、正则集合，这种语言可以由<strong>有穷自动机</strong>接受</p>
+</blockquote>
+<p>由上易知， L0 &sup; L1 &sup; L2 &sup; L3</p>
+<p>0型文法可以产生L0、L1、L2、L3，但2型文法只能产生L2，不能产生L1</p>
+<h5 id="5-语法树与二义性文法"><a href="#5-语法树与二义性文法" class="headerlink" title="5.语法树与二义性文法"></a>5.语法树与二义性文法</h5><p>1.推导与语法树</p>
+<p>语法树：句子结构的图示表示法，通常表示称一棵倒立的树，即</p>
+<blockquote>
+<p>结点：        符号</p>
+<p>根节点：    识别符号</p>
+<p>中间节点：非终结符</p>
+<p>叶节点：    终结符<del>或非终结符</del></p>
+<p>边：表示节点间的派生关系</p>
+</blockquote>
+<p>句型的推导及语法树的生成（自顶向下）</p>
+<p>给定G[Z]，句型w：可建立推导序列，Z =<sup>*</sup>=&gt; w；可建立语法树，以Z为树根节点，每步推导生成语法树的一枝，最终可生成句型的语法树。</p>
+<p>语法树的生成规律不同，但最终生成的语法树形状完全相同</p>
+<p>一般推导</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line">	A[&lt;无符号整数&gt;] --&gt; B[&lt;数字串&gt;]</span><br><span class="line">	B --&gt; C[&lt;数字串&gt;]</span><br><span class="line">	B --&gt; D[&lt;数字&gt;]</span><br><span class="line">	C --&gt; E[&lt;数字&gt;]</span><br><span class="line">	E --&gt; F[1]</span><br><span class="line">	D --&gt; G[0]</span><br></pre></td></tr></table></figure>
+<p>树与推导：句型推导过程 &hArr; 句型语法树的生长过程</p>
+<p>①由推导构造语法树</p>
+<p>从<strong>识别符号</strong>开始，<strong>自左向右</strong>建立<strong>推导</strong>序列 &rArr; 由<strong>根节点</strong>开始，<strong>自上而下</strong>建立<strong>语法树</strong></p>
+<p>②由语法树构造推导</p>
+<p><strong>自叶而根</strong>修剪子树的末端节点，直至把整棵树剪掉（留根），每剪一次对应一次归约 &rArr; 从句型开始，<strong>自右向左</strong>地逐步进行<strong>归约</strong>，建立推导序列</p>
+<p>2.文法的二义性</p>
+<p><strong>定义：</strong>若对于一个文法的某一句子存在两棵不同的语法树，则该文法是<strong>二义性文法</strong>，否则是无二义性文法</p>
+<p>换而言之，无二义性文法的句子<strong>只有一棵语法树</strong>，尽管推导过程可以不同</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">比如二义性文法: G[E]:	E := E+E | E*E | (E) | i</span><br><span class="line">					Vn = &#123;E&#125;</span><br><span class="line">					VT = &#123;+,*,(,),i&#125;</span><br><span class="line"></span><br><span class="line">针对 i+i*i 有两种不同的语法树</span><br></pre></td></tr></table></figure>
+<p><strong>定义：</strong>若一个文法的某句子存在两个不同的<strong>规范推导（最右推导）</strong>，则该文法是<strong>二义性</strong>的，否则是无二义性的</p>
+<blockquote>
+<p>若文法是二义性的，则在编译时就会产生不确定性，遗憾的是在理论上已经证明：文法的二义性是不可判定的，即不可能构造出一个算法，通过有限步骤来判定任一文法是否有二义性</p>
+<p>现在的解决办法是：提出一些限制条件，称为无二义性的充分条件，当文法满足这些条件时，就可以判定文法是无二义性的。</p>
+<p>由于无二义性文法比较简单，我们也可以采用另一种解决办法：即不改变二义性文法，而是确定一种编译算法，使该算法满足无二义性充分条件。</p>
+</blockquote>
+<p>句柄：句型的句柄是和某产生式右部匹配的子串。句柄是直接短语，即某产生式的右部，具有最左性</p>
+<p>若句柄不存在重复，就说明文法无二义性</p>
+<p>如 S &rarr; ABC ，ABC为该句子的句柄</p>
+<h2 id="三、词法分析"><a href="#三、词法分析" class="headerlink" title="三、词法分析"></a>三、词法分析</h2><ul>
+<li>词法分析 （Lexical Analysis） </li>
+</ul>
+<p>实现词法分析器的程序称为词法分析程序（扫描器）</p>
+<p>词法分析程序的<strong>主要任务</strong>：对构成源程序的字符串<strong>从左到右的扫描</strong>，<strong>逐个字符地</strong>读入源程序字符并按照构词规则切分成一个一个具有独立意义的单词。并确定其属性（如保留字、标识符、运算符、界限符和常量等）。再把它们转换成长度统一的标准形式——属性字（TOKEN）。</p>
+<p>词法分析是编译过程中的第一个阶段，在语法分析前进行。也可以和语法分析结合在一起作为一遍，由语法分析程序调用词法分析程序来获得当前单词供语法分析使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">	A[源程序] --&gt; B[词法分析程序]</span><br><span class="line">	B -- Token --&gt; C[语法分析程序]</span><br><span class="line">	C -- get token --&gt; B</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>为什么将词法分析工作从语法分析工作中独立出来？</p>
+<ul>
+<li><p>简化设计</p>
+</li>
+<li><p>改进编译效率</p>
+</li>
+<li><p>增加编译系统的可移植性</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="3-1-词法分析器的要求"><a href="#3-1-词法分析器的要求" class="headerlink" title="3.1 词法分析器的要求"></a>3.1 词法分析器的要求</h3><ul>
+<li><strong>功能：输入源程序，输出单词符号</strong></li>
+</ul>
+<p><strong>单词符号是一个程序语言的基本语法符号</strong></p>
+<ul>
+<li><strong>单词的分类</strong>：</li>
+</ul>
+<blockquote>
+<p>1.<strong>关键字：</strong>由程序语言定义的具有固定意义的标识符。也称为保留字或基本字</p>
+<p>2.<strong>标识符：</strong>用来表示程序中各种名字的字符串。</p>
+<p>3.<strong>常    数：</strong>常数的类型一般有整型、实型、布尔型、文字型。</p>
+<p>4.<strong>运算符：</strong>如+、－ 、*、/ 等。</p>
+<p>5.<strong>界限符：</strong>如逗号、分号、括号等。</p>
+</blockquote>
+<p><strong>一个程序语言的关键字、运算符、界限符都是固定的，即数量有限及意义明确；而对于标识符和常数通常是不确定的。</strong></p>
+<p>词法分析器所输出的单词符号常常表示为二元式：（单词种别，单词符号的属性值）</p>
+<p>单词种别一般将①标识符归为一种，②常数按类型分种（整数实数布尔），③关键字全体视为一种，或者一个一种，④运算符可采用一符一种，⑤界符一般也用一符一种。</p>
+<p>如果一个种别只含一个单词符号，那么对于这个单词符号，种别编码可完全代表其自身。若一个种别有多个单词符号，那么，对于每个单词符号，除了给出种别编码外，还应给出有关的单词符号的属性信息。</p>
+<p><strong>单词符号的属性</strong>是指单词符号的特性或特征。属性值是反应特性或特征的值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(i&gt;=j)i++;<span class="comment">//以该语句为示例</span></span><br><span class="line"><span class="comment">//该句的单词符号序列如下:</span></span><br><span class="line">&lt;<span class="keyword">while</span>, -&gt;</span><br><span class="line">&lt;(, -&gt;</span><br><span class="line">&lt;id, point(i)&gt;<span class="comment">//存放指向i的指针</span></span><br><span class="line">&lt;&gt;=, -&gt;</span><br><span class="line">&lt;id, point(j)&gt;<span class="comment">//存放指向j的指针</span></span><br><span class="line">&lt;), -&gt;</span><br><span class="line">&lt;id, point(i)&gt;</span><br><span class="line">&lt;--, -&gt;</span><br><span class="line">&lt;;, -&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-词法分析器的设计"><a href="#3-2-词法分析器的设计" class="headerlink" title="3.2 词法分析器的设计"></a>3.2 词法分析器的设计</h3><h4 id="Ⅰ、输入、预处理"><a href="#Ⅰ、输入、预处理" class="headerlink" title="Ⅰ、输入、预处理"></a>Ⅰ、输入、预处理</h4><p>词法分析器工作的第一步是输入源程序文本。输入串一般是放在一个<strong>缓冲区</strong>中，这个缓冲区称<strong>输入缓冲区</strong>。词法分析的工作（单词符号的识别）可以直接在这个缓冲区中进行。但在许多情况下，把输入串<strong>预处理</strong>一下，对单词符号的识别工作将是比较方便的。</p>
+<h5 id="预处理的主要工作"><a href="#预处理的主要工作" class="headerlink" title="预处理的主要工作"></a>预处理的主要工作</h5><ul>
+<li>某些跳格符、回车符和换行符等编辑性字符，在别处的任何出现都没有意义，预处理时可以将其剔掉</li>
+<li>注解部分——仅在于改善程序的易读性和易理解性。对于它们，预处理时可以将其剔掉</li>
+<li>空白符（一个或相继数个）用作单词符号之间的间隔，即用作界符。在这种情况下，预处理时可把相继的若干个空白结合成一个。</li>
+</ul>
+<h4 id="Ⅱ、单词符号的识别：超前搜索"><a href="#Ⅱ、单词符号的识别：超前搜索" class="headerlink" title="Ⅱ、单词符号的识别：超前搜索"></a>Ⅱ、单词符号的识别：超前搜索</h4><p><img src="/2019/09/04/Compiler/3.jpg" alt="词法分析器的结构"></p>
+<p>上图为词法分析器结构，当词法分析器调用预处理子程序处理出一串输入字符放进扫描缓冲区之后，分析器就从此缓冲区种逐一识别单词符号。当缓冲区里的字符串被处理完之后，它又调用预处理程序装入新串。</p>
+<blockquote>
+<p>超前搜索的原因</p>
+<ul>
+<li>在程序中有一些单词的识别经常需要多读入一些字符才能知道哪些字符组成一个单词</li>
+</ul>
+</blockquote>
+<h4 id="Ⅲ、状态转换图"><a href="#Ⅲ、状态转换图" class="headerlink" title="Ⅲ、状态转换图"></a>Ⅲ、状态转换图</h4><p>状态转换图是一张有限方向图，是设计词法分析器的有效工具。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">	0--字母--&gt;1</span><br><span class="line">	1--字母或数字--&gt;1</span><br><span class="line">	1--其他--&gt;2[*]</span><br></pre></td></tr></table></figure>
+<p>一个状态转换图可用于识别（或接受）一定的字符串</p>
+<h3 id="3-3-正规表达式与有限自动机"><a href="#3-3-正规表达式与有限自动机" class="headerlink" title="3.3 正规表达式与有限自动机"></a>3.3 正规表达式与有限自动机</h3><h4 id="1-正规式与正规集"><a href="#1-正规式与正规集" class="headerlink" title="1.正规式与正规集"></a>1.正规式与正规集</h4><p>正规式也称正则表达式（regular expression），是说明单词的模式（pattern）的一种重要的表示法，是定义正规集的数学工具</p>
+<h5 id="正规式及其所表示的正规集的定义："><a href="#正规式及其所表示的正规集的定义：" class="headerlink" title="正规式及其所表示的正规集的定义："></a><strong>正规式及其所表示的正规集的定义：</strong></h5><p>设字母表为∑，辅助字母表∑‘ = { φ，ε， |，&bull;，*，（，）}，</p>
+<p>① ε 和 φ 都是 ∑ 上的正规式，他们所表示的正规集分别为 { ε }和 { } ；</p>
+<p>② 对任何 a ∈ ∑ ，a 是 ∑ 上的一个正规式，他所表示的正规集为 { a } ；</p>
+<p>③ 假定 e<sub>1</sub> 和 e<sub>2</sub> 都是 ∑ 上的正规式他们所表示的正规集分别为 L(e<sub>1</sub>) 和 L(e<sub>2</sub>)，那么，( e<sub>1</sub> ) ，         e<sub>1</sub> | e<sub>2</sub>  ， e<sub>1</sub> &bull; e<sub>2</sub>   ， e<sub>1</sub><sup><em></em></sup> 也都是正规式，他们所表示的正规集分别为 L( e<sub>1</sub> )， L( e<sub>1</sub> ) &cup; L( e<sub>2</sub> )，    L( e<sub>1</sub> ) L( e<sub>2</sub> )  和  ( L( e<sub>1</sub> ) )<sup>\</sup> ；</p>
+<p>④仅由有限次使用上述三步骤而定义的表达式才是 ∑ 上的正规式，仅有这些正规式所表示的集合才是 ∑ 上的正规集。</p>
+<ul>
+<li>注意，| 、 &bull; 、* 、均为正规式的运算符</li>
+</ul>
+<blockquote>
+<p>| 表示或</p>
+<p>&bull; 表示连接</p>
+<p>* 表示闭包，即任意有限次的自重复连接</p>
+<p>在不混淆的情况下，括号可以省去，但规定算符的优先顺序为 *， &bull; ，|。连接符 &bull; 一般可省略不写，三个算符均为左结合的。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">例:</span><br><span class="line">a						&#123;a&#125;</span><br><span class="line">a|b			 			&#123;a,b&#125;</span><br><span class="line">ab						&#123;ab&#125;</span><br><span class="line">(a|b)(a|b)	            &#123;aa,ab,ba,bb&#125;</span><br><span class="line">a*	            		&#123;ε,a,a,……,任意个a的串&#125;</span><br><span class="line">(a|b)*					&#123;ε,a,b,aa,ab,bb,……,所有由a和b组成的串&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>结论：程序设计语言的单词都能用正规式来定义</li>
+</ul>
+<p>正规式的等价性：若两个正规式 e<sub>1</sub> 和 e<sub>2</sub> 所表示的正规集相同，则说 e<sub>1</sub> 和 e<sub>2</sub> 等价，写作 e<sub>1</sub> = e<sub>2</sub> 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">例:</span><br><span class="line">e1 = (a|b) , e2 = (b|a) ,e1 == e2</span><br><span class="line">e1 = b(ab)* , e2 = (ba)*b , e1 == e2</span><br></pre></td></tr></table></figure>
+<p>正规式服从的规律有：</p>
+<ul>
+<li>或服从交换律：U|V = V|U</li>
+<li>或的可结合律：U|(V|W) = (U|V)|W</li>
+<li>连接的可结合律：(UV)W = U(VW)</li>
+<li>分配律：U(V|W) = UV | UW，(V|W)U = VU | WU</li>
+<li>ε是连接的恒等律：εU = U，Uε = U</li>
+<li>素零一律：U|U = U</li>
+<li>或的抽取律： U* = ε|U|UU|…</li>
+</ul>
+<h4 id="2-确定有限自动机"><a href="#2-确定有限自动机" class="headerlink" title="2.确定有限自动机"></a>2.确定有限自动机</h4><p>确定有限自动机（有穷自动机）作为一种识别装置，能准确地识别正规集，即识别正规文法所定义的语言和正规式所表示的集合，引入有穷自动机这个理论，正是为词法分析程序的自动构造寻找特殊的方法和工具</p>
+<p>有穷自动机分两类：确定的有限自动机（deterministic Finite Automata）和不确定的有限自动机（Nondeterministic Finite Automata）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">	RE(RE)</span><br><span class="line">	RE --&gt; NFA(NFA)</span><br><span class="line">	NFA --&gt; DFA(DFA)</span><br><span class="line">	DFA --&gt; minDFA(minDFA)</span><br></pre></td></tr></table></figure>
+<h5 id="DFA"><a href="#DFA" class="headerlink" title="DFA"></a>DFA</h5><p>DFA定义：一个确定的有穷自动机（DFA）M是一个五元组： M = （ S ，∑ ，δ  ，s<sub>0</sub> ，F ）</p>
+<blockquote>
+<p>其中：</p>
+<ul>
+<li>S 是一个有穷集，他的每个元素称为一个状态；</li>
+<li>Σ 是一个有穷字母表，他的每个元素称为一个输入符号，所以也称 Σ 为输入符号表</li>
+<li>δ 是转换函数，实在 S × Σ &rarr; S 上的单值部分映射，即，如果 δ（s，a）= s‘ ，                     (s ∈ S，s’ ∈ S ) 就意味着，当前状态为s，输入符为a时，将转换至下一个状态s’，s’称作s的一个后继状态</li>
+<li>s<sub>0</sub> ∈ S 是唯一的一个初态</li>
+<li>F &sub; S 是一个终态集（可空），终态也称可接受状态或结束状态</li>
+</ul>
+</blockquote>
+<p>DFA可以用一个矩阵表示，该矩阵的行表示状态，列表示输入字符，即s行a列的矩阵元素表示  δ（s，a）的值。这个矩阵称为<strong>状态转换矩阵</strong>。</p>
+<p>一个DFA也可以表示为一张确定的状态转换图</p>
+<blockquote>
+<p>假定DFA M含有 m个状态和 n个输入字符，那么，这个图含有m个状态结点，每个结点顶多有n条箭弧射出和别的结点相连接，每条箭弧用Σ中的一个不同输入字符作标记，整张图含有唯一的一个初态结点和若干个（可以是0个）终态结点。</p>
+<p>一般来说，初态节点旁边标以 &rArr; ；终态节点用双圈表示。</p>
+</blockquote>
+<p>例如：</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>a</th>
+<th>b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+S</td>
+<td>U</td>
+<td>V</td>
+</tr>
+<tr>
+<td>U</td>
+<td>Q</td>
+<td>V</td>
+</tr>
+<tr>
+<td>V</td>
+<td>U</td>
+<td>Q</td>
+</tr>
+<tr>
+<td>-Q</td>
+<td>Q</td>
+<td>Q</td>
+</tr>
+</tbody>
+</table>
+<p>如上表，可表示<code>(a|b)*</code>，也可画成如下图</p>
+<p><img src="/2019/09/04/Compiler/4.jpg" alt></p>
+<p><strong>DFA的确定性</strong></p>
+<p>1.映射δ ： S × Σ &rarr; S 是一个单值函数。也就是说，对任何状态s∈S和输入符号 a ∈ Σ ，f（s，a）唯一地确定了下一状态。从转换图的角度来看，假定字母表 Σ 含有n个输入字符，那么，任何一个状态结最多只有n条弧射出，而且每条弧以一个不同的输入字符标记。 </p>
+<h5 id="NFA"><a href="#NFA" class="headerlink" title="NFA"></a>NFA</h5><p>NFA的定义：一个非确定的有穷自动机（NFA）M是一个五元组：M = （ S ，∑ ，δ  ，S<sub>0</sub> ，F ）</p>
+<blockquote>
+<p>其中：</p>
+<ul>
+<li>S 是一个有穷集，他的每个元素称为一个状态；</li>
+<li>Σ 是一个有穷字母表，他的每个元素称为一个输入符号，所以也称 Σ 为输入符号表</li>
+<li>δ 是转换函数，实在 S × Σ<sup>*</sup>  &rarr; S 上的单值部分映射，即， δ： S × Σ<sup>*</sup> &rarr; 2<sup>S</sup> 表明在某状态下对于某输入符号可能有多个后继状态</li>
+<li>S<sub>0</sub>  &sub; S 是一个非空初态集</li>
+<li>F &sub; S 是一个终态集（可空），终态也称可接受状态或结束状态</li>
+</ul>
+</blockquote>
+<p><img src="/2019/09/04/Compiler/5.jpg" alt></p>
+<p>如图，为一个NFA</p>
+<p>∑<sup>*</sup> 上的符号串 t 被 NFA M 接受也可以这样理解：</p>
+<p>对于Σ*中的任何一个串t，若存在一条从某一初态结到某一终态结的道路，且这条道路上所有弧的标记字依序连接成的串(不理采那些标记为ε的弧)等于t，则称t可为NFA M所识别(读出或接受)。若M的某些结既是初态结又是终态结，或者存在一条从某个初态结到某个终态结的道路,其上所有弧的标记均为ε，那么空字可为M所接受。</p>
+<p>NFA M所能接受的符号串的全体记为L(M) </p>
+<p><strong>结论：</strong> Σ 上一个符号串集 V &sub; Σ<sup>*</sup> 是正规的，当且仅当存在一个 Σ 上的不确定的有穷自动机M，是的 V = L(M)</p>
+<h5 id="NFA和DFA的等价性"><a href="#NFA和DFA的等价性" class="headerlink" title="NFA和DFA的等价性"></a>NFA和DFA的等价性</h5><ul>
+<li>DFA是NFA的特例</li>
+</ul>
+<p>对于每个NFA M，存在一个DFA M’ ，使得L( M ) =L( M’ )。对每个NFA M存在着与之等价的DFA M’。即：对于任何两个有穷自动机M和M’，如果L( M )=L( M’ )，则称M与M’是等价的。</p>
+<p>有一种算法，将NFA转换成接受同样语言的DFA。这种算法称为<strong>子集法</strong>。</p>
+<p>与某一NFA等价的DFA不唯一</p>
+<p>从NFA的矩阵表示中，表项通常是一状态的集合，而在DFA的矩阵表示中，表项是一个状态，NFA到相应的DFA的构造的基本思路是： </p>
+<ul>
+<li><strong>DFA的每一个状态对应NFA的一组状态。</strong></li>
+</ul>
+<p>DFA使用他的状态去记录在NFA读入的一个输入符号后可能达到的所有状态。</p>
+<h5 id="NFA确定化算法（-NFA-rarr-DFA-的转换）"><a href="#NFA确定化算法（-NFA-rarr-DFA-的转换）" class="headerlink" title="NFA确定化算法（ NFA &rarr; DFA  的转换）"></a>NFA确定化算法（ NFA &rarr; DFA  的转换）</h5><p>假设NFA N = （ K， Σ ， f ，K<sub>0</sub>，K<sub>t</sub> ）按如下办法构造一个DFA M=（ S， å，δ，S<sub>0</sub> ，S<sub>t</sub>），使得L(M) = L(N) ：</p>
+<ol>
+<li><p>M的状态集 S 由 <strong>K 的一些子集</strong>组成。用 [ S<sub>1</sub> ，S<sub>2</sub> ，…，S<sub>j</sub> ] 表示 S 的元素，其中 S<sub>1</sub> ，S<sub>2</sub> ，…，S<sub>j</sub> 是K的状态。并约定， 状态 S<sub>1</sub> ，S<sub>2</sub> ，…，S<sub>j</sub>  是按某种规则排列的，即对于子集{S<sub>1</sub> ，S<sub>2</sub> } = {S<sub>2</sub> ，S<sub>1</sub> }来说，S的状态就是 [S<sub>1</sub> ，S<sub>2 </sub>]</p>
+</li>
+<li><p>M和N的输入字母表是相同的，即 Σ</p>
+</li>
+<li>转换函数是这样定义的： δ（ [ S<sub>1</sub> ，S<sub>2</sub> ，…，S<sub>j</sub> ] ，a ） = [ R<sub>1</sub> ，R<sub>2</sub> ，…，R<sub>t</sub> ]  ，其中                      { R<sub>1</sub> ，R<sub>2</sub> ，…，R<sub>t</sub>  } = ε-closure（ move（{S<sub>1</sub> ，S<sub>2</sub> ，…，S<sub>j</sub> } ， a） ）</li>
+<li>S<sub>0</sub>  = ε-closure（ K<sub>0</sub> ）为 M 的开始状态</li>
+<li>S<sub>t</sub> = {S<sub>i</sub> ，S<sub>k</sub> ，…，S<sub>e</sub> }， 其中  [ S<sub>i</sub> ，S<sub>k</sub> ，…，S<sub>e</sub> ]  ∈ S 且 {S<sub>i</sub> ，S<sub>k</sub> ，…，S<sub>e</sub> } &cap; K<sub>t</sub>  &ne;  &phi; </li>
+</ol>
+<blockquote>
+<ul>
+<li><p><strong>状态集合 I 的 ε-闭包</strong>，表示为ε-closure( I )，定义为一状态集，是状态集I中的任何状态S经任意条ε弧而能到达的状态的集合。</p>
+<p>状态集合I的任何状态S都属于ε-closure(I)</p>
+</li>
+<li><p><strong>状态集合 I 的 &alpha; 弧转换</strong>，定义状态集合 J 表示为 J = move(I,a) ，其中J是所有那些可从I中的某一状态经过一条a弧而到达的状态的全体。</p>
+<p>I<sub>a</sub>  =  ε-closure( J )  =  ε-closure( move( I , a )  )</p>
+</li>
+</ul>
+</blockquote>
+<p><img src="/2019/09/04/Compiler/5.jpg" alt></p>
+<p>如之前NFA的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">I=&#123;1&#125;,  ε-closure(I) = &#123;1,2&#125;；</span><br><span class="line">I=&#123;5&#125;,  ε-closure(I) = &#123;5,6,2&#125;；</span><br><span class="line">move( &#123;1,2&#125; , a ) = &#123;5,3,4&#125;</span><br><span class="line">ε-closure(&#123;5,3,4&#125;) = &#123;2,3,4,5,6,7,8&#125;；</span><br></pre></td></tr></table></figure>
+<p>构造NFA N的<strong>状态K的子集</strong>的算法：</p>
+<p>​        假定所构造的子集族为C，即 C = （T<sub>1</sub> ，T<sub>2</sub> ，… ， T<sub>I</sub> ），其中 T<sub>1</sub> ，T<sub>2</sub> ，… ， T<sub>I</sub>  为状态K的子集。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1.开始，令ε-closure(K0)为C中的唯一成员，并且他是未被标记的</span><br><span class="line"></span><br><span class="line">2.while( C中尚未被标记的子集T )do&#123;</span><br><span class="line">	标记T;</span><br><span class="line">	for 每个输入字母a do&#123;</span><br><span class="line">		U := ε-closure( move(T, a) );</span><br><span class="line">		if U 不在 C 中:</span><br><span class="line">			将U作为未标记的子集Ti加在C中;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例：</p>
+<p><img src="/2019/09/04/Compiler/6.jpg" alt></p>
+<p>如上图为实例NFA，构造其状态转换表</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">I</th>
+<th style="text-align:center">I<sub>a</sub></th>
+<th style="text-align:center">I<sub>b</sub></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">{i，1，2}</td>
+<td style="text-align:center">{1，2，3}</td>
+<td style="text-align:center">{1，2，4}</td>
+</tr>
+<tr>
+<td style="text-align:center">{1，2，3}</td>
+<td style="text-align:center">{1，2，3，5，6，f}</td>
+<td style="text-align:center">{1，2，4}</td>
+</tr>
+<tr>
+<td style="text-align:center">{1，2，4}</td>
+<td style="text-align:center">{1，2，3}</td>
+<td style="text-align:center">{1，2，4，5，6，f}</td>
+</tr>
+<tr>
+<td style="text-align:center">{1，2，3，5，6，f}</td>
+<td style="text-align:center">{1，2，3，5，6，f}</td>
+<td style="text-align:center">{1，2，4，6，f}</td>
+</tr>
+<tr>
+<td style="text-align:center">{1，2，4，5，6，f}</td>
+<td style="text-align:center">{1，2，3，6，f}</td>
+<td style="text-align:center">{1，2，4，5，6，f}</td>
+</tr>
+<tr>
+<td style="text-align:center">{1，2，4，6，f}</td>
+<td style="text-align:center">{1，2，3，6，f}</td>
+<td style="text-align:center">{1，2，4，5，6，f}</td>
+</tr>
+<tr>
+<td style="text-align:center">{1，2，3，6，f}</td>
+<td style="text-align:center">{1，2，3，5，6，f}</td>
+<td style="text-align:center">{1，2，4，6，f}</td>
+</tr>
+</tbody>
+</table>
+<p>将其每个状态确定化，即得到如下等价DFA</p>
+<p><img src="/2019/09/04/Compiler/7.jpg" alt="DFA">N</p>
+<p>状态转换表如下，将一组状态替换成对应符号。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">I</th>
+<th style="text-align:center">Ia</th>
+<th style="text-align:center">Ib</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">S</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">B</td>
+</tr>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:center">C</td>
+<td style="text-align:center">B</td>
+</tr>
+<tr>
+<td style="text-align:center">B</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">D</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">C</td>
+<td style="text-align:center">E</td>
+</tr>
+<tr>
+<td style="text-align:center">D</td>
+<td style="text-align:center">F</td>
+<td style="text-align:center">D</td>
+</tr>
+<tr>
+<td style="text-align:center">E</td>
+<td style="text-align:center">F</td>
+<td style="text-align:center">D</td>
+</tr>
+<tr>
+<td style="text-align:center">F</td>
+<td style="text-align:center">C</td>
+<td style="text-align:center">E</td>
+</tr>
+</tbody>
+</table>
+<h5 id="minDFA"><a href="#minDFA" class="headerlink" title="minDFA"></a>minDFA</h5><p>说一个有穷自动机是化简了的，即是说，<strong>它没有多余状态并且它的状态中没有两个是互相等价的</strong>。一个有穷自动机可以通过<strong>消除多余状态</strong>和<strong>合并等价状态</strong>而转换成一个最小的与之等价的有穷自动机。即用一个状态代替所有与其等价的状态。</p>
+<p>所谓有穷自动机的多余状态，是指这样的状态：从自动机的开始状态出发，任何输入串也不能到达的那个状态；或者从这个状态没有通路到达终态。</p>
+<ul>
+<li>DFA的最小化就是寻求最小状态DFA</li>
+</ul>
+<p><strong>最小状态DFA的含义：</strong>①没有多余状态（死状态）；②没有两个状态时互相等价的（不可区别）。</p>
+<blockquote>
+<p>两个状态s和t可区别：不满足</p>
+<ul>
+<li>兼容性：同时终态或同时非终态</li>
+<li>传播性：从s出发读入某个a（a ∈ Σ ）和从t出发读入某个a到达的状态等价</li>
+</ul>
+<p>两个状态s和t等价：</p>
+<ul>
+<li>如果由 s 出发能导出的所有串的集合与 t 出发能导出的所有串的集合相等，我们称状态 s 与状态 t 是等价的。</li>
+</ul>
+</blockquote>
+<p><img src="/2019/09/04/Compiler/7.jpg" alt></p>
+<p>如上面示例的DFA，C和F是等价的。</p>
+<p>C和F同是终态，读入a到达C和F，C和F同是终态，C和F读入a都到达C，读入b都到达E。</p>
+<p>同理D和E也是等价的</p>
+<h5 id="DFA最小化的算法：分割法（逐步分组试探法）"><a href="#DFA最小化的算法：分割法（逐步分组试探法）" class="headerlink" title="DFA最小化的算法：分割法（逐步分组试探法）"></a>DFA最小化的算法：分割法（逐步分组试探法）</h5><p>核心思想：把一个DFA的状态分成一些不相交的子集，使得任何不同的两子集的状态都是可区别的，而同一子集中的任何两个状态都是等价的。算法假定每个状态射出的弧都是完全的,否则，引入一个新状态，叫<strong>死状态</strong>，该状态是非终态，将不完全的输入弧都射向该状态，对所有输入，该状态射出的弧还回到自己。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">设有DFA M = ( s , ∑ , f, s0 , sz ),最小状态DFA M&apos;</span><br><span class="line">1.  因为不难证明，如果si是非终结状态，而sj是终结状态，那么si和sj一定互不等价(根据等价的定义可知，它们导出的符号串集不同)。所以开始可以把K中的终态和非终态分开，分成两个子集，形成一个基本划分：</span><br><span class="line">       P2＝&#123;I1,I2&#125;    (I1∪I2＝K, I1∩I2＝Φ)</span><br><span class="line">2. 若此两个子集还可以进行划分，则作进一步的划分，形成Pm ,假定到某个时候Pm已经含有m个子集，记为：Pm＝&#123;I1,I2,…,Im&#125;，设s&apos;和s&quot;是Ii中的任意两个状态，如果对某个a∈Σ,存在Ij ，使  f(s&apos;,a), f(s&quot;,a)∈Ij ，则称s&apos;和s&quot;关于a是拟等价的。</span><br><span class="line">    如果存在s&apos;，s&quot;∈Ii，使得对字母表Σ中的某个符号a, s&apos;和s&quot;不为拟等价，则我们说Ii是可分的。</span><br><span class="line">    换句话说，令Ii ＝&#123;s1，s2, …，sn&#125; ，如果对某个a∈Σ，使得Ia i＝&#123; f(s1,a)，f(s2,a)，…，f(sn,a)&#125;不全落在现行Pm的某一个子集Ij之中；即Ia i这个集合中的元素分别属于I1，I2，…，Im中的几个不同集合，则Ii可分为几个集合（至少可一分为二）。 </span><br><span class="line">3．转2,上述过程务必一再重复，直到P中的每个集合均是不可再分时为止。</span><br><span class="line">此时，P所含的集合数不再增加，即P中的每个集合中的状态互相等价，而不同集合间的状态互不等价。</span><br><span class="line">4.为P中的每一组选一代表，这些代表构成M&apos;的状态。把原来导入非代表状态的弧均导入其代表即可，即若s&apos;是一代表且f(s&apos;,a)=t,令r是t组的代表，则M&apos;中有一转换f&apos;(s&apos;,a)=r，M&apos;的开始状态是含有S0的那组的代表，M&apos;的终态是含有F的那组的代表。</span><br><span class="line">5.去掉M&apos;中的死状态。</span><br></pre></td></tr></table></figure>
+<h5 id="正规式与有穷自动机的等价性（Re-hArr-NFA）"><a href="#正规式与有穷自动机的等价性（Re-hArr-NFA）" class="headerlink" title="正规式与有穷自动机的等价性（Re &hArr; NFA）"></a>正规式与有穷自动机的等价性（Re &hArr; NFA）</h5><p>定理：①对于 Σ 上的NFA M，可以构造一个 Σ 上的正规式R，是的L(R) = L(M)。②对于 Σ 上的任一个正规式R，可以构造一个 Σ 上 的NFA M，是的L(M) = L(R)。</p>
+<p>Re &rArr; NFA：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">转换方法：我们把状态转换图的概念拓广，令每条弧可用一个正规式标记。</span><br><span class="line">1. 在M的状态图上加进两个结点x、y。从x结点用ε弧 连接到M的所有初态结点，从M的所有终态结点ε弧 连接到y结点。形成一个与M等价的M， M只有一个初态和一个终态。</span><br><span class="line">2. 逐步消去M中的所有结点，直至只剩下x结点和y结点。在消结过程中，逐步用正规式来标记弧，其消结规则如下：</span><br><span class="line">A--R1--&gt;2--R2--&gt;3			==&gt;			1--R1R2--&gt;2</span><br><span class="line">1--R1--&gt;2,1--R2--&gt;2			==&gt;			1--R1|R2--&gt;2</span><br><span class="line">1--R1--&gt;2--R2--&gt;2--R3--&gt;3	==&gt;			1--R1R2*R3--&gt;2</span><br><span class="line">最后x结点和y结点之间的弧上的标记就是所求的正规式R</span><br></pre></td></tr></table></figure>
+<p>NFA &rArr; Re</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">方法如上反转</span><br><span class="line">首先，对正规式R构造如下拓广转换图</span><br><span class="line">然后通过对R进行分裂和加进新结点的办法，逐步把这个图转变为：每条弧标记为中的一个字母或ε ，其转换规则如下:</span><br><span class="line">1--R1R2--&gt;2				==&gt;			A--R1--&gt;2--R2--&gt;3</span><br><span class="line">1--R1|R2--&gt;2			==&gt;			1--R1--&gt;2,1--R2--&gt;2</span><br><span class="line">1--R1R2*R3--&gt;2			==&gt;			1--R1--&gt;2--R2--&gt;2--R3--&gt;3</span><br><span class="line">在整个分裂过程中，所有新结点均采用不同的名字，保留x和y为全图的唯一初态结点和终态结点，至此我们就可以得到一个与R 等价的NFA M</span><br></pre></td></tr></table></figure>
+<h5 id="正规文法与有穷自动机的等价性"><a href="#正规文法与有穷自动机的等价性" class="headerlink" title="正规文法与有穷自动机的等价性"></a>正规文法与有穷自动机的等价性</h5><p>定理：①对于给定的正规文法G[R]，可以直接构造一个NFA M，使得L（M）=L（G）。②对于 Σ 上的任一个NFA M ，可以直接构造正规文法G[R] ，使得L（ R ）=L（ M ）。</p>
+<p>把给定的正规文法G[R]转换为一个Σ上的NFA M构造规则:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">设G[R]=（VN，VT，P，R）， NFA M=（ K，Σ，f，S，Z）</span><br><span class="line">1.令 Σ = VT;</span><br><span class="line">2. K = VN，S = R；即对G中的每个非终结符生成M的一个状态（不妨取相同的名字，G的开始符号是M的初态;</span><br><span class="line">3.增加一个新状态Z，作为NFA M 的终态，Z∈K;</span><br><span class="line">4.对G中的形如A-&gt;tB（其中t为终结符或ε；A和B为非终结符）的产生式,构造M的一个转换函数     f（A，t）=B;</span><br><span class="line">5.对G中的形如A-&gt;t（其中t为终结符或ε；A和B为非终结符）的产生式,构造M的一个转换函数      f（A，t）=Z;</span><br></pre></td></tr></table></figure>
+<p>把给定的å上的NFA M转换为一个正规文法G[R]的构造规则:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">设NFA M=（ K，Σ，f，S，Z）,G[R]=（VN，VT，P，R）,</span><br><span class="line">1.令 VT = Σ ;</span><br><span class="line">2.令VN =  K即对M的每一个状态生成G中的非终结符（不妨取相同的名字，G的开始符号是M的初态;</span><br><span class="line">3.令S=R（如果M有多个初态，应先拓广自动机，引入新初态x）;</span><br><span class="line">4.对M 的终态Z增加一个产生式： Z-&gt;ε;</span><br><span class="line">5.对M的每一个转换函数f（A，t）=B可写G的一个产生式A-&gt;tB（其中t为终结符或ε;A和B为非终结符）;</span><br></pre></td></tr></table></figure>
+<h5 id="词法分析程序的自动构造"><a href="#词法分析程序的自动构造" class="headerlink" title="词法分析程序的自动构造"></a>词法分析程序的自动构造</h5><p>​        若对自动机的每一个状态赋予一定的功能，并把其边上的符号视为转移条件，那么自动机就成为一个程序了。</p>
+<h3 id="四、语法分析"><a href="#四、语法分析" class="headerlink" title="四、语法分析"></a>四、语法分析</h3>
       
     </div>
 
@@ -879,7 +1336,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引论"><span class="nav-number">1.</span> <span class="nav-text">引论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1什么叫编译程序"><span class="nav-number">1.1.</span> <span class="nav-text">1.1什么叫编译程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2编译程序的组成"><span class="nav-number">1.2.</span> <span class="nav-text">1.2编译程序的组成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高级语言及其语法描述"><span class="nav-number">2.</span> <span class="nav-text">高级语言及其语法描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1程序语言的语法和语义"><span class="nav-number">2.1.</span> <span class="nav-text">2.1程序语言的语法和语义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1语法"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2语义"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2语义</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2程序语言的一般特征"><span class="nav-number">2.2.</span> <span class="nav-text">2.2程序语言的一般特征</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#高级语言的分类"><span class="nav-number">2.2.1.</span> <span class="nav-text">高级语言的分类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3程序语言的语法描述"><span class="nav-number">2.3.</span> <span class="nav-text">2.3程序语言的语法描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、字母表和符号串"><span class="nav-number">2.3.1.</span> <span class="nav-text">一、字母表和符号串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、符号串和符号串集合的运算"><span class="nav-number">2.3.2.</span> <span class="nav-text">二、符号串和符号串集合的运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、文法的直观理解"><span class="nav-number">2.3.3.</span> <span class="nav-text">三、文法的直观理解</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、引论"><span class="nav-number">1.</span> <span class="nav-text">一、引论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1什么叫编译程序"><span class="nav-number">1.1.</span> <span class="nav-text">1.1什么叫编译程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2编译程序的组成"><span class="nav-number">1.2.</span> <span class="nav-text">1.2编译程序的组成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、高级语言及其语法描述"><span class="nav-number">2.</span> <span class="nav-text">二、高级语言及其语法描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1程序语言的语法和语义"><span class="nav-number">2.1.</span> <span class="nav-text">2.1程序语言的语法和语义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1语法"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2语义"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2语义</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2程序语言的一般特征"><span class="nav-number">2.2.</span> <span class="nav-text">2.2程序语言的一般特征</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#高级语言的分类"><span class="nav-number">2.2.1.</span> <span class="nav-text">高级语言的分类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3程序语言的语法描述"><span class="nav-number">2.3.</span> <span class="nav-text">2.3程序语言的语法描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、字母表和符号串"><span class="nav-number">2.3.1.</span> <span class="nav-text">一、字母表和符号串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、符号串和符号串集合的运算"><span class="nav-number">2.3.2.</span> <span class="nav-text">二、符号串和符号串集合的运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、文法的直观理解"><span class="nav-number">2.3.3.</span> <span class="nav-text">三、文法的直观理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、文法和语言的形式定义"><span class="nav-number">2.3.4.</span> <span class="nav-text">四、文法和语言的形式定义</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-文法的定义"><span class="nav-number">2.3.4.1.</span> <span class="nav-text">1.文法的定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-推导与归约"><span class="nav-number">2.3.4.2.</span> <span class="nav-text">2.推导与归约</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-语言的形式定义"><span class="nav-number">2.3.4.3.</span> <span class="nav-text">3.语言的形式定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-语法树与二义性文法"><span class="nav-number">2.3.4.4.</span> <span class="nav-text">5.语法树与二义性文法</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、词法分析"><span class="nav-number">3.</span> <span class="nav-text">三、词法分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-词法分析器的要求"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 词法分析器的要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-词法分析器的设计"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 词法分析器的设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ⅰ、输入、预处理"><span class="nav-number">3.2.1.</span> <span class="nav-text">Ⅰ、输入、预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#预处理的主要工作"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">预处理的主要工作</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ⅱ、单词符号的识别：超前搜索"><span class="nav-number">3.2.2.</span> <span class="nav-text">Ⅱ、单词符号的识别：超前搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ⅲ、状态转换图"><span class="nav-number">3.2.3.</span> <span class="nav-text">Ⅲ、状态转换图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-正规表达式与有限自动机"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 正规表达式与有限自动机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-正规式与正规集"><span class="nav-number">3.3.1.</span> <span class="nav-text">1.正规式与正规集</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#正规式及其所表示的正规集的定义："><span class="nav-number">3.3.1.1.</span> <span class="nav-text">正规式及其所表示的正规集的定义：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-确定有限自动机"><span class="nav-number">3.3.2.</span> <span class="nav-text">2.确定有限自动机</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#DFA"><span class="nav-number">3.3.2.1.</span> <span class="nav-text">DFA</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#NFA"><span class="nav-number">3.3.2.2.</span> <span class="nav-text">NFA</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#NFA和DFA的等价性"><span class="nav-number">3.3.2.3.</span> <span class="nav-text">NFA和DFA的等价性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#NFA确定化算法（-NFA-rarr-DFA-的转换）"><span class="nav-number">3.3.2.4.</span> <span class="nav-text">NFA确定化算法（ NFA → DFA  的转换）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#minDFA"><span class="nav-number">3.3.2.5.</span> <span class="nav-text">minDFA</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DFA最小化的算法：分割法（逐步分组试探法）"><span class="nav-number">3.3.2.6.</span> <span class="nav-text">DFA最小化的算法：分割法（逐步分组试探法）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#正规式与有穷自动机的等价性（Re-hArr-NFA）"><span class="nav-number">3.3.2.7.</span> <span class="nav-text">正规式与有穷自动机的等价性（Re ⇔ NFA）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#正规文法与有穷自动机的等价性"><span class="nav-number">3.3.2.8.</span> <span class="nav-text">正规文法与有穷自动机的等价性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#词法分析程序的自动构造"><span class="nav-number">3.3.2.9.</span> <span class="nav-text">词法分析程序的自动构造</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、语法分析"><span class="nav-number">3.4.</span> <span class="nav-text">四、语法分析</span></a></li></ol></li></ol></div>
             
 
           </div>
