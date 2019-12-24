@@ -126,7 +126,7 @@
 <meta property="og:image" content="http://magic-king.net/2019/09/04/Compiler/16.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/09/04/Compiler/17.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/09/04/Compiler/18.jpg">
-<meta property="og:updated_time" content="2019-12-24T04:07:40.380Z">
+<meta property="og:updated_time" content="2019-12-24T07:57:22.570Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Compiler">
 <meta name="twitter:description" content="一、引论编译原理是良好的数学基础和好的工程结构功能的结合。 Compiler：编译，述而不作，忠于编写的东西 编译器从逻辑上可以分成若干阶段，每个阶段把源程序从一种表示变换成另一种表示 1.1什么叫编译程序翻译器（翻译程序）：Translater 能将一种语言程序（源语言程序）转换成另一种等价的语言程序（目标语言程序） 编译器（编译程序）：Compiler 能将一种计算机高级语言程序（源语言程序）">
@@ -456,7 +456,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-12-24 12:07:40" itemprop="dateModified" datetime="2019-12-24T12:07:40+08:00">2019-12-24</time>
+                <time title="修改时间：2019-12-24 15:57:22" itemprop="dateModified" datetime="2019-12-24T15:57:22+08:00">2019-12-24</time>
               
             
           </span>
@@ -1258,6 +1258,8 @@
 <p>4）若ACTION[i,a]=空白，转<strong>出错处理</strong>。</p>
 <h4 id="SLR分析表构造"><a href="#SLR分析表构造" class="headerlink" title="SLR分析表构造"></a>SLR分析表构造</h4><p>大多数程序设计语言的文法不是LR(0)文法。</p>
 <p>对LR(0)规范族中有冲突的项目集（状态）用向前查 看一个（输入）符号的办法进行处理，以解决冲突。即为SLR(1)。</p>
+<p>SLR(1) 分析表构造与LR(0) 分析表构造基本相同</p>
+<p>SLR(1) 之所以是1，是因为向前看了一步Follow集。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">假定有一个LR(0)规范族中含有如下项目集(状态)I:</span><br><span class="line"></span><br><span class="line">I=&#123;X→a.bβ , A→g. , B→d.&#125;其中a,b,g,d为符号串，b∈VT ,I中含有移进—归约和归约—归约冲突。</span><br><span class="line"></span><br><span class="line">只要FOLLOW(A)和FOLLOW(B)互不相交，且都不包含b,即:</span><br><span class="line">FOLLOW(A)∩FOLLOW(B)=φ</span><br><span class="line">FOLLOW(A)∩&#123;b&#125;=φ</span><br><span class="line">FOLLOW(B)∩&#123;b&#125;=φ</span><br><span class="line"></span><br><span class="line">当状态I面临某输入符号a时，则动作为：</span><br><span class="line">1）若a = b,则移进。</span><br><span class="line">2）若a ∈ FOLLOW(A),则用产生式A→g归约。</span><br><span class="line">3）若a ∈ FOLLOW(B),则用产生式B→d归约。</span><br></pre></td></tr></table></figure>
 <p>一般地，对于LR(0)规范族的一个项目集I可能含有多个移进项目和多个归约项目，我们可假设项目集I中有m个移进项目： A1→a1<strong>.</strong> b1b1, A2→ a2<strong>.</strong> b2b2, …, Am→ am<strong>.</strong> bmbm;同时含有n个归约项目：B1→g1<strong>.</strong> , B2→ g2<strong>.</strong> ,…, Bn→ gn<strong>.</strong> ,只要集合{b1, b2,…bm}和FOLLOW(B1),FOLLOW(B2),…,FOLLOW(Bn) 两两交集都为空，则我们仍可用上述归则来解决冲突：</p>
 <p> 1）若a∈{b1, b2,…,bm},则移进。</p>
@@ -1269,14 +1271,30 @@
 <p>(4) 在分析表,凡不能按上述规则填入信息的元素,均置为“出错”。</p>
 <p>（例：TODO：后面补充，ppt–Bottom-Up–P42-47）</p>
 <h5 id="规范LR分析表构造"><a href="#规范LR分析表构造" class="headerlink" title="规范LR分析表构造"></a>规范LR分析表构造</h5><p>SLR(1) 方法：若状态K含有 <code>A ➡ α.</code>，若 α ∈ Follow(A) ，则用 <code>A ➡ α.</code> 归约</p>
-<p>当 状态Ix下，有产生式<code>A ➡ α.</code> 和<code>A ➡ α. = …</code>，此时，SLR不知道是将此归约成A还是移进至=，若没有其他情况能产生=，则这里产生移进归约冲突，导致错误！！！</p>
+<p>当状态Ix下，有产生式<code>A ➡ α.</code> 和<code>A ➡ α. = …</code>，此时，SLR(0)不知道是将此归约成A还是移进至=，若没有其他情况能产生=，则这里产生移进归约冲突，导致错误！！！</p>
 <h5 id="LR-1-项目"><a href="#LR-1-项目" class="headerlink" title="LR(1)项目"></a>LR(1)项目</h5><p>(A→a<strong>.</strong> β，x) 表示： a在栈顶，输入串头部可由βx导出。</p>
 <p>LR(1)的状态：LR(1)项目的集合</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">该算法为:</span><br><span class="line">      令初态: Closure( (S’→.S，#) )</span><br><span class="line">      </span><br><span class="line">Closure(I)=</span><br><span class="line">    repeat</span><br><span class="line">        for any item( A→α.Xβ ，z) in I</span><br><span class="line">            for any production X →γ</span><br><span class="line">                for any w∈FIRST(βz)</span><br><span class="line">                          I←I∪&#123;X → .γ, w&#125;</span><br><span class="line">    until I does not change</span><br><span class="line"></span><br><span class="line">GO (I,X)=</span><br><span class="line">    J ←&#123;&#125;</span><br><span class="line">    for any item(A→α.Xβ，z) in I</span><br><span class="line">        add ( A→αX.β，z )  to J</span><br><span class="line">    return Closure(J)</span><br></pre></td></tr></table></figure>
 <h5 id="LALR分析表的构造"><a href="#LALR分析表的构造" class="headerlink" title="LALR分析表的构造"></a>LALR分析表的构造</h5><p>同心项目集：除去搜索符之外都相同的LR(1)项目集</p>
 <p>合并同心项目集不会产生新的移进-归约冲突</p>
-<p>合并同心项目集，如果没有归约-归约冲突，则为LALR(1)文法。</p>
+<p>将 LR(1) 合并同心项目集，如果没有归约-归约冲突，则为LALR(1)文法。</p>
 <p><img src="/2019/09/04/Compiler/18.jpg" alt></p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/henuliulei/p/10872483.html" target="_blank" rel="noopener">参考，各语法分析器的区别</a></p>
+</blockquote>
+<blockquote>
+<p> 各文法的区别：</p>
+<ul>
+<li>LL(1)就是向前只搜索1个符号，即与FIRST()匹配，如果FIRST为空则还要考虑Follow集</li>
+<li>>&gt;&gt;见到First集就移进，见到Follow集就归约。</li>
+<li>LR(0):见到<strong>First集就移进</strong>，见到终态就归约</li>
+<li>SLR(1)见到<strong>First集就移进</strong>，见到<strong>终态先看Follow集</strong>，与Follow集<strong>对应的项目归约</strong>，其它报错。</li>
+<li>>&gt;&gt;SLR分析法包含的展望信息是体现在利用了Follow(A)信息，可以解决“归约－归约”冲突</li>
+<li>SLR分析法没有包含足够的展望信息，不能完成解决“移进－归约”冲突，需要改进。</li>
+<li>LALR同心集合并不会产生“移进－归约”冲突 ，但会产生“归约－归约”冲突</li>
+<li>LR(1)</li>
+</ul>
+</blockquote>
 
       
     </div>
