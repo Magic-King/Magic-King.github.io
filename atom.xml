@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2019-12-12T07:57:24.579Z</updated>
+  <updated>2019-12-26T09:13:46.792Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>BlockChain</title>
+    <link href="http://magic-king.net/2019/12/26/BlockChain/"/>
+    <id>http://magic-king.net/2019/12/26/BlockChain/</id>
+    <published>2019-12-26T06:20:45.000Z</published>
+    <updated>2019-12-26T09:13:46.792Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Bit-Coin&quot;&gt;&lt;a href=&quot;#Bit-Coin&quot; class=&quot;headerlink&quot; title=&quot;Bit Coin&quot;&gt;&lt;/a&gt;Bit Coin&lt;/h2&gt;&lt;h4 id=&quot;数字货币和纸质货币的对比&quot;&gt;&lt;a href=&quot;#数字货币和纸质货币的对比&quot; class=&quot;headerlink&quot; titl
+      
+    
+    </summary>
+    
+    
+      <category term="BlockChain" scheme="http://magic-king.net/categories/BlockChain/"/>
+    
+    
+      <category term="BlockChain" scheme="http://magic-king.net/tags/BlockChain/"/>
+    
+      <category term="bitcoin" scheme="http://magic-king.net/tags/bitcoin/"/>
+    
+      <category term="StudyNote" scheme="http://magic-king.net/tags/StudyNote/"/>
+    
+  </entry>
   
   <entry>
     <title>DDoS-JavaScript</title>
@@ -399,9 +427,9 @@
       <category term="Compiler" scheme="http://magic-king.net/categories/Compiler/"/>
     
     
-      <category term="Compilier" scheme="http://magic-king.net/tags/Compilier/"/>
-    
       <category term="StudyNote" scheme="http://magic-king.net/tags/StudyNote/"/>
+    
+      <category term="Compilier" scheme="http://magic-king.net/tags/Compilier/"/>
     
   </entry>
   
@@ -533,7 +561,7 @@
     
     <summary type="html">
     
-      It is Magic.&lt;br&gt;the content has been encrypted, enter the password to read.&lt;br&gt;
+      It is Magic.&lt;/br&gt;the content has been encrypted, enter the password to read.&lt;/br&gt;
     
     </summary>
     
