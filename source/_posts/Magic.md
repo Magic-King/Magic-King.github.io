@@ -197,6 +197,7 @@ message: Welcome to my blog, enter password to read.
   >
   >#### Terminal
   >
+  >- zsh
   >- cygwin
   >- cmder
   >- MinGW
@@ -406,6 +407,8 @@ message: Welcome to my blog, enter password to read.
 
 * 3D地画
 * 密室
+* 小书房(with 呼吸灯、小阳台、舒适的沙发)
+* 想要一面渐变色的风景
 * 
 * 
 
