@@ -121,7 +121,13 @@
 <meta property="og:image" content="http://magic-king.net/2019/12/26/BlockChain/12.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/12/26/BlockChain/13.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/12/26/BlockChain/14.jpg">
-<meta property="og:updated_time" content="2019-12-28T11:47:41.475Z">
+<meta property="og:image" content="http://magic-king.net/2019/12/26/BlockChain/15.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/12/26/BlockChain/16.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/12/26/BlockChain/17.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/12/26/BlockChain/18.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/12/26/BlockChain/19.jpg">
+<meta property="og:image" content="http://magic-king.net/2019/12/26/BlockChain/20.jpg">
+<meta property="og:updated_time" content="2019-12-29T12:27:44.609Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BlockChain">
 <meta name="twitter:description" content="Bitcoin数字货币和纸质货币的对比   属性 分析 优势方     便携 大部分场景（特别是较大数额支付时）下数字货币将具备更好的便携性 数字货币   防伪 两者各有千秋，但数字货币整体上会略胜一筹。 纸币依靠的是各种设计（纸张、油墨 、防伪 暗纹 、 夹层等）上的精巧，数字货币依靠的则是密码学上的保障。 事实上，纸币的伪造时有发生，但数字货币的伪造目前还无法实现 数字货币   辨伪 纸币即使">
@@ -451,7 +457,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-12-28 19:47:41" itemprop="dateModified" datetime="2019-12-28T19:47:41+08:00">2019-12-28</time>
+                <time title="修改时间：2019-12-29 20:27:44" itemprop="dateModified" datetime="2019-12-29T20:27:44+08:00">2019-12-29</time>
               
             
           </span>
@@ -787,8 +793,8 @@
 <h4 id="拜占庭将军问题——解决算法"><a href="#拜占庭将军问题——解决算法" class="headerlink" title="拜占庭将军问题——解决算法"></a>拜占庭将军问题——解决算法</h4><p>拜占庭问题的最初描述是：n 个将军被分隔在不同的地方，忠诚的将军希望通过某种协议达成某个命令的一致（比如一起进攻或者一起后退）。但其中一些背叛的将军会通过发送错误的消息阻挠忠诚的将军达成命令上的一致。<strong>Lamport 证明了在将军总数大于3m ，背叛者为m 或者更少时，忠诚的将军可以达成命令上的一致。</strong></p>
 <ul>
 <li>为了保证上面的需求，必须满足下面两个条件：<ul>
-<li>IC1. 所有忠诚的副官遵守相同的命令</li>
-<li>IC2. 如果发出命令的将军是忠诚的，那么所有忠诚的副官遵守司令（发出命令的将军）的命令</li>
+<li>IC1. 所有忠诚的副官遵守相同的命令，即一致性</li>
+<li>IC2. 如果发出命令的将军是忠诚的，那么所有忠诚的副官遵守司令（发出命令的将军）的命令，即正确性</li>
 </ul>
 </li>
 </ul>
@@ -807,8 +813,11 @@
 </li>
 </ul>
 <p>A1 和 A2 假设了两个将军之间通信没有干扰，既不会有背叛者阻碍消息的发送（截断）也不会有背叛者伪造消息的情况（伪造）。即是每个将军都可以无误地将自己的消息发送给其他每个将军。</p>
-<h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><p>OM(m)算法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">消息算法OM(m) 。对于所有的非负整数m ，每个发令者通过OM(M) 算法发送命令给n-1 个副官。</span><br><span class="line"></span><br><span class="line"># 将军通过副官传递消息:即, 消息传递路线: 将军i--Message--&gt;副官i --boardcast--&gt;副官j--Message--&gt;将军j</span><br><span class="line"></span><br><span class="line">（1）发令者将他的命令发送给每个副官。</span><br><span class="line">（2）对于每个i ，vi 是每个副官i 从发令者收到的命令，如果没有收到命令则为撤退命令。副官i 在OM(m-1) 中作为发令者将vi 发送给另外n-2 个副官。</span><br><span class="line">（3）对于每个i，并且j 不等于 i，vj 是副官i 从第（2）步中的副官j 发送过来的命令（使用   OM(m-1)算法），如果没有收到第（2）步中的副官j 的命令则默认为撤退命令。最后副官i 使用majority(v1,…,vn-1)得到命令。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">定义majority(cmd1,cmd2,…,cmdn)等于多数派命令。</span><br></pre></td></tr></table></figure>
+<h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><blockquote>
+<p><a href="https://blog.csdn.net/michael_kong_nju/article/details/17612275" target="_blank" rel="noopener">拜占庭将军问题。口头算法OM(n.m);n=3m+1</a></p>
+</blockquote>
+<p>OM(m)算法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">消息算法OM(m) 。对于所有的非负整数m ，每个发令者通过OM(M) 算法发送命令给n-1 个副官。</span><br><span class="line"></span><br><span class="line"># 将军通过副官传递消息:即, 消息传递路线: 将军i--Message--&gt;副官i --boardcast--&gt;副官j--Message--&gt;将军j</span><br><span class="line"></span><br><span class="line">（1）发令者将他的命令发送给每个副官。</span><br><span class="line">（2）对于每个i ，vi 是每个副官i 从发令者收到的命令，如果没有收到命令则为撤退命令。副官i 在OM(m-1) 中作为发令者将vi 发送给另外n-2 个副官。</span><br><span class="line">（3）对于每个i，并且j 不等于 i，vj 是副官i 从第（2）步中的副官j 发送过来的命令（使用   OM(m-1)算法），如果没有收到第（2）步中的副官j 的命令则默认为撤退命令。最后副官i 使用majority(v1,…,vn-1)得到命令。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">定义majority(cmd1,cmd2,…,cmdn)等于多数派命令。</span><br><span class="line"></span><br><span class="line">第一轮将军发给所有副官命令</span><br><span class="line">第二轮n-1副官互通将军发了什么,确定将军是否为叛徒,若将军是叛徒，则将军的消息无效,舍弃;将军忠诚,即可在第二轮已可决定</span><br><span class="line">第三轮n-1副官互通某个副官各给别人发了什么消息,遍历n-2个副官的消息以判断自己作何决定</span><br><span class="line">(例:若L1收到其它L2~L6发来的Vj, 但是他要怀疑准确性，比如L1会想L2发给自己是否是正确的呢？那么就进入第三轮进行投票.因此跟在第2轮之后,L1会依次询问L3,4,5,6 ，问他们上一轮L2给他们发了什么,L1得到第二轮中L2-&gt;L3,L2-&gt;L4,L2-&gt;L5,L2-L6,再结合L2-&gt;L1，从5个里用majority函数决定L2发了啥，再依次遍历L3-6,然后L1完成第二轮的确认)</span><br></pre></td></tr></table></figure>
 <h4 id="算法证明"><a href="#算法证明" class="headerlink" title="算法证明"></a>算法证明</h4><p>详细的算法证明可参考：</p>
 <blockquote>
 <p><a href="https://baike.baidu.com/item/%E6%8B%9C%E5%8D%A0%E5%BA%AD%E5%B0%86%E5%86%9B%E9%97%AE%E9%A2%98/265656?fr=aladdin" target="_blank" rel="noopener">拜占庭将军百度百科</a></p>
@@ -1003,9 +1012,12 @@
 <ul>
 <li><h4 id="基本密码技术的应用"><a href="#基本密码技术的应用" class="headerlink" title="基本密码技术的应用"></a><strong>基本密码技术的应用</strong></h4></li>
 </ul>
+<p>EC-DH交换密钥</p>
+<p>EC-DES签名</p>
 <h2 id="共识算法"><a href="#共识算法" class="headerlink" title="共识算法"></a>共识算法</h2><blockquote>
 <p>可参考：</p>
 <p><a href="https://www.cnblogs.com/X-knight/p/9157814.html" target="_blank" rel="noopener">[区块链] 共识算法之争(PBFT，Raft，PoW，PoS，DPoS，Ripple)</a></p>
+<p><a href="https://blog.csdn.net/jfkidear/article/details/81275974" target="_blank" rel="noopener">深入浅出PBFT算法原理</a></p>
 </blockquote>
 <h3 id="共识机制"><a href="#共识机制" class="headerlink" title="共识机制"></a>共识机制</h3><p><img src="/2019/12/26/BlockChain/7.jpg" alt></p>
 <p>区块链的底层由四部分构成</p>
@@ -1061,16 +1073,29 @@
 <p>假如有交易改变，则整个树枝会发生改变</p>
 <p>定位的时间为O(log(n))，即二叉树的查找时间</p>
 <h4 id="③难度值"><a href="#③难度值" class="headerlink" title="③难度值"></a>③难度值</h4><ul>
-<li>新难度值 = 旧难度值 * （20160分钟  /  过去2016个区块花费的时长）</li>
+<li>新难度值 = 旧难度值 * （20160分钟  /  最近的2016个区块花费的时长）</li>
 </ul>
 <p>新难度值解析：撇开就难度值，按比特币理想值情况每10分钟出块的速度，过去2016个块的总花费时间接近20160分钟，这样，这个值永远趋于1。</p>
 <p>若过去2016个区块花费时长少于20160分，那么这个系数会小于1，否则，会大于1。</p>
-<p>难度值越大，越难挖。</p>
+<p>难度值越大，越难挖。因为20160分大约为14天，而比特币网络大约14天调整一次难度值。</p>
 <p>比特币的难度和出块速度将成反比例适当调整出块速度。</p>
 <p>目标值 = 最大目标值 / 难度值</p>
-<p>最大目标值：一个固定数0x00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
+<p>最大目标值：一个固定数（恒量，十六进制前8位0后面56位1，即32bit0）0x00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
 <p> 即前N bit为0</p>
 <p>目标值解析：若过去2016个区块花费时长少于20160分，那么难度值会变小，目标值将会被调小些；否则，目标值会被调大。</p>
+<blockquote>
+<p>查找块的平均时间可以通过如下方式计算：<code>time = difficulty * 2**32 / hashrate</code></p>
+<p>难度值 = time (s) * hashrate (hash / s ) /  (2**32) </p>
+<p>新难度值 / 旧难度值  =  新算力  /  旧算力</p>
+</blockquote>
+<blockquote>
+<p>如果难度为1的话，每秒钟7 Mhashes</p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.cnblogs.com/zhaoweiwei/p/difficulty.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhaoweiwei/p/difficulty.html</a></p>
+<p><a href="https://en.bitcoin.it/wiki/Difficulty" target="_blank" rel="noopener">https://en.bitcoin.it/wiki/Difficulty</a></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">例:</span><br><span class="line">计算目标值,5min产生一个区块,sha256算法,算力 400M hash/s.</span><br><span class="line"></span><br><span class="line">一个正确区块被计算,需要进行 (5*60)s * 400M hash/s = 120,000 M hash</span><br><span class="line">假如计算一个区块头需要1M hash , 则 计算正确头的几率为 1 / (2^17) ,(120000 ≈ 2^17)</span><br><span class="line">所以, (2^(256-17)) / 2^256 == 1 / 2^17</span><br><span class="line">所以, 目标值为: 0b0……………………011……</span><br><span class="line">			    |-17bit0-||--(256-17)bit--</span><br></pre></td></tr></table></figure>
 <h4 id="POW工作量证明流程"><a href="#POW工作量证明流程" class="headerlink" title="POW工作量证明流程"></a>POW工作量证明流程</h4><p>流程如下图：</p>
 <p><img src="/2019/12/26/BlockChain/12.jpg" alt></p>
 <ol>
@@ -1086,6 +1111,11 @@
 <p>​        i) 工作量证明的输出 = SHA256( SHA256(区块头) )</p>
 <p>​        ii) if （工作量证明的输出 &lt;  目标值 ），证明工作量完成</p>
 <p>​        iii) if （工作量证明的输出 &gt;= 目标值），变更随机数(Nonce)，递归 i 的逻辑，继续与目标值比对</p>
+<blockquote>
+<ul>
+<li>对这个值进行两次SHA256运算，为什么要两次，这是因为SHA1在2017年被攻破，采用的方法是birthday collision attack。社区觉得SHA2被攻破也是时间的问题，而抵御birthday collision attack的有效方法为双重哈希算法，当然这种说法只是网上传言，没有得到具体确认。</li>
+</ul>
+</blockquote>
 </blockquote>
 <p><img src="/2019/12/26/BlockChain/13.jpg" alt></p>
 <blockquote>
@@ -1139,13 +1169,433 @@
 <ul>
 <li><h5 id="stakeReward"><a href="#stakeReward" class="headerlink" title="stakeReward"></a>stakeReward</h5><p>权益激励，俗称获得利息，计算公式如下：<code>stakeReward = nCoinAge*33/(365*33+8)*0.01*COIN</code>，</p>
 <p>公式可简化未：<code>stakeReward = (0.01 * nCoinAge /365) * COIN</code></p>
-<p>其中，nCoinAge是CoinStake所有输入的币龄的</p>
+<p>其中，nCoinAge是CoinStake所有输入的币龄总和，由公式可知收益按1%年率计算。理想状态下，假设所有的币全年都参与挖矿，代币总量每年有1%通胀率，这一设计为很多人所诟病，而且，这一设计并不能激励矿工积极参与挖矿以维护区块链的安全，因为如果不考虑手续费，持币用户每隔几个月打开节点铸币，或者实时在线铸币，理论上收益都是一样的。</p>
 </li>
 </ul>
 <ul>
-<li><h5 id="stakeMinAge"><a href="#stakeMinAge" class="headerlink" title="stakeMinAge"></a>stakeMinAge</h5></li>
+<li><h5 id="stakeMinAge"><a href="#stakeMinAge" class="headerlink" title="stakeMinAge"></a>stakeMinAge</h5><p>POS系统也存在51%币龄攻击风险，为了增加攻击难度，Sunny King对每一笔UTXO的铸币资格做了最小年龄（stakeMinAge）限制：一个UTXO在区块链存在的时间小于stakeMinAge则没有铸币资格，PPC最小币龄为8小时。</p>
+</li>
 </ul>
-<h3 id="DPoS"><a href="#DPoS" class="headerlink" title="DPoS"></a>DPoS</h3><h3 id="PBFT"><a href="#PBFT" class="headerlink" title="PBFT"></a>PBFT</h3><h3 id="RAFT"><a href="#RAFT" class="headerlink" title="RAFT"></a>RAFT</h3>
+<h4 id="POS2-0"><a href="#POS2-0" class="headerlink" title="POS2.0"></a>POS2.0</h4><p>黑币社区认为币龄可能会被恶意的节点滥用以获得更高的网络权重并成功实施<strong>双花攻击</strong>，于是发布POS2.0白皮书，对PPC做了几个细节优化，解决了一些潜在的安全问题，其中最重要的改进是用余额代替币龄，合格区块的条件由： </p>
+<p><code>F(Timastamp) &lt; Target * 币数 * 币的年龄</code></p>
+<p>变为：   <code>F(Timastamp) &lt; Target * 币数</code></p>
+<p>如此一来，一笔UTXO无论放置多久其锻造区块的能力不变，此举可激励节点必须更多的保持在线进行铸币，提高系统安全性，将攻击途径减少到最低限度，并且能够显著提高网络保持运行的节点数量。</p>
+<h4 id="POS3-0"><a href="#POS3-0" class="headerlink" title="POS3.0"></a>POS3.0</h4><p>黑币社区后来进一步升级，推出POS3.0版本，对交易手续费，难度调整做了一些优化，其中最显著的改变是将1%年利率奖励机制变为固定数额奖励（每个区块固定奖励1.5BLK），此举不但降低代币通胀率（考虑到会有代币永久丢失，低额奖励机制回归总量恒定的设计思路），同时意味着持币节点必须实时在线才能获得收益。</p>
+<h4 id="POS的优缺点"><a href="#POS的优缺点" class="headerlink" title="POS的优缺点"></a>POS的优缺点</h4><ul>
+<li>优点：在一定程度上缩短了共识达成的时间</li>
+<li>缺点：还需要挖矿，本质上没有解决商业应用的痛点</li>
+</ul>
+<h3 id="DPoS"><a href="#DPoS" class="headerlink" title="DPoS"></a>DPoS</h3><p>DPOS：股份授权股份证明（Delegated Proof-Of-Stake）</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/liankuaixy/article/details/79820710" target="_blank" rel="noopener">https://blog.csdn.net/liankuaixy/article/details/79820710</a></p>
+</blockquote>
+<p>比特股（Bitshares）项目于2013年8月开始启动，对区块链做了很多改造，并引入许多新概念和特征，尤其令人眼花缭乱的 Bitshares X、多态数字资产交易平台、资产锚定等新名词，一时令人无比兴奋而又困惑。此时POW和POS都已成功运行许久，彼此优劣已被反复讨论，两大阵营时至今日依然争论不休。按照项目规划，<strong>比特股对交易容量和区块速度有极高要求</strong>，显然POW或POS都达不到要求，于是比特股发明了一种新的共识机制DPOS，即股份授权股权证明。</p>
+<p>DPOS是 PoS 的进化方案，在常规 PoW 和 PoS 中，一大影响效率之处在于任何一个新加入的 Block，都需要被整个网络所有节点做确认。</p>
+<h5 id="DPoS-优化方案"><a href="#DPoS-优化方案" class="headerlink" title="DPoS 优化方案"></a>DPoS 优化方案</h5><p>​        <strong>通过不同的策略，不定时的选中一小群节点，这一小群节点做新区块的创建，验证，签名和相互监督，这样就大幅度的减少了区块创建和确认所需要消耗的时间和算力成本。</strong></p>
+<h4 id="DPOS机制涉及的问题"><a href="#DPOS机制涉及的问题" class="headerlink" title="DPOS机制涉及的问题"></a>DPOS机制涉及的问题</h4><blockquote>
+<p><strong>1. 持有股票</strong></p>
+<p>   直接在交易平台上购买比特股即可</p>
+<p><strong>2.  成为代表</strong></p>
+<p>   成为一名代表，你必须在网络上注册你的公钥，分配到一个32位的特有标识符</p>
+<p><strong>3.  授权选票</strong></p>
+<p>   每个钱包有一个参数设置窗口，在该窗口里用户可以选择一个或更多的代表，并将其分级</p>
+<p>   一般情况下，用户不会创建特别以投票为目的的交易，因为那将耗费他们一笔交易费</p>
+<p><strong>4.  保持代表诚实</strong></p>
+<p>   每个钱包将显示一个状态指示器，让用户知道他们的代表表现如何</p>
+<p><strong>5.  抵抗攻击</strong></p>
+<p>   在抵抗攻击上，因为前100名代表所获得的权利权是相同的，每名代表都有一份相等的投票权，并且，如果当前记账节点不记账则由下一个记账人记账，因此无法通过获得超过1%的选票而将权力集中到一个单一代表上，毕竟同时收买100给代表的难度很大。同时，每名代表的标识是其公钥而非IP地址，使得DOS攻击目标更为困难（难定位）</p>
+<p><strong>6.  代表竞选</strong></p>
+<p>   选出的代表拥有提出改变网络参数的特权，包括交易费用、区块大小、见证人费用和区块区间</p>
+</blockquote>
+<h4 id="DPOS遵循的基本原则"><a href="#DPOS遵循的基本原则" class="headerlink" title="DPOS遵循的基本原则"></a>DPOS遵循的基本原则</h4><ul>
+<li>持股人依据所持股份行使表决权，而不是依赖挖矿竞争记账权</li>
+<li>最大化持股人的盈利</li>
+<li>最小化维护网络安全的费用</li>
+<li>最大化网络的效能</li>
+<li>最小化运行网络的成本（带宽、CPU等）</li>
+</ul>
+<h4 id="DPOS的优缺点"><a href="#DPOS的优缺点" class="headerlink" title="DPOS的优缺点"></a>DPOS的优缺点</h4><ul>
+<li><h5 id="优点："><a href="#优点：" class="headerlink" title="优点："></a><strong>优点</strong>：</h5></li>
+</ul>
+<ol>
+<li><p><strong>能耗更低</strong>：DPoS机制将节点数量进一步减少，在保证网络安全的前提下，整个网络的能耗进一步降低，网络运行成本最低。</p>
+</li>
+<li><p><strong>更快的确认速度</strong>：每个区块的时间为10秒，一笔交易（在得到6-10个确认后）大概1分钟，一个完整的区块的周期大概仅仅需要数分钟。而PoW机制下产生一个区块需要10分钟，一笔交易完成需要数个小时。</p>
+</li>
+<li>在一定程度上解决了拒绝服务攻击和潜在作恶节点联合作恶的问题。</li>
+</ol>
+<ul>
+<li><h5 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a><strong>缺点</strong>：</h5></li>
+</ul>
+<ol>
+<li><p><strong>投票的积极性并不高</strong>：绝大多数持股人从未参与投票。这是因为投票需要时间、精力以及技能，而这恰恰是大多数投资者所缺乏的。</p>
+</li>
+<li><p><strong>垄断性高</strong>：DPoS延续了PoS的弊端，只有持币者才可以获得区块链奖励，其实这就带来了一种制度性门槛，最终导致DPoS币的流动性大大减少，穷者越穷，富者越富。</p>
+</li>
+</ol>
+<h3 id="PBFT"><a href="#PBFT" class="headerlink" title="PBFT"></a>PBFT</h3><p>PBFT：实用拜占庭容错算法（Practical Byzantine Fault Tolerance）</p>
+<p>以往的区块链项目都以虚拟币为内核，而记录数据的应用不需要币机制模型。这个时候，Hyper Ledger（超级账本）应景而生，它是由Linux基金会组织牵头的项目，是一个旨在推动区块链数字技术和交易验证的开源项目。这个分布式账本技术是完全共享、透明和去中心化的，非常适合于金融行业的应用，以及其他的例如制造、银行、保险、物联网等无数个其他行业。</p>
+<ul>
+<li>PBFT是Hyper Ledger中使用的共识算法</li>
+</ul>
+<blockquote>
+<p><a href="https://learnblockchain.cn/2019/08/29/pbft/" target="_blank" rel="noopener">https://learnblockchain.cn/2019/08/29/pbft/</a></p>
+<p><a href="https://blog.csdn.net/jfkidear/article/details/81275974" target="_blank" rel="noopener">https://blog.csdn.net/jfkidear/article/details/81275974</a></p>
+</blockquote>
+<h4 id="PBFT的算法基本流程"><a href="#PBFT的算法基本流程" class="headerlink" title="PBFT的算法基本流程"></a>PBFT的算法基本流程</h4><p>假设有f个恶意节点，则保证系统正常运作，需要有2f+1个正常节点，总结点数为3f+1</p>
+<ol>
+<li>客户端发送请求给主节点</li>
+<li>主节点广播请求给其他节点，节点执行pbft算法的三阶段共识流程</li>
+<li>节点处理完三阶段流程后，返回消息给客户端</li>
+<li>客户端收到来自f+1个节点相同消息后，代表共识已经正确完成</li>
+</ol>
+<p>如图：</p>
+<p><img src="/2019/12/26/BlockChain/15.jpg" alt></p>
+<p>C为Client，pre-prepare为预准备阶段，prepare为准备阶段，commit为提交阶段</p>
+<blockquote>
+<p>R在一个视图里，一个是主节点，其余的都叫做备份节点，如图主节点为0，即Client首先请求主节点负责将客户端的请求排好序，然后按序发给备份节点</p>
+<p>但是主节点可能是拜占庭的：他可能会给不同的请求编上相同的序号，或者不去分配序号，后者让相邻序号不连续。</p>
+<p>备份节点应当有职责主动检查这些序号的合法性，并能通过timeout机制检测到主节点是否已经宕机。</p>
+<p>当出现异常情况下，就会出发视图更换view change协议来选举出新的主节点</p>
+</blockquote>
+<h5 id="Requset阶段"><a href="#Requset阶段" class="headerlink" title="Requset阶段"></a>Requset阶段</h5><p>在此阶段，客户端c向主节点p发送请求，\&lt;Request，operation，timestamp，clientID&gt;</p>
+<blockquote>
+<p> operation：为请求具体操作</p>
+<p> timestamp：请求时客户端追加的时间戳</p>
+<p> clientID：客户端标识</p>
+<p> Requset：包含消息内容message，以及信息摘要d(message)</p>
+</blockquote>
+<p>客户端对请求进行签名</p>
+<h5 id="PBFT算法预备（Pre-Prepare）"><a href="#PBFT算法预备（Pre-Prepare）" class="headerlink" title="PBFT算法预备（Pre-Prepare）"></a>PBFT算法预备（Pre-Prepare）</h5><p>在预准备阶段，主节点对签名进行校验，并分配一个序列号n给收到的请求，然后向所有备份节点群发预准备消息，预准备消息的格式为：\&lt; &lt;Pre-Prepare，v，n，d&gt;  ， m &gt;</p>
+<blockquote>
+<p>v是视图编号</p>
+<p>n是序列号</p>
+<p>m是客户端发送的请求消息</p>
+<p>d是请求消息m的摘要</p>
+</blockquote>
+<p><strong>预准备消息的目的是作为一种证明，确定该请求是在视图v中被赋予了序号n</strong></p>
+<p>在视图变更的过程中可以追索请求</p>
+<p>请求本身是不包含在预准备消息中，这样能使预准备消息足够小</p>
+<h5 id="Prepare"><a href="#Prepare" class="headerlink" title="Prepare"></a>Prepare</h5><p>当节点收到pre-prepare消息后，会选择接收与否</p>
+<p>满足下列条件时，各个备份节点才会接收一个预准备消息：①请求和预准备消息的签名正确，并且d与m的摘要一致；②当前视图编号是v；③该备份节点从未在视图v中接收过序号为n但是摘要d不同的消息m；④预准备消息的序号n必须在水线上下限h和H之间，水线存在的意义在于防止一个失效节点用一个很大的序号消耗序号空间。</p>
+<p>如果备份节点i接受了预准备消息\&lt; &lt;Pre-Prepare，v，n，d&gt; ， m &gt;，则进入准备阶段。</p>
+<p>在准备阶段的同时，该节点向所有副本节点发送准备消息 \&lt; Prepare，v，n，d，i &gt;，并且将预准备消息和准备消息写入自己的消息日志，可丢弃非法请求（即非法预准备消息）</p>
+<p>节点（包括主节点）收到prepare消息后，进行验证prepare消息签名是否正确，视图编号是否一致，消息序号是否满足水线限制，若验证通过则将消息写入消息日志中。</p>
+<p>副本节点i将（m，v，n，i）记入消息日志中，其中m是请求内容，预准备消息m在视图v中的编号n，以及2f个从不同副本节点收到的与预准备消息一致的准备消息</p>
+<p>每个副本节点验证<strong>预准备和准备消息的一致性</strong>主要检查：视图编号v、消息序号n和摘要d</p>
+<h5 id="Commit"><a href="#Commit" class="headerlink" title="Commit"></a>Commit</h5><p>当prepared (m,v,n,i)条件为真的时候，</p>
+<ul>
+<li><p>副本i生成确认消息</p>
+</li>
+<li><p>追加到本地消息日志文件</p>
+</li>
+<li><p>将确认消息向其他副本节点</p>
+</li>
+<li><p>广播进入了确认阶段  &lt; COMMIT，v，n，D(m)，i&gt;</p>
+</li>
+</ul>
+<p>每个副本节点接收Commit消息的条件是：</p>
+<ul>
+<li>Commit消息签名正确</li>
+<li>上一阶段请求的摘要也是D(m)</li>
+<li>消息的视图编号与节点的当前视图编号一致</li>
+<li>消息的序号n满足水线条件，在h和H之间</li>
+</ul>
+<p>一旦确认消息的接受条件满足了，则该副本节点将确认消息写入消息日志中</p>
+<p>当节点收到2f+1（包括自身）个不同节点发送过来的Commit消息之后，进入Commit-local(m，v，n)状态，且所有序号小于n的请求都被处理，则执行客户端请求m中所要求的服务操作</p>
+<p>保证在节点中提交的任意一个客户端请求，最终哦都会在另外2f个节点中被提交到本地的，并确保所有正常节点以同样顺序执行所有请求，这样就保证了算法的正确性</p>
+<h5 id="Reply"><a href="#Reply" class="headerlink" title="Reply"></a>Reply</h5><p>同时将执行结果发送给客户端 \<reply ，v，t，c，i，r>，r为请求操作结果</reply></p>
+<p>如果客户端收到f+1个相同的Reply消息，说明客户端发起的请求已经达到全网共识，否则客户端需要判断是否重新发送请求给主节点</p>
+<p>副本节点会把时间戳比已回复时间戳更小的请求丢弃，以保证请求只会被执行一次</p>
+<h4 id="PBFT-检查点-（checkpoint）"><a href="#PBFT-检查点-（checkpoint）" class="headerlink" title="PBFT 检查点 （checkpoint）"></a>PBFT 检查点 （checkpoint）</h4><blockquote>
+<p>如何清除历史请求的记录消息？</p>
+<p>在执行完多条请求K（例如：100条）后执行一次状态同步，即发送CheckPoint消息。&lt;CheckPoint, n, d, i&gt;，n是当前节点所保留的最后一个视图请求编号，d是对当前状态的一个摘要，该CheckPoint消息记录到log中。</p>
+<p>如果副本节点i收到了2f+1个验证过的CheckPoint消息，则清除先前日志中的消息，并以n作为当前一个stable checkpoint。</p>
+</blockquote>
+<ul>
+<li><p>stable checkpoint（稳定检查点）呢？</p>
+<p> 大部分节点（2f+1）已经共识完成的最大请求序号。比如系统有4个节点，三个节点都已经共识完了的请求编号是213.那么这个213就是stable checkpoint</p>
+</li>
+</ul>
+<p>实际上当副本节点i向其他节点发出CheckPoint消息后，其他节点有可能还没有完成K条请求，所以不会立即对i的请求作出响应，它还会按照自己的节奏，向前行进。此时发出的CheckPoint未能形成stable，为防止i的处理请求过快，设置一个高低水位区间[h, H]来解决这个问题， 低水位h等于上一个stable checkpoint编号，高水位H = h + L，其中L是我们指定的数值（如100，或200）， 当副本节点i处理请求超过高水位H时，就会停止脚步，等待stable checkpoint发生变化，再继续前进。</p>
+<h4 id="算法视图变更"><a href="#算法视图变更" class="headerlink" title="算法视图变更"></a>算法视图变更</h4><p><strong>每个副节点维持一个计数器</strong>。备份节点在接收到一个有效请求，但是还没有执行它时，会查看计时器是否在运行，如果没有，那么它将启动计时器；当请求被执行时就把计时器停止。</p>
+<p>如果计时器<strong>超时</strong>，将会把视图变更的消息向全网广播。在主节点失效的时候仍然保证系统的活性，防止备份节点<strong>无期限地等待请求的执行</strong>。需要确保在新的view中如何来延续上一个view最终的状态， 比如给这时来的新请求的编号，比如如何处理上一个view还没来得及完全处理好的请求</p>
+<p><strong>计时器超时或发现作恶</strong>，副节点生成 view-change 消息 &lt;VIEW-CHANGE,v+1,n,C,P,i&gt;，最近一次的稳定检查点对应的请求的序列号 n，C 是证明该检查点稳定性的 2f+1 个 checkpoint 消息的集合，P 是 Pm 的集合，其中 m 是副节点 i 中的序列号大于 n 的等待提交和执行的客户端请求 m，每个 Pm 包含了如下的信息：①pre-prepare 消息；②2f 个由其他副节点签名的跟 pre-prepare 消息匹配的、有效的 prepare 消息；</p>
+<p>此时，节点需要：</p>
+<blockquote>
+<p>记录到本地日志文件中；</p>
+<p>同时广播给其他节点；</p>
+<p>要求替换掉主节点，变更到下一个视图 v+1；</p>
+</blockquote>
+<ul>
+<li>注意，在视图变更期间，除了 checkpoint、view-change 和 newview 消息之外，备份节点 i 是不会接受其他消息的</li>
+</ul>
+<p>在节点收到更换节点消息时，各个节点会收集视图变更信息，并发送确认给 view v+1 中的主节点。</p>
+<p>（v+1 中的主节点可能是<strong>轮换</strong>产生，也可能<strong>选举</strong>产生）</p>
+<p><strong>新的主节点</strong>接收到 2f 个有效的 view-change 消息之后，发送自己签名σp’ 的 new-view 消息&lt;NEW-VIEW, v+1, V, O&gt; ，V是主节点收到的2f+1个有效的VIEW-CHANGE消息 ，O是主节点重新发起的未经完成的PRE-PREPARE消息集合</p>
+<ol>
+<li><p>找到所有节点的共同的稳定检查点h。</p>
+</li>
+<li><p>在h和h+L之间，如果存在n消息，则创建&lt;&lt;PRE-PREPARE, v+1, n, d&gt;, m&gt;消息。否则创建一个空的PRE-PREPARE消息，即：&lt;&lt;PRE-PREPARE, v+1, n, d(null)&gt;, m(null)&gt;, m(null)空消息，d(null)空消息摘要。</p>
+</li>
+</ol>
+<p>对于节点v+1，提议系统内所有节点切换到下一个视图 v+1，同时接受自己成为新的主节点</p>
+<p><strong>副节点</strong>收到要求将视图变更为 v+1 的 new-vew 消息后，确认消息有效，接受该 new-view 消息，记录到本地消息文件中，同时将视图更换到新的视图v+1，副节点把 new-view 中携带的由新的主节点重新生成的 pre-prepare 消息追加记录到本地的消息日志中，按照检查点协议进行垃圾回收，删除比较老的消息</p>
+<blockquote>
+<p>对于 new-vew 消息中集合 O 中携带的所有由新主节点生成的新的 pre-prepare 消息，备份节点都会生成相应的 prepare 消息，记录到本地日志文件中，转发给其他节点，即对这些未处理的请求在新的视图中重新执行一遍三阶段协议，保证视图切换过程中未处理的请求能够重新被处理。</p>
+</blockquote>
+<ul>
+<li><p>节点选出一个checkpoint作为新view处理请求的起始状态checkpoint就是当前节点处理的最新请求序号。</p>
+</li>
+<li><p>checkpoint就是当前节点处理的最新请求序号。 前文已经提到主节点收到请求是会给请求记录编号的。比如一个节点正在共识的一个请求编号是101，那么对于这个节点，它的checkpoint就是101</p>
+</li>
+<li><p>stable checkpoint（稳定检查点）呢？</p>
+<p>大部分节点（2f+1）已经共识完成的最大请求序号。比如系统有4个节点，三个节点都已经共识完了的请求编号是213.那么这个213就是stable checkpoint。<strong>checkpoint的最大目的时减少内存占用。</strong></p>
+<p>当检查点被证明是稳定后，节点会把本地消息日志中的消息中客户端请求序列号小于或者等于 n 的消息（pre-prepare、prepare、commit 消息）都删掉。同时，它会删掉旧的检查点和 checkpoint 消息。</p>
+</li>
+</ul>
+<h3 id="RAFT"><a href="#RAFT" class="headerlink" title="RAFT"></a>RAFT</h3><p>RAFT最初是一个用于管理复制日志的共识算法，它是一个为真实世界应用建立的协议，主要注重协议的落地性和可理解性，RAFT是在非拜占庭故障下达成共识的强一致协议</p>
+<p><strong>Raft算法包含三种角色，分别是：跟随者（follower），候选人（candidate）和领导者（leader）。一个节点在某一时刻只能是这三种状态的其中一种，这三种角色是可以随着时间和条件的变化而互相转换的。</strong></p>
+<p>所有的节点初始状态都为follower，超时未收到心跳包的follower将变身candidate并广播投票请求，获得多数投票的节点将化身leader，这一轮投票的过程是谁先发出谁有利，每个节点只会给出一次投票，leader节点周期性给其他节点发送心跳包，leader节点失效将会引发新一轮的投票过程。</p>
+<p>Raft阶段主要分为两个，首先是leader选举过程，然后在选举出来的leader基础上进行正常操作，比如日志复制、记账等。</p>
+<ul>
+<li>关于RAFT的较详细的动画，可访问 <a href="http://thesecretlivesofdata.com/raft/" target="_blank" rel="noopener">http://thesecretlivesofdata.com/raft/</a></li>
+</ul>
+<h4 id="选举流程"><a href="#选举流程" class="headerlink" title="选举流程"></a>选举流程</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">RAFT的leader选举流程：  </span><br><span class="line">1）任何一个服务器都可以成为一个候选者candidate，它向其他服务器follower发出要求选举自己的请求。</span><br><span class="line">2）其他服务器同意了，发出OK。注意，如果在这个过程中，有一个follower宕机，没有收到请求选举的要求，此时候选者可以自己选自己，只要达到N/2+1的大多数票，候选人还是可以成为leader的。</span><br><span class="line">3）这样这个候选者就成为了leader领导人，它可以向选民也就是follower发出指令，比如进行记账。</span><br><span class="line">4）以后通过心跳进行记账的通知。</span><br><span class="line">5）一旦这个leader崩溃了，那么follower中有一个成为候选者，并发出邀票选举。</span><br><span class="line">6）follower同意后，其成为leader，继续承担记账等指导工作。</span><br></pre></td></tr></table></figure>
+<h4 id="记账过程"><a href="#记账过程" class="headerlink" title="记账过程"></a>记账过程</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Raft的记账过程按以下步骤完成：</span><br><span class="line">1）假设leader领导人已经选出，这时客户端发出增加一个日志的要求；</span><br><span class="line">2）leader要求follower遵从他的指令，都将这个新的日志内容追加到他们各自日志中；</span><br><span class="line">3）大多数follower服务器将交易记录写入账本后，确认追加成功，发出确认成功信息；</span><br><span class="line">4）在下一个心跳中，leader会通知所有follower更新确认的项目。</span><br><span class="line">对于每个新的交易记录，重复上述过程</span><br></pre></td></tr></table></figure>
+<h4 id="RAFT和PBFT对比"><a href="#RAFT和PBFT对比" class="headerlink" title="RAFT和PBFT对比"></a>RAFT和PBFT对比</h4><p>一个团队一定会有一个老大和普通成员。对于raft算法，共识过程就是：只要老大还没挂，老大说什么，我们（团队普通成员）就做什么，坚决执行。那什么时候重新老大呢？只有当老大挂了才重选老大，不然生是老大的人，死是老大的鬼。</p>
+<p>对于pbft算法，共识过程就是：老大向我发送命令时，当我认为老大的命令是有问题时，我会拒绝执行。就算我认为老大的命令是对的，我还会问下团队的其它成员老大的命令是否是对的，只有大多数人（2f+1）都认为老大的命令是对的时候，我才会去执行命令。那什么时候重选老大呢？老大挂了当然要重选，如果大多数人都认为老大不称职或者有问题时，我们也会重新选择老大。</p>
+<p>1.raft算法从节点不会拒绝主节点的请求，而pbft算法从节点在某些情况下会拒绝主节点的请求 ;</p>
+<p>2.raft算法只能容错故障节点，并且最大容错节点数为（n-1）/2，而pbft算法能容错故障节点和作恶节点，最大容错节点数为（n-1）/3。</p>
+<p><img src="/2019/12/26/BlockChain/16.jpg" alt></p>
+<h2 id="区块链架构"><a href="#区块链架构" class="headerlink" title="区块链架构"></a>区块链架构</h2><h3 id="比特币"><a href="#比特币" class="headerlink" title="比特币"></a>比特币</h3><h4 id="区块链1-0"><a href="#区块链1-0" class="headerlink" title="区块链1.0"></a>区块链1.0</h4><p>区块链1.0是可编程货币，是与转账、汇款和数字化支付相关的密码学货币应用，目标是实现货币的去中心化与支付手段。比特币是区块链1.0最典型的代表, 区块链的发展催生了大量的货币交易平台，实现了货币的部分职能，能够实现货品交易。</p>
+<p><img src="/2019/12/26/BlockChain/17.jpg" alt></p>
+<blockquote>
+<p>比特币钱包：</p>
+<ul>
+<li>移动钱包</li>
+<li>桌面钱包</li>
+<li>互联网钱包</li>
+<li>纸钱包</li>
+</ul>
+</blockquote>
+<p><img src="/2019/12/26/BlockChain/18.jpg" alt></p>
+<p><img src="/2019/12/26/BlockChain/19.jpg" alt></p>
+<h5 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h5><ul>
+<li>利于并行</li>
+<li>可回溯</li>
+<li>避免数据膨胀</li>
+</ul>
+<h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h5><ul>
+<li>查余额时必须回溯查询一大堆交易信息，浪费大量时间和资源</li>
+</ul>
+<p>‘</p>
+<h3 id="以太坊"><a href="#以太坊" class="headerlink" title="以太坊"></a>以太坊</h3><h4 id="区块链2-0"><a href="#区块链2-0" class="headerlink" title="区块链2.0"></a>区块链2.0</h4><p>区块链2.0是可编程金融，是经济、市场和金融领域的区块链应用，核心理念是把区块链作为一个可编程的分布式信用基础设施，支撑智能合约应用，以与过去比特币区块链作为一个虚拟货币支撑平台区别开来。</p>
+<p>以太坊：数字代币，基于智能合约</p>
+<p><img src="/2019/12/26/BlockChain/20.jpg" alt></p>
+<p>以太坊架构如上</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>比特币</th>
+<th>以太坊</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>账户设计</td>
+<td>无账户的概念，每个账户的余额都是从他们在区块链上的UTXO计算出来的</td>
+<td>拥有外部账户和合约账户，外部账户为用户账户，由私钥控制。合约账户是一种可编程账户，受代码控制并由外部账户激活</td>
+</tr>
+<tr>
+<td>区块链设计</td>
+<td>采用Merkle树将交易的哈希值组成二叉树状结构，顶层节点的哈希值用来校验交易清单</td>
+<td>采用Merkle Patricia树来实现对交易和状态的校验和查询。</td>
+</tr>
+<tr>
+<td>计算和图灵完备</td>
+<td>非图灵完备</td>
+<td>图灵完备</td>
+</tr>
+<tr>
+<td>EVM高级语言</td>
+<td>不提供高级语言支持</td>
+<td>提供Solidity、Serpent、LLL等高级语言让用户编写智能合约，高级语言会编译成在EVM中执行的EVM字节码</td>
+</tr>
+<tr>
+<td>P2P网络</td>
+<td>比特币P2P协议</td>
+<td>创建引入RLPx与Whisper网络协议，RLPx协议主要功能是在节点间建立通信并维持通信；Whisper协议主要用于Dapp之间的通信。以太坊P2P网络实现了更多功能扩展</td>
+</tr>
+<tr>
+<td>事件</td>
+<td>无事件概念</td>
+<td>以太坊中的事件是一个以太坊日志和事件监测的协议的抽象。日志的记录中提供合约的地址；事件利用现有的ABI功能来解析日志记录</td>
+</tr>
+<tr>
+<td>共识机制</td>
+<td>采用PoW机制，依靠的是CPU计算难度问题</td>
+<td>对比特币PoW机制进行改进，加入内存难度，具有抵抗单凭哈希运算优化的ASIC挖矿机的属性，以太坊未来将采用PoS共识机制</td>
+</tr>
+</tbody>
+</table>
+<h5 id="以太坊客户端"><a href="#以太坊客户端" class="headerlink" title="以太坊客户端"></a>以太坊客户端</h5><p>较为流行的是go-Ethereum和Parity</p>
+<p>两种账户类型：外部持有账户（EOA）和合约账户（CA）</p>
+<p>外部账号可以调用合约账户</p>
+<p>  以太坊中的世界状态定义为以太坊区块链中的全局状态，表示为以太坊地址和账户状态之间的映射。</p>
+<p>u账户状态由4个字段组成:</p>
+<ul>
+<li><p><strong>nonce</strong>：当每次从地址发送交易时，该值递增。在合约账户中，该值代表账户创建的合约数量。</p>
+</li>
+<li><p><strong>balance:</strong>账户余额。ether也认为是以太币的单位，另一个常用的单位是wei。</p>
+</li>
+<li><p><strong>storageroot</strong>：代表Merkle Patricia树的根节点,并对账户的存储内容进行编码。（合约账户）</p>
+</li>
+<li><p><strong>codehash</strong>:作为一个不可变字段,包含了与账户关联的智能合约代码的哈希值。在普通账户中,该字段包含一个空字符串的 Keccak 256位哈希值。另外,代码通过一个消息调用而被调用。</p>
+</li>
+</ul>
+<h2 id="智能合约"><a href="#智能合约" class="headerlink" title="智能合约"></a>智能合约</h2><p><strong>定义：</strong>广义的智能合约是一种<strong>安全的、处于运行状态的计算机程序</strong> ，体现了一种<strong>自动执行</strong>以及<strong>强制执行</strong>的协议。</p>
+<p>狭义上讲，智能合约就是存储在区块链上的代码，用以实现执行特定的功能；能根据预先任意制定的规则来自动转移数字资产的系统。</p>
+<p>智能合约有以下属性</p>
+<ul>
+<li>自动执行</li>
+<li>强制执行</li>
+<li>明确的语义</li>
+<li>安全性和不可阻止性</li>
+</ul>
+<p>​        <strong>智能合约实际上是采用某种语言编写的、计算机或目标可理解的计算机程序</strong>.此外，智能合约还包含了以业务逻辑形式出现的各方之间的协议.另一个核心理念是，当某些条件满足时，智能契约将自动执行.另外，<strong>强制性</strong>意味着所有的合约条款都是按照规定和预期执行的，对于攻击者而言同样如此.</p>
+<p>​        智能合约还具备<strong>安全性以及“不可阻挡”性</strong>，也就是说，计算机程序必须以这样一种方式设计：在合理的时间范围内具备容错能力并保持执行状态，即使外部因素处于不利状态下，相关程序也应能够执行和维护一个健康的内部状态.</p>
+<p>​        智能合约应该具备<strong>确定性</strong>.据此，网络上的任何节点运行同一个智能合约，并获得相同的结果.如果最终结果在节点之间略有不同，那么将无法达成共识，因此，区块链上分布式共识的整个范例可能会失效.</p>
+<ul>
+<li><p>智能合约的<strong>优点</strong>：</p>
+<ul>
+<li>高效的实时更新</li>
+<li>准确执行</li>
+<li>较低的人为干预风险</li>
+<li>去中心化权威</li>
+<li>较低的运行成本</li>
+</ul>
+</li>
+<li><p>智能合约的<strong>缺点</strong>：</p>
+<ul>
+<li>漏洞无法修复</li>
+<li>隐私保护风险</li>
+<li>缺乏有效监管</li>
+<li>无法完全实施</li>
+</ul>
+</li>
+</ul>
+<h5 id="智能合约The-DAO事件："><a href="#智能合约The-DAO事件：" class="headerlink" title="智能合约The DAO事件："></a>智能合约The DAO事件：</h5><p>DAO是最高的众筹项目之一，于2016年4月启动</p>
+<p>DAO遭受攻击后，创建了硬分叉用于修复，但违背了去中心化的理念。</p>
+<h4 id="以太坊虚拟机"><a href="#以太坊虚拟机" class="headerlink" title="以太坊虚拟机"></a>以太坊虚拟机</h4><p>以太坊虚拟机时以太网上智能合约的运行环境</p>
+<p>特点有①高度脚本化的设计语言使得智能合约的开发更简单；②和以太坊区块链一样同时存储于各个节点计算机上；③简单式堆栈架构，可应用于256位的Keccak散列算法和椭圆曲线计算；④可处理异常执行，包括堆栈溢出和无效指令等；⑤图灵完备，支持任何种类的计算，代码执行受参数Gas的严格制约。</p>
+<h3 id="智能合约的使用步骤"><a href="#智能合约的使用步骤" class="headerlink" title="智能合约的使用步骤"></a>智能合约的使用步骤</h3><p>①编译合约===&gt;&gt;&gt;②创建合约===&gt;&gt;&gt;③部署合约===&gt;&gt;&gt;④调用合约===&gt;&gt;&gt;⑤监听合约||⑤销毁合约；</p>
+<h4 id="编译智能合约"><a href="#编译智能合约" class="headerlink" title="编译智能合约"></a>编译智能合约</h4><p>以太坊上的合约就是一段可以被虚拟机执行的代码，这些代码以以太坊特有的二进制的形式存储在区块链上，并由以太坊虚拟机解释，因此被称为以太坊虚拟机位码。目前，用于以太坊智能合约开发的语言主要由Solidity、Serpent、LLL。</p>
+<p>Solidity作为最流行的智能合约语言， 以其简单易用和高可读性受到以太坊设计者们的推荐</p>
+<h4 id="创建智能合约"><a href="#创建智能合约" class="headerlink" title="创建智能合约"></a>创建智能合约</h4><p>创建合约，需要输入合约名称，合约版本号、合约创建者、合约的内容等</p>
+<h4 id="部署智能合约"><a href="#部署智能合约" class="headerlink" title="部署智能合约"></a>部署智能合约</h4><p>部署合约就是将编译好的合约字节码通过外部账户发送交易的形式部署到以太坊区块链上，部署合约时，需要支付费用，要确保账户里有足够的余额（可以创建自己独立的测试网络，即自己的区块链，初始化的时候就可以初始化一些有余额的账户）。部署合约的一般流程：</p>
+<p>①输入命令，部署合约；</p>
+<p>②查看交易池待处理状况，如有待确认的交易，查看交易内容；</p>
+<p>③查看挖矿日志，检验交易是否已发送到以太坊区块链上；</p>
+<p>④等待矿工确认，利用<code>txpool.status</code>命令查看交易池状态；</p>
+<p>⑤利用<code>eth.getblock</code>命令查看区块中是否含有关于合约的交易。</p>
+<h4 id="调用智能合约"><a href="#调用智能合约" class="headerlink" title="调用智能合约"></a>调用智能合约</h4><p>智能合约的调用需要两个字段：和约地址（表明调用哪个合约）和合约abi(application binaryinterface)（表明具体用合约的哪个方法）</p>
+<p>原因：首先，合约内容是可以完全重复的，所以我们根据合约名字、合约内容或者合约内容的哈希，去调用某一个合约都是可能重复的，只有合约地址是不会重复的。另外，合约内的函数名是可以重载的，就是说我们可以有多个叫setValue的函数，但是所需要的传入参数不同。EVM中使用了abi，便于调用，同时还能区分不同的函数。调用合约的一般流程：</p>
+<p>①利用<code>eth.contract</code>来定义一个合约类，定义的合约类遵循ABI定义，构建合约实例</p>
+<p>②调用合约</p>
+<h4 id="监听智能合约"><a href="#监听智能合约" class="headerlink" title="监听智能合约"></a>监听智能合约</h4><p>合约部署后，可设置监听，既可以实时监控事件，也可以从历史区块中检索 event。</p>
+<h4 id="销毁智能合约"><a href="#销毁智能合约" class="headerlink" title="销毁智能合约"></a>销毁智能合约</h4><p>合约也可以结束，当一个合约通过kill方法将其杀死，那么我们将不能再和这个合约进行交互，如果一个合约被销毁，那么当前地址指向的是一个僵尸对象，这个僵尸对象调用任何方法都会抛出异常。此时需要调用selfdestruct(address)才能将其进行销毁。</p>
+<p>需要指出的是只有<strong>拥有者</strong>才能销毁合约。</p>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><h4 id="数字身份"><a href="#数字身份" class="headerlink" title="数字身份"></a>数字身份</h4><p>智能合约可以允许个人拥有并且控制包含数据、信誉和数字资产在内的数字身份。它允许个人自己决定向对手公开的数据内容，更为企业提供无缝了解客户的机会。</p>
+<p>交易对手将不能获取敏感数据来验证交易。这减少了责任，同时促进了解你的客户法规（KYC）要求的无摩擦化，还提高了合规性，可恢复性和互操作性。</p>
+<h4 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h4><p>智能合同可以将统一商业代码（Uniform Commercial Code，UCC）归档数字化，并且自动更新发布流程。他们还可以自动地完善贷款人的贷款担保物权。它们可以自动遵守在将来销毁所要求记录的规则。不仅如此，还能通过UCC留置权自动解锁，自动更新或自动请求抵押品。在执行此类功能时，智能合同能够降低法律成本。</p>
+<h4 id="证券"><a href="#证券" class="headerlink" title="证券"></a>证券</h4><p>智能合约可以简化资本构成表的管理。它们还绕开证券托管链中的中间人，并促进自动支付股息，股票分拆和负债管理，同时降低操作风险。智能合约能将分布式账本上证券的工作流程数字化。</p>
+<h4 id="贸易金融"><a href="#贸易金融" class="headerlink" title="贸易金融"></a>贸易金融</h4><p>智能合约可以通过快速信用证和贸易支付开启来简化国际货物转移，同时获得更大的金融资产的流动性，提高买家，供应商和机构的融资效率。此外，政府必须确定在执行失败的情况下，特别是在纠纷和违约的情况下，法律应当如何界定责任。</p>
+<p>对于贸易金融而言，结算系统、技术要求和离散生态系统的整合是重要的三元素。</p>
+<h4 id="供应链"><a href="#供应链" class="headerlink" title="供应链"></a>供应链</h4><p>智能合约可以让供应链中的每一步变得实时可见。互联网设备可以将产品从工厂车间转移到商店货架之间的每个步骤都记录下来。它们促进粒度级别的库存跟踪，这有利于保护供应链的融资、保险和风险。这种增强的跟踪和验证技术降低了盗窃和欺诈的风险。如果想让智能合约实现大规模应用，供应链参与者必须证明其身份，包括公司，机构，个人，传感器，设施和产品等。</p>
+<h4 id="汽车保险"><a href="#汽车保险" class="headerlink" title="汽车保险"></a>汽车保险</h4><p>智能合约可以改善目前混乱的汽车投保及赔付流程。智能合约可以记录相关政策、驾驶记录和驾驶员报告，允许互联网车辆在发生事故后立即执行索赔。合约能够自动处理索赔，验证和付款过程。每个投保人的存储库中都包括了驾驶记录，车辆和事故报告历史。消除重复的报告也会节省成本。不过，这些都需要跨行业协作来解决技术，监管和财务上的挑战。</p>
+<h2 id="P2P"><a href="#P2P" class="headerlink" title="P2P"></a>P2P</h2><h3 id="p2p简介"><a href="#p2p简介" class="headerlink" title="p2p简介"></a>p2p简介</h3><p>定义：</p>
+<p>网络的参与者共享他们所拥有的一部分硬件资源（处理能力、存储能力、网络连接能力、打印机等），这些共享资源通过网络提供服务和内容，能被其它对等节点(Peer)直接访问而无需经过中间实体。在此网络中的参与者既是资源（服务和内容）提供者（Server），又是资源获取者（Client）。</p>
+<h3 id="P2P网络原理"><a href="#P2P网络原理" class="headerlink" title="P2P网络原理"></a>P2P网络原理</h3><p>从计算模式上来说，P2P打破了传统的Client/Server (C/S)模式，在网络中的每个结点的地位都是对等的。每个结点既充当服务器，为其他结点提供服务，同时也享用其他结点提供的服务。</p>
+<p>P2P改变了目前互联网中占主导地位的客户/服务器结构中信息在消费者和生产者之间的不平衡。由于P2P网络没有中心节点（中心服务器），网络中的每个节点具有信息消费者和信息提供者的双重身份P2P，同时具有信息通信方面的功能，因此P2P应用的实现扩展性强，实现方式灵活多样，部署成本低，给互联网的发布和共享带来了巨大的空间。</p>
+<h3 id="P2P特点"><a href="#P2P特点" class="headerlink" title="P2P特点"></a>P2P特点</h3><ul>
+<li><p><strong>P2P是动态的</strong>：动态地提供信息和服务</p>
+</li>
+<li><p><strong>P2P是双向的</strong>：切实实现信息和服务的交换与共享</p>
+</li>
+<li><p><strong>P2P是直接的</strong>：无中介、等级和格式限制，直接交换信息和服务</p>
+</li>
+<li><p><strong>P2P是平等的</strong>：生产者与消费者地位平等，角色合二为一</p>
+</li>
+<li><p><strong>P2P是及时的</strong>：无服务器参与空间分配，可提供实时、可升级的信息</p>
+</li>
+<li><p><strong>P2P是有效的</strong>：可充分利用个人计算机的硬件设备、传输信息和服务时目标确定</p>
+</li>
+</ul>
+<h3 id="P2P优势"><a href="#P2P优势" class="headerlink" title="P2P优势"></a>P2P优势</h3><ul>
+<li><p>非中心化</p>
+<p>网络中的资源和服务分散在所有节点上，信息传输和服务的实现都直接在节点之间进行，可以无需中间环节和服务器的介入，避免了可能的瓶颈。</p>
+</li>
+<li><p>可扩展性</p>
+<p> 在P2P网络中，节点在获取其他节点资源的同时也为其他节点服务。随着用户的加入，不仅服务的需求增加了，系统整体的资源和服务能力也在同步扩充，始终能较便捷地满足用户的需求。</p>
+</li>
+<li><p>健壮性</p>
+<p>P2P网络通常都是以自组织的方式建立起来的，并允许节点自由地加入和离开。由于服务是分散在各个节点之间进行的，当部分节点或网络遭到破坏时，对其他部分的影响很小。</p>
+</li>
+<li><p>高性价比</p>
+<p>采用P2P架构可以有效地利用互联网中散步的大量普通节点，将计算任务或存储资料分布到所有节点上，利用其中空置的计算能力或存储空间达到高性能计算和海量存储的目的。</p>
+</li>
+<li><p>隐私保护</p>
+<p>在P2P中，所有参与者可以提供中继转发的功能，因此大大提高了匿名通信的灵活性和可靠性，能够为用户提供更好的隐私保护。</p>
+</li>
+<li><p>负载均衡</p>
+<p>在P2P网络环境下由于每个节点既是服务器又是客户端，减少了对传统C/S结构中服务器计算能力、存储能力的要求，同时由于资源分布在多个节点，因此能更好地实现整个网络的负载均衡。</p>
+</li>
+</ul>
+<h3 id="P2P加密"><a href="#P2P加密" class="headerlink" title="P2P加密"></a>P2P加密</h3><ul>
+<li><p>文件内容共享和下载，例如Napster、Gnutella、eDonkey等</p>
+</li>
+<li><p>计算能力和存储共享，例如SETI@home、Avaki等</p>
+</li>
+<li><p>基于P2P技术的协同与服务共享平台，例如JXTA等</p>
+</li>
+<li><p>即时通讯工具，包括ICQ、QQ、Yahoo Messenger等</p>
+</li>
+<li><p>P2P通讯与信息共享，例如Skype、Crowds、Onion Routing等；</p>
+</li>
+<li><p>基于P2P技术的网络电视：沸点、PPStream、 PPLive、 QQLive、 SopCast等。</p>
+</li>
+</ul>
+<h3 id="拓扑结构"><a href="#拓扑结构" class="headerlink" title="拓扑结构"></a>拓扑结构</h3><p>拓扑结构是指分布式系统中各个计算单元之间的物理或逻辑的互联关系，结点之间的拓扑结构一直是确定系统类型的重要依据。</p>
+<h4 id="P2P网络的拓扑结构"><a href="#P2P网络的拓扑结构" class="headerlink" title="P2P网络的拓扑结构"></a>P2P网络的拓扑结构</h4><p> 根据结构关系可以将P2P系统细分为四种拓扑形式：</p>
+<ul>
+<li><p><strong>中心化拓扑</strong>（Centralized Topology）</p>
+</li>
+<li><p><strong>全分布式非结构化拓扑</strong>（Decentralized Unstructured Topology）</p>
+</li>
+<li><p><strong>全分布式结构化拓扑</strong>（Decentralized Structured Topology，也称作DHT网络）</p>
+</li>
+<li><p><strong>半分布式拓扑</strong>（Partially Decentralized Topology）</p>
+</li>
+</ul>
+<h4 id="中心化拓扑结构"><a href="#中心化拓扑结构" class="headerlink" title="中心化拓扑结构"></a>中心化拓扑结构</h4><p>即存在一个中心节点保存了其他所有节点的索引信息，索引信息一般包括IP地址、端口、节点资源等。</p>
+<p>Napster是最早出现的P2P系统之一，它的工作原理如图所示。当某个用户需要某个音乐文件时，首先连接到Napster中央索引服务器，在服务器上进行检索，服务器返回存有该文件的用户信息，再由请求者直接连到文件的所有者传输文件。Napster首先实现了文件查询与文件传输的分离，有效地节省了中央服务器的带宽消耗，减少了系统的文件传输延时。</p>
+<ul>
+<li><p><strong>优点</strong></p>
+<ul>
+<li>维护简单、资源发现效率高</li>
+</ul>
+</li>
+<li><p><strong>缺点</strong></p>
+<ul>
+<li>中央索引服务器的瘫痪容易导致整个网络的崩溃，因此可靠性和安全性较低。</li>
+<li>随着网络规模的扩大，对中央索引服务器进行维护和更新的费用将急剧增加，所需成本较高。</li>
+<li>中央索引服务器的存在常引起版权问题上的纠纷，服务提供商容易被追究法律责任。</li>
+</ul>
+</li>
+</ul>
+
       
     </div>
 
@@ -1446,7 +1896,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bitcoin"><span class="nav-number">1.</span> <span class="nav-text">Bitcoin</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数字货币和纸质货币的对比"><span class="nav-number">1.0.1.</span> <span class="nav-text">数字货币和纸质货币的对比</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#双重支付攻击"><span class="nav-number">1.0.2.</span> <span class="nav-text">双重支付攻击</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#去中心化的技术难关"><span class="nav-number">1.0.3.</span> <span class="nav-text">去中心化的技术难关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数字货币的定义"><span class="nav-number">1.0.4.</span> <span class="nav-text">数字货币的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#比特币的诞生"><span class="nav-number">1.0.5.</span> <span class="nav-text">比特币的诞生</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#比特币的意义和价值"><span class="nav-number">1.0.6.</span> <span class="nav-text">比特币的意义和价值</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#比特币的生态系统如下："><span class="nav-number">1.0.6.1.</span> <span class="nav-text">比特币的生态系统如下：</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#Block-Chain"><span class="nav-number">2.</span> <span class="nav-text">Block Chain</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#工作量证明"><span class="nav-number">2.0.1.</span> <span class="nav-text">工作量证明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区块链的演化"><span class="nav-number">2.0.2.</span> <span class="nav-text">区块链的演化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#区块链是首个自带对账功能的数字记账技术实现"><span class="nav-number">2.0.2.1.</span> <span class="nav-text">区块链是首个自带对账功能的数字记账技术实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分类"><span class="nav-number">2.0.3.</span> <span class="nav-text">分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式系统与去中心化"><span class="nav-number">3.</span> <span class="nav-text">分布式系统与去中心化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式系统"><span class="nav-number">3.1.</span> <span class="nav-text">分布式系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CAP定理"><span class="nav-number">3.2.</span> <span class="nav-text">CAP定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拜占庭将军问题"><span class="nav-number">3.3.</span> <span class="nav-text">拜占庭将军问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#拜占庭将军失效"><span class="nav-number">3.3.1.</span> <span class="nav-text">拜占庭将军失效</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拜占庭将军问题——解决算法"><span class="nav-number">3.3.2.</span> <span class="nav-text">拜占庭将军问题——解决算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消息传递"><span class="nav-number">3.3.3.</span> <span class="nav-text">消息传递</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法"><span class="nav-number">3.3.4.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法证明"><span class="nav-number">3.3.5.</span> <span class="nav-text">算法证明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#签名消息"><span class="nav-number">3.3.6.</span> <span class="nav-text">签名消息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于签名消息的算法"><span class="nav-number">3.3.7.</span> <span class="nav-text">基于签名消息的算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于签名消息的算法证明"><span class="nav-number">3.3.8.</span> <span class="nav-text">基于签名消息的算法证明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区块链与分布式系统"><span class="nav-number">3.4.</span> <span class="nav-text">区块链与分布式系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一致性"><span class="nav-number">3.4.1.</span> <span class="nav-text">一致性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区块链的一般元素"><span class="nav-number">3.4.2.</span> <span class="nav-text">区块链的一般元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区块链的特性"><span class="nav-number">3.4.3.</span> <span class="nav-text">区块链的特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区块链中的共识"><span class="nav-number">3.4.4.</span> <span class="nav-text">区块链中的共识</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于区块链的去中心化"><span class="nav-number">3.4.5.</span> <span class="nav-text">基于区块链的去中心化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#去中心化方法"><span class="nav-number">3.4.6.</span> <span class="nav-text">去中心化方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#去中心化流程"><span class="nav-number">3.4.7.</span> <span class="nav-text">去中心化流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区块链和完整的生态圈去中心化操作"><span class="nav-number">3.4.8.</span> <span class="nav-text">区块链和完整的生态圈去中心化操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#存储"><span class="nav-number">3.4.8.1.</span> <span class="nav-text">存储</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#通信"><span class="nav-number">3.4.8.2.</span> <span class="nav-text">通信</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#密码学与基本技术"><span class="nav-number">4.</span> <span class="nav-text">密码学与基本技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#密码学发展简史"><span class="nav-number">4.0.1.</span> <span class="nav-text">密码学发展简史</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#密码学数学基础"><span class="nav-number">4.0.2.</span> <span class="nav-text">密码学数学基础</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对称密码机制"><span class="nav-number">4.0.3.</span> <span class="nav-text">对称密码机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非对称密码机制"><span class="nav-number">4.0.4.</span> <span class="nav-text">非对称密码机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hash技术"><span class="nav-number">4.0.5.</span> <span class="nav-text">Hash技术</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本密码技术的应用"><span class="nav-number">4.0.6.</span> <span class="nav-text">基本密码技术的应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#共识算法"><span class="nav-number">5.</span> <span class="nav-text">共识算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#共识机制"><span class="nav-number">5.1.</span> <span class="nav-text">共识机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PoW"><span class="nav-number">5.2.</span> <span class="nav-text">PoW</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#①工作量证明函数"><span class="nav-number">5.2.1.</span> <span class="nav-text">①工作量证明函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#免碰撞"><span class="nav-number">5.2.1.1.</span> <span class="nav-text">免碰撞</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#隐匿性"><span class="nav-number">5.2.1.2.</span> <span class="nav-text">隐匿性</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#②Merkle树"><span class="nav-number">5.2.2.</span> <span class="nav-text">②Merkle树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#③难度值"><span class="nav-number">5.2.3.</span> <span class="nav-text">③难度值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#POW工作量证明流程"><span class="nav-number">5.2.4.</span> <span class="nav-text">POW工作量证明流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#POW的优缺点"><span class="nav-number">5.2.5.</span> <span class="nav-text">POW的优缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POS"><span class="nav-number">5.3.</span> <span class="nav-text">POS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Peercoin（PPC）"><span class="nav-number">5.3.1.</span> <span class="nav-text">Peercoin（PPC）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Coinage"><span class="nav-number">5.3.1.1.</span> <span class="nav-text">Coinage</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#stakeReward"><span class="nav-number">5.3.1.2.</span> <span class="nav-text">stakeReward</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#stakeMinAge"><span class="nav-number">5.3.1.3.</span> <span class="nav-text">stakeMinAge</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DPoS"><span class="nav-number">5.4.</span> <span class="nav-text">DPoS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PBFT"><span class="nav-number">5.5.</span> <span class="nav-text">PBFT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RAFT"><span class="nav-number">5.6.</span> <span class="nav-text">RAFT</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bitcoin"><span class="nav-number">1.</span> <span class="nav-text">Bitcoin</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数字货币和纸质货币的对比"><span class="nav-number">1.0.1.</span> <span class="nav-text">数字货币和纸质货币的对比</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#双重支付攻击"><span class="nav-number">1.0.2.</span> <span class="nav-text">双重支付攻击</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#去中心化的技术难关"><span class="nav-number">1.0.3.</span> <span class="nav-text">去中心化的技术难关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数字货币的定义"><span class="nav-number">1.0.4.</span> <span class="nav-text">数字货币的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#比特币的诞生"><span class="nav-number">1.0.5.</span> <span class="nav-text">比特币的诞生</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#比特币的意义和价值"><span class="nav-number">1.0.6.</span> <span class="nav-text">比特币的意义和价值</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#比特币的生态系统如下："><span class="nav-number">1.0.6.1.</span> <span class="nav-text">比特币的生态系统如下：</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#Block-Chain"><span class="nav-number">2.</span> <span class="nav-text">Block Chain</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#工作量证明"><span class="nav-number">2.0.1.</span> <span class="nav-text">工作量证明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区块链的演化"><span class="nav-number">2.0.2.</span> <span class="nav-text">区块链的演化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#区块链是首个自带对账功能的数字记账技术实现"><span class="nav-number">2.0.2.1.</span> <span class="nav-text">区块链是首个自带对账功能的数字记账技术实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分类"><span class="nav-number">2.0.3.</span> <span class="nav-text">分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式系统与去中心化"><span class="nav-number">3.</span> <span class="nav-text">分布式系统与去中心化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式系统"><span class="nav-number">3.1.</span> <span class="nav-text">分布式系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CAP定理"><span class="nav-number">3.2.</span> <span class="nav-text">CAP定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拜占庭将军问题"><span class="nav-number">3.3.</span> <span class="nav-text">拜占庭将军问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#拜占庭将军失效"><span class="nav-number">3.3.1.</span> <span class="nav-text">拜占庭将军失效</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拜占庭将军问题——解决算法"><span class="nav-number">3.3.2.</span> <span class="nav-text">拜占庭将军问题——解决算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消息传递"><span class="nav-number">3.3.3.</span> <span class="nav-text">消息传递</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法"><span class="nav-number">3.3.4.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法证明"><span class="nav-number">3.3.5.</span> <span class="nav-text">算法证明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#签名消息"><span class="nav-number">3.3.6.</span> <span class="nav-text">签名消息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于签名消息的算法"><span class="nav-number">3.3.7.</span> <span class="nav-text">基于签名消息的算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于签名消息的算法证明"><span class="nav-number">3.3.8.</span> <span class="nav-text">基于签名消息的算法证明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区块链与分布式系统"><span class="nav-number">3.4.</span> <span class="nav-text">区块链与分布式系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一致性"><span class="nav-number">3.4.1.</span> <span class="nav-text">一致性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区块链的一般元素"><span class="nav-number">3.4.2.</span> <span class="nav-text">区块链的一般元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区块链的特性"><span class="nav-number">3.4.3.</span> <span class="nav-text">区块链的特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区块链中的共识"><span class="nav-number">3.4.4.</span> <span class="nav-text">区块链中的共识</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于区块链的去中心化"><span class="nav-number">3.4.5.</span> <span class="nav-text">基于区块链的去中心化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#去中心化方法"><span class="nav-number">3.4.6.</span> <span class="nav-text">去中心化方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#去中心化流程"><span class="nav-number">3.4.7.</span> <span class="nav-text">去中心化流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区块链和完整的生态圈去中心化操作"><span class="nav-number">3.4.8.</span> <span class="nav-text">区块链和完整的生态圈去中心化操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#存储"><span class="nav-number">3.4.8.1.</span> <span class="nav-text">存储</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#通信"><span class="nav-number">3.4.8.2.</span> <span class="nav-text">通信</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#密码学与基本技术"><span class="nav-number">4.</span> <span class="nav-text">密码学与基本技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#密码学发展简史"><span class="nav-number">4.0.1.</span> <span class="nav-text">密码学发展简史</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#密码学数学基础"><span class="nav-number">4.0.2.</span> <span class="nav-text">密码学数学基础</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对称密码机制"><span class="nav-number">4.0.3.</span> <span class="nav-text">对称密码机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非对称密码机制"><span class="nav-number">4.0.4.</span> <span class="nav-text">非对称密码机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hash技术"><span class="nav-number">4.0.5.</span> <span class="nav-text">Hash技术</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本密码技术的应用"><span class="nav-number">4.0.6.</span> <span class="nav-text">基本密码技术的应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#共识算法"><span class="nav-number">5.</span> <span class="nav-text">共识算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#共识机制"><span class="nav-number">5.1.</span> <span class="nav-text">共识机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PoW"><span class="nav-number">5.2.</span> <span class="nav-text">PoW</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#①工作量证明函数"><span class="nav-number">5.2.1.</span> <span class="nav-text">①工作量证明函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#免碰撞"><span class="nav-number">5.2.1.1.</span> <span class="nav-text">免碰撞</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#隐匿性"><span class="nav-number">5.2.1.2.</span> <span class="nav-text">隐匿性</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#②Merkle树"><span class="nav-number">5.2.2.</span> <span class="nav-text">②Merkle树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#③难度值"><span class="nav-number">5.2.3.</span> <span class="nav-text">③难度值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#POW工作量证明流程"><span class="nav-number">5.2.4.</span> <span class="nav-text">POW工作量证明流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#POW的优缺点"><span class="nav-number">5.2.5.</span> <span class="nav-text">POW的优缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POS"><span class="nav-number">5.3.</span> <span class="nav-text">POS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Peercoin（PPC）"><span class="nav-number">5.3.1.</span> <span class="nav-text">Peercoin（PPC）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Coinage"><span class="nav-number">5.3.1.1.</span> <span class="nav-text">Coinage</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#stakeReward"><span class="nav-number">5.3.1.2.</span> <span class="nav-text">stakeReward</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#stakeMinAge"><span class="nav-number">5.3.1.3.</span> <span class="nav-text">stakeMinAge</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#POS2-0"><span class="nav-number">5.3.2.</span> <span class="nav-text">POS2.0</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#POS3-0"><span class="nav-number">5.3.3.</span> <span class="nav-text">POS3.0</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#POS的优缺点"><span class="nav-number">5.3.4.</span> <span class="nav-text">POS的优缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DPoS"><span class="nav-number">5.4.</span> <span class="nav-text">DPoS</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#DPoS-优化方案"><span class="nav-number">5.4.0.1.</span> <span class="nav-text">DPoS 优化方案</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DPOS机制涉及的问题"><span class="nav-number">5.4.1.</span> <span class="nav-text">DPOS机制涉及的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DPOS遵循的基本原则"><span class="nav-number">5.4.2.</span> <span class="nav-text">DPOS遵循的基本原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DPOS的优缺点"><span class="nav-number">5.4.3.</span> <span class="nav-text">DPOS的优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#优点："><span class="nav-number">5.4.3.1.</span> <span class="nav-text">优点：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#缺点："><span class="nav-number">5.4.3.2.</span> <span class="nav-text">缺点：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PBFT"><span class="nav-number">5.5.</span> <span class="nav-text">PBFT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PBFT的算法基本流程"><span class="nav-number">5.5.1.</span> <span class="nav-text">PBFT的算法基本流程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Requset阶段"><span class="nav-number">5.5.1.1.</span> <span class="nav-text">Requset阶段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#PBFT算法预备（Pre-Prepare）"><span class="nav-number">5.5.1.2.</span> <span class="nav-text">PBFT算法预备（Pre-Prepare）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Prepare"><span class="nav-number">5.5.1.3.</span> <span class="nav-text">Prepare</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Commit"><span class="nav-number">5.5.1.4.</span> <span class="nav-text">Commit</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Reply"><span class="nav-number">5.5.1.5.</span> <span class="nav-text">Reply</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PBFT-检查点-（checkpoint）"><span class="nav-number">5.5.2.</span> <span class="nav-text">PBFT 检查点 （checkpoint）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法视图变更"><span class="nav-number">5.5.3.</span> <span class="nav-text">算法视图变更</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RAFT"><span class="nav-number">5.6.</span> <span class="nav-text">RAFT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#选举流程"><span class="nav-number">5.6.1.</span> <span class="nav-text">选举流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#记账过程"><span class="nav-number">5.6.2.</span> <span class="nav-text">记账过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RAFT和PBFT对比"><span class="nav-number">5.6.3.</span> <span class="nav-text">RAFT和PBFT对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区块链架构"><span class="nav-number">6.</span> <span class="nav-text">区块链架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#比特币"><span class="nav-number">6.1.</span> <span class="nav-text">比特币</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#区块链1-0"><span class="nav-number">6.1.1.</span> <span class="nav-text">区块链1.0</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#优势"><span class="nav-number">6.1.1.1.</span> <span class="nav-text">优势</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#缺点"><span class="nav-number">6.1.1.2.</span> <span class="nav-text">缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#以太坊"><span class="nav-number">6.2.</span> <span class="nav-text">以太坊</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#区块链2-0"><span class="nav-number">6.2.1.</span> <span class="nav-text">区块链2.0</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#以太坊客户端"><span class="nav-number">6.2.1.1.</span> <span class="nav-text">以太坊客户端</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#智能合约"><span class="nav-number">7.</span> <span class="nav-text">智能合约</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#智能合约The-DAO事件："><span class="nav-number">7.0.0.1.</span> <span class="nav-text">智能合约The DAO事件：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#以太坊虚拟机"><span class="nav-number">7.0.1.</span> <span class="nav-text">以太坊虚拟机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#智能合约的使用步骤"><span class="nav-number">7.1.</span> <span class="nav-text">智能合约的使用步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#编译智能合约"><span class="nav-number">7.1.1.</span> <span class="nav-text">编译智能合约</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建智能合约"><span class="nav-number">7.1.2.</span> <span class="nav-text">创建智能合约</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#部署智能合约"><span class="nav-number">7.1.3.</span> <span class="nav-text">部署智能合约</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调用智能合约"><span class="nav-number">7.1.4.</span> <span class="nav-text">调用智能合约</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#监听智能合约"><span class="nav-number">7.1.5.</span> <span class="nav-text">监听智能合约</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#销毁智能合约"><span class="nav-number">7.1.6.</span> <span class="nav-text">销毁智能合约</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景"><span class="nav-number">7.2.</span> <span class="nav-text">应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数字身份"><span class="nav-number">7.2.1.</span> <span class="nav-text">数字身份</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#记录"><span class="nav-number">7.2.2.</span> <span class="nav-text">记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#证券"><span class="nav-number">7.2.3.</span> <span class="nav-text">证券</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#贸易金融"><span class="nav-number">7.2.4.</span> <span class="nav-text">贸易金融</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#供应链"><span class="nav-number">7.2.5.</span> <span class="nav-text">供应链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#汽车保险"><span class="nav-number">7.2.6.</span> <span class="nav-text">汽车保险</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P2P"><span class="nav-number">8.</span> <span class="nav-text">P2P</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#p2p简介"><span class="nav-number">8.1.</span> <span class="nav-text">p2p简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2P网络原理"><span class="nav-number">8.2.</span> <span class="nav-text">P2P网络原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2P特点"><span class="nav-number">8.3.</span> <span class="nav-text">P2P特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2P优势"><span class="nav-number">8.4.</span> <span class="nav-text">P2P优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2P加密"><span class="nav-number">8.5.</span> <span class="nav-text">P2P加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拓扑结构"><span class="nav-number">8.6.</span> <span class="nav-text">拓扑结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#P2P网络的拓扑结构"><span class="nav-number">8.6.1.</span> <span class="nav-text">P2P网络的拓扑结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中心化拓扑结构"><span class="nav-number">8.6.2.</span> <span class="nav-text">中心化拓扑结构</span></a></li></ol></li></ol></li></div>
             
 
           </div>
