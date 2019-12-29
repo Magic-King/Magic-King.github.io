@@ -252,7 +252,7 @@ message: Welcome to my blog, enter password to read.
 
 
 
-* ### Magic App
+* ### Magic Application
 
 	>
 	>
@@ -262,6 +262,7 @@ message: Welcome to my blog, enter password to read.
 	>- CCleaner
 	>- ShadowSocks(ssr)
 	>- Sync
+	>- clashR
 	>
 	>
 	>
@@ -301,6 +302,10 @@ message: Welcome to my blog, enter password to read.
 	>
 	>
 	>
+
+
+
+
 
 
 
@@ -372,10 +377,13 @@ message: Welcome to my blog, enter password to read.
 * Parkour
 * Basketball
 * Psychology
+* 
 
 ### -->wish
 
 * Piano
+* Hack
+* 
 * 
 * 
 
@@ -409,6 +417,7 @@ message: Welcome to my blog, enter password to read.
 * 密室
 * 小书房(with 呼吸灯、小阳台、舒适的沙发)
 * 想要一面渐变色的风景
+* (有可能的话，想要个复式楼)
 * 
 * 
 
