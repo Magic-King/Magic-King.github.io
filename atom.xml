@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2019-12-29T12:27:44.609Z</updated>
+  <updated>2020-01-02T08:51:12.532Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -17,18 +17,84 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>BlockChain</title>
-    <link href="http://magic-king.net/2019/12/26/BlockChain/"/>
-    <id>http://magic-king.net/2019/12/26/BlockChain/</id>
-    <published>2019-12-26T06:20:45.000Z</published>
-    <updated>2019-12-29T12:27:44.609Z</updated>
+    <title>Database-System</title>
+    <link href="http://magic-king.net/2020/01/02/Database-System/"/>
+    <id>http://magic-king.net/2020/01/02/Database-System/</id>
+    <published>2020-01-02T03:15:07.000Z</published>
+    <updated>2020-01-02T08:51:12.532Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;Bitcoin&quot;&gt;&lt;a href=&quot;#Bitcoin&quot; class=&quot;headerlink&quot; title=&quot;Bitcoin&quot;&gt;&lt;/a&gt;Bitcoin&lt;/h2&gt;&lt;h4 id=&quot;数字货币和纸质货币的对比&quot;&gt;&lt;a href=&quot;#数字货币和纸质货币的对比&quot; class=&quot;headerlink&quot; title=&quot;数
+        &lt;h1 id=&quot;数据库系统概念&quot;&gt;&lt;a href=&quot;#数据库系统概念&quot; class=&quot;headerlink&quot; title=&quot;数据库系统概念&quot;&gt;&lt;/a&gt;数据库系统概念&lt;/h1&gt;&lt;h2 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h2&gt;&lt;p&gt;DBM
       
+    
+    </summary>
+    
+    
+      <category term="Database" scheme="http://magic-king.net/categories/Database/"/>
+    
+    
+      <category term="Database" scheme="http://magic-king.net/tags/Database/"/>
+    
+      <category term="StudyNote" scheme="http://magic-king.net/tags/StudyNote/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Functions with potential code execution risks in Python</title>
+    <link href="http://magic-king.net/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/"/>
+    <id>http://magic-king.net/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/</id>
+    <published>2019-12-30T10:52:35.000Z</published>
+    <updated>2019-12-30T13:28:23.781Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Python中有潜在代码执行风险的函数&quot;&gt;&lt;a href=&quot;#Python中有潜在代码执行风险的函数&quot; class=&quot;headerlink&quot; title=&quot;Python中有潜在代码执行风险的函数&quot;&gt;&lt;/a&gt;Python中有潜在代码执行风险的函数&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;参考：&lt;/p&gt;
+&lt;
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>QRCodeAttack</title>
+    <link href="http://magic-king.net/2019/12/30/QRCodeAttack/"/>
+    <id>http://magic-king.net/2019/12/30/QRCodeAttack/</id>
+    <published>2019-12-30T07:35:01.000Z</published>
+    <updated>2019-12-30T10:09:09.722Z</updated>
+    
+    <summary type="html">
+    
+      Something about QRCode.
+    
+    </summary>
+    
+    
+      <category term="QRCode" scheme="http://magic-king.net/categories/QRCode/"/>
+    
+    
+      <category term="QRCode" scheme="http://magic-king.net/tags/QRCode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>BlockChain</title>
+    <link href="http://magic-king.net/2019/12/26/BlockChain/"/>
+    <id>http://magic-king.net/2019/12/26/BlockChain/</id>
+    <published>2019-12-26T06:20:45.000Z</published>
+    <updated>2019-12-30T03:11:01.030Z</updated>
+    
+    <summary type="html">
+    
+      The courese of BlockChain.There are some notes.
     
     </summary>
     
@@ -36,11 +102,11 @@
       <category term="BlockChain" scheme="http://magic-king.net/categories/BlockChain/"/>
     
     
+      <category term="StudyNote" scheme="http://magic-king.net/tags/StudyNote/"/>
+    
       <category term="BlockChain" scheme="http://magic-king.net/tags/BlockChain/"/>
     
       <category term="bitcoin" scheme="http://magic-king.net/tags/bitcoin/"/>
-    
-      <category term="StudyNote" scheme="http://magic-king.net/tags/StudyNote/"/>
     
   </entry>
   
@@ -561,7 +627,7 @@
     
     <summary type="html">
     
-      It is Magic.&lt;/br&gt;the content has been encrypted, enter the password to read.&lt;/br&gt;
+      It is Magic.&lt;br&gt;the content has been encrypted, enter the password to read.&lt;br&gt;
     
     </summary>
     

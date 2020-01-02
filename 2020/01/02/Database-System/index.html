@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="数据库系统概念引言DBMS定义：由一个相互关联的数据集合和一组用以访问这些数据的程序组成，这个数据集合同城称作数据库(Database)。 DBMS的目标：方便、高效地存取数据库信息  四个基本概念 数据（Data） 数据库（Database） 数据库管理系统（DBMS） 数据库系统（DBS）    数据数据（Data）是数据库中存储的基本对象 数据的定义：描述事物的符号记录 数据的种类：文字、图">
+<meta name="keywords" content="Database,StudyNote">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Database-System">
+<meta property="og:url" content="http://magic-king.net/2020/01/02/Database-System/index.html">
+<meta property="og:site_name" content="Hexo&amp;Magic">
+<meta property="og:description" content="数据库系统概念引言DBMS定义：由一个相互关联的数据集合和一组用以访问这些数据的程序组成，这个数据集合同城称作数据库(Database)。 DBMS的目标：方便、高效地存取数据库信息  四个基本概念 数据（Data） 数据库（Database） 数据库管理系统（DBMS） 数据库系统（DBS）    数据数据（Data）是数据库中存储的基本对象 数据的定义：描述事物的符号记录 数据的种类：文字、图">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/1.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/2.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/3.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/4.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/5.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/6.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/7.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/8.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/9.jpg">
+<meta property="og:updated_time" content="2020-01-02T08:51:12.532Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Database-System">
+<meta name="twitter:description" content="数据库系统概念引言DBMS定义：由一个相互关联的数据集合和一组用以访问这些数据的程序组成，这个数据集合同城称作数据库(Database)。 DBMS的目标：方便、高效地存取数据库信息  四个基本概念 数据（Data） 数据库（Database） 数据库管理系统（DBMS） 数据库系统（DBS）    数据数据（Data）是数据库中存储的基本对象 数据的定义：描述事物的符号记录 数据的种类：文字、图">
+<meta name="twitter:image" content="http://magic-king.net/2020/01/02/Database-System/1.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hexo&Magic" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://magic-king.net/2020/01/02/Database-System/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Database-System | Hexo&Magic</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo&Magic</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://magic-king.net/2020/01/02/Database-System/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Magic King">
+      <meta itemprop="description" content="Now You See Me!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo&Magic">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Database-System
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-02 11:15:07 / 修改时间：16:51:12" itemprop="dateCreated datePublished" datetime="2020-01-02T11:15:07+08:00">2020-01-02</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="数据库系统概念"><a href="#数据库系统概念" class="headerlink" title="数据库系统概念"></a>数据库系统概念</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>DBMS定义：由一个相互关联的数据集合和一组用以访问这些数据的程序组成，这个数据集合同城称作<strong>数据库(Database)</strong>。</p>
+<p>DBMS的目标：方便、高效地存取数据库信息</p>
+<ul>
+<li>四个基本概念<ul>
+<li>数据（Data）</li>
+<li>数据库（Database）</li>
+<li>数据库管理系统（DBMS）</li>
+<li>数据库系统（DBS）</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h3><p>数据（Data）是数据库中存储的基本对象</p>
+<p><strong>数据的定义</strong>：描述事物的符号记录</p>
+<p><strong>数据的种类</strong>：文字、图形、图像、声音</p>
+<p><strong>数据的特点</strong>：数据与其语义是不可分的</p>
+<p>！数据的形式不能完全表达其内容</p>
+<h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><p><strong>逻辑结构</strong>：数据之间存在的逻辑关系，如表、树、图、数组等</p>
+<p><strong>物理结构</strong>：数据在计算机内的存储方式，如顺序方式、链接方式</p>
+<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>数据库（Database，简称DB）是<strong>长期</strong>储存在计算机内、<strong>有组织的</strong>、<strong>可共享</strong>的<strong>大量</strong>数据集合</p>
+<h4 id="数据库的特征"><a href="#数据库的特征" class="headerlink" title="数据库的特征"></a>数据库的特征</h4><ul>
+<li>数据按一定的数据模型组织、描述和储存</li>
+<li>可为各种用户共享</li>
+<li>冗余度较小</li>
+<li>数据独立性较高</li>
+<li>易扩展</li>
+</ul>
+<h3 id="数据库管理系统"><a href="#数据库管理系统" class="headerlink" title="数据库管理系统"></a>数据库管理系统</h3><p>数据库管理系统（Database Management System，简称DBMS）由一个相互关联的数据的集合和一组用以访问这些数据的程序组成，是位于用户与操作系统之间的一层数据管理软件。</p>
+<p><strong>用途</strong>：科学地组织和存储数据、高效地获取和维护数据</p>
+<ul>
+<li><strong>数据定义功能</strong>：提供数据定义语言（DDL），定义数据库中的数据对象</li>
+<li><strong>数据操作功能</strong>：提供数据操纵语言（DML），操纵数据实现对数据库的基本操作（增删改查）</li>
+<li><strong>数据库的运行管理</strong>：保证数据的安全性、完整性，保证多用户对数据的并发使用，发生故障后的系统恢复</li>
+<li><strong>数据库的建立和维护功能</strong>：数据库数据批量装载，数据库转储，介质故障恢复，数据库的重组织，性能监视</li>
+</ul>
+<h3 id="数据库系统"><a href="#数据库系统" class="headerlink" title="数据库系统"></a>数据库系统</h3><p>数据库系统（Database System，简称DBS）是指在计算机系统中引入数据库后的系统，在不引起混淆的情况下常常把数据库系统简称为数据库</p>
+<p><strong>数据库系统的组成</strong>：由数据库、数据库管理系统、应用系统（及其开发工具）、数据库管理员（和用户）构成</p>
+<p>如下图所示</p>
+<p><img src="/2020/01/02/Database-System/1.jpg" alt></p>
+<p>下图为各系统间的关系</p>
+<p><img src="/2020/01/02/Database-System/2.jpg" alt></p>
+<h3 id="数据管理技术"><a href="#数据管理技术" class="headerlink" title="数据管理技术"></a>数据管理技术</h3><p>数据管理：对数据进行分类、组织、编码、存储、检索和维护，是数据处理的中心问题</p>
+<p>数据管理的发展动力：应用需求的推动；计算机硬件的发展；计算机软件的发展。</p>
+<p>发展阶段：①人工管理阶段（50年代中期以前）②文件系统阶段（50年代后期~60年代中期）③数据库系统阶段（60年代后期开始）</p>
+<blockquote>
+<p>早期，数据库应用程序直接建立在文件系统之上，文件系统的弊端如下：</p>
+<ul>
+<li>数据的冗余和不一致性：多种文件格式，相同的信息在几个文件重复存储</li>
+<li>数据访问困难：对于每一个新任务，需要写一个程序</li>
+<li>数据孤立：数据分散在不同格式的多个文件中</li>
+<li>完整性问题：一致性约束“淹没”在程序代码中，增加新约束或修改现有约束很困难</li>
+<li>更新的原子性问题：难以保持原子性，执行部分更新，是的数据处于不一致状态</li>
+<li>多用户的并发访问异常：系统的总体性能和相应速度要求：并发访问数据，没有控制的并发访问导致不一致性</li>
+<li>安全性问题：控制用户只存取部分数据难以实现</li>
+</ul>
+</blockquote>
+<p>数据库的观点：数据不是依赖于处理过程的附属品，而是现实世界中独立存在的对象</p>
+<p>数据统一按表结构存放</p>
+<p><center>数据库VS文件系统</center><br><img src="/2020/01/02/Database-System/3.jpg" alt></p>
+<h3 id="实例与模式"><a href="#实例与模式" class="headerlink" title="实例与模式"></a>实例与模式</h3><p>Instance and Schemas</p>
+<p>型(Schema)与值(Instance)的区别：</p>
+<ul>
+<li>型是对数据的结构和属性的说明——模式</li>
+<li>值是型的一个具体赋值——实例</li>
+<li>型是相对稳定的，值是随时间不断变化的</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">person</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:	<span class="built_in">string</span> name;</span><br><span class="line">			<span class="built_in">string</span> address;</span><br><span class="line">&#125;;</span><br><span class="line">person Tom;</span><br><span class="line"><span class="comment">//person是型,Tom是变量,Tom在某时刻的值是实例</span></span><br></pre></td></tr></table></figure>
+<h4 id="模式：数据库的总体设计"><a href="#模式：数据库的总体设计" class="headerlink" title="模式：数据库的总体设计"></a>模式：数据库的总体设计</h4><ul>
+<li>通过高级程序设计语言进行类比</li>
+<li><strong>物理模式</strong>：在物理层描述的数据库设计</li>
+<li><strong>逻辑模式（子模式）</strong>：在逻辑层描述的数据库设计</li>
+</ul>
+<h4 id="实例：在特定时刻存储在数据库中的信息集合"><a href="#实例：在特定时刻存储在数据库中的信息集合" class="headerlink" title="实例：在特定时刻存储在数据库中的信息集合"></a>实例：在特定时刻存储在数据库中的信息集合</h4><ul>
+<li>类似于一个变量的值</li>
+</ul>
+<h4 id="物理数据的独立性：物理模式的改变而不会影响逻辑模式"><a href="#物理数据的独立性：物理模式的改变而不会影响逻辑模式" class="headerlink" title="物理数据的独立性：物理模式的改变而不会影响逻辑模式"></a>物理数据的独立性：物理模式的改变而不会影响逻辑模式</h4><ul>
+<li>应用依赖于逻辑模式</li>
+<li>在一般情况下，应明确定义不同层次之间和组件之间的接口，这样某些部分的改变不会对其他部分造成较大影响</li>
+</ul>
+<h4 id="逻辑数据的独立性"><a href="#逻辑数据的独立性" class="headerlink" title="逻辑数据的独立性"></a>逻辑数据的独立性</h4><ul>
+<li>当模式改变时，修改外模式（模式映像），使外模式保持不变，从而应用程序可以保持不变，称为数据的逻辑独立性</li>
+</ul>
+<h3 id="数据视图"><a href="#数据视图" class="headerlink" title="数据视图"></a>数据视图</h3><p><strong>物理层</strong>：描述数据存储</p>
+<p><strong>逻辑层</strong>：描述存储在数据库中的数据，以及数据间的关系</p>
+<p><strong>视图层</strong>：最高层次的抽象，只描述整个数据库的某部分数据。视图层提供了防止用户访问数据库的某些部分的安全性机制</p>
+<p><img src="/2020/01/02/Database-System/4.jpg" alt></p>
+<p>如图，下图的COBOL和PL/I是由由逻辑层创建的两个视图，而最下面那个即是物理层所存放的数据</p>
+<p><img src="/2020/01/02/Database-System/5.jpg" alt></p>
+<h3 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h3><p><strong>数据库结构的基础是数据模型</strong></p>
+<p>数据模型描述的内容：数据、数据关系、数据语义、数据约束</p>
+<p>常用数据模型：关系模型、实体-联系数据模型（ER模型，主要用于数据库设计）、基于对象的数据模型（oo数据模型，面向对象和对象关系）、半结构化数据模型（XML，可扩展标记语言）、其他模型（如网状模型、层次模型）等</p>
+<h3 id="数据库语言"><a href="#数据库语言" class="headerlink" title="数据库语言"></a>数据库语言</h3><ul>
+<li>DML（Data Manipulaton Language）：操纵按照某种适当的数据模型组织起来的数据的语言<ul>
+<li>查询</li>
+<li>更新（增、删、改）</li>
+</ul>
+</li>
+</ul>
+<p>DML分类：①过程化：用户指定需要什么数据以及如何获得这些数据；②声明式（非过程化）：用户指定需要什么数据，而不指明如何获得这些数据</p>
+<p>SQL是应用最广泛的DML</p>
+<ul>
+<li>DDL（Data Definition Language）：用于定义数据库模式以及其他特征的语言<ul>
+<li>数据库模式</li>
+<li>完整性约束：<ul>
+<li>主键（ID，用来确定唯一的instructor）</li>
+<li>参照完整性（SQL中的参照约束）</li>
+</ul>
+</li>
+<li>断言</li>
+<li>授权</li>
+</ul>
+</li>
+</ul>
+<p>DDL编译器产生一系列存储在<strong>数据字典</strong>中的表，数据字典包含元数据（元数据是关于数据的数据）</p>
+<h3 id="关系数据库"><a href="#关系数据库" class="headerlink" title="关系数据库"></a>关系数据库</h3><p>SQL：是一门广泛使用的非过程化语言</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 例</span></span><br><span class="line"><span class="comment"># SQL-DML</span></span><br><span class="line"><span class="keyword">select</span> instructor.ID, department.building</span><br><span class="line"><span class="keyword">from</span> instructor, department</span><br><span class="line"><span class="keyword">where</span> instructor.dept_name = department.dept_name <span class="keyword">and</span></span><br><span class="line">		department.dept_nmae = <span class="string">'Physics'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># SQL-DDL</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> deptment(</span><br><span class="line">	dept_name <span class="built_in">char</span>(<span class="number">20</span>),</span><br><span class="line">    building <span class="built_in">char</span>(<span class="number">20</span>),</span><br><span class="line">    budget numberic(<span class="number">12</span>,<span class="number">2</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>来自应用程序的数据库访问：DML由宿主语言执行</p>
+<h3 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h3><p>数据库设计的主要内容是数据库模式的设计</p>
+<p>数据库设计过程：</p>
+<ul>
+<li>获取用户需求</li>
+<li>概念设计</li>
+<li>逻辑设计</li>
+<li>物理设计</li>
+</ul>
+<p>现实世界是实体及其实体之间关系的集合</p>
+<p>实体：现实世界中区别于其他对象的事情或物体，实体被一组属性所描述</p>
+<p>关系：几个实体之间的关联</p>
+<p>可以用实体关系图（entity-relationship diagram，E-R图）来表示</p>
+<p><img src="/2020/01/02/Database-System/6.jpg" alt></p>
+<p>规范化：数据库设计的另外一种方法，目标是生成一个关系模式集合，是我们的存储信息是没有不必要的冗余，同时又能方便地检索数据</p>
+<p>规范化最常用的方法就是使用函数依赖</p>
+<p>规范化也提供了判定一个关系模式优劣的标准</p>
+<h3 id="数据存储和查询"><a href="#数据存储和查询" class="headerlink" title="数据存储和查询"></a>数据存储和查询</h3><p>存储管理器是一个程序模块，提供了数据库中存储的低层数据与应用程序以及向系统提交的查询之间的接口</p>
+<ul>
+<li>存储管理器的任务<ul>
+<li>与文件管理器交互</li>
+<li>对数据的有效的存储、查询、更新</li>
+</ul>
+</li>
+<li>存储管理器部件<ul>
+<li>权限及完整性管理器</li>
+<li>事务管理器</li>
+<li>文件管理器</li>
+<li>缓冲区管理器</li>
+</ul>
+</li>
+</ul>
+<h4 id="查询管理器"><a href="#查询管理器" class="headerlink" title="查询管理器"></a>查询管理器</h4><p>查询管理器的组件包括</p>
+<ul>
+<li>DDL解释器：他解释DDL语句，并将这些定义记录在数据字典中</li>
+<li>DML编译器：将查询语言中的DML语句翻译成为一个执行方案</li>
+<li>查询执行引擎：执行由DML编译器产生的低级指令</li>
+</ul>
+<p><img src="/2020/01/02/Database-System/7.jpg" alt></p>
+<ul>
+<li>查询处理器的工作过程<ul>
+<li>解析和转换</li>
+<li>优化</li>
+<li>计算</li>
+</ul>
+</li>
+</ul>
+<p>过程如下图</p>
+<p><img src="/2020/01/02/Database-System/8.jpg" alt></p>
+<p>两方面来评估一个给定查询：①正则表达式②每个操作有不同的实现算法</p>
+<p>需要估计操作的开销：关键取决于数据库需要维护的关系的统计信息；需要顾及中间结果的统计数据，从而计算复杂的表达式成本</p>
+<h3 id="事务管理"><a href="#事务管理" class="headerlink" title="事务管理"></a>事务管理</h3><p><strong>事务</strong>是由一系列操作序列构成的程序执行单元，是一个不可分割的工作单位</p>
+<p><strong>事务管理组件</strong>保证了当系统出现了故障（例如电源故障、操作系统崩溃）或事务失败时，数据库仍然保持一致性（正确性）</p>
+<p><strong>并发控制管理器</strong>控制了并发事务间的相互影响，保证数据库的一致性</p>
+<h3 id="数据库系统内部结构"><a href="#数据库系统内部结构" class="headerlink" title="数据库系统内部结构"></a>数据库系统内部结构</h3><p><img src="/2020/01/02/Database-System/9.jpg" alt></p>
+<h4 id="数据库体系结构"><a href="#数据库体系结构" class="headerlink" title="数据库体系结构"></a>数据库体系结构</h4><p>数据库系统的体系结构很大程度上取决于数据库系统所运行的计算机系统</p>
+<ul>
+<li>集中式</li>
+<li>客户/服务器式<ul>
+<li>远程数据库用户工作用的客户机（Clinet）</li>
+<li>运行数据库系统的服务器（Server）</li>
+</ul>
+</li>
+<li>并行（多处理器）<ul>
+<li>并行系统通过并行地使用多个处理器和磁盘来提高处理速度和I/O速度</li>
+</ul>
+</li>
+<li>分布式<ul>
+<li>在分布式数据库系统中，数据库存储于几台计算机中，分布式系统中的计算机之间通过网络相互通信，他们不共享主存储器或磁盘</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据挖掘"><a href="#数据挖掘" class="headerlink" title="数据挖掘"></a>数据挖掘</h3><p>数据挖掘式应用一系列技术从大型数据库或数据仓库中提取人马感兴趣的信息和知识，这些知识或信息式隐含的，实现未知而潜在有用的，提取的知识表示为概念、规则、规律、模式等形式</p>
+<p>数据挖掘式一类深层次的数据分析</p>
+<h3 id="数据库管理员"><a href="#数据库管理员" class="headerlink" title="数据库管理员"></a>数据库管理员</h3><p>对数据库系统进行集中控制的人称作数据库管理员（Database Administrator）</p>
+<ul>
+<li>DBA的作用<ul>
+<li>模式定义</li>
+<li>存储结构及存取方法定义</li>
+<li>模式及物理组织的修改</li>
+<li>数据访问授权</li>
+<li>日常维护</li>
+</ul>
+</li>
+</ul>
+<h2 id="关系模型"><a href="#关系模型" class="headerlink" title="关系模型"></a>关系模型</h2>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Database/" rel="tag"># Database</a>
+          
+            <a href="/tags/StudyNote/" rel="tag"># StudyNote</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/" rel="next" title="Functions with potential code execution risks in Python">
+                <i class="fa fa-chevron-left"></i> Functions with potential code execution risks in Python
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Magic King">
+            
+              <p class="site-author-name" itemprop="name">Magic King</p>
+              <div class="site-description motion-element" itemprop="description">Now You See Me!</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Magic-King" title="GitHub &rarr; https://github.com/Magic-King" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库系统概念"><span class="nav-number">1.</span> <span class="nav-text">数据库系统概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.1.</span> <span class="nav-text">引言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据"><span class="nav-number">1.1.1.</span> <span class="nav-text">数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据结构"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">数据结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库"><span class="nav-number">1.1.2.</span> <span class="nav-text">数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库的特征"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">数据库的特征</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库管理系统"><span class="nav-number">1.1.3.</span> <span class="nav-text">数据库管理系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库系统"><span class="nav-number">1.1.4.</span> <span class="nav-text">数据库系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据管理技术"><span class="nav-number">1.1.5.</span> <span class="nav-text">数据管理技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例与模式"><span class="nav-number">1.1.6.</span> <span class="nav-text">实例与模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模式：数据库的总体设计"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">模式：数据库的总体设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例：在特定时刻存储在数据库中的信息集合"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">实例：在特定时刻存储在数据库中的信息集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#物理数据的独立性：物理模式的改变而不会影响逻辑模式"><span class="nav-number">1.1.6.3.</span> <span class="nav-text">物理数据的独立性：物理模式的改变而不会影响逻辑模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#逻辑数据的独立性"><span class="nav-number">1.1.6.4.</span> <span class="nav-text">逻辑数据的独立性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据视图"><span class="nav-number">1.1.7.</span> <span class="nav-text">数据视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据模型"><span class="nav-number">1.1.8.</span> <span class="nav-text">数据模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库语言"><span class="nav-number">1.1.9.</span> <span class="nav-text">数据库语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系数据库"><span class="nav-number">1.1.10.</span> <span class="nav-text">关系数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库设计"><span class="nav-number">1.1.11.</span> <span class="nav-text">数据库设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据存储和查询"><span class="nav-number">1.1.12.</span> <span class="nav-text">数据存储和查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询管理器"><span class="nav-number">1.1.12.1.</span> <span class="nav-text">查询管理器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务管理"><span class="nav-number">1.1.13.</span> <span class="nav-text">事务管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库系统内部结构"><span class="nav-number">1.1.14.</span> <span class="nav-text">数据库系统内部结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库体系结构"><span class="nav-number">1.1.14.1.</span> <span class="nav-text">数据库体系结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据挖掘"><span class="nav-number">1.1.15.</span> <span class="nav-text">数据挖掘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库管理员"><span class="nav-number">1.1.16.</span> <span class="nav-text">数据库管理员</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系模型"><span class="nav-number">1.2.</span> <span class="nav-text">关系模型</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Magic King</span>
+
+  
+
+  
+</div>
+
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0 </div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-2" count="666" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+</body>
+</html>

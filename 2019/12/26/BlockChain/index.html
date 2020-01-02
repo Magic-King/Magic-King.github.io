@@ -98,13 +98,13 @@
 
 
 
-  <meta name="description" content="Bitcoin数字货币和纸质货币的对比   属性 分析 优势方     便携 大部分场景（特别是较大数额支付时）下数字货币将具备更好的便携性 数字货币   防伪 两者各有千秋，但数字货币整体上会略胜一筹。 纸币依靠的是各种设计（纸张、油墨 、防伪 暗纹 、 夹层等）上的精巧，数字货币依靠的则是密码学上的保障。 事实上，纸币的伪造时有发生，但数字货币的伪造目前还无法实现 数字货币   辨伪 纸币即使">
-<meta name="keywords" content="BlockChain,bitcoin,StudyNote">
+  <meta name="description" content="The courese of BlockChain.There are some notes.">
+<meta name="keywords" content="StudyNote,BlockChain,bitcoin">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BlockChain">
 <meta property="og:url" content="http://magic-king.net/2019/12/26/BlockChain/index.html">
 <meta property="og:site_name" content="Hexo&amp;Magic">
-<meta property="og:description" content="Bitcoin数字货币和纸质货币的对比   属性 分析 优势方     便携 大部分场景（特别是较大数额支付时）下数字货币将具备更好的便携性 数字货币   防伪 两者各有千秋，但数字货币整体上会略胜一筹。 纸币依靠的是各种设计（纸张、油墨 、防伪 暗纹 、 夹层等）上的精巧，数字货币依靠的则是密码学上的保障。 事实上，纸币的伪造时有发生，但数字货币的伪造目前还无法实现 数字货币   辨伪 纸币即使">
+<meta property="og:description" content="The courese of BlockChain.There are some notes.">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://magic-king.net/2019/12/26/BlockChain/1.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/12/26/BlockChain/2.jpg">
@@ -127,10 +127,10 @@
 <meta property="og:image" content="http://magic-king.net/2019/12/26/BlockChain/18.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/12/26/BlockChain/19.jpg">
 <meta property="og:image" content="http://magic-king.net/2019/12/26/BlockChain/20.jpg">
-<meta property="og:updated_time" content="2019-12-29T12:27:44.609Z">
+<meta property="og:updated_time" content="2019-12-30T03:11:01.030Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BlockChain">
-<meta name="twitter:description" content="Bitcoin数字货币和纸质货币的对比   属性 分析 优势方     便携 大部分场景（特别是较大数额支付时）下数字货币将具备更好的便携性 数字货币   防伪 两者各有千秋，但数字货币整体上会略胜一筹。 纸币依靠的是各种设计（纸张、油墨 、防伪 暗纹 、 夹层等）上的精巧，数字货币依靠的则是密码学上的保障。 事实上，纸币的伪造时有发生，但数字货币的伪造目前还无法实现 数字货币   辨伪 纸币即使">
+<meta name="twitter:description" content="The courese of BlockChain.There are some notes.">
 <meta name="twitter:image" content="http://magic-king.net/2019/12/26/BlockChain/1.jpg">
 
 
@@ -457,7 +457,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-12-29 20:27:44" itemprop="dateModified" datetime="2019-12-29T20:27:44+08:00">2019-12-29</time>
+                <time title="修改时间：2019-12-30 11:11:01" itemprop="dateModified" datetime="2019-12-30T11:11:01+08:00">2019-12-30</time>
               
             
           </span>
@@ -501,6 +501,8 @@
 
           
 
+          
+            <div class="post-description">The courese of BlockChain.There are some notes.</div>
           
 
         </div>
@@ -632,7 +634,7 @@
 </li>
 <li><p>试图找到一随机串放到区块里，使得候选区块的哈希结果满足一定条件（比如小于某个值） 。 这个 nonce 串的查找需要一定的时间去进行计算尝试。</p>
 </li>
-<li><p>－旦节点算出来满足条件的 nonce 串，这个区块在格式上就被认为是“合法”了，就可以尝试在网络中将它广播出去 。 </p>
+<li><p>一旦节点算出来满足条件的 nonce 串，这个区块在格式上就被认为是“合法”了，就可以尝试在网络中将它广播出去 。 </p>
 </li>
 <li><p>其他节点收到候选区块，进行验证，发现确实符合约定条件了，就承认这个区块是一个合法的新区块，并添加到自己维护的区块链上 。</p>
 </li>
@@ -1089,7 +1091,7 @@
 <p>新难度值 / 旧难度值  =  新算力  /  旧算力</p>
 </blockquote>
 <blockquote>
-<p>如果难度为1的话，每秒钟7 Mhashes</p>
+<p>如果难度为1的话，大约是每秒钟7 Mhashes</p>
 </blockquote>
 <blockquote>
 <p><a href="https://www.cnblogs.com/zhaoweiwei/p/difficulty.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhaoweiwei/p/difficulty.html</a></p>
@@ -1258,7 +1260,7 @@
 <p>备份节点应当有职责主动检查这些序号的合法性，并能通过timeout机制检测到主节点是否已经宕机。</p>
 <p>当出现异常情况下，就会出发视图更换view change协议来选举出新的主节点</p>
 </blockquote>
-<h5 id="Requset阶段"><a href="#Requset阶段" class="headerlink" title="Requset阶段"></a>Requset阶段</h5><p>在此阶段，客户端c向主节点p发送请求，\&lt;Request，operation，timestamp，clientID&gt;</p>
+<h5 id="Requset阶段"><a href="#Requset阶段" class="headerlink" title="Requset阶段"></a>Requset阶段</h5><p>在此阶段，客户端c向主节点p发送请求，&lt;Request，operation，timestamp，clientID&gt;</p>
 <blockquote>
 <p> operation：为请求具体操作</p>
 <p> timestamp：请求时客户端追加的时间戳</p>
@@ -1389,7 +1391,6 @@
 <h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h5><ul>
 <li>查余额时必须回溯查询一大堆交易信息，浪费大量时间和资源</li>
 </ul>
-<p>‘</p>
 <h3 id="以太坊"><a href="#以太坊" class="headerlink" title="以太坊"></a>以太坊</h3><h4 id="区块链2-0"><a href="#区块链2-0" class="headerlink" title="区块链2.0"></a>区块链2.0</h4><p>区块链2.0是可编程金融，是经济、市场和金融领域的区块链应用，核心理念是把区块链作为一个可编程的分布式信用基础设施，支撑智能合约应用，以与过去比特币区块链作为一个虚拟货币支撑平台区别开来。</p>
 <p>以太坊：数字代币，基于智能合约</p>
 <p><img src="/2019/12/26/BlockChain/20.jpg" alt></p>
@@ -1618,11 +1619,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/StudyNote/" rel="tag"># StudyNote</a>
+          
             <a href="/tags/BlockChain/" rel="tag"># BlockChain</a>
           
             <a href="/tags/bitcoin/" rel="tag"># bitcoin</a>
-          
-            <a href="/tags/StudyNote/" rel="tag"># StudyNote</a>
           
         </div>
       
@@ -1644,6 +1645,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/30/QRCodeAttack/" rel="prev" title="QRCodeAttack">
+                QRCodeAttack <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -1714,7 +1719,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1767,7 +1772,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">18</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1836,7 +1845,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">26</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1917,7 +1930,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
