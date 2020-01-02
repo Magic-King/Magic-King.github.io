@@ -3,7 +3,7 @@ title: BlockChain
 date: 2019-12-26 14:20:45
 tags: [BlockChain, bitcoin, StudyNote]
 categories: BlockChain
-description:
+description: The courese of BlockChain.There are some notes.
 password:
 ---
 
@@ -200,7 +200,7 @@ Wikipedia的定义：是借由密码学串接并保护内容的串连文字记�
 >
 > 3. 试图找到一随机串放到区块里，使得候选区块的哈希结果满足一定条件（比如小于某个值） 。 这个 nonce 串的查找需要一定的时间去进行计算尝试。
 >
-> 4. －旦节点算出来满足条件的 nonce 串，这个区块在格式上就被认为是“合法”了，就可以尝试在网络中将它广播出去 。 
+> 4. 一旦节点算出来满足条件的 nonce 串，这个区块在格式上就被认为是“合法”了，就可以尝试在网络中将它广播出去 。 
 >
 > 5. 其他节点收到候选区块，进行验证，发现确实符合约定条件了，就承认这个区块是一个合法的新区块，并添加到自己维护的区块链上 。
 >
@@ -1044,7 +1044,7 @@ SPV：简化支付验证（Simplified Payment Verification），轻钱包并不�
 >
 > 
 
-> 如果难度为1的话，每秒钟7 Mhashes
+> 如果难度为1的话，大约是每秒钟7 Mhashes
 
 > https://www.cnblogs.com/zhaoweiwei/p/difficulty.html
 >
@@ -1356,7 +1356,7 @@ C为Client，pre-prepare为预准备阶段，prepare为准备阶段，commit为�
 
 ##### Requset阶段
 
-在此阶段，客户端c向主节点p发送请求，\<Request，operation，timestamp，clientID>
+在此阶段，客户端c向主节点p发送请求，<Request，operation，timestamp，clientID>
 
 >  operation：为请求具体操作
 >
@@ -1667,7 +1667,7 @@ Raft的记账过程按以下步骤完成：
 
 
 
-‘
+
 
 ### 以太坊
 
