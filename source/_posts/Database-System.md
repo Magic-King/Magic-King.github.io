@@ -1361,7 +1361,7 @@ from course
 
 分组聚集计算时，SQL返回关系，每组对应一行，无组时返回空关系
 
-`having`是对分组聚集结果进行选择，不满足条件的舍弃
+
 
 
 
@@ -1375,6 +1375,315 @@ group by dept_name;
 
 
 
+##### `having`子句
+
+`having`是对分组聚集结果进行选择，不满足条件的舍弃
+
+`having`子句的谓词在形成分组后起作用，where子句中的谓词在分组之前起作用
+
+```sql
+select dept_name,avg(salary)
+from instructor
+group by dept_name
+having avg(salary)>42000
+```
+
+
+
+##### 空值和聚集
+
+
+
+* 除了`count(*)`，所有其他的聚集运算都忽略聚集属性上为空值的元组
+* 如果集合只有空值（输入值集合为空集），则`count(*)`运算值为0，其他所有的运算返回空值
+
+```mysql
+# 计算所有工资总额的查询
+# 该语句忽略了空值,若没有非空的salary,则结果为null
+select	sum(salary)
+from	instructor
+
+```
+
+
+
+#### 嵌套子查询
+
+**SQL提供了一个子查询嵌套的机制**
+
+一个**子查询**是一个嵌套在其他的查询中的`select-from-where`表达式
+
+子查询通常用于对集合成员的资格、集合的比较、集合的基数进行检查
+
+> 集合成员的资格：in
+>
+> 集合之间的比较：θ
+>
+> 测试集合是否为空：exists
+>
+> 测试集合是否存在重复元组：unique
+
+
+
+```mysql
+# 例
+# 找出在2009年秋季和2010年春季同时开课的所有课程
+select distinct	course_id
+from	section
+where	semester = 'Fall' and year = 2009 adn
+			course_id in (select course_id
+                         	from section
+                         	where semester = 'Spring' and year = 2010);
+                         	
+
+# 找出在2009年球季学期开课但不在2010年春季学期开课的所有课程
+select	distinct	course_id
+from 	section
+where	semester = 'Fall' and year = 2009 and
+			course_id not in (select course_id
+                             	from section
+                             	where semester = 'Spring' and year = 2010);
+
+# 找出（不同的）学生总数，他们选修了ID为10101的教师所讲授的课程
+select count (distinct ID)
+from takes
+where (course_id, sec_id, semester, year) in
+		(select course_id, sec_id, semester, year
+ 			from teaches
+         	where teaches.ID= 10101);
+
+------
+# 找出满足下面条件的所有教师的姓名，他们的工资至少比Biology系某一个教师的工资要高 
+select distinct T.name
+from instructor as T, instructor as S
+where T.salary > S.salary and S.dept_name = ’Biology’;
+
+# 有些查询使用 >some 子句
+select name
+from instructor
+where salary > some (select salary
+                     from instructor
+                     where dept_name = ’Biology’);
+
+
+
+```
+
+
+
+
+
+#### `some`，`any`，`all`子句
+
+`F <comp> some r` &hArr; ∃ t ∈ r 使得( `F <comp> t` )，其中`<comp>`可以是`<,<=,>,>=,<>`
+
+`(= some)` ≡ `in`
+
+* **ALL 父查询中的结果集大于子查询中每一个结果集中的值,则为真**
+
+* **ANY,SOME 父查询中的结果集大于子查询中任意一个结果集中的值,则为真**
+
+> All：只有当其所有数据都满足条件时，条件才成立
+> Any：只要有一条数据满足条件，条件就成立
+> Some：其中存在一些数据满足条件，作用和Any大致相同 常规的使用中看作一致即可
+
+
+
+`F <comp> all r` &hArr; ∀ t ∈ r（`F <somp> t`）
+
+`(≠ all)` ≡ `not in`
+
+
+
+* `some`和`all`谓词可以用聚集函数实现
+
+|      | =    | <>或!= | <    | <=    | >     | \>=    |
+| ---- | ---- | ------ | ---- | ----- | ----- | ------ |
+| some | in   | --     | <max | <=max | \>min | \>=min |
+| all  | --   | not in | <min | <=min | \>max | \>=max |
+
+
+
+
+
+#### 空关系测试
+
+`exists`结构测试子查询结果是否有元组，子查询非空的时候，返回`true`
+
+`exists r` &hArr; `r ≠ Φ`
+
+`not exists r` &hArr; `r = Φ`
+
+
+
+##### `exists`谓词
+
+* 存在量词∃
+* 带有`exists`谓词的子查询不返回任何数据，只产生逻辑真值`true`或逻辑假值`false`
+  * 若内层查询结果非空，则返回真值
+  * 若内层查询结果为空，则返回假值
+* 由`exists`引出的子查询，其目标列表达式通常都用`*`，因为带`exists`的子查询只返回真值或假值，给出列名无实际意义
+
+
+
+```mysql
+# 例
+# 另一种表述查询“找出在2009年秋季和2010年春季同时开课的所有课程的集合”的方式
+select course_id
+from section S
+where semester = ’Fall’ and year= 2009 and
+exists (select *
+        from section as T
+        where semester=’Spring’and year=2010
+        and S.course_id= T.course_id);
+
+
+# 2
+select course_id
+from section
+where semester = ’Fall’ and year= 2009 and
+course_id in (select course_id
+              from section
+              where semester=’Spring’and year=2010);
+
+```
+
+
+
+* **相关子查询：**in后的子查询与外层查询无关，每个子查询执行一次，而exists后的子查询与外层查询有关，需要执行多次，称之为**相关子查询**
+  * 执行过程：
+    * 首先取外层查询中表的第一个元组，根据它与内层查询相关的属性值处理内层查询，若WHERE子句返回值为真，则取此元组放入结果表
+    * 然后再取外层表的下一个元组
+    * 重复这一过程，直至外层表全部检查完为止
+
+
+
+
+
+#### sql中全部概念的处理
+
+全部在sql中的三种写法
+
+* ∀：`not exists(not exists)`
+* 超集superset：`not exists(X except Y)`
+* ÷：`not in(not in)`
+
+
+
+> * 用EXISTS表示超集
+>   * 若A为B的超集，则`NOT EXISTS (B EXCEPT A)` 为TRUE
+>   * 对于B EXCEPT A，可以表达为：在B中存在，但在A中不存在的记录，也可以用`NOT EXISTS` 来表达
+>   * 因此超集可以用两个NOT EXISTS 的嵌套来表达，也可以用两个NOT IN 的嵌套来表达
+
+
+
+**巧用逆否命题的等价**
+
+
+
+```mysql
+# 例
+# 列出选修了全部课程的学生姓名
+
+# 任意课程，所求学生选之⇔不存在任何一门课程，所求学生没有选之
+select	SNAME
+from	S
+where	not exists(select Cno
+                  	from C
+                  	where not exists(select *
+                                    	from SC
+                                    	where SC.Cno = C.Cno
+                                    			and SC.Sno = S.Sno)) 
+                                    			
+
+# 任意课程，所求学生选之⇔所求学生的选课集合为所有课程集合的超集
+select	SNAME
+from	S
+where	not exists((select	Cno
+                   	from	C)
+                  	except (select Cno
+                           	from	SC
+                           	where	SC.Sno = S.Sno))
+
+
+#任意课程，所求学生选之⇔所求学生不在如下集合中：学生学号与任一课程的组合不全包含在SC
+select	SNAME
+from	S
+where	Sno	not in
+			(select	Sno
+            	from	C,S
+            	where	(Sno,Cno) not in
+            						(select Sno,Cno	
+                                    	from SC))
+
+
+
+```
+
+
+
+#### 测试没有重复的元组
+
+`unique`结构测试一个子查询的结果中是否有重复的元组，在空集中其值为`true`
+
+```mysql
+# 例
+# 找出所有2009年最多开设一次的课程
+select T.course_id
+from course T
+where unique (select R.course_id
+             	from section R
+             	where T.course_id = R.course_id and R.year = 2009)
+
+```
+
+
+
+
+
+#### `from`子句中的子查询
+
+sql允许`from`子句中的子查询的表达式
+
+```mysql
+# 例
+# 找出系平均工资超过42000美元的那些系中教师的平均工资
+select dept_name, avg_salary
+from (select dept_name, avg (salary)  avg_salary
+      from instructor
+      group by dept_name)
+where avg_salary > 42000;
+
+```
+
+
+
+#### `with`子句
+
+`with`子句提供了定义**临时关系**的方法，这个定义支队包含with的子句的查询有效
+
+```mysql
+# 例
+# 找出具有最大预算值的系
+with max_budget (value) as
+	(select max(budget)
+ 	from department)
+select budget
+from department, max_budget
+where department.budget = max_budget.value;
+```
+
+with子句在写复杂查询时非常有用
+
+
+
+#### 标量子查询
+
+SQL允许子查询出现在返回单个值的表达式能够出现的任何地方，只要该子查询只返回包含单个属性的单个元组；这样的子查询称为标量子查询（scalar subquery）
+
+标量子查询只返回包含单个属性的单个元组
+
+如果子查询的结果返回多个元组，则会产生运行错误
 
 
 
@@ -1383,25 +1692,202 @@ group by dept_name;
 
 
 
-
-
-
-
-
-
-### 附加的基本运算
-
-### 集合运算
-
-### 空值
-
-### 聚集函数
-
-### 嵌套子查询
 
 ### 数据库的修改
 
 
+
+* 从一个给定的关系中删除元组：`delete from`
+* 向一个给定的关系插入新的元组：`insert into`
+* 将一个给定的关系的一些元组的值更新：`update`
+
+
+
+
+
+#### 删除
+
+```mysql
+delete	from	table_name	[where	<条件表达式>]
+```
+
+从表中删除符合条件的元组，如果没有`where`语句，则删除所有元组
+
+
+
+```mysql
+# 例
+# 删除 instructors 关系中的所有元组
+delete	from 	instructor
+
+# 从 instructors 关系中删除与 Finance 系教师相关的所有元组
+delete	from	instructor
+	where	dept_name = 'Finance'
+
+#从 instructor 关系中删除在位于 Watson 大楼的系工作的教师元组
+delete	from	instructor
+	where	dept_name	in(select	dept_name
+                          	from	department
+                          	where	building = 'Watson')
+
+# 删除工资低于大学平均工资的教师记录
+delete	from 	instructor
+	where	salary	< (select	avg(salary)	
+                       	from	instructor)
+
+```
+
+
+
+
+
+#### 插入
+
+```mysql
+insert	into	table_name	[(col1 [,col2]...)]
+	values	(val1 [,val2]...)
+
+```
+
+插入一条指定好值的元组
+
+```mysql
+insert	into	table_name	[(col1 [,col2]...)]
+		(子查询)
+```
+
+插入子查询结果中的若干条元组
+
+
+
+##### `into`子句
+
+* 指定要插入数据的表名及属性列
+* 属性列的顺序可以与表定义中的顺序不一致
+* 没有指定属性列：表示要插入的是一条完整的元组，且属性列属性与表定义中的顺序一致
+* 指定部分属性列：插入的元组在其余属性列上取空值
+
+
+
+##### `values`子句
+
+* 提供的值必须与`into`子句匹配：值的个数&&值的类型
+
+
+
+##### 子查询
+
+* `select`子句目标列必须与`into`子句匹配：值的个数&&值的类型
+
+
+
+```mysql
+# 例
+# 向 course 关系中插入新元组
+insert into course
+	values (‘CS-437’,‘Database Systems’,‘Comp. Sci.’, 4);
+
+insert into course (course_id, title, dept_name, credits)
+	values (‘CS-437’, ‘Database Systems’, ‘Comp. Sci.’, 4);
+	
+# 向 student 关系中插入新元组，并将tot_creds 属性设置为null
+insert into student
+	values (‘3003’, ‘Green’, ‘Finance’, null);
+	
+# 将instructor 关系中的所有元组插入到student 关系里，并将属性tol_credits设置为0
+insert into student
+	select ID, name, dept_name, 0
+	from   instructor
+
+
+```
+
+* `select from where` 语句在它的结果被插入到相应的关系之前就完成了评估，否则，像这样的查询  `insert into table1 select * from table1`，如果*table1*没有主码的话，会出现问题 
+
+
+
+
+
+
+
+#### 更新
+
+```mysql
+update	table_name
+	set	col_name1 = 表达式|子查询
+		col_name2 = 表达式|子查询
+		...
+		[where 条件表达式]
+```
+
+指定对哪些列进行更新，以及更新后的值是什么
+
+
+
+```mysql
+# 例
+# 老师工资上调5%
+update	PROF
+	set	SAL = SAL * 1.05
+
+#将d1系的学生年龄增加1岁
+update	Student
+	set	S_age = S_age + 1
+	where dno = 'd1'
+
+# 将d1系全体学生的成绩置零
+update SC
+	set	Score = 0
+	where 'd1' = (select dno
+                 from S
+                 where	S.Sno = SC.Sno)
+
+# 将D01系系主任的工资改为该系的平均工资
+update PROF
+set	SAL = (select avg(SAL)
+          	from	PROF
+          	where	Dno = D01)
+	where	Pno = (select	DEAN
+                  	from	DEPT
+                  	where	Dno = D01)
+
+```
+
+
+
+##### 为条件更新使用`Case`语句
+
+```mysql
+# 例
+update	instructor
+	set	salary = case
+			when	salary <= 100000 then salary * 1.05
+			else	salary *1.03
+			end
+```
+
+
+
+##### 使用标量子查询的更新
+
+```mysql
+# 例
+# 为关系student重新计算并更新tot_credit属性的值
+update	student S
+	set	tot_credit	=	(select	sum(credits)
+                        	from	takes	natural join course
+                        	where	S.ID = takes.ID and
+                        			takes.grade <> 'F' and
+                        			takes.grade	is not null);
+                        			
+# 如果一个学生没有成功学完任何一个课程，则将其tot_creds 属性设为空
+# 不使用sum(credits)，而是使用:
+	case
+		when	sum(credits) is not null then sum(credits)
+			else 0
+			end
+
+```
 
 
 
