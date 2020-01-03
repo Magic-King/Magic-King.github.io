@@ -115,7 +115,7 @@
 <meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/7.jpg">
 <meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/8.jpg">
 <meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/9.jpg">
-<meta property="og:updated_time" content="2020-01-02T08:51:12.532Z">
+<meta property="og:updated_time" content="2020-01-03T09:08:10.171Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Database-System">
 <meta name="twitter:description" content="数据库系统概念引言DBMS定义：由一个相互关联的数据集合和一组用以访问这些数据的程序组成，这个数据集合同城称作数据库(Database)。 DBMS的目标：方便、高效地存取数据库信息  四个基本概念 数据（Data） 数据库（Database） 数据库管理系统（DBMS） 数据库系统（DBS）    数据数据（Data）是数据库中存储的基本对象 数据的定义：描述事物的符号记录 数据的种类：文字、图">
@@ -428,12 +428,24 @@
                 
               
 
-              <time title="创建时间：2020-01-02 11:15:07 / 修改时间：16:51:12" itemprop="dateCreated datePublished" datetime="2020-01-02T11:15:07+08:00">2020-01-02</time>
+              <time title="创建时间：2020-01-02 11:15:07" itemprop="dateCreated datePublished" datetime="2020-01-02T11:15:07+08:00">2020-01-02</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-01-03 17:08:10" itemprop="dateModified" datetime="2020-01-03T17:08:10+08:00">2020-01-03</time>
               
             
           </span>
@@ -692,7 +704,315 @@
 </ul>
 </li>
 </ul>
-<h2 id="关系模型"><a href="#关系模型" class="headerlink" title="关系模型"></a>关系模型</h2>
+<h2 id="关系模型"><a href="#关系模型" class="headerlink" title="关系模型"></a>关系模型</h2><p>关系理论是建立在集合代数理论基础上的，有坚实的数学基础</p>
+<h4 id="关系数据结构"><a href="#关系数据结构" class="headerlink" title="关系数据结构"></a>关系数据结构</h4><ul>
+<li><p><strong>单一的数据结构——关系</strong>：现实世界中的实体及实体间的各种联系均用关系来表示</p>
+</li>
+<li><p><strong>数据的逻辑结构——二维表</strong>：从用户角度，关系模型中的数据的逻辑结构是一张二维表</p>
+</li>
+</ul>
+<h4 id="属性的类型"><a href="#属性的类型" class="headerlink" title="属性的类型"></a>属性的类型</h4><ul>
+<li><p>每个属性的可能的取值范围（集合）叫属性的<strong>域</strong></p>
+</li>
+<li><p>属性的值（通常）要求为<strong>原子的</strong>，也就是说，不可再分的</p>
+<ul>
+<li>属性的原子性问题要根据应用的需求确定</li>
+</ul>
+</li>
+<li>null（空值）：是一个特殊的值，表示值未知或不存在<ul>
+<li>空值给数据库访问和更新带来了很多困难</li>
+</ul>
+</li>
+</ul>
+<h3 id="关系的基本概念"><a href="#关系的基本概念" class="headerlink" title="关系的基本概念"></a>关系的基本概念</h3><h4 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h4><p>笛卡尔积D<sub>1</sub> × D<sub>2</sub> × … × D<sub>n</sub> 的子集叫做在域D<sub>1</sub>，D<sub>2</sub> ，…，D<sub>n</sub> 上的关系，用R(D<sub>1</sub>，D<sub>2</sub> ，…，D<sub>n</sub> )表示</p>
+<p>R是关系的名字，n是关系的度或目</p>
+<p>关系是笛卡尔积中有意义的子集</p>
+<p>关系也可以表示为二维表</p>
+<h4 id="关系模型和实例"><a href="#关系模型和实例" class="headerlink" title="关系模型和实例"></a>关系模型和实例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">A1,A2,...,An 是属性</span><br><span class="line">R = (A1,A2,...,An) 是一个关系模式</span><br><span class="line">例:</span><br><span class="line">instructor = (ID,name,dept_name,salary)</span><br><span class="line"></span><br><span class="line">形式上，给定集合D1,D2,...,Dn,一个关系r是D1×D2×...×Dn 的一个子集,因此,一个关系是一组n元组(a1,a2,...,an)的集合，其中ai ∈ Di</span><br></pre></td></tr></table></figure>
+<p>关系的当前值（关系实例）可以用一个表指定</p>
+<p>元素t是关系r中的一个元组，表中一行代表一个元组</p>
+<ul>
+<li>数据库由多个关系组成</li>
+</ul>
+<h3 id="码"><a href="#码" class="headerlink" title="码"></a>码</h3><ul>
+<li><p><strong>码的作用</strong>：我们必须有一种能够区分给定关系中不同元组的方法。我们一般用元组中的属性表明，即一个元组的属性值必须是能够唯一区分元组的，一个关系中没有两个元组在所有属性上的取值都相同</p>
+</li>
+<li><p><strong>超码</strong>：超码是一个或者多个属性的集合，这些属性的组合可以使我们在一个关系中唯一地标识一个元组（例如，{ID}和{ID，name}都是instructor的超码）</p>
+</li>
+<li><p><strong>候选码</strong>：最小的超码称为候选码，即超码的任意真子集都不能成为超码（例如，{ID}是Instructor的一个候选码）</p>
+</li>
+<li><p><strong>主码</strong>：从一个关系的多个候选码中选定一个作为主码（习惯上把主码属性放在其他属性前面，并且加下划线）</p>
+</li>
+<li><p><strong>外码</strong>：一个关系模式r1可能在他的属性中包含另一个关系r2的主码，这个属性称作r1上参照r2的外码（r1和r2可以是同一个关系）</p>
+<ul>
+<li>关系r1称作外码依赖的参照关系</li>
+<li>关系r2称作外码的被参照关系</li>
+</ul>
+</li>
+</ul>
+<h3 id="关系查询语言"><a href="#关系查询语言" class="headerlink" title="关系查询语言"></a>关系查询语言</h3><p>查询语言是用户用来从数据库中请求获取信息的语言</p>
+<ul>
+<li>广泛应用的查询语言：SQL</li>
+<li>“纯”查询语言<ul>
+<li>关系代数（过程化）</li>
+<li>元组关系演算（非过程化）</li>
+<li>域关系演算（非过程化）</li>
+</ul>
+</li>
+</ul>
+<h3 id="关系操作"><a href="#关系操作" class="headerlink" title="关系操作"></a>关系操作</h3><ul>
+<li>基本操作<ul>
+<li>一元运算<ul>
+<li>选择、投影、更名</li>
+</ul>
+</li>
+<li>多元运算<ul>
+<li>笛卡尔积、并、集合差</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>其他运算<ul>
+<li>集合交、θ连接，自然连接、除、赋值</li>
+</ul>
+</li>
+</ul>
+<p>自然连接：设r和s是关系模式R和S的实例，R和S关系实例的自然连接是关系模式R∪S的实例，遵守以下规则：①对于每一对元组 t<sub>r</sub> 和 t<sub>s</sub> ，其中 t<sub>r</sub>  来自r，t<sub>s</sub> 来自s；②如果 t<sub>r</sub> 和 t<sub>s</sub> 在属性组R∩S上的每个属性值都一样，添加一个元组t到结果集，其中 t由t<sub>r</sub> 在r上相同的值，t有 t<sub>s</sub> 在s上相同的值</p>
+<p>笛卡尔积运算从两个关系中合并元组，但不同于连接运算的是，其结果包含来自两个关系元组的所有对，无论它们的属性是否匹配</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br></pre></td><td class="code"><pre><span class="line"># 选择元组</span><br><span class="line">Relation r:</span><br><span class="line">	A	B	C	D</span><br><span class="line">	α	α	1	7</span><br><span class="line">	α	β	5	7</span><br><span class="line">	β	β	12	3</span><br><span class="line">	β	β	23	10</span><br><span class="line"></span><br><span class="line">select tuples with A=B and D&gt;5</span><br><span class="line">σ A=B and D&gt;5 (r)</span><br><span class="line"></span><br><span class="line">ans:</span><br><span class="line">	A	B	C	D</span><br><span class="line">	α	α	1	7</span><br><span class="line">	β	β	23	10</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">------------------------------</span><br><span class="line"></span><br><span class="line"># 选择列(属性)</span><br><span class="line"></span><br><span class="line">Relation r:</span><br><span class="line">	A	B	C</span><br><span class="line">	α	10	1</span><br><span class="line">	α	20	1</span><br><span class="line">	β	30	1</span><br><span class="line">	β	40	2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">select A and C</span><br><span class="line"></span><br><span class="line">Projection</span><br><span class="line">Π A,C (r)</span><br><span class="line"></span><br><span class="line">ans:</span><br><span class="line">	A	C</span><br><span class="line">	α	1</span><br><span class="line">	β	1</span><br><span class="line">	β	2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">------------------------------</span><br><span class="line"></span><br><span class="line"># 连接两个关系</span><br><span class="line"># 笛卡尔积</span><br><span class="line"></span><br><span class="line">Relation r,s:</span><br><span class="line">	r</span><br><span class="line">		A	B</span><br><span class="line">		α	1</span><br><span class="line">		β	2</span><br><span class="line">	s</span><br><span class="line">		C	D	E</span><br><span class="line">		α	10	a</span><br><span class="line">		β	10	a</span><br><span class="line">		β	20	b</span><br><span class="line">		γ	10	b</span><br><span class="line"></span><br><span class="line">r × s:</span><br><span class="line">	</span><br><span class="line">	A	B	C	D	E</span><br><span class="line">	α	1	α	10	a</span><br><span class="line">	α	1	β	10	a</span><br><span class="line">	α	1	β	20	b</span><br><span class="line">	α	1	γ	10	b</span><br><span class="line">	β	2	α	10	a</span><br><span class="line">	β	2	β	10	a</span><br><span class="line">	β	2	β	20	b</span><br><span class="line">	β	2	γ	10	b</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">------------------------------</span><br><span class="line"></span><br><span class="line"># 并运算</span><br><span class="line"></span><br><span class="line">Relation r,s:</span><br><span class="line">	r</span><br><span class="line">		A	B</span><br><span class="line">		α	1</span><br><span class="line">		α	2</span><br><span class="line">		β	1</span><br><span class="line">	</span><br><span class="line">	s</span><br><span class="line">		A	B</span><br><span class="line">		α	2</span><br><span class="line">		β	3</span><br><span class="line">		</span><br><span class="line">r ∪ s:</span><br><span class="line">		A	B</span><br><span class="line">		α	1</span><br><span class="line">		α	2</span><br><span class="line">		β	1</span><br><span class="line">		β	3</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">------------------------------</span><br><span class="line"></span><br><span class="line"># 差运算</span><br><span class="line"></span><br><span class="line">Relation r,s:</span><br><span class="line">	r</span><br><span class="line">		A	B</span><br><span class="line">		α	1</span><br><span class="line">		α	2</span><br><span class="line">		β	1</span><br><span class="line">	</span><br><span class="line">	s</span><br><span class="line">		A	B</span><br><span class="line">		α	2</span><br><span class="line">		β	3</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">r - s: </span><br><span class="line"></span><br><span class="line">		A	B</span><br><span class="line">		α	1</span><br><span class="line">		β	1</span><br><span class="line">		</span><br><span class="line">------------------------------</span><br><span class="line"></span><br><span class="line"># 交运算</span><br><span class="line"></span><br><span class="line">Relation r,s:</span><br><span class="line">	r</span><br><span class="line">		A	B</span><br><span class="line">		α	1</span><br><span class="line">		α	2</span><br><span class="line">		β	1</span><br><span class="line">	</span><br><span class="line">	s	</span><br><span class="line">		A	B</span><br><span class="line">		α	2</span><br><span class="line">		β	3</span><br><span class="line"></span><br><span class="line">r ∩ s:</span><br><span class="line">		A	B</span><br><span class="line">		α	2</span><br><span class="line">		</span><br><span class="line">------------------------------</span><br><span class="line"></span><br><span class="line"># 自然连接</span><br><span class="line"></span><br><span class="line">Relation r,s</span><br><span class="line">	r</span><br><span class="line">		A	B	C	D</span><br><span class="line">		α	1	α	a</span><br><span class="line">		β	2	γ	a</span><br><span class="line">		γ	4	β	b</span><br><span class="line">		α	1	γ	a</span><br><span class="line">		δ	2	β	b</span><br><span class="line">	</span><br><span class="line">	s</span><br><span class="line">		B	D	E</span><br><span class="line">		1	a	α</span><br><span class="line">		3	a	β</span><br><span class="line">		1	a	γ</span><br><span class="line">		2	b	δ</span><br><span class="line">		3	b	ε</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">Natural Join</span><br><span class="line">r ⋈	s:</span><br><span class="line">		A	B	C	D	E</span><br><span class="line">		α	1	α	a	α</span><br><span class="line">		α	1	α	a	γ</span><br><span class="line">		α	1	γ	a	α</span><br><span class="line">		α	1	γ	a	γ</span><br><span class="line">		δ	2	β	b	δ</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">------------------------------</span><br><span class="line"></span><br><span class="line"># 连接两个关系</span><br><span class="line"># 笛卡尔积</span><br><span class="line"></span><br><span class="line">------------------------------</span><br></pre></td></tr></table></figure>
+<h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><p>SQL：Structured Query Language </p>
+<p>商用系统一般支持sql-92的大部分特性，并支持后续的扩充标准中部分的扩充特性，以及系统特殊的自有特性</p>
+<p>体系结构：user==(==&gt;view==&gt;table)==&gt;base table==&gt; stored file</p>
+<table>
+<thead>
+<tr>
+<th>SQL功能</th>
+<th>操作符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据查询</td>
+<td>Select</td>
+</tr>
+<tr>
+<td>数据定义</td>
+<td>Create、Alter、Drop</td>
+</tr>
+<tr>
+<td>数据操纵</td>
+<td>Insert、Update、Delete</td>
+</tr>
+<tr>
+<td>数据控制</td>
+<td>Grant、Revoke</td>
+</tr>
+</tbody>
+</table>
+<h3 id="数据定义"><a href="#数据定义" class="headerlink" title="数据定义"></a>数据定义</h3><p><strong>SQL的数据定义语言（DDL）</strong>能够定义每个关系的信息，包括①每个关系的模式；②每个属性的值域；③完整性约束；④将来的信息，如每个关系的索引集合，每个关系的安全性和权限信息，磁盘上每个关系的物理存储结构</p>
+<h4 id="SQL的基本类型"><a href="#SQL的基本类型" class="headerlink" title="SQL的基本类型"></a><strong>SQL的基本类型</strong></h4><ul>
+<li>char(n)：固定长度的字符串，用户指定长度n</li>
+<li>varchar(n)：可变长度的字符串，用户指定最大长度n</li>
+<li>int：整数类型（和机器相关的整数类型的有限子集）</li>
+<li>smallint：小整数类型（和机器相关的整数类型的子集）</li>
+<li>numeric(p,d)：定点数，精度由用户指定，这个数有p位数字，其中d位数字在小数点右边</li>
+<li>real，double，precision：浮点数与双精度浮点数，精度与机器相关</li>
+<li>float(n)：浮点数，精度由用户指定，精度至少为n位</li>
+</ul>
+<h4 id="创建表结构"><a href="#创建表结构" class="headerlink" title="创建表结构"></a>创建表结构</h4><p>使用<code>create table</code>命令创建一个SQL关系表：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> r( A1 D1,</span><br><span class="line">				A2 D2,</span><br><span class="line">				...,</span><br><span class="line">				An Dn)</span><br><span class="line"></span><br><span class="line"><span class="comment"># r是关系名</span></span><br><span class="line"><span class="comment"># 每个Ai是关系模式r的一个属性名</span></span><br><span class="line"><span class="comment"># Di是属性Ai的域的类型</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#例</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> instructor(<span class="keyword">ID</span>	<span class="built_in">char</span>(<span class="number">5</span>),</span><br><span class="line">                        <span class="keyword">name</span>	<span class="built_in">varchar</span>(<span class="number">20</span>)	<span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">                        dept_name	<span class="built_in">varchar</span>(<span class="number">20</span>),</span><br><span class="line">                        salary	<span class="built_in">numeric</span>(<span class="number">8</span>,<span class="number">2</span>) )</span><br><span class="line">    </span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> instructor  </span><br><span class="line">   <span class="keyword">values</span> (‘<span class="number">10211</span>’, ’Smith’, ’Biology’, <span class="number">66000</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="Create-table中的完整性约束"><a href="#Create-table中的完整性约束" class="headerlink" title="Create table中的完整性约束"></a><code>Create table</code>中的完整性约束</h5><ul>
+<li><code>not null</code> </li>
+<li><code>primary key(A1,A2,...,An)</code></li>
+<li><code>foreign key(Am,...,An) references r</code></li>
+</ul>
+<p>注：被声明为主码的属性自动被确保为<code>not null</code> </p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">create table instructor(</span><br><span class="line">						ID	char(5),</span><br><span class="line">						name	varchar(20)	not null,</span><br><span class="line">						dept_name	varchar(20),</span><br><span class="line">						salary	numeric(8.2),</span><br><span class="line">						primary key(ID),</span><br><span class="line">						foreign key(dept_name) references department)</span><br><span class="line"></span><br><span class="line">create table takes(</span><br><span class="line">					ID	varchar(5),</span><br><span class="line">					course_id	varchar(8),</span><br><span class="line">					sec_id	varchar(8),</span><br><span class="line">					semester	varchar(6),</span><br><span class="line">					year	numeric(4,0),</span><br><span class="line">					grade	varchar(2),</span><br><span class="line">					primary key (ID,course_id,sec_id,semester,year),</span><br><span class="line">					foreign key (ID) references	student,</span><br><span class="line">					)</span><br></pre></td></tr></table></figure>
+<p>主码的声明和属性的声明可以放在一起，例如<code>course_id     varchar(8)  primary key,</code></p>
+<h4 id="删除和更改表结构"><a href="#删除和更改表结构" class="headerlink" title="删除和更改表结构"></a>删除和更改表结构</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># 删除表和他的内容</span><br><span class="line">drop table student</span><br><span class="line"></span><br><span class="line"># 删除表中的内容,但是保留表</span><br><span class="line">delete from student</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 更改表结构</span><br><span class="line">alter table</span><br><span class="line"></span><br><span class="line"># 属性A是关系r将要增加的属性,D是A的域</span><br><span class="line"># 对于关系r中的所有元组,在新增加的属性上的取值都为null</span><br><span class="line">alter table r add A D</span><br><span class="line"></span><br><span class="line"># A是关系r的一个属性名</span><br><span class="line"># 许多数据库不支持删除属性的操作</span><br><span class="line">alter table r drop A</span><br><span class="line"></span><br><span class="line"># 修改表中属性A的数据类型,将A的域改为D</span><br><span class="line"># 可能破坏原有的数据</span><br><span class="line">alter table r modify A D</span><br></pre></td></tr></table></figure>
+<h4 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h4><p>建立索引是加快查询速度的有效手段</p>
+<p>建立索引：由DBA或表的属主（建立表的人）根据需要建立索引；或者有些DBMS自动建立特定列上（Primary key，unique）的索引</p>
+<p>维护索引：DBMS自动完成</p>
+<p>使用索引：DBMS自动选择是否使用索引以及使用哪些索引</p>
+<p>定义的格式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">create	[unique | distinct]	[cluster]	index	index_name	</span><br><span class="line">		on table_name	(col_name	[asc | desc]	[,col_name asc|desc,...])</span><br><span class="line"># unique(distinct):	唯一性索引，不允许表中不同的行在索引列上取相同的值.若已有相同值存在,则系统给出相关信息,不建此索引.系统并拒绝违背唯一性的插入、更新</span><br><span class="line"># cluster: 聚集索引,表中元组按索引项的值排序并物理地聚集在一起.一个基本表上只能建一个聚集索引</span><br><span class="line"># asc|desc: 索引表中索引值的排序次序,缺省为asc</span><br><span class="line"></span><br><span class="line">drop index index_name</span><br><span class="line"># 删除索引</span><br></pre></td></tr></table></figure>
+<h5 id="索引的有关说明"><a href="#索引的有关说明" class="headerlink" title="索引的有关说明"></a>索引的有关说明</h5><ul>
+<li><p>可以动态地定义索引，即可以随时建立和删除索引</p>
+</li>
+<li><p>不允许用户在数据操作中引用索引。索引如何使用完全由系统决定，这支持了数据的物理独立性</p>
+</li>
+<li><p>应该在使用频率高的、经常用于连接的列上建索引</p>
+</li>
+<li><p>一个表上可建多个索引。索引可以提高查询效率，但索引过多耗费空间，且降低了插入、删除、更新的效率</p>
+</li>
+</ul>
+<h3 id="SQL查询的基本结构"><a href="#SQL查询的基本结构" class="headerlink" title="SQL查询的基本结构"></a>SQL查询的基本结构</h3><p><strong>SQL的数据操纵语言（DML）</strong>提供了从数据库中查询信息，以及在数据库中插入元组、删除元组、修改元组的能力</p>
+<ul>
+<li>SQL中的标识符大小写不敏感</li>
+</ul>
+<h4 id="Select"><a href="#Select" class="headerlink" title="Select"></a>Select</h4><p><code>select</code>子句用于列出查询结果中所需要的属性，与关系代数中的投影运算相对应</p>
+<p>SQL允许在关系和查询结果中保留重复的元组</p>
+<p>强制去重，需要在<code>select</code>之后使用关键字<code>distinct</code></p>
+<p><code>*</code>一般代表所有属性，是一个通配符</p>
+<p><code>Select</code>子句可包含<code>+</code>、<code>-</code>、<code>*</code>、<code>/</code>运算符的算数表达式,运算对象可以是常量或者元组的属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># 典型的查询语句</span><br><span class="line"># Ai表示一个属性,ri表示一个关系,P是一个谓词(即可以是一个条件判断)</span><br><span class="line">select	A1,A2,...,An</span><br><span class="line">from	r1,r2,...,rn</span><br><span class="line">where	P</span><br><span class="line"></span><br><span class="line"># 去重</span><br><span class="line">select distinct dept_name</span><br><span class="line">	from	instructor</span><br><span class="line">	</span><br><span class="line"># 关键词all显式指明不去重复</span><br><span class="line">select all dept_name </span><br><span class="line">	from instructor</span><br><span class="line">	</span><br><span class="line"># *代表所有属性</span><br><span class="line">select *</span><br><span class="line">	from instructor</span><br><span class="line">	</span><br><span class="line"># Select子句可包含+、-、*、/运算符的算数表达式,运算对象可以是常量或者元组的属性</span><br><span class="line">select	ID,name,salary/12</span><br><span class="line">	from instructor</span><br></pre></td></tr></table></figure>
+<h4 id="where"><a href="#where" class="headerlink" title="where"></a>where</h4><p><code>where</code>子句指定查询结果必须满足的条件，与关系代数中的选择谓词相对应</p>
+<p>比较结果可以使用逻辑连词<code>and</code>，<code>or</code>，<code>not</code>连接</p>
+<p>比较结果可以用于算术表达式</p>
+<blockquote>
+<p>语法成分：</p>
+<ul>
+<li>逻辑运算符：and，or，not</li>
+<li>比较运算符：&lt;，&lt;=，&gt;，&gt;=，=，&lt;&gt;</li>
+<li>between条件：判断表达式的值是否在某范围内，例如 <code>age between 18 and 20</code>==<code>age∈[18,20]</code>，<code>not between ... and ...</code></li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 找出所有在Computer Science系并且工资超过80000美元的教师的姓名</span><br><span class="line">select	name</span><br><span class="line">from	instructor</span><br><span class="line">where dept_name = &apos;Computer Science&apos; and salary &gt; 80000</span><br></pre></td></tr></table></figure>
+<h4 id="from"><a href="#from" class="headerlink" title="from"></a>from</h4><p><code>from</code>子句列出了查询中的包含关系，与关系代数中的笛卡尔积运算相对应</p>
+<p>笛卡尔积不是经常被直接使用，他在使用时经常与<code>where</code>子句（关系代数的选择操作）一起使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 求笛卡尔积instructor × teacher</span><br><span class="line"># 产生所有的instructor-teacher对,包含两个关系的所有属性</span><br><span class="line">select	* </span><br><span class="line">from	instructor, teacher</span><br></pre></td></tr></table></figure>
+<h4 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 例</span><br><span class="line"># 对于大学所有讲授课程的教师,找出他们的姓名以及所讲授的课程的标识</span><br><span class="line">select	name,course_id</span><br><span class="line">from instructor,teacher</span><br><span class="line">where instructor.ID = teacher.ID</span><br></pre></td></tr></table></figure>
+<h5 id="连接查询及执行过程"><a href="#连接查询及执行过程" class="headerlink" title="连接查询及执行过程"></a>连接查询及执行过程</h5><p>同时涉及多个表的查询称为连接查询</p>
+<p>用来连接两个表的条件称为连接条件或连接谓词</p>
+<p>一般格式：<code>[&lt;table_name1&gt;.]&lt;col_name1&gt;&lt;比较运算符&gt;[&lt;table_name2&gt;.]&lt;col_name2&gt;</code></p>
+<p><code>[&lt;table_name1&gt;.]&lt;col_name1&gt; between [&lt;table_name2&gt;.]&lt;col_name2&gt; AND [&lt;table_name3&gt;.]&lt;col_name3&gt;</code></p>
+<p>连接字段：连接谓词中的列名称为连接字段。连接条件中的各连接字段类型必须是可比的，但不必是相同的</p>
+<blockquote>
+<ul>
+<li><p>嵌套循环法（Nested-Loop）</p>
+<ul>
+<li>首先在表1中找到第一个元组，然后从头开始扫描表2，逐一查找满足连接件的元组，找到后就将表1中的第一个元组与该元组拼接起来，形成结果表中一个元组。</li>
+<li>表2全部查找完后，再找表1中第二个元组，然后再从头开始扫描表2，逐一查找满足连接条件的元组，找到后就将表1中的第二个元组与该元组拼接起来，形成结果表中一个元组</li>
+<li>重复上述操作，直到表1中的全部元组都处理完毕</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>排序合并法（Sort-Merge）</p>
+<ul>
+<li>首先按照连接属性对表1和表2排序</li>
+<li>对表1的第一个元组，从头开始扫描表2，顺序查找满足连接条件的元组，找到后就将表1中的第一个元组与该元组拼接起来，形成结果表中一个元组。当遇到表2中第一条大于表1连接字段值的元组时，对表2的查询不再继续</li>
+<li>找到表1的第二条元组，然后从刚才的中断点处继续顺序扫描表2，查找满足连接条件的元组，找到后就将表1中的第一个元组与该元组拼接起来，形成结果表中一个元组。直接遇到表2中大于表1连接字段值的元组时，对表2的查询不再继续</li>
+<li>重复上述操作，直到表1或表2中的全部元组都处理完毕为止</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>索引连接法（Index-Join）</p>
+<ul>
+<li>对表2按连接字段建立索引</li>
+<li>对表1中的每个元组，依次根据其连接字段值查询表2的索引，从中找到满足条件的元组，找到后就将表1中的第一个元组与该元组拼接起来，形成结果表中一个元组</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h4 id="自然连接"><a href="#自然连接" class="headerlink" title="自然连接"></a>自然连接</h4><p>自然连接只考虑两个关系模式中都出现的属性上取值相同的元组对，并且相同属性的列只保留一个副本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">select	*</span><br><span class="line">from	instructor	natural join	teacher</span><br><span class="line"></span><br><span class="line">select	name,course_id</span><br><span class="line">from	instructor, teacher</span><br><span class="line">where	instructor.iD = teacher.ID</span><br><span class="line">||</span><br><span class="line">select	name,course_id</span><br><span class="line">from instructor natural join	teacher</span><br></pre></td></tr></table></figure>
+<p>自然连接中的危险：有些属性可能具有相同的名称，但是他们的实际意义是不同的，在这种情况下，他们可能被错误的认为是相同属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 例</span><br><span class="line"># 错误的写法(使course.dept_name = instructor.dept_name)</span><br><span class="line">select name, title</span><br><span class="line">from instructor natural join teaches natural join course;</span><br><span class="line"></span><br><span class="line"># 正确的写法</span><br><span class="line">select name, title</span><br><span class="line">from instructor natural join teaches, coursewhere teaches.course_id = course.course_id;</span><br><span class="line"></span><br><span class="line"># 另一个正确的写法</span><br><span class="line">select name, title</span><br><span class="line">from (instructor natural join teaches) join course using(course_id);</span><br></pre></td></tr></table></figure>
+<h4 id="更名运算"><a href="#更名运算" class="headerlink" title="更名运算"></a>更名运算</h4><p>SQL允许使用as子句对关系和属性进行更名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">old_name as new_name</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>在Oracle中，关键词<code>as</code>必须被省略</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#例</span><br><span class="line">select	ID,name,salary/12 as monthly_salary</span><br><span class="line">from 	instructor</span><br><span class="line"></span><br><span class="line"># 找出满足工资至少比Computer Science系某一个教师的工资要高的教师姓名</span><br><span class="line">select	distinct	T.name</span><br><span class="line">from instructor	as T,instructor	as S</span><br><span class="line">where	T.salary &gt; S.salary	and	S.dept_name = &apos;Computer Science&apos;</span><br></pre></td></tr></table></figure>
+<h4 id="字符串运算"><a href="#字符串运算" class="headerlink" title="字符串运算"></a>字符串运算</h4><p>SQL中通过字符串匹配运算来支持在字符串上的比较，使用<code>like</code>操作符来实现模式匹配，使用两个特殊字符（通配符）描述模式</p>
+<ul>
+<li>百分号（<code>%</code>）：<code>%</code>字符匹配任何子串</li>
+<li>下划线（<code>_</code>）：<code>_</code>字符匹配任何字符</li>
+<li><code>Like</code>的单向性：<ul>
+<li><code>&#39;济南市山大路&#39; like &#39;济南市%&#39; = true</code></li>
+<li><code>&#39;济南市%&#39; like &#39;济南市山大路&#39; = false</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 例</span><br><span class="line"># 找出名字中包含dar的教师名字</span><br><span class="line">select	name</span><br><span class="line">from	instructor</span><br><span class="line">where	name like &apos;%dar%&apos;</span><br><span class="line"></span><br><span class="line"># 匹配字符串“100 %”</span><br><span class="line">str like &apos;100 \%&apos; escape &apos;\&apos;</span><br></pre></td></tr></table></figure>
+<h5 id="Escape"><a href="#Escape" class="headerlink" title="Escape"></a>Escape</h5><p><code>Escape</code>定义转义字符，以去掉特殊字符的特定含义，使其被作为普通字符对待，如用<code>escape &#39;\&#39;</code>，定义<code>\</code>作为转义字符，则可用<code>\%</code>去匹配<code>%</code>，用<code>\_</code>取匹配<code>_</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;ab\%cd%&apos; escape &apos;\&apos;	= &apos;ab%cd&apos;</span><br><span class="line">&apos;ab\\cd%&apos; escape &apos;\&apos;	= &apos;ab\cd&apos;</span><br></pre></td></tr></table></figure>
+<p><strong>VALUE是大小写敏感的</strong></p>
+<blockquote>
+<ul>
+<li>模式匹配的例子：<ul>
+<li>‘Intro%’ 匹配任何以“Intro”打头的字符串</li>
+<li>‘%Comp%’ 匹配任何包含“Comp” 子串的字符串</li>
+<li>‘_ _ _’匹配只含三个字符的字符串</li>
+<li>‘_ _ _ %’匹配至少含三个字符的字符串</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>SQL 支持一系列的串运算，包括<ul>
+<li>串联 （使用“||”）</li>
+<li>大小写转换</li>
+<li>计算串长度, 抽取子串, 等等 </li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h4 id="排列元组的显示次序"><a href="#排列元组的显示次序" class="headerlink" title="排列元组的显示次序"></a>排列元组的显示次序</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 例</span><br><span class="line"># 按字母顺序排列出所有教师的名字</span><br><span class="line">select	distinct	name</span><br><span class="line">from	instructor</span><br><span class="line">order by name</span><br><span class="line"></span><br><span class="line"># 我们可以用desc指定降序,用asc指定升序,默认情况下是升序排列</span><br><span class="line">order by name desc</span><br><span class="line"></span><br><span class="line"># 可以在多个属性上进行排序</span><br><span class="line">order by dept_name,name</span><br></pre></td></tr></table></figure>
+<p>只是显示次序排序，只能是sql的最后一个子句，只能出现目标列内的字段</p>
+<p>当排序列含空值时，ASC排序列为空值的元组最后显示，DESC排序列为空值的元组最先显示</p>
+<h4 id="where子句谓词"><a href="#where子句谓词" class="headerlink" title="where子句谓词"></a>where子句谓词</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 元组比较</span><br><span class="line">select	name,course_id</span><br><span class="line">from	instructor, teacher</span><br><span class="line">where	(instructor.ID, dept_name) = (teacher.ID, &apos;Biology&apos;)</span><br><span class="line"></span><br><span class="line"># 表示方法: (v1,v2,...,vn)</span><br><span class="line"># 元组比较: 按照字典顺序进行比较</span><br><span class="line"># 例如 (a1,a2)&lt;=(b1,b2) === (a1&lt;b1)or ((a1=b1) and (a2&lt;=b2))</span><br></pre></td></tr></table></figure>
+<h4 id="重复"><a href="#重复" class="headerlink" title="重复"></a>重复</h4><ul>
+<li><p>对于存在重复元组的关系，SQL 可以决定在结果中显示该元组的几个副本 </p>
+</li>
+<li><p>一些关系代数运算的<strong>多重集</strong>版本——给定多重集关系<em>r</em>1 和<em>r</em>2 ：</p>
+<ol>
+<li>σ<sub>θ</sub> (r1)：如果关系<em>r</em>1的元组<em>t</em>1有c1个副本，并且<em>t</em>1满足选择条件σ<sub>θ</sub>  ，则在 σ<sub>θ</sub> 里有<em>c</em>1个<em>t</em>1的副本</li>
+<li>Π<sub>A</sub> (r)：对于关系<em>r</em>1的每个元组<em>t</em>1的每个副本，在Π<sub>A</sub> (r1)里都有一个副本Π<sub>A</sub> (t1) ，Π<sub>A</sub> (t1)是r1中相应副本t1的投影</li>
+<li>r1  x r2：如果关系<em>r</em>1的元组<em>t</em>1有<em>c</em>1个副本，关系<em>r</em>2的元组<em>t</em>2有<em>c</em>2个副本，则关系<em>r</em>1 x <em>r</em>2的元组t1，t2有<em>c</em>1 x <em>c</em>2个副本</li>
+</ol>
+</li>
+</ul>
+<h4 id="集合运算"><a href="#集合运算" class="headerlink" title="集合运算"></a>集合运算</h4><p>集合运算<code>union</code>，<code>intersect</code>和<code>except</code>，每个运算都自动去重</p>
+<p>union：并集；intersect：交集；except：差集；</p>
+<p>如果要保留重复，则要使用对应的多重集版本<code>union all</code>，<code>intersect all</code>，<code>except all</code></p>
+<blockquote>
+<p>如果一个元组在r中出现m次，在s中出现n次，那么：</p>
+<ul>
+<li><code>r union all s</code>：m+n次</li>
+<li><code>r intersect all s</code>：min(m,n)次</li>
+<li><code>r except all s</code>：max(0,m-n)次</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># 例</span><br><span class="line"># 找出在2009年秋季开课，或者在2010年春季开课，或两个学期都开课的所有课程</span><br><span class="line">(select course_id </span><br><span class="line"> from section </span><br><span class="line"> where sem = ‘Fall’ and year = 2009)</span><br><span class="line">union(select course_id </span><br><span class="line">      from section </span><br><span class="line">      where sem = ‘Spring’ and year = 2010)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 找出在2009年秋季和2010年春季都开课的所有课程</span><br><span class="line">(select course_id </span><br><span class="line"> from section </span><br><span class="line"> where sem = ‘Fall’ and year = 2009)</span><br><span class="line">intersect(select course_id </span><br><span class="line">          from section </span><br><span class="line">          where sem = ‘Spring’ and year = 2010)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 找出在2009年秋季学期开课但不在2010年春季学期开课的所有课程</span><br><span class="line">(select course_id </span><br><span class="line"> from section </span><br><span class="line"> where sem = ‘Fall’ and year = 2009)</span><br><span class="line">except/minus(select course_id </span><br><span class="line">             from section </span><br><span class="line">             where sem = ‘Spring’ and year = 2010)</span><br></pre></td></tr></table></figure>
+<h4 id="空值"><a href="#空值" class="headerlink" title="空值"></a>空值</h4><p>元组的一些属性可以为空值，用<code>null</code>表示</p>
+<p>null代表一个不知道或不存在的值</p>
+<p>包含null的任何算术表达式的计算结果是null，比如<code>5+null = null</code></p>
+<p>谓词：<code>is null</code>可以用来检测空值，但是不能写 `var = null</p>
+<p>带有<code>null</code>的任何比较运算返回 <code>unknown</code>，比如<code>5&lt;null := unknown</code>，<code>null&lt;&gt;null := unknown</code>，<code>null = null  := unknown</code></p>
+<p>三值逻辑使用真值<code>unknown</code></p>
+<ul>
+<li>or：<code>(unknown or true) = true</code>，<code>(unknown or false) = unknown</code>，<code>(unknown or unknown) = unknown</code></li>
+<li>and：<code>(unknown and true) = unknown</code>，<code>(unknown and false) = falses</code>，<code>(unknown or unknown) = unknown</code></li>
+<li>not：<code>not unknown = unknown</code> </li>
+<li>若谓词P的值为unknown，则<code>P is unknown = true</code></li>
+</ul>
+<p>where子句中谓词对一个元组计算出的值如果为<code>unknown</code>，则结果当false处理</p>
+<h4 id="聚集函数"><a href="#聚集函数" class="headerlink" title="聚集函数"></a>聚集函数</h4><p>聚集函数以一个值的集合（集或多重集）为输入，返回单个值</p>
+<blockquote>
+<ul>
+<li>avg：平均值</li>
+<li>min：最小值</li>
+<li>max：最大值</li>
+<li>sum：总和</li>
+<li>count：计数</li>
+</ul>
+</blockquote>
+<p>聚集函数的性质同关系代数：①聚集函数作用域集合（多重集）返回单值；②聚集函数作用默认作用于多重集；③强制作用于集合，使用distinct。</p>
+<p>（无分组）仅用聚集函数的SQL：SQL返回关系，返回的关系有且只有一行；Select子句中出现聚集函数，不能同时出现非聚集的属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 例</span><br><span class="line"># 找出Computer Science系教师的平均工资</span><br><span class="line">select avg(salary)</span><br><span class="line">from instructor</span><br><span class="line">where dept_name = &apos;Computer Science&apos;</span><br><span class="line"></span><br><span class="line"># 找出在2012年春季学期讲授的课程的教师总数</span><br><span class="line">select count(distinct ID)</span><br><span class="line">from teacher</span><br><span class="line">where semester = &apos;Spring&apos; and year = 2010</span><br><span class="line"></span><br><span class="line"># 找出course关系中的元组数</span><br><span class="line">select count(*)</span><br><span class="line">from course</span><br></pre></td></tr></table></figure>
+<h5 id="group-by子句"><a href="#group-by子句" class="headerlink" title="group by子句"></a><code>group by</code>子句</h5><p>在关系子集上运用聚集函数，得到一个新的关系</p>
+<p><code>group by</code>子句的作用对象是查询的中间结果表</p>
+<p>分组方法：按指定一列或多列值分组，值相等为一组</p>
+<p>使用<code>Group by</code>子句后，<code>Select</code>子句的列名列表中只能出现分组属性和聚集函数，不能出现非聚集的非分组属性</p>
+<p>分组聚集计算时，SQL返回关系，每组对应一行，无组时返回空关系</p>
+<p><code>having</code>是对分组聚集结果进行选择，不满足条件的舍弃</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 例</span><br><span class="line"># 计算每个系的教师的平均工资,dept——name为系名</span><br><span class="line">select dept_name, avg(salary)</span><br><span class="line">from instructor</span><br><span class="line">group by dept_name;</span><br></pre></td></tr></table></figure>
+<h3 id="附加的基本运算"><a href="#附加的基本运算" class="headerlink" title="附加的基本运算"></a>附加的基本运算</h3><h3 id="集合运算-1"><a href="#集合运算-1" class="headerlink" title="集合运算"></a>集合运算</h3><h3 id="空值-1"><a href="#空值-1" class="headerlink" title="空值"></a>空值</h3><h3 id="聚集函数-1"><a href="#聚集函数-1" class="headerlink" title="聚集函数"></a>聚集函数</h3><h3 id="嵌套子查询"><a href="#嵌套子查询" class="headerlink" title="嵌套子查询"></a>嵌套子查询</h3><h3 id="数据库的修改"><a href="#数据库的修改" class="headerlink" title="数据库的修改"></a>数据库的修改</h3>
       
     </div>
 
@@ -999,7 +1319,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库系统概念"><span class="nav-number">1.</span> <span class="nav-text">数据库系统概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.1.</span> <span class="nav-text">引言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据"><span class="nav-number">1.1.1.</span> <span class="nav-text">数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据结构"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">数据结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库"><span class="nav-number">1.1.2.</span> <span class="nav-text">数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库的特征"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">数据库的特征</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库管理系统"><span class="nav-number">1.1.3.</span> <span class="nav-text">数据库管理系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库系统"><span class="nav-number">1.1.4.</span> <span class="nav-text">数据库系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据管理技术"><span class="nav-number">1.1.5.</span> <span class="nav-text">数据管理技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例与模式"><span class="nav-number">1.1.6.</span> <span class="nav-text">实例与模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模式：数据库的总体设计"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">模式：数据库的总体设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例：在特定时刻存储在数据库中的信息集合"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">实例：在特定时刻存储在数据库中的信息集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#物理数据的独立性：物理模式的改变而不会影响逻辑模式"><span class="nav-number">1.1.6.3.</span> <span class="nav-text">物理数据的独立性：物理模式的改变而不会影响逻辑模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#逻辑数据的独立性"><span class="nav-number">1.1.6.4.</span> <span class="nav-text">逻辑数据的独立性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据视图"><span class="nav-number">1.1.7.</span> <span class="nav-text">数据视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据模型"><span class="nav-number">1.1.8.</span> <span class="nav-text">数据模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库语言"><span class="nav-number">1.1.9.</span> <span class="nav-text">数据库语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系数据库"><span class="nav-number">1.1.10.</span> <span class="nav-text">关系数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库设计"><span class="nav-number">1.1.11.</span> <span class="nav-text">数据库设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据存储和查询"><span class="nav-number">1.1.12.</span> <span class="nav-text">数据存储和查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询管理器"><span class="nav-number">1.1.12.1.</span> <span class="nav-text">查询管理器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务管理"><span class="nav-number">1.1.13.</span> <span class="nav-text">事务管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库系统内部结构"><span class="nav-number">1.1.14.</span> <span class="nav-text">数据库系统内部结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库体系结构"><span class="nav-number">1.1.14.1.</span> <span class="nav-text">数据库体系结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据挖掘"><span class="nav-number">1.1.15.</span> <span class="nav-text">数据挖掘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库管理员"><span class="nav-number">1.1.16.</span> <span class="nav-text">数据库管理员</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系模型"><span class="nav-number">1.2.</span> <span class="nav-text">关系模型</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库系统概念"><span class="nav-number">1.</span> <span class="nav-text">数据库系统概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.1.</span> <span class="nav-text">引言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据"><span class="nav-number">1.1.1.</span> <span class="nav-text">数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据结构"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">数据结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库"><span class="nav-number">1.1.2.</span> <span class="nav-text">数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库的特征"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">数据库的特征</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库管理系统"><span class="nav-number">1.1.3.</span> <span class="nav-text">数据库管理系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库系统"><span class="nav-number">1.1.4.</span> <span class="nav-text">数据库系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据管理技术"><span class="nav-number">1.1.5.</span> <span class="nav-text">数据管理技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例与模式"><span class="nav-number">1.1.6.</span> <span class="nav-text">实例与模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模式：数据库的总体设计"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">模式：数据库的总体设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例：在特定时刻存储在数据库中的信息集合"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">实例：在特定时刻存储在数据库中的信息集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#物理数据的独立性：物理模式的改变而不会影响逻辑模式"><span class="nav-number">1.1.6.3.</span> <span class="nav-text">物理数据的独立性：物理模式的改变而不会影响逻辑模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#逻辑数据的独立性"><span class="nav-number">1.1.6.4.</span> <span class="nav-text">逻辑数据的独立性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据视图"><span class="nav-number">1.1.7.</span> <span class="nav-text">数据视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据模型"><span class="nav-number">1.1.8.</span> <span class="nav-text">数据模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库语言"><span class="nav-number">1.1.9.</span> <span class="nav-text">数据库语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系数据库"><span class="nav-number">1.1.10.</span> <span class="nav-text">关系数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库设计"><span class="nav-number">1.1.11.</span> <span class="nav-text">数据库设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据存储和查询"><span class="nav-number">1.1.12.</span> <span class="nav-text">数据存储和查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询管理器"><span class="nav-number">1.1.12.1.</span> <span class="nav-text">查询管理器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务管理"><span class="nav-number">1.1.13.</span> <span class="nav-text">事务管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库系统内部结构"><span class="nav-number">1.1.14.</span> <span class="nav-text">数据库系统内部结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库体系结构"><span class="nav-number">1.1.14.1.</span> <span class="nav-text">数据库体系结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据挖掘"><span class="nav-number">1.1.15.</span> <span class="nav-text">数据挖掘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库管理员"><span class="nav-number">1.1.16.</span> <span class="nav-text">数据库管理员</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系模型"><span class="nav-number">1.2.</span> <span class="nav-text">关系模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关系数据结构"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">关系数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性的类型"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">属性的类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系的基本概念"><span class="nav-number">1.2.1.</span> <span class="nav-text">关系的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关系"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关系模型和实例"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">关系模型和实例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#码"><span class="nav-number">1.2.2.</span> <span class="nav-text">码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系查询语言"><span class="nav-number">1.2.3.</span> <span class="nav-text">关系查询语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系操作"><span class="nav-number">1.2.4.</span> <span class="nav-text">关系操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL"><span class="nav-number">1.3.</span> <span class="nav-text">SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据定义"><span class="nav-number">1.3.1.</span> <span class="nav-text">数据定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL的基本类型"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">SQL的基本类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建表结构"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">创建表结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Create-table中的完整性约束"><span class="nav-number">1.3.1.2.1.</span> <span class="nav-text">Create table中的完整性约束</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除和更改表结构"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">删除和更改表结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#索引"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">索引</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#索引的有关说明"><span class="nav-number">1.3.1.4.1.</span> <span class="nav-text">索引的有关说明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL查询的基本结构"><span class="nav-number">1.3.2.</span> <span class="nav-text">SQL查询的基本结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Select"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">Select</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#where"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">where</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#from"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">from</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#连接"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">连接</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#连接查询及执行过程"><span class="nav-number">1.3.2.4.1.</span> <span class="nav-text">连接查询及执行过程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自然连接"><span class="nav-number">1.3.2.5.</span> <span class="nav-text">自然连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更名运算"><span class="nav-number">1.3.2.6.</span> <span class="nav-text">更名运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串运算"><span class="nav-number">1.3.2.7.</span> <span class="nav-text">字符串运算</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Escape"><span class="nav-number">1.3.2.7.1.</span> <span class="nav-text">Escape</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排列元组的显示次序"><span class="nav-number">1.3.2.8.</span> <span class="nav-text">排列元组的显示次序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#where子句谓词"><span class="nav-number">1.3.2.9.</span> <span class="nav-text">where子句谓词</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重复"><span class="nav-number">1.3.2.10.</span> <span class="nav-text">重复</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#集合运算"><span class="nav-number">1.3.2.11.</span> <span class="nav-text">集合运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#空值"><span class="nav-number">1.3.2.12.</span> <span class="nav-text">空值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#聚集函数"><span class="nav-number">1.3.2.13.</span> <span class="nav-text">聚集函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#group-by子句"><span class="nav-number">1.3.2.13.1.</span> <span class="nav-text">group by子句</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附加的基本运算"><span class="nav-number">1.3.3.</span> <span class="nav-text">附加的基本运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集合运算-1"><span class="nav-number">1.3.4.</span> <span class="nav-text">集合运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空值-1"><span class="nav-number">1.3.5.</span> <span class="nav-text">空值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚集函数-1"><span class="nav-number">1.3.6.</span> <span class="nav-text">聚集函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌套子查询"><span class="nav-number">1.3.7.</span> <span class="nav-text">嵌套子查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库的修改"><span class="nav-number">1.3.8.</span> <span class="nav-text">数据库的修改</span></a></li></ol></li></ol></div>
             
 
           </div>
