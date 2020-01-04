@@ -893,6 +893,30 @@ drop index index_name
 
 
 
+##### 创建索引
+
+```mysql
+create	table	student(
+	ID	varchar(5),
+    name	varchar(20)	not null,
+    dept_name	varchar(20),
+    total_credit	numeric(3,0)	default	0,
+    primary	key(ID)
+)
+
+create	index	studentID_index	on student(ID)
+```
+
+
+
+* 索引是一种数据结构，用于加快查询在索引属性上取给定值的元组的速度
+
+==>详细见后面 [#索引]()
+
+
+
+
+
 
 
 
@@ -1241,7 +1265,7 @@ where	(instructor.ID, dept_name) = (teacher.ID, 'Biology')
 
 集合运算`union`，`intersect`和`except`，每个运算都自动去重
 
-union：并集；intersect：交集；except：差集；
+union：并集；intersect：交集；except：差集(在Oracle中，是minus)；
 
 如果要保留重复，则要使用对应的多重集版本`union all`，`intersect all`，`except all`
 
@@ -1893,6 +1917,1496 @@ update	student S
 
 
 
+### 中级SQL
+
+
+
+#### 连接表达式
+
+##### 连接关系
+
+连接操作作用于两个关系并返回一个关系作为结果
+
+一个连接操作是一个笛卡儿积，并且要求两个关系的元组满足某些匹配条件，他还指定在连接结果中要出现的属性
+
+`join`操作通常用作from子句中的子查询表达式
+
+
+
+##### 外连接
+
+* 一个扩展的连接操作，避免了信息的损失
+
+* 计算`join`，然后将一个关系中与另一个不匹配的元组添加到结果中
+
+* 使用`null`值
+
+
+
+![](Database-System/10.jpg)
+
+对于该关系，我们有左外连接、右外连接、全外连接和内连接
+
+左外连接如下：
+
+![](Database-System/11.jpg)
+
+右外连接如下：
+
+![](Database-System/12.jpg)
+
+简而言之，往哪连接，被连接的表的主码全部需要保留，然后将其连接的属性有则填入，无则赋`null`
+
+若找不到相应的主码，则将连接的表的那一行丢弃
+
+全外连接如下：
+
+![](Database-System/13.jpg)
+
+
+
+* **连接操作**将两个关系作为输入，返回一个关系作为结果
+* **连接条件**：规定了这两个关系中的哪些元组匹配，以及在连接结果中出现了什么属性
+* **连接类型**：规定了对每个关系中（基于连接条件）不与其他关系中的元组相匹配的元组怎样处理
+
+
+
+对于自然连接，会自动合并相同的列，但是连接会保留列
+
+例子如下：
+
+![](Database-System/14.jpg)
+
+![](Database-System/15.jpg)
+
+
+
+
+
+#### 视图
+
+
+
+在某些情况下，让所有的用户看到整个逻辑模型（即所有实际存储在数据库中的关系）是不可取的
+
+**视图**提供一个对某些用户从视图中隐藏某些数据的机制
+
+任何不是逻辑模型的一部分，但作为虚关系对用户可见的关系称为**视图**。
+
+
+
+##### 定义
+
+```mysql
+create	view	v	as	<query expression>
+```
+
+其中，`<query expression>`可以是任何合法的SQL表达式，v表示视图名
+
+一旦定义了一个视图，我们就可以用视图指代该视图生成的虚关系
+
+定义视图时并不是由查询表达式的执行结果创造一个新关系，相反，**一个视图的定义导致存储一个查询表达式**，当该视图被使用时，他就被这个已存储的查询表达式**替换**（有点类似C++的宏定义）
+
+
+
+##### 特点
+
+* 虚表，是从一个或几个基本表（或视图）导出的关系
+* 只存放视图的定义，不会出现数据冗余
+* 基表中的数据发生变化，从视图中查询的数据也随之改变
+* 查询时，视图名可以出现在任何关系名可以出现的地方
+
+
+
+##### 对比
+
+* 视图(view) vs 派生查询(with)：
+  * 视图存储在DB数据字典中，是数据库模式的一部分
+  * with定义的派生关系，仅在所属的SQL有效，不属于DB模式
+* 视图(view) vs 表(table)：
+  * 视图和表都是关系，都可以在SQL中直接应用
+  * DB中存储表的模式定义和数据
+  * DB中值存储视图的定义，不存视图的数据
+  * 视图数据实在使用视图时临时计算的
+  * 物化视图是提高计算的一种手段，结果等价于临时计算
+* 视图的作用：
+  * 对外模式的支持
+  * 安全性、方便性
+
+
+
+```mysql
+# 例
+# instructor关系的没有salary的属性视图
+create	view	faculty	as
+			select	ID,name,dept_name
+			from	instructor
+			
+# 找出Biology系的所有教师的姓名
+select name
+from faculty
+where	dept_name = 'Biology'
+
+```
+
+
+
+* 视图的属性名缺省为子查询结果中的属性名，也可以是显式指明，在下列情况下，必须指明视图的所有列名：
+  * 某个目标列式聚集函数或列表达式
+  * 多表连接时，选出了几个同名列作为视图的字段
+  * 需要在视图中为某个列启用新的更合适的名字
+  * 目标列是*
+
+
+
+```mysql
+# 例
+# 定义一个每个系的工资总和的视图
+create view	departments_total_salary(dept_name, total_salary) as
+	select	dept_name, sum(salary)
+	from	instructor
+	group by dept_name
+	
+
+```
+
+
+
+##### 使用其他视图定义视图
+
+一个视图可以用于定义另一个视图的表达式中
+
+如果一个视图关系v2用于定义另一个视图关系v1的表达式中，则称**v1直接依赖于v2**
+
+如果一个视图关系v1直接依赖于另一个视图v2，或通过其他视图间接依赖于v2，则称**v1依赖于v2**
+
+一个师徒关系如果依赖于它自身，则被称为递归的
+
+
+
+##### 视图扩展
+
+一种通过其他视图的定义来定义视图含义的方法
+
+设视图v1由表达式e1定义的，可能它本身就包含对视图关系的使用
+
+一个表达式中的视图扩展重复以下替换步骤
+
+> ```
+> repeat
+> 	找到e1中的关系vi
+> 	使用定义vi的表达式替换vi
+> until	在e1中没有视图关系
+> ```
+
+是要视图不是递归的，循环就能终止
+
+
+
+##### 视图更新
+
+```mysql
+update	view_name
+set	col = val
+where	expression
+
+delete	from	view_name
+where	expression
+```
+
+视图的更新就是转换为表的更新
+
+```mysql
+# 例
+create	view	IS_Student	as
+	select	Sno,Sname,Sage
+	from	Student
+	where	Sdept = 'IS';
+	
+#update
+update	IS_Student
+set	Sname = 'Alice'
+where	Sno = '12315'
+
+#transferTo
+update	Student
+set Sname = 'Alice'
+where	Sno = '12315'	and	Sdept = 'IS';
+
+#insert
+insert	into	IS_Student
+	values('12306', 'Bob', 18)
+
+#transferTo
+insert	into	Studnet(Sno,Sname,Sage,Sdept)
+	values('12306','Bob',18,'IS')
+	
+
+#delete
+delete	from	IS_Student
+where	Sno = '12315'
+
+#transferTo
+delete	from Student
+where	Sno = '12315'	and	Sdept = 'IS'
+
+
+```
+
+有些更新不能被单独执行，大部分的SQL实现只允许在简单视图上的更新（①`from`子句中只有一个数据库关系；②`select`子句中只包含关系的属性名，不包含任何表达式、聚集函数或`distinct`声明；③任何没有出现`select`子句中的属性可以取空值；④查询中不含有`group by`或`having`子句）
+
+对于行列子集视图可以更新
+
+
+
+##### `with check option`
+
+* 视图定义时，指定`with check option`，强制通过视图进行的修改，结果必须在视图中。
+
+
+
+```mysql
+# 例
+'''
+Sno	Sname	Sage	Dept
+S1	A		21		C
+S4	B		20		C
+S2	C		19		S
+s3	D		21		S
+'''
+create	view sv1	as
+	select	sno,sname,sage	from	s
+		where	Dept = 'C'	and	sage>20
+
+update	sv1	set	sage=19	where	sno = 's4'
+# 更以更新,更新后,B不再出现在视图中
+
+create	view sv1	as
+	select	sno,sname,sage	from	s
+		where	Dept = 'C'	and	sage>20
+	with check	option;
+
+update	sv1	set	sage=19	where	sno = 's4'
+# 不可以更新,update语句将被DBMS拒绝
+
+```
+
+
+
+##### 物化视图
+
+定义：创建一个物理表，此表包含定义视图的查询结果的所有元组
+
+如果查询中使用的关系发生了更新，则物化视图中的结果就会过期
+
+每当视图的底层关系进行更新时要更新视图，以此**维护**视图
+
+
+
+
+
+#### 事务
+
+* 工作单元
+* **原子事务**：**要么全部执行，要么回滚**，好像没有发生一样
+* 从并发事务中隔离
+* 隐式地开始一个任务
+  * 以`commit	work`	或	`rollback	work`结束
+* 多数数据库的默认情况：每个SQL语句自动提交
+  * 可以关闭自动提交了一个会话
+  * 在SQL:1999里可以使用`begin atomic ... end`（但这种方式不被多数数据库支持）
+
+
+
+
+
+#### 完整性约束
+
+* 完整性约束通过保证对数据库的修改不会造成数据的不一致，来防止对数据库数据的意外破坏
+
+
+
+> 单个关系上的约束
+>
+> * **not null**：指定的属性上，不允许出现空值
+>   * 限制：任何试图导致某个或某些元组非空属性为空的操作都将被拒绝
+> * **primary key**：声明为主码
+>   * 主码值不允许为空，也不允许出现重复
+>   * 意义：关系对应到现实世界中的实体集，元组对应到实体，实体是相互可区分的，通过主码来唯一标识，若主码为空，则出现不可标识的实体，这是不容许的
+> * **unique**：声明候选码
+>   * 约束：不允许关系中，有两个元组在指定属性上取值相同
+>   * unique本身不限定属性非空
+> * **check(P)**，P是一个谓词
+>   * 约束：关系上的每一个元组，都必须满足P
+>   * check可以针对一个或多个属性
+>   * check可以涉及其他表，但需考虑约束检查条件代价
+
+
+
+对于check，我们有
+
+```mysql
+# 保证semester必须是四季即Spring,Summer,Fall,Winter中的一个
+create table section (
+    course_id varchar (8),
+    sec_id varchar (8),
+    semester varchar (6),
+    year numeric (4,0),
+    building varchar (15),
+    room_number varchar (7),
+    time slot id varchar (4), 
+    primary key (course_id, sec_id, semester, year),
+    check (semester in(‘Fall’,‘Winter’,‘Spring’,‘Summer’))
+    
+```
+
+
+
+##### 参照完整性
+
+保证在一个关系中给定属性集上的取值也在另一关系的特定属性集的取值中出现
+
+A是一个属性的集合，R和S是两个包含属性A的关系，并且A是S的主码，如果对于每个而在R中出现的A在S中也出现，则A被称为R的**外码**
+
+
+
+##### 参照完整性的级联行为
+
+
+
+```mysql
+# 参照完整性中的级联行为
+create table course (
+    course_id	char(5) primary key,
+    title	varchar(20),
+    dept_name	varchar(20) references department)
+
+create table course (
+    		…
+    		dept_name varchar(20),
+    		foreign key (dept_name) references department
+    				on delete cascade
+    				on update cascade,
+    		. . . 
+)
+
+
+# 级联行为的替代方式: set null,set default
+```
+
+
+
+* 删除基本关系元组
+  * `Restrict`方式：只有当依赖关系中没有一个外码值与要删除的基本关系的主码值相对应时，才可以删除该元组，否则系统拒绝此删除操作
+  * `Cascade`方式：将依赖关系中所有外码值与基本关系中要删除的主码值所对应的元组一起删除
+  * `Set null`方式：删除基本关系中元组时，将依赖关系中与基本关系中被删主码值相对应的外码值置为空值
+
+```mysql
+Foreign	key	(Sno)	References	S(Sno)	[on	delete	[cascade|set null]]
+```
+
+
+
+
+
+* 修改基本关系元组
+  * `Restrict`方式：只有当依赖关系中没有一个外码值与要修改的基本关系的主码值相对应时，才可以修改该元组主码，否则系统拒绝此次修改
+  * `Cascade`方式：将依赖关系中所有与基本关系中要修改的主码值所对应的外码值一起修改为新值
+  * `Set null`方式：修改基本关系中元组主码时，将依赖关系中与基本关系中被修改主码值相对应的外码值置为空值
+
+```mysql
+Foreign	key	(Sno)	References	S(Sno)	[on	update	[cascade|set null]]
+```
+
+
+
+##### 复杂check子句
+
+```mysql
+create	assertion	<assertion-name>	check	<predicate>
+```
+
+
+
+
+
+
+
+#### SQL的数据类型与模式
+
+
+
+##### SQL固有的数据类型
+
+* date：日期，包括年(四位)、月、日，如`date  '2005-7-27'`
+* time：时间，包括小时、分、秒，如`time  '09:00:30'`，`time  '09:00:30.75'`
+* timestamp：date和time的组合，如`timestamp  '2005-7-27 09:00:30.75'`
+* interval：时间段，如`interval  '1' day`
+  * 两个 date/time/timestamp 类型值相减产生一个 interval 类型值
+  * 可以在 date/time/timestamp 类型的值上加减 interval 类型的值
+
+
+
+##### 用户定义的类型
+
+SQL中的`create type`结构创建用户定义的类型
+
+```mysql
+# 例
+create type	Dollars	as numeric(12,2)	final
+
+create	table	department(
+	dept_name	varchar(20),
+    building	varchar(15),
+    budget	Dollars
+);
+```
+
+SQL-92中的`create domain`结构创建用户定义的域类型
+
+```mysql
+create	domain	person_name	char(20)	not null
+
+create domain	degree_level	varchar(10)
+constraint	degree_level_test
+check(value in ('Bachelors','Masters','Doctorate'))
+```
+
+类型和域相似，但是域本身可以指定约束，比如`not null`
+
+
+
+* 用户定义类型
+  * 独特类型：`distinct type`：`create type Dollars as numeric(12,2)`
+  * 结构化：`structured`：`create type person(pid char(18),name varchar(8))`
+  * 用户定义类型，本质上是对RDB的面向对象扩展
+* 用户定义域：`create domain Dollar as numeric(12,2)`
+  * 自定义域不支持结构
+
+
+
+* Type vs Domain
+  * Type：进行强类型检查
+  * Domain：不进行强类型检查，支持强制类型转换
+  * Type由严格的OO理论基础，Domain时纯RDB的概念
+
+
+
+##### 大对象类型
+
+大对象类型（照片、视频、CAD文件等）以`large object`类型存储
+
+* blob：二进制数据的大对象数据类型——对象是没有被解释的二进制数据的大集合（对二进制数据的解释由数据库系统以外的应用程序完成）
+* clob：字符数据的大对象数据类型——对象是字符数据的大集合
+
+当查询结果是一个大对象时，返回的是指向这个大对象的指针，而不是大对象本身
+
+LOB：Large OBject，用于存储大空间的值，存储由指针加文件实现
+
+![](Database-System/16.jpg)
+
+LOB访问：一般使用专用语句访问
+
+```mysql
+# Oracle
+select Blob doc into ...
+from	book
+where cno = 'c1'
+```
+
+
+
+
+
+
+
+#### 授权
+
+
+
+##### 权限的转授和回收
+
+允许用户把已获得的权限转授给其他用户，也可以把已授给其他用户的权限在回收上来
+
+##### 权限图
+
+节点是用户，根节点是DBA，有向边U<sub>i</sub> &rarr; U<sub>j</sub> ，表示用户U<sub>i</sub> 把某权限授给用户U<sub>j</sub> 
+
+一个用户拥有权限的充分必要条件是在权限图有一条从根节点到该用户节点的路径
+
+
+
+数据库某些部分的几种授权形式：
+
+* Read：允许读取，但是不能修改数据
+* Insert：允许插入新数据，但是不能修改已有的数据
+* Update：允许修改，但是不能删除数据
+* Delete：允许删除数据
+
+
+
+修改数据库模式的几种授权形式：
+
+* Index：允许创建和删除索引
+* Resources：允许创建新的关系
+* Alteration：允许增加或删除关系的属性
+* Drop：允许删除关系
+
+
+
+
+
+##### SQL中的授权规范
+
+`grant`语句用于授予权限
+
+```mysql
+grant	<权限列表>
+on	<关系名|视图名> to <用户|角色列表>
+```
+
+<用户|角色列表>：**一个用户id** | **public**，所有合法用户持有所授权限 | **一个角色**
+
+对于某个视图授权后，并没有对该视图所基于的关系授权
+
+权限的授予者必须已经持有相应的权限（或者是数据库管理员）
+
+
+
+> 权限列表：
+>
+> * select：允许对关系进行读访问，或者使用视图进行查询的能力
+> * insert：插入元组的能力
+> * update：更新元组的能力
+> * delete：删除元组的能力
+> * all privileges：所有允许权限的简写形式
+>
+> 
+>
+> ```mysql
+> # 例
+> # 将对关系instructor的select权限授予用户U1U2U3
+> grant select on instructor to User1,User2,User3
+> ```
+>
+> 
+
+
+
+`revoke`语句用于收回权限
+
+```mysql
+revoke	<权限列表>
+on	<关系名|视图名>	from	<用户|角色列表>
+```
+
+<权限列表>可以是`all`，表示收回被收回人持有的所有权限
+
+如果<revoke-list> 包含`public`的话，则除了显式地被授予权限的用户外，所有的用户将失去权限
+
+如果同意权限由不同授权人两次授予同一用户，用户在一次权限被回收后，仍保持有权限
+
+收回权限时，若该用户已将权限授予其他用户，也一并收回
+
+
+
+
+
+##### 角色
+
+```mysql
+create	role	instructor
+grant	instructor	to Amit
+# 角色可以被授以权限
+grant select on takes to instructor
+# 角色可以授以用户，也可以被授以其他角色
+create	role	teaching_assistant
+grant	teaching_assistant to instructor
+# instructor 继承teaching_assistant的所有权限
+
+```
+
+
+
+角色链
+
+```mysql
+create role dean
+grant instructor to dean
+grant dean to Satoshi
+```
+
+
+
+##### 视图的权限
+
+```mysql
+create view geo_instructor as (
+	select	*
+    from instructor
+    where	dept_name = 'Geology'
+)
+grant	select on geo_instructor to geo_staff
+```
+
+
+
+`references`权限创造外码
+
+```mysql
+grant references (dept_name) on department to Mariano
+```
+
+
+
+权限的转移：`with grant option`
+
+授予其权限并允许用户可以将此权限授予其他用户
+
+```mysql
+grant select on table_name to Alice with grant option
+```
+
+
+
+
+
+### 高级SQL
+
+
+
+#### 使用程序设计语言访问数据库
+
+
+
+> * 动态SQL
+>   * JDBC和ODBC
+> * 嵌入式SQL
+
+
+
+API（Application-program interface）用于程序和数据库服务器之间的交互
+
+应用程序调用：①与数据库服务器连接；②向数据库服务器发送SQL命令；③逐个取结果元组到程序变量
+
+ODBC（Open Database Connectivity）：用于C，C++，C#和Visual Basic
+
+JDBC（JAVA Database Connective）：用于Java
+
+
+
+
+
+
+
+##### JDBC
+
+JDBC是一个支持SQL的Java API，用于与数据库系统通信
+
+JDBC支持查询和更新数据、检索查询结果等多种功能
+
+JDBC也支持元数据检索，例如查询当前数据库中的关系、关系属性的名字和类型
+
+>  与数据库的通信模型
+>
+> * 打开一个连接
+> * 创建一个statement对象
+> * 使用statement对象执行查询，发送查询并取回结果
+> * 处理错误的异常处理机制
+
+
+
+JDBC的基本工作步骤如下：
+
+![](Database-System/18.jpg)
+
+```java
+
+public	static	void	JDBCExample(String dbid,String userid,String passwd){
+    
+    try{
+        //1.Load the JDBC driver class
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+        //2.Open a database connection
+        //	jdbc:database_type:mode:URI
+        //	database_type = [mysql,oracle,...]
+        //	oracle:URI: @URI
+        //	mysql:URI:	//URI
+        Connection	conn = DriverManager.getConnection(
+            "jdbc:oracle:thin:@URI", userid, passwd);
+        //3.Issue SQL statements
+        Statement	stmt = conn.createStatement();
+        /*
+        *	4.Process result set
+        *	Do	Actual	Work
+        */
+        stmt.close();
+        conn.close();
+    }catch	(SQLException	sqle){
+     	System.out.println("SQLException: " + sqle);   
+    }
+    
+}
+
+
+------------------------------------------------------------------
+
+//Actual Work
+//update
+stmt.executeUpdate("insert into instructor values('" + a1 + "', 'Kim','Physics',98000)");
+
+//query
+Result rset = stmt.executeQuery("Select dept_name ,avg(salary) from instructor group by dept_name");
+while(rset.next()){
+    System.out.println(rset.getString("dept_name") + "\t" + rset.getFloat(2));
+}
+
+//null
+rset.wasNull() = true;
+
+
+
+```
+
+
+
+##### JDBC：立即执行VS预备语句
+
+* 立即执行
+  * 使用`Statement`类，将SQL语句直接交给DBMS执行
+  * 一次语句执行DBMS进行一次语句编译
+* 使用预备语句执行
+  * 使用`PreparedStatement`类，SQL语句执行，首先进行编译，编译结果赋予`PreparedStatement`的对象
+  * 预编译的结果可被反复多次执行
+  * 同嵌入SQL预编译不同（在编译程序时进行），JDBC的预编译时在程序运行中进行的
+* 一个SQL多次执行
+  * 使用预备语句，仅编译一次
+  * 立即执行的模式下，需多次编译
+  * 在一SQL多次执行时，使用预备语句比立即执行的
+
+
+
+```java
+// 预备语句
+PreparedStatement	pStmt = conn.prepareStatement(
+	"insert into instructor values(?,?,?,?)");
+pStmt.setString(1,"88888");
+pStmt.setString(2,"Alice");
+pStmt.setString(3,"Finance");
+pStmt.setInt(4,1250000);
+pStmt.executeUpdate();
+pStmt.setString(1,"88888");
+pStmt.executeUpdate();
+
+```
+
+对于查询，使用`pStmt.executeQuery()`，返回一个结果集（ResultSet）
+
+将一个来自用户的输入添加到查询时，使用预备语句比较好
+
+SQL语句的预编译能够有效防止SQL注入
+
+
+
+##### 元数据特性
+
+ResultSet：元数据：描述数据的数据
+
+```java
+ResultSet rs;//执行完查询后得到的结果
+ResultSetMetaData rsmd = rs。getMetaData();
+for(int i = 1;i<=rsmd.getColumnCount();i++){
+    System.out.println(rsmd.getColumnName(i));
+    System.out.println(rsmd.getColumnTypeName(i));
+}
+```
+
+如上，就是用java代码获取元数据的代码
+
+查询结果的元数据：①对描述查询结果集的属性类型（结果集的模式）；②对编程时不能确定的结果集模式时非常有用
+
+```java
+DatabaseMetaData dbmd = conn.getMetaData();
+	ResultSet rs = dbmd.getColumns(null, "univdb", "department", "%");
+	// Arguments to getColumns: Catalog, Schema-pattern, Table-pattern,
+	// and Column-Pattern
+	// Returns: One row for each column; row has a number of attributes
+	// such as COLUMN_NAME, TYPE_NAME
+while(rs.next()) {
+    System.out.println(rs.getString("COLUMN_NAME"),rs.getString("TYPE_NAME"));
+}
+
+```
+
+`DatabaseMetaData`类：JDBC的一个类，对DB数据字典进行封装，类方法可以读取数据字典元数据，屏蔽了数据字典的具体实现模式，对应用提供了访问DB数据字典元数据的标准方法
+
+![](Database-System/19.jpg)
+
+
+
+
+
+##### JDBC的事务控制
+
+在默认情况下，每个SQL语句都被作为一个被自动提交的独立的事务
+
+对于有多个更新的事务，这种做法并不好
+
+可以通过代码关闭自动提交：`conn.setAutoCommit(false);`
+
+事务必须被显式的提交或回滚：`conn.commit();`或`conn.rollback();`
+
+打开自动提交：`conn.setAutoCommit(true);`
+
+
+
+
+
+##### 调用函数和过程
+
+```java
+CallableStatement cStmt1 = conn.prepareCall("{? = call some function(?)}");
+CallableStatement cStmt2 = conn.prepareCall("{call some procedure(?,?)}");
+
+```
+
+
+
+
+
+##### 处理大型对象类型
+
+`getBlob()`和`getClob()`与`getString()`方法类似，但是分别返回Blob和Clob对象
+
+通过`getBytes()`从这些对象里得到数据
+
+将一个开放的流域Java Blob或Clob对象相连，来更新大对象
+
+```java
+blob.setBlob(int parameterIndex, InputStream inputStream);
+```
+
+
+
+##### SQLJ
+
+由于JDBC的动态化，编译器无法捕捉其错误，因此有SQLJ
+
+SQLJ：在java中的嵌入式SQL
+
+```java
+#sql iterator deptInfoIter ( String dept name, int avgSal);
+deptInfoIter iter = null;
+#sql iter = { select dept_name, avg(salary) from instructor 
+    group by dept name };
+while (iter.next()) {
+	String deptName = iter.dept_name();
+	int avgSal = iter.avgSal();
+	System.out.println(deptName + " " + avgSal);
+}
+iter.close();
+
+```
+
+
+
+
+
+##### ODBC
+
+![ODBC_Struct](Database-System/17.jpg)
+
+ODBC结构如上图
+
+
+
+ODBC：Open Database Connectivity标准：
+
+* 应用程序与数据库服务器通信标准
+* 应用程序接口
+  * 与数据库建立一个连接
+  * 发送查询和更新数据库的语句
+  * 取回结果
+
+
+
+（略）
+
+
+
+##### 嵌入式SQL
+
+SQL标准定义了许多语言的嵌入式SQL，如C，JAVA，Cobol
+
+SQL查询所嵌入的语言被称为宿主语言（host language），宿主语言中使用的SQL结构被称为嵌入式SQL
+
+![](Database-System/20.jpg)
+
+这些语言的基本形式遵循System R的嵌入到PL/I的SQL的形式
+
+
+
+（略）
+
+
+
+#### 函数和过程和结构
+
+SQL：1999支持函数和过程
+
+* 函数/过程可以用SQL自身写，也可以用外部编程语言写
+* 函数对专门的数据类型，如图像和几何对象特别有用
+* 许多数据库系统支持**表值函数（table-valued functions）**，表值函数会返回一个关系作为结果
+
+
+
+SQL：1999支持许多命令式结构，包括循环（loops）、if-then-else、赋值（assignment）
+
+
+
+```mysql
+# 定义一个函数,输入一个系的名字,返回该系的教师数量
+create	function	dept_count(dept_name	varchar(20))
+	returns	integer
+	begin
+		declare	d_count	integer;
+		select	count(*)	into	d_count
+		from	instructor
+		where	instructor.dept_name = dept_name
+		return d_count;
+	end
+	
+# 找出教师数大于12的所有系的名称和预算
+select	dept_name,budget
+from department
+where	dept_count(dept_name) > 12
+
+
+
+```
+
+
+
+SQL：2003增加了返回关系作为结果的函数
+
+```mysql
+# 返回一个包含特定系的所有教师的表
+create	function	instructors_of	(dept_name	char(20))
+	returns	table	(ID	varchar(5),
+                   	 name varchar(20),
+                     dept_name varchar(20),
+                     salary	numeric(8,2))
+
+return table (select ID,name,dept_name,salary
+             	from	instructor
+             	where	instructor.dept_name = instructors_of.dept_name)
+
+#use
+select * 
+from	table	(instructs_or('Music'))
+
+
+```
+
+
+
+`dept_count`函数也可以写成一个过程
+
+```mysql
+create procedure dept_count_proc (in dept_name varchar(20),
+                                  out d_count integer)
+begin
+	  select count(*) into d_count
+	  from instructor
+	  where instructor.dept_name = dept_count_proc.dept_name
+end
+
+# 可以在一个SQL过程中或者嵌入式SQL中使用call语句调用过程
+declare	d_count	integer;
+call	dept_count_proc('Physics',d_count);
+
+
+```
+
+过程和函数可以通过动态SQL触发
+
+SQL:1999：允许使用多个同名过程/函数（称为名字**重载**），只要参数的个数不同，或对于那些有相同参数个数的函数，至少有一个参数的类型不同
+
+
+
+
+
+#### 触发器
+
+（略）
+
+
+
+
+
+
+
+## 形式化关系查询语言
+
+
+
+### 关系代数
+
+
+
+* 关系代数
+* 六种基本运算符
+  * 选择（Select）：σ
+  * 投影（Project）：Π
+  * 并（union）：∪
+  * 集合差（set difference）：-
+  * 笛卡儿积（Cartesian product）：×
+  * 更名（rename）：ρ
+* 关系代数的运算以一个或两个关系作为输入，产生一个新的关系作为结果
+
+
+
+#### 选择运算
+
+* 记法：σ<sub>p</sub>(r)
+
+* p被称为**选择谓词**
+* 定义为： σ<sub>p</sub>(r) = { t | t ∈ r and p(t) }，其中p是一个命题演算公式，由连词（∧(and)，∨(or)， ┐(not)）把项连接起来构成每一个项（term）的形式可以为：`<attribute> op <attribute> or <constant>` ，其中op可以是：=，≠，>，≥，<，≤
+* 示例：σ<sub> dept_name = "Physics"</sub>(instructor)
+
+![](Database-System/21.jpg)
+
+选择运算是从行的角度进行的运算
+
+![](Database-System/22.jpg)
+
+
+
+
+
+#### 投影运算
+
+* 记法：Π<sub>A<sub>1</sub>,A<sub>2</sub>,...,A<sub>k</sub></sub>(r) ，其中A<sub>1</sub>,A<sub>2</sub>,...,A<sub>k</sub> 是属性名，r是关系名
+* 结果由选择的k列组成，删除了没有被选择的其他列
+* 因为关系是集合，所以重复的元组从结果中删除
+* 示例：Π<sub>ID, name, salary</sub>(instructor) 
+
+![](Database-System/23.jpg)
+
+投影操作主要是从列的角度进行运算
+
+![](Database-System/24.jpg)
+
+
+
+#### 并运算
+
+* 记法：r ∪ s
+* 定义为：r ∪ s = { t | t ∈ r or t ∈ s }
+* 要使并运算r∪s有意义
+  1. r，s必须是**同元**的（属性数目必须相同）
+  2. 属性的域必须相容（如r的第二列的属性类型必须和s的第二列类型相同）
+* 示例：找出开设在2009年秋季学期或者2010年春季学期或者这二者皆开的所有的课程：  Π<sub>course_id</sub> (σ<sub> semester = “Fall” Λ year=2009</sub> (section) )  ∪
+  Π<sub>course_id</sub> (σ<sub> semester=“Spring” Λ year=2010</sub> (section) )
+
+![](Database-System/25.jpg)
+
+
+
+
+
+#### 集合差运算
+
+* 记法：r - s
+* 定义为：r - s = { t | t ∈ r and t ∉ s }
+* 必须保证集合差运算在相容的关系间进行
+  * r 和 s必须是同元的
+  * r 和 s属性的域必须相容
+* 示例：找出开设在2009年秋季学期但是在2010年春季学期不开的课程：
+  Π<sub>course_id</sub> (σ<sub> semester = “Fall” Λ year=2009</sub> (section) )  - 
+  Π<sub>course_id</sub> (σ<sub> semester=“Spring” Λ year=2010</sub> (section) )
+
+![](Database-System/26.jpg)
+
+
+
+##### 基本运算的分配律
+
+* 投影和并可以分配
+  * Π<sub>pid,name</sub>(S∪T) ≡ Π<sub>pid,name</sub>(S)  ∪ Π<sub>pid,name</sub>(T) 
+* 投影和差不可分配
+
+
+
+
+
+#### 笛卡儿积运算
+
+* 记法：r × s
+
+* 定义为：r × s = { tq | t ∈ r and q∈ s }
+
+  * 元组的连串（Concatenation）：若r = (r1,..,rn)，s = (s1,...,sm)，则定义r与s的连串为一个n+m的元组，记作rs = (r1,...,rn,s1,s...,sm)
+
+* 假设关系r(R)和s(S)的属性不相交（即R ∩ S = Φ ）
+
+* 如果关系r(R)和s(S)的属性有相交的，则必须使用更名运算
+
+* 示例：
+
+  ![](Database-System/27.jpg)
+
+
+
+##### 运算的组合
+
+![](Database-System/28.jpg)
+
+如图为一个例子
+
+
+
+
+
+#### 更名运算
+
+* 允许通过更名来引用关系代数表达式的结果
+* 允许引用一个关系时使用多于一个的名字
+* 如： ρ<sub>X</sub>(E) ：返回更名为X的表达式E的结果
+* 如果关系代数表达式E时n元的，则 ρ <sub>χ(A1,A2,...,An)</sub>(E) ，返回被更名为X的表达式E的结果，并且属性被更名为A1，A2，...，An
+
+![](Database-System/29.jpg)
+
+
+
+
+
+#### 关系代数表达式嵌套
+
+* 关系代数中基本的表达式是如下二者之一：
+  * 数据库中的一个关系
+  * 一个常数关系
+* n设E1 和E2是关系代数表达式，则以下这些都是关系代数表达式：
+  * E1 ∪ E2
+  * E1 – E2
+  * E1 x E2
+  * σ<sub>p</sub> (E1), 其中P是E1的属性上的谓词
+  * Π<sub>s</sub>(E1),其中S 是E1中某些属性的列表
+  * ρ<sub>x</sub> (E1),其中x 是E1结果的新名字
+
+
+
+#### 附加关系代数运算
+
+* 附加运输没有实质地扩展关系代数的能力，但是简化了查询的书写
+  * 集合交
+  * 自然连接
+  * 赋值
+  * 外连接
+
+#### 
+
+#### 集合交运算
+
+* 记法：r ∩ s
+* 定义为： r ∩ s = { t | t ∈ r and t ∈ s }
+  * r 和 s 是同元的
+  * r 和 s 属性域相容
+* 注： r ∩ s = r - ( r - s ) = s - ( s - r )
+
+![](Database-System/30.jpg)
+
+#### θ连接
+
+定义：
+
+![](Database-System/31.jpg)
+
+* 所以，θ连接是做笛卡儿积，然后筛选出符合AθB表达式的元组作为结果返回
+
+![](Database-System/32.jpg)
+
+
+
+
+
+#### 自然连接运算
+
+* 记法：r ⋈ s
+* 定义：关系 r 和 s 分别是模式 R 和 S 的关系，则 r ⋈ s 是由如下方式得到的模式 R ∪ S 的关系
+  * 对于 r 中的每个元组 t<sub>r</sub> 和 s 中的每个元组 t<sub>s</sub> 所组成的元组对
+  * 如果 t<sub>r</sub> 和 t<sub>s</sub> 在 R ∩ S的属性上有相同的值，则在结果中加入一个元组t，并且：
+    * t 在r上和 t<sub>r</sub> 有相同的值
+    * t 在s上和 t<sub>s</sub> 有相同的值
+* 示例：若R = (A,B,C,D) ，S = (E,B,D) ，结果模式 = (A,B,C,D,E) ，则 r ⋈ s = 
+  Π<sub>r.A, r.B, r.C, r.D, s.E </sub> ( σ<sub> r.B = s.B Λ r.D = s.D </sub>(r × s ) )
+
+![](Database-System/32.jpg)
+
+
+
+![](Database-System/33.jpg)
+
+* 自然连接和等值连接的不同
+
+  * 自然连接中相等的分量必须是相同的属性组，并且要在结果中去掉重复的属性，二等值连接则不必
+
+* 当 R 与 S 无相同属性时， R ⋈ S = R × S
+
+* 可交换，可结合
+
+  * s ⋈ sc ≡ sc ⋈ s
+  * ( s ⋈ sc ) ⋈ c ≡ s ⋈ ( sc ⋈ c )
+
+  
+
+#### 赋值运算
+
+* 赋值运算（⬅）提供了一种简化关系代数表达式书写的方式
+  * 把查询表达为一个顺序程序，由以下构成
+    * 一系列赋值
+    * 一个其值被作为查询结果显示的表达式
+  * 赋值必须是赋给一个临时关系变量
+
+
+
+
+
+
+
+#### 外连接
+
+* 外连接运算是连接运算的扩展，可以处理缺失的信息
+* 计算连接，然后一个关系中失配的元组添加到结果中
+* 使用空值（null）：
+  * `null`代表一个值未知或不存在
+  * 所有的包含`null`比较运算都被定义为`false`
+* 示例：
+
+现有关系如下图：
+
+![](Database-System/34.jpg)
+
+有连接、左外连接、右外连接、全外连接如下：
+
+![](Database-System/35.jpg)
+
+![](Database-System/36.jpg)
+
+
+
+连接即将表做笛卡儿积，筛选出相同属性拥有相同值的元组，将其连接起来成为一个新的元组
+
+左外连接即保证左表的主码完整性，右外连接保证右表的主码完整性
+
+全外连接保证全部数据的不被舍弃
+
+均用空值`null`填补空白的属性
+
+外连接运算可以用基本关系代数表示
+
+
+
+#### 空值
+
+* 元组的一些属性可以为空值，用`null`表示
+* `null`代表一个值未知或不存在，空值是一种状态，不是一个明确的值
+* 含有`null`的算数表达式的结果为`null`
+* 聚集函数直接忽略空值（比如在SQL里）
+* 在去重和分组运算中，`null`和其他值一样，两个`null`被看作是相同的值
+
+
+
+* 含有空值的比较运算的结果是一个特殊的值：`unknown`
+  * 如果用 `false` 取代 `unknown`，那么 `not (A < 5)` 和 `A >= 5`不等价
+* 使用`unknown`的三值逻辑
+  * or：`(unknown or true) = true`，`(unknown or false) = unknown`，`(unknown or unknown) = unknown`
+  * and：`(unknown and true) = unknown`，`(unknown and false) = falses`，`(unknown or unknown) = unknown`
+  * not：`not unknown = unknown` 
+  * 在SQL中，若谓词P的值为unknown，则`P is unknown = true`
+* 选择（select）谓词的结果如果是`unknown`，则相当于`false`
+
+
+
+#### 除运算
+
+* 定义：给定两个关系 r(R) 和 s(S) ，并且 S ⊂ R，则  r ÷ s 是满足 t × s ⊆ r 的最大关系t(R-S)
+* 可以将 r ÷ s 写为：temp1 ⬅ Π<sub>R-S</sub>(r) ，temp2 ⬅ Π<sub>R-S</sub>( (temp1 × s)  - Π<sub>R-S, S</sub>(r) ) ，result = temp1 - temp2
+* 示例： r÷s给出的学生ID选了Biology系卡的所有课
+  r(ID, course_id) = Π<sub> ID, course_id</sub>(takes) 且 s(course_id) = Π<sub>course_id</sub>(σ<sub>dept_name = "Boilogy" </sub>(course))
+
+![](Database-System/37.jpg)
+
+![](Database-System/38.jpg)
+
+
+
+
+
+#### 扩展的关系代数运算
+
+* 广义投影
+* 聚集函数
+
+
+
+#### 广义投影
+
+* 定义：Π<sub>F<sub>1</sub>,F<sub>2</sub>,...,F<sub>n</sub></sub>(E) ，E是任意关系代数表达式，Fi是涉及常量以及E的模式种属性的算术表达式
+* 广义投影运算允许在投影列表中使用算术函数来对投影进行扩展
+* 示例：给定关系 instructor(ID, name, dept_name, salary) 其中salary 是年薪， 可以得到每个教师的ID、name、dept_name及每月的工资： Π<sub>ID, name, dept_name, salary/12</sub>(instructor)
+
+
+
+#### 聚集函数
+
+* 聚集函数：输入值的一个汇集，将单一值作为结果返回
+
+  > * avg：平均值
+  > * min：最小值
+  > * max：最大值
+  > * sum：求和
+  > * count：计数
+
+* 示例：
+
+![](Database-System/39.jpg)
+
+
+
+![](Database-System/40.jpg)
+
+
+
+* 聚集的结果没有名称
+  * 可以使用更名运算给他命名
+  * 为方便起见，我们允许把更名作为聚集运算的一部分
+
+
+
+#### 多重关系代数
+
+* 纯关系代数删除所有的重复
+* 多重集关系代数保存重复，为了匹配SQL的语义
+* 多重集关系代数定义为：
+  * 选择：和输入关系中的满足选择条件的元组个数一样多
+  * 投影：每个输入元组产生一个元组，即使有重复也保留
+  * 叉积：如果关系 *r* 的元组 *t1* 有*m*个副本，关系*s* 的元组 *t2* 有 *n**个*副本，则关系*r*  x *s*的元组*t1.t2*有*m* x *n*个副本
+  * 类似的，其他的操作为
+  * 示例：并：*m* + *n*个副本，交：min(*m, n*)个副本，差：min(0, *m* – *n*)个副本
+
+
+
+具体可以见SQL的多重关系运算==> [#集合运算与重复](####重复)
+
+
+
+
+
+### 元组关系演算
+
+* 元组关系演算是非过程化的查询语言，查询表达式的形式为：`{ t | P(t) }`
+
+* 表示它是所有使谓词P为真的元组 t 的集合
+
+* t 为元组变量，t[A] 表示元组 t 在属性A上的值
+
+* t ∈ r 表示元组 t 在关系 r 中
+
+* P是一个类似于**谓词演算**的公式，由原子公式和运算符组成
+
+  * 原子公式
+    * s ∈ R：s是关系R中的一个元组
+    * s[x] θ u[y] ：s[x]与u[y] 为元组分量，他们之间满足比较关系θ
+    * s[x] θ c：分量s[x]与常量c之间满足比较关系θ
+  * 公示的递归定义
+    * 原子公式是公式
+    * 如果P是公式，那么  ﹁P 和 (P) 也是公式
+    * 如果P1、P2是公式，则 P1 ∧ P2， P1 ∨ P2 ，P1 &rArr; P2也是公式
+    * 如果P(t) 是公式，R是关系， 则 ∃ t ∈ R (P(t)) 和 ∀ t ∈ R  (P(t)) 也是公式
+
+  > 谓词演算公式：
+  >
+  > * 属性和常量的集合
+  > * 比较运算符的集合（<，≤，=，≠，>，≥）
+  > * 连词的集合（and，or，not）
+  > * 蕴含（&rArr; ）： x &rArr; y，如果x为真，则y也为真。 x &rArr; y ≡ ﹁ x &or; y
+  > * 量词的集合：∃ 和 ∀ 
+  >
+  > 
+
+
+
+#### 表达式的安全性
+
+* 元组关系演算表达式可能产生一个无线的关系
+* 为了避免产生无限关系，我们将限制所允许的表达式集合为安全表达式
+
+
+
+
+
+### 元组关系演算与关系代数的等价性
+
+
+
+* 投影：	Π<sub>A</sub>(R) = { t | ∃s ∈ R，(t[A] = s[A]) }
+
+  
+
+* 选择：    σF(A)(R) = { t | t ∈ R ∧ F(t[A]) }
+
+  
+
+* 广义笛卡尔积：    R(A) × S(B) = { t | ∃u∈R, ∃s∈S ，( t[A] = u[A] ∪ t[B] = s[B])}
+
+  
+
+* 并：    R ∪ S = { t | t ∈ R &or; t ∈ S }
+
+  
+
+* 差：    R - S = { t | t ∈ R &and;  ﹁ t ∈ S }
+
+
+
+
+
+## 数据库设计与ER模型
+
+
+
+
+
+
+
+
+
+## 关系数据库设计
+
+
+
+
+
+
+
+## 数据存储和数据访问
+
+
+
+
+
+
+
+## 查询处理和查询优化
+
+
+
+
+
+
+
+## 事务管理
 
 
 
@@ -1930,6 +3444,17 @@ update	student S
 
 
 
+
+
+
+
+
+
+
+
+211.87.227.230:3306
+
+webteach
 
 
 
