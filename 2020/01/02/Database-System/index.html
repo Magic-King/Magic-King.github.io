@@ -147,7 +147,21 @@
 <meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/38.jpg">
 <meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/39.jpg">
 <meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/40.jpg">
-<meta property="og:updated_time" content="2020-01-04T14:05:09.556Z">
+<meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/41.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/42.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/43.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/44.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/45.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/46.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/47.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/48.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/49.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/50.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/51.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/52.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/53.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/01/02/Database-System/54.jpg">
+<meta property="og:updated_time" content="2020-01-05T06:04:03.396Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Database-System">
 <meta name="twitter:description" content="数据库系统概念引言DBMS定义：由一个相互关联的数据集合和一组用以访问这些数据的程序组成，这个数据集合同城称作数据库(Database)。 DBMS的目标：方便、高效地存取数据库信息  四个基本概念 数据（Data） 数据库（Database） 数据库管理系统（DBMS） 数据库系统（DBS）    数据数据（Data）是数据库中存储的基本对象 数据的定义：描述事物的符号记录 数据的种类：文字、图">
@@ -477,7 +491,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-04 22:05:09" itemprop="dateModified" datetime="2020-01-04T22:05:09+08:00">2020-01-04</time>
+                <time title="修改时间：2020-01-05 14:04:03" itemprop="dateModified" datetime="2020-01-05T14:04:03+08:00">2020-01-05</time>
               
             
           </span>
@@ -723,7 +737,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="数据挖掘"><a href="#数据挖掘" class="headerlink" title="数据挖掘"></a>数据挖掘</h3><p>数据挖掘式应用一系列技术从大型数据库或数据仓库中提取人马感兴趣的信息和知识，这些知识或信息式隐含的，实现未知而潜在有用的，提取的知识表示为概念、规则、规律、模式等形式</p>
+<h3 id="数据挖掘"><a href="#数据挖掘" class="headerlink" title="数据挖掘"></a>数据挖掘</h3><p>数据挖掘式应用一系列技术从大型数据库或数据仓库中提取人们感兴趣的信息和知识，这些知识或信息式隐含的，实现未知而潜在有用的，提取的知识表示为概念、规则、规律、模式等形式</p>
 <p>数据挖掘式一类深层次的数据分析</p>
 <h3 id="数据库管理员"><a href="#数据库管理员" class="headerlink" title="数据库管理员"></a>数据库管理员</h3><p>对数据库系统进行集中控制的人称作数据库管理员（Database Administrator）</p>
 <ul>
@@ -949,7 +963,7 @@
 <h4 id="自然连接"><a href="#自然连接" class="headerlink" title="自然连接"></a>自然连接</h4><p>自然连接只考虑两个关系模式中都出现的属性上取值相同的元组对，并且相同属性的列只保留一个副本</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">select	*</span><br><span class="line">from	instructor	natural join	teacher</span><br><span class="line"></span><br><span class="line">select	name,course_id</span><br><span class="line">from	instructor, teacher</span><br><span class="line">where	instructor.iD = teacher.ID</span><br><span class="line">||</span><br><span class="line">select	name,course_id</span><br><span class="line">from instructor natural join	teacher</span><br></pre></td></tr></table></figure>
 <p>自然连接中的危险：有些属性可能具有相同的名称，但是他们的实际意义是不同的，在这种情况下，他们可能被错误的认为是相同属性</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 例</span><br><span class="line"># 错误的写法(使course.dept_name = instructor.dept_name)</span><br><span class="line">select name, title</span><br><span class="line">from instructor natural join teaches natural join course;</span><br><span class="line"></span><br><span class="line"># 正确的写法</span><br><span class="line">select name, title</span><br><span class="line">from instructor natural join teaches, coursewhere teaches.course_id = course.course_id;</span><br><span class="line"></span><br><span class="line"># 另一个正确的写法</span><br><span class="line">select name, title</span><br><span class="line">from (instructor natural join teaches) join course using(course_id);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 例</span><br><span class="line"># 错误的写法(使course.dept_name = instructor.dept_name)</span><br><span class="line">select name, title</span><br><span class="line">from instructor natural join teaches natural join course;</span><br><span class="line"></span><br><span class="line"># 正确的写法</span><br><span class="line">select name, title</span><br><span class="line">from instructor natural join teaches, course </span><br><span class="line">where teaches.course_id = course.course_id;</span><br><span class="line"></span><br><span class="line"># 另一个正确的写法</span><br><span class="line">select name, title</span><br><span class="line">from (instructor natural join teaches) join course using(course_id);</span><br></pre></td></tr></table></figure>
 <h4 id="更名运算"><a href="#更名运算" class="headerlink" title="更名运算"></a>更名运算</h4><p>SQL允许使用as子句对关系和属性进行更名</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">old_name as new_name</span><br></pre></td></tr></table></figure>
 <ul>
@@ -1024,7 +1038,7 @@
 <p>三值逻辑使用真值<code>unknown</code></p>
 <ul>
 <li>or：<code>(unknown or true) = true</code>，<code>(unknown or false) = unknown</code>，<code>(unknown or unknown) = unknown</code></li>
-<li>and：<code>(unknown and true) = unknown</code>，<code>(unknown and false) = falses</code>，<code>(unknown or unknown) = unknown</code></li>
+<li>and：<code>(unknown and true) = unknown</code>，<code>(unknown and false) = falses</code>，<code>(unknown and unknown) = unknown</code></li>
 <li>not：<code>not unknown = unknown</code> </li>
 <li>若谓词P的值为unknown，则<code>P is unknown = true</code></li>
 </ul>
@@ -1277,7 +1291,7 @@
 <h5 id="使用其他视图定义视图"><a href="#使用其他视图定义视图" class="headerlink" title="使用其他视图定义视图"></a>使用其他视图定义视图</h5><p>一个视图可以用于定义另一个视图的表达式中</p>
 <p>如果一个视图关系v2用于定义另一个视图关系v1的表达式中，则称<strong>v1直接依赖于v2</strong></p>
 <p>如果一个视图关系v1直接依赖于另一个视图v2，或通过其他视图间接依赖于v2，则称<strong>v1依赖于v2</strong></p>
-<p>一个师徒关系如果依赖于它自身，则被称为递归的</p>
+<p>一个视图关系如果依赖于它自身，则被称为递归的</p>
 <h5 id="视图扩展"><a href="#视图扩展" class="headerlink" title="视图扩展"></a>视图扩展</h5><p>一种通过其他视图的定义来定义视图含义的方法</p>
 <p>设视图v1由表达式e1定义的，可能它本身就包含对视图关系的使用</p>
 <p>一个表达式中的视图扩展重复以下替换步骤</p>
@@ -1766,7 +1780,7 @@
 </li>
 <li>使用<code>unknown</code>的三值逻辑<ul>
 <li>or：<code>(unknown or true) = true</code>，<code>(unknown or false) = unknown</code>，<code>(unknown or unknown) = unknown</code></li>
-<li>and：<code>(unknown and true) = unknown</code>，<code>(unknown and false) = falses</code>，<code>(unknown or unknown) = unknown</code></li>
+<li>and：<code>(unknown and true) = unknown</code>，<code>(unknown and false) = falses</code>，<code>(unknown and unknown) = unknown</code></li>
 <li>not：<code>not unknown = unknown</code> </li>
 <li>在SQL中，若谓词P的值为unknown，则<code>P is unknown = true</code></li>
 </ul>
@@ -1882,7 +1896,344 @@
 <ul>
 <li>差：    R - S = { t | t ∈ R &and;  ﹁ t ∈ S }</li>
 </ul>
-<h2 id="数据库设计与ER模型"><a href="#数据库设计与ER模型" class="headerlink" title="数据库设计与ER模型"></a>数据库设计与ER模型</h2><h2 id="关系数据库设计"><a href="#关系数据库设计" class="headerlink" title="关系数据库设计"></a>关系数据库设计</h2><h2 id="数据存储和数据访问"><a href="#数据存储和数据访问" class="headerlink" title="数据存储和数据访问"></a>数据存储和数据访问</h2><h2 id="查询处理和查询优化"><a href="#查询处理和查询优化" class="headerlink" title="查询处理和查询优化"></a>查询处理和查询优化</h2><h2 id="事务管理-1"><a href="#事务管理-1" class="headerlink" title="事务管理"></a>事务管理</h2><p>211.87.227.230:3306</p>
+<h2 id="数据库设计与ER模型"><a href="#数据库设计与ER模型" class="headerlink" title="数据库设计与ER模型"></a>数据库设计与ER模型</h2><h3 id="设计模型概览"><a href="#设计模型概览" class="headerlink" title="设计模型概览"></a>设计模型概览</h3><h4 id="数据库设计-1"><a href="#数据库设计-1" class="headerlink" title="数据库设计"></a>数据库设计</h4><ul>
+<li>工程性</li>
+<li>有基本的对错问题</li>
+<li>不能简单的以对/错论述问题<ul>
+<li>不同的工程方法可以达到工程目的</li>
+<li>对错概念被弱化</li>
+</ul>
+</li>
+<li>强调优劣好坏<ul>
+<li>好优的工程可以以较小代价，取得较好/高的成果</li>
+</ul>
+</li>
+<li>强调多数人的看法和评价</li>
+</ul>
+<p><strong>软件生命周期瀑布模型</strong>如下图</p>
+<p><img src="/2020/01/02/Database-System/41.jpg" alt="软件生命周期瀑布模型"></p>
+<h4 id="需求分析的目标、内容和结果"><a href="#需求分析的目标、内容和结果" class="headerlink" title="需求分析的目标、内容和结果"></a>需求分析的目标、内容和结果</h4><ul>
+<li><p>需求分析的目标</p>
+<ul>
+<li>澄清用户需求</li>
+<li>为系统设计和实现奠定基础</li>
+</ul>
+</li>
+<li><p>需求分析的内容</p>
+<ul>
+<li>数据分析：包括数据结构、关系、约束、语义等等</li>
+<li>加工逻辑分析：对数据如何进行加工、处理、变换</li>
+<li>流程分析：动作间的先后次序，以及相互关系</li>
+<li>其他：界面要求、性能需求</li>
+</ul>
+</li>
+<li><p>需求分析的结果</p>
+<ul>
+<li>用户需求规格说明书（简称需求说明书）</li>
+</ul>
+</li>
+</ul>
+<h3 id="实体-联系模型"><a href="#实体-联系模型" class="headerlink" title="实体-联系模型"></a>实体-联系模型</h3><p>实体联系模型（Entity Relationship Diagram），简称ER图</p>
+<ul>
+<li><h4 id="ER图的位置"><a href="#ER图的位置" class="headerlink" title="ER图的位置"></a>ER图的位置</h4><ul>
+<li>数据分析、描述的工具</li>
+<li>数据分析、描述以E-R图为主</li>
+<li>需要其他文档辅助</li>
+</ul>
+</li>
+<li><h4 id="ER图的作用"><a href="#ER图的作用" class="headerlink" title="ER图的作用"></a>ER图的作用</h4><ul>
+<li>帮助澄清用户数据需求，分析员和用户对数据需求达成高度一致</li>
+<li>数据逻辑模型设计的基础</li>
+</ul>
+</li>
+<li><h4 id="ER图的要求和评价标准"><a href="#ER图的要求和评价标准" class="headerlink" title="ER图的要求和评价标准"></a>ER图的要求和评价标准</h4><ul>
+<li>清晰、易懂</li>
+<li>完整、精确、无二义</li>
+</ul>
+</li>
+<li><h4 id="需要关注的主要缺陷"><a href="#需要关注的主要缺陷" class="headerlink" title="需要关注的主要缺陷"></a>需要关注的主要缺陷</h4><ul>
+<li>冗余</li>
+<li>不完整</li>
+</ul>
+</li>
+</ul>
+<p>一个数据库可以建模成①一组实体集；②多个实体间的相互关联</p>
+<p><strong>实体</strong>是现实世界中可区别于所有其他对象的一个“事务”或“对象”</p>
+<ul>
+<li><strong>实体具有属性</strong></li>
+</ul>
+<p>一个<strong>实体集</strong>是相同类型即具有相同性质（或属性）的一个实体集合</p>
+<p>联系集是相同类型联系的集合</p>
+<p><strong>联系集</strong>是 <code>n ≥ 2</code> 个（可能相同的）实体集上的数学联系。如果E1，E2，…，En是实体集，那么联系集 R 是 { (e1,e2,…,en) | ei ∈ Ei }</p>
+<p>联系也可以具有<strong>描述性属性</strong></p>
+<blockquote>
+<p>例如，考虑实体集 instructor 和 student 之间的联系集 advisor <em>。</em> 我们可以将属性 date 与该联系关联起来，以表示教师成为学生的导师的日期。 </p>
+</blockquote>
+<h5 id="联系集的度"><a href="#联系集的度" class="headerlink" title="联系集的度"></a>联系集的度</h5><p>二元联系集：涉及两个实体集（或说度为2）；数据库系统中的大部分联系集都是二元的。</p>
+<h5 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h5><p>实体通过一组属性来表示，属性是实体集中每个成员所拥有的描述性性质</p>
+<p><strong>域</strong>：每个属性都有一个可取值的集合</p>
+<ul>
+<li>属性类型<ul>
+<li>简单（Simple） and 复合（Composite）属性</li>
+<li>单值（Single-valued） and 多值（Multivalued）属性</li>
+<li>派生（Derived）属性</li>
+</ul>
+</li>
+</ul>
+<p>如下图，address就是一个复合属性</p>
+<p><img src="/2020/01/02/Database-System/42.jpg" alt></p>
+<h3 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h3><ul>
+<li><h4 id="映射基数"><a href="#映射基数" class="headerlink" title="映射基数"></a>映射基数</h4><ul>
+<li>表示一个实体通过一个联系集能关联的实体的个数</li>
+<li>在描述二元联系集时非常有用</li>
+<li>对于实体集A和B之间的二元联系集R来说，映射基数必然是以下情况之一<ul>
+<li>一对一（One to one）</li>
+<li>一对多（One to many）</li>
+<li>多对一（Many to one）</li>
+<li>多对多（Many to many）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="参与"><a href="#参与" class="headerlink" title="参与"></a>参与</h4><p>参与：Participation：实体集之间的关联称为参与，即实体参与联系</p>
+<h4 id="码-1"><a href="#码-1" class="headerlink" title="码"></a>码</h4><p>实体集的<strong>超码</strong>是一个或多个属性的集合，这些属性的值可以是我们唯一地标识一个实体</p>
+<p>实体集的<strong>候选码</strong>是一个最小的超码</p>
+<p>虽然可能存在多个候选码，只有一个候选码能被选为<strong>主码</strong></p>
+<p>==&gt;详细定义可见 <a href="###码">码的定义</a></p>
+<p>联系集的码：参与实体集合的主键组合形成联系集的超码</p>
+<ul>
+<li>NOTE：这意味着<strong>一对实体在特定联系集中至多有一个关系</strong></li>
+</ul>
+<p>决定候选码的时候必须考虑联系集的映射基数</p>
+<p>在选择主键的时候要考虑联系集的语义信息以防有多个候选码</p>
+<h5 id="冗余属性"><a href="#冗余属性" class="headerlink" title="冗余属性"></a>冗余属性</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 例</span><br><span class="line">假设我们拥有实体集</span><br><span class="line">instructor (具有属性 dept_name),</span><br><span class="line">department</span><br><span class="line">和一个关系inst_dept 联系 instructor 和 department</span><br><span class="line">实体 instructor 中属性 dept_name  是冗余的，因为有明确的关系inst_dept 联系instructors 和 departments</span><br><span class="line">属性dept_name 在两个实体集中都出现了，他在实体集 instructor 中是冗余的，需要将其移除。</span><br><span class="line">BUT: when converting back to tables, in some cases the attribute gets reintroduced, as we will see.</span><br></pre></td></tr></table></figure>
+<h3 id="实体-联系图"><a href="#实体-联系图" class="headerlink" title="实体-联系图"></a>实体-联系图</h3><p><img src="/2020/01/02/Database-System/43.jpg" alt></p>
+<ul>
+<li>分成两部分的矩形代表实体集</li>
+<li>菱形代表联系集</li>
+<li>属性在实体集矩形中列出</li>
+<li>构成主码的属性用下划线标明</li>
+<li>若联系集拥有属性，则用虚线引出一个矩形，在矩形中标明属性</li>
+</ul>
+<h5 id="角色-1"><a href="#角色-1" class="headerlink" title="角色"></a>角色</h5><p>一个关系的实体集必须是互异的，实体在联系中扮演的功能称为实体的角色</p>
+<p>如图，标签<code>course_id</code>和<code>prereq_id</code>被称作角色</p>
+<p><img src="/2020/01/02/Database-System/44.jpg" alt></p>
+<h5 id="基数约束"><a href="#基数约束" class="headerlink" title="基数约束"></a>基数约束</h5><p>我们在所讨论的联系集和实体集之间画一个箭头（➡）或一条线段（—）来表示基数约束</p>
+<ul>
+<li>一对一关系<ul>
+<li>如图，instructor 和 student 之间的一对一关系<br>通过 advisor一名教师至多指导一名学生<br>通过 advisor一名学生至多可以有一位导师。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2020/01/02/Database-System/45.jpg" alt></p>
+<ul>
+<li>一对多关系<ul>
+<li>instructor 和 student 之间的一对多关系<br>通过 advisor一名教师可以指导多名学生（包含0名）<br>通过 advisor一名学生至多可以有一位导师</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2020/01/02/Database-System/46.jpg" alt></p>
+<ul>
+<li>多对一关系<ul>
+<li>instructor 和 student 的多对一关系<br>通过 advisor一名教师可以指导至多一名学生<br>通过 advisor一名学生可以有多名导师(包括0名)</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2020/01/02/Database-System/47.jpg" alt></p>
+<ul>
+<li>多对多关系<ul>
+<li>通过 advisor一名教师可以指导多名学生<br>通过 advisor一名学生可以有多位导师 </li>
+</ul>
+</li>
+</ul>
+<p><img src="/2020/01/02/Database-System/48.jpg" alt></p>
+<ul>
+<li>带有箭头的线表示只对应一个，没有箭头的线代表可以有多个对应</li>
+</ul>
+<h5 id="全部参与"><a href="#全部参与" class="headerlink" title="全部参与"></a>全部参与</h5><p>全部参与（用双线表示）：实体集中的每个实体在联系集中至少参与了一个关系</p>
+<p><img src="/2020/01/02/Database-System/49.jpg" alt></p>
+<p>如图，每个section（部门）都必须有一个相关的课程</p>
+<h5 id="基数限制的可选标记"><a href="#基数限制的可选标记" class="headerlink" title="基数限制的可选标记"></a>基数限制的可选标记</h5><p><img src="/2020/01/02/Database-System/50.jpg" alt></p>
+<p><strong>上下界约束</strong>：A1，A2，…，An之间的多元联系，Ak端的基数约束L..H表示：对来自{A1,A2…,Ak-1,Ak+1,…,An}集合的每个实体组，至少和L个、至多和H个来自Ak的实体关联</p>
+<p>(该说法与教材相反)</p>
+<h3 id="弱实体集"><a href="#弱实体集" class="headerlink" title="弱实体集"></a>弱实体集</h3><ul>
+<li>没有足够的属性以形成主码的实体集称作<strong>弱实体集</strong></li>
+<li>弱实体集存在依赖于<strong>标识实体集</strong><ul>
+<li>标识性联系是从弱实体集到标识实体集多对一的，并且弱实体集在练习中的参与是全部的</li>
+<li><strong>标识性联系</strong>以双菱形表示</li>
+</ul>
+</li>
+<li>弱实体集的<strong>分辨符</strong>是使得我们可以区分依赖于特定强实体集的弱实体集中的实体的属性的集合</li>
+<li>弱实体集的主码是有标识实体集的主码加上该弱实体集的分辨符构成的</li>
+<li>弱实体集的分辨符以虚下划线标明，而不是实线</li>
+<li>关联弱实体集和标识性强实体集的联系集以双菱形标识</li>
+<li>示例如下，Section的主键（course_id，sec_id，semester，year）</li>
+</ul>
+<p><img src="/2020/01/02/Database-System/51.jpg" alt></p>
+<h3 id="转化为关系模式"><a href="#转化为关系模式" class="headerlink" title="转化为关系模式"></a>转化为关系模式</h3><ul>
+<li><h4 id="根据ER模型建立数据库模式的步骤"><a href="#根据ER模型建立数据库模式的步骤" class="headerlink" title="根据ER模型建立数据库模式的步骤"></a>根据ER模型建立数据库模式的步骤</h4><ol>
+<li>ER图转换为表进行必要的合并<ul>
+<li>本步可以按照机械方法完成</li>
+<li>一个良好的ER图，完成本步转换和合并得到的结果，已经是比较理想的数据库模式</li>
+</ul>
+</li>
+<li>优化<ul>
+<li>本步无具体可行的机械方法</li>
+<li>主要依靠设计人员的经验和能力</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li>在数据库设计中，对于每个实体集和每个联系集，都有唯一的关系模式与之对应</li>
+<li>可以将一个符合ER数据库模式的数据库表示为一些关系模式的集合</li>
+<li>关系模式名即为相应地实体集或联系集的名称</li>
+<li>每个模式有几列（类似于属性），每列有唯一的名字</li>
+</ul>
+<h4 id="具有简单属性的实体集的表示"><a href="#具有简单属性的实体集的表示" class="headerlink" title="具有简单属性的实体集的表示"></a>具有简单属性的实体集的表示</h4><ul>
+<li>用具有n个不同属性的模式E来表示强实体集</li>
+<li>用包含标识性强实体集的主键作为列构成的表来表示实体集</li>
+</ul>
+<p><img src="/2020/01/02/Database-System/52.jpg" alt></p>
+<ul>
+<li>多对多联系集表示为两个参与实体集主键属性和联系集中任何描述属性所组成的模式</li>
+</ul>
+<p><img src="/2020/01/02/Database-System/53.jpg" alt></p>
+<h5 id="模式的冗余"><a href="#模式的冗余" class="headerlink" title="模式的冗余"></a>模式的冗余</h5><p>多对一和一对多联系集中全部参与的many一方可以通过增加额外的属性来表示，包含one一方的主键</p>
+<p><img src="/2020/01/02/Database-System/54.jpg" alt></p>
+<ul>
+<li>对于一对一联系集，任意一边都可以作为many一方<ul>
+<li>额外的属性可以加到类似于两个实体集的任一个表中</li>
+</ul>
+</li>
+<li>若many一方是部分参与，利用many一方生成额外属性会导致存在空值</li>
+<li>连接弱实体集与其依赖的强实体集的联系集的模式是冗余的</li>
+</ul>
+<h5 id="复合多值属性"><a href="#复合多值属性" class="headerlink" title="复合多值属性"></a>复合多值属性</h5><ul>
+<li>复合属性可以在划分为更小的部分（即其他属性）</li>
+<li>实体E的多值属性M用一个单独的关系模式EM标识<ul>
+<li>关系模式EM有和E的主键相关的属性，有一个和多值属性M相关的属性</li>
+</ul>
+</li>
+<li>多值属性的每个值和关系模式EM中的每个分离的元组相匹配</li>
+</ul>
+<h5 id="模式优化"><a href="#模式优化" class="headerlink" title="模式优化"></a>模式优化</h5><ul>
+<li>关系模式设计方案的评价标准<ul>
+<li>数据表示符合自然结构</li>
+<li>清晰、简洁、易于理解</li>
+<li>数据冗余小</li>
+<li>数据访问效率高</li>
+<li>结构易于扩展</li>
+<li>。。。</li>
+</ul>
+</li>
+<li>关系模式的设计<ul>
+<li>设计方案的评价标准中，指标相互之间存在的矛盾</li>
+<li>设计是在矛盾的指标中，评价选择最合适的方案</li>
+<li>工程思想和方法、设计人员的经验和能力，对模式设计都是重要的</li>
+</ul>
+</li>
+<li>E-R图转换为表 vs 模式优化设计<ul>
+<li>一个良好的ER图，转换为表并进行必要的合并，得到的结果已经是比较理想的数据库模式</li>
+<li>不排除还有人工进一步优化的余地</li>
+<li>进一步的优化必须审慎，必须综合评价优化的优缺点</li>
+</ul>
+</li>
+</ul>
+<p>设计问题：用实体集还是属性集，用实体集还是联系集，二元还是n元联系集</p>
+<h3 id="扩展的E-R特性"><a href="#扩展的E-R特性" class="headerlink" title="扩展的E-R特性"></a>扩展的E-R特性</h3><ul>
+<li><h4 id="特化"><a href="#特化" class="headerlink" title="特化"></a>特化</h4><ul>
+<li>自顶而下设计过程：实体集可能包含一些子集，子集中的实体在某些方面区别于实体集中的其他实体</li>
+<li>这些子集变为低层次的实体集，拥有不适用于高层次实体集的属性或一些部分参与的关系</li>
+<li>在E-R图中，特化用从特化实体指向另一个实体的空心箭头来表示，我们成这种关系为ISA关系</li>
+<li><strong>属性继承</strong>：高层实体集的属性你可以被底层实体集继承。底层实体集（或子类）同时还继承地参与其高层实体（或超类）所参与的实体集</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h4 id="概化"><a href="#概化" class="headerlink" title="概化"></a>概化</h4><ul>
+<li>自底而上的设计过程：多个实体集根据共同的特征给你综合成一个较高层的实体集</li>
+<li><strong>概化只不过是特化的逆过程</strong>，在ER图中，我们对概化和特化的表示不做区分</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>特化关系还可以形成超类：子类联系</li>
+</ul>
+<h4 id="特化-概化上的约束"><a href="#特化-概化上的约束" class="headerlink" title="特化/概化上的约束"></a>特化/概化上的约束</h4><ul>
+<li>实体可以是给定低层次实体集成员的约束<ul>
+<li>条件定义的</li>
+<li>用户定义的</li>
+</ul>
+</li>
+<li>另一类约束涉及在一个概化中另一个实体是否可以属于多个低层实体集<ul>
+<li>不相交（Disjoint）<ul>
+<li>不相交约束要求一个实体至多属于一个低层实体集</li>
+<li>Noted：在ER图中，通过连接在同一个矩形上的多个低层次实体集表示</li>
+</ul>
+</li>
+<li>重叠（overlapping）<ul>
+<li>同一个实体可以同时属于同一个概化中的多个低层实体集</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>完整性约束：定义高层实体集中的另一个实体是否必须至少属于该概化/特化的一个低层实体集<ul>
+<li>全部概化：每个高层实体必须属于一个低层实体集</li>
+<li>部分概化：允许一些高层实体不属于任何低层实体集</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>通过模式表示特化：<ul>
+<li>Method1<ul>
+<li>为高层实体集创建一个模式</li>
+<li>每个低层实体集创建一个模式，模式中的属性包括对应低层实体集的每个属性，以及对应于高层实体集主码的每个属性</li>
+<li>DrawBack：与低层关系模式有关的关系和与高层关系模式有关的关系</li>
+</ul>
+</li>
+<li>Method2<ul>
+<li>利用低层实体集的每个属性和对应于高层实体集的每个熟悉创建模式</li>
+<li>如果特化是完全的，不需要存储概化实体集的信息(可以定义为包含特化关系并集的view，可能仍然需要显示的定义外键约束)</li>
+<li>Drawback：可能会存在冗余</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="数据库设计的其他方面"><a href="#数据库设计的其他方面" class="headerlink" title="数据库设计的其他方面"></a>数据库设计的其他方面</h4><ul>
+<li>数据约束<ul>
+<li>识别约束、描述约束、在模式实际中实现约束</li>
+</ul>
+</li>
+<li>性能考虑<ul>
+<li>吞吐量，响应时间的需求分析与相关设计考虑</li>
+<li>索引设计：索引对查询和更新效率的影响</li>
+</ul>
+</li>
+<li>授权</li>
+<li>工作流<ul>
+<li>流程分析和设计是应用系统开发的重要环节</li>
+<li>工作流管理系统（WFMS）是流程管理的重要平台</li>
+<li>WFMS是一个专业领域，本身并不属于数据库领域</li>
+</ul>
+</li>
+<li>其他：考虑将来可能的变迁</li>
+</ul>
+<h2 id="关系数据库设计"><a href="#关系数据库设计" class="headerlink" title="关系数据库设计"></a>关系数据库设计</h2><h3 id="好的关系设计特点"><a href="#好的关系设计特点" class="headerlink" title="好的关系设计特点"></a>好的关系设计特点</h3><ul>
+<li><h4 id="RDB设计工程方法的代表：E-R图方法"><a href="#RDB设计工程方法的代表：E-R图方法" class="headerlink" title="RDB设计工程方法的代表：E-R图方法"></a>RDB设计工程方法的代表：E-R图方法</h4><ul>
+<li>绘制E-R图</li>
+</ul>
+</li>
+</ul>
+<h3 id="原子域和第一范式"><a href="#原子域和第一范式" class="headerlink" title="原子域和第一范式"></a>原子域和第一范式</h3><h3 id="使用函数依赖进行分解"><a href="#使用函数依赖进行分解" class="headerlink" title="使用函数依赖进行分解"></a>使用函数依赖进行分解</h3><h3 id="函数依赖理论"><a href="#函数依赖理论" class="headerlink" title="函数依赖理论"></a>函数依赖理论</h3><h3 id="分解算法"><a href="#分解算法" class="headerlink" title="分解算法"></a>分解算法</h3><h3 id="使用多值依赖的分解"><a href="#使用多值依赖的分解" class="headerlink" title="使用多值依赖的分解"></a>使用多值依赖的分解</h3><h3 id="更多的范式"><a href="#更多的范式" class="headerlink" title="更多的范式"></a>更多的范式</h3><h3 id="数据库设计过程"><a href="#数据库设计过程" class="headerlink" title="数据库设计过程"></a>数据库设计过程</h3><h3 id="时态数据建模"><a href="#时态数据建模" class="headerlink" title="时态数据建模"></a>时态数据建模</h3><h2 id="数据存储和数据访问"><a href="#数据存储和数据访问" class="headerlink" title="数据存储和数据访问"></a>数据存储和数据访问</h2><h2 id="查询处理和查询优化"><a href="#查询处理和查询优化" class="headerlink" title="查询处理和查询优化"></a>查询处理和查询优化</h2><h2 id="事务管理-1"><a href="#事务管理-1" class="headerlink" title="事务管理"></a>事务管理</h2><p>查询代价</p>
+<p>多值依赖</p>
+<p>冲突串行化</p>
+<p>211.87.227.230:3306</p>
 <p>webteach</p>
 
       
@@ -2191,7 +2542,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库系统概念"><span class="nav-number">1.</span> <span class="nav-text">数据库系统概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.1.</span> <span class="nav-text">引言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据"><span class="nav-number">1.1.1.</span> <span class="nav-text">数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据结构"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">数据结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库"><span class="nav-number">1.1.2.</span> <span class="nav-text">数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库的特征"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">数据库的特征</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库管理系统"><span class="nav-number">1.1.3.</span> <span class="nav-text">数据库管理系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库系统"><span class="nav-number">1.1.4.</span> <span class="nav-text">数据库系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据管理技术"><span class="nav-number">1.1.5.</span> <span class="nav-text">数据管理技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例与模式"><span class="nav-number">1.1.6.</span> <span class="nav-text">实例与模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模式：数据库的总体设计"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">模式：数据库的总体设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例：在特定时刻存储在数据库中的信息集合"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">实例：在特定时刻存储在数据库中的信息集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#物理数据的独立性：物理模式的改变而不会影响逻辑模式"><span class="nav-number">1.1.6.3.</span> <span class="nav-text">物理数据的独立性：物理模式的改变而不会影响逻辑模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#逻辑数据的独立性"><span class="nav-number">1.1.6.4.</span> <span class="nav-text">逻辑数据的独立性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据视图"><span class="nav-number">1.1.7.</span> <span class="nav-text">数据视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据模型"><span class="nav-number">1.1.8.</span> <span class="nav-text">数据模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库语言"><span class="nav-number">1.1.9.</span> <span class="nav-text">数据库语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系数据库"><span class="nav-number">1.1.10.</span> <span class="nav-text">关系数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库设计"><span class="nav-number">1.1.11.</span> <span class="nav-text">数据库设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据存储和查询"><span class="nav-number">1.1.12.</span> <span class="nav-text">数据存储和查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询管理器"><span class="nav-number">1.1.12.1.</span> <span class="nav-text">查询管理器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务管理"><span class="nav-number">1.1.13.</span> <span class="nav-text">事务管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库系统内部结构"><span class="nav-number">1.1.14.</span> <span class="nav-text">数据库系统内部结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库体系结构"><span class="nav-number">1.1.14.1.</span> <span class="nav-text">数据库体系结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据挖掘"><span class="nav-number">1.1.15.</span> <span class="nav-text">数据挖掘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库管理员"><span class="nav-number">1.1.16.</span> <span class="nav-text">数据库管理员</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系模型"><span class="nav-number">1.2.</span> <span class="nav-text">关系模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关系数据结构"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">关系数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性的类型"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">属性的类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系的基本概念"><span class="nav-number">1.2.1.</span> <span class="nav-text">关系的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关系"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关系模型和实例"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">关系模型和实例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#码"><span class="nav-number">1.2.2.</span> <span class="nav-text">码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系查询语言"><span class="nav-number">1.2.3.</span> <span class="nav-text">关系查询语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系操作"><span class="nav-number">1.2.4.</span> <span class="nav-text">关系操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL"><span class="nav-number">1.3.</span> <span class="nav-text">SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据定义"><span class="nav-number">1.3.1.</span> <span class="nav-text">数据定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL的基本类型"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">SQL的基本类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建表结构"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">创建表结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Create-table中的完整性约束"><span class="nav-number">1.3.1.2.1.</span> <span class="nav-text">Create table中的完整性约束</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除和更改表结构"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">删除和更改表结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#索引"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">索引</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#索引的有关说明"><span class="nav-number">1.3.1.4.1.</span> <span class="nav-text">索引的有关说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#创建索引"><span class="nav-number">1.3.1.4.2.</span> <span class="nav-text">创建索引</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL查询的基本结构"><span class="nav-number">1.3.2.</span> <span class="nav-text">SQL查询的基本结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Select"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">Select</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#where"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">where</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#from"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">from</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#连接"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">连接</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#连接查询及执行过程"><span class="nav-number">1.3.2.4.1.</span> <span class="nav-text">连接查询及执行过程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自然连接"><span class="nav-number">1.3.2.5.</span> <span class="nav-text">自然连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更名运算"><span class="nav-number">1.3.2.6.</span> <span class="nav-text">更名运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串运算"><span class="nav-number">1.3.2.7.</span> <span class="nav-text">字符串运算</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Escape"><span class="nav-number">1.3.2.7.1.</span> <span class="nav-text">Escape</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排列元组的显示次序"><span class="nav-number">1.3.2.8.</span> <span class="nav-text">排列元组的显示次序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#where子句谓词"><span class="nav-number">1.3.2.9.</span> <span class="nav-text">where子句谓词</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重复"><span class="nav-number">1.3.2.10.</span> <span class="nav-text">重复</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#集合运算"><span class="nav-number">1.3.2.11.</span> <span class="nav-text">集合运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#空值"><span class="nav-number">1.3.2.12.</span> <span class="nav-text">空值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#聚集函数"><span class="nav-number">1.3.2.13.</span> <span class="nav-text">聚集函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#group-by子句"><span class="nav-number">1.3.2.13.1.</span> <span class="nav-text">group by子句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#having子句"><span class="nav-number">1.3.2.13.2.</span> <span class="nav-text">having子句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#空值和聚集"><span class="nav-number">1.3.2.13.3.</span> <span class="nav-text">空值和聚集</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#嵌套子查询"><span class="nav-number">1.3.2.14.</span> <span class="nav-text">嵌套子查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#some，any，all子句"><span class="nav-number">1.3.2.15.</span> <span class="nav-text">some，any，all子句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#空关系测试"><span class="nav-number">1.3.2.16.</span> <span class="nav-text">空关系测试</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#exists谓词"><span class="nav-number">1.3.2.16.1.</span> <span class="nav-text">exists谓词</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sql中全部概念的处理"><span class="nav-number">1.3.2.17.</span> <span class="nav-text">sql中全部概念的处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试没有重复的元组"><span class="nav-number">1.3.2.18.</span> <span class="nav-text">测试没有重复的元组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#from子句中的子查询"><span class="nav-number">1.3.2.19.</span> <span class="nav-text">from子句中的子查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#with子句"><span class="nav-number">1.3.2.20.</span> <span class="nav-text">with子句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标量子查询"><span class="nav-number">1.3.2.21.</span> <span class="nav-text">标量子查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库的修改"><span class="nav-number">1.3.3.</span> <span class="nav-text">数据库的修改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#删除"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">插入</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#into子句"><span class="nav-number">1.3.3.2.1.</span> <span class="nav-text">into子句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#values子句"><span class="nav-number">1.3.3.2.2.</span> <span class="nav-text">values子句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#子查询"><span class="nav-number">1.3.3.2.3.</span> <span class="nav-text">子查询</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">更新</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#为条件更新使用Case语句"><span class="nav-number">1.3.3.3.1.</span> <span class="nav-text">为条件更新使用Case语句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用标量子查询的更新"><span class="nav-number">1.3.3.3.2.</span> <span class="nav-text">使用标量子查询的更新</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中级SQL"><span class="nav-number">1.3.4.</span> <span class="nav-text">中级SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#连接表达式"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">连接表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#连接关系"><span class="nav-number">1.3.4.1.1.</span> <span class="nav-text">连接关系</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#外连接"><span class="nav-number">1.3.4.1.2.</span> <span class="nav-text">外连接</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#视图"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">视图</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#定义"><span class="nav-number">1.3.4.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#特点"><span class="nav-number">1.3.4.2.2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对比"><span class="nav-number">1.3.4.2.3.</span> <span class="nav-text">对比</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用其他视图定义视图"><span class="nav-number">1.3.4.2.4.</span> <span class="nav-text">使用其他视图定义视图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#视图扩展"><span class="nav-number">1.3.4.2.5.</span> <span class="nav-text">视图扩展</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#视图更新"><span class="nav-number">1.3.4.2.6.</span> <span class="nav-text">视图更新</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#with-check-option"><span class="nav-number">1.3.4.2.7.</span> <span class="nav-text">with check option</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#物化视图"><span class="nav-number">1.3.4.2.8.</span> <span class="nav-text">物化视图</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务"><span class="nav-number">1.3.4.3.</span> <span class="nav-text">事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完整性约束"><span class="nav-number">1.3.4.4.</span> <span class="nav-text">完整性约束</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#参照完整性"><span class="nav-number">1.3.4.4.1.</span> <span class="nav-text">参照完整性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参照完整性的级联行为"><span class="nav-number">1.3.4.4.2.</span> <span class="nav-text">参照完整性的级联行为</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#复杂check子句"><span class="nav-number">1.3.4.4.3.</span> <span class="nav-text">复杂check子句</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL的数据类型与模式"><span class="nav-number">1.3.4.5.</span> <span class="nav-text">SQL的数据类型与模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#SQL固有的数据类型"><span class="nav-number">1.3.4.5.1.</span> <span class="nav-text">SQL固有的数据类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用户定义的类型"><span class="nav-number">1.3.4.5.2.</span> <span class="nav-text">用户定义的类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#大对象类型"><span class="nav-number">1.3.4.5.3.</span> <span class="nav-text">大对象类型</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#授权"><span class="nav-number">1.3.4.6.</span> <span class="nav-text">授权</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#权限的转授和回收"><span class="nav-number">1.3.4.6.1.</span> <span class="nav-text">权限的转授和回收</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#权限图"><span class="nav-number">1.3.4.6.2.</span> <span class="nav-text">权限图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SQL中的授权规范"><span class="nav-number">1.3.4.6.3.</span> <span class="nav-text">SQL中的授权规范</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#角色"><span class="nav-number">1.3.4.6.4.</span> <span class="nav-text">角色</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#视图的权限"><span class="nav-number">1.3.4.6.5.</span> <span class="nav-text">视图的权限</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高级SQL"><span class="nav-number">1.3.5.</span> <span class="nav-text">高级SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用程序设计语言访问数据库"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">使用程序设计语言访问数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#JDBC"><span class="nav-number">1.3.5.1.1.</span> <span class="nav-text">JDBC</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JDBC：立即执行VS预备语句"><span class="nav-number">1.3.5.1.2.</span> <span class="nav-text">JDBC：立即执行VS预备语句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#元数据特性"><span class="nav-number">1.3.5.1.3.</span> <span class="nav-text">元数据特性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JDBC的事务控制"><span class="nav-number">1.3.5.1.4.</span> <span class="nav-text">JDBC的事务控制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#调用函数和过程"><span class="nav-number">1.3.5.1.5.</span> <span class="nav-text">调用函数和过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#处理大型对象类型"><span class="nav-number">1.3.5.1.6.</span> <span class="nav-text">处理大型对象类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SQLJ"><span class="nav-number">1.3.5.1.7.</span> <span class="nav-text">SQLJ</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ODBC"><span class="nav-number">1.3.5.1.8.</span> <span class="nav-text">ODBC</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#嵌入式SQL"><span class="nav-number">1.3.5.1.9.</span> <span class="nav-text">嵌入式SQL</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数和过程和结构"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">函数和过程和结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#触发器"><span class="nav-number">1.3.5.3.</span> <span class="nav-text">触发器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#形式化关系查询语言"><span class="nav-number">1.4.</span> <span class="nav-text">形式化关系查询语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关系代数"><span class="nav-number">1.4.1.</span> <span class="nav-text">关系代数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#选择运算"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">选择运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#投影运算"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">投影运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并运算"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">并运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#集合差运算"><span class="nav-number">1.4.1.4.</span> <span class="nav-text">集合差运算</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#基本运算的分配律"><span class="nav-number">1.4.1.4.1.</span> <span class="nav-text">基本运算的分配律</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#笛卡儿积运算"><span class="nav-number">1.4.1.5.</span> <span class="nav-text">笛卡儿积运算</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#运算的组合"><span class="nav-number">1.4.1.5.1.</span> <span class="nav-text">运算的组合</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更名运算-1"><span class="nav-number">1.4.1.6.</span> <span class="nav-text">更名运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关系代数表达式嵌套"><span class="nav-number">1.4.1.7.</span> <span class="nav-text">关系代数表达式嵌套</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#附加关系代数运算"><span class="nav-number">1.4.1.8.</span> <span class="nav-text">附加关系代数运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#集合交运算"><span class="nav-number">1.4.1.9.</span> <span class="nav-text">集合交运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#θ连接"><span class="nav-number">1.4.1.10.</span> <span class="nav-text">θ连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自然连接运算"><span class="nav-number">1.4.1.11.</span> <span class="nav-text">自然连接运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#赋值运算"><span class="nav-number">1.4.1.12.</span> <span class="nav-text">赋值运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#外连接-1"><span class="nav-number">1.4.1.13.</span> <span class="nav-text">外连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#空值-1"><span class="nav-number">1.4.1.14.</span> <span class="nav-text">空值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#除运算"><span class="nav-number">1.4.1.15.</span> <span class="nav-text">除运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展的关系代数运算"><span class="nav-number">1.4.1.16.</span> <span class="nav-text">扩展的关系代数运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#广义投影"><span class="nav-number">1.4.1.17.</span> <span class="nav-text">广义投影</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#聚集函数-1"><span class="nav-number">1.4.1.18.</span> <span class="nav-text">聚集函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多重关系代数"><span class="nav-number">1.4.1.19.</span> <span class="nav-text">多重关系代数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元组关系演算"><span class="nav-number">1.4.2.</span> <span class="nav-text">元组关系演算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#表达式的安全性"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">表达式的安全性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元组关系演算与关系代数的等价性"><span class="nav-number">1.4.3.</span> <span class="nav-text">元组关系演算与关系代数的等价性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库设计与ER模型"><span class="nav-number">1.5.</span> <span class="nav-text">数据库设计与ER模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系数据库设计"><span class="nav-number">1.6.</span> <span class="nav-text">关系数据库设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据存储和数据访问"><span class="nav-number">1.7.</span> <span class="nav-text">数据存储和数据访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询处理和查询优化"><span class="nav-number">1.8.</span> <span class="nav-text">查询处理和查询优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务管理-1"><span class="nav-number">1.9.</span> <span class="nav-text">事务管理</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库系统概念"><span class="nav-number">1.</span> <span class="nav-text">数据库系统概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.1.</span> <span class="nav-text">引言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据"><span class="nav-number">1.1.1.</span> <span class="nav-text">数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据结构"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">数据结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库"><span class="nav-number">1.1.2.</span> <span class="nav-text">数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库的特征"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">数据库的特征</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库管理系统"><span class="nav-number">1.1.3.</span> <span class="nav-text">数据库管理系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库系统"><span class="nav-number">1.1.4.</span> <span class="nav-text">数据库系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据管理技术"><span class="nav-number">1.1.5.</span> <span class="nav-text">数据管理技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例与模式"><span class="nav-number">1.1.6.</span> <span class="nav-text">实例与模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模式：数据库的总体设计"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">模式：数据库的总体设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例：在特定时刻存储在数据库中的信息集合"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">实例：在特定时刻存储在数据库中的信息集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#物理数据的独立性：物理模式的改变而不会影响逻辑模式"><span class="nav-number">1.1.6.3.</span> <span class="nav-text">物理数据的独立性：物理模式的改变而不会影响逻辑模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#逻辑数据的独立性"><span class="nav-number">1.1.6.4.</span> <span class="nav-text">逻辑数据的独立性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据视图"><span class="nav-number">1.1.7.</span> <span class="nav-text">数据视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据模型"><span class="nav-number">1.1.8.</span> <span class="nav-text">数据模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库语言"><span class="nav-number">1.1.9.</span> <span class="nav-text">数据库语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系数据库"><span class="nav-number">1.1.10.</span> <span class="nav-text">关系数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库设计"><span class="nav-number">1.1.11.</span> <span class="nav-text">数据库设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据存储和查询"><span class="nav-number">1.1.12.</span> <span class="nav-text">数据存储和查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询管理器"><span class="nav-number">1.1.12.1.</span> <span class="nav-text">查询管理器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务管理"><span class="nav-number">1.1.13.</span> <span class="nav-text">事务管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库系统内部结构"><span class="nav-number">1.1.14.</span> <span class="nav-text">数据库系统内部结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库体系结构"><span class="nav-number">1.1.14.1.</span> <span class="nav-text">数据库体系结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据挖掘"><span class="nav-number">1.1.15.</span> <span class="nav-text">数据挖掘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库管理员"><span class="nav-number">1.1.16.</span> <span class="nav-text">数据库管理员</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系模型"><span class="nav-number">1.2.</span> <span class="nav-text">关系模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关系数据结构"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">关系数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性的类型"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">属性的类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系的基本概念"><span class="nav-number">1.2.1.</span> <span class="nav-text">关系的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关系"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关系模型和实例"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">关系模型和实例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#码"><span class="nav-number">1.2.2.</span> <span class="nav-text">码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系查询语言"><span class="nav-number">1.2.3.</span> <span class="nav-text">关系查询语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系操作"><span class="nav-number">1.2.4.</span> <span class="nav-text">关系操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL"><span class="nav-number">1.3.</span> <span class="nav-text">SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据定义"><span class="nav-number">1.3.1.</span> <span class="nav-text">数据定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL的基本类型"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">SQL的基本类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建表结构"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">创建表结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Create-table中的完整性约束"><span class="nav-number">1.3.1.2.1.</span> <span class="nav-text">Create table中的完整性约束</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除和更改表结构"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">删除和更改表结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#索引"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">索引</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#索引的有关说明"><span class="nav-number">1.3.1.4.1.</span> <span class="nav-text">索引的有关说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#创建索引"><span class="nav-number">1.3.1.4.2.</span> <span class="nav-text">创建索引</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL查询的基本结构"><span class="nav-number">1.3.2.</span> <span class="nav-text">SQL查询的基本结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Select"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">Select</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#where"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">where</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#from"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">from</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#连接"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">连接</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#连接查询及执行过程"><span class="nav-number">1.3.2.4.1.</span> <span class="nav-text">连接查询及执行过程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自然连接"><span class="nav-number">1.3.2.5.</span> <span class="nav-text">自然连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更名运算"><span class="nav-number">1.3.2.6.</span> <span class="nav-text">更名运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串运算"><span class="nav-number">1.3.2.7.</span> <span class="nav-text">字符串运算</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Escape"><span class="nav-number">1.3.2.7.1.</span> <span class="nav-text">Escape</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排列元组的显示次序"><span class="nav-number">1.3.2.8.</span> <span class="nav-text">排列元组的显示次序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#where子句谓词"><span class="nav-number">1.3.2.9.</span> <span class="nav-text">where子句谓词</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重复"><span class="nav-number">1.3.2.10.</span> <span class="nav-text">重复</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#集合运算"><span class="nav-number">1.3.2.11.</span> <span class="nav-text">集合运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#空值"><span class="nav-number">1.3.2.12.</span> <span class="nav-text">空值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#聚集函数"><span class="nav-number">1.3.2.13.</span> <span class="nav-text">聚集函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#group-by子句"><span class="nav-number">1.3.2.13.1.</span> <span class="nav-text">group by子句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#having子句"><span class="nav-number">1.3.2.13.2.</span> <span class="nav-text">having子句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#空值和聚集"><span class="nav-number">1.3.2.13.3.</span> <span class="nav-text">空值和聚集</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#嵌套子查询"><span class="nav-number">1.3.2.14.</span> <span class="nav-text">嵌套子查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#some，any，all子句"><span class="nav-number">1.3.2.15.</span> <span class="nav-text">some，any，all子句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#空关系测试"><span class="nav-number">1.3.2.16.</span> <span class="nav-text">空关系测试</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#exists谓词"><span class="nav-number">1.3.2.16.1.</span> <span class="nav-text">exists谓词</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sql中全部概念的处理"><span class="nav-number">1.3.2.17.</span> <span class="nav-text">sql中全部概念的处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试没有重复的元组"><span class="nav-number">1.3.2.18.</span> <span class="nav-text">测试没有重复的元组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#from子句中的子查询"><span class="nav-number">1.3.2.19.</span> <span class="nav-text">from子句中的子查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#with子句"><span class="nav-number">1.3.2.20.</span> <span class="nav-text">with子句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标量子查询"><span class="nav-number">1.3.2.21.</span> <span class="nav-text">标量子查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库的修改"><span class="nav-number">1.3.3.</span> <span class="nav-text">数据库的修改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#删除"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">插入</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#into子句"><span class="nav-number">1.3.3.2.1.</span> <span class="nav-text">into子句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#values子句"><span class="nav-number">1.3.3.2.2.</span> <span class="nav-text">values子句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#子查询"><span class="nav-number">1.3.3.2.3.</span> <span class="nav-text">子查询</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">更新</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#为条件更新使用Case语句"><span class="nav-number">1.3.3.3.1.</span> <span class="nav-text">为条件更新使用Case语句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用标量子查询的更新"><span class="nav-number">1.3.3.3.2.</span> <span class="nav-text">使用标量子查询的更新</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中级SQL"><span class="nav-number">1.3.4.</span> <span class="nav-text">中级SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#连接表达式"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">连接表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#连接关系"><span class="nav-number">1.3.4.1.1.</span> <span class="nav-text">连接关系</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#外连接"><span class="nav-number">1.3.4.1.2.</span> <span class="nav-text">外连接</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#视图"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">视图</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#定义"><span class="nav-number">1.3.4.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#特点"><span class="nav-number">1.3.4.2.2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对比"><span class="nav-number">1.3.4.2.3.</span> <span class="nav-text">对比</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用其他视图定义视图"><span class="nav-number">1.3.4.2.4.</span> <span class="nav-text">使用其他视图定义视图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#视图扩展"><span class="nav-number">1.3.4.2.5.</span> <span class="nav-text">视图扩展</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#视图更新"><span class="nav-number">1.3.4.2.6.</span> <span class="nav-text">视图更新</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#with-check-option"><span class="nav-number">1.3.4.2.7.</span> <span class="nav-text">with check option</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#物化视图"><span class="nav-number">1.3.4.2.8.</span> <span class="nav-text">物化视图</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务"><span class="nav-number">1.3.4.3.</span> <span class="nav-text">事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完整性约束"><span class="nav-number">1.3.4.4.</span> <span class="nav-text">完整性约束</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#参照完整性"><span class="nav-number">1.3.4.4.1.</span> <span class="nav-text">参照完整性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参照完整性的级联行为"><span class="nav-number">1.3.4.4.2.</span> <span class="nav-text">参照完整性的级联行为</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#复杂check子句"><span class="nav-number">1.3.4.4.3.</span> <span class="nav-text">复杂check子句</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL的数据类型与模式"><span class="nav-number">1.3.4.5.</span> <span class="nav-text">SQL的数据类型与模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#SQL固有的数据类型"><span class="nav-number">1.3.4.5.1.</span> <span class="nav-text">SQL固有的数据类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用户定义的类型"><span class="nav-number">1.3.4.5.2.</span> <span class="nav-text">用户定义的类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#大对象类型"><span class="nav-number">1.3.4.5.3.</span> <span class="nav-text">大对象类型</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#授权"><span class="nav-number">1.3.4.6.</span> <span class="nav-text">授权</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#权限的转授和回收"><span class="nav-number">1.3.4.6.1.</span> <span class="nav-text">权限的转授和回收</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#权限图"><span class="nav-number">1.3.4.6.2.</span> <span class="nav-text">权限图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SQL中的授权规范"><span class="nav-number">1.3.4.6.3.</span> <span class="nav-text">SQL中的授权规范</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#角色"><span class="nav-number">1.3.4.6.4.</span> <span class="nav-text">角色</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#视图的权限"><span class="nav-number">1.3.4.6.5.</span> <span class="nav-text">视图的权限</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高级SQL"><span class="nav-number">1.3.5.</span> <span class="nav-text">高级SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用程序设计语言访问数据库"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">使用程序设计语言访问数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#JDBC"><span class="nav-number">1.3.5.1.1.</span> <span class="nav-text">JDBC</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JDBC：立即执行VS预备语句"><span class="nav-number">1.3.5.1.2.</span> <span class="nav-text">JDBC：立即执行VS预备语句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#元数据特性"><span class="nav-number">1.3.5.1.3.</span> <span class="nav-text">元数据特性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JDBC的事务控制"><span class="nav-number">1.3.5.1.4.</span> <span class="nav-text">JDBC的事务控制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#调用函数和过程"><span class="nav-number">1.3.5.1.5.</span> <span class="nav-text">调用函数和过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#处理大型对象类型"><span class="nav-number">1.3.5.1.6.</span> <span class="nav-text">处理大型对象类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SQLJ"><span class="nav-number">1.3.5.1.7.</span> <span class="nav-text">SQLJ</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ODBC"><span class="nav-number">1.3.5.1.8.</span> <span class="nav-text">ODBC</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#嵌入式SQL"><span class="nav-number">1.3.5.1.9.</span> <span class="nav-text">嵌入式SQL</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数和过程和结构"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">函数和过程和结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#触发器"><span class="nav-number">1.3.5.3.</span> <span class="nav-text">触发器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#形式化关系查询语言"><span class="nav-number">1.4.</span> <span class="nav-text">形式化关系查询语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关系代数"><span class="nav-number">1.4.1.</span> <span class="nav-text">关系代数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#选择运算"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">选择运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#投影运算"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">投影运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并运算"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">并运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#集合差运算"><span class="nav-number">1.4.1.4.</span> <span class="nav-text">集合差运算</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#基本运算的分配律"><span class="nav-number">1.4.1.4.1.</span> <span class="nav-text">基本运算的分配律</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#笛卡儿积运算"><span class="nav-number">1.4.1.5.</span> <span class="nav-text">笛卡儿积运算</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#运算的组合"><span class="nav-number">1.4.1.5.1.</span> <span class="nav-text">运算的组合</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更名运算-1"><span class="nav-number">1.4.1.6.</span> <span class="nav-text">更名运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关系代数表达式嵌套"><span class="nav-number">1.4.1.7.</span> <span class="nav-text">关系代数表达式嵌套</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#附加关系代数运算"><span class="nav-number">1.4.1.8.</span> <span class="nav-text">附加关系代数运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#集合交运算"><span class="nav-number">1.4.1.9.</span> <span class="nav-text">集合交运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#θ连接"><span class="nav-number">1.4.1.10.</span> <span class="nav-text">θ连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自然连接运算"><span class="nav-number">1.4.1.11.</span> <span class="nav-text">自然连接运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#赋值运算"><span class="nav-number">1.4.1.12.</span> <span class="nav-text">赋值运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#外连接-1"><span class="nav-number">1.4.1.13.</span> <span class="nav-text">外连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#空值-1"><span class="nav-number">1.4.1.14.</span> <span class="nav-text">空值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#除运算"><span class="nav-number">1.4.1.15.</span> <span class="nav-text">除运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展的关系代数运算"><span class="nav-number">1.4.1.16.</span> <span class="nav-text">扩展的关系代数运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#广义投影"><span class="nav-number">1.4.1.17.</span> <span class="nav-text">广义投影</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#聚集函数-1"><span class="nav-number">1.4.1.18.</span> <span class="nav-text">聚集函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多重关系代数"><span class="nav-number">1.4.1.19.</span> <span class="nav-text">多重关系代数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元组关系演算"><span class="nav-number">1.4.2.</span> <span class="nav-text">元组关系演算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#表达式的安全性"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">表达式的安全性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元组关系演算与关系代数的等价性"><span class="nav-number">1.4.3.</span> <span class="nav-text">元组关系演算与关系代数的等价性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库设计与ER模型"><span class="nav-number">1.5.</span> <span class="nav-text">数据库设计与ER模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设计模型概览"><span class="nav-number">1.5.1.</span> <span class="nav-text">设计模型概览</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库设计-1"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">数据库设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#需求分析的目标、内容和结果"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">需求分析的目标、内容和结果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实体-联系模型"><span class="nav-number">1.5.2.</span> <span class="nav-text">实体-联系模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ER图的位置"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">ER图的位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ER图的作用"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">ER图的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ER图的要求和评价标准"><span class="nav-number">1.5.2.3.</span> <span class="nav-text">ER图的要求和评价标准</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#需要关注的主要缺陷"><span class="nav-number">1.5.2.4.</span> <span class="nav-text">需要关注的主要缺陷</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#联系集的度"><span class="nav-number">1.5.2.4.1.</span> <span class="nav-text">联系集的度</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#属性"><span class="nav-number">1.5.2.4.2.</span> <span class="nav-text">属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#约束"><span class="nav-number">1.5.3.</span> <span class="nav-text">约束</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#映射基数"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">映射基数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参与"><span class="nav-number">1.5.3.2.</span> <span class="nav-text">参与</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#码-1"><span class="nav-number">1.5.3.3.</span> <span class="nav-text">码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#冗余属性"><span class="nav-number">1.5.3.3.1.</span> <span class="nav-text">冗余属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实体-联系图"><span class="nav-number">1.5.4.</span> <span class="nav-text">实体-联系图</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#角色-1"><span class="nav-number">1.5.4.0.1.</span> <span class="nav-text">角色</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#基数约束"><span class="nav-number">1.5.4.0.2.</span> <span class="nav-text">基数约束</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#全部参与"><span class="nav-number">1.5.4.0.3.</span> <span class="nav-text">全部参与</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#基数限制的可选标记"><span class="nav-number">1.5.4.0.4.</span> <span class="nav-text">基数限制的可选标记</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#弱实体集"><span class="nav-number">1.5.5.</span> <span class="nav-text">弱实体集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转化为关系模式"><span class="nav-number">1.5.6.</span> <span class="nav-text">转化为关系模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#根据ER模型建立数据库模式的步骤"><span class="nav-number">1.5.6.1.</span> <span class="nav-text">根据ER模型建立数据库模式的步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#具有简单属性的实体集的表示"><span class="nav-number">1.5.6.2.</span> <span class="nav-text">具有简单属性的实体集的表示</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#模式的冗余"><span class="nav-number">1.5.6.2.1.</span> <span class="nav-text">模式的冗余</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#复合多值属性"><span class="nav-number">1.5.6.2.2.</span> <span class="nav-text">复合多值属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#模式优化"><span class="nav-number">1.5.6.2.3.</span> <span class="nav-text">模式优化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展的E-R特性"><span class="nav-number">1.5.7.</span> <span class="nav-text">扩展的E-R特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#特化"><span class="nav-number">1.5.7.1.</span> <span class="nav-text">特化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#概化"><span class="nav-number">1.5.7.2.</span> <span class="nav-text">概化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特化-概化上的约束"><span class="nav-number">1.5.7.3.</span> <span class="nav-text">特化/概化上的约束</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库设计的其他方面"><span class="nav-number">1.5.7.4.</span> <span class="nav-text">数据库设计的其他方面</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#关系数据库设计"><span class="nav-number">1.6.</span> <span class="nav-text">关系数据库设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#好的关系设计特点"><span class="nav-number">1.6.1.</span> <span class="nav-text">好的关系设计特点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RDB设计工程方法的代表：E-R图方法"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">RDB设计工程方法的代表：E-R图方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原子域和第一范式"><span class="nav-number">1.6.2.</span> <span class="nav-text">原子域和第一范式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用函数依赖进行分解"><span class="nav-number">1.6.3.</span> <span class="nav-text">使用函数依赖进行分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数依赖理论"><span class="nav-number">1.6.4.</span> <span class="nav-text">函数依赖理论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分解算法"><span class="nav-number">1.6.5.</span> <span class="nav-text">分解算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用多值依赖的分解"><span class="nav-number">1.6.6.</span> <span class="nav-text">使用多值依赖的分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更多的范式"><span class="nav-number">1.6.7.</span> <span class="nav-text">更多的范式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库设计过程"><span class="nav-number">1.6.8.</span> <span class="nav-text">数据库设计过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时态数据建模"><span class="nav-number">1.6.9.</span> <span class="nav-text">时态数据建模</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据存储和数据访问"><span class="nav-number">1.7.</span> <span class="nav-text">数据存储和数据访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询处理和查询优化"><span class="nav-number">1.8.</span> <span class="nav-text">查询处理和查询优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务管理-1"><span class="nav-number">1.9.</span> <span class="nav-text">事务管理</span></a></li></div>
             
 
           </div>
