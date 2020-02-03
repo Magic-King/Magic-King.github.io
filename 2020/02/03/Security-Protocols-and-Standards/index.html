@@ -98,18 +98,25 @@
 
 
 
-  <meta name="description" content="Security Protocols and Standards–PKI Principles and technology">
+  <meta name="description" content="Security Protocols and Standards–PKI Principles and technology安全协议与标准     PKI Core PKI Service Certificate and CRL(证书吊销列表) Trust Model PKCS：The Public-Key Cryptography Standards CA Standards PKI Secur">
 <meta name="keywords" content="StudyNote">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Security-Protocols-and-Standards">
 <meta property="og:url" content="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/index.html">
 <meta property="og:site_name" content="Hexo&amp;Magic">
-<meta property="og:description" content="Security Protocols and Standards–PKI Principles and technology">
+<meta property="og:description" content="Security Protocols and Standards–PKI Principles and technology安全协议与标准     PKI Core PKI Service Certificate and CRL(证书吊销列表) Trust Model PKCS：The Public-Key Cryptography Standards CA Standards PKI Secur">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-02-03T07:39:02.685Z">
+<meta property="og:image" content="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/attack-types.png">
+<meta property="og:image" content="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/securityProtocols.png">
+<meta property="og:image" content="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/MAC.png">
+<meta property="og:image" content="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/dataFormat1.png">
+<meta property="og:image" content="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/dataFormat2.png">
+<meta property="og:image" content="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/Layers.png">
+<meta property="og:updated_time" content="2020-02-03T09:42:17.168Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Security-Protocols-and-Standards">
-<meta name="twitter:description" content="Security Protocols and Standards–PKI Principles and technology">
+<meta name="twitter:description" content="Security Protocols and Standards–PKI Principles and technology安全协议与标准     PKI Core PKI Service Certificate and CRL(证书吊销列表) Trust Model PKCS：The Public-Key Cryptography Standards CA Standards PKI Secur">
+<meta name="twitter:image" content="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/attack-types.png">
 
 
 
@@ -418,7 +425,7 @@
                 
               
 
-              <time title="创建时间：2020-02-03 15:35:17 / 修改时间：15:39:02" itemprop="dateCreated datePublished" datetime="2020-02-03T15:35:17+08:00">2020-02-03</time>
+              <time title="创建时间：2020-02-03 15:35:17 / 修改时间：17:42:17" itemprop="dateCreated datePublished" datetime="2020-02-03T15:35:17+08:00">2020-02-03</time>
             
 
             
@@ -482,7 +489,160 @@
       
 
       
-        <h1 id="Security-Protocols-and-Standards–PKI-Principles-and-technology"><a href="#Security-Protocols-and-Standards–PKI-Principles-and-technology" class="headerlink" title="Security Protocols and Standards–PKI Principles and technology"></a><center>Security Protocols and Standards</center><br><p align="right">–PKI Principles and technology</p></h1>
+        <h1 id="Security-Protocols-and-Standards–PKI-Principles-and-technology"><a href="#Security-Protocols-and-Standards–PKI-Principles-and-technology" class="headerlink" title="Security Protocols and Standards–PKI Principles and technology"></a><center>Security Protocols and Standards</center><br><p align="right">–PKI Principles and technology</p></h1><center>安全协议与标准</center>
+
+
+
+<ul>
+<li>PKI</li>
+<li>Core PKI Service</li>
+<li>Certificate and CRL(证书吊销列表)</li>
+<li>Trust Model</li>
+<li>PKCS：The Public-Key Cryptography Standards</li>
+<li>CA Standards</li>
+<li>PKI Security Protocols：SMIME，SSL，SET，VPN</li>
+<li>PKI/CA Design and Implementation</li>
+<li>Related Laws</li>
+<li>* Bitcoin &amp; BlockChain</li>
+</ul>
+<h2 id="1-Review-to-Cryptography"><a href="#1-Review-to-Cryptography" class="headerlink" title="1.Review to Cryptography"></a>1.Review to Cryptography</h2><blockquote>
+<h4 id="Security-Requirment-安全需求"><a href="#Security-Requirment-安全需求" class="headerlink" title="Security Requirment(安全需求)"></a>Security Requirment(安全需求)</h4><ul>
+<li>Confidentiality(机密性)：防止被未授权人员读取信息</li>
+<li>Integrity(完整性)：保持数据一致完整</li>
+<li>Availability(可用性)：保持数据可用</li>
+<li>Authentication(认证性)：保证人的身份正确</li>
+<li>Non-repudiation(抗抵赖性)：确保数据不会被否定</li>
+<li>Access control(访问控制)：防止未授权人员访问</li>
+</ul>
+<p>前三个被称为信息安全的CIA三要素</p>
+</blockquote>
+<h4 id="攻击的类型"><a href="#攻击的类型" class="headerlink" title="攻击的类型"></a>攻击的类型</h4><p><img src="/2020/02/03/Security-Protocols-and-Standards/attack-types.png" alt></p>
+<p>攻击分为两种类型：主动攻击和被动攻击</p>
+<ul>
+<li>被动攻击(Passive attack)：只能观察到流量或数据</li>
+<li>主动攻击(Active attack)：可以主动修改流量或数据，比如中间人攻击。通常比较难实现，但是攻击十分有效，比如邮件的伪造，TCP/IP spoofing（IP欺骗），session hijacking（会话劫持）</li>
+</ul>
+<h4 id="安全服务"><a href="#安全服务" class="headerlink" title="安全服务"></a>安全服务</h4><p>ISO7498-2中定义了5大类可选的安全服务：</p>
+<ul>
+<li>认证性</li>
+<li>访问控制</li>
+<li>数据保密性</li>
+<li>数据完整性</li>
+<li>不可否认性</li>
+</ul>
+<h4 id="安全机制"><a href="#安全机制" class="headerlink" title="安全机制"></a>安全机制</h4><p>三大基本设施</p>
+<ul>
+<li>Encryption(加密)</li>
+<li>Digital signatures(数字签名)</li>
+<li>Checksums/hash algorithm(校验码/哈希算法)</li>
+</ul>
+<p>一种安全服务可能结合多种安全机制</p>
+<h3 id="Security-Protocol"><a href="#Security-Protocol" class="headerlink" title="Security Protocol"></a>Security Protocol</h3><p><img src="/2020/02/03/Security-Protocols-and-Standards/securityProtocols.png" alt></p>
+<p>一种安全协议里包含一个或多个安全服务，而安全服务提供多种安全机制，在一个安全机制里可能用到多种算法（机制由算法实现），这就是<strong>协议与服务、机制、算法之间的关系</strong></p>
+<p>对称加密由加密过程可分为：流加密(Stream cipher)和块加密(Block cipher)</p>
+<p>Key Distribution Center(KDC)：密钥分发中心</p>
+<h4 id="块加密方式"><a href="#块加密方式" class="headerlink" title="块加密方式"></a>块加密方式</h4><ul>
+<li>Electronic Code Book(ECB)</li>
+<li>Cipher Block Chain(CBC)</li>
+<li>Cipher Feed Back(CFB)</li>
+<li>Output Feed Back(OFB)</li>
+<li>Counter(CTR)</li>
+</ul>
+<h4 id="公钥应用"><a href="#公钥应用" class="headerlink" title="公钥应用"></a>公钥应用</h4><ul>
+<li>加解密</li>
+<li>数字签名</li>
+<li>密钥交换</li>
+</ul>
+<h5 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h5><ul>
+<li>RSA</li>
+<li>DH：key exchange algorithm</li>
+<li>Elgamal</li>
+<li>DSA</li>
+</ul>
+<h3 id="对称加密vs非对称加密"><a href="#对称加密vs非对称加密" class="headerlink" title="对称加密vs非对称加密"></a>对称加密vs非对称加密</h3><h4 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h4><ul>
+<li>优点<ul>
+<li>速度快、处理量大，适用于对应用数据的直接加密</li>
+<li>加密密钥长度短，一般为40bit至128bit</li>
+<li>还可以构造各种加密体制，如产生伪随机数、hash函数</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>密钥在双方都要一致、保密，传递较难</li>
+<li>大型网络中密钥量大，难以管理，一般需要TTP</li>
+<li>密钥需要经常更换</li>
+</ul>
+</li>
+</ul>
+<h4 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h4><ul>
+<li>优点<ul>
+<li>只有私钥保密，公钥公开</li>
+<li>网络上的密钥管理只需要一个功能性TTP，而不是一个绝对安全的TTP，不需在线，可以离线</li>
+<li>密钥生命周期相对较长</li>
+<li>许多公钥方案可以产生数字签名机制</li>
+<li>在大型网络上，所需的密钥相对较少</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>速度慢、处理量少，适用于密钥交换</li>
+<li>密钥长度相对较长</li>
+<li>安全性没有得到理论性证明</li>
+<li>历史较短</li>
+</ul>
+</li>
+</ul>
+<h4 id="哈希函数"><a href="#哈希函数" class="headerlink" title="哈希函数"></a>哈希函数</h4><p>弱碰撞：给定x，寻找y，使得<code>H(y) =  H(x)</code></p>
+<p>强碰撞：寻找x，y，使得<code>H(y) = H(x)</code></p>
+<h4 id="Message-Authertication-Code-MAC"><a href="#Message-Authertication-Code-MAC" class="headerlink" title="Message Authertication Code(MAC)"></a>Message Authertication Code(MAC)</h4><p>消息认证码MAC</p>
+<p><img src="/2020/02/03/Security-Protocols-and-Standards/MAC.png" alt></p>
+<h4 id="数字签名（Digital-Signature）"><a href="#数字签名（Digital-Signature）" class="headerlink" title="数字签名（Digital Signature）"></a>数字签名（Digital Signature）</h4><h4 id="Key-Management"><a href="#Key-Management" class="headerlink" title="Key Management"></a>Key Management</h4><p>密码学最难的部分</p>
+<p>密钥分为两种</p>
+<ul>
+<li>Short-term session keys(ephemeral keys)</li>
+<li>Long-term keys<ul>
+<li>认证</li>
+<li>加密</li>
+</ul>
+</li>
+</ul>
+<h5 id="主要问题"><a href="#主要问题" class="headerlink" title="主要问题"></a>主要问题</h5><ul>
+<li>Distributing keys(分发密钥)<ul>
+<li>获取其他人的公钥</li>
+<li>分发自己的公钥</li>
+</ul>
+</li>
+<li>Establishing a shared key with another party(与另一方建立共享密钥)<ul>
+<li>保密性</li>
+<li>认证性</li>
+</ul>
+</li>
+<li>Key storage<ul>
+<li>安全存储密钥</li>
+</ul>
+</li>
+<li>Revocation<ul>
+<li>Revoking published keys：撤销公钥</li>
+<li>Determining whether a published key is still valid：验证公钥的可用性</li>
+</ul>
+</li>
+</ul>
+<h5 id="Key-Lifetime-and-Key-Compromise"><a href="#Key-Lifetime-and-Key-Compromise" class="headerlink" title="Key Lifetime and Key Compromise"></a>Key Lifetime and Key Compromise</h5><p>公钥有着更长的生命周期(decades)</p>
+<p>私钥或者传统密钥有着更短的生命周期(a year or two)</p>
+<h5 id="Key-Distribution-Problem"><a href="#Key-Distribution-Problem" class="headerlink" title="Key Distribution Problem"></a>Key Distribution Problem</h5><p>！中间人攻击</p>
+<p>解决办法：CA（Certification authority）</p>
+<ul>
+<li>对称加密密钥管理认证：KDC/KEY DISTRIBUTION CENTER</li>
+<li>非对称加密密钥管理认证：CA/CERTIFICATE AUTHORITY</li>
+</ul>
+<h4 id="Data-Format"><a href="#Data-Format" class="headerlink" title="Data Format"></a>Data Format</h4><p>一种正确的加密内容的格式如下图所示</p>
+<p><img src="/2020/02/03/Security-Protocols-and-Standards/dataFormat1.png" alt></p>
+<p>PGP和S/MIME，SSL，SSH的格式不同于他们的 bit-bagging format</p>
+<p><img src="/2020/02/03/Security-Protocols-and-Standards/dataFormat2.png" alt></p>
+<h4 id="Security-Protocol：Layers"><a href="#Security-Protocol：Layers" class="headerlink" title="Security Protocol：Layers"></a>Security Protocol：Layers</h4><p>层次越高，就越容易部署应用；层次越低，数据就越透明</p>
+<p><img src="/2020/02/03/Security-Protocols-and-Standards/Layers.png" alt></p>
+<h4 id="PKI（Public-Key-Infrastructure）"><a href="#PKI（Public-Key-Infrastructure）" class="headerlink" title="PKI（Public Key Infrastructure）"></a>PKI（Public Key Infrastructure）</h4><p>Internet安全系统解决方案，PKI采用数字证书机制管理公钥，通过第三方可信机构CA，把用户的公钥和身份信息进行有效捆绑，在Internet上有效验证用户的身份</p>
+<p>国际标准PKIX：系统化、标准化</p>
+<p>PKIX系列标准(Public Key Infrastructure on X.509)是由因特网网络工程技术小组的PKI小组制定，PKIX的标准化是建立互操作的基础。标准主要定义基于X.509的PKI框架模型，并以RFC形式发布</p>
+
       
     </div>
 
@@ -797,7 +957,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Security-Protocols-and-Standards–PKI-Principles-and-technology"><span class="nav-number">1.</span> <span class="nav-text">Security Protocols and Standards–PKI Principles and technology</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Security-Protocols-and-Standards–PKI-Principles-and-technology"><span class="nav-number">1.</span> <span class="nav-text">Security Protocols and Standards–PKI Principles and technology</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Review-to-Cryptography"><span class="nav-number">1.1.</span> <span class="nav-text">1.Review to Cryptography</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Security-Requirment-安全需求"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">Security Requirment(安全需求)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#攻击的类型"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">攻击的类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全服务"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">安全服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全机制"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">安全机制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Security-Protocol"><span class="nav-number">1.1.1.</span> <span class="nav-text">Security Protocol</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#块加密方式"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">块加密方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#公钥应用"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">公钥应用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#算法"><span class="nav-number">1.1.1.2.1.</span> <span class="nav-text">算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对称加密vs非对称加密"><span class="nav-number">1.1.2.</span> <span class="nav-text">对称加密vs非对称加密</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对称加密"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">对称加密</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非对称加密"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">非对称加密</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#哈希函数"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">哈希函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Message-Authertication-Code-MAC"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">Message Authertication Code(MAC)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数字签名（Digital-Signature）"><span class="nav-number">1.1.2.5.</span> <span class="nav-text">数字签名（Digital Signature）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Key-Management"><span class="nav-number">1.1.2.6.</span> <span class="nav-text">Key Management</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#主要问题"><span class="nav-number">1.1.2.6.1.</span> <span class="nav-text">主要问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Key-Lifetime-and-Key-Compromise"><span class="nav-number">1.1.2.6.2.</span> <span class="nav-text">Key Lifetime and Key Compromise</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Key-Distribution-Problem"><span class="nav-number">1.1.2.6.3.</span> <span class="nav-text">Key Distribution Problem</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-Format"><span class="nav-number">1.1.2.7.</span> <span class="nav-text">Data Format</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Security-Protocol：Layers"><span class="nav-number">1.1.2.8.</span> <span class="nav-text">Security Protocol：Layers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PKI（Public-Key-Infrastructure）"><span class="nav-number">1.1.2.9.</span> <span class="nav-text">PKI（Public Key Infrastructure）</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
