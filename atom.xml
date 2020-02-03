@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2020-01-31T13:27:08.674Z</updated>
+  <updated>2020-02-03T07:39:02.685Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -17,11 +17,35 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Security-Protocols-and-Standards</title>
+    <link href="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/"/>
+    <id>http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/</id>
+    <published>2020-02-03T07:35:17.000Z</published>
+    <updated>2020-02-03T07:39:02.685Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Security-Protocols-and-Standards–PKI-Principles-and-technology&quot;&gt;&lt;a href=&quot;#Security-Protocols-and-Standards–PKI-Principles-and-technology&quot; class=&quot;headerl
+      
+    
+    </summary>
+    
+    
+      <category term="Crypto" scheme="http://magic-king.net/categories/Crypto/"/>
+    
+    
+      <category term="StudyNote" scheme="http://magic-king.net/tags/StudyNote/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ShadowSocks-SourceCode-Learning</title>
     <link href="http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/"/>
     <id>http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/</id>
     <published>2020-01-30T13:39:16.000Z</published>
-    <updated>2020-01-31T13:27:08.674Z</updated>
+    <updated>2020-02-01T10:11:59.279Z</updated>
     
     <summary type="html">
     
@@ -571,9 +595,9 @@
       <category term="Compiler" scheme="http://magic-king.net/categories/Compiler/"/>
     
     
-      <category term="Compilier" scheme="http://magic-king.net/tags/Compilier/"/>
-    
       <category term="StudyNote" scheme="http://magic-king.net/tags/StudyNote/"/>
+    
+      <category term="Compilier" scheme="http://magic-king.net/tags/Compilier/"/>
     
   </entry>
   
@@ -705,7 +729,7 @@
     
     <summary type="html">
     
-      It is Magic.&lt;br&gt;the content has been encrypted, enter the password to read.&lt;br&gt;
+      It is Magic.&lt;/br&gt;the content has been encrypted, enter the password to read.&lt;/br&gt;
     
     </summary>
     
