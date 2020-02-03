@@ -293,9 +293,90 @@ shadowsocks文件树形结构图如下
 
 
 
+可以看到，基本每个文件中，都有这一行的引入模块
+
+```python
+from __future__ import absolute_import, division, print_function, \
+    with_statement
+```
+
+这个模块是为了引入下一版本的python特性，提高代码对最新python版本的兼容性。
+
+在`setup.py`中可见，该代码可在python2.6，python2.7以及python3.3，python3.4及以上版本运行，因此会引入该库来解决兼容性问题
+
+主要是为了兼容`import `，除法`/`，`print`，`with`
+
+> > about `__future__`：
+> >
+> > https://www.liaoxuefeng.com/wiki/897692888725344/923030465280480
+>
+> * import
+>
+> https://blog.csdn.net/caiqiiqi/article/details/51050800
+>
+> Python 2.4或之前, Python会先查找当前目录下有没有string.py, 若找到了，则引入该模块，然后你在main.py中可以直接用string了。
+>
+> 而引入absolute_import 可以先从系统库中引用。
+>
+> * `/`
+>
+> python2中，`/`为整除，而python3中，整除是`//`。
+>
+> * print
+>
+> python2中，print是一个语法结构，而python3中，print是一个内置函数，有多个参数
+>
+> 即明显地，python2中，`print 'hello world'`；而在python3中，`print('hello world')`
+>
+> * with
+>
+> http://www.voidcn.com/article/p-wrgsfqdl-boq.html
+>
+> python2.5需要引入的语法，没有看到2和3有什么区别，应该是为了兼容所引入的。
+>
+> 在stackoverflow的一个问题里说的很清楚了：https://stackoverflow.com/questions/3791903/which-python-version-needs-from-future-import-with-statement
+>
+> version<=2.4不支持，version2.5需要这个import with_statement，在version>=2.6的时候，python已经将with内嵌进去了。
+>
+> 
 
 
 
+
+
+### Crypto
+
+
+
+#### openssl.py
+
+
+
+`from ctypes import ...`：ctypes是python和C的桥梁，ctypes是python标准库之一，里面引入了许多C的函数以及变量类型
+
+> https://www.cnblogs.com/gaowengang/p/7919219.html
+
+
+
+`__all__ = ['cipher']`规定了对外暴露的接口
+
+> https://www.cnblogs.com/wxlog/p/10566628.html
+
+
+
+由此直接看到下面的`cipher`，里面定义了ss的加密方法
+
+![](ShadowSocks-SourceCode-Learning/3.png)
+
+这也就是crypto模块对外提供的所有加密方法
+
+`def load_openssl()`方法用来寻找运行系统中的openssl库
+
+全局变量`libcrypto`用来存放打开的openssl对象
+
+定义了一个`OpenSSLCrypto`对象用来加密
+
+函数`def run_method(method)`用来调用该对象进行加解密
 
 
 
