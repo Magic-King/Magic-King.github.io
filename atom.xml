@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2020-02-03T09:42:17.168Z</updated>
+  <updated>2020-02-13T09:53:16.127Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CTF-Wargame</title>
+    <link href="http://magic-king.net/2020/02/13/CTF-Wargame/"/>
+    <id>http://magic-king.net/2020/02/13/CTF-Wargame/</id>
+    <published>2020-02-13T08:01:07.000Z</published>
+    <updated>2020-02-13T09:53:16.127Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;鉴于最近的状态，看逆向又看不进去，就找了个简单的靶场玩一玩&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://overthewire.org/wargames/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://overthewire.org/wargames/&lt;/a&gt;&lt;/p&gt;
+&lt;h1
+      
+    
+    </summary>
+    
+    
+      <category term="CTF" scheme="http://magic-king.net/categories/CTF/"/>
+    
+    
+      <category term="CTF" scheme="http://magic-king.net/tags/CTF/"/>
+    
+      <category term="wargame" scheme="http://magic-king.net/tags/wargame/"/>
+    
+  </entry>
   
   <entry>
     <title>Security-Protocols-and-Standards</title>
@@ -45,7 +73,7 @@
     <link href="http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/"/>
     <id>http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/</id>
     <published>2020-01-30T13:39:16.000Z</published>
-    <updated>2020-02-01T10:11:59.279Z</updated>
+    <updated>2020-02-08T15:40:28.153Z</updated>
     
     <summary type="html">
     
@@ -234,9 +262,9 @@
       <category term="DDoS" scheme="http://magic-king.net/categories/DDoS/"/>
     
     
-      <category term="DDoS" scheme="http://magic-king.net/tags/DDoS/"/>
-    
       <category term="Network" scheme="http://magic-king.net/tags/Network/"/>
+    
+      <category term="DDoS" scheme="http://magic-king.net/tags/DDoS/"/>
     
       <category term="JavaScript" scheme="http://magic-king.net/tags/JavaScript/"/>
     
