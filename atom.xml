@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2020-02-16T11:15:21.725Z</updated>
+  <updated>2020-02-20T06:59:48.567Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -15,6 +15,51 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux-Kernel-Coding-Introdution</title>
+    <link href="http://magic-king.net/2020/02/20/Linux-Kernel-Coding-Introdution/"/>
+    <id>http://magic-king.net/2020/02/20/Linux-Kernel-Coding-Introdution/</id>
+    <published>2020-02-20T06:58:13.000Z</published>
+    <updated>2020-02-20T06:59:48.567Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://magic-king.net/categories/linux/"/>
+    
+    
+      <category term="linux" scheme="http://magic-king.net/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Role-Based-Access-Control</title>
+    <link href="http://magic-king.net/2020/02/19/Role-Based-Access-Control/"/>
+    <id>http://magic-king.net/2020/02/19/Role-Based-Access-Control/</id>
+    <published>2020-02-19T01:59:25.000Z</published>
+    <updated>2020-02-19T03:17:24.966Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Role-Based-Access-Control&quot;&gt;&lt;a href=&quot;#Role-Based-Access-Control&quot; class=&quot;headerlink&quot; title=&quot;Role Based Access Control&quot;&gt;&lt;/a&gt;&lt;center&gt;Role Based Access Contr
+      
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://magic-king.net/categories/linux/"/>
+    
+    
+      <category term="linux" scheme="http://magic-king.net/tags/linux/"/>
+    
+      <category term="security" scheme="http://magic-king.net/tags/security/"/>
+    
+  </entry>
   
   <entry>
     <title>CTF-Wargame</title>
@@ -49,7 +94,7 @@
     <link href="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/"/>
     <id>http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/</id>
     <published>2020-02-03T07:35:17.000Z</published>
-    <updated>2020-02-03T09:42:17.168Z</updated>
+    <updated>2020-02-19T13:44:42.494Z</updated>
     
     <summary type="html">
     
@@ -262,9 +307,9 @@
       <category term="DDoS" scheme="http://magic-king.net/categories/DDoS/"/>
     
     
-      <category term="Network" scheme="http://magic-king.net/tags/Network/"/>
-    
       <category term="DDoS" scheme="http://magic-king.net/tags/DDoS/"/>
+    
+      <category term="Network" scheme="http://magic-king.net/tags/Network/"/>
     
       <category term="JavaScript" scheme="http://magic-king.net/tags/JavaScript/"/>
     
@@ -790,7 +835,7 @@
     <link href="http://magic-king.net/2019/05/20/Magic/"/>
     <id>http://magic-king.net/2019/05/20/Magic/</id>
     <published>2019-05-20T05:14:27.000Z</published>
-    <updated>2020-01-24T04:29:22.521Z</updated>
+    <updated>2020-02-19T03:05:33.982Z</updated>
     
     <summary type="html">
     
