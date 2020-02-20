@@ -15,15 +15,13 @@ password:
 
 <center>安全协议与标准</center>
 
-
-
-* PKI
+* PKI concepts/content/significance
 * Core PKI Service
 * Certificate and CRL(证书吊销列表)
 * Trust Model
 * PKCS：The Public-Key Cryptography Standards
-* CA Standards
-* PKI Security Protocols：SMIME，SSL，SET，VPN
+* CA(证书认证中心：Certificate Authority) Standards
+* PKI Security Protocols：SMIME，SSL，SET(安全电子交易协议)，VPN
 * PKI/CA Design and Implementation
 * Related Laws
 * \* Bitcoin & BlockChain
@@ -295,6 +293,77 @@ Internet安全系统解决方案，PKI采用数字证书机制管理公钥，通
 国际标准PKIX：系统化、标准化
 
 PKIX系列标准(Public Key Infrastructure on X.509)是由因特网网络工程技术小组的PKI小组制定，PKIX的标准化是建立互操作的基础。标准主要定义基于X.509的PKI框架模型，并以RFC形式发布
+
+
+
+
+
+------
+
+
+
+
+
+安全：可靠性==》可靠性（网课的可靠性和安全性，没有可靠性，安全性没用）
+
+
+
+安全协议与标准
+
+协议：至少两方参与
+
+网络协议的三要素：语法、语义、同步
+
+
+
+围绕PKI的相关协议和理论
+
+PKI：安全基础设施：Public Key Infrastructure
+
+* 基础设施协议
+* 应用的协议
+
+
+
+
+
+> 参考书：
+>
+> PKI技术，荆继武，冯登国，科学出版社（偏理论
+>
+> PKI原理与技术，谢冬青，清华大学出版社
+>
+> PKI/CA与数字证书技术大全，张明德，刘伟，电子工业出版社（偏实践
+>
+> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

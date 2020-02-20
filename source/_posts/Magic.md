@@ -419,6 +419,9 @@ message: Welcome to my blog, enter password to read.
 * 想要一面渐变色的风景
 * (有可能的话，想要个复式楼)
 * 水滴倒流（惊天魔盗团2，利用光和水流的相对速度，形成视觉错误）
+*  RainbowSix 手办
+*  纪念碑谷手办
+* 
 * 
 * 
 
