@@ -109,7 +109,8 @@
 <meta property="og:image" content="http://magic-king.net/2020/02/22/SSH-Port-Forwarding/local-port-forwarding-single.svg">
 <meta property="og:image" content="http://magic-king.net/2020/02/22/SSH-Port-Forwarding/local-port-forwarding-two.svg">
 <meta property="og:image" content="http://magic-king.net/2020/02/22/SSH-Port-Forwarding/remote-port-forwarding.svg">
-<meta property="og:updated_time" content="2020-02-24T14:37:43.199Z">
+<meta property="og:image" content="http://magic-king.net/2020/02/22/SSH-Port-Forwarding/dynamic-port-forwarding.svg">
+<meta property="og:updated_time" content="2020-02-25T12:08:51.463Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SSH端口转发">
 <meta name="twitter:description" content="SSH端口转发 参考： ssh端口转发的三种方式 SSH 端口转发教程 玩转SSH端口转发 实战 SSH 端口转发  课上看老师演示过，感觉端口转发这个操作真的是贼好用，直接利用外部公网ip连接到了他的虚拟机内网，便想具体学习学习 总所皆知，ssh是我们常用的工具之一，基本快赶上vim的使用频率。我们一般都会使用ssh来进行远程连接服务器，但是这次来学习一次ssh骚操作——ssh端口转发 SSH端">
@@ -439,7 +440,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-02-24 22:37:43" itemprop="dateModified" datetime="2020-02-24T22:37:43+08:00">2020-02-24</time>
+                <time title="修改时间：2020-02-25 20:08:51" itemprop="dateModified" datetime="2020-02-25T20:08:51+08:00">2020-02-25</time>
               
             
           </span>
@@ -511,7 +512,19 @@
 <p>如图，假如A可以联网且有公网ip，B可以联网（即可以远程连接A），此时执行命令的是属于内网里且没用公网ip的机器B</p>
 <p>我们可以通过访问A的公网ip达到访问内网BC所部署的服务</p>
 <p>简单来说在本地执行ssh命令称为本地转发，在远程机器中执行命令就属于远程转发</p>
-<h2 id="动态端口转发"><a href="#动态端口转发" class="headerlink" title="动态端口转发"></a>动态端口转发</h2>
+<h2 id="动态端口转发"><a href="#动态端口转发" class="headerlink" title="动态端口转发"></a>动态端口转发</h2><p>无论本地转发还是远程转发，都需要指定本地和远程主机的端口。动态转发（<strong>Dynamic Port Forwarding</strong>）则摆脱这种限制，只绑定本地端口，远程主机和端口由发起的请求决定。动态转发的语法是：<code>ssh -D bind_address:port</code>，也可以是<code>ssh -D &lt;port&gt; user@remote_ip</code>，一个转发示例：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -D 8080 username@host</span><br></pre></td></tr></table></figure>
+<p>该命令让ssh监听本地8080端口，经过8080端口的流量都通过ssh隧道由远程服务器代为请求，从而达到获取被屏蔽资源、隐藏真实身份的目的。</p>
+<p>这个模式对本地和远程转发都有效，它的工作模式和 Shadow Socks 很像，会在本地创建一个 Socks5 代理服务，监听端口 <code>&lt;port&gt;</code>，并将所有请求转发到远程机器上</p>
+<p>动态转发实际上实现了正向代理功能，因此可以用来科学上网。本地转发也可以做正向代理，但要对每一个请求的主机和端口做转发，比较繁琐，实践中不会这么用。</p>
+<p><img src="/2020/02/22/SSH-Port-Forwarding/dynamic-port-forwarding.svg" alt></p>
+<p>图中我们通过 <code>curl -x socks5h://...</code> 来指定使用 Socks5 代理，在机器 A 上请求 <code>ip_c:8000</code> 时，相当于在 B 机器上发起对 <code>ip_c:8000</code> 的请求。</p>
+<hr>
+<ul>
+<li>在我自己的虚拟机和云主机之间实验，有些挺成功的，但也有些失败，比如动态转发这，不知道为啥连上了阿里云的服务器却连不上网，提示连接被重置，有可能是我云端那没有配置好</li>
+<li>其次是远程转发时其实翻了好多次车，一直会把端口弄混，但是有个瑕疵就是远程转发时，我启动自己的flask的web服务，却一直curl不到东西，用http.server却成功了，可能是哪里有问题没有发现把</li>
+</ul>
+
       
     </div>
 
