@@ -117,6 +117,10 @@ could not set the configuration for CRTC 63
 
 但是根据第二张图的日志中lightdm.service一直在重启失败
 
+> LightDM：Light Display Manager，是一个轻量级linux桌面显示管理器
+>
+> [LightDM_百度百科](https://baike.baidu.com/item/LightDM/9557430?fr=aladdin)
+
 我们看下服务状态
 
 ![](VMware-Ubuntu-blackScreen-fix/6.png)
@@ -127,9 +131,7 @@ could not set the configuration for CRTC 63
 
 
 
-
-
-
+想要更新软件包试试
 
 然后发现还没网
 

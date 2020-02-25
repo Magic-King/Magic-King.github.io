@@ -1,5 +1,5 @@
 ---
-title: Linux-Kernel-Coding-Introdution
+title: Linux内核编程入门
 date: 2020-02-20 14:58:13
 tags: [linux]
 categories: linux
@@ -19,13 +19,9 @@ password:
 
 
 
+# Linux 内核编程入门&简介
 
 
-
-
-
-
-# Linux 内核编程入门
 
 
 
@@ -143,6 +139,10 @@ MODULE_AUTHOR("Magic");
 MODULE_DESCRIPTION("This is a simple example!/n");
 //声明模块的别名
 MODULE_ALIAS("A simplest example");
+//声明模块的版本
+MODULE_VERSION("version_string");
+//声明设备表,对于USB,PCI等设备驱动,通常会创建一个
+MODULE_DEVICE_TABLE("table_info");
 
 ```
 
@@ -169,29 +169,36 @@ MODULE_ALIAS("A simplest example");
 
 
 
-```c
-#include <linux/kernel.h>
-#include <linux/module.h>
-#include <linux/sched.h>
-#include <linux/sched/signal.h>
-#include <linux/sched/task.h>
+\>>>此外，模块加载函数有另外一种写法
 
-int init_module(){
-   printk("Hello world\n");
-   extern unsigned long volatile jiffies;
-   struct task_struct *p = &init_task;
-   do{
-		printk("%d %s\n", p->pid, p->comm);
-       	p = next_task(p);
-   }
-   while (p!=&init_task);
-   return 0;
+```c
+
+static int __init hello_init(void){
+    //init
+    printk("hello tiger/n");
+	return 0;
 }
-void cleanup_module(){
-	printk("bye\n");
+
+
+static void __exit exit(void){
+    //exit code
+	printk("bye bye!/n");
 }
-MODULE_LICENSE("GPL");
+
 ```
+
+这种写法与前面不同，就是加了`__init`和`__exit`前缀，与第一种写法来说，会比较节省内存
+
+> `__init` 和 `__exit` 是 Linux 内核的一个宏定义，使系统**在初始化完成后释放该函数，并释放其所占内存**。
+>
+> 在 linux 内核中，**所有标示为 init 的函数在连接的时候都放在 .init.text 这个区段内**，此外，所有的 init 函数在区段 .initcall.init 中还保存了一份**函数指针**，在初始化时内核会通过这些函数指针调用这些 `__init` 函数，并在初始化完成后释放 init 区段（包括 .init.text,.initcall.init 等）。
+>
+> `__exit`和 `__init` 一样， `__exit` 也可以使对应函数在运行完成后自动回收内存。
+>
+
+
+
+
 
 
 
@@ -221,6 +228,49 @@ clean:
 
 
 
+这是老师给的样例，还会打印现有的所有进程
+
+```c
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/sched.h>
+#include <linux/sched/signal.h>
+#include <linux/sched/task.h>
+
+int init_module(){
+   printk("Hello world\n");
+   extern unsigned long volatile jiffies;
+   struct task_struct *p = &init_task;
+   do{
+		printk("%d %s\n", p->pid, p->comm);
+       	p = next_task(p);
+   }
+   while (p!=&init_task);
+   return 0;
+}
+void cleanup_module(){
+	printk("bye\n");
+}
+MODULE_LICENSE("GPL");
+```
+
+以及其简单的Makefile
+
+```makefile
+obj-m := hellops.o
+KDIR := /lib/modules/$(shell uname -r)/build
+PWD := $(shell pwd)
+default:
+	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules
+
+```
+
+
+
+![](Linux-Kernel-Coding-Introdution/1.png)
+
+运行结果如上
+
 
 
 > 一些常用的linux内核函数：https://blog.csdn.net/guowenyan001/article/details/43342301
@@ -231,7 +281,9 @@ clean:
 
 ### 内核模块的操作
 
+编写好内核模块的函数之后，经过编译，我们就得到了所要的内核模块的执行文件`xxx.ko`
 
+以下就是我们可以对这个文件操纵的一些命令
 
 ```sh
 $ insmod xxx.ko #将模块装入内核种
@@ -242,7 +294,13 @@ $ depmod /PATH/TO/MODULES_DIR #查看模块依赖
 $ modinfo #查看模块的具体信息
 ```
 
+modprobe: modprobe可载入指定的个别模块，或是载入一组相依赖的模块。modprobe会根据depmod所产生的依赖关系，决定要载入哪些模块。若在载入过程中发生错误，在modprobe会卸载整组的模块。依赖关系是通过读取 /lib/modules/2.6.xx/modules.dep得到的。而该文件是通过depmod 所建立。
 
+> 关于modprobe的相关
+>
+> [模块加载——modprobe和insmod的区别(转)](https://www.cnblogs.com/lh03061238/p/11206711.html)
+>
+> [Linux下使用modprobe加载驱动](https://blog.csdn.net/qianyizhou17/article/details/44135133)
 
 
 

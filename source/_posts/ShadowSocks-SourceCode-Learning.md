@@ -75,6 +75,10 @@ ss-server 端解密出来的数据就是采用 SOCKS5 协议封装的，通过 S
 >
 > [socks-wiki](https://zh.wikipedia.org/wiki/SOCKS)
 >
+> [rfc1928](https://www.ietf.org/rfc/rfc1928.txt)
+>
+> [rfc1929](https://www.ietf.org/rfc/rfc1929.txt)
+>
 > 
 
 

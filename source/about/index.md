@@ -12,3 +12,21 @@ type: about
 
 ## <center>I have no gan now</center>
 
+
+
+
+
+
+
+## <center>I wanna try everything</center>
+
+## <center>You will see a different me</center>
+
+
+
+
+
+
+
+
+
