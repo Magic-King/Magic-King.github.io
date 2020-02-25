@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2020-02-21T06:14:29.841Z</updated>
+  <updated>2020-02-24T14:37:43.199Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -17,11 +17,33 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>SSH端口转发</title>
+    <link href="http://magic-king.net/2020/02/22/SSH-Port-Forwarding/"/>
+    <id>http://magic-king.net/2020/02/22/SSH-Port-Forwarding/</id>
+    <published>2020-02-22T10:12:51.000Z</published>
+    <updated>2020-02-24T14:37:43.199Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;SSH端口转发&quot;&gt;&lt;a href=&quot;#SSH端口转发&quot; class=&quot;headerlink&quot; title=&quot;SSH端口转发&quot;&gt;&lt;/a&gt;&lt;center&gt;SSH端口转发&lt;/center&gt;&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;参考：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://juejin.im/po
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>VMware-Ubuntu-blackScreen-fix</title>
     <link href="http://magic-king.net/2020/02/20/VMware-Ubuntu-blackScreen-fix/"/>
     <id>http://magic-king.net/2020/02/20/VMware-Ubuntu-blackScreen-fix/</id>
     <published>2020-02-20T15:16:49.000Z</published>
-    <updated>2020-02-21T06:14:29.841Z</updated>
+    <updated>2020-02-22T08:13:06.069Z</updated>
     
     <summary type="html">
     
@@ -39,18 +61,18 @@
   </entry>
   
   <entry>
-    <title>Linux-Kernel-Coding-Introdution</title>
+    <title>Linux内核编程入门</title>
     <link href="http://magic-king.net/2020/02/20/Linux-Kernel-Coding-Introdution/"/>
     <id>http://magic-king.net/2020/02/20/Linux-Kernel-Coding-Introdution/</id>
     <published>2020-02-20T06:58:13.000Z</published>
-    <updated>2020-02-20T14:40:55.540Z</updated>
+    <updated>2020-02-22T09:35:27.610Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;Linux-内核编程入门&quot;&gt;&lt;a href=&quot;#Linux-内核编程入门&quot; class=&quot;headerlink&quot; title=&quot;Linux 内核编程入门&quot;&gt;&lt;/a&gt;Linux 内核编程入门&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;Linux可加载内核模块是 Linux 内核的最重要创新之一。它们提供了可
+        &lt;h1 id=&quot;Linux-内核编程入门-amp-简介&quot;&gt;&lt;a href=&quot;#Linux-内核编程入门-amp-简介&quot; class=&quot;headerlink&quot; title=&quot;Linux 内核编程入门&amp;amp;简介&quot;&gt;&lt;/a&gt;Linux 内核编程入门&amp;amp;简介&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;Linux可加载内
       
     
     </summary>
@@ -68,7 +90,7 @@
     <link href="http://magic-king.net/2020/02/19/Role-Based-Access-Control/"/>
     <id>http://magic-king.net/2020/02/19/Role-Based-Access-Control/</id>
     <published>2020-02-19T01:59:25.000Z</published>
-    <updated>2020-02-19T03:17:24.966Z</updated>
+    <updated>2020-02-23T15:41:24.410Z</updated>
     
     <summary type="html">
     
@@ -146,7 +168,7 @@
     <link href="http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/"/>
     <id>http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/</id>
     <published>2020-01-30T13:39:16.000Z</published>
-    <updated>2020-02-08T15:40:28.153Z</updated>
+    <updated>2020-02-25T06:16:54.535Z</updated>
     
     <summary type="html">
     

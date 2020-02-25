@@ -112,7 +112,7 @@
 <meta property="og:image" content="http://magic-king.net/2020/02/20/VMware-Ubuntu-blackScreen-fix/5.png">
 <meta property="og:image" content="http://magic-king.net/2020/02/20/VMware-Ubuntu-blackScreen-fix/6.png">
 <meta property="og:image" content="http://magic-king.net/2020/02/20/VMware-Ubuntu-blackScreen-fix/7.png">
-<meta property="og:updated_time" content="2020-02-21T06:14:29.841Z">
+<meta property="og:updated_time" content="2020-02-22T08:13:06.069Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VMware-Ubuntu-blackScreen-fix">
 <meta name="twitter:description" content="关于VMware虚拟机中，Ubuntu开机黑屏解决若干相当于Mark 没想到，在写系统安全内核模块时，锁屏开出来后，他界面就崩了，我想着重启能解决一切问题，然后重启完他就凉了 一直在冒一个白色的光标，心想着继续重启看看有没提示 1piix4_smbus:HostSMBuscontrollernotenabled 然后再启动一行时看见这个，搜索解决办法 但是网上都是大同小异的办法——进入终端，禁用模">
@@ -442,7 +442,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-02-21 14:14:29" itemprop="dateModified" datetime="2020-02-21T14:14:29+08:00">2020-02-21</time>
+                <time title="修改时间：2020-02-22 16:13:06" itemprop="dateModified" datetime="2020-02-22T16:13:06+08:00">2020-02-22</time>
               
             
           </span>
@@ -554,10 +554,15 @@
 <p><img src="/2020/02/20/VMware-Ubuntu-blackScreen-fix/5.png" alt></p>
 <p>后面全是主题解析错误，也就是无法打开桌面</p>
 <p>但是根据第二张图的日志中lightdm.service一直在重启失败</p>
+<blockquote>
+<p>LightDM：Light Display Manager，是一个轻量级linux桌面显示管理器</p>
+<p><a href="https://baike.baidu.com/item/LightDM/9557430?fr=aladdin" target="_blank" rel="noopener">LightDM_百度百科</a></p>
+</blockquote>
 <p>我们看下服务状态</p>
 <p><img src="/2020/02/20/VMware-Ubuntu-blackScreen-fix/6.png" alt></p>
 <p>然后发现服务启动过后，卡在了莫名其妙的地方</p>
 <p><img src="/2020/02/20/VMware-Ubuntu-blackScreen-fix/7.png" alt></p>
+<p>想要更新软件包试试</p>
 <p>然后发现还没网</p>
 <blockquote>
 <p><a href="https://blog.csdn.net/zhu334974857/article/details/77198545" target="_blank" rel="noopener">https://blog.csdn.net/zhu334974857/article/details/77198545</a></p>
@@ -599,8 +604,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/20/Linux-Kernel-Coding-Introdution/" rel="next" title="Linux-Kernel-Coding-Introdution">
-                <i class="fa fa-chevron-left"></i> Linux-Kernel-Coding-Introdution
+              <a href="/2020/02/20/Linux-Kernel-Coding-Introdution/" rel="next" title="Linux内核编程入门">
+                <i class="fa fa-chevron-left"></i> Linux内核编程入门
               </a>
             
           </div>
@@ -608,6 +613,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/22/SSH-Port-Forwarding/" rel="prev" title="SSH端口转发">
+                SSH端口转发 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -678,7 +687,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
