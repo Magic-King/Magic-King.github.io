@@ -14,7 +14,6 @@ password:
 # <center>Security Protocols and Standards</center><br /><p align="right">--PKI Principles and technology</p>
 
 <center>安全协议与标准</center>
-
 * PKI concepts/content/significance
 * Core PKI Service
 * Certificate and CRL(证书吊销列表)
@@ -343,23 +342,66 @@ PKI：安全基础设施：Public Key Infrastructure
 
 
 
+------
+
+
+
+可靠性和安全性的区别，其两者之间的包含性
+
+面对问题需要系统的方法
+
+
+
+> 
+>
+> * 环境安全
+>
+> * 物理安全
+> * 物理网路
+> * 平台可靠性
 
 
 
 
 
+安全——木桶理论
+
+
+
+安全：生态的概念
+
+ 蝴蝶效应
+
+黑天鹅理论
 
 
 
 
 
+CIA三定理
+
+
+
+被动攻击&主动攻击
+
+* 被动攻击：可以监控数据
+* 主动攻击：可以修改数据
 
 
 
 
 
+属性证书
+
+身份证书
+
+两者结合解决身份认证问题
 
 
+
+
+
+协议：至少两方，交互信息、有限交互
 
 
 
