@@ -3585,3 +3585,553 @@ bandit33@bandit:~$
 
 
 
+
+
+
+
+------
+
+
+
+
+
+## Krypton
+
+
+
+> SSH Information
+> Host: krypton.labs.overthewire.org
+> Port: 2222
+
+
+
+### level 0
+
+
+
+```
+Welcome to Krypton! The first level is easy. The following string encodes the password using Base64:
+
+S1JZUFRPTklTR1JFQVQ=
+Use this password to log in to krypton.labs.overthewire.org with username krypton1 using SSH on port 2222. You can find the files for other levels in /krypton/
+```
+
+
+
+啊这熟悉的开头，简单的base64编码
+
+```
+KRYPTONISGREAT
+```
+
+解码得到如上flag
+
+```sh
+$ ssh krypton1@krypton.labs.overthewire.org -p 2222
+The authenticity of host '[krypton.labs.overthewire.org]:2222 ([176.9.9.172]:2222)' can't be established.
+ECDSA key fingerprint is SHA256:SCySwNrZFEHArEX1cAlnnaJ5gz2O8VEigY9X80nFWUU.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '[krypton.labs.overthewire.org]:2222,[176.9.9.172]:2222' (ECDSA) to the list of known hosts.
+ _                     _
+| | ___ __ _   _ _ __ | |_ ___  _ __
+| |/ / '__| | | | '_ \| __/ _ \| '_ \
+|   <| |  | |_| | |_) | || (_) | | | |
+|_|\_\_|   \__, | .__/ \__\___/|_| |_|
+           |___/|_|
+a http://www.overthewire.org wargame.
+
+krypton1@krypton.labs.overthewire.org's password:
+Permission denied, please try again.
+krypton1@krypton.labs.overthewire.org's password:
+Permission denied, please try again.
+krypton1@krypton.labs.overthewire.org's password:
+Welcome to Ubuntu 14.04 LTS (GNU/Linux 4.4.0-92-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+krypton1@krypton:~$
+```
+
+
+
+
+
+成功连上level1
+
+
+
+### level 1
+
+
+
+```sh
+krypton1@krypton:~$ ls -al
+total 24
+drwxr-xr-x  3 krypton1 krypton1 4096 Feb 27 11:03 .
+drwxr-xr-x 10 root     root     4096 Feb 27 11:03 ..
+-rw-r--r--  1 krypton1 krypton1  220 Apr  9  2014 .bash_logout
+-rw-r--r--  1 krypton1 krypton1 3637 Apr  9  2014 .bashrc
+drwx------  2 krypton1 krypton1 4096 Feb 27 11:03 .cache
+-rw-r--r--  1 krypton1 krypton1  675 Apr  9  2014 .profile
+krypton1@krypton:~$ cd /krypton/
+krypton1@krypton:/krypton$ ls
+krypton1  krypton2  krypton3  krypton4  krypton5  krypton6
+krypton1@krypton:/krypton$ ls krypton1
+README  krypton2
+krypton1@krypton:/krypton$ cat krypton1/README
+Welcome to Krypton!
+
+This game is intended to give hands on experience with cryptography
+and cryptanalysis.  The levels progress from classic ciphers, to modern,
+easy to harder.
+
+Although there are excellent public tools, like cryptool,to perform
+the simple analysis, we strongly encourage you to try and do these
+without them for now.  We will use them in later excercises.
+
+** Please try these levels without cryptool first **
+
+
+The first level is easy.  The password for level 2 is in the file
+'krypton2'.  It is 'encrypted' using a simple rotation called ROT13.
+It is also in non-standard ciphertext format.  When using alpha characters for
+cipher text it is normal to group the letters into 5 letter clusters,
+regardless of word boundaries.  This helps obfuscate any patterns.
+
+This file has kept the plain text word boundaries and carried them to
+the cipher text.
+
+Enjoy!
+krypton1@krypton:/krypton$ cat krypton1/krypton2
+YRIRY GJB CNFFJBEQ EBGGRA
+krypton1@krypton:/krypton$
+```
+
+
+
+通过README可知，简单的ROT13加密
+
+```
+LEVEL TWO PASSWORD ROTTEN
+```
+
+
+
+进入下一关
+
+
+
+### level 2
+
+
+
+```sh
+krypton2@krypton:~$ ls
+krypton2@krypton:~$ cd /krypton/
+krypton2@krypton:/krypton$ cd krypton2
+krypton2@krypton:/krypton/krypton2$ ls
+README  encrypt  keyfile.dat  krypton3
+krypton2@krypton:/krypton/krypton2$ cat README
+Krypton 2
+
+ROT13 is a simple substitution cipher.
+
+Substitution ciphers are a simple replacement algorithm.  In this example
+of a substitution cipher, we will explore a 'monoalphebetic' cipher.
+Monoalphebetic means, literally, "one alphabet" and you will see why.
+
+This level contains an old form of cipher called a 'Caesar Cipher'.
+A Caesar cipher shifts the alphabet by a set number.  For example:
+
+plain:  a b c d e f g h i j k ...
+cipher: G H I J K L M N O P Q ...
+
+In this example, the letter 'a' in plaintext is replaced by a 'G' in the
+ciphertext so, for example, the plaintext 'bad' becomes 'HGJ' in ciphertext.
+
+The password for level 3 is in the file krypton3.  It is in 5 letter
+group ciphertext.  It is encrypted with a Caesar Cipher.  Without any
+further information, this cipher text may be difficult to break.  You do
+not have direct access to the key, however you do have access to a program
+that will encrypt anything you wish to give it using the key.
+If you think logically, this is completely easy.
+
+One shot can solve it!
+
+Have fun.
+
+Additional Information:
+
+The `encrypt` binary will look for the keyfile in your current working
+directory. Therefore, it might be best to create a working direcory in /tmp
+and in there a link to the keyfile. As the `encrypt` binary runs setuid
+`krypton3`, you also need to give `krypton3` access to your working directory.
+
+Here is an example:
+
+krypton2@melinda:~$ mktemp -d
+/tmp/tmp.Wf2OnCpCDQ
+krypton2@melinda:~$ cd /tmp/tmp.Wf2OnCpCDQ
+krypton2@melinda:/tmp/tmp.Wf2OnCpCDQ$ ln -s /krypton/krypton2/keyfile.dat
+krypton2@melinda:/tmp/tmp.Wf2OnCpCDQ$ ls
+keyfile.dat
+krypton2@melinda:/tmp/tmp.Wf2OnCpCDQ$ chmod 777 .
+krypton2@melinda:/tmp/tmp.Wf2OnCpCDQ$ /krypton/krypton2/encrypt /etc/issue
+krypton2@melinda:/tmp/tmp.Wf2OnCpCDQ$ ls
+ciphertext  keyfile.dat
+
+krypton2@krypton:/krypton/krypton2$
+krypton2@krypton:/krypton/krypton2$ mktemp -d
+/tmp/tmp.fz9I1hQd5d
+krypton2@krypton:/krypton/krypton2$ cd /tmp/tmp.fz9I1hQd5d
+krypton2@krypton:/tmp/tmp.fz9I1hQd5d$ ln -s /krypton/krypton2/keyfile.dat 
+krypton2@krypton:/tmp/tmp.fz9I1hQd5d$ ls
+keyfile.dat
+krypton2@krypton:/tmp/tmp.fz9I1hQd5d$ chmod 777 .
+krypton2@krypton:/tmp/tmp.fz9I1hQd5d$ /krypton/krypton2/encrypt /etc/issue  
+krypton2@krypton:/tmp/tmp.fz9I1hQd5d$ ls
+ciphertext  keyfile.dat
+krypton2@krypton:/tmp/tmp.fz9I1hQd5d$ cat ciphertext 
+GNGZFGXFEZX
+krypton2@krypton:/tmp/tmp.fz9I1hQd5d$ cat keyfile.dat 
+cat: keyfile.dat: Permission denied
+krypton2@krypton:/tmp/tmp.fz9I1hQd5d$ ls -al
+total 12
+drwxrwxrwx 2 krypton2 krypton2 4096 Feb 27 11:19 .
+drwxrwx-wt 3 root     root     4096 Feb 27 11:20 ..
+-rw-rw-r-- 1 krypton3 krypton2   11 Feb 27 11:19 ciphertext
+lrwxrwxrwx 1 krypton2 krypton2   29 Feb 27 11:18 keyfile.dat -> /krypton/krypton2/keyfile.dat
+krypton2@krypton:/tmp/tmp.fz9I1hQd5d$ 
+```
+
+
+
+将密文`GNGZFGXFEZX`进行凯撒位移
+
+```
+HOHAGHYGFAY
+IPIBHIZHGBZ
+JQJCIJAIHCA
+KRKDJKBJIDB
+LSLEKLCKJEC
+MTMFLMDLKFD
+NUNGMNEMLGE
+OVOHNOFNMHF
+PWPIOPGONIG
+QXQJPQHPOJH
+RYRKQRIQPKI
+SZSLRSJRQLJ
+TATMSTKSRMK
+UBUNTULTSNL
+VCVOUVMUTOM
+WDWPVWNVUPN
+XEXQWXOWVQO
+YFYRXYPXWRP
+ZGZSYZQYXSQ
+AHATZARZYTR
+BIBUABSAZUS
+CJCVBCTBAVT
+DKDWCDUCBWU
+ELEXDEVDCXV
+FMFYEFWEDYW
+GNGZFGXFEZX
+```
+
+
+
+发现果然好像没有可读的，再看看README原来这是个示例（我好蠢
+
+```sh
+krypton2@krypton:/tmp/tmp.fz9I1hQd5d$ cat /etc/issue
+Ubuntu 14.04.5 LTS \n \l
+
+krypton2@krypton:/tmp/tmp.fz9I1hQd5d$ ls  /krypton/krypton2/krypton3 
+/krypton/krypton2/krypton3
+krypton2@krypton:/tmp/tmp.fz9I1hQd5d$ ls  /krypton/krypton2/ -al
+total 32
+drwxr-xr-x 2 root     root     4096 Nov  4 05:21 .
+drwxr-xr-x 8 root     root     4096 Nov  4 05:21 ..
+-rw-r----- 1 krypton2 krypton2 1815 Nov  4 05:21 README
+-rwsr-x--- 1 krypton3 krypton2 8970 Nov  4 05:21 encrypt
+-rw-r----- 1 krypton3 krypton3   27 Nov  4 05:21 keyfile.dat
+-rw-r----- 1 krypton2 krypton2   13 Nov  4 05:21 krypton3
+krypton2@krypton:/tmp/tmp.fz9I1hQd5d$ ls
+ciphertext  keyfile.dat
+krypton2@krypton:/tmp/tmp.fz9I1hQd5d$ rm -f ciphertext 
+krypton2@krypton:/tmp/tmp.fz9I1hQd5d$ /krypton/krypton2/encrypt /krypton/krypton2/krypton3 
+krypton2@krypton:/tmp/tmp.fz9I1hQd5d$ ls
+ciphertext  keyfile.dat
+krypton2@krypton:/tmp/tmp.fz9I1hQd5d$ cat ciphertext 
+AYCQYPGQCYQW
+krypton2@krypton:/tmp/tmp.fz9I1hQd5d$ 
+```
+
+重新用krypton3被加载，解密，得到`CAESARISEASY`
+
+```
+BZDRZQHRDZRX
+CAESARISEASY
+DBFTBSJTFBTZ
+ECGUCTKUGCUA
+FDHVDULVHDVB
+GEIWEVMWIEWC
+HFJXFWNXJFXD
+IGKYGXOYKGYE
+JHLZHYPZLHZF
+KIMAIZQAMIAG
+LJNBJARBNJBH
+MKOCKBSCOKCI
+NLPDLCTDPLDJ
+OMQEMDUEQMEK
+PNRFNEVFRNFL
+QOSGOFWGSOGM
+RPTHPGXHTPHN
+SQUIQHYIUQIO
+TRVJRIZJVRJP
+USWKSJAKWSKQ
+VTXLTKBLXTLR
+WUYMULCMYUMS
+XVZNVMDNZVNT
+YWAOWNEOAWOU
+ZXBPXOFPBXPV
+AYCQYPGQCYQW
+```
+
+
+
+
+
+得到flag进入下一关
+
+
+
+### level 3
+
+
+
+```sh
+krypton3@krypton:~$ ls
+krypton3@krypton:~$ cd /krypton/krypton3
+krypton3@krypton:/krypton/krypton3$ ls
+HINT1  HINT2  README  found1  found2  found3  krypton4
+krypton3@krypton:/krypton/krypton3$ cat README 
+Well done.  You've moved past an easy substitution cipher.
+
+Hopefully you just encrypted the alphabet a plaintext 
+to fully expose the key in one swoop.
+
+The main weakness of a simple substitution cipher is 
+repeated use of a simple key.  In the previous exercise
+you were able to introduce arbitrary plaintext to expose
+the key.  In this example, the cipher mechanism is not 
+available to you, the attacker.
+
+However, you have been lucky.  You have intercepted more
+than one message.  The password to the next level is found
+in the file 'krypton4'.  You have also found 3 other files.
+(found1, found2, found3)
+
+You know the following important details:
+
+- The message plaintexts are in English (*** very important)
+- They were produced from the same key (*** even better!)
+
+
+Enjoy.
+
+
+krypton3@krypton:/krypton/krypton3$ cat found1
+CGZNL YJBEN QYDLQ ZQSUQ NZCYD SNQVU BFGBK GQUQZ QSUQN UZCYD SNJDS UDCXJ ZCYDS NZQSU QNUZB WSBNZ QSUQN UDCXJ CUBGS BXJDS UCTYV SUJQG WTBUJ KCWSV LFGBK GSGZN LYJCB GJSZD GCHMS UCJCU QJLYS BXUMA UJCJM JCBGZ CYDSN CGKDC ZDSQZ DVSJJ SNCGJ DSYVQ CGJSO JCUNS YVQZS WALQV SJJSN UBTSX COSWG MTASN BXYBU CJCBG UWBKG JDSQV YDQAS JXBNS OQTYV SKCJD QUDCX JBXQK BMVWA SNSYV QZSWA LWAKB MVWAS ZBTSS QGWUB BGJDS TSJDB WCUGQ TSWQX JSNRM VCMUZ QSUQN KDBMU SWCJJ BZBTT MGCZQ JSKCJ DDCUE SGSNQ VUJDS SGZNL YJCBG UJSYY SNXBN TSWAL QZQSU QNZCY DSNCU BXJSG CGZBN YBNQJ SWQUY QNJBX TBNSZ BTYVS OUZDS TSUUM ZDQUJ DSICE SGNSZ CYDSN QGWUJ CVVDQ UTBWS NGQYY VCZQJ CBGCG JDSNB JULUJ STQUK CJDQV VUCGE VSQVY DQASJ UMAUJ CJMJC BGZCY DSNUJ DSZQS UQNZC YDSNC USQUC VLANB FSGQG WCGYN QZJCZ SBXXS NUSUU SGJCQ VVLGB ZBTTM GCZQJ CBGUS ZMNCJ LUDQF SUYSQ NSYNB WMZSW TBUJB XDCUF GBKGK BNFAS JKSSG QGWDC USQNV LYVQL UKSNS TQCGV LZBTS WCSUQ GWDCU JBNCS UESGN SUDSN QCUSW JBJDS YSQFB XUBYD CUJCZ QJCBG QGWQN JCUJN LALJD SSGWB XJDSU COJSS GJDZS GJMNL GSOJD SKNBJ STQCG VLJNQ ESWCS UMGJC VQABM JCGZV MWCGE DQTVS JFCGE VSQNQ GWTQZ ASJDZ BGUCW SNSWU BTSBX JDSXC GSUJS OQTYV SUCGJ DSSGE VCUDV QGEMQ ESCGD CUVQU JYDQU SDSKN BJSJN QECZB TSWCS UQVUB FGBKG QUNBT QGZSU QGWZB VVQAB NQJSW KCJDB JDSNY VQLKN CEDJU TQGLB XDCUY VQLUK SNSYM AVCUD SWCGS WCJCB GUBXI QNLCG EHMQV CJLQG WQZZM NQZLW MNCGE DCUVC XSJCT SQGWC GJKBB XDCUX BNTSN JDSQJ NCZQV ZBVVS QEMSU YMAVC UDSWJ DSXCN UJXBV CBQZB VVSZJ SWSWC JCBGB XDCUW NQTQJ CZKBN FUJDQ JCGZV MWSWQ VVAMJ JKBBX JDSYV QLUGB KNSZB EGCUS WQUUD QFSUY SQNSU krypton3@krypton:/krypton/krypton3$ cat found2
+QVJDB MEDGB QJJSG WQGZS NSZBN WUXBN JDSYS NCBWU MNICI STBUJ ACBEN QYDSN UQENS SJDQJ UDQFS UYSQN SKQUS WMZQJ SWQJJ DSFCG EUGSK UZDBB VCGUJ NQJXB NWQXN SSUZD BBVZD QNJSN SWCGQ ABMJQ HMQNJ SNBXQ TCVSX NBTDC UDBTS ENQTT QNUZD BBVUI QNCSW CGHMQ VCJLW MNCGE JDSSV CPQAS JDQGS NQAMJ JDSZM NNCZM VMTKQ UWCZJ QJSWA LVQKJ DNBME DBMJS GEVQG WQGWJ DSUZD BBVKB MVWDQ ISYNB ICWSW QGCGJ SGUCI SSWMZ QJCBG CGVQJ CGENQ TTQNQ GWJDS ZVQUU CZUQJ JDSQE SBXUD QFSUY SQNST QNNCS WJDSL SQNBV WQGGS DQJDQ KQLJD SZBGU CUJBN LZBMN JBXJD SWCBZ SUSBX KBNZS UJSNC UUMSW QTQNN CQESV CZSGZ SBGGB ISTAS NJKBB XDQJD QKQLU GSCED ABMNU YBUJS WABGW UJDSG SOJWQ LQUUM NSJLJ DQJJD SNSKS NSGBC TYSWC TSGJU JBJDS TQNNC QESJD SZBMY VSTQL DQISQ NNQGE SWJDS ZSNST BGLCG UBTSD QUJSU CGZSJ DSKBN ZSUJS NZDQG ZSVVB NQVVB KSWJD STQNN CQESA QGGUJ BASNS QWBGZ SCGUJ SQWBX JDSMU MQVJD NSSJC TSUQG GSUYN SEGQG ZLZBM VWDQI SASSG JDSNS QUBGX BNJDC UUCOT BGJDU QXJSN JDSTQ NNCQE SUDSE QISAC NJDJB QWQME DJSNU MUQGG QKDBK QUAQY JCUSW BGTQL JKCGU UBGDQ TGSJQ GWWQM EDJSN RMWCJ DXBVV BKSWQ VTBUJ JKBLS QNUVQ JSNQG WKSNS AQYJC USWBG XSANM QNLDQ TGSJW CSWBX MGFGB KGZQM USUQJ JDSQE SBXQG WKQUA MNCSW BGQME MUJQX JSNJD SACNJ DBXJD SJKCG UJDSN SQNSX SKDCU JBNCZ QVJNQ ZSUBX UDQFS UYSQN SMGJC VDSCU TSGJC BGSWQ UYQNJ BXJDS VBGWB GJDSQ JNSUZ SGSCG ASZQM USBXJ DCUEQ YUZDB VQNUN SXSNJ BJDSL SQNUA SJKSS GQGWQ UUDQF SUYSQ NSUVB UJLSQ NUACB ENQYD SNUQJ JSTYJ CGEJB QZZBM GJXBN JDCUY SNCBW DQISN SYBNJ SWTQG LQYBZ NLYDQ VUJBN CSUGC ZDBVQ UNBKS UDQFS UYSQN SUXCN UJACB ENQYD SNNSZ BMGJS WQUJN QJXBN WVSES GWJDQ JUDQF SUYSQ NSXVS WJDSJ BKGXB NVBGW BGJBS UZQYS YNBUS ZMJCB GXBNW SSNYB QZDCG EQGBJ DSNSC EDJSS GJDZS GJMNL UJBNL DQUUD QFSUY SQNSU JQNJC GEDCU JDSQJ NCZQV ZQNSS NTCGW CGEJD SDBNU SUBXJ DSQJN SYQJN BGUCG VBGWB GRBDG QMANS LNSYB NJSWJ DQJUD QFSUY SQNSD QWASS GQZBM GJNLU ZDBBV TQUJS NUBTS JKSGJ CSJDZ SGJMN LUZDB VQNUD QISUM EESUJ SWJDQ JUDQF SUYSQ NSTQL DQISA SSGST YVBLS WQUQU ZDBBV TQUJS NALQV SOQGW SNDBE DJBGB XVQGZ QUDCN SQZQJ DBVCZ VQGWB KGSNK DBGQT SWQZS NJQCG KCVVC QTUDQ FSUDQ XJSCG DCUKC VVGBS ICWSG ZSUMA UJQGJ CQJSU UMZDU JBNCS UBJDS NJDQG DSQNU QLZBV VSZJS WQXJS NDCUW SQJD
+krypton3@krypton:/krypton/krypton3$ cat found3 
+DSNSM YBGVS ENQGW QNBUS KCJDQ ENQIS QGWUJ QJSVL QCNQG WANBM EDJTS JDSAS SJVSX NBTQE VQUUZ QUSCG KDCZD CJKQU SGZVB USWCJ KQUQA SQMJC XMVUZ QNQAQ SMUQG WQJJD QJJCT SMGFG BKGJB GQJMN QVCUJ UBXZB MNUSQ ENSQJ YNCPS CGQUZ CSGJC XCZYB CGJBX ICSKJ DSNSK SNSJK BNBMG WAVQZ FUYBJ UGSQN BGSSO JNSTC JLBXJ DSAQZ FQGWQ VBGEB GSGSQ NJDSB JDSNJ DSUZQ VSUKS NSSOZ SSWCG EVLDQ NWQGW EVBUU LKCJD QVVJD SQYYS QNQGZ SBXAM NGCUD SWEBV WJDSK SCEDJ BXJDS CGUSZ JKQUI SNLNS TQNFQ AVSQG WJQFC GEQVV JDCGE UCGJB ZBGUC WSNQJ CBGCZ BMVWD QNWVL AVQTS RMYCJ SNXBN DCUBY CGCBG NSUYS ZJCGE CJ
+krypton3@krypton:/krypton/krypton3$ cat HINT1
+Some letters are more prevalent in English than others.
+krypton3@krypton:/krypton/krypton3$ cat HINT2
+"Frequency Analysis" is your friend.
+krypton3@krypton:/krypton/krypton3$ 
+krypton3@krypton:/krypton/krypton3$
+```
+
+
+
+> https://www.jianshu.com/p/a131136c0dbf
+
+
+
+```
+# 25char
+257: (space)
+155: S
+107: C
+106: Q
+102: J
+100: U
+87: B
+81: G
+74: N
+69: D
+57: Z
+56: V
+47: W
+42: Y
+32: T
+29: X
+29: M
+27: L
+25: K
+20: A
+17: E
+11: F
+7: O
+2: I
+2: H
+1: R
+
+```
+
+
+
+```
+# 26char
+354: (space)
+243: S
+186: Q
+158: J
+135: N
+130: U
+129: B
+119: D
+111: G
+86: C
+66: W
+59: Z
+53: V
+45: M
+37: T
+34: E
+33: Y
+33: X
+30: K
+27: L
+26: A
+14: I
+12: F
+3: O
+2: R
+2: H
+1: P
+```
+
+
+
+
+
+```
+# 25char
+93: (space)
+58: S
+48: Q
+41: J
+35: G
+34: C
+31: N
+30: B
+27: U
+22: D
+21: V
+16: Z
+16: W
+13: E
+12: M
+12: K
+9: Y
+9: X
+9: A
+6: T
+6: L
+5: F
+3: I
+2: O
+1: R
+1: P
+
+```
+
+
+
+假如把所有综合一起统计
+
+```
+703: (space)
+456: S:e
+340: Q:t
+301: J:a
+257: U:o
+246: B:i
+240: N:n
+227: G:s
+227: C:h
+210: D:r
+132: Z:d
+130: V:l
+129: W:c
+86: M:u
+84: Y:m
+75: T:w
+71: X:f
+67: K:g
+64: E:y
+60: L:p
+55: A:b
+28: F:v
+19: I:k
+12: O:j
+4: R:x
+4: H:q
+2: P:z
+
+```
+
+把上述词频带入解开，貌似也不是密码啊
+
+```sh
+krypton3@krypton:/krypton/krypton3$ cat krypton4 
+KSVVW BGSJD SVSIS VXBMN YQUUK BNWCU ANMJS 
+gellc isear eleke lfiun mtoog incho bnuae
+```
+
+
+
+>  http://www.richkni.co.uk/php/crypta/freq.php
+>
+>  http://www.simonsingh.net/The_Black_Chamber/hintsandtips.html
+
+我疯了，做法没问题，但据说只能一个个试，直接找到了题解
+
+```
+secret:  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+text:    B O I H G K N Q V T W Y U R X Z A J E M S L D F P C 
+```
+
+用命令替换得到密码
+
+```sh
+$ cat krypton4 | tr '[A-Z]' '[BOIHGKNQVTWYURXZAJEMSLDFPC]'
+```
+
+```sh
+krypton3@krypton:/krypton/krypton3$  cat krypton4 | tr '[A-Z]' '[BOIHGKNQVTWYURXZAJEMSLDFPC]'
+WELLD ONETH ELEVE LFOUR PASSW ORDIS BRUTE 
+krypton3@krypton:/krypton/krypton3$ 
+```
+
+
+
