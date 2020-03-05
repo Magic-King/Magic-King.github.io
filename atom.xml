@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2020-02-25T12:08:51.463Z</updated>
+  <updated>2020-03-04T15:02:44.575Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ollvm-learning</title>
+    <link href="http://magic-king.net/2020/02/27/ollvm-learning/"/>
+    <id>http://magic-king.net/2020/02/27/ollvm-learning/</id>
+    <published>2020-02-27T02:09:14.000Z</published>
+    <updated>2020-03-04T15:02:44.575Z</updated>
+    
+    <summary type="html">
+    
+      Learning about ollvm
+    
+    </summary>
+    
+    
+      <category term="reverse" scheme="http://magic-king.net/categories/reverse/"/>
+    
+    
+      <category term="reverse" scheme="http://magic-king.net/tags/reverse/"/>
+    
+      <category term="ollvm" scheme="http://magic-king.net/tags/ollvm/"/>
+    
+  </entry>
   
   <entry>
     <title>SSH端口转发</title>
@@ -116,7 +139,7 @@
     <link href="http://magic-king.net/2020/02/13/CTF-Wargame/"/>
     <id>http://magic-king.net/2020/02/13/CTF-Wargame/</id>
     <published>2020-02-13T08:01:07.000Z</published>
-    <updated>2020-02-26T04:09:22.598Z</updated>
+    <updated>2020-02-27T12:18:55.897Z</updated>
     
     <summary type="html">
     
@@ -144,7 +167,7 @@
     <link href="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/"/>
     <id>http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/</id>
     <published>2020-02-03T07:35:17.000Z</published>
-    <updated>2020-02-26T07:24:59.693Z</updated>
+    <updated>2020-03-04T05:48:48.294Z</updated>
     
     <summary type="html">
     
