@@ -108,9 +108,16 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://magic-king.net/2020/02/27/ollvm-learning/3.png">
 <meta property="og:image" content="http://magic-king.net/2020/02/27/ollvm-learning/2.png">
+<meta property="og:image" content="http://magic-king.net/2020/02/27/ollvm-learning/IR-relation.png">
 <meta property="og:image" content="http://magic-king.net/2020/02/27/ollvm-learning/4.png">
 <meta property="og:image" content="http://magic-king.net/2020/02/27/ollvm-learning/1.png">
-<meta property="og:updated_time" content="2020-03-04T15:02:44.575Z">
+<meta property="og:image" content="http://magic-king.net/2020/02/27/ollvm-learning/test_gcc_ida.png">
+<meta property="og:image" content="http://magic-king.net/2020/02/27/ollvm-learning/test_clang_ida.png">
+<meta property="og:image" content="http://magic-king.net/2020/02/27/ollvm-learning/test_bcf_ida.png">
+<meta property="og:image" content="http://magic-king.net/2020/02/27/ollvm-learning/test_split_ida.png">
+<meta property="og:image" content="http://magic-king.net/2020/02/27/ollvm-learning/test_sub_ida.png">
+<meta property="og:image" content="http://magic-king.net/2020/02/27/ollvm-learning/SourceCode_bcf_1.png">
+<meta property="og:updated_time" content="2020-03-11T14:57:52.632Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ollvm-learning">
 <meta name="twitter:description" content="Learning about ollvm">
@@ -440,7 +447,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-04 23:02:44" itemprop="dateModified" datetime="2020-03-04T23:02:44+08:00">2020-03-04</time>
+                <time title="修改时间：2020-03-11 22:57:52" itemprop="dateModified" datetime="2020-03-11T22:57:52+08:00">2020-03-11</time>
               
             
           </span>
@@ -458,6 +465,13 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/reverse/" itemprop="url" rel="index"><span itemprop="name">reverse</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/reverse/llvm/" itemprop="url" rel="index"><span itemprop="name">llvm</span></a></span>
 
                 
                 
@@ -507,8 +521,12 @@
 <p><a href="http://llvm.org/docs/" target="_blank" rel="noopener">LLVM-docs</a> ：注意要查看对应版本的文档，每个版本文档都有所改变</p>
 <p><a href="https://github.com/llvm/llvm-project/" target="_blank" rel="noopener">Github-llvm/llvm-project</a></p>
 <p><a href="https://github.com/llvm-mirror/llvm" target="_blank" rel="noopener">Github-llvm-mirror/llvm</a></p>
+<p>参考的GitHub</p>
 <p><a href="https://github.com/heroims/obfuscator" target="_blank" rel="noopener">Github-heroims/obfuscator</a> ：移植好的ollvm9.0等</p>
 <p><a href="https://heroims.github.io/2019/01/06/OLLVM%E4%BB%A3%E7%A0%81%E6%B7%B7%E6%B7%86%E7%A7%BB%E6%A4%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/" target="_blank" rel="noopener">OLLVM代码混淆移植与使用</a> ：heroims的博客</p>
+<p><a href="https://github.com/iamywang/obfuscator" target="_blank" rel="noopener">Github-iamywang/obfuscator</a></p>
+<p><a href="https://github.com/HikariObfuscator/Hikari" target="_blank" rel="noopener">Github-HikariObfuscator/Hikari</a></p>
+<p><a href="https://github.com/GoSSIP-SJTU/Armariris" target="_blank" rel="noopener">Github-GoSSIP-SJTU/Armariris</a></p>
 <p><a href="https://github.com/obfuscator-llvm/obfuscator" target="_blank" rel="noopener">Github-obfuscator-llvm/obfuscator</a> ：官方版本</p>
 <p><a href="https://github.com/obfuscator-llvm/obfuscator/wiki" target="_blank" rel="noopener">obfuscator-wiki</a></p>
 <p><a href="https://bbs.pediy.com/thread-225756.htm" target="_blank" rel="noopener">pediy.com—[原创]ollvm快速学习</a></p>
@@ -519,6 +537,15 @@
 <p><a href="https://www.jianshu.com/p/e0637f3169a3" target="_blank" rel="noopener">OLLVM代码混淆移植与使用</a></p>
 <p><a href="https://zhuanlan.zhihu.com/llvm-tutorial" target="_blank" rel="noopener">llvm入门笔记</a></p>
 <p><a href="https://www.jianshu.com/p/333cf1c02a0e" target="_blank" rel="noopener">llvm编译流程</a></p>
+<p><a href="https://www.jianshu.com/p/942875aa73cc" target="_blank" rel="noopener">LLVM学习总结与OLLVM项目分析</a></p>
+<p><a href="https://sq.163yun.com/blog/article/175307579596922880" target="_blank" rel="noopener">Obfuscator-llvm源码分析</a></p>
+<p><a href="https://blog.csdn.net/king_jie0210/article/details/81705540" target="_blank" rel="noopener">ollvm源码分析</a></p>
+<p><a href="https://bbs.pediy.com/thread-255130.htm" target="_blank" rel="noopener">[原创]ollvm源码分析 - Pass之Flattening</a></p>
+<p><a href="https://bbs.pediy.com/thread-255078.htm" target="_blank" rel="noopener">[原创]ollvm源码分析 - Pass之SplitBaiscBlocks</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/27617441" target="_blank" rel="noopener">GoSSIP安全研究项目：孤挺花（Armariris） LLVM混淆框架</a></p>
+<p><a href="https://mp.weixin.qq.com/s/rORMNBExWVyGvWMFvYTXPw" target="_blank" rel="noopener">为OLLVM添加字符串混淆功能</a></p>
+<p><a href="http://www.nagain.com/activity/article/14/" target="_blank" rel="noopener">llvm之旅第四站 － 编写Pass</a></p>
+<p><a href="https://bbs.pediy.com/thread-225681.htm" target="_blank" rel="noopener">[原创]Fllvm（Fuck-ollvm）介绍</a></p>
 </blockquote>
 <h2 id="啥是LLVM？"><a href="#啥是LLVM？" class="headerlink" title="啥是LLVM？"></a>啥是LLVM？</h2><blockquote>
 <p><a href="https://bbs.pediy.com/thread-247981.htm" target="_blank" rel="noopener">[原创]LLVM了解篇剧场版</a></p>
@@ -533,6 +560,15 @@
 <p>以上是一个正常编译器的流程，源代码经过前端编译成中间代码，在经过优化和后端生成相应的机器码，即可执行文件</p>
 <p><img src="/2020/02/27/ollvm-learning/2.png" alt></p>
 <p>LLVM编译一个源文件的过程：预处理 -&gt; 词法分析 -&gt; Token -&gt; 语法分析 -&gt; AST -&gt; 代码生成 -&gt; LLVM IR -&gt; 优化 -&gt; 生成汇编代码 -&gt; Link -&gt; 目标文件</p>
+<blockquote>
+<p>其中IR(intermediate representation)是前端语言生成的中间代码表示，也是Pass操作的对象，它主要包含四个部分：</p>
+<p>（1）Module：比如一个.c或者.cpp文件。</p>
+<p>（2）Function：代表文件中的一个函数。</p>
+<p>（3）BasicBlock：每个函数会被划分为一些block，它的划分标准是：一个block只有一个入口和一个出口。</p>
+<p>（4）Instruction：具体的指令。</p>
+<p>IR中各部分的具体关系如下图：</p>
+<p><img src="/2020/02/27/ollvm-learning/IR-relation.png" alt></p>
+</blockquote>
 <p><img src="/2020/02/27/ollvm-learning/4.png" alt></p>
 <p>拿个例子来说就是：首先，我们有C代码程序文件，然后经过了Clang前端（或者古老的llvm-gcc前端，这是在Clang出现以前使用的前端，可以产生LLVM IR），然后会产生LLVM IR。在这里，我们可以发现LLVM IR是以.bc结尾，缩写代表的单词是bitcode，它是序列化的数据，用以存储在磁盘中。而LLVM IR非常牛逼的创建了三种LLVM IR表示格式，除了bitcode这种用以存储的格式，第二种是用于人类可读的的格式，一般以.ll结尾。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ clang a.c -S -emit-llvm<span class="comment"># 生成.ll可读文件</span></span><br></pre></td></tr></table></figure>
@@ -569,6 +605,8 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@github.com:Magic-King/obfuscator.git</span><br><span class="line">Cloning into <span class="string">'obfuscator'</span>...</span><br><span class="line">remote: Enumerating objects: 86723, <span class="keyword">done</span>.</span><br><span class="line">remote: Total 86723 (delta 0), reused 0 (delta 0), pack-reused 86723</span><br><span class="line">Receiving objects: 100% (86723/86723), 132.79 MiB | 35.00 KiB/s, <span class="keyword">done</span>.</span><br><span class="line">Resolving deltas: 100% (15346/15346), <span class="keyword">done</span>.</span><br><span class="line">$ git  branch -a</span><br><span class="line">* master</span><br><span class="line">  remotes/origin/HEAD -&gt; origin/master</span><br><span class="line">  remotes/origin/clang-425.0.24</span><br><span class="line">  remotes/origin/llvm-3.3</span><br><span class="line">  remotes/origin/llvm-3.4</span><br><span class="line">  remotes/origin/llvm-3.5</span><br><span class="line">  remotes/origin/llvm-3.6.1</span><br><span class="line">  remotes/origin/llvm-4.0</span><br><span class="line">  remotes/origin/master</span><br><span class="line"></span><br><span class="line">$ git  branch -r</span><br><span class="line">  origin/HEAD -&gt; origin/master</span><br><span class="line">  origin/clang-425.0.24</span><br><span class="line">  origin/llvm-3.3</span><br><span class="line">  origin/llvm-3.4</span><br><span class="line">  origin/llvm-3.5</span><br><span class="line">  origin/llvm-3.6.1</span><br><span class="line">  origin/llvm-4.0</span><br><span class="line">  origin/master</span><br><span class="line"></span><br><span class="line">$ git remote add origin git@github.com:Magic-King/obfuscator.git</span><br><span class="line">fatal: remote origin already exists.</span><br><span class="line"></span><br><span class="line">$ git checkout -b llvm-9.0</span><br><span class="line">Switched to a new branch <span class="string">'llvm-9.0</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">$ git push origin llvm-9.0</span></span><br><span class="line"><span class="string">Total 0 (delta 0), reused 0 (delta 0)</span></span><br><span class="line"><span class="string">remote:</span></span><br><span class="line"><span class="string">remote: Create a pull request for '</span>llvm-9.0<span class="string">' on GitHub by visiting:</span></span><br><span class="line"><span class="string">remote:      https://github.com/Magic-King/obfuscator/pull/new/llvm-9.0</span></span><br><span class="line"><span class="string">remote:</span></span><br><span class="line"><span class="string">To github.com:Magic-King/obfuscator.git</span></span><br><span class="line"><span class="string"> * [new branch]          llvm-9.0 -&gt; llvm-9.0</span></span><br></pre></td></tr></table></figure>
 <p>然后把最新的llvm9.0.1放入<code>obfuscator/</code>文件夹下，把clang放入 <code>obfuscator/tools/clang</code>里</p>
 <p>然后将obfuscator-llvm4.0移植到obfuscate里，具体可以查看我的github的commit记录</p>
+<p>网址如下：<a href="https://github.com/Magic-King/obfuscator/commits/llvm-9.0" target="_blank" rel="noopener">https://github.com/Magic-King/obfuscator/commits/llvm-9.0</a></p>
+<p>但是，手动打包之后，<code>-fla</code>还是有问题，不过其他选项倒是没问题，应该是<code>-fla</code>和llvm-9.0不兼容的问题</p>
 <h4 id="o-llvm的特点"><a href="#o-llvm的特点" class="headerlink" title="o-llvm的特点"></a>o-llvm的特点</h4><ul>
 <li><a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Instructions-Substitution" target="_blank" rel="noopener">nstructions Substitution</a> <code>-mllvm -sub</code>：指令替换</li>
 <li><a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Bogus-Control-Flow" target="_blank" rel="noopener">Bogus Control Flow</a> <code>-mllvm -bcf</code>：伪控制流</li>
@@ -604,7 +642,58 @@
 <p>例如：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">foo</span><span class="params">()</span> __<span class="title">attribute</span><span class="params">((__annotate__((<span class="string">"fla"</span>))))</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">foo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>您可以为每个功能添加使用一个或多个注释。如果要禁用功能的混淆，也可以使用“反向标志”（例如，如果要禁用功能的伪造控制流，请使用注释“ nobcf”）。</p>
-<h4 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h4>
+<h4 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h4><p>我自己写了一个测试文件，然后用于clang和ollvm混淆的各种测试</p>
+<p>源代码如下，关于混淆之后的执行文件和源文件打包在了<a href="./ollvm-learning/test.zip">here</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Hello LLVM"</span>);</span><br><span class="line">	<span class="keyword">char</span> *a= <span class="string">"Hello fucking bug"</span>;</span><br><span class="line">	<span class="comment">//a = "Hello O-LLVM!I will fuck you!";</span></span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=<span class="number">10</span>;i++)&#123;</span><br><span class="line">		sum += i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\nthe answer of what i do is %d\n"</span>,a,sum);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"test finished!\n"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以下是gcc编译的文件通过ida逆向所得的流程图</p>
+<p><img src="/2020/02/27/ollvm-learning/test_gcc_ida.png" alt="test_gcc_ida"></p>
+<p>以下是用clang9.0 编译test的流程图，可见大体的流程是和gcc相同的，不过通过ida的万能F5反编译出来的源码，clang版本的基本和源码差不多，gcc版本的循环的变量挺奇怪的，但是总体流程还是不变的</p>
+<p><img src="/2020/02/27/ollvm-learning/test_clang_ida.png" alt="test_clang_ida"></p>
+<p>下图是加了ollvm的bcf选项的反汇编结果，可见添加了许多虚假控制流，真正执行的循环是左半部分，他把for循环结束之后的该执行的语句放到了右半部分，在添加虚假控制流</p>
+<p>看反汇编的代码，他把for循环放入了一个while循环里，然后用一个if控制是否结束原来的循环，加入结束，就用<code>goto</code>到达最后执行的语句里，这里又写了一个假的while，经我看下来，这个while也就执行一次，循环就退出了，果然混淆后想搞懂流程贼麻烦</p>
+<p><img src="/2020/02/27/ollvm-learning/test_bcf_ida.png" alt="ollvm-bcf"></p>
+<p>ollvm编译fla选项，由于适配llvm9.0的fla选项失败了，所以这边是引用-split选项得出来的反汇编结果，split也就是fla平坦化所选择的选项</p>
+<p>对比原来的clang反汇编出来的结果是不是多了许多可供选择的路，正如wiki所说是用switch控制的</p>
+<p>反汇编出来的代码嵌套了多层while循环，并加入if判断，低层应该就是用switch实现的，然后再某几个switch case加入break破坏循环达到控制流程的目的</p>
+<p><img src="/2020/02/27/ollvm-learning/test_split_ida.png" alt="ollvm-fla"></p>
+<p>这个是最简单的，和clang编译的版本对比，主要区别在于分块之后的左边的块，他把其指令进行了替换，具体咋替换看我后面的源码分析</p>
+<p>不过可惜的是，这个代码替换对于ida来说好像不是什么大事情，利用万能的F5反汇编时，他成功把循环里的加法还原了，产生的代码和clang版本没混淆的一模一样</p>
+<p>可能这需要和其他几个选项一起使用会比较好</p>
+<p><img src="/2020/02/27/ollvm-learning/test_sub_ida.png" alt="ollvm-sub"></p>
+<p>//TODO：字符串混淆</p>
+<h3 id="o-llvm源码分析"><a href="#o-llvm源码分析" class="headerlink" title="o-llvm源码分析"></a>o-llvm源码分析</h3><p>通过我们手动将ollvm与llvm9.0打包的过程，我们可以非常清楚地了解了ollvm的源码结构</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">./include/llvm/Transforms/Obfuscation/ <span class="comment"># obfuscation的头文件</span></span><br><span class="line">./include/llvm/Transforms/CryptoUtils.h <span class="comment"># obfuscation的加密工具类的头文件</span></span><br><span class="line">./lib/Transforms/IPO/LLVMBuild.txt <span class="comment"># pass模块编译的模块注册</span></span><br><span class="line">./lib/Transforms/IPO/PassManagerBuilder.cpp <span class="comment"># Pass注册</span></span><br><span class="line">./lib/Transforms/Obfuscation/ <span class="comment"># obfuscation source code</span></span><br><span class="line">./lib/Transforms/CMakeLists.txt <span class="comment"># 加入子目录</span></span><br><span class="line">./lib/Transforms/LLVMBuild.txt <span class="comment"># 加入LLVM编译子目录</span></span><br></pre></td></tr></table></figure>
+<p>我们知道，ollvm就是通过编写llvm的pass来将其中间语言IR进行不同程度的混淆</p>
+<h4 id="Bogus-Control-Flow-1"><a href="#Bogus-Control-Flow-1" class="headerlink" title="Bogus Control Flow"></a>Bogus Control Flow</h4><p><strong>Bogus Control Flow</strong>的功能是为函数增加新的虚假控制流和添加垃圾指令。</p>
+<p>其中文件位于<code>./include/llvm/Transforms/Obfuscation/BogusControlFlow.cpp</code></p>
+<p>其中的注释跟我们非常形象的演示了其的工作内容</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// This file implements BogusControlFlow's pass, inserting bogus control flow.</span></span><br><span class="line"><span class="comment">// It adds bogus flow to a given basic block this way:</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Before :</span></span><br><span class="line"><span class="comment">// 	         		     entry</span></span><br><span class="line"><span class="comment">//      			       |</span></span><br><span class="line"><span class="comment">//  	    	  	 ______v______</span></span><br><span class="line"><span class="comment">//   	    		|   Original  |</span></span><br><span class="line"><span class="comment">//   	    		|_____________|</span></span><br><span class="line"><span class="comment">//             		       |</span></span><br><span class="line"><span class="comment">// 		        	       v</span></span><br><span class="line"><span class="comment">//		        	     return</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// After :</span></span><br><span class="line"><span class="comment">//           		     entry</span></span><br><span class="line"><span class="comment">//             		       |</span></span><br><span class="line"><span class="comment">//            		   ____v_____</span></span><br><span class="line"><span class="comment">//      			  |condition*| (false)</span></span><br><span class="line"><span class="comment">//           		  |__________|----+</span></span><br><span class="line"><span class="comment">//           		 (true)|          |</span></span><br><span class="line"><span class="comment">//             		       |          |</span></span><br><span class="line"><span class="comment">//           		 ______v______    |</span></span><br><span class="line"><span class="comment">// 		        +--&gt;|   Original* |   |</span></span><br><span class="line"><span class="comment">// 		        |   |_____________| (true)</span></span><br><span class="line"><span class="comment">// 		        |   (false)|    !-----------&gt; return</span></span><br><span class="line"><span class="comment">// 		        |    ______v______    |</span></span><br><span class="line"><span class="comment">// 		        |   |   Altered   |&lt;--!</span></span><br><span class="line"><span class="comment">// 		        |   |_____________|</span></span><br><span class="line"><span class="comment">// 		        |__________|</span></span><br><span class="line"><span class="comment">//</span></span><br></pre></td></tr></table></figure>
+<p>他的Cpp文件先写好了Debug信息，再定义了以下为pass提供的选项常量</p>
+<p>其中，我们最常见的 <code>cl::opt&lt;data_type&gt;</code>是用来传递llvm之间pass共享的参数，也就是我们在编译时所给的<code>-bcf_prob = 50</code>这个命令行编译参数可以传递到pass的核心所在</p>
+<p><img src="/2020/02/27/ollvm-learning/SourceCode_bcf_1.png" alt></p>
+<p><code>cl::opt</code>这个用法让我想起了c++中<code>std::cout</code>、<code>using namespace std</code>，经查询发现，这是一个类似于python的import的一个语法，namespace是为了和c的.h区分开来</p>
+<blockquote>
+<p>详细可见：</p>
+<p><a href="https://www.cnblogs.com/MrYuan/p/4955956.html" target="_blank" rel="noopener">C++ Namespace 详解</a></p>
+<p><a href="https://www.runoob.com/cplusplus/cpp-namespaces.html" target="_blank" rel="noopener">C++ 命名空间</a></p>
+<p><a href="https://blog.csdn.net/fengbingchun/article/details/78575978" target="_blank" rel="noopener">C++/C++11中命名空间(namespace)的使用</a>：这里面有一段折磨人的代码，读懂了应该就懂了c++的namespace的作用域</p>
+</blockquote>
+<p>目前读下来，最常见的应该就是<code>namespace llvm</code>和 <code>namespace cl</code>了</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">BogusControlFlow</span> :</span> <span class="keyword">public</span> FunctionPass</span><br></pre></td></tr></table></figure>
+<p>这里，BogusControlFlow继承至FunctionPass，因此它的入口函数即为runOnFunction</p>
+<blockquote>
+<p>struct的继承和class的继承有很大的区别，struct的继承是基于子类(struct)的public继承，class是基于子类(class)的private继承</p>
+</blockquote>
+<p>整个namespace写了一个struct 类用于混淆</p>
+<p>其中<code>runOnFunction</code>为入口函数，先判断bcf的两个参数<code>-bcf_loop</code>和<code>-bcf_prob</code>是否符合正确范围内，然后检查是否启用了<code>-bcf</code>选项，假如启用了，则进入核心函数<code>bogus(F);</code>，然后继续处理<code>doF(*F.getParent());</code></p>
+<p>在<code>bogus()</code>函数里，先实现了Debug的相关部分，在每次进入函数前输出debug信息，用于处理debug模式下的<code>-bcf</code>选项。然后定义一个list链表，用于储存BasicBlock，BasicBlock用for循环利用迭代器的模式从传入的 <code>F</code> 获取。一个while循环，当基本块非空时，利用<code>cryptoutils</code>工具类获取随机数，从链表中选择基本块进行混淆(用<code>addBogusFlow(basicBlock, F);</code>函数)，并标记已混淆过该块，防止重复混淆某一基本块，否则就不混淆。然后弹出链表中的第一块，这样直到混淆次数为0为止。</p>
+<p><code>addBogusFlow</code>函数，将给定的基本块进行添加虚假控制流</p>
+<p>对于<code>doF()</code>函数，该函数的功能是将Function中所有为真的判断语句进行替换，比如之前的<code>1.0 == 1.0</code>。它的思想是定义两个全局变量x、y并且初始化为0，然后遍历Module内的所有指令，并将所有的FCMP_TRUE分支指令替换为<code>y&lt;10 || x*x(x-1)%2 ==0</code>。</p>
+<h4 id="bug寻找"><a href="#bug寻找" class="headerlink" title="bug寻找"></a>bug寻找</h4><p>适配llvm9.0和ollvm4.0时发生了许多错误</p>
+<p>可见 <a href="./ollvm-learning/bug_log.txt">bug_Log</a></p>
+<p><a href="https://www.cnblogs.com/wpgraceii/p/10622582.html" target="_blank" rel="noopener">Segmentation Fault 的原因若干</a></p>
+<h3 id="对抗"><a href="#对抗" class="headerlink" title="对抗"></a>对抗</h3><p>当前应对ollvm混淆的大体方法为：自写脚本、bcf、decllvm、符号执行。前三个无论是自己找规律，还是基于capstone</p>
+
       
     </div>
 
@@ -651,6 +740,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/06/Ntop/" rel="prev" title="Ntop">
+                Ntop <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -721,7 +814,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-count">45</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -784,7 +877,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">23</span>
+                      
+                    
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -871,7 +966,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">35</span>
+                      
+                    
+                    <span class="site-state-item-count">36</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -931,7 +1028,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#llvm"><span class="nav-number">1.</span> <span class="nav-text">llvm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#啥是LLVM？"><span class="nav-number">1.1.</span> <span class="nav-text">啥是LLVM？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#llvm-和-clang-的关系"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">llvm 和 clang 的关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Obfuscator-LLVM"><span class="nav-number">1.1.1.</span> <span class="nav-text">Obfuscator-LLVM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Install"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">Install</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#o-llvm手动打包"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">o-llvm手动打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#o-llvm的特点"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">o-llvm的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#nstructions-Substitution"><span class="nav-number">1.1.1.3.1.</span> <span class="nav-text">nstructions Substitution</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Bogus-Control-Flow"><span class="nav-number">1.1.1.3.2.</span> <span class="nav-text">Bogus Control Flow</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Control-Flow-Flattening"><span class="nav-number">1.1.1.3.3.</span> <span class="nav-text">Control Flow Flattening</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Functions-annotations"><span class="nav-number">1.1.1.3.4.</span> <span class="nav-text">Functions annotations</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对比"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">对比</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#llvm"><span class="nav-number">1.</span> <span class="nav-text">llvm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#啥是LLVM？"><span class="nav-number">1.1.</span> <span class="nav-text">啥是LLVM？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#llvm-和-clang-的关系"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">llvm 和 clang 的关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Obfuscator-LLVM"><span class="nav-number">1.1.1.</span> <span class="nav-text">Obfuscator-LLVM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Install"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">Install</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#o-llvm手动打包"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">o-llvm手动打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#o-llvm的特点"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">o-llvm的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#nstructions-Substitution"><span class="nav-number">1.1.1.3.1.</span> <span class="nav-text">nstructions Substitution</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Bogus-Control-Flow"><span class="nav-number">1.1.1.3.2.</span> <span class="nav-text">Bogus Control Flow</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Control-Flow-Flattening"><span class="nav-number">1.1.1.3.3.</span> <span class="nav-text">Control Flow Flattening</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Functions-annotations"><span class="nav-number">1.1.1.3.4.</span> <span class="nav-text">Functions annotations</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对比"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">对比</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#o-llvm源码分析"><span class="nav-number">1.1.2.</span> <span class="nav-text">o-llvm源码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bogus-Control-Flow-1"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">Bogus Control Flow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bug寻找"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">bug寻找</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对抗"><span class="nav-number">1.1.3.</span> <span class="nav-text">对抗</span></a></li></ol></li></ol></div>
             
 
           </div>

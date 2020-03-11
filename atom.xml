@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2020-03-04T15:02:44.575Z</updated>
+  <updated>2020-03-06T06:44:02.559Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Ntop</title>
+    <link href="http://magic-king.net/2020/03/06/Ntop/"/>
+    <id>http://magic-king.net/2020/03/06/Ntop/</id>
+    <published>2020-03-06T06:06:41.000Z</published>
+    <updated>2020-03-06T06:44:02.559Z</updated>
+    
+    <summary type="html">
+    
+      Something about Ntop and Ntopng
+    
+    </summary>
+    
+    
+      <category term="Network" scheme="http://magic-king.net/categories/Network/"/>
+    
+    
+      <category term="Network" scheme="http://magic-king.net/tags/Network/"/>
+    
+      <category term="Ntop" scheme="http://magic-king.net/tags/Ntop/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ollvm-learning</title>
     <link href="http://magic-king.net/2020/02/27/ollvm-learning/"/>
     <id>http://magic-king.net/2020/02/27/ollvm-learning/</id>
     <published>2020-02-27T02:09:14.000Z</published>
-    <updated>2020-03-04T15:02:44.575Z</updated>
+    <updated>2020-03-11T14:57:52.632Z</updated>
     
     <summary type="html">
     
@@ -31,6 +54,8 @@
     
     
       <category term="reverse" scheme="http://magic-king.net/categories/reverse/"/>
+    
+      <category term="llvm" scheme="http://magic-king.net/categories/reverse/llvm/"/>
     
     
       <category term="reverse" scheme="http://magic-king.net/tags/reverse/"/>
@@ -167,7 +192,7 @@
     <link href="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/"/>
     <id>http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/</id>
     <published>2020-02-03T07:35:17.000Z</published>
-    <updated>2020-03-04T05:48:48.294Z</updated>
+    <updated>2020-03-11T06:02:33.000Z</updated>
     
     <summary type="html">
     
