@@ -31,6 +31,10 @@ password:
 >
 > 
 >
+> [LLVM基础(IR简介&CFG图生成&可视化)](https://www.jianshu.com/p/707c4f8af150)：可以生成可视化的IR流程图
+>
+> 
+>
 > 参考的GitHub
 >
 > [Github-heroims/obfuscator](https://github.com/heroims/obfuscator) ：移植好的ollvm9.0等
@@ -585,7 +589,21 @@ struct BogusControlFlow : public FunctionPass
 
 在`bogus()`函数里，先实现了Debug的相关部分，在每次进入函数前输出debug信息，用于处理debug模式下的`-bcf`选项。然后定义一个list链表，用于储存BasicBlock，BasicBlock用for循环利用迭代器的模式从传入的 `F` 获取。一个while循环，当基本块非空时，利用`cryptoutils`工具类获取随机数，从链表中选择基本块进行混淆(用`addBogusFlow(basicBlock, F);`函数)，并标记已混淆过该块，防止重复混淆某一基本块，否则就不混淆。然后弹出链表中的第一块，这样直到混淆次数为0为止。
 
-`addBogusFlow`函数，将给定的基本块进行添加虚假控制流
+`addBogusFlow()`函数，将给定的基本块进行添加虚假控制流。首先获得一个基本块Basic Block，利用createAlteredBasicBlock()函数生成一个与原基本块相似的Basci Block，然后利用`BasicBlock->getTerminator()->eraseFromParent();`把他们的父母节点擦除，然后创建两个条件恒为真的左右子节点，然后将其创建分支循环。（其过程是创建一个恒真的分支，进入分支的基本块后，加入一个判断，若真进入原基本块，若假进入假基本块，经假基本块的垃圾代码之后，再进入原基本块。在为真时，进入原基本块，将基本块主体执行完之后，在加入分支判断，正确返回结果，错误跳转至混假基本块进行循环）
+
+> https://sq.163yun.com/blog/article/175307579596922880：这个讲的特别形象，配合着图一起阅读，这边借用其一张图
+
+```c
+int add(int a, int b){
+    return a+b;
+}
+```
+
+![](ollvm-learning/bcf_addBogusFlow.png)
+
+如图，对于上述函数，分离其基本块，创建一个入口entry，然后加入一个恒真的分支，把生成相似的基本块放至错误分支里，即其永远不会执行的垃圾代码，将所执行的基本块放入正确分支里
+
+`createAlteredBasicBlock()`函数用于生成与给定基本块相似的基本块，将操作运算符进行重新映射，重新映射节点，重新映射对应的数据，然后加入随机的指令
 
 对于`doF()`函数，该函数的功能是将Function中所有为真的判断语句进行替换，比如之前的`1.0 == 1.0 `。它的思想是定义两个全局变量x、y并且初始化为0，然后遍历Module内的所有指令，并将所有的FCMP_TRUE分支指令替换为`y<10 || x*x(x-1)%2 ==0`。
 
