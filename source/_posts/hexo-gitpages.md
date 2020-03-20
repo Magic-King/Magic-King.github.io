@@ -61,6 +61,8 @@ categories: hexo
 >
 > [可参考博客嘤](<https://inspurer.github.io/archives/>)
 >
+> https://guanqr.com/tech/website/hexo-theme-next-customization/
+>
 > 
 >
 > **yilia主题**
