@@ -572,7 +572,7 @@
 <p>或者<em>pactree</em>中使用<code>-r</code>:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pactree -r package_name</span><br></pre></td></tr></table></figure>
 <h4 id="数据库结构"><a href="#数据库结构" class="headerlink" title="数据库结构"></a>数据库结构</h4><p>pacman数据库通常位于 <code>/var/lib/pacman/sync</code>. 对于每一个在<code>/etc/pacman.conf</code>中指定的软件仓库， 这里都有一个一致的数据库。数据库文件夹里每个tar.gz文件都包含着一个仓库的软件包信息。例如which 包:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">% tree which-2.20-6 	</span><br><span class="line">which-2.20-6</span><br><span class="line">|-- depends</span><br><span class="line">`-- desc</span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">% tree which<span class="number">-2.20</span><span class="number">-6</span> 	</span><br><span class="line">which<span class="number">-2.20</span><span class="number">-6</span></span><br><span class="line">|-- depends</span><br><span class="line">`-- desc</span><br></pre></td></tr></table></figure>
 <p>这个 <code>depends</code> 项列出了该软件的依赖包， 而<code>desc</code>有该包的介绍，例如文件大小和MD5值 。</p>
 <h3 id="清理软件包缓存"><a href="#清理软件包缓存" class="headerlink" title="清理软件包缓存"></a>清理软件包缓存</h3><p><em>pacman</em> 将下载的软件包保存在 <code>/var/cache/pacman/pkg/</code> 并且不会自动移除旧的和未安装版本的软件包，因此需要手动清理，以免该文件夹过于庞大。</p>
 <p>使用内建选项即可清除未安装软件包的缓存：</p>
@@ -584,15 +584,15 @@
 </ul>
 <p>由于以上种种局限，建议使用专门的脚本去处理清理哪些、清理多少缓存：</p>
 <p><a href="https://www.archlinux.org/packages/?name=pacman-contrib" target="_blank" rel="noopener">pacman-contrib</a> 提供的 <em>paccache</em> 命令默认会删除近3个版本前的软件包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># paccache -r</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># paccache -r</span></span><br></pre></td></tr></table></figure>
 <p><strong>Tip:</strong> 可以使用 <a href="https://wiki.archlinux.org/index.php/Pacman_hooks" target="_blank" rel="noopener">pacman hooks</a> 自动执行清理，<a href="https://bbs.archlinux.org/viewtopic.php?pid=1694743#p1694743" target="_blank" rel="noopener">这里</a>是参考示例。</p>
 <p>也可以自己设置保留最近几个版本：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># paccache -rk 1</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># paccache -rk 1</span></span><br></pre></td></tr></table></figure>
 <p>清理所有未安装包的缓存文件，再此运行<code>paccache</code>:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># paccache -ruk0</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># paccache -ruk0</span></span><br></pre></td></tr></table></figure>
 <p>更多功能参见<code>paccache -h</code>。</p>
 <p><em>paccache</em>，还可以使用 <a href="https://wiki.archlinux.org/index.php/Arch_User_Repository_(简体中文" target="_blank" rel="noopener">Arch User Repository</a>) 中的 <a href="https://aur.archlinux.org/packages/pkgcacheclean/" target="_blank" rel="noopener">pkgcacheclean</a>AUR：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># pkgcacheclean</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># pkgcacheclean</span></span><br></pre></td></tr></table></figure>
 <p>，以及<a href="https://aur.archlinux.org/packages/pacleaner/" target="_blank" rel="noopener">pacleaner</a>AUR，这两个是未来的替代工具.</p>
 <h3 id="其它命令"><a href="#其它命令" class="headerlink" title="其它命令"></a>其它命令</h3><p>升级系统时安装其他软件包：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pacman -Syu package_name1 package_name2 ...</span><br></pre></td></tr></table></figure>
@@ -612,14 +612,14 @@
 <li><strong>依赖包</strong>：指定安装包所依赖的软件包，尽管命令中未传入，但仍然会被安装。</li>
 </ul>
 <p>当安装软件包时，可以把安装原因指定设为<strong>依赖</strong>:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># pacman -S --asdeps package_name</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># pacman -S --asdeps package_name</span></span><br></pre></td></tr></table></figure>
 <p>但是当重新安装该软件包时，安装原因将会被设为软件包所默认的。 指定安装的软件包列表可用<code>pacman -Qe</code>, 已安装的依赖包可用<code>pacman -Qd</code>获取。 改变某个已安装软件包的安装原因，可以执行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># pacman -D --asdeps package_name</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># pacman -D --asdeps package_name</span></span><br></pre></td></tr></table></figure>
 <p>使用<code>--asexplicit</code>改为<strong>指定安装</strong>。</p>
 <h3 id="查询一个包含具体文件的包名"><a href="#查询一个包含具体文件的包名" class="headerlink" title="查询一个包含具体文件的包名"></a>查询一个包含具体文件的包名</h3><p>同步文件数据库:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># pacman -Fy</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># pacman -Fy</span></span><br></pre></td></tr></table></figure>
 <p>查询包含某个文件的包名，比如:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># pacman -Fs pacman</span><br><span class="line">core/pacman 5.0.1-4</span><br><span class="line">    usr/bin/pacman</span><br><span class="line">    usr/share/bash-completion/completions/pacman</span><br><span class="line">extra/xscreensaver 5.36-1</span><br><span class="line">    usr/lib/xscreensaver/pacman</span><br></pre></td></tr></table></figure>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pacman -Fs pacman</span></span><br><span class="line">core/pacman <span class="number">5.0</span>.<span class="number">1</span>-<span class="number">4</span></span><br><span class="line">    usr/bin/pacman</span><br><span class="line">    usr/share/bash-completion/completions/pacman</span><br><span class="line">extra/xscreensaver <span class="number">5.36</span>-<span class="number">1</span></span><br><span class="line">    usr/<span class="class"><span class="keyword">lib</span>/<span class="title">xscreensaver</span>/<span class="title">pacman</span></span></span><br></pre></td></tr></table></figure>
 <p><strong>提示：</strong> 可以设置一个 <code>crontab</code> 或者 <code>systemd timer</code> 来定期同步文件信息数据库。</p>
 <p>如果需要高级功能请安装 <a href="https://wiki.archlinux.org/index.php/Pkgfile" target="_blank" rel="noopener">pkgfile</a>，它使用一个单独的数据库来保存文件和它们所关联的软件包的信息。</p>
 <p>ArchLinux的版本库里面包括：</p>

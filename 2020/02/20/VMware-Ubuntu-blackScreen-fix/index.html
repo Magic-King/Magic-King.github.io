@@ -105,18 +105,18 @@
 <meta property="og:site_name" content="Hexo&amp;Magic">
 <meta property="og:description" content="关于VMware虚拟机中，Ubuntu开机黑屏解决若干相当于Mark 没想到，在写系统安全内核模块时，锁屏开出来后，他界面就崩了，我想着重启能解决一切问题，然后重启完他就凉了 一直在冒一个白色的光标，心想着继续重启看看有没提示 1piix4_smbus:HostSMBuscontrollernotenabled 然后再启动一行时看见这个，搜索解决办法 但是网上都是大同小异的办法——进入终端，禁用模">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://magic-king.net/2020/02/20/VMware-Ubuntu-blackScreen-fix/1.png">
-<meta property="og:image" content="http://magic-king.net/2020/02/20/VMware-Ubuntu-blackScreen-fix/2.png">
-<meta property="og:image" content="http://magic-king.net/2020/02/20/VMware-Ubuntu-blackScreen-fix/3.png">
-<meta property="og:image" content="http://magic-king.net/2020/02/20/VMware-Ubuntu-blackScreen-fix/4.png">
-<meta property="og:image" content="http://magic-king.net/2020/02/20/VMware-Ubuntu-blackScreen-fix/5.png">
-<meta property="og:image" content="http://magic-king.net/2020/02/20/VMware-Ubuntu-blackScreen-fix/6.png">
-<meta property="og:image" content="http://magic-king.net/2020/02/20/VMware-Ubuntu-blackScreen-fix/7.png">
+<meta property="og:image" content="https://magic-king.net/images/loading.gif">
+<meta property="og:image" content="https://magic-king.net/images/loading.gif">
+<meta property="og:image" content="https://magic-king.net/images/loading.gif">
+<meta property="og:image" content="https://magic-king.net/images/loading.gif">
+<meta property="og:image" content="https://magic-king.net/images/loading.gif">
+<meta property="og:image" content="https://magic-king.net/images/loading.gif">
+<meta property="og:image" content="https://magic-king.net/images/loading.gif">
 <meta property="og:updated_time" content="2020-02-22T08:13:06.069Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VMware-Ubuntu-blackScreen-fix">
 <meta name="twitter:description" content="关于VMware虚拟机中，Ubuntu开机黑屏解决若干相当于Mark 没想到，在写系统安全内核模块时，锁屏开出来后，他界面就崩了，我想着重启能解决一切问题，然后重启完他就凉了 一直在冒一个白色的光标，心想着继续重启看看有没提示 1piix4_smbus:HostSMBuscontrollernotenabled 然后再启动一行时看见这个，搜索解决办法 但是网上都是大同小异的办法——进入终端，禁用模">
-<meta name="twitter:image" content="http://magic-king.net/2020/02/20/VMware-Ubuntu-blackScreen-fix/1.png">
+<meta name="twitter:image" content="https://magic-king.net/images/loading.gif">
 
 
 
@@ -504,7 +504,7 @@
         <h1 id="关于VMware虚拟机中，Ubuntu开机黑屏解决若干"><a href="#关于VMware虚拟机中，Ubuntu开机黑屏解决若干" class="headerlink" title="关于VMware虚拟机中，Ubuntu开机黑屏解决若干"></a>关于VMware虚拟机中，Ubuntu开机黑屏解决若干</h1><p>相当于Mark</p>
 <p>没想到，在写系统安全内核模块时，锁屏开出来后，他界面就崩了，我想着重启能解决一切问题，然后重启完他就凉了</p>
 <p>一直在冒一个白色的光标，心想着继续重启看看有没提示</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">piix4_smbus:HostSMBuscontrollernotenabled</span><br></pre></td></tr></table></figure>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">piix4_smbus:</span>HostSMBuscontrollernotenabled</span><br></pre></td></tr></table></figure>
 <p>然后再启动一行时看见这个，搜索解决办法</p>
 <p>但是网上都是大同小异的办法——进入终端，禁用模块</p>
 <p>但是我没有终端啊</p>
@@ -528,13 +528,13 @@
 </blockquote>
 <p>但是我用这个命令重启之后，以为他能恢复原样，但是他没有！</p>
 <p>用tty1的startx进入黑屏，然后他就没法动了，我们进tty2的<code>ps -ef</code>查看进程，发现都是正常的啊</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/20/VMware-Ubuntu-blackScreen-fix/1.png" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="VMware-Ubuntu-blackScreen-fix/1.png" alt></p>
 <p>可见gnome正常运行啊</p>
 <blockquote>
 <p><a href="https://askubuntu.com/questions/999180/16-04-to-17-10-login-loop-because-of-xsession-and-upstart" target="_blank" rel="noopener">https://askubuntu.com/questions/999180/16-04-to-17-10-login-loop-because-of-xsession-and-upstart</a></p>
 </blockquote>
 <p>果然还是google靠谱，找到了一个方法，让我看到了桌面，不过又报了下面这行错误</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">could not set the configuration for CRTC 63</span><br></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">could <span class="keyword">not</span> <span class="built_in">set</span> <span class="keyword">the</span> configuration <span class="keyword">for</span> CRTC <span class="number">63</span></span><br></pre></td></tr></table></figure>
 <p>然后没有搜到解决办法，太晚了，先睡</p>
 <hr>
 <p>我们还是从正常方式去debug吧，既然是图形化界面崩了，就去找gnome的错误日志</p>
@@ -548,10 +548,10 @@
 <p>清空日志：<a href="https://www.cnblogs.com/Jimmy1988/p/8892483.html" target="_blank" rel="noopener">https://www.cnblogs.com/Jimmy1988/p/8892483.html</a></p>
 </blockquote>
 <p>找到疑似的几个错误，注意10:51:02是正常启动完系统进入tty1的时间</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/20/VMware-Ubuntu-blackScreen-fix/2.png" alt></p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/20/VMware-Ubuntu-blackScreen-fix/3.png" alt></p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/20/VMware-Ubuntu-blackScreen-fix/4.png" alt></p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/20/VMware-Ubuntu-blackScreen-fix/5.png" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="VMware-Ubuntu-blackScreen-fix/2.png" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="VMware-Ubuntu-blackScreen-fix/3.png" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="VMware-Ubuntu-blackScreen-fix/4.png" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="VMware-Ubuntu-blackScreen-fix/5.png" alt></p>
 <p>后面全是主题解析错误，也就是无法打开桌面</p>
 <p>但是根据第二张图的日志中lightdm.service一直在重启失败</p>
 <blockquote>
@@ -559,9 +559,9 @@
 <p><a href="https://baike.baidu.com/item/LightDM/9557430?fr=aladdin" target="_blank" rel="noopener">LightDM_百度百科</a></p>
 </blockquote>
 <p>我们看下服务状态</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/20/VMware-Ubuntu-blackScreen-fix/6.png" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="VMware-Ubuntu-blackScreen-fix/6.png" alt></p>
 <p>然后发现服务启动过后，卡在了莫名其妙的地方</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/20/VMware-Ubuntu-blackScreen-fix/7.png" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="VMware-Ubuntu-blackScreen-fix/7.png" alt></p>
 <p>想要更新软件包试试</p>
 <p>然后发现还没网</p>
 <blockquote>

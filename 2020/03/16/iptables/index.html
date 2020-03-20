@@ -106,18 +106,18 @@
 <meta property="og:site_name" content="Hexo&amp;Magic">
 <meta property="og:description" content="learning about iptables">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://magic-king.net/2020/03/16/iptables/1.jpg">
-<meta property="og:image" content="http://magic-king.net/2020/03/16/iptables/2.jpg">
-<meta property="og:image" content="http://magic-king.net/2020/03/16/iptables/3.jpg">
-<meta property="og:image" content="http://magic-king.net/2020/03/16/iptables/4.jpg">
-<meta property="og:image" content="http://magic-king.net/2020/03/16/iptables/iptables_command.jpg">
-<meta property="og:image" content="http://magic-king.net/2020/03/16/iptables/iptables_parameter.jpg">
-<meta property="og:image" content="http://magic-king.net/2020/03/16/iptables/5.png">
+<meta property="og:image" content="https://magic-king.net/images/loading.gif">
+<meta property="og:image" content="https://magic-king.net/images/loading.gif">
+<meta property="og:image" content="https://magic-king.net/images/loading.gif">
+<meta property="og:image" content="https://magic-king.net/images/loading.gif">
+<meta property="og:image" content="https://magic-king.net/images/loading.gif">
+<meta property="og:image" content="https://magic-king.net/images/loading.gif">
+<meta property="og:image" content="https://magic-king.net/images/loading.gif">
 <meta property="og:updated_time" content="2020-03-19T12:08:43.376Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iptables">
 <meta name="twitter:description" content="learning about iptables">
-<meta name="twitter:image" content="http://magic-king.net/2020/03/16/iptables/1.jpg">
+<meta name="twitter:image" content="https://magic-king.net/images/loading.gif">
 
 
 
@@ -529,10 +529,10 @@
 </ul>
 <h4 id="链"><a href="#链" class="headerlink" title="链"></a>链</h4><p>iptables开启后，数据报文从进入服务器到出来经过5条链，分别为 <code>prerouting</code> 、 <code>input</code> 、<code>output</code> 、 <code>forward</code> 、 <code>postrouting</code></p>
 <p>如下图，即数据报文的可能经过的路径</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/03/16/iptables/1.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="iptables/1.jpg" alt></p>
 <p>每条链上设有多种规则，数据报文必须按照顺序一个个匹配这些规则</p>
 <p>正如图中，数据报文经过的5条链上，必须逐一经过每一条链，而在链上，数据报文必须逐一通过(符合)每一个规则的限制，方能到下一条链上</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/03/16/iptables/2.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="iptables/2.jpg" alt></p>
 <ul>
 <li><strong>INPUT链</strong>：当接收到防火墙本机地址的数据包(入站)时，应用此链的规则</li>
 <li><strong>OUTPUT链</strong>：当防火墙本机向外发送数据包(出站)时，应用此链的规则</li>
@@ -552,7 +552,7 @@
 <p>我们自定义的所有规则，都会添加到四张表中的其中一张表中</p>
 <p>规则表之间的优先顺序：Raw &gt;&gt; mangle &gt;&gt; nat &gt;&gt; filter</p>
 <h4 id="表链关系"><a href="#表链关系" class="headerlink" title="表链关系"></a>表链关系</h4><p>5条链中，并不是每条链都能应用所有类型的表，事实上除了Output链上能同时拥有四种表以外，其他都只能有两到三种表</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/03/16/iptables/3.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="iptables/3.jpg" alt></p>
 <p>上图即为每种链能应用的表，实际上，在各表中还有匹配顺序，每条链上的各个表的匹配顺序为：<br><strong>raw &rarr; mangle &rarr; nat &rarr; filter</strong></p>
 <p>把上图转换成表，可直观地看出来，表链的关系</p>
 <table>
@@ -604,7 +604,7 @@
 </tbody>
 </table>
 <p>数据包通过防火墙流程可以总结如下：</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/03/16/iptables/4.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="iptables/4.jpg" alt></p>
 <h4 id="规则的概念"><a href="#规则的概念" class="headerlink" title="规则的概念"></a>规则的概念</h4><p>iptables规则主要包含了“条件&amp;动作”，即匹配出符合什么条件(规则)后，对它采取怎样的动作</p>
 <h5 id="匹配条件"><a href="#匹配条件" class="headerlink" title="匹配条件"></a>匹配条件</h5><ul>
 <li><strong>S_IP</strong>：source ip，即源ip</li>
@@ -633,7 +633,7 @@
 <h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><p>有关 <code>iptables</code> 的命令可以用下图来解释</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ iptables [-t table_name] <span class="built_in">command</span> [chain_name] [parameter] [-j target&amp;action]</span><br></pre></td></tr></table></figure>
 <p><code>parameter</code> 是用于条件匹配</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/03/16/iptables/iptables_command.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="iptables/iptables_command.jpg" alt></p>
 <ul>
 <li><p>所有表名必须小写<br> <code>filter</code> / <code>nat</code> / <code>mangle</code> / <code>raw</code></p>
 </li>
@@ -645,7 +645,7 @@
 </li>
 </ul>
 <p><strong>对于parameter条件匹配</strong>，如下图所示：</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/03/16/iptables/iptables_parameter.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="iptables/iptables_parameter.jpg" alt></p>
 <h5 id="对于Command选项："><a href="#对于Command选项：" class="headerlink" title="对于Command选项："></a>对于Command选项：</h5><p><code>-A</code> 在指定链末尾添加(append)一条新规则</p>
 <p><code>-D</code> 删除（delete）指定链中的某一条规则，可以按规则序号和内容删除</p>
 <p><code>-I</code> 在指定链中插入（insert）一条新的规则，默认在第一行添加</p>
@@ -681,7 +681,7 @@
 <p>刚开始认为创建网卡，便在虚拟机的ubuntu里创建了一个虚拟网卡，后面才发现不对，构建不了内网环境，之后才发现是在vmware中添加物理网卡(模拟的)构建内网环境。</p>
 <p>所以首先为ubuntu创建两个网卡，一个能访问外网(使用NAT)，另外一个仅内网(vmware里的仅主机，LAN那个我没搞懂，应该也是可以的)</p>
 <p>在linux中，用命令<code>sudo vim /etc/network/interfaces</code>修改网卡配置如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># interfaces(5) file used by ifup(8) and if down(8)</span><br><span class="line">auto lo</span><br><span class="line">iface lo inet loopback</span><br><span class="line"></span><br><span class="line">auto ens33</span><br><span class="line">iface ens33 inet static</span><br><span class="line">address 192.168.52.128</span><br><span class="line">netmask 255.255.255.0</span><br><span class="line">gateway 192.168.52.1</span><br><span class="line"></span><br><span class="line">auto ens38</span><br><span class="line">iface ens38 inet static</span><br><span class="line">address 172.16.0.10</span><br><span class="line">netmask 255.255.255.0</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># interfaces(5) file used by ifup(8) and if down(8)</span></span><br><span class="line">auto lo</span><br><span class="line">iface lo inet loopback</span><br><span class="line"></span><br><span class="line">auto ens33</span><br><span class="line">iface ens33 inet static</span><br><span class="line">address 192.168.52.128</span><br><span class="line">netmask 255.255.255.0</span><br><span class="line">gateway 192.168.52.1</span><br><span class="line"></span><br><span class="line">auto ens38</span><br><span class="line">iface ens38 inet static</span><br><span class="line">address 172.16.0.10</span><br><span class="line">netmask 255.255.255.0</span><br></pre></td></tr></table></figure>
 <p>修改后，重启网络配置</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sc@sc-virtual-machine:~$ sudo /etc/init.d/networking restart</span><br><span class="line">[ ok ] Restarting networking (via systemctl): networking.service.</span><br><span class="line">sc@sc-virtual-machine:~$</span><br></pre></td></tr></table></figure>
 <p>还有一点，要开启linux的ip转发功能，命令如下：</p>
@@ -689,7 +689,7 @@
 <p>在<code>sysctl.conf</code>里，本来就有注释的转发配置语句，取消注释即可，用命令重新加载内核参数，当然，此时重启linux虚拟机也不是不可以</p>
 <p>在windows做如下配置</p>
 <p>控制面板-&gt;网络和Internet-&gt;网络和共享中心-&gt;本地连接-&gt;属性-&gt;Internet协议版本4（TCP/IPv4）-&gt;属性</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/03/16/iptables/5.png" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="iptables/5.png" alt></p>
 <p>特别地，要将windows网关配置为linux的内网网卡地址</p>
 <p>然后要记得，DNS服务器要和linux主机的一致</p>
 <p>假如，windows虚拟机能ping通linux主机，但是linux主机ping不通windows，则需要关闭windows的防火墙，或者在windows防火墙中，在入站规则内打开ICMP回显</p>
