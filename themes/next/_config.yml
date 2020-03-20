@@ -342,10 +342,6 @@ symbols_count_time:
 codeblock:
   # Manual define the border radius in codeblock, leave it blank for the default value: 1
   border_radius:
-  # Code Highlight theme
-  # Available values: normal | night | night eighties | night blue | night bright | solarized | solarized dark | galactic
-  # See: https://github.com/chriskempson/tomorrow-theme
-  highlight_theme: night eighties
   # Add copy button on codeblock
   copy_button:
     enable: true
@@ -353,7 +349,7 @@ codeblock:
     show_result: true
     # Style: only 'flat' is currently available, leave it blank if you prefer default theme
     # Available values: default | flat | mac
-    style: default
+    style: 
 
 # Wechat Subscriber
 wechat_subscriber:
