@@ -117,7 +117,8 @@
 <meta property="og:image" content="http://magic-king.net/2020/02/27/ollvm-learning/test_split_ida.png">
 <meta property="og:image" content="http://magic-king.net/2020/02/27/ollvm-learning/test_sub_ida.png">
 <meta property="og:image" content="http://magic-king.net/2020/02/27/ollvm-learning/SourceCode_bcf_1.png">
-<meta property="og:updated_time" content="2020-03-11T14:57:52.632Z">
+<meta property="og:image" content="http://magic-king.net/2020/02/27/ollvm-learning/bcf_addBogusFlow.png">
+<meta property="og:updated_time" content="2020-03-12T15:07:14.490Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ollvm-learning">
 <meta name="twitter:description" content="Learning about ollvm">
@@ -447,7 +448,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-11 22:57:52" itemprop="dateModified" datetime="2020-03-11T22:57:52+08:00">2020-03-11</time>
+                <time title="修改时间：2020-03-12 23:07:14" itemprop="dateModified" datetime="2020-03-12T23:07:14+08:00">2020-03-12</time>
               
             
           </span>
@@ -521,6 +522,7 @@
 <p><a href="http://llvm.org/docs/" target="_blank" rel="noopener">LLVM-docs</a> ：注意要查看对应版本的文档，每个版本文档都有所改变</p>
 <p><a href="https://github.com/llvm/llvm-project/" target="_blank" rel="noopener">Github-llvm/llvm-project</a></p>
 <p><a href="https://github.com/llvm-mirror/llvm" target="_blank" rel="noopener">Github-llvm-mirror/llvm</a></p>
+<p><a href="https://www.jianshu.com/p/707c4f8af150" target="_blank" rel="noopener">LLVM基础(IR简介&amp;CFG图生成&amp;可视化)</a>：可以生成可视化的IR流程图</p>
 <p>参考的GitHub</p>
 <p><a href="https://github.com/heroims/obfuscator" target="_blank" rel="noopener">Github-heroims/obfuscator</a> ：移植好的ollvm9.0等</p>
 <p><a href="https://heroims.github.io/2019/01/06/OLLVM%E4%BB%A3%E7%A0%81%E6%B7%B7%E6%B7%86%E7%A7%BB%E6%A4%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/" target="_blank" rel="noopener">OLLVM代码混淆移植与使用</a> ：heroims的博客</p>
@@ -687,7 +689,14 @@
 <p>整个namespace写了一个struct 类用于混淆</p>
 <p>其中<code>runOnFunction</code>为入口函数，先判断bcf的两个参数<code>-bcf_loop</code>和<code>-bcf_prob</code>是否符合正确范围内，然后检查是否启用了<code>-bcf</code>选项，假如启用了，则进入核心函数<code>bogus(F);</code>，然后继续处理<code>doF(*F.getParent());</code></p>
 <p>在<code>bogus()</code>函数里，先实现了Debug的相关部分，在每次进入函数前输出debug信息，用于处理debug模式下的<code>-bcf</code>选项。然后定义一个list链表，用于储存BasicBlock，BasicBlock用for循环利用迭代器的模式从传入的 <code>F</code> 获取。一个while循环，当基本块非空时，利用<code>cryptoutils</code>工具类获取随机数，从链表中选择基本块进行混淆(用<code>addBogusFlow(basicBlock, F);</code>函数)，并标记已混淆过该块，防止重复混淆某一基本块，否则就不混淆。然后弹出链表中的第一块，这样直到混淆次数为0为止。</p>
-<p><code>addBogusFlow</code>函数，将给定的基本块进行添加虚假控制流</p>
+<p><code>addBogusFlow()</code>函数，将给定的基本块进行添加虚假控制流。首先获得一个基本块Basic Block，利用createAlteredBasicBlock()函数生成一个与原基本块相似的Basci Block，然后利用<code>BasicBlock-&gt;getTerminator()-&gt;eraseFromParent();</code>把他们的父母节点擦除，然后创建两个条件恒为真的左右子节点，然后将其创建分支循环。（其过程是创建一个恒真的分支，进入分支的基本块后，加入一个判断，若真进入原基本块，若假进入假基本块，经假基本块的垃圾代码之后，再进入原基本块。在为真时，进入原基本块，将基本块主体执行完之后，在加入分支判断，正确返回结果，错误跳转至混假基本块进行循环）</p>
+<blockquote>
+<p><a href="https://sq.163yun.com/blog/article/175307579596922880：这个讲的特别形象，配合着图一起阅读，这边借用其一张图" target="_blank" rel="noopener">https://sq.163yun.com/blog/article/175307579596922880：这个讲的特别形象，配合着图一起阅读，这边借用其一张图</a></p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/02/27/ollvm-learning/bcf_addBogusFlow.png" alt></p>
+<p>如图，对于上述函数，分离其基本块，创建一个入口entry，然后加入一个恒真的分支，把生成相似的基本块放至错误分支里，即其永远不会执行的垃圾代码，将所执行的基本块放入正确分支里</p>
+<p><code>createAlteredBasicBlock()</code>函数用于生成与给定基本块相似的基本块，将操作运算符进行重新映射，重新映射节点，重新映射对应的数据，然后加入随机的指令</p>
 <p>对于<code>doF()</code>函数，该函数的功能是将Function中所有为真的判断语句进行替换，比如之前的<code>1.0 == 1.0</code>。它的思想是定义两个全局变量x、y并且初始化为0，然后遍历Module内的所有指令，并将所有的FCMP_TRUE分支指令替换为<code>y&lt;10 || x*x(x-1)%2 ==0</code>。</p>
 <h4 id="bug寻找"><a href="#bug寻找" class="headerlink" title="bug寻找"></a>bug寻找</h4><p>适配llvm9.0和ollvm4.0时发生了许多错误</p>
 <p>可见 <a href="./ollvm-learning/bug_log.txt">bug_Log</a></p>
@@ -814,7 +823,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">45</span>
+                    <span class="site-state-item-count">49</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -879,7 +888,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">24</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -968,7 +981,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">36</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1577,7 +1594,7 @@
 
   
   
-	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+	<script type="text/javascript" src="https://cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
   
 </body>

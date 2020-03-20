@@ -101,7 +101,7 @@
   <meta name="description" content="Now You See Me!">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo&amp;Magic">
-<meta property="og:url" content="http://magic-king.net/tags/Network/index.html">
+<meta property="og:url" content="http://magic-king.net/tags/network/index.html">
 <meta property="og:site_name" content="Hexo&amp;Magic">
 <meta property="og:description" content="Now You See Me!">
 <meta property="og:locale" content="zh-CN">
@@ -117,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="http://magic-king.net/tags/Network/">
+  <link rel="canonical" href="http://magic-king.net/tags/network/">
 
 
 
@@ -127,7 +127,7 @@
   };
 </script>
 
-  <title>标签: Network | Hexo&Magic</title>
+  <title>标签: network | Hexo&Magic</title>
   
 
 
@@ -386,7 +386,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>Network<small>标签</small>
+        <h1>network<small>标签</small>
         </h1>
       </div>
 
@@ -398,95 +398,17 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2020/03/06/Ntop/" itemprop="url">
+          <a class="post-title-link" href="/2020/03/16/iptables/" itemprop="url">
             
-              <span itemprop="name">Ntop</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-03-06T14:06:41+08:00" content="2020-03-06">
-          03-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2020/01/30/ShadowSocks-SourceCode-Learning/" itemprop="url">
-            
-              <span itemprop="name">ShadowSocks-SourceCode-Learning</span>
+              <span itemprop="name">iptables</span>
             
           </a>
         
       </h2>
 
       <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-01-30T21:39:16+08:00" content="2020-01-30">
-          01-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/12/12/DDoS-Javascript/" itemprop="url">
-            
-              <span itemprop="name">DDoS-JavaScript</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-12-12T15:41:36+08:00" content="2019-12-12">
-          12-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/05/30/IPFS/" itemprop="url">
-            
-              <span itemprop="name">IPFS</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-30T22:40:32+08:00" content="2019-05-30">
-          05-30
+        <time class="post-time" itemprop="dateCreated" datetime="2020-03-16T11:22:59+08:00" content="2020-03-16">
+          03-16
         </time>
       </div>
 
@@ -545,7 +467,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">45</span>
+                    <span class="site-state-item-count">49</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -610,7 +532,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">24</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -699,7 +625,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">36</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1285,7 +1215,103 @@
 
   
   
-	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+	<script type="text/javascript" src="https://cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+</body>
+</html>
+Count;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+	<script type="text/javascript" src="https://cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
   
 </body>

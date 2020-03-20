@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2020-03-06T06:44:02.559Z</updated>
+  <updated>2020-03-16T06:39:20.029Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -15,6 +15,104 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://magic-king.net/2020/03/16/CVE-2020-0796/CVE-2020-0796-PoC/README/"/>
+    <id>http://magic-king.net/2020/03/16/CVE-2020-0796/CVE-2020-0796-PoC/README/</id>
+    <published>2020-03-16T06:39:20.029Z</published>
+    <updated>2020-03-16T06:39:20.029Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;CVE-2020-0796-PoC-aka-CoronaBlue-aka-SMBGhost&quot;&gt;&lt;a href=&quot;#CVE-2020-0796-PoC-aka-CoronaBlue-aka-SMBGhost&quot; class=&quot;headerlink&quot; title=&quot;CVE-2020-0796 PoC aka 
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://magic-king.net/2020/03/16/CVE-2020-0796/SMBGhost/README/"/>
+    <id>http://magic-king.net/2020/03/16/CVE-2020-0796/SMBGhost/README/</id>
+    <published>2020-03-16T05:44:31.495Z</published>
+    <updated>2020-03-16T05:44:31.495Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;SMBGhost&quot;&gt;&lt;a href=&quot;#SMBGhost&quot; class=&quot;headerlink&quot; title=&quot;SMBGhost&quot;&gt;&lt;/a&gt;SMBGhost&lt;/h1&gt;&lt;p&gt;Simple scanner for CVE-2020-0796 - SMBv3 RCE.&lt;/p&gt;
+&lt;p&gt;The scanner i
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>CVE-2020-0796</title>
+    <link href="http://magic-king.net/2020/03/16/CVE-2020-0796/"/>
+    <id>http://magic-king.net/2020/03/16/CVE-2020-0796/</id>
+    <published>2020-03-16T05:38:00.000Z</published>
+    <updated>2020-03-16T07:13:02.661Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;details about new SMB wormable bug leak:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://portal.msrc.microsoft.com/en-US/security-guidance/advisory/adv200005&quot; target=&quot;_
+      
+    
+    </summary>
+    
+    
+      <category term="CVE" scheme="http://magic-king.net/categories/CVE/"/>
+    
+      <category term="Windows" scheme="http://magic-king.net/categories/CVE/Windows/"/>
+    
+    
+      <category term="CVE" scheme="http://magic-king.net/tags/CVE/"/>
+    
+      <category term="Windows" scheme="http://magic-king.net/tags/Windows/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iptables</title>
+    <link href="http://magic-king.net/2020/03/16/iptables/"/>
+    <id>http://magic-king.net/2020/03/16/iptables/</id>
+    <published>2020-03-16T03:22:59.000Z</published>
+    <updated>2020-03-19T12:08:43.376Z</updated>
+    
+    <summary type="html">
+    
+      learning about iptables
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://magic-king.net/categories/linux/"/>
+    
+      <category term="Network" scheme="http://magic-king.net/categories/linux/Network/"/>
+    
+    
+      <category term="linux" scheme="http://magic-king.net/tags/linux/"/>
+    
+      <category term="security" scheme="http://magic-king.net/tags/security/"/>
+    
+      <category term="network" scheme="http://magic-king.net/tags/network/"/>
+    
+  </entry>
   
   <entry>
     <title>Ntop</title>
@@ -44,7 +142,7 @@
     <link href="http://magic-king.net/2020/02/27/ollvm-learning/"/>
     <id>http://magic-king.net/2020/02/27/ollvm-learning/</id>
     <published>2020-02-27T02:09:14.000Z</published>
-    <updated>2020-03-11T14:57:52.632Z</updated>
+    <updated>2020-03-12T15:07:14.490Z</updated>
     
     <summary type="html">
     
@@ -1079,7 +1177,7 @@
     <link href="http://magic-king.net/2019/05/14/hexo-gitpages/"/>
     <id>http://magic-king.net/2019/05/14/hexo-gitpages/</id>
     <published>2019-05-14T08:41:30.000Z</published>
-    <updated>2019-10-28T04:52:44.007Z</updated>
+    <updated>2020-03-20T07:42:15.479Z</updated>
     
     <summary type="html">
     

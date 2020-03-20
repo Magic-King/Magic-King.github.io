@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="learning about iptables">
+<meta name="keywords" content="linux,security,network">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iptables">
+<meta property="og:url" content="http://magic-king.net/2020/03/16/iptables/index.html">
+<meta property="og:site_name" content="Hexo&amp;Magic">
+<meta property="og:description" content="learning about iptables">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://magic-king.net/2020/03/16/iptables/1.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/03/16/iptables/2.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/03/16/iptables/3.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/03/16/iptables/4.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/03/16/iptables/iptables_command.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/03/16/iptables/iptables_parameter.jpg">
+<meta property="og:image" content="http://magic-king.net/2020/03/16/iptables/5.png">
+<meta property="og:updated_time" content="2020-03-19T12:08:43.376Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iptables">
+<meta name="twitter:description" content="learning about iptables">
+<meta name="twitter:image" content="http://magic-king.net/2020/03/16/iptables/1.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hexo&Magic" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://magic-king.net/2020/03/16/iptables/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>iptables | Hexo&Magic</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo&Magic</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://magic-king.net/2020/03/16/iptables/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Magic King">
+      <meta itemprop="description" content="Now You See Me!">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo&Magic">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iptables
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-16 11:22:59" itemprop="dateCreated datePublished" datetime="2020-03-16T11:22:59+08:00">2020-03-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-03-19 20:08:43" itemprop="dateModified" datetime="2020-03-19T20:08:43+08:00">2020-03-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/Network/" itemprop="url" rel="index"><span itemprop="name">Network</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-description">learning about iptables</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="iptables"><a href="#iptables" class="headerlink" title="iptables"></a><center>iptables</center></h1><blockquote>
+<p>参考：</p>
+<p><a href="https://linux.die.net/man/8/iptables" target="_blank" rel="noopener">iptables - Linux man page</a></p>
+<p><a href="https://www.jianshu.com/p/6af4eb08eac2" target="_blank" rel="noopener">iptables_command</a></p>
+<p><a href="https://www.xiebruce.top/1071.html" target="_blank" rel="noopener">iptables详解</a></p>
+<p><a href="https://www.zsythink.net/archives/1199" target="_blank" rel="noopener">iptables详解</a></p>
+<p><a href="https://www.jianshu.com/p/ee4ee15d3658" target="_blank" rel="noopener">iptables详解及一些常用规则</a></p>
+</blockquote>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>netfilter/iptables（简称为iptables）组成Linux平台下的包过滤防火墙，与大多数的Linux软件一样，这个包过滤防火墙是免费的，它可以代替昂贵的商业防火墙解决方案，完成封包过滤、封包重定向和网络地址转换（NAT）等功能。</p>
+<p>iptables分为2部分，一部分位于内核中，用来存放规则，称为NetFilter。还有一段在用户空间中，用来定义规则，并将规则传递到内核中，这段在用户空间中的程序就叫做iptables。 所以对于用户空间来说，就是按照需要生成一条条规则，然后向内核中提交，存放到NetFilter，让这些规则在数据传输与处理的过程中起作用。形象化地理解来说就是，把iptables看作是一个客户端代理，用户通过iptables这个代理，与内核中的安全框架netfilter进行交互。netfilter才是防火墙真正的安全框架，处于内核空间内。</p>
+<p>Netfilter是linux操作系统核心层内部的一个数据包处理模块，拥有如下功能：</p>
+<ul>
+<li>网络地址转换(Network Address Translate)</li>
+<li>数据包内容修改</li>
+<li>数据包过滤的防火墙功能</li>
+</ul>
+<h4 id="链"><a href="#链" class="headerlink" title="链"></a>链</h4><p>iptables开启后，数据报文从进入服务器到出来经过5条链，分别为 <code>prerouting</code> 、 <code>input</code> 、<code>output</code> 、 <code>forward</code> 、 <code>postrouting</code></p>
+<p>如下图，即数据报文的可能经过的路径</p>
+<p><img src="/2020/03/16/iptables/1.jpg" alt></p>
+<p>每条链上设有多种规则，数据报文必须按照顺序一个个匹配这些规则</p>
+<p>正如图中，数据报文经过的5条链上，必须逐一经过每一条链，而在链上，数据报文必须逐一通过(符合)每一个规则的限制，方能到下一条链上</p>
+<p><img src="/2020/03/16/iptables/2.jpg" alt></p>
+<ul>
+<li><strong>INPUT链</strong>：当接收到防火墙本机地址的数据包(入站)时，应用此链的规则</li>
+<li><strong>OUTPUT链</strong>：当防火墙本机向外发送数据包(出站)时，应用此链的规则</li>
+<li><strong>FORWARD链</strong>：当接收到需要通过防火墙发送给其他地址的数据包(转发)时，应用此链的规则</li>
+<li><strong>PREROUTING链</strong>：在对数据包作路由选择之前，应用此链的规则，如DNAT</li>
+<li><strong>POSTROUTING链</strong>：在对数据包作路由选择之后，应用此链的规则，如SNAT</li>
+</ul>
+<p>在链的第一张图中，我们可以形象地看出数据包在哪些条件下需要经过哪些链</p>
+<p>input和output链更多应用在主机防火墙中，主要针对本机进出的数据安全控制，而prerouting、postrouting、forward链更多应用在网络防火墙中，特别是防火墙服务器作为网关时使用的情况</p>
+<h4 id="表的概念"><a href="#表的概念" class="headerlink" title="表的概念"></a>表的概念</h4><p>虽然一条链上有多条规则，但是基于某些规则的作用功能很相似，因此有多个相似功能的规则组成了表，iptables为我们提供了四种表</p>
+<ul>
+<li><strong>filter表</strong>：主要用于对数据包进行过滤，根据具体的规则决定是否放行该数据包(如<code>DROP</code>、<code>ACCEPT</code> 、<code>REJECT</code> 、 <code>LOG</code> )，所谓防火墙其实基本上是指这张表上的过滤规则，对应内核模块的<code>iptables_filter</code></li>
+<li><strong>nat表</strong>：Network Address Translation，网络地址转换功能，主要用于修改数据包的ip地址、端口号信息等 ( 如 <code>SNAT</code> 、 <code>DNAT</code> 、 <code>MASQUERADE</code> 、<code>REDIRECT</code> )。属于一个流的包只会经过这个表一次，如果第一个包被允许做NAT或Masqueraded，那么余下的包都会自动做相同的操作，对应内核模块的<code>iptables_nat</code> </li>
+<li><strong>mangle表</strong>：拆解报文，做出修改，并重新封装，主要用于修改数据包的TOS(Type of Service，服务类型)、TTL( Time To Live，生存周期)以及为数据包设置Mark标记，以实现QoS(Quality Of Service ，服务质量)调整以及策略路由等应用，由于需要相应的路由设备支持，因此应用并不广泛，对应内核模块<code>iptables_mangle</code></li>
+<li><strong>raw表</strong>：从iptables 1.2.9版本后新添加的表，主要用于决定数据包是否被状态跟踪机制处理，在匹配数据包时，raw表规则要有优先于其他表，对应内核模块<code>iptables_raw</code></li>
+</ul>
+<p>我们自定义的所有规则，都会添加到四张表中的其中一张表中</p>
+<p>规则表之间的优先顺序：Raw &gt;&gt; mangle &gt;&gt; nat &gt;&gt; filter</p>
+<h4 id="表链关系"><a href="#表链关系" class="headerlink" title="表链关系"></a>表链关系</h4><p>5条链中，并不是每条链都能应用所有类型的表，事实上除了Output链上能同时拥有四种表以外，其他都只能有两到三种表</p>
+<p><img src="/2020/03/16/iptables/3.jpg" alt></p>
+<p>上图即为每种链能应用的表，实际上，在各表中还有匹配顺序，每条链上的各个表的匹配顺序为：<br><strong>raw &rarr; mangle &rarr; nat &rarr; filter</strong></p>
+<p>把上图转换成表，可直观地看出来，表链的关系</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>raw</th>
+<th>mangle</th>
+<th>nat</th>
+<th>filter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>prerouting</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>input</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>forward</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>output</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>postrouting</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>数据包通过防火墙流程可以总结如下：</p>
+<p><img src="/2020/03/16/iptables/4.jpg" alt></p>
+<h4 id="规则的概念"><a href="#规则的概念" class="headerlink" title="规则的概念"></a>规则的概念</h4><p>iptables规则主要包含了“条件&amp;动作”，即匹配出符合什么条件(规则)后，对它采取怎样的动作</p>
+<h5 id="匹配条件"><a href="#匹配条件" class="headerlink" title="匹配条件"></a>匹配条件</h5><ul>
+<li><strong>S_IP</strong>：source ip，即源ip</li>
+<li><strong>S_PORT</strong>：source port，源端口</li>
+<li><strong>D_IP</strong>：destination ip，目标ip</li>
+<li><strong>D_PORT</strong>：destination port，目标端口</li>
+<li><strong>TCP/UDP</strong>：第四层协议(传输层)</li>
+</ul>
+<h5 id="处理的动作"><a href="#处理的动作" class="headerlink" title="处理的动作"></a>处理的动作</h5><ul>
+<li><strong>ACCEPT</strong>：允许数据包通过</li>
+<li><strong>DROP</strong>：直接丢弃数据包，不回应任何信息，客户端只有当该链超时后才会有反应</li>
+<li><strong>REJECT</strong>：拒绝数据包，会给客户端发送一个数据包被丢弃的相应信息</li>
+<li><strong>SNAT</strong>：S指Source，源NAT（源地址转换），再进入路由层面的route之后，出本地的网络线之前，改写源地址，目标地址不变，并在本机建立NAT表项，当数据返回时，根据NAT表将目的地址数据改写为数据发送出去的源地址，并发给主机，解决私网用户用同一个公网ip上网的问题</li>
+<li><strong>MASQUERADE</strong>：是SNAT的一种特殊形式，适用于动态的、临时会变的IP上；</li>
+<li><strong>DNAT</strong>：D指Destination，目的NAT，解决私网服务端，接收公网请求的问题。和SNAT相反，IP包经过route之前，重新修改目标地址，源地址不变，在本机建立NAT表项，当数据返回时，根据NAT表将源地址修改为数据发送过来时的目标地址，并发给远程主机。可以隐藏后端服务器的真实地址</li>
+<li><strong>REDIRECT</strong>：在本机做端口映射；</li>
+<li><strong>LOG</strong>：在<code>/var/log/messages</code>文件中记录日志信息，然后将数据包传递给下一条规则</li>
+</ul>
+<p>除去最后一个LOG，前三条规则匹配数据包后，该数据包就不会再往下继续匹配了，所以编写规则的顺序极其关键</p>
+<blockquote>
+<p>关于DNAT和SNAT：</p>
+<p><a href="https://blog.51cto.com/sxj007/110924" target="_blank" rel="noopener">https://blog.51cto.com/sxj007/110924</a></p>
+<p>简单来说，SNAT是替换接收到的数据包的源地址，一般用在postrouting</p>
+<p>而DNAT是替换数据包中的目的地址，一般用在prerouting</p>
+</blockquote>
+<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><p>有关 <code>iptables</code> 的命令可以用下图来解释</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ iptables [-t table_name] <span class="built_in">command</span> [chain_name] [parameter] [-j target&amp;action]</span><br></pre></td></tr></table></figure>
+<p><code>parameter</code> 是用于条件匹配</p>
+<p><img src="/2020/03/16/iptables/iptables_command.jpg" alt></p>
+<ul>
+<li><p>所有表名必须小写<br> <code>filter</code> / <code>nat</code> / <code>mangle</code> / <code>raw</code></p>
+</li>
+<li><p>所有链名必须大写<br> <code>INPUT</code> / <code>OUTPUT</code> / <code>FORWARD</code> / <code>PREROUTING</code> / <code>POSTROUTING</code></p>
+</li>
+<li><p>所有匹配必须小写<br> <code>-s</code> / <code>-d</code> / <code>-m &lt;module_name&gt;</code> / <code>-p</code></p>
+</li>
+<li><p>所有动作必须大写<br> <code>ACCEPT</code> / <code>DROP</code> / <code>SNAT</code> / <code>DNAT</code> / <code>MASQUERADE</code></p>
+</li>
+</ul>
+<p><strong>对于parameter条件匹配</strong>，如下图所示：</p>
+<p><img src="/2020/03/16/iptables/iptables_parameter.jpg" alt></p>
+<h5 id="对于Command选项："><a href="#对于Command选项：" class="headerlink" title="对于Command选项："></a>对于Command选项：</h5><p><code>-A</code> 在指定链末尾添加(append)一条新规则</p>
+<p><code>-D</code> 删除（delete）指定链中的某一条规则，可以按规则序号和内容删除</p>
+<p><code>-I</code> 在指定链中插入（insert）一条新的规则，默认在第一行添加</p>
+<p><code>-R</code> 修改、替换（replace）指定链中的某一条规则，可以按规则序号和内容替换</p>
+<p><code>-L</code> 列出（list）指定链中所有的规则进行查看</p>
+<p><code>-E</code> 重命名用户定义的链，不改变链本身</p>
+<p><code>-F</code> 清空（flush）</p>
+<p><code>-N</code> 新建（new-chain）一条用户自己定义的规则链</p>
+<p><code>-X</code> 删除指定表中用户自定义的规则链（delete-chain）</p>
+<p><code>-P</code> 设置指定链的默认策略（policy）</p>
+<p><code>-Z</code> 将所有表的所有链的字节和数据包计数器清零</p>
+<p><code>-n</code> 使用数字形式（numeric）显示输出结果</p>
+<p><code>-v</code> 查看规则表详细信息（verbose）的信息</p>
+<p><code>-V</code> 查看版本(version)</p>
+<p><code>-h</code> 获取帮助（help）</p>
+<blockquote>
+<p>打开linux转发功能：<code>echo 1 &gt; /proc/sys/net/ipv4/ip_forward</code></p>
+</blockquote>
+<p>删除input链的第一条规则：<code>iptables -D INPUT 1</code></p>
+<h4 id="iptables防火墙常用的策略"><a href="#iptables防火墙常用的策略" class="headerlink" title="iptables防火墙常用的策略"></a>iptables防火墙常用的策略</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.拒绝进入防火墙的所有ICMP协议数据包</span></span><br><span class="line">$ iptables -I INPUT -p icmp -j REJECT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.允许防火墙转发除ICMP协议以外的所有数据包</span></span><br><span class="line"><span class="comment"># 说明：使用“！”可以将条件取反。</span></span><br><span class="line">$ iptables -A FORWARD -p ! icmp -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.拒绝转发来自192.168.1.10主机的数据，允许转发来自192.168.0.0/24网段的数据</span></span><br><span class="line"><span class="comment"># 说明：注意要把拒绝的放在前面,不然拒绝语句就没有用了就不起作用了啊。</span></span><br><span class="line">$ iptables -A FORWARD -s 192.168.1.11 -j REJECT</span><br><span class="line">$ iptables -A FORWARD -s 192.168.0.0/24 -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.丢弃从外网接口（eth1）进入防火墙本机的源地址为私网地址的数据包</span></span><br><span class="line">$ iptables -A INPUT -i eth1 -s 192.168.0.0/16 -j DROP</span><br><span class="line">$ iptables -A INPUT -i eth1 -s 172.16.0.0/12 -j DROP</span><br><span class="line">$ iptables -A INPUT -i eth1 -s 10.0.0.0/8 -j DROP</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5.封堵网段（192.168.1.0/24），两小时后解封。</span></span><br><span class="line"><span class="comment"># 说明：这个策略咱们借助crond计划任务来完成，就再好不过了。</span></span><br><span class="line">$ iptables -I INPUT -s 10.20.30.0/24 -j DROP</span><br><span class="line">$ iptables -I FORWARD -s 10.20.30.0/24 -j DROP</span><br><span class="line">$ at now 2 hours at&gt; iptables -D INPUT 1 at&gt; iptables -D FORWARD 1</span><br><span class="line"></span><br><span class="line">[1]   Stopped     at now 2 hours</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 6.只允许管理员从202.13.0.0/16网段使用SSH远程登录防火墙主机。</span></span><br><span class="line"><span class="comment"># 说明：这个用法比较适合对设备进行远程管理时使用</span></span><br><span class="line"><span class="comment"># 比如位于分公司中的SQL服务器需要被总公司的管理员管理时。</span></span><br><span class="line">$ iptables -A INPUT -p tcp --dport 22 -s 202.13.0.0/16 -j ACCEPT</span><br><span class="line">$ iptables -A INPUT -p tcp --dport 22 -j DROP</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 7.允许本机开放从TCP端口20-1024提供的应用服务。</span></span><br><span class="line">$ iptables -A INPUT -p tcp --dport 20:1024 -j ACCEPT</span><br><span class="line">$ iptables -A OUTPUT -p tcp --sport 20:1024 -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 8.允许转发来自192.168.0.0/24局域网段的DNS解析请求数据包。</span></span><br><span class="line">$ iptables -A FORWARD -s 192.168.0.0/24 -p udp --dport 53 -j ACCEPT</span><br><span class="line">$ iptables -A FORWARD -d 192.168.0.0/24 -p udp --sport 53 -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># 9.禁止其他主机ping防火墙主机，但是允许从防火墙上ping其他主机</span></span><br><span class="line">$ iptables -I INPUT -p icmp --icmp-type Echo-Request -j DROP</span><br><span class="line">$ iptables -I INPUT -p icmp --icmp-type Echo-Reply -j ACCEPT</span><br><span class="line">$ iptables -I INPUT -p icmp --icmp-type destination-Unreachable -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 10.禁止转发来自MAC地址为00：0C：29：27：55：3F的和主机的数据包</span></span><br><span class="line"><span class="comment"># 说明：iptables中使用“-m 模块关键字”的形式调用显示匹配。这里用“-m mac –mac-source”来表示数据包的源MAC地址。</span></span><br><span class="line">$ iptables -A FORWARD -m mac --mac-source 00:0c:29:27:55:3F -j DROP</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 11.允许防火墙本机对外开放TCP端口20、21、25、110以及被动模式FTP端口1250-1280</span></span><br><span class="line"><span class="comment"># 说明：这里用“-m multiport –dport”来指定目的端口及范围</span></span><br><span class="line">$ iptables -A INPUT -p tcp -m multiport --dport 20,21,25,110,1250:1280 -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 12.禁止转发源IP地址为192.168.1.20-192.168.1.99的TCP数据包。</span></span><br><span class="line"><span class="comment"># 说明：此处用“-m –iprange –src-range”指定IP范围。</span></span><br><span class="line">$ iptables -A FORWARD -p tcp -m iprange --src-range 192.168.1.20-192.168.1.99 -j DROP</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 13.禁止转发与正常TCP连接无关的非—syn请求数据包。</span></span><br><span class="line"><span class="comment"># 说明：“-m state”表示数据包的连接状态，“NEW”表示与任何连接无关的，新的嘛！</span></span><br><span class="line">$ iptables -A FORWARD -m state --state NEW -p tcp ! --syn -j DROP</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 14.拒绝访问防火墙的新数据包，但允许响应连接或与已有连接相关的数据包</span></span><br><span class="line"><span class="comment"># 说明：“ESTABLISHED”表示已经响应请求或者已经建立连接的数据包</span></span><br><span class="line"><span class="comment"># “RELATED”表示与已建立的连接有相关性的，比如FTP数据连接等。</span></span><br><span class="line">$ iptables -A INPUT -p tcp -m state --state NEW -j DROP</span><br><span class="line">$ iptables -A INPUT -p tcp -m state --state ESTABLISHED,RELATED -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 15.只开放本机的web服务（80）、FTP(20、21、20450-20480)，放行外部主机发住服务器其它端口的应答数据包，将其他入站数据包均予以丢弃处理。</span></span><br><span class="line">$ iptables -I INPUT -p tcp -m multiport --dport 20,21,80 -j ACCEPT</span><br><span class="line">$ iptables -I INPUT -p tcp --dport 20450:20480 -j ACCEPT</span><br><span class="line">$ iptables -I INPUT -p tcp -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line">$ iptables -P INPUT DROP</span><br></pre></td></tr></table></figure>
+<h4 id="常用iptables规则"><a href="#常用iptables规则" class="headerlink" title="常用iptables规则"></a>常用iptables规则</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 删除所有现有规则</span></span><br><span class="line">$ iptables -F</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 设置默认的 chain 策略</span></span><br><span class="line">$ iptables -P INPUT DROP</span><br><span class="line">$ iptables -P FORWARD DROP</span><br><span class="line">$ iptables -P OUTPUT DROP</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 阻止某个特定的 IP 地址</span></span><br><span class="line">$ BLOCK_THIS_IP=<span class="string">"x.x.x.x"</span></span><br><span class="line">$ iptables -A INPUT -s <span class="string">"<span class="variable">$BLOCK_THIS_IP</span>"</span> -j DROP</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 允许全部进来的（incoming）SSH</span></span><br><span class="line">$ iptables -A INPUT -i eth0 -p tcp --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line">$ iptables -A OUTPUT -o eth0 -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 只允许某个特定网络进来的 SSH</span></span><br><span class="line">$ iptables -A INPUT -i eth0 -p tcp -s 192.168.200.0/24 --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line">$ iptables -A OUTPUT -o eth0 -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 6. 允许进来的（incoming）HTTP</span></span><br><span class="line">$ iptables -A INPUT -i eth0 -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line">$ iptables -A OUTPUT -o eth0 -p tcp --sport 80 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 7. 多端口（允许进来的 SSH、HTTP 和 HTTPS）</span></span><br><span class="line">$ iptables -A INPUT -i eth0 -p tcp -m multiport --dports 22,80,443 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line">$ iptables -A OUTPUT -o eth0 -p tcp -m multiport --sports 22,80,443 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 8. 允许出去的（outgoing）SSH</span></span><br><span class="line">$ iptables -A OUTPUT -o eth0 -p tcp --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line">$ iptables -A INPUT -i eth0 -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 9. 允许外出的（outgoing）SSH，但仅访问某个特定的网络</span></span><br><span class="line">$ iptables -A OUTPUT -o eth0 -p tcp -d 192.168.101.0/24 --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line">$ iptables -A INPUT -i eth0 -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 10. 允许外出的（outgoing） HTTPS</span></span><br><span class="line">$ iptables -A OUTPUT -o eth0 -p tcp --dport 443 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line">$ iptables -A INPUT -i eth0 -p tcp --sport 443 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 11. 对进来的 HTTPS 流量做负载均衡</span></span><br><span class="line">$ iptables -A PREROUTING -i eth0 -p tcp --dport 443 -m state --state NEW -m nth --counter 0 --every 3 --packet 0 -j DNAT --to-destination 192.168.1.101:443</span><br><span class="line">$ iptables -A PREROUTING -i eth0 -p tcp --dport 443 -m state --state NEW -m nth --counter 0 --every 3 --packet 1 -j DNAT --to-destination 192.168.1.102:443</span><br><span class="line">$ iptables -A PREROUTING -i eth0 -p tcp --dport 443 -m state --state NEW -m nth --counter 0 --every 3 --packet 2 -j DNAT --to-destination 192.168.1.103:443</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 12. 从内部向外部 Ping</span></span><br><span class="line">$ iptables -A OUTPUT -p icmp --icmp-type <span class="built_in">echo</span>-request -j ACCEPT</span><br><span class="line">$ iptables -A INPUT -p icmp --icmp-type <span class="built_in">echo</span>-reply -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 13. 从外部向内部 Ping</span></span><br><span class="line">$ iptables -A INPUT -p icmp --icmp-type <span class="built_in">echo</span>-request -j ACCEPT</span><br><span class="line">$ iptables -A OUTPUT -p icmp --icmp-type <span class="built_in">echo</span>-reply -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 14. 允许环回（loopback）访问</span></span><br><span class="line">$ iptables -A INPUT -i lo -j ACCEPT</span><br><span class="line">$ iptables -A OUTPUT -o lo -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 15. 允许 packets 从内网访问外网</span></span><br><span class="line"><span class="comment"># if eth1 is connected to external network (internet)</span></span><br><span class="line"><span class="comment"># if eth0 is connected to internal network (192.168.1.x)</span></span><br><span class="line">$ iptables -A FORWARD -i eth0 -o eth1 -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 16. 允许外出的  DNS</span></span><br><span class="line">$ iptables -A OUTPUT -p udp -o eth0 --dport 53 -j ACCEPT</span><br><span class="line">$ iptables -A INPUT -p udp -i eth0 --sport 53 -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 17. 允许 NIS 连接</span></span><br><span class="line">$ rpcinfo -p | grep ypbind ; This port is 853 and 850</span><br><span class="line">$ iptables -A INPUT -p tcp --dport 111 -j ACCEPT</span><br><span class="line">$ iptables -A INPUT -p udp --dport 111 -j ACCEPT</span><br><span class="line">$ iptables -A INPUT -p tcp --dport 853 -j ACCEPT</span><br><span class="line">$ iptables -A INPUT -p udp --dport 853 -j ACCEPT</span><br><span class="line">$ iptables -A INPUT -p tcp --dport 850 -j ACCEPT</span><br><span class="line">$ iptables -A INPUT -p udp --dport 850 -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 18. 允许某个特定网络 rsync 进入本机</span></span><br><span class="line">$ iptables -A INPUT -i eth0 -p tcp -s 192.168.101.0/24 --dport 873 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line">$ iptables -A OUTPUT -o eth0 -p tcp --sport 873 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 19. 仅允许来自某个特定网络的 MySQL 的链接</span></span><br><span class="line">$ iptables -A INPUT -i eth0 -p tcp -s 192.168.200.0/24 --dport 3306 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line">$ iptables -A OUTPUT -o eth0 -p tcp --sport 3306 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 20. 允许 Sendmail 或 Postfix</span></span><br><span class="line">$ iptables -A INPUT -i eth0 -p tcp --dport 25 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line">$ iptables -A OUTPUT -o eth0 -p tcp --sport 25 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 21. 允许 IMAP 和 IMAPS</span></span><br><span class="line">$ iptables -A INPUT -i eth0 -p tcp --dport 143 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line">$ iptables -A OUTPUT -o eth0 -p tcp --sport 143 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line">$ iptables -A INPUT -i eth0 -p tcp --dport 993 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line">$ iptables -A OUTPUT -o eth0 -p tcp --sport 993 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 22. 允许 POP3 和 POP3S</span></span><br><span class="line">$ iptables -A INPUT -i eth0 -p tcp --dport 110 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line">$ iptables -A OUTPUT -o eth0 -p tcp --sport 110 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line">$ iptables -A INPUT -i eth0 -p tcp --dport 995 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line">$ iptables -A OUTPUT -o eth0 -p tcp --sport 995 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 23. 防止 DoS 攻击</span></span><br><span class="line">$ iptables -A INPUT -p tcp --dport 80 -m <span class="built_in">limit</span> --<span class="built_in">limit</span> 25/minute --<span class="built_in">limit</span>-burst 100 -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 24. 设置 422 端口转发到 22 端口</span></span><br><span class="line">$ iptables -t nat -A PREROUTING -p tcp -d 192.168.102.37 --dport 422 -j DNAT --to 192.168.102.37:22</span><br><span class="line">$ iptables -A INPUT -i eth0 -p tcp --dport 422 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line">$ iptables -A OUTPUT -o eth0 -p tcp --sport 422 -m state --state ESTABLISHED -j ACCEPT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 25. 为丢弃的包做日志（Log）</span></span><br><span class="line">$ iptables -N LOGGING</span><br><span class="line">$ iptables -A INPUT -j LOGGING</span><br><span class="line">$ iptables -A LOGGING -m <span class="built_in">limit</span> --<span class="built_in">limit</span> 2/min -j LOG --<span class="built_in">log</span>-prefix <span class="string">"IPTables Packet Dropped: "</span> --<span class="built_in">log</span>-level 7</span><br><span class="line">$ iptables -A LOGGING -j DROP</span><br></pre></td></tr></table></figure>
+<h3 id="iptables防火墙规则的保存与恢复"><a href="#iptables防火墙规则的保存与恢复" class="headerlink" title="iptables防火墙规则的保存与恢复"></a>iptables防火墙规则的保存与恢复</h3><p><code>iptables-save</code>把规则保存到文件中，再由目录<code>rc.d</code>下的脚本（<code>/etc/rc.d/init.d/iptables</code>）自动装载，使用命令<code>iptables-save</code>来保存规则。</p>
+<p>一般用<code>iptables-save &gt; /etc/sysconfig/iptables</code> 生成保存规则的文件<code>/etc/sysconfig/iptables</code>，也可以用<code>service iptables save</code>它能把规则自动保存在<code>/etc/sysconfig/iptables</code>中。</p>
+<p>当计算机启动时，rc.d下的脚本将用命令iptables-restore调用这个文件，从而就自动恢复了规则。</p>
+<h3 id="iptables的简单应用"><a href="#iptables的简单应用" class="headerlink" title="iptables的简单应用"></a>iptables的简单应用</h3><p>由于网络安全课程的实验，特地来学习iptables，可以把实验当作一个应用示例</p>
+<p>实验大致如下：</p>
+<ul>
+<li>一台windows虚拟机，内网环境，无法直接访问外网</li>
+<li>一台linux虚拟机，两个网卡，一个用于连接外网，一个用于连接内网(即windows虚拟机)</li>
+<li>目标：利用iptables将linux配置成路由器，windows虚拟机通过路由器访问Internet</li>
+</ul>
+<p>实验环境：Ubuntu 18.04和windows server2016</p>
+<p>刚开始认为创建网卡，便在虚拟机的ubuntu里创建了一个虚拟网卡，后面才发现不对，构建不了内网环境，之后才发现是在vmware中添加物理网卡(模拟的)构建内网环境。</p>
+<p>所以首先为ubuntu创建两个网卡，一个能访问外网(使用NAT)，另外一个仅内网(vmware里的仅主机，LAN那个我没搞懂，应该也是可以的)</p>
+<p>在linux中，用命令<code>sudo vim /etc/network/interfaces</code>修改网卡配置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># interfaces(5) file used by ifup(8) and if down(8)</span><br><span class="line">auto lo</span><br><span class="line">iface lo inet loopback</span><br><span class="line"></span><br><span class="line">auto ens33</span><br><span class="line">iface ens33 inet static</span><br><span class="line">address 192.168.52.128</span><br><span class="line">netmask 255.255.255.0</span><br><span class="line">gateway 192.168.52.1</span><br><span class="line"></span><br><span class="line">auto ens38</span><br><span class="line">iface ens38 inet static</span><br><span class="line">address 172.16.0.10</span><br><span class="line">netmask 255.255.255.0</span><br></pre></td></tr></table></figure>
+<p>修改后，重启网络配置</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sc@sc-virtual-machine:~$ sudo /etc/init.d/networking restart</span><br><span class="line">[ ok ] Restarting networking (via systemctl): networking.service.</span><br><span class="line">sc@sc-virtual-machine:~$</span><br></pre></td></tr></table></figure>
+<p>还有一点，要开启linux的ip转发功能，命令如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@sc-virtual-machine:/home/sc<span class="comment"># echo 1 &gt; /proc/sys/net/ipv4/ip_forward</span></span><br><span class="line">$ sudo vim  /etc/sysctl.conf</span><br><span class="line"><span class="comment"># net.ipv4.ip_forward = 1</span></span><br><span class="line"><span class="comment"># 取消上面这个注释,开启linux转发</span></span><br><span class="line">sc@sc-virtual-machine:~$ sudo sysctl -p</span><br></pre></td></tr></table></figure>
+<p>在<code>sysctl.conf</code>里，本来就有注释的转发配置语句，取消注释即可，用命令重新加载内核参数，当然，此时重启linux虚拟机也不是不可以</p>
+<p>在windows做如下配置</p>
+<p>控制面板-&gt;网络和Internet-&gt;网络和共享中心-&gt;本地连接-&gt;属性-&gt;Internet协议版本4（TCP/IPv4）-&gt;属性</p>
+<p><img src="/2020/03/16/iptables/5.png" alt></p>
+<p>特别地，要将windows网关配置为linux的内网网卡地址</p>
+<p>然后要记得，DNS服务器要和linux主机的一致</p>
+<p>假如，windows虚拟机能ping通linux主机，但是linux主机ping不通windows，则需要关闭windows的防火墙，或者在windows防火墙中，在入站规则内打开ICMP回显</p>
+<p>控制面板-&gt;系统和安全-&gt;Windows防火墙-&gt;高级设置-&gt;入站规则-&gt;文件和打印机共享（回显请求-ICMPv4-In）-&gt;右键-&gt;启用规则</p>
+<h5 id="iptables转发"><a href="#iptables转发" class="headerlink" title="iptables转发"></a>iptables转发</h5><p>用iptables做nat，命令如下</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sc@sc-virtual-machine:~$ <span class="comment"># sudo iptables -t nat -A POSTROUTING  -o ens33 -j MASQUERADE</span></span><br><span class="line">sc@sc-virtual-machine:~$ sudo iptables -t nat -A POSTROUTING -s 172.16.0.0/24 -o ens33 -j MASQUERADE</span><br><span class="line">sc@sc-virtual-machine:~$ sudo iptables -A FORWARD -i ens38 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<p>将来自<code>172.16.0.0/24</code>内网的流量转发到ens33，<code>MASQUERADE</code>是指用该网卡上的IP来替换源地址IP，对于IP不固定，如dhcp自动分配ip的情况下使用，这边由于是静态ip，不加该选项也是可以的</p>
+<p>运行完命令后，在windows主机就可以ping通<code>baidu.com</code>了，实验就完成了</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/security/" rel="tag"># security</a>
+          
+            <a href="/tags/network/" rel="tag"># network</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/06/Ntop/" rel="next" title="Ntop">
+                <i class="fa fa-chevron-left"></i> Ntop
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/16/CVE-2020-0796/" rel="prev" title="CVE-2020-0796">
+                CVE-2020-0796 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Magic King">
+            
+              <p class="site-author-name" itemprop="name">Magic King</p>
+              <div class="site-description motion-element" itemprop="description">Now You See Me!</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">49</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Magic-King" title="GitHub &rarr; https://github.com/Magic-King" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#iptables"><span class="nav-number">1.</span> <span class="nav-text">iptables</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.0.1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#链"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表的概念"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">表的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表链关系"><span class="nav-number">1.0.1.3.</span> <span class="nav-text">表链关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#规则的概念"><span class="nav-number">1.0.1.4.</span> <span class="nav-text">规则的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#匹配条件"><span class="nav-number">1.0.1.4.1.</span> <span class="nav-text">匹配条件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#处理的动作"><span class="nav-number">1.0.1.4.2.</span> <span class="nav-text">处理的动作</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令"><span class="nav-number">1.0.2.</span> <span class="nav-text">命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#对于Command选项："><span class="nav-number">1.0.2.0.1.</span> <span class="nav-text">对于Command选项：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iptables防火墙常用的策略"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">iptables防火墙常用的策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用iptables规则"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">常用iptables规则</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iptables防火墙规则的保存与恢复"><span class="nav-number">1.0.3.</span> <span class="nav-text">iptables防火墙规则的保存与恢复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iptables的简单应用"><span class="nav-number">1.0.4.</span> <span class="nav-text">iptables的简单应用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#iptables转发"><span class="nav-number">1.0.4.0.1.</span> <span class="nav-text">iptables转发</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Magic King</span>
+
+  
+
+  
+</div>
+
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0 </div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-2" count="666" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+	<script type="text/javascript" src="https://cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+</body>
+</html>
