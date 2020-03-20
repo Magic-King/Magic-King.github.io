@@ -515,13 +515,13 @@
 <p> 题目描述：X老师告诉小宁同学HTTP通常使用两种请求方法，你知道是哪两种吗？ </p>
 </blockquote>
 <p>利用burp suite 发包得到flag</p>
-<p><img src="images/loading.gif" data-original="/2019/11/11/XCTF-adworld-web-wp/2.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/11/11/XCTF-adworld-web-wp/2.jpg" alt></p>
 <p>另一种思路是利用python的requests库发送请求。</p>
 <h2 id="0x03-robots"><a href="#0x03-robots" class="headerlink" title="0x03  robots"></a>0x03  robots</h2><blockquote>
 <p>题目描述：X老师上课讲了Robots协议，小宁同学却上课打了瞌睡，赶紧来教教小宁Robots协议是什么吧。 </p>
 </blockquote>
 <p>查看源码肯定是没有flag的，根据题目robots可联想到web的robots.txt协议</p>
-<p><img src="images/loading.gif" data-original="/2019/11/11/XCTF-adworld-web-wp/3.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/11/11/XCTF-adworld-web-wp/3.jpg" alt></p>
 <blockquote>
 <p>robots.txt协议是在Web站点的根目录下设置一个robots.txt文件，规定站点上的哪些区域或者哪些页面是限制搜索的。搜索程序将参考该文件，决定站点中的哪些区域是不允许搜索的，并在接下来的搜索过程中跳过这些区域。</p>
 <p>下面是一个例子：</p>
@@ -535,13 +535,13 @@
 </ul>
 </blockquote>
 <p>直接访问<a href="http://xxx.xxx.xxx.xxx/robots.txt" target="_blank" rel="noopener">http://xxx.xxx.xxx.xxx/robots.txt</a></p>
-<p><img src="images/loading.gif" data-original="/2019/11/11/XCTF-adworld-web-wp/3_2.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/11/11/XCTF-adworld-web-wp/3_2.jpg" alt></p>
 <p>得到一个php路径，直接访问得到flag</p>
-<p><img src="images/loading.gif" data-original="/2019/11/11/XCTF-adworld-web-wp/3_3.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/11/11/XCTF-adworld-web-wp/3_3.jpg" alt></p>
 <h2 id="0x04-backup"><a href="#0x04-backup" class="headerlink" title="0x04 backup"></a>0x04 backup</h2><blockquote>
 <p> 题目描述：X老师忘记删除备份文件，他派小宁同学去把备份文件找出来,一起来帮小宁同学吧！ </p>
 </blockquote>
-<p><img src="images/loading.gif" data-original="/2019/11/11/XCTF-adworld-web-wp/4.jpg" style="zoom:50%;"></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/11/11/XCTF-adworld-web-wp/4.jpg" style="zoom:50%;"></p>
 <p> php的备份有两种：<em>.php~和</em>.php.bak </p>
 <p> 如果网站存在备份文件，在地址栏最末加上/index.php~或/index.php.bak，即可得到备份文件 <code>index.php.bak</code></p>
 <p>访问 <a href="http://url/index.php.bak" target="_blank" rel="noopener">http://url/index.php.bak</a> 即自动下载了index.php.bak，打开查看flag就在里面</p>
@@ -568,7 +568,7 @@
 <p>题目描述：X老师告诉小宁其实xff和referer是可以伪造的 </p>
 </blockquote>
 <p>直接访问网站，提示需要特定ip访问</p>
-<p><img src="images/loading.gif" data-original="/2019/11/11/XCTF-adworld-web-wp/8.jpg" style="zoom: 80%;"></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/11/11/XCTF-adworld-web-wp/8.jpg" style="zoom: 80%;"></p>
 <p>由题目描述猜想是改http请求，进行下一步.</p>
 <p>百度xff可知</p>
 <blockquote>
@@ -582,7 +582,7 @@
 <p>PS： Remote Address 无法伪造，因为建立 TCP 连接需要三次握手，如果伪造了源 IP，无法建立 TCP 连接，更不会有后面的 HTTP 请求 </p>
 </blockquote>
 <p>然后得到如下页面</p>
-<p><img src="images/loading.gif" data-original="/2019/11/11/XCTF-adworld-web-wp/8_1.jpg"></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/11/11/XCTF-adworld-web-wp/8_1.jpg"></p>
 <p>百度Refer可知</p>
 <blockquote>
 <p>HTTP_REFERER提供了引导用户代理到当前页的前一页的地址信息，常见的一些应用场景有防盗链，统计文章有多少次是来自谷歌搜索结果，多少次来自百度搜索结果等。 </p>
@@ -620,9 +620,9 @@
 </blockquote>
 <p>直接伪造header的<code>Referer</code>属性</p>
 <p>但是没有得到结果</p>
-<p><img src="images/loading.gif" data-original="/2019/11/11/XCTF-adworld-web-wp/8_2.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/11/11/XCTF-adworld-web-wp/8_2.jpg" alt></p>
 <p>后面百度发现，<code>url/xxx</code>和<code>url/xxx/</code>是不一样的，<code>url/xxx</code>是直接访问xxx的文件，而<code>url/xxx/</code>是访问xxx目录，因此我们刚才得不到flag，将Referer的后面的斜杠去掉，再次请求，得到flag</p>
-<p><img src="images/loading.gif" data-original="/2019/11/11/XCTF-adworld-web-wp/8_3.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/11/11/XCTF-adworld-web-wp/8_3.jpg" alt></p>
 <h2 id="0x09-weak-auth"><a href="#0x09-weak-auth" class="headerlink" title="0x09  weak_auth"></a>0x09  weak_auth</h2><blockquote>
 <p> 题目描述：小宁写了一个登陆验证页面，随手就设了一个密码。 </p>
 </blockquote>
@@ -636,7 +636,7 @@
 <h2 id="0x0a-webshell"><a href="#0x0a-webshell" class="headerlink" title="0x0a webshell"></a>0x0a webshell</h2><blockquote>
 <p> 题目描述：小宁百度了php一句话,觉着很有意思,并且把它放在index.php里。 </p>
 </blockquote>
-<p><img src="images/loading.gif" data-original="/2019/11/11/XCTF-adworld-web-wp/10.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/11/11/XCTF-adworld-web-wp/10.jpg" alt></p>
 <blockquote>
 <p> webshell就是以asp、php、jsp或者cgi等网页文件形式存在的一种命令执行环境，也可以将 其称做为一种网页后门。黑客在入侵了一个网站后，通常会将asp或php后门文件与网站服 务器WEB目录下正常的网页文件混在一起，然后就可以使用浏览器来访问asp或者php后门，得到一个命令执行环境，以达到控制网站服务器的目的。 顾名思义，”web”的含义是显然需要服务器开放web服务，”shell”的含义是取得对服务器某 种程度上操作权限。webshell常常被称为入侵者通过网站端口对网站服务器的某种程度上操 作的权限。由于webshell其大多是以动态脚本的形式出现，也有人称之为网站的后门工具。 首先新建一个index.php文件，把PHP代码输入到里面，电脑可能会自动识别它为病毒，并 删除，可以恢复后使用  </p>
 </blockquote>
@@ -665,7 +665,7 @@
 <blockquote>
 <p> 发现“0”为 true，所以可以把参数 a 构造为’0’或者‘alph’这种转换后为 0 但本身不为 False 的 形式 数字和字符混合的字符串转换为整数后只保留数字 </p>
 </blockquote>
-<p><img src="images/loading.gif" data-original="/2019/11/11/XCTF-adworld-web-wp/12.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/11/11/XCTF-adworld-web-wp/12.jpg" alt></p>
 
       
     </div>
@@ -774,7 +774,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="images/loading.gif" data-original="/images/avatar.jpg" alt="Magic King">
+              <img class="site-author-image" itemprop="image" src="https://magic-king.net/images/loading.gif" data-original="/images/avatar.jpg" alt="Magic King">
             
               <p class="site-author-name" itemprop="name">Magic King</p>
               <div class="site-description motion-element" itemprop="description">Now You See Me!</div>
