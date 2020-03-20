@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2020-03-16T06:39:20.029Z</updated>
+  <updated>2020-03-16T07:13:02.661Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -15,47 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="http://magic-king.net/2020/03/16/CVE-2020-0796/CVE-2020-0796-PoC/README/"/>
-    <id>http://magic-king.net/2020/03/16/CVE-2020-0796/CVE-2020-0796-PoC/README/</id>
-    <published>2020-03-16T06:39:20.029Z</published>
-    <updated>2020-03-16T06:39:20.029Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;CVE-2020-0796-PoC-aka-CoronaBlue-aka-SMBGhost&quot;&gt;&lt;a href=&quot;#CVE-2020-0796-PoC-aka-CoronaBlue-aka-SMBGhost&quot; class=&quot;headerlink&quot; title=&quot;CVE-2020-0796 PoC aka 
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://magic-king.net/2020/03/16/CVE-2020-0796/SMBGhost/README/"/>
-    <id>http://magic-king.net/2020/03/16/CVE-2020-0796/SMBGhost/README/</id>
-    <published>2020-03-16T05:44:31.495Z</published>
-    <updated>2020-03-16T05:44:31.495Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;SMBGhost&quot;&gt;&lt;a href=&quot;#SMBGhost&quot; class=&quot;headerlink&quot; title=&quot;SMBGhost&quot;&gt;&lt;/a&gt;SMBGhost&lt;/h1&gt;&lt;p&gt;Simple scanner for CVE-2020-0796 - SMBv3 RCE.&lt;/p&gt;
-&lt;p&gt;The scanner i
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
   
   <entry>
     <title>CVE-2020-0796</title>
