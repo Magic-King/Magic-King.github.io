@@ -537,8 +537,8 @@
 <h2 id="Git是什么"><a href="#Git是什么" class="headerlink" title="Git是什么"></a>Git是什么</h2><p>Git是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。<br>Git是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。<br>Git与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。</p>
 <p>先说集中式版本控制系统，版本库是集中存放在中央服务器的，而干活的时候，用的都是自己的电脑，所以要先从中央服务器取得最新的版本，然后开始干活，干完活了，再把自己的活推送给中央服务器。中央服务器就好比是一个图书馆，你要改一本书，必须先从图书馆借出来，然后回到家自己改，改完了，再放回图书馆。</p>
 <p>那分布式版本控制系统与集中式版本控制系统有何不同呢？首先，<strong>分布式版本控制系统根本没有 “中央服务器”，每个人的电脑上都是一个完整的版本库，</strong>这样，你工作的时候，就不需要联网了，因为版本库就在你自己的电脑上。既然每个人电脑上都有一个完整的版本库，那多个人如何协作呢？比方说你在自己电脑上改了文件 A，你的同事也在他的电脑上改了文件 A，这时，你们俩之间只需把各自的修改推送给对方，就可以互相看到对方的修改了。集中式版本控制系统最大的毛病就是必须联网才能工作。</p>
-<p><img src="/2019/09/23/git/git_1.png" alt></p>
-<p><img src="/2019/09/23/git/git_2.png" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/09/23/git/git_1.png" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/09/23/git/git_2.png" alt></p>
 <blockquote>
 <p><strong>Git与SVN的区别</strong><br>GIT不仅仅是个版本控制系统，它也是个内容管理系统(CMS),工作管理系统等。<br>Git 与 SVN 区别点：</p>
 <ol>
@@ -559,7 +559,7 @@
 <li>提交修改。</li>
 <li>在修改完成后，如果发现错误，可以撤回提交并再次修改并提交。</li>
 </ol>
-<p><img src="/2019/09/23/git/git_3.png" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/09/23/git/git_3.png" alt></p>
 <p>基本概念<br>我们先来理解下Git 工作区、暂存区和版本库概念</p>
 <ul>
 <li><p>工作区：就是你项目的目录（可见目录）。</p>
@@ -570,7 +570,7 @@
 </li>
 </ul>
 <p>下面这个图展示了工作区、版本库中的暂存区和版本库之间的关系：</p>
-<p><img src="/2019/09/23/git/git_4.png" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/09/23/git/git_4.png" alt></p>
 <p>如果我们要对项目进行管理，就切换到该项目目录底下，使用<code>git init</code>命令，进行初始化</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$git</span> init</span><br></pre></td></tr></table></figure>
 <p><code>git init</code> 命令只会做一件事，就是在项目的根目录下创建一个 <code>.git</code> 的子目录，用来保存当前项目的一些版本信息，我们可以继续使用 <code>tree -a</code> 命令查看该目录的完整结构，如下：</p>
@@ -601,7 +601,7 @@
 </ul>
 <p>文件都被存储为 blob 类型的文件，文件夹被存储为 tree 类型的文件，创建的提交节点被存储为 Commit 类型的数据；</p>
 <p>一般我们系统中的目录(tree)，在 Git 会像下面这样存储：</p>
-<p><img src="/2019/09/23/git/git_5.png" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/09/23/git/git_5.png" alt></p>
 <p>而 Commit 类型的数据则整合了 tree 和 blob 类型，保存了当前的所有变化，例如我们可以再在刚才的目录下新建一个目录，并添加一些文件试试：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir <span class="built_in">test</span></span><br><span class="line">$ touch <span class="built_in">test</span>/test.file</span><br><span class="line">$ tree -a</span><br><span class="line">.</span><br><span class="line">├── .git</span><br><span class="line">│   ├── HEAD</span><br><span class="line">│   ├── branches</span><br><span class="line">│   ├── config</span><br><span class="line">│   ├── description</span><br><span class="line">│   ├── hooks</span><br><span class="line">│   │   ├── 节省篇幅..省略..</span><br><span class="line">│   ├── index</span><br><span class="line">│   ├── info</span><br><span class="line">│   │   └── exclude</span><br><span class="line">│   ├── objects</span><br><span class="line">│   │   ├── .DS_Store</span><br><span class="line">│   │   ├── e6</span><br><span class="line">│   │   │   └── 9de29bb2d1d6434b8b29ae775ad8c2e48c5391</span><br><span class="line">│   │   ├── info</span><br><span class="line">│   │   └── pack</span><br><span class="line">│   └── refs</span><br><span class="line">│       ├── heads</span><br><span class="line">│       └── tags</span><br><span class="line">├── <span class="built_in">test</span></span><br><span class="line">│   └── test.file</span><br><span class="line">└── test.txt</span><br></pre></td></tr></table></figure>
 <p>提交完Commit在观察变化</p>
@@ -613,7 +613,7 @@
 <p>我们再试着提交一个 commit 来观察变化:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ touch <span class="built_in">test</span>/test2.file</span><br><span class="line">$  git commit -a -m <span class="string">"test: 新增加一个 commit 以观察变化."</span></span><br><span class="line">[master 9dfabac] <span class="built_in">test</span>: 新增加一个 commit 以观察变化.</span><br><span class="line"> 2 files changed, 0 insertions(+), 0 deletions(-)</span><br><span class="line"> create mode 100644 <span class="built_in">test</span>/test.file</span><br><span class="line"> create mode 100644 <span class="built_in">test</span>/test2.file</span><br><span class="line">$ git cat-file -p 9dfabac</span><br><span class="line">tree c562bfb9441352f4c218b0028148289f1ea7d7cd</span><br><span class="line">parent 30d51b1edd2efd551dd6bd52d4520487b5708c0e</span><br><span class="line">author 龙滔  1565878699 +0800</span><br><span class="line">committer 龙滔  1565878699 +0800</span><br><span class="line"></span><br><span class="line"><span class="built_in">test</span>: 新增加一个 commit 以观察变化.</span><br></pre></td></tr></table></figure>
 <p>可以观察到这一次的 commit 多了一个 parent 的行，其中的 <strong>“指纹”</strong> 和上一次的 commit 一模一样，当我们提交两个 commit 之后我们的 Git 仓库可以简化为下图：</p>
-<p><img src="/2019/09/23/git/git_6.png" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/09/23/git/git_6.png" alt></p>
 <ul>
 <li>说明：其中因为我们 test 文件夹新增了文件，也就是出现了变化，所以就被标识成了新的 tree 类型的对象；</li>
 </ul>
@@ -626,45 +626,45 @@
 <p>引用文件的内容都是 40 位长度的 commit</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cat .git/refs/heads/master</span><br><span class="line">9dfabac68470a588a4b4a78742249df46438874a</span><br></pre></td></tr></table></figure>
 <p>这就像是一个指针一样，它指向了你的最后一次提交（例如这里就指向了第二次提交的 commit），我们补充上分支信息，现在的 Git 仓库就会像下图所示：</p>
-<p><img src="/2019/09/23/git/git_7.png" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/09/23/git/git_7.png" alt></p>
 <h4 id="HEAD-目录"><a href="#HEAD-目录" class="headerlink" title="HEAD 目录"></a>HEAD 目录</h4><p>HEAD 目录下存储的是当前所在的位置，其内容是分支的名称：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cat HEAD</span><br><span class="line">ref: refs/heads/master</span><br></pre></td></tr></table></figure>
 <p>我们再补充上 HEAD 的信息，现在的 Git 仓库如下图所示：</p>
-<p><img src="/2019/09/23/git/git_8.png" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/09/23/git/git_8.png" alt></p>
 <h3 id="git的冲突处理"><a href="#git的冲突处理" class="headerlink" title="git的冲突处理"></a>git的冲突处理</h3><p>以下主要参考以下两篇文章</p>
 <blockquote>
 <p><a href="https://www.wmyskxz.com/2019/08/16/git-yuan-li-ru-men-jian-xi/#toc-heading-11" target="_blank" rel="noopener">git冲突处理图解</a></p>
 <p><a href="https://coding.net/help/doc/practice/git-principle.html" target="_blank" rel="noopener">使用原理视角看 Git</a></p>
 </blockquote>
 <p>讲完git的目录结构，我们可知道分支在git中仅是一个指针，但是在分布式工作中，无可避免的会遇见冲突（分支的合并）</p>
-<p><img src="/2019/09/23/git/git_9.png" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/09/23/git/git_9.png" alt></p>
 <p>图上的情况，并不是移动分支指针就能够解决问题的，它需要一种合并策略。首先我们需要明确的是谁与谁的合并，是 2，3 与 4， 5， 6 两条线的合并吗？其实并不是的，<strong>真实合并的其实只有 3 和 6，因为每一次的提交都包含了项目完整的快照，即合并只是 tree 与 tree 的合并。</strong></p>
 <p>这可能说起来有点绕，我们可以先来想一个简单的算法，用来比较 3 和 6 的不同。如果我们只是单纯的比较 3 和 6 的信息，其实并没有意义，因为它们之间并不能确切的表达出当前的冲突状态。因此我们需要选取它们两个分支的分歧点（merge base）作为参考点，进行比较。</p>
 <p>首先我们把 1 作为基础，然后把 1、3、6 中所有的文件做一个列表，然后依次遍历这个列表中的文件。我们现在拿列表中的一个文件进行举例，把在提交在 1、3、6 中的该文件分别称为版本1、版本3、版本6，可能出现如下几种情况：</p>
 <p><strong>1. 版本 1、版本 3、版本 6 的 “指纹” 值都相同：</strong>这种情况则说明没有冲突；<br><strong>2. 版本 3 or 版本 6 至少有一个与版本 1 状态相同（指的是指纹值相同或都不存在）：</strong>这种情况可以自动合并，比如版本 1 中存在一个文件，在版本 3 中没有对该文件进行修改，而版本 6 中删除了这个文件，则以版本 6 为准就可以了；<br><strong>3. 版本 3 or 版本 6 都与版本 1 的状态不同：</strong>这种情况复杂一些，自动合并策略很难生效了，所以需要手动解决；</p>
 <h4 id="merge-操作"><a href="#merge-操作" class="headerlink" title="merge 操作"></a>merge 操作</h4><p>在解决完冲突后，我们可以将修改的内容提交为一个新的提交，这就是 merge。</p>
-<p><img src="/2019/09/23/git/git_11.png" alt="img"></p>
+<p><img src="./images/loading.gif" data-original="/2019/09/23/git/git_11.png" alt="img"></p>
 <p>可以看到 merge 是一种不修改分支历史提交记录的方式，这也是我们常用的方式。但是这种方式在某些情况下使用起来不太方便，比如我们创建了一些提交发送给管理者，管理者在合并操作中产生了冲突，还需要去解决冲突，这无疑增加了他人的负担。</p>
 <p>而我们使用 rebase 可以解决这种问题。</p>
 <h4 id="rebase-操作"><a href="#rebase-操作" class="headerlink" title="rebase 操作"></a>rebase 操作</h4><p>假设我们的分支结构如下：</p>
-<p><img src="/2019/09/23/git/git_11.png" alt="img"></p>
+<p><img src="./images/loading.gif" data-original="/2019/09/23/git/git_11.png" alt="img"></p>
 <p>rebase 会把从 Merge Base 以来的所有提交，以补丁的形式一个一个重新打到目标分支上。这使得目标分支合并该分支的时候会直接 <strong>Fast Forward</strong>（可以简单理解为直接后移指针），即不会产生任何冲突。提交历史是一条线，这对强迫症患者可谓是一大福音。</p>
-<p><img src="/2019/09/23/git/git_12.png" alt="img"></p>
+<p><img src="./images/loading.gif" data-original="/2019/09/23/git/git_12.png" alt="img"></p>
 <p>其实 rebase 主要是在 .git/rebase-merge 下生成了两个文件，分别为 git-rebase-todo 和 done 文件，这两个文件的作用光看名字就大概能够看得出来。git-rebase-todo 中存放了 rebase 将要操作的 commit，而 done 存放正操作或已操作完毕的 commit，比如我们这里，git-rebase-todo 存放了 4、5、6 三个提交。</p>
-<p><img src="/2019/09/23/git/git_13.png" alt="img"></p>
+<p><img src="./images/loading.gif" data-original="/2019/09/23/git/git_13.png" alt="img"></p>
 <p>首先 Git 会把 4 这个 commit 放入 done，表示正在操作 4，然后将 4 以补丁的方式打到 3 上，形成了新的 4`，这一步是可能产生冲突的，如果有冲突，需要解决冲突之后才能继续操作。</p>
-<p><img src="/2019/09/23/git/git_14.png" alt="img"></p>
+<p><img src="./images/loading.gif" data-original="/2019/09/23/git/git_14.png" alt="img"></p>
 <p>接着按同样的方式把 5、6 都放入 done，最后把指针移动到最新的提交 6 上，就完成了 rebase 的操作。</p>
 <p><strong>从刚才的图中，我们就可以看到 rebase 的一个缺点，那就是修改了分支的历史提交。</strong>如果已经将分支推送到了远程仓库，会导致无法将修改后的分支推送上去，必须使用 -f 参数（force）强行推送。</p>
 <p><strong>所以使用 rebase 最好不要在公共分支上进行操作。</strong></p>
 <h4 id="Squash-and-Merge-操作"><a href="#Squash-and-Merge-操作" class="headerlink" title="Squash and Merge 操作"></a>Squash and Merge 操作</h4><p>简单说就是压缩提交，把多次的提交融合到一个 commit 中，这样的好处不言而喻，我们着重来讨论一下实现的技术细节，还是以我们上面最开始的分支情况为例，首先，Git 会创建一个临时分支，指向当前 feature 的最新 commit。</p>
-<p><img src="/2019/09/23/git/git_15.png" alt="img"></p>
+<p><img src="./images/loading.gif" data-original="/2019/09/23/git/git_15.png" alt="img"></p>
 <p>然后按照上面 rebase 的方式，变基到 master 的最新 commit 处。</p>
-<p><img src="/2019/09/23/git/git_16.png" alt="img"></p>
+<p><img src="./images/loading.gif" data-original="/2019/09/23/git/git_16.png" alt="img"></p>
 <p>接着用 rebase 来 squash 之，压缩这些提交为一个提交。</p>
-<p><img src="/2019/09/23/git/git_17.png" alt="img"></p>
+<p><img src="./images/loading.gif" data-original="/2019/09/23/git/git_17.png" alt="img"></p>
 <p>最后以 fast forward 的方式合并到 master 中。</p>
-<p><img src="/2019/09/23/git/git_18.png" alt="img"></p>
+<p><img src="./images/loading.gif" data-original="/2019/09/23/git/git_18.png" alt="img"></p>
 <p>可见此时 master 分支多且只多了一个描述了这次改动的提交，这对于大型工程，保持主分支的简洁易懂有很大的帮助。</p>
 <h2 id="git基本操作"><a href="#git基本操作" class="headerlink" title="git基本操作"></a>git基本操作</h2><h3 id="git配置"><a href="#git配置" class="headerlink" title="git配置"></a>git配置</h3><p>Git 提供了一个叫做 git config 的工具，专门用来配置或读取相应的工作环境变量。<br>这些环境变量，决定了 Git 在各个环节的具体工作方式和行为。这些变量可以存放在以下三个不同的地方：</p>
 <blockquote>
@@ -884,7 +884,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Magic King">
+              <img class="site-author-image" itemprop="image" src="./images/loading.gif" data-original="/images/avatar.jpg" alt="Magic King">
             
               <p class="site-author-name" itemprop="name">Magic King</p>
               <div class="site-description motion-element" itemprop="description">Now You See Me!</div>
@@ -1671,5 +1671,5 @@
 	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
   
-</body>
+<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
 </html>

@@ -603,7 +603,7 @@
 <p>PS：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">编译python文件为.pyc文件</span></span><br><span class="line"><span class="meta">$</span><span class="bash">python -m compileall main.py</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">pyc的反编译</span></span><br><span class="line"><span class="meta">#</span><span class="bash">依赖python的uncompyle</span></span><br><span class="line"><span class="meta">$</span><span class="bash">pip install uncompyle</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看帮助</span></span><br><span class="line"><span class="meta">$</span><span class="bash">uncompyle6 --<span class="built_in">help</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash">将models.pyc反编译成models.py</span></span><br><span class="line"><span class="meta">$</span><span class="bash">uncompyle6 models.pyc &gt; models.py</span></span><br></pre></td></tr></table></figure>
 <p>利用uncompyle6反编译的pyc文件和在线编译文件相同，也挺快的</p>
-<p><img src="/2019/11/10/XCTF-adworld-crypto-wp/11_1.jpg" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/11/10/XCTF-adworld-crypto-wp/11_1.jpg" alt></p>
 <h2 id="0x0c-easy-ECC"><a href="#0x0c-easy-ECC" class="headerlink" title="0x0c easy_ECC"></a>0x0c easy_ECC</h2><blockquote>
 <p> 题目描述：转眼两个人又走到了下一个谜题的地方，这又是一种经典的密码学加密方式 而你刚好没有这个的工具，你对小鱼说“小鱼我知道数学真的很重要了，有了工具只是方便我们使用 懂了原理才能做到，小鱼你教我一下这个缇努怎么做吧！”在小鱼的一步步带领下，你终于明白了ECC 的基本原理，成功的解开了这个题目，两个人相视一笑，快步走向了下一个题目所在的位置。flag格式为cyberpeace{x+y的值} </p>
 </blockquote>
@@ -720,7 +720,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Magic King">
+              <img class="site-author-image" itemprop="image" src="./images/loading.gif" data-original="/images/avatar.jpg" alt="Magic King">
             
               <p class="site-author-name" itemprop="name">Magic King</p>
               <div class="site-description motion-element" itemprop="description">Now You See Me!</div>
@@ -1507,5 +1507,5 @@
 	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
   
-</body>
+<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
 </html>

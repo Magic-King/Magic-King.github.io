@@ -593,7 +593,7 @@
 </ul>
 </li>
 </ul>
-<h5 id="比特币的生态系统如下："><a href="#比特币的生态系统如下：" class="headerlink" title="比特币的生态系统如下："></a>比特币的生态系统如下：</h5><p><img src="/2019/12/26/BlockChain/1.jpg" alt="比特币的生态系统"></p>
+<h5 id="比特币的生态系统如下："><a href="#比特币的生态系统如下：" class="headerlink" title="比特币的生态系统如下："></a>比特币的生态系统如下：</h5><p><img src="./images/loading.gif" data-original="/2019/12/26/BlockChain/1.jpg" alt="比特币的生态系统"></p>
 <p>区块链因比特币而生，但是现在已经脱离了比特币网络自身。</p>
 <h2 id="Block-Chain"><a href="#Block-Chain" class="headerlink" title="Block Chain"></a>Block Chain</h2><p>区块链本质上是一个去中心化的数据库，又不仅仅是一个数据库。是一串使用密码学方法相关联产生的数据块，每一个数据块中包含了一组比特币网络交易的信息，用于验证其信息的有效性(防伪)和生成下一个区块。</p>
 <p>2015年被业界视为区块链元年，2016年则是区块链产业深化发展和全面加速前行的一年，2019年为“上链元年”。</p>
@@ -642,7 +642,7 @@
 </li>
 </ol>
 </blockquote>
-<p><img src="/2019/12/26/BlockChain/2.jpg" alt="区块链工作流程"></p>
+<p><img src="./images/loading.gif" data-original="/2019/12/26/BlockChain/2.jpg" alt="区块链工作流程"></p>
 <p>如图，A想要向B发起交易（1，2），做工作量证明，然后将交易广播至区块链网络中（3），让其他节点验证工作量证明（4），验证成功后，将交易区块加入该链的末尾（5），交易成功（6）。</p>
 <h4 id="工作量证明"><a href="#工作量证明" class="headerlink" title="工作量证明"></a>工作量证明</h4><p>Proof of Work：简称PoW，即工作量证明。比特币的这种基于算力寻找 nonce 串的共识机制。 目前，要让哈希结果满足一定条件，并无已知的快速启发式算法，只能进行尝试性的暴力计算 。 尝试的次数越多（工作量越大），算出来的概率越大 。</p>
 <p>通过调节对哈希结果的限制，比特币网络控制平均约 10 分钟产生一个合法区块 。 算出区块的节点将得到区块中所有交易的管理费和协议固定发放的奖励费（目前是 12.5 比特币，每四年减半），这个计算新区块的过程俗称为<strong>挖矿</strong> 。 </p>
@@ -766,7 +766,7 @@
 <li>分区容错性(Partition Tolerance)：一组节点的失效不影响系统的运行</li>
 </ul>
 <p>一般是淘宝的系统可用性可以达到5个9，意思是他的可用水平是99.999%，即全年停机时间不超过<code>(1-0.99999)*365*24*60 = 5.256min</code></p>
-<p><img src="/2019/12/26/BlockChain/3.jpg" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/12/26/BlockChain/3.jpg" alt></p>
 <p><strong>CP without A </strong>：一旦发生网络故障或者消息丢失等情况，就要牺牲用户的体验，等待所有数据全部一致了之后再让用户访问系统。分布式存储系统(Redis、Hbase),分布式协调组件Zookeeper.</p>
 <p><strong>AP wihtout C</strong>：要高可用并允许分区，则需放弃一致性。一旦网络问题发生，节点之间可能会失去联系。为了保证高可用，需要在用户访问时可以马上得到返回，则每个节点只能用本地数据提供服务，而这样会导致全局数据的不一致性。</p>
 <p>淘宝的购物，12306的买票，都是在可用性和一致性之间舍弃了可用性而选择一致性。保证了最终一致性。</p>
@@ -850,7 +850,7 @@
 <li>区块链的核心是一个点对点的分布式账本，此类账本具有加密安全性，且仅可追加内容，同时不可更改（很难），只有在对等身份成员之间达成共识或协议时才能更新</li>
 <li>区块链可以定义为一个平台，在此平台上，对等点可以通过交易交换值，而不需要中央信任仲裁者。</li>
 </ul>
-<p><img src="/2019/12/26/BlockChain/4.jpg" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/12/26/BlockChain/4.jpg" alt></p>
 <h4 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h4><p>一致性是指<strong>不信任节点之间的协议过程</strong>。</p>
 <blockquote>
 <p>一致性机制所需满足的需求：</p>
@@ -948,7 +948,7 @@
 </ul>
 </blockquote>
 <h4 id="区块链和完整的生态圈去中心化操作"><a href="#区块链和完整的生态圈去中心化操作" class="headerlink" title="区块链和完整的生态圈去中心化操作"></a>区块链和完整的生态圈去中心化操作</h4><p>去中心化的生态系统概览如下：</p>
-<p><img src="/2019/12/26/BlockChain/5.jpg" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/12/26/BlockChain/5.jpg" alt></p>
 <h5 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h5><p>  数据可以直接存储在区块链中，即实现了去中心化操作，但存在一个缺点：区块链不适合存储大量的数据，如图像。</p>
 <p>去中心化存储方案：</p>
 <ul>
@@ -996,7 +996,7 @@
 <p>d) 计算中间哈希值。</p>
 <p>e) 处理消息并生成输出哈希值。</p>
 </blockquote>
-<p><img src="/2019/12/26/BlockChain/6.jpg" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/12/26/BlockChain/6.jpg" alt></p>
 </li>
 </ul>
 <p>​    在p2p网络下载网络之前，先从可信的源获得文件的Merkle Tree树根。一旦获得了树根，就可以从其他不可信的源获取Merkle tree。通过可信的树根来检查接受到的Merkle Tree。如果Merkle Tree是损坏的或者虚假的，就从其他源获得另一个Merkle Tree，直到获得一个与可信树根匹配的Merkle Tree。</p>
@@ -1021,7 +1021,7 @@
 <p><a href="https://www.cnblogs.com/X-knight/p/9157814.html" target="_blank" rel="noopener">[区块链] 共识算法之争(PBFT，Raft，PoW，PoS，DPoS，Ripple)</a></p>
 <p><a href="https://blog.csdn.net/jfkidear/article/details/81275974" target="_blank" rel="noopener">深入浅出PBFT算法原理</a></p>
 </blockquote>
-<h3 id="共识机制"><a href="#共识机制" class="headerlink" title="共识机制"></a>共识机制</h3><p><img src="/2019/12/26/BlockChain/7.jpg" alt></p>
+<h3 id="共识机制"><a href="#共识机制" class="headerlink" title="共识机制"></a>共识机制</h3><p><img src="./images/loading.gif" data-original="/2019/12/26/BlockChain/7.jpg" alt></p>
 <p>区块链的底层由四部分构成</p>
 <ul>
 <li><strong>分布式数据库</strong>：用来存储以往和将来的交易数据</li>
@@ -1035,7 +1035,7 @@
 <li>共识机制：区块链事务达成分布式共识的算法</li>
 </ul>
 <p>不同的虚拟货币采用不同的共识机制，常见的共识机制如POW、POS、DPOS、PBFT等</p>
-<p><img src="/2019/12/26/BlockChain/8.jpg" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/12/26/BlockChain/8.jpg" alt></p>
 <h3 id="PoW"><a href="#PoW" class="headerlink" title="PoW"></a>PoW</h3><p>POW：Proof of work，工作量证明机制</p>
 <p>POW工作量证明就是我们所熟悉的<strong>挖矿</strong>，通过与或运算，计算出一个满足规则的随机数，即获得本次记账权，发出本轮所需要记录的数据，全网其他节点验证后一起存储。<strong>这种证明方式的一个显著特征是往往需要很大的工作量才能拿到指定成果，但是这个成果很容易验证</strong></p>
 <p>POW工作量证明的三要素：①工作量证明函数    ②Merkle树    ③难度值</p>
@@ -1048,21 +1048,21 @@
 <p>因此，碰撞的概率为 1-e<sup>-k(k-1)/2N</sup>   </p>
 <p>因此，从概率的角度看，sha256进行2^130次输入就会有99%的可能发生一次碰撞</p>
 <p>不过，假设一台计算机以每秒10000次的速度进行哈希运算，要经过10^27年才能完成2^128次hash运算</p>
-<p><img src="/2019/12/26/BlockChain/9.jpg" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/12/26/BlockChain/9.jpg" alt></p>
 <p>如图为不同位发生hash碰撞的可能性，最右边是发生hash碰撞的可能性，左边是经过多少个数之后可能达到发生的可能性。</p>
 <ul>
 <li><h5 id="隐匿性"><a href="#隐匿性" class="headerlink" title="隐匿性"></a>隐匿性</h5></li>
 </ul>
 <p>对于一个给定的输出结果H(x)，想要逆推出输入x，在计算上是不可能的。</p>
 <p>不存在比穷举更好的方法，可以使哈希结果H(x)落在特定范围。</p>
-<p><img src="/2019/12/26/BlockChain/10.jpg" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/12/26/BlockChain/10.jpg" alt></p>
 <p>Block Hash = hash(本页内容，Pre Hash，时间戳)</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> re</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">s256</span><span class="params">(text)</span>:</span></span><br><span class="line"><span class="meta">... </span>    c = hashlib.sha256(text.encode(<span class="string">'utf-8'</span>))</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">return</span> text, c.hexdigest()</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s256(<span class="string">'hacking'</span>)</span><br><span class="line">(<span class="string">'hacking'</span>,<span class="string">'42d83a899f20aea7d53614d163ac6e90cf4143919324cee410dd767cf6225bbf'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">cal</span><span class="params">(t, flag)</span>:</span></span><br><span class="line"><span class="meta">... </span>    pj = <span class="number">0</span></span><br><span class="line"><span class="meta">... </span>    ans = <span class="literal">None</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">while</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line"><span class="meta">... </span>            s = t + str(pj)</span><br><span class="line"><span class="meta">... </span>            ans = re.match(flag, s256(s)[<span class="number">1</span>])</span><br><span class="line"><span class="meta">... </span>            <span class="keyword">if</span> ans <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line"><span class="meta">... </span>                    print(pj)</span><br><span class="line"><span class="meta">... </span>                    pj+=<span class="number">1</span></span><br><span class="line"><span class="meta">... </span>            <span class="keyword">else</span>:</span><br><span class="line"><span class="meta">... </span>                    print(s256(s))</span><br><span class="line"><span class="meta">... </span>                    <span class="keyword">break</span></span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>flag = <span class="string">"0&#123;0&#125;[a-f0-9]&#123;64&#125;"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cal(<span class="string">"fuck"</span>,flag)</span><br><span class="line">(<span class="string">'fuck0'</span>, <span class="string">'2096b072b572e7b3554ab62b542dee4136e4b3a0243be126918d035ec4a4a727'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>flag = <span class="string">"0&#123;1&#125;[a-f0-9]&#123;63&#125;"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cal(<span class="string">"fuck"</span>,flag)</span><br><span class="line">......</span><br><span class="line">(<span class="string">'fuck10'</span>, <span class="string">'03fc6bfae9f00fa966431f707507d7a18e201d81d564dba42b96b2a7988f3ca6'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>flag = <span class="string">"0&#123;2&#125;[a-f0-9]&#123;62&#125;"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cal(<span class="string">"fuck"</span>,flag)</span><br><span class="line">......</span><br><span class="line">(<span class="string">'fuck448'</span>,<span class="string">'00ff7469c5332f8f5957f0acb1448d00fa4b2e281065f9202ea549a3a6ff7dba'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>flag = <span class="string">"0&#123;3&#125;[a-f0-9]&#123;61&#125;"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cal(<span class="string">"fuck"</span>,flag)</span><br><span class="line">......</span><br><span class="line">(<span class="string">'fuck7703'</span>, <span class="string">'0006086f65ce49afbd0479d1094463db1c7385aa1c1cd1ffedc1399404ee4fc9'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>flag = <span class="string">"0&#123;4&#125;[a-f0-9]&#123;60&#125;"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cal(<span class="string">"fuck"</span>,flag)</span><br><span class="line">......</span><br><span class="line">(<span class="string">'fuck263273'</span>, <span class="string">'000069e2e17d677804f76fb9b79b8f9d7654563a91a77a7d6c75ae30c6963e90'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>flag = <span class="string">"0&#123;5&#125;[a-f0-9]&#123;59&#125;"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cal(<span class="string">"fuck"</span>,flag)</span><br><span class="line">......</span><br><span class="line">(<span class="string">'fuck271481'</span>, <span class="string">'00000fa9aeacc3e986eaf8b8337d71c67abbd77acfd5cc8b90262f7377fdab7e'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>flag = <span class="string">"0&#123;6&#125;[a-f0-9]&#123;58&#125;"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cal(<span class="string">"fuck"</span>,flag)</span><br><span class="line">......</span><br><span class="line">(<span class="string">'fuck9197297'</span>, <span class="string">'000000c91683616ac0e361c2eafc66de0757e9d46f819e86d30d2cdae1df4398'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>flag = <span class="string">"0&#123;7&#125;[a-f0-9]&#123;57&#125;"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cal(<span class="string">"fuck"</span>,flag)</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
 <h4 id="②Merkle树"><a href="#②Merkle树" class="headerlink" title="②Merkle树"></a>②Merkle树</h4><p>Merkle树一般用于完整性验证处理。Merkle哈希树是一类基于哈希值的二叉树或多叉树，其子节点上的值通常为数据库的哈希值，而非叶子节点上的值该将该节点的所有子节点的组合结果的哈希值。将Merkle Root存入区块头里，Merkle Tree 存入区块体里。</p>
-<p><img src="/2019/12/26/BlockChain/6.jpg" alt="Merkle Tree"></p>
+<p><img src="./images/loading.gif" data-original="/2019/12/26/BlockChain/6.jpg" alt="Merkle Tree"></p>
 <p>节点生成一笔筹币交易，对于4个交易记录L1，L2，L3，L4，分别计算hash(L1)，hash(L2)，hash(L3)，hash(L4)；对于hash0=hash(hash0-0+hash0-1) 和 hash1=hash(hash1-0 + hash1-1)；计算出根节点的hash值top hash，topHash=hash(hash0+hash1)。</p>
 <p>然后将Merkle树root的top hash值存入区块链头中，如下图</p>
-<p><img src="/2019/12/26/BlockChain/11.jpg" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/12/26/BlockChain/11.jpg" alt></p>
 <p>区块链中的Merkle树为二叉树，用于存储交易信息。每个交易两两配对，构成Merkle树的子节点，进而生成整个Merkle树。Merkle树使得用户可以通过从区块头得到的Merkle树根和别的用户所提供的中间哈希值列表去验证某个交易是否包含在区块中。提供中间哈希值的用户并不需要是可信的，因为伪造区块头的代价很高，而中间哈希值如果伪造的话会导致验证失败。</p>
 <p>SPV：简化支付验证（Simplified Payment Verification），轻钱包并不保存完整的区块链，而是只保存每一个区块的区块头。区块体保存了完整的交易信息，而交易信息需要的存储量大部分都是交易头的千倍以上。所以，如果只保存交易头，就可以极大的减少本地客户端存储的区块链信息。</p>
 <p>在交易时，发出一个MerkleBlock消息，包含区块头和一条连接目标交易与Merkle根的Merkle路径</p>
@@ -1099,7 +1099,7 @@
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">例:</span><br><span class="line">计算目标值,5min产生一个区块,sha256算法,算力 400M hash/s.</span><br><span class="line"></span><br><span class="line">一个正确区块被计算,需要进行 (5*60)s * 400M hash/s = 120,000 M hash</span><br><span class="line">假如计算一个区块头需要1M hash , 则 计算正确头的几率为 1 / (2^17) ,(120000 ≈ 2^17)</span><br><span class="line">所以, (2^(256-17)) / 2^256 == 1 / 2^17</span><br><span class="line">所以, 目标值为: 0b0……………………011……</span><br><span class="line">			    |-17bit0-||--(256-17)bit--</span><br></pre></td></tr></table></figure>
 <h4 id="POW工作量证明流程"><a href="#POW工作量证明流程" class="headerlink" title="POW工作量证明流程"></a>POW工作量证明流程</h4><p>流程如下图：</p>
-<p><img src="/2019/12/26/BlockChain/12.jpg" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/12/26/BlockChain/12.jpg" alt></p>
 <ol>
 <li>生成Merkle根哈希</li>
 <li>组装区块头</li>
@@ -1119,7 +1119,7 @@
 </ul>
 </blockquote>
 </blockquote>
-<p><img src="/2019/12/26/BlockChain/13.jpg" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/12/26/BlockChain/13.jpg" alt></p>
 <blockquote>
 <ol>
 <li><p>客户端产生新的交易，向全网广播</p>
@@ -1136,7 +1136,7 @@
 </li>
 </ol>
 </blockquote>
-<p><img src="/2019/12/26/BlockChain/14.jpg" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/12/26/BlockChain/14.jpg" alt></p>
 <ol>
 <li><p>节点总是认为最长的链是正确的链，并致力于在最长的链上进行扩展。</p>
 </li>
@@ -1252,7 +1252,7 @@
 <li>客户端收到来自f+1个节点相同消息后，代表共识已经正确完成</li>
 </ol>
 <p>如图：</p>
-<p><img src="/2019/12/26/BlockChain/15.jpg" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/12/26/BlockChain/15.jpg" alt></p>
 <p>C为Client，pre-prepare为预准备阶段，prepare为准备阶段，commit为提交阶段</p>
 <blockquote>
 <p>R在一个视图里，一个是主节点，其余的都叫做备份节点，如图主节点为0，即Client首先请求主节点负责将客户端的请求排好序，然后按序发给备份节点</p>
@@ -1369,9 +1369,9 @@
 <p>对于pbft算法，共识过程就是：老大向我发送命令时，当我认为老大的命令是有问题时，我会拒绝执行。就算我认为老大的命令是对的，我还会问下团队的其它成员老大的命令是否是对的，只有大多数人（2f+1）都认为老大的命令是对的时候，我才会去执行命令。那什么时候重选老大呢？老大挂了当然要重选，如果大多数人都认为老大不称职或者有问题时，我们也会重新选择老大。</p>
 <p>1.raft算法从节点不会拒绝主节点的请求，而pbft算法从节点在某些情况下会拒绝主节点的请求 ;</p>
 <p>2.raft算法只能容错故障节点，并且最大容错节点数为（n-1）/2，而pbft算法能容错故障节点和作恶节点，最大容错节点数为（n-1）/3。</p>
-<p><img src="/2019/12/26/BlockChain/16.jpg" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/12/26/BlockChain/16.jpg" alt></p>
 <h2 id="区块链架构"><a href="#区块链架构" class="headerlink" title="区块链架构"></a>区块链架构</h2><h3 id="比特币"><a href="#比特币" class="headerlink" title="比特币"></a>比特币</h3><h4 id="区块链1-0"><a href="#区块链1-0" class="headerlink" title="区块链1.0"></a>区块链1.0</h4><p>区块链1.0是可编程货币，是与转账、汇款和数字化支付相关的密码学货币应用，目标是实现货币的去中心化与支付手段。比特币是区块链1.0最典型的代表, 区块链的发展催生了大量的货币交易平台，实现了货币的部分职能，能够实现货品交易。</p>
-<p><img src="/2019/12/26/BlockChain/17.jpg" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/12/26/BlockChain/17.jpg" alt></p>
 <blockquote>
 <p>比特币钱包：</p>
 <ul>
@@ -1381,8 +1381,8 @@
 <li>纸钱包</li>
 </ul>
 </blockquote>
-<p><img src="/2019/12/26/BlockChain/18.jpg" alt></p>
-<p><img src="/2019/12/26/BlockChain/19.jpg" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/12/26/BlockChain/18.jpg" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/12/26/BlockChain/19.jpg" alt></p>
 <h5 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h5><ul>
 <li>利于并行</li>
 <li>可回溯</li>
@@ -1393,7 +1393,7 @@
 </ul>
 <h3 id="以太坊"><a href="#以太坊" class="headerlink" title="以太坊"></a>以太坊</h3><h4 id="区块链2-0"><a href="#区块链2-0" class="headerlink" title="区块链2.0"></a>区块链2.0</h4><p>区块链2.0是可编程金融，是经济、市场和金融领域的区块链应用，核心理念是把区块链作为一个可编程的分布式信用基础设施，支撑智能合约应用，以与过去比特币区块链作为一个虚拟货币支撑平台区别开来。</p>
 <p>以太坊：数字代币，基于智能合约</p>
-<p><img src="/2019/12/26/BlockChain/20.jpg" alt></p>
+<p><img src="./images/loading.gif" data-original="/2019/12/26/BlockChain/20.jpg" alt></p>
 <p>以太坊架构如上</p>
 <table>
 <thead>
@@ -1706,7 +1706,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Magic King">
+              <img class="site-author-image" itemprop="image" src="./images/loading.gif" data-original="/images/avatar.jpg" alt="Magic King">
             
               <p class="site-author-name" itemprop="name">Magic King</p>
               <div class="site-description motion-element" itemprop="description">Now You See Me!</div>
@@ -2493,5 +2493,5 @@
 	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
   
-</body>
+<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
 </html>

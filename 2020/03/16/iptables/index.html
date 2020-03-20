@@ -529,10 +529,10 @@
 </ul>
 <h4 id="链"><a href="#链" class="headerlink" title="链"></a>链</h4><p>iptables开启后，数据报文从进入服务器到出来经过5条链，分别为 <code>prerouting</code> 、 <code>input</code> 、<code>output</code> 、 <code>forward</code> 、 <code>postrouting</code></p>
 <p>如下图，即数据报文的可能经过的路径</p>
-<p><img src="/2020/03/16/iptables/1.jpg" alt></p>
+<p><img src="./images/loading.gif" data-original="/2020/03/16/iptables/1.jpg" alt></p>
 <p>每条链上设有多种规则，数据报文必须按照顺序一个个匹配这些规则</p>
 <p>正如图中，数据报文经过的5条链上，必须逐一经过每一条链，而在链上，数据报文必须逐一通过(符合)每一个规则的限制，方能到下一条链上</p>
-<p><img src="/2020/03/16/iptables/2.jpg" alt></p>
+<p><img src="./images/loading.gif" data-original="/2020/03/16/iptables/2.jpg" alt></p>
 <ul>
 <li><strong>INPUT链</strong>：当接收到防火墙本机地址的数据包(入站)时，应用此链的规则</li>
 <li><strong>OUTPUT链</strong>：当防火墙本机向外发送数据包(出站)时，应用此链的规则</li>
@@ -552,7 +552,7 @@
 <p>我们自定义的所有规则，都会添加到四张表中的其中一张表中</p>
 <p>规则表之间的优先顺序：Raw &gt;&gt; mangle &gt;&gt; nat &gt;&gt; filter</p>
 <h4 id="表链关系"><a href="#表链关系" class="headerlink" title="表链关系"></a>表链关系</h4><p>5条链中，并不是每条链都能应用所有类型的表，事实上除了Output链上能同时拥有四种表以外，其他都只能有两到三种表</p>
-<p><img src="/2020/03/16/iptables/3.jpg" alt></p>
+<p><img src="./images/loading.gif" data-original="/2020/03/16/iptables/3.jpg" alt></p>
 <p>上图即为每种链能应用的表，实际上，在各表中还有匹配顺序，每条链上的各个表的匹配顺序为：<br><strong>raw &rarr; mangle &rarr; nat &rarr; filter</strong></p>
 <p>把上图转换成表，可直观地看出来，表链的关系</p>
 <table>
@@ -604,7 +604,7 @@
 </tbody>
 </table>
 <p>数据包通过防火墙流程可以总结如下：</p>
-<p><img src="/2020/03/16/iptables/4.jpg" alt></p>
+<p><img src="./images/loading.gif" data-original="/2020/03/16/iptables/4.jpg" alt></p>
 <h4 id="规则的概念"><a href="#规则的概念" class="headerlink" title="规则的概念"></a>规则的概念</h4><p>iptables规则主要包含了“条件&amp;动作”，即匹配出符合什么条件(规则)后，对它采取怎样的动作</p>
 <h5 id="匹配条件"><a href="#匹配条件" class="headerlink" title="匹配条件"></a>匹配条件</h5><ul>
 <li><strong>S_IP</strong>：source ip，即源ip</li>
@@ -633,7 +633,7 @@
 <h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><p>有关 <code>iptables</code> 的命令可以用下图来解释</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ iptables [-t table_name] <span class="built_in">command</span> [chain_name] [parameter] [-j target&amp;action]</span><br></pre></td></tr></table></figure>
 <p><code>parameter</code> 是用于条件匹配</p>
-<p><img src="/2020/03/16/iptables/iptables_command.jpg" alt></p>
+<p><img src="./images/loading.gif" data-original="/2020/03/16/iptables/iptables_command.jpg" alt></p>
 <ul>
 <li><p>所有表名必须小写<br> <code>filter</code> / <code>nat</code> / <code>mangle</code> / <code>raw</code></p>
 </li>
@@ -645,7 +645,7 @@
 </li>
 </ul>
 <p><strong>对于parameter条件匹配</strong>，如下图所示：</p>
-<p><img src="/2020/03/16/iptables/iptables_parameter.jpg" alt></p>
+<p><img src="./images/loading.gif" data-original="/2020/03/16/iptables/iptables_parameter.jpg" alt></p>
 <h5 id="对于Command选项："><a href="#对于Command选项：" class="headerlink" title="对于Command选项："></a>对于Command选项：</h5><p><code>-A</code> 在指定链末尾添加(append)一条新规则</p>
 <p><code>-D</code> 删除（delete）指定链中的某一条规则，可以按规则序号和内容删除</p>
 <p><code>-I</code> 在指定链中插入（insert）一条新的规则，默认在第一行添加</p>
@@ -689,7 +689,7 @@
 <p>在<code>sysctl.conf</code>里，本来就有注释的转发配置语句，取消注释即可，用命令重新加载内核参数，当然，此时重启linux虚拟机也不是不可以</p>
 <p>在windows做如下配置</p>
 <p>控制面板-&gt;网络和Internet-&gt;网络和共享中心-&gt;本地连接-&gt;属性-&gt;Internet协议版本4（TCP/IPv4）-&gt;属性</p>
-<p><img src="/2020/03/16/iptables/5.png" alt></p>
+<p><img src="./images/loading.gif" data-original="/2020/03/16/iptables/5.png" alt></p>
 <p>特别地，要将windows网关配置为linux的内网网卡地址</p>
 <p>然后要记得，DNS服务器要和linux主机的一致</p>
 <p>假如，windows虚拟机能ping通linux主机，但是linux主机ping不通windows，则需要关闭windows的防火墙，或者在windows防火墙中，在入站规则内打开ICMP回显</p>
@@ -808,7 +808,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Magic King">
+              <img class="site-author-image" itemprop="image" src="./images/loading.gif" data-original="/images/avatar.jpg" alt="Magic King">
             
               <p class="site-author-name" itemprop="name">Magic King</p>
               <div class="site-description motion-element" itemprop="description">Now You See Me!</div>
@@ -1595,5 +1595,5 @@
 	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
   
-</body>
+<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
 </html>
