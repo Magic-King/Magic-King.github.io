@@ -126,3 +126,11 @@ lazyload:
   loadingImg: https://magic-king.net/images/loading.gif
   #loadingImg: https://cdn.jsdelivr.net/gh/zu1k/hexoblog@0.0.1.2/images/loading.png
 
+# hexo-tag-cloud
+tag_cloud:
+    textFont: Trebuchet MS, Helvetica
+    textColor: '#333'
+    textHeight: 25
+    outlineColor: '#E2E1D1'
+    maxSpeed: 0.5
+
