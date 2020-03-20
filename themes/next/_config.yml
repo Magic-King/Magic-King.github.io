@@ -353,7 +353,7 @@ codeblock:
     show_result: true
     # Style: only 'flat' is currently available, leave it blank if you prefer default theme
     # Available values: default | flat | mac
-    style: mac
+    style: flat
 
 # Wechat Subscriber
 wechat_subscriber:
@@ -503,7 +503,7 @@ font:
 
 # Math Equations Render Support
 math:
-  enable: false
+  enable: true
 
   # Default (true) will load mathjax / katex script on demand.
   # That is it only render those page which has `mathjax: true` in Front-matter.
