@@ -1126,6 +1126,10 @@ seo这东西是使自己的文章能被百度、谷歌搜录，能被搜索到�
   jsDelivr 是一家开源免费CDN，主要是对npm包进行CDN分发
   绝妙的是它还能对Github和Wordpress进行CDN分发
   我们可以借助 jsDelivr 的 Github资源分发 服务来对我们博客中的css\js\小图片进行加速
+  
+* 加载时文字可见
+
+* 使用懒加载
 
 
 

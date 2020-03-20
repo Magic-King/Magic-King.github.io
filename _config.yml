@@ -117,3 +117,12 @@ deploy:
     type: git
     repository: https://github.com/Magic-King/Magic-King.github.io.git
     branch: master
+
+
+# lazy load for image
+lazyload:
+  enable: true
+  onlypost: false
+  loadingImg: ./images/loading.gif
+  #loadingImg: https://cdn.jsdelivr.net/gh/zu1k/hexoblog@0.0.1.2/images/loading.png
+
