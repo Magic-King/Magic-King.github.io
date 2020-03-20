@@ -10,6 +10,10 @@ hexo d -g
 
 @echo hexo deployed&&generated finished
 
+node gulpfile.js
+
+@echo file compressed
+
 #@pause
 
 

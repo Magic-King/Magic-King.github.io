@@ -70,6 +70,12 @@ categories: hexo
 > [yilia主题展示](<http://litten.me/>)
 >
 > 
+>
+> hexo+gitpage优化：
+>
+> https://blog.lgf.im/2020/03/speedup-github-page/#
+>
+> 
 
 
 
@@ -1019,3 +1025,109 @@ theme: landscape //themes文件夹中对应文件夹的名称
 seo这东西是使自己的文章能被百度、谷歌搜录，能被搜索到。
 
 因为暂时不想被搜到/doge，所有暂不配置
+
+
+
+
+
+
+
+## GitPage 国内优化
+
+
+
+参考大佬的博客：https://blog.lgf.im/2020/03/speedup-github-page/#
+
+
+
+* 对于html/js/css的压缩：gulp
+
+  ```sh
+  $ # 本机安装
+  $ npm install gulp -g
+  $ #为了github Action 和其他CI\CD平台也能进行安装，推荐
+  $ npm install gulp --save-dev
+  $ # 安装依赖
+  $ npm install gulp-minify-css \
+              gulp-babel \
+              gulp-uglify \
+              gulp-htmlmin \
+              gulp-htmlclean \
+              --save-dev
+  ```
+
+  
+
+  * 创建配置文件：在博客hexo的根目录下，新建 `gulpfile.js` 配置文件
+
+  ```js
+  var gulp = require('gulp');
+  var minifycss = require('gulp-minify-css');
+  var uglify = require('gulp-uglify');
+  var htmlmin = require('gulp-htmlmin');
+  var htmlclean = require('gulp-htmlclean');
+  var imagemin = require('gulp-imagemin');
+  
+  // 压缩css文件
+  gulp.task('minify-css', function() {
+    return gulp.src('./public/**/*.css')
+    .pipe(minifycss())
+    .pipe(gulp.dest('./public'));
+  });
+  
+  // 压缩html
+  gulp.task('minify-html', function() {
+    return gulp.src('./public/**/*.html')
+        .pipe(htmlclean())
+        .pipe(htmlmin({
+            collapseWhitespace: true,
+            collapseBooleanAttributes: true,
+            removeComments: true,
+            removeEmptyAttributes: true,
+            removeScriptTypeAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            minifyJS: true,
+            minifyCSS: true,
+            minifyURLs: true,
+            ignoreCustomFragments: [ /\{\{[\s\S]*?\}\}/ ],
+        }))
+        .pipe(gulp.dest('./public'));
+  });
+  
+  // 压缩js文件
+  gulp.task('minify-js', function() {
+      return gulp.src(['./public/**/*.js','!./public/js/**/*min.js'])
+          .pipe(uglify())
+          .pipe(gulp.dest('./public'));
+  });
+  
+  // 压缩图片
+  gulp.task('minify-images', function() {
+      return gulp.src(['./public/**/*.png', './public/**/*.jpg', './public/**/*.gif', './public/**/*.svg'])
+          .pipe(imagemin({
+             optimizationLevel: 5, //类型：Number  默认：3  取值范围：0-7（优化等级）
+             progressive: true, //类型：Boolean 默认：false 无损压缩jpg图片
+             interlaced: false, //类型：Boolean 默认：false 隔行扫描gif进行渲染
+             multipass: false, //类型：Boolean 默认：false 多次优化svg直到完全优化
+          }))
+          .pipe(gulp.dest('./public'));
+  });
+  
+  
+  gulp.task('default', gulp.series(gulp.parallel('minify-html', 'minify-css', 'minify-js', 'minify-images')));
+  
+  
+  ```
+
+  
+
+
+
+
+
+
+
+
+
+
+
