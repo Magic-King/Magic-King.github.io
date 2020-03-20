@@ -123,6 +123,6 @@ deploy:
 lazyload:
   enable: true
   onlypost: false
-  loadingImg: images/loading.gif
+  loadingImg: https://magic-king.net/images/loading.gif
   #loadingImg: https://cdn.jsdelivr.net/gh/zu1k/hexoblog@0.0.1.2/images/loading.png
 
