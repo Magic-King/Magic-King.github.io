@@ -429,5 +429,36 @@ message: Welcome to my blog, enter password to read.
 
 
 
+## Magic NAS
 
+
+
+主板
+
+* SATA3 >=4
+* 千兆网卡
+
+内存条：8G
+
+稳定性电源：200-400W，好的1U电源
+
+
+
+电源：40w*25h = 1度电费
+
+1度= 1000w * h  ≈ 0.45元
+
+
+
+
+
+
+
+## Magic
+
+
+
+* 心理学，如注意力转移
+* 物理现象，如相对速度
+* 视觉错误
 
