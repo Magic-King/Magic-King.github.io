@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2020-03-16T07:13:02.661Z</updated>
+  <updated>2020-03-22T15:14:50.776Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -17,11 +17,42 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Meltdown And Hardware Security</title>
+    <link href="http://magic-king.net/2020/03/21/Meltdown-And-Hardware-Security/"/>
+    <id>http://magic-king.net/2020/03/21/Meltdown-And-Hardware-Security/</id>
+    <published>2020-03-21T07:57:45.000Z</published>
+    <updated>2020-03-22T15:14:50.776Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;0x00-序&quot;&gt;&lt;a href=&quot;#0x00-序&quot; class=&quot;headerlink&quot; title=&quot;0x00 序&quot;&gt;&lt;/a&gt;0x00 序&lt;/h2&gt;&lt;p&gt;由于新型冠状病毒，美股多次熔断，我们的安全课也提到了熔断一词：Meltdown，将其与硬件安全联系在了一起&lt;/p&gt;
+&lt;p&gt;Meltdown，源自于2
+      
+    
+    </summary>
+    
+    
+      <category term="Hardware" scheme="http://magic-king.net/categories/Hardware/"/>
+    
+      <category term="Security" scheme="http://magic-king.net/categories/Hardware/Security/"/>
+    
+      <category term="CPU" scheme="http://magic-king.net/categories/Hardware/Security/CPU/"/>
+    
+    
+      <category term="CVE" scheme="http://magic-king.net/tags/CVE/"/>
+    
+      <category term="hardware" scheme="http://magic-king.net/tags/hardware/"/>
+    
+  </entry>
+  
+  <entry>
     <title>CVE-2020-0796</title>
     <link href="http://magic-king.net/2020/03/16/CVE-2020-0796/"/>
     <id>http://magic-king.net/2020/03/16/CVE-2020-0796/</id>
     <published>2020-03-16T05:38:00.000Z</published>
-    <updated>2020-03-16T07:13:02.661Z</updated>
+    <updated>2020-03-21T07:38:15.158Z</updated>
     
     <summary type="html">
     
@@ -957,7 +988,7 @@
     
     <summary type="html">
     
-      It is Magic.&lt;/br&gt;the content has been encrypted, enter the password to read.&lt;/br&gt;
+      It is Magic.&lt;br&gt;the content has been encrypted, enter the password to read.&lt;br&gt;
     
     </summary>
     

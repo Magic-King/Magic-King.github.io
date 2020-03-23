@@ -626,7 +626,7 @@
 </li>
 </ul>
 </blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">无符号整数的文法:</span><br><span class="line">G[<span class="xml"><span class="tag">&lt;<span class="name">无符号整数</span>&gt;</span>]=（VN，VT，P，Z）</span></span><br><span class="line"><span class="xml">	VN＝&#123;<span class="tag">&lt;<span class="name">无符号整数</span>&gt;</span>, <span class="tag">&lt;<span class="name">数字串</span>&gt;</span>, <span class="tag">&lt;<span class="name">数字</span>&gt;</span>&#125;</span></span><br><span class="line"><span class="xml">	VT  = &#123;0,1,2,3,4,5,6,7,8,9&#125;</span></span><br><span class="line"><span class="xml">	P = &#123;<span class="tag">&lt;<span class="name">无符号整数</span>&gt;</span> → <span class="tag">&lt;<span class="name">数字串</span>&gt;</span> ;</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">数字串</span>&gt;</span> → <span class="tag">&lt;<span class="name">数字串</span>&gt;</span> <span class="tag">&lt;<span class="name">数字</span>&gt;</span> ;</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">数字串</span>&gt;</span> → <span class="tag">&lt;<span class="name">数字</span>&gt;</span> ;</span></span><br><span class="line"><span class="xml">    	<span class="tag">&lt;<span class="name">数字</span>&gt;</span> →0;    <span class="tag">&lt;<span class="name">数字</span>&gt;</span> →2; 	<span class="tag">&lt;<span class="name">数字</span>&gt;</span> →3;	<span class="tag">&lt;<span class="name">数字</span>&gt;</span> →4;	</span></span><br><span class="line"><span class="xml">    	<span class="tag">&lt;<span class="name">数字</span>&gt;</span> →5;    <span class="tag">&lt;<span class="name">数字</span>&gt;</span> →6;	<span class="tag">&lt;<span class="name">数字</span>&gt;</span> →7;	<span class="tag">&lt;<span class="name">数字</span>&gt;</span> →8;    <span class="tag">&lt;<span class="name">数字</span>&gt;</span> →9; &#125;</span></span><br><span class="line"><span class="xml">	Z = <span class="tag">&lt;<span class="name">无符号整数</span>&gt;</span>;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">无符号整数的文法:</span><br><span class="line">G[<span class="tag">&lt;<span class="name">无符号整数</span>&gt;</span>]=（VN，VT，P，Z）</span><br><span class="line">4VN＝&#123;<span class="tag">&lt;<span class="name">无符号整数</span>&gt;</span>, <span class="tag">&lt;<span class="name">数字串</span>&gt;</span>, <span class="tag">&lt;<span class="name">数字</span>&gt;</span>&#125;</span><br><span class="line">4VT  = &#123;0,1,2,3,4,5,6,7,8,9&#125;</span><br><span class="line">4P = &#123;<span class="tag">&lt;<span class="name">无符号整数</span>&gt;</span> → <span class="tag">&lt;<span class="name">数字串</span>&gt;</span> ;</span><br><span class="line">        <span class="tag">&lt;<span class="name">数字串</span>&gt;</span> → <span class="tag">&lt;<span class="name">数字串</span>&gt;</span> <span class="tag">&lt;<span class="name">数字</span>&gt;</span> ;</span><br><span class="line">        <span class="tag">&lt;<span class="name">数字串</span>&gt;</span> → <span class="tag">&lt;<span class="name">数字</span>&gt;</span> ;</span><br><span class="line">    	<span class="tag">&lt;<span class="name">数字</span>&gt;</span> →0;    <span class="tag">&lt;<span class="name">数字</span>&gt;</span> →2; 	<span class="tag">&lt;<span class="name">数字</span>&gt;</span> →3;	<span class="tag">&lt;<span class="name">数字</span>&gt;</span> →4;	</span><br><span class="line">    	<span class="tag">&lt;<span class="name">数字</span>&gt;</span> →5;    <span class="tag">&lt;<span class="name">数字</span>&gt;</span> →6;	<span class="tag">&lt;<span class="name">数字</span>&gt;</span> →7;	<span class="tag">&lt;<span class="name">数字</span>&gt;</span> →8;    <span class="tag">&lt;<span class="name">数字</span>&gt;</span> →9; &#125;</span><br><span class="line">4Z = <span class="tag">&lt;<span class="name">无符号整数</span>&gt;</span>;</span><br></pre></td></tr></table></figure>
 <p>注：产生式左边符合构成集合V<sub>N</sub>，且Z ∈ V<sub>N</sub></p>
 <p>​        有些产生式有相同的左部，可以合在一起</p>
 <p>​        给定一个文法，实际上只需给出产生式的集合，并指定识别符号（开始符号）</p>
@@ -1242,7 +1242,7 @@
 <p>I<sub>0</sub> ：M的唯一初态</p>
 <p>Z：M的终态集，Z &sub; C 为规范族中所有含有<strong>规约项目</strong>的那些项目集</p>
 <p>例如下图：</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">文法G<span class="string">':</span></span><br><span class="line"><span class="string">(0) S'</span> → S</span><br><span class="line">(<span class="number">1</span>) S → A</span><br><span class="line">(<span class="number">2</span>) S → <span class="keyword">B</span></span><br><span class="line"><span class="keyword">(3) </span>A → aAb</span><br><span class="line">(<span class="number">4</span>) A → c</span><br><span class="line">(<span class="number">5</span>) <span class="keyword">B </span>→ aBd</span><br><span class="line">(<span class="number">6</span>) <span class="keyword">B </span>→ d</span><br></pre></td></tr></table></figure>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">文法G<span class="string">':</span></span><br><span class="line"><span class="string">(0) S'</span> → S</span><br><span class="line"><span class="comment">(1)</span> S → A</span><br><span class="line"><span class="comment">(2)</span> S → B</span><br><span class="line"><span class="comment">(3)</span> A → aAb</span><br><span class="line"><span class="comment">(4)</span> A → c</span><br><span class="line"><span class="comment">(5)</span> B → aBd</span><br><span class="line"><span class="comment">(6)</span> B → d</span><br></pre></td></tr></table></figure>
 <p><img src="https://magic-king.net/images/loading.gif" data-original="Compiler/17.jpg" alt></p>
 <p>如上为一个DFA，通过读入字符进行状态转换，以及在每个状态内进行closure闭包。</p>
 <h4 id="LR-0-分析表构造"><a href="#LR-0-分析表构造" class="headerlink" title="LR(0)分析表构造"></a>LR(0)分析表构造</h4><p>要求每一个项目集中的的诸项目<strong>不出现</strong>下列的情况：</p>
@@ -1502,7 +1502,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-count">48</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1571,7 +1571,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">26</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">29</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1664,7 +1670,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">38</span>
+                      
+                    
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
