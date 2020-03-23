@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2020-03-22T15:14:50.776Z</updated>
+  <updated>2020-03-23T14:13:57.997Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -21,15 +21,11 @@
     <link href="http://magic-king.net/2020/03/21/Meltdown-And-Hardware-Security/"/>
     <id>http://magic-king.net/2020/03/21/Meltdown-And-Hardware-Security/</id>
     <published>2020-03-21T07:57:45.000Z</published>
-    <updated>2020-03-22T15:14:50.776Z</updated>
+    <updated>2020-03-23T14:13:57.997Z</updated>
     
     <summary type="html">
     
-      
-      
-        &lt;h2 id=&quot;0x00-序&quot;&gt;&lt;a href=&quot;#0x00-序&quot; class=&quot;headerlink&quot; title=&quot;0x00 序&quot;&gt;&lt;/a&gt;0x00 序&lt;/h2&gt;&lt;p&gt;由于新型冠状病毒，美股多次熔断，我们的安全课也提到了熔断一词：Meltdown，将其与硬件安全联系在了一起&lt;/p&gt;
-&lt;p&gt;Meltdown，源自于2
-      
+      Something about Meltdown
     
     </summary>
     
@@ -1021,7 +1017,7 @@
     <link href="http://magic-king.net/2019/05/20/Magic/"/>
     <id>http://magic-king.net/2019/05/20/Magic/</id>
     <published>2019-05-20T05:14:27.000Z</published>
-    <updated>2020-02-19T03:05:33.982Z</updated>
+    <updated>2020-03-23T06:09:52.687Z</updated>
     
     <summary type="html">
     
