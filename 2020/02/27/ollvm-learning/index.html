@@ -118,7 +118,12 @@
 <meta property="og:image" content="https://magic-king.net/images/loading.gif">
 <meta property="og:image" content="https://magic-king.net/images/loading.gif">
 <meta property="og:image" content="https://magic-king.net/images/loading.gif">
-<meta property="og:updated_time" content="2020-03-12T15:07:14.490Z">
+<meta property="og:image" content="https://magic-king.net/images/loading.gif">
+<meta property="og:image" content="https://magic-king.net/images/loading.gif">
+<meta property="og:image" content="https://magic-king.net/images/loading.gif">
+<meta property="og:image" content="https://magic-king.net/images/loading.gif">
+<meta property="og:image" content="https://magic-king.net/images/loading.gif">
+<meta property="og:updated_time" content="2020-03-25T15:03:45.977Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ollvm-learning">
 <meta name="twitter:description" content="Learning about ollvm">
@@ -448,7 +453,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-12 23:07:14" itemprop="dateModified" datetime="2020-03-12T23:07:14+08:00">2020-03-12</time>
+                <time title="修改时间：2020-03-25 23:03:45" itemprop="dateModified" datetime="2020-03-25T23:03:45+08:00">2020-03-25</time>
               
             
           </span>
@@ -697,10 +702,57 @@
 <p><img src="https://magic-king.net/images/loading.gif" data-original="ollvm-learning/bcf_addBogusFlow.png" alt></p>
 <p>如图，对于上述函数，分离其基本块，创建一个入口entry，然后加入一个恒真的分支，把生成相似的基本块放至错误分支里，即其永远不会执行的垃圾代码，将所执行的基本块放入正确分支里</p>
 <p><code>createAlteredBasicBlock()</code>函数用于生成与给定基本块相似的基本块，将操作运算符进行重新映射，重新映射节点，重新映射对应的数据，然后加入随机的指令</p>
-<p>对于<code>doF()</code>函数，该函数的功能是将Function中所有为真的判断语句进行替换，比如之前的<code>1.0 == 1.0</code>。它的思想是定义两个全局变量x、y并且初始化为0，然后遍历Module内的所有指令，并将所有的FCMP_TRUE分支指令替换为<code>y&lt;10 || x*x(x-1)%2 ==0</code>。</p>
+<p>对于<code>doF()</code>函数，该函数的功能是将Function中所有为真的判断语句进行替换，比如之前的<code>1.0 == 1.0</code>。它的思想是定义两个全局变量x、y并且初始化为0，然后遍历Module内的所有指令，并将所有的FCMP_TRUE分支指令替换为<code>y&lt;10 || x*x(x-1)%2 ==0</code>，我们从反汇编的代码来看，很明显的就有y&lt;10这个分支</p>
+<h4 id="Flattening"><a href="#Flattening" class="headerlink" title="Flattening"></a>Flattening</h4><p><strong>Flattening</strong>的主要功能是为函数增加switch-case语句，使得函数变得扁平化。下面就对它的实现源码进行分析。</p>
+<p>其中文件位于<code>./include/llvm/Transforms/Obfuscation/Flattening.cpp</code></p>
+<p>Flattening继承了<code>FunctionPass</code>，因此它的入口函数即为<code>runOnFunction</code>。在<code>runOnFunction</code>函数的具体实现中，首先判断是否包含了启动<code>-fla</code>的命令。在编译目标程序代码时，如要启动fla模块，需要带上参数<code>-mllvm -fla</code>。</p>
+<p>参数检查完毕之后，调用flatten函数。flatten函数是该Pass的核心，下面对该函数进行分析。</p>
+<p>先是声明了一些后面要用的变量，然后创建了一个数组，用来存储随机数种子</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SCRAMBLER</span></span><br><span class="line">  <span class="keyword">char</span> scrambling_key[<span class="number">16</span>];</span><br><span class="line">  llvm::cryptoutils-&gt;get_bytes(scrambling_key, <span class="number">16</span>);</span><br><span class="line">  <span class="comment">// END OF SCRAMBLER  </span></span><br><span class="line"><span class="comment">// Lower switch</span></span><br><span class="line">  FunctionPass *lower = createLowerSwitchPass();</span><br><span class="line">  lower-&gt;runOnFunction(*f);</span><br></pre></td></tr></table></figure>
+<p>后两行调用了外部一个外部pass：<code>creatLowerSwitchPass()</code>，用来消除当前函数的内部用switch方式的代码，将其全转换成<code>if else</code>的调用，方便后面的代码块分割</p>
+<p>然后一个for循环，像bcf那样，将函数分为各个基本块储存在<code>vector&lt;BasicBlock *&gt; origBB</code>的一个向量数组里，等等的代码是针对基本块的操作，就像乐高那样一块块进行拼接。</p>
+<p>然后的话，若只有一个以下的基本块，那么无法平坦化，直接返回<code>false</code></p>
+<p>然后开始遍历基本块，先把第一块从vector数组中移除，因为按照他的流程平坦化的设计，第一块进行单独处理，作为整个混淆流程的开始逻辑，所以紧接着先对第一块进行处理。</p>
+<p>检查第一块中是否包含条件跳转分支，如果包含条件跳转分支，则按照条件分支的位置进行代码块分割，分割逻辑跟SplitBasicBlock的逻辑一致，整个分割的目的也是为了后面进行流程平坦化准备的</p>
+<p>然后开始是核心代码了</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Create switch variable and set as it</span></span><br><span class="line">  switchVar =</span><br><span class="line">      <span class="keyword">new</span> AllocaInst(Type::getInt32Ty(f-&gt;getContext()), <span class="number">0</span>, <span class="string">"switchVar"</span>, insert);</span><br><span class="line">  <span class="keyword">new</span> StoreInst(</span><br><span class="line">      ConstantInt::get(Type::getInt32Ty(f-&gt;getContext()),</span><br><span class="line">                       llvm::cryptoutils-&gt;scramble32(<span class="number">0</span>, scrambling_key)),</span><br><span class="line">      switchVar, insert);</span><br></pre></td></tr></table></figure>
+<p>这一段创建了一个switch用的变量，相当于是<code>switch(caseVar)</code>，并通过<code>StoreInst</code>进行赋值，这时就用上了之前的随机数种子，将生成的随机数用作case。</p>
+<p>接着创建了两个空的基本块<code>loopEntry</code>和<code>loopEnd</code>，然后将switch语句放入<code>loopEntry</code>中，将第一块基本块连接上<code>loopEntry</code>，<code>loopEnd</code>跳转回<code>loopEntry</code>，在switch语句加入默认的<code>swDefault</code>基本块大概成型了</p>
+<p>大概就和下面这个流程图差不多了</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//				  	+--------+</span></span><br><span class="line"><span class="comment">//                  |first bb|</span></span><br><span class="line"><span class="comment">//                  +---+----+</span></span><br><span class="line"><span class="comment">//                      |</span></span><br><span class="line"><span class="comment">//                 +----v----+</span></span><br><span class="line"><span class="comment">//                 |loopEntry| &lt;--------+</span></span><br><span class="line"><span class="comment">//                 +----+----+          |</span></span><br><span class="line"><span class="comment">//                      |               |</span></span><br><span class="line"><span class="comment">//                 +----v---+           |</span></span><br><span class="line"><span class="comment">//                 | switch |           |</span></span><br><span class="line"><span class="comment">//                 +----+---+           |</span></span><br><span class="line"><span class="comment">//                      |               |</span></span><br><span class="line"><span class="comment">//         +------------+               |</span></span><br><span class="line"><span class="comment">//         |                            |</span></span><br><span class="line"><span class="comment">//	+------v-------+                    |</span></span><br><span class="line"><span class="comment">//	| default case |                    |</span></span><br><span class="line"><span class="comment">//	+------+-------+                    |</span></span><br><span class="line"><span class="comment">//         |                            |</span></span><br><span class="line"><span class="comment">//         +-----------+                |</span></span><br><span class="line"><span class="comment">//                     |                |</span></span><br><span class="line"><span class="comment">//                     |                |</span></span><br><span class="line"><span class="comment">//                     v                |</span></span><br><span class="line"><span class="comment">//               +-----+------+         |</span></span><br><span class="line"><span class="comment">//               |  loopEnd   +---------+</span></span><br><span class="line"><span class="comment">//               +------------+</span></span><br></pre></td></tr></table></figure>
+<p>骨架成型了，接下来把剩余的基本块往switch语句中填入就行了。</p>
+<p>但是填入之后肯定是个死循环了，我们这时候就要活用flatten的思想，控制switch case的caseVar的值来达到控制流程的目的——很简单，在每个基本块即每个case之后，补上一条对caseVar的值更新的语句即可达到控制流程的目的</p>
+<p>剩下代码就是来更新每个case中代码块对caseVar的操作了，怎么更新呢，很简单，就是更新成当前代码块原后续逻辑块在当前这个代码框架下的case值</p>
+<p>接下来的操作分三种情况来进行</p>
+<ul>
+<li><p>case中代码块没有后续块，那就是一个返回块，不需要更新caseVar</p>
+</li>
+<li><p>case中代码块只有一个后续块，也就是一个无条件跳转分支，直接更新成后续块对应的case即可</p>
+</li>
+<li><p>case中代码块有2个后续块，也就是一个条件跳转分支，通过successor对象（就是后续块的意思）直接在switch结构中查找出对应的case值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SelectInst *sel =SelectInst::Create(br-&gt;getCondition(), numCaseTrue, numCaseFalse, <span class="string">""</span>,i-&gt;getTerminator());</span><br></pre></td></tr></table></figure>
+<p>如上，使用llvm的SelectInst来实现分支选择，像227行写的，根据br-&gt;getCondition()是否为True来决定是跳转到numCaseTrue还是numCaseFalse</p>
+</li>
+</ul>
+<p>最后这样就成功平坦化成功了</p>
+<p>拿一个例子来理解：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func1</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     <span class="keyword">int</span> result;</span><br><span class="line">     <span class="keyword">if</span>(a&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            result=a+b;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">else</span>&#123;</span><br><span class="line">            result=a-b;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如下图，这是原本上面这个函数的IR图</p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="ollvm-learning/fla_1.png" alt></p>
+<p>先判断第一个基本块有没有if语句，我们这个函数刚开始明显没有，先将第一块分开成一个基本块</p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="ollvm-learning/fla_2.png" alt></p>
+<p>然后创建三个基本块<code>loopEntry</code>、<code>loopEnd</code>、<code>swDefault</code>，组成如下图左边的流程</p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="ollvm-learning/fla_3.png" alt></p>
+<p>这时候，switch语句我们已经可以看见了，接下来就是将vector里存储的每个基本块加入switch-case语句中，每一个basicblock对应一个case，并且caseVar为刚开始产生的随机数值，如下图所示</p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="ollvm-learning/fla_4.png" alt></p>
+<p>添加完全部基本块之后，需要修改每个基本块的跳转关系，使得每个基本块执行完毕之后，会重新设置caseVar的值，从而跳转到<code>loopEnd</code>块，然后回到switch-case的判断语句中，能够顺利跳转到下个case，处理后即为下图成型</p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="ollvm-learning/fla_5.png" alt></p>
+<h4 id="Substitution"><a href="#Substitution" class="headerlink" title="Substitution"></a>Substitution</h4><p>Substitution的主要功能是对程序的一些指令进行替换。</p>
+<p>其中文件位于<code>./include/llvm/Transforms/Obfuscation/substitution.cpp</code></p>
 <h4 id="bug寻找"><a href="#bug寻找" class="headerlink" title="bug寻找"></a>bug寻找</h4><p>适配llvm9.0和ollvm4.0时发生了许多错误</p>
 <p>可见 <a href="./ollvm-learning/bug_log.txt">bug_Log</a></p>
 <p><a href="https://www.cnblogs.com/wpgraceii/p/10622582.html" target="_blank" rel="noopener">Segmentation Fault 的原因若干</a></p>
+<p>最快的当然还是把相关错误的llvm4.0的代码移植到llvm9.0处</p>
 <h3 id="对抗"><a href="#对抗" class="headerlink" title="对抗"></a>对抗</h3><p>当前应对ollvm混淆的大体方法为：自写脚本、bcf、decllvm、符号执行。前三个无论是自己找规律，还是基于capstone</p>
 
       
@@ -823,7 +875,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-count">49</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1053,7 +1105,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#llvm"><span class="nav-number">1.</span> <span class="nav-text">llvm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#啥是LLVM？"><span class="nav-number">1.1.</span> <span class="nav-text">啥是LLVM？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#llvm-和-clang-的关系"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">llvm 和 clang 的关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Obfuscator-LLVM"><span class="nav-number">1.1.1.</span> <span class="nav-text">Obfuscator-LLVM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Install"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">Install</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#o-llvm手动打包"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">o-llvm手动打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#o-llvm的特点"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">o-llvm的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#nstructions-Substitution"><span class="nav-number">1.1.1.3.1.</span> <span class="nav-text">nstructions Substitution</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Bogus-Control-Flow"><span class="nav-number">1.1.1.3.2.</span> <span class="nav-text">Bogus Control Flow</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Control-Flow-Flattening"><span class="nav-number">1.1.1.3.3.</span> <span class="nav-text">Control Flow Flattening</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Functions-annotations"><span class="nav-number">1.1.1.3.4.</span> <span class="nav-text">Functions annotations</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对比"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">对比</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#o-llvm源码分析"><span class="nav-number">1.1.2.</span> <span class="nav-text">o-llvm源码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bogus-Control-Flow-1"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">Bogus Control Flow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bug寻找"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">bug寻找</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对抗"><span class="nav-number">1.1.3.</span> <span class="nav-text">对抗</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#llvm"><span class="nav-number">1.</span> <span class="nav-text">llvm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#啥是LLVM？"><span class="nav-number">1.1.</span> <span class="nav-text">啥是LLVM？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#llvm-和-clang-的关系"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">llvm 和 clang 的关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Obfuscator-LLVM"><span class="nav-number">1.1.1.</span> <span class="nav-text">Obfuscator-LLVM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Install"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">Install</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#o-llvm手动打包"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">o-llvm手动打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#o-llvm的特点"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">o-llvm的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#nstructions-Substitution"><span class="nav-number">1.1.1.3.1.</span> <span class="nav-text">nstructions Substitution</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Bogus-Control-Flow"><span class="nav-number">1.1.1.3.2.</span> <span class="nav-text">Bogus Control Flow</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Control-Flow-Flattening"><span class="nav-number">1.1.1.3.3.</span> <span class="nav-text">Control Flow Flattening</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Functions-annotations"><span class="nav-number">1.1.1.3.4.</span> <span class="nav-text">Functions annotations</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对比"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">对比</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#o-llvm源码分析"><span class="nav-number">1.1.2.</span> <span class="nav-text">o-llvm源码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bogus-Control-Flow-1"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">Bogus Control Flow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Flattening"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">Flattening</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Substitution"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">Substitution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bug寻找"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">bug寻找</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对抗"><span class="nav-number">1.1.3.</span> <span class="nav-text">对抗</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2020-03-23T14:13:57.997Z</updated>
+  <updated>2020-03-25T09:41:30.739Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>lsp-hijack</title>
+    <link href="http://magic-king.net/2020/03/25/lsp-hijack/"/>
+    <id>http://magic-king.net/2020/03/25/lsp-hijack/</id>
+    <published>2020-03-25T06:17:01.000Z</published>
+    <updated>2020-03-25T09:41:30.739Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;序&quot;&gt;&lt;a href=&quot;#序&quot; class=&quot;headerlink&quot; title=&quot;序&quot;&gt;&lt;/a&gt;序&lt;/h2&gt;&lt;p&gt;原本只是想白嫖免费的腾讯加速器，用完卸了，没想到还卸载不了。&lt;/p&gt;
+&lt;p&gt;其中有两个dll删除时总是显示正在运行中，用&lt;code&gt;tasklist /m xxx.dll&lt;/code&gt;查看
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Meltdown And Hardware Security</title>
@@ -128,7 +149,7 @@
     <link href="http://magic-king.net/2020/02/27/ollvm-learning/"/>
     <id>http://magic-king.net/2020/02/27/ollvm-learning/</id>
     <published>2020-02-27T02:09:14.000Z</published>
-    <updated>2020-03-12T15:07:14.490Z</updated>
+    <updated>2020-03-25T15:03:45.977Z</updated>
     
     <summary type="html">
     
