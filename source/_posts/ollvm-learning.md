@@ -605,9 +605,159 @@ int add(int a, int b){
 
 `createAlteredBasicBlock()`函数用于生成与给定基本块相似的基本块，将操作运算符进行重新映射，重新映射节点，重新映射对应的数据，然后加入随机的指令
 
-对于`doF()`函数，该函数的功能是将Function中所有为真的判断语句进行替换，比如之前的`1.0 == 1.0 `。它的思想是定义两个全局变量x、y并且初始化为0，然后遍历Module内的所有指令，并将所有的FCMP_TRUE分支指令替换为`y<10 || x*x(x-1)%2 ==0`。
+对于`doF()`函数，该函数的功能是将Function中所有为真的判断语句进行替换，比如之前的`1.0 == 1.0 `。它的思想是定义两个全局变量x、y并且初始化为0，然后遍历Module内的所有指令，并将所有的FCMP_TRUE分支指令替换为`y<10 || x*x(x-1)%2 ==0`，我们从反汇编的代码来看，很明显的就有y<10这个分支
 
 
+
+
+
+#### Flattening
+
+**Flattening**的主要功能是为函数增加switch-case语句，使得函数变得扁平化。下面就对它的实现源码进行分析。
+
+其中文件位于`./include/llvm/Transforms/Obfuscation/Flattening.cpp`
+
+Flattening继承了`FunctionPass`，因此它的入口函数即为`runOnFunction`。在`runOnFunction`函数的具体实现中，首先判断是否包含了启动`-fla`的命令。在编译目标程序代码时，如要启动fla模块，需要带上参数`-mllvm -fla`。
+
+参数检查完毕之后，调用flatten函数。flatten函数是该Pass的核心，下面对该函数进行分析。
+
+先是声明了一些后面要用的变量，然后创建了一个数组，用来存储随机数种子
+
+```c++
+// SCRAMBLER
+  char scrambling_key[16];
+  llvm::cryptoutils->get_bytes(scrambling_key, 16);
+  // END OF SCRAMBLER  
+// Lower switch
+  FunctionPass *lower = createLowerSwitchPass();
+  lower->runOnFunction(*f);
+```
+
+后两行调用了外部一个外部pass：`creatLowerSwitchPass()`，用来消除当前函数的内部用switch方式的代码，将其全转换成`if else`的调用，方便后面的代码块分割
+
+然后一个for循环，像bcf那样，将函数分为各个基本块储存在`vector<BasicBlock *> origBB`的一个向量数组里，等等的代码是针对基本块的操作，就像乐高那样一块块进行拼接。
+
+然后的话，若只有一个以下的基本块，那么无法平坦化，直接返回`false`
+
+然后开始遍历基本块，先把第一块从vector数组中移除，因为按照他的流程平坦化的设计，第一块进行单独处理，作为整个混淆流程的开始逻辑，所以紧接着先对第一块进行处理。
+
+检查第一块中是否包含条件跳转分支，如果包含条件跳转分支，则按照条件分支的位置进行代码块分割，分割逻辑跟SplitBasicBlock的逻辑一致，整个分割的目的也是为了后面进行流程平坦化准备的
+
+
+
+然后开始是核心代码了
+
+```c++
+// Create switch variable and set as it
+  switchVar =
+      new AllocaInst(Type::getInt32Ty(f->getContext()), 0, "switchVar", insert);
+  new StoreInst(
+      ConstantInt::get(Type::getInt32Ty(f->getContext()),
+                       llvm::cryptoutils->scramble32(0, scrambling_key)),
+      switchVar, insert);
+```
+
+这一段创建了一个switch用的变量，相当于是`switch(caseVar)`，并通过`StoreInst`进行赋值，这时就用上了之前的随机数种子，将生成的随机数用作case。
+
+接着创建了两个空的基本块`loopEntry`和`loopEnd`，然后将switch语句放入`loopEntry`中，将第一块基本块连接上`loopEntry`，`loopEnd`跳转回`loopEntry`，在switch语句加入默认的`swDefault`基本块大概成型了
+
+大概就和下面这个流程图差不多了
+
+```c++
+//				  	+--------+
+//                  |first bb|
+//                  +---+----+
+//                      |
+//                 +----v----+
+//                 |loopEntry| <--------+
+//                 +----+----+          |
+//                      |               |
+//                 +----v---+           |
+//                 | switch |           |
+//                 +----+---+           |
+//                      |               |
+//         +------------+               |
+//         |                            |
+//	+------v-------+                    |
+//	| default case |                    |
+//	+------+-------+                    |
+//         |                            |
+//         +-----------+                |
+//                     |                |
+//                     |                |
+//                     v                |
+//               +-----+------+         |
+//               |  loopEnd   +---------+
+//               +------------+
+```
+
+骨架成型了，接下来把剩余的基本块往switch语句中填入就行了。
+
+但是填入之后肯定是个死循环了，我们这时候就要活用flatten的思想，控制switch case的caseVar的值来达到控制流程的目的——很简单，在每个基本块即每个case之后，补上一条对caseVar的值更新的语句即可达到控制流程的目的
+
+剩下代码就是来更新每个case中代码块对caseVar的操作了，怎么更新呢，很简单，就是更新成当前代码块原后续逻辑块在当前这个代码框架下的case值
+
+接下来的操作分三种情况来进行
+
+* case中代码块没有后续块，那就是一个返回块，不需要更新caseVar
+
+* case中代码块只有一个后续块，也就是一个无条件跳转分支，直接更新成后续块对应的case即可
+
+* case中代码块有2个后续块，也就是一个条件跳转分支，通过successor对象（就是后续块的意思）直接在switch结构中查找出对应的case值
+
+  ```c++
+  SelectInst *sel =SelectInst::Create(br->getCondition(), numCaseTrue, numCaseFalse, "",i->getTerminator());
+  ```
+
+  如上，使用llvm的SelectInst来实现分支选择，像227行写的，根据br->getCondition()是否为True来决定是跳转到numCaseTrue还是numCaseFalse
+
+最后这样就成功平坦化成功了
+
+拿一个例子来理解：
+
+```c++
+int func1(int a,int b)
+{
+     int result;
+     if(a>0){
+            result=a+b;
+     }
+     else{
+            result=a-b;
+     }
+     return result;
+}
+```
+
+如下图，这是原本上面这个函数的IR图
+
+![](ollvm-learning/fla_1.png)
+
+先判断第一个基本块有没有if语句，我们这个函数刚开始明显没有，先将第一块分开成一个基本块
+
+![](ollvm-learning/fla_2.png)
+
+
+
+然后创建三个基本块`loopEntry`、`loopEnd`、`swDefault`，组成如下图左边的流程
+
+![](ollvm-learning/fla_3.png)
+
+这时候，switch语句我们已经可以看见了，接下来就是将vector里存储的每个基本块加入switch-case语句中，每一个basicblock对应一个case，并且caseVar为刚开始产生的随机数值，如下图所示
+
+![](ollvm-learning/fla_4.png)
+
+添加完全部基本块之后，需要修改每个基本块的跳转关系，使得每个基本块执行完毕之后，会重新设置caseVar的值，从而跳转到`loopEnd`块，然后回到switch-case的判断语句中，能够顺利跳转到下个case，处理后即为下图成型
+
+![](ollvm-learning/fla_5.png)
+
+
+
+#### Substitution
+
+Substitution的主要功能是对程序的一些指令进行替换。
+
+其中文件位于`./include/llvm/Transforms/Obfuscation/substitution.cpp`
 
 
 
@@ -623,7 +773,7 @@ int add(int a, int b){
 
 [Segmentation Fault 的原因若干](https://www.cnblogs.com/wpgraceii/p/10622582.html)
 
-
+最快的当然还是把相关错误的llvm4.0的代码移植到llvm9.0处
 
 
 
