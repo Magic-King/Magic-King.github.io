@@ -123,7 +123,8 @@
 <meta property="og:image" content="https://magic-king.net/images/loading.gif">
 <meta property="og:image" content="https://magic-king.net/images/loading.gif">
 <meta property="og:image" content="https://magic-king.net/images/loading.gif">
-<meta property="og:updated_time" content="2020-03-25T15:03:45.977Z">
+<meta property="og:image" content="https://magic-king.net/images/loading.gif">
+<meta property="og:updated_time" content="2020-03-29T15:16:22.190Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ollvm-learning">
 <meta name="twitter:description" content="Learning about ollvm">
@@ -453,7 +454,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-25 23:03:45" itemprop="dateModified" datetime="2020-03-25T23:03:45+08:00">2020-03-25</time>
+                <time title="修改时间：2020-03-29 23:16:22" itemprop="dateModified" datetime="2020-03-29T23:16:22+08:00">2020-03-29</time>
               
             
           </span>
@@ -552,6 +553,7 @@
 <p><a href="https://zhuanlan.zhihu.com/p/27617441" target="_blank" rel="noopener">GoSSIP安全研究项目：孤挺花（Armariris） LLVM混淆框架</a></p>
 <p><a href="https://mp.weixin.qq.com/s/rORMNBExWVyGvWMFvYTXPw" target="_blank" rel="noopener">为OLLVM添加字符串混淆功能</a></p>
 <p><a href="http://www.nagain.com/activity/article/14/" target="_blank" rel="noopener">llvm之旅第四站 － 编写Pass</a></p>
+<p><a href="https://github.com/haidragon/study_obscure" target="_blank" rel="noopener">Github-haidragon / study_obscure</a></p>
 <p><a href="https://bbs.pediy.com/thread-225681.htm" target="_blank" rel="noopener">[原创]Fllvm（Fuck-ollvm）介绍</a></p>
 </blockquote>
 <h2 id="啥是LLVM？"><a href="#啥是LLVM？" class="headerlink" title="啥是LLVM？"></a>啥是LLVM？</h2><blockquote>
@@ -749,11 +751,111 @@
 <p><img src="https://magic-king.net/images/loading.gif" data-original="ollvm-learning/fla_5.png" alt></p>
 <h4 id="Substitution"><a href="#Substitution" class="headerlink" title="Substitution"></a>Substitution</h4><p>Substitution的主要功能是对程序的一些指令进行替换。</p>
 <p>其中文件位于<code>./include/llvm/Transforms/Obfuscation/substitution.cpp</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NUMBER_ADD_SUBST 4</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NUMBER_SUB_SUBST 3</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NUMBER_AND_SUBST 2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NUMBER_OR_SUBST 2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NUMBER_XOR_SUBST 2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> cl::opt&lt;<span class="keyword">int</span>&gt;</span><br><span class="line">ObfTimes(<span class="string">"sub_loop"</span>,</span><br><span class="line">         cl::desc(<span class="string">"Choose how many time the -sub pass loops on a function"</span>),</span><br><span class="line">         cl::value_desc(<span class="string">"number of times"</span>), cl::init(<span class="number">1</span>), cl::Optional);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Stats</span></span><br><span class="line">STATISTIC(Add, <span class="string">"Add substitued"</span>);</span><br><span class="line">STATISTIC(Sub, <span class="string">"Sub substitued"</span>);</span><br><span class="line"><span class="comment">// STATISTIC(Mul,  "Mul substitued");</span></span><br><span class="line"><span class="comment">// STATISTIC(Div,  "Div substitued");</span></span><br><span class="line"><span class="comment">// STATISTIC(Rem,  "Rem substitued");</span></span><br><span class="line"><span class="comment">// STATISTIC(Shi,  "Shift substitued");</span></span><br><span class="line">STATISTIC(And, <span class="string">"And substitued"</span>);</span><br><span class="line">STATISTIC(Or, <span class="string">"Or substitued"</span>);</span><br><span class="line">STATISTIC(Xor, <span class="string">"Xor substitued"</span>);</span><br></pre></td></tr></table></figure>
+<p>如上代码，通过该文件的宏定义，就可知每种运算替换的方式有多少种，可以对哪些指令进行替换：很明显的有：加减、位的与、或、异或，五种运算的替换</p>
+<p>而注释的是未实现的运算替换，在官方wiki里可以知道，为了保证混淆再恢复之后的正确性，避免浮点数运算带来的程序误差，所以没有实现这些运算的替换（乘、除、取余，移位）</p>
+<p>在源文件里，类似地，在相应的namespace里定义了这些内容，与之前两个混淆方式类似，<code>substitution</code>继承于<code>FunctionPass</code>，以<code>runOnFuntion</code>函数为入口，里面再判断flag参数正确之后，朴实无华地调用了<code>substitute(tmp)</code>函数己行混淆</p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="ollvm-learning/sub_1.png" alt></p>
+<p>主函数<code>substitute()</code>很简单，用一个while循环维护混淆次数(即给的flag参数<code>-sub_loop</code>)，然后两层<code>for</code>循环。第一个for循环用来遍历函数中的基本块(Basic Block)，第二个<code>for</code>循环用于遍历每个基本块中的所有指令，然后采用一个<code>switch-case</code>语句用来针对不同指令的不同替换操作，case里用随机数来决定用哪种方式去替换</p>
+<p>接下来的所有代码都是其替换方式的实现</p>
+<blockquote>
+<p><a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Instructions-Substitution" target="_blank" rel="noopener">Instructions-Substitution</a>：在其官方wiki里都有说明是怎样的替换方式，在其注释下代码很好理解，相关的函数不懂就查查llvm的函数库就可以了</p>
+<ul>
+<li><p><code>Add</code>指令支持4种替换方法，分别是</p>
+<ul>
+<li><code>a = b - (-c)</code></li>
+<li><code>a = -(-b + (-c))</code></li>
+<li><code>r = rand (); a = b + r; a = a + c; a = a – r</code></li>
+<li><code>r = rand (); a = b - r; a = a + b; a = a + r</code></li>
+</ul>
+</li>
+<li><p><code>Sub</code>指令支持3种替换方法，分别是</p>
+<ul>
+<li><code>a = b + (-c)</code></li>
+<li><code>r = rand (); a = b + r; a = a - c; a = a – r</code></li>
+<li><code>r = rand (); a = b - r; a = a - c; a = a + r</code></li>
+</ul>
+</li>
+<li><p><code>And</code> 指令支持1种替换方法，分别是</p>
+<ul>
+<li><code>a = b &amp; c</code> =&gt; <code>a = (b^~c)&amp; b</code></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><code>Or</code>指令支持1种替换方法，分别是</p>
+<ul>
+<li><code>a = b | c</code> =&gt; <code>a = (b &amp; c) | (b ^ c)</code></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><code>Xor</code> 指令支持1种替换方法，分别是</p>
+<ul>
+<li><code>a = a ^ b</code>=&gt; <code>a = (!a &amp; b) | (a &amp; !b)</code></li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h4 id="StringObfuscation"><a href="#StringObfuscation" class="headerlink" title="StringObfuscation"></a>StringObfuscation</h4><p>有很多大佬对于ollvm的混淆进行了升级，每个版本对于其混淆的实现方式各不相同，这边我分析的是上海交通大学的孤挺花项目的字符串混淆实现分析，项目地址为：<a href="https://github.com/GoSSIP-SJTU/Armariris" target="_blank" rel="noopener">https://github.com/GoSSIP-SJTU/Armariris</a></p>
+<p>与上面三种原有项目的混淆方式不同，字符串混淆的类<code>StringObfuscationPass</code>继承至<code>ModulePass</code>，在入口函数<code>runOnModule</code>里重写了父类函数，在里面实现了加密，在私有函数中实现了解密函数，在加密的末尾实现了调用，保证函数运行的正确性</p>
+<p>函数的思想：是以两个vector来存储静态变量和加密后的字符串，利用Module类的<code>global_iterator</code>迭代器遍历全局变量，判断是否为<code>.str.</code>类型，即字符串类型，进行加密替换，加密方式采用了最原始的异或加密</p>
 <h4 id="bug寻找"><a href="#bug寻找" class="headerlink" title="bug寻找"></a>bug寻找</h4><p>适配llvm9.0和ollvm4.0时发生了许多错误</p>
 <p>可见 <a href="./ollvm-learning/bug_log.txt">bug_Log</a></p>
 <p><a href="https://www.cnblogs.com/wpgraceii/p/10622582.html" target="_blank" rel="noopener">Segmentation Fault 的原因若干</a></p>
 <p>最快的当然还是把相关错误的llvm4.0的代码移植到llvm9.0处</p>
-<h3 id="对抗"><a href="#对抗" class="headerlink" title="对抗"></a>对抗</h3><p>当前应对ollvm混淆的大体方法为：自写脚本、bcf、decllvm、符号执行。前三个无论是自己找规律，还是基于capstone</p>
+<p>解决string_obf error编译时报强制转换类型错误方法 ：<a href="http://hellollvm.org/slides/porting-ollvm.pdf" target="_blank" rel="noopener">http://hellollvm.org/slides/porting-ollvm.pdf</a></p>
+<blockquote>
+<p> <a href="http://hellollvm.org/" target="_blank" rel="noopener">http://hellollvm.org/</a></p>
+</blockquote>
+<h3 id="对抗"><a href="#对抗" class="headerlink" title="对抗"></a>对抗</h3><p>//TODO：大坑，现在对逆向还不是很熟悉，先对方法了解一波</p>
+<p>引用项目Fllvm(虽然他不开源)中，作者对自己改写的ollvm变版fllvm的自信，来学习对抗ollvm的方式</p>
+<blockquote>
+<p>Fllvm与当前反混淆工具的对抗：当前应对ollvm混淆的大体方法为：自写脚本、bcf、decllvm、符合执行。前三个无论是自己找规律，还是基于capstone(反汇编引擎)，对Fllvm都只存在理论的可行性，基本用途不大。</p>
+</blockquote>
+<p>由作者一段话可知，大概就是找规律写脚本复原，或者采用符号执行的方式去反混淆(原谅我真的找不到作者所说的bcf是啥)</p>
+<p>我看的大多找规律的都是从原版ollvm的混淆方式入手，写反混淆的脚本去运行</p>
+<p>还是能用符号执行分析的大佬比较nb</p>
+<blockquote>
+<p>资料：</p>
+<p><a href="https://www.freebuf.com/articles/terminal/130142.html" target="_blank" rel="noopener">反混淆：恢复被OLLVM保护的程序</a></p>
+<p><a href="https://bbs.pediy.com/thread-252321.htm" target="_blank" rel="noopener">[原创]ARM64 OLLVM反混淆</a></p>
+<p><a href="https://www.anquanke.com/post/id/200744" target="_blank" rel="noopener">Android OLLVM反混淆实战</a>：基于Angr</p>
+<p><a href="https://www.hacking8.com/uploadfile/kcon/2019/24%E6%97%A5/%E5%9F%BA%E4%BA%8E%E7%AC%A6%E5%8F%B7%E6%89%A7%E8%A1%8C%E7%9A%84%E5%8F%8D%E6%B7%B7%E6%B7%86%E6%96%B9%E6%B3%95%E7%A0%94%E7%A9%B6.pdf" target="_blank" rel="noopener">基于符号执行的反混淆方法研究.pdf</a></p>
+<p><a href="https://www.hacking8.com/uploadfile/kcon/2019/24日/基于符号执行的反混淆方法研究.pdf" target="_blank" rel="noopener">基于符号执行的反混淆方法研究.pdf</a></p>
+<p><a href="https://security.tencent.com/index.php/blog/msg/112" target="_blank" rel="noopener">利用符号执行去除控制流平坦化</a></p>
+<p><a href="https://www.cnblogs.com/h2zZhou/p/6637890.html" target="_blank" rel="noopener">反混淆：恢复被OLLVM保护的程序</a></p>
+<p><a href="https://mlog.club/article/3446618" target="_blank" rel="noopener">使用Binary Ninja去除ollvm流程平坦混淆</a></p>
+<blockquote>
+<p>关于逆向：<a href="https://blog.yuuoniy.cn/2018/08/03/XMAN-reversing-1/" target="_blank" rel="noopener">https://blog.yuuoniy.cn/2018/08/03/XMAN-reversing-1/</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<ul>
+<li>基于Miasm框架(一个Python开源逆向工程框架)，进行反混淆</li>
+</ul>
+<p><a href="https://github.com/cea-sec/miasm" target="_blank" rel="noopener">https://github.com/cea-sec/miasm</a><br><a href="https://www.freebuf.com/articles/terminal/130142.html" target="_blank" rel="noopener">反混淆：恢复被OLLVM保护的程序</a></p>
+<ul>
+<li>IDA插件，利用micro code API进行反混淆</li>
+</ul>
+<p>Hex-rays：<a href="http://www.hexblog.com/?p=1248" target="_blank" rel="noopener">Hex-Rays Microcode API vs. Obfuscating Compiler</a><br>项目地址：<a href="https://github.com/RolfRolles/HexRaysDeob" target="_blank" rel="noopener">Github-RolfRolles / HexRaysDeob</a><br><a href="https://xz.aliyun.com/t/6749" target="_blank" rel="noopener">使用IDA microcode去除ollvm混淆(上)</a></p>
+<ul>
+<li>DecLLVM，针对OLLVM的IDA分析插件<br><a href="https://github.com/F8LEFT/DecLLVM" target="_blank" rel="noopener">Github-F8LEFT / DecLLVM</a><br><a href="https://gitlab.com/F8LEFT/DecLLVM" target="_blank" rel="noopener">Gitlab-F8LEFT / DecLLVM</a><br><a href="https://www.52pojie.cn/thread-484892-1-1.html" target="_blank" rel="noopener">吾爱破解2016安全挑战赛cm7 Android CrackMe 分析详解</a></li>
+</ul>
+<ul>
+<li>Unicorn 引擎<br><a href="https://bbs.pediy.com/thread-224330.htm" target="_blank" rel="noopener">[翻译]Unicorn引擎教程</a><br><a href="https://bbs.pediy.com/thread-252257.htm" target="_blank" rel="noopener">[原创]使用unicorn engin还原Armariris字符串混淆</a></li>
+</ul>
+<ul>
+<li>Angr 符号执行框架<br>Github里有</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>关于符号执行：</p>
+<p><a href="https://pdfs.semanticscholar.org/a29f/c90b207befb42f67a040c6a07ea6699f6bad.pdf" target="_blank" rel="noopener">符号执行</a>是一种重要的形式化方法和软件分析技术，通过使用符号执行技术，将程序中变量的值表示为符号值和常量组成的计算表达式，符号是指取值集合的记号，程序计算的输出被表示为输入符号值的函数，其在软件测试和程序验证中发挥着重要作用，并可以应用于程序漏洞的检测。</p>
+<p>符号执行的发展是从静态符号执行到动态符号执行到<a href="http://dslab.epfl.ch/pubs/selsymbex.pdf" target="_blank" rel="noopener">选择性符号执行</a>，动态符号执行会以具体数值作为输入来模拟执行程序，是<a href="http://mir.cs.illinois.edu/marinov/publications/SenETAL05CUTE.pdf" target="_blank" rel="noopener">混合执行</a>(concolic execution)的典型代表，有很高的精确度，目前较新的符号执行工具有<a href="https://github.com/JonathanSalwan/Triton" target="_blank" rel="noopener">Triton</a>和<a href="https://github.com/angr/angr" target="_blank" rel="noopener">angr</a></p>
+<p>关于符号执行的paper：<a href="https://github.com/saswatanand/symexbib" target="_blank" rel="noopener">https://github.com/saswatanand/symexbib</a></p>
+<p>符号执行的框架：Miasm、Angr、Triton</p>
+</blockquote>
 
       
     </div>
@@ -1105,7 +1207,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#llvm"><span class="nav-number">1.</span> <span class="nav-text">llvm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#啥是LLVM？"><span class="nav-number">1.1.</span> <span class="nav-text">啥是LLVM？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#llvm-和-clang-的关系"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">llvm 和 clang 的关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Obfuscator-LLVM"><span class="nav-number">1.1.1.</span> <span class="nav-text">Obfuscator-LLVM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Install"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">Install</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#o-llvm手动打包"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">o-llvm手动打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#o-llvm的特点"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">o-llvm的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#nstructions-Substitution"><span class="nav-number">1.1.1.3.1.</span> <span class="nav-text">nstructions Substitution</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Bogus-Control-Flow"><span class="nav-number">1.1.1.3.2.</span> <span class="nav-text">Bogus Control Flow</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Control-Flow-Flattening"><span class="nav-number">1.1.1.3.3.</span> <span class="nav-text">Control Flow Flattening</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Functions-annotations"><span class="nav-number">1.1.1.3.4.</span> <span class="nav-text">Functions annotations</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对比"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">对比</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#o-llvm源码分析"><span class="nav-number">1.1.2.</span> <span class="nav-text">o-llvm源码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bogus-Control-Flow-1"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">Bogus Control Flow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Flattening"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">Flattening</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Substitution"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">Substitution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bug寻找"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">bug寻找</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对抗"><span class="nav-number">1.1.3.</span> <span class="nav-text">对抗</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#llvm"><span class="nav-number">1.</span> <span class="nav-text">llvm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#啥是LLVM？"><span class="nav-number">1.1.</span> <span class="nav-text">啥是LLVM？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#llvm-和-clang-的关系"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">llvm 和 clang 的关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Obfuscator-LLVM"><span class="nav-number">1.1.1.</span> <span class="nav-text">Obfuscator-LLVM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Install"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">Install</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#o-llvm手动打包"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">o-llvm手动打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#o-llvm的特点"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">o-llvm的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#nstructions-Substitution"><span class="nav-number">1.1.1.3.1.</span> <span class="nav-text">nstructions Substitution</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Bogus-Control-Flow"><span class="nav-number">1.1.1.3.2.</span> <span class="nav-text">Bogus Control Flow</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Control-Flow-Flattening"><span class="nav-number">1.1.1.3.3.</span> <span class="nav-text">Control Flow Flattening</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Functions-annotations"><span class="nav-number">1.1.1.3.4.</span> <span class="nav-text">Functions annotations</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对比"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">对比</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#o-llvm源码分析"><span class="nav-number">1.1.2.</span> <span class="nav-text">o-llvm源码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bogus-Control-Flow-1"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">Bogus Control Flow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Flattening"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">Flattening</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Substitution"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">Substitution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#StringObfuscation"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">StringObfuscation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bug寻找"><span class="nav-number">1.1.2.5.</span> <span class="nav-text">bug寻找</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对抗"><span class="nav-number">1.1.3.</span> <span class="nav-text">对抗</span></a></li></ol></li></ol></div>
             
 
           </div>
