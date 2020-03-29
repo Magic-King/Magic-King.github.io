@@ -17,6 +17,8 @@ password:
 
 
 
+
+
 ## 单步调试
 
 
@@ -80,7 +82,9 @@ if __name__ == '__main__':
 
 
 
+visual studio的调试：https://blog.csdn.net/boylinux/article/details/7659759
 
+在visual studio里，F11为step into，F10为Step over
 
 
 

@@ -89,6 +89,9 @@ password:
 >
 > [llvm之旅第四站 － 编写Pass](http://www.nagain.com/activity/article/14/)
 >
+>
+> [Github-haidragon / study_obscure](https://github.com/haidragon/study_obscure)
+>
 > 
 >
 > 
@@ -759,6 +762,90 @@ Substitution的主要功能是对程序的一些指令进行替换。
 
 其中文件位于`./include/llvm/Transforms/Obfuscation/substitution.cpp`
 
+```c++
+#define NUMBER_ADD_SUBST 4
+#define NUMBER_SUB_SUBST 3
+#define NUMBER_AND_SUBST 2
+#define NUMBER_OR_SUBST 2
+#define NUMBER_XOR_SUBST 2
+
+static cl::opt<int>
+ObfTimes("sub_loop",
+         cl::desc("Choose how many time the -sub pass loops on a function"),
+         cl::value_desc("number of times"), cl::init(1), cl::Optional);
+
+
+// Stats
+STATISTIC(Add, "Add substitued");
+STATISTIC(Sub, "Sub substitued");
+// STATISTIC(Mul,  "Mul substitued");
+// STATISTIC(Div,  "Div substitued");
+// STATISTIC(Rem,  "Rem substitued");
+// STATISTIC(Shi,  "Shift substitued");
+STATISTIC(And, "And substitued");
+STATISTIC(Or, "Or substitued");
+STATISTIC(Xor, "Xor substitued");
+```
+
+如上代码，通过该文件的宏定义，就可知每种运算替换的方式有多少种，可以对哪些指令进行替换：很明显的有：加减、位的与、或、异或，五种运算的替换
+
+而注释的是未实现的运算替换，在官方wiki里可以知道，为了保证混淆再恢复之后的正确性，避免浮点数运算带来的程序误差，所以没有实现这些运算的替换（乘、除、取余，移位）
+
+在源文件里，类似地，在相应的namespace里定义了这些内容，与之前两个混淆方式类似，`substitution`继承于`FunctionPass`，以`runOnFuntion`函数为入口，里面再判断flag参数正确之后，朴实无华地调用了`substitute(tmp)`函数己行混淆
+
+![](ollvm-learning/sub_1.png)
+
+
+
+主函数`substitute()`很简单，用一个while循环维护混淆次数(即给的flag参数`-sub_loop`)，然后两层`for`循环。第一个for循环用来遍历函数中的基本块(Basic Block)，第二个`for`循环用于遍历每个基本块中的所有指令，然后采用一个`switch-case`语句用来针对不同指令的不同替换操作，case里用随机数来决定用哪种方式去替换
+
+接下来的所有代码都是其替换方式的实现
+
+> [Instructions-Substitution](https://github.com/obfuscator-llvm/obfuscator/wiki/Instructions-Substitution)：在其官方wiki里都有说明是怎样的替换方式，在其注释下代码很好理解，相关的函数不懂就查查llvm的函数库就可以了
+>
+> * `Add`指令支持4种替换方法，分别是
+>
+>   * `a = b - (-c)`
+>   * `a = -(-b + (-c))`
+>   * `r = rand (); a = b + r; a = a + c; a = a – r `
+>   * `r = rand (); a = b - r; a = a + b; a = a + r `
+>
+> * `Sub`指令支持3种替换方法，分别是
+>
+>   * `a = b + (-c)`
+>   * `r = rand (); a = b + r; a = a - c; a = a – r `
+>   * `r = rand (); a = b - r; a = a - c; a = a + r `
+>
+> * `And` 指令支持1种替换方法，分别是
+>
+>   * `a = b & c` => ` a = (b^~c)& b `
+>
+>     
+>
+> * `Or`指令支持1种替换方法，分别是
+>
+>   * `a = b | c` => `a = (b & c) | (b ^ c) `
+>
+>     
+>
+> * `Xor` 指令支持1种替换方法，分别是
+>
+>   * `a = a ^ b `=> `a = (!a & b) | (a & !b) `
+>
+>     
+
+
+
+
+
+#### StringObfuscation
+
+有很多大佬对于ollvm的混淆进行了升级，每个版本对于其混淆的实现方式各不相同，这边我分析的是上海交通大学的孤挺花项目的字符串混淆实现分析，项目地址为：https://github.com/GoSSIP-SJTU/Armariris
+
+与上面三种原有项目的混淆方式不同，字符串混淆的类`StringObfuscationPass`继承至`ModulePass`，在入口函数`runOnModule`里重写了父类函数，在里面实现了加密，在私有函数中实现了解密函数，在加密的末尾实现了调用，保证函数运行的正确性
+
+函数的思想：是以两个vector来存储静态变量和加密后的字符串，利用Module类的`global_iterator`迭代器遍历全局变量，判断是否为`.str.`类型，即字符串类型，进行加密替换，加密方式采用了最原始的异或加密
+
 
 
 
@@ -777,23 +864,117 @@ Substitution的主要功能是对程序的一些指令进行替换。
 
 
 
+解决string_obf error编译时报强制转换类型错误方法 ：http://hellollvm.org/slides/porting-ollvm.pdf
+
+>  http://hellollvm.org/
+
 
 
 
 
 ### 对抗
 
-当前应对ollvm混淆的大体方法为：自写脚本、bcf、decllvm、符号执行。前三个无论是自己找规律，还是基于capstone
+
+
+//TODO：大坑，现在对逆向还不是很熟悉，先对方法了解一波
+
+
+
+引用项目Fllvm(虽然他不开源)中，作者对自己改写的ollvm变版fllvm的自信，来学习对抗ollvm的方式
+
+> Fllvm与当前反混淆工具的对抗：当前应对ollvm混淆的大体方法为：自写脚本、bcf、decllvm、符合执行。前三个无论是自己找规律，还是基于capstone(反汇编引擎)，对Fllvm都只存在理论的可行性，基本用途不大。
+
+由作者一段话可知，大概就是找规律写脚本复原，或者采用符号执行的方式去反混淆(原谅我真的找不到作者所说的bcf是啥)
+
+我看的大多找规律的都是从原版ollvm的混淆方式入手，写反混淆的脚本去运行
+
+还是能用符号执行分析的大佬比较nb
+
+
+
+> 资料：
+>
+> [反混淆：恢复被OLLVM保护的程序](https://www.freebuf.com/articles/terminal/130142.html)
+>
+> [[原创]ARM64 OLLVM反混淆](https://bbs.pediy.com/thread-252321.htm)
+>
+> [Android OLLVM反混淆实战](https://www.anquanke.com/post/id/200744)：基于Angr
+>
+> [基于符号执行的反混淆方法研究.pdf](https://www.hacking8.com/uploadfile/kcon/2019/24%E6%97%A5/%E5%9F%BA%E4%BA%8E%E7%AC%A6%E5%8F%B7%E6%89%A7%E8%A1%8C%E7%9A%84%E5%8F%8D%E6%B7%B7%E6%B7%86%E6%96%B9%E6%B3%95%E7%A0%94%E7%A9%B6.pdf)
+>
+> [基于符号执行的反混淆方法研究.pdf](https://www.hacking8.com/uploadfile/kcon/2019/24日/基于符号执行的反混淆方法研究.pdf)
+>
+> [利用符号执行去除控制流平坦化](https://security.tencent.com/index.php/blog/msg/112)
+>
+> [反混淆：恢复被OLLVM保护的程序](https://www.cnblogs.com/h2zZhou/p/6637890.html)
+>
+> [使用Binary Ninja去除ollvm流程平坦混淆](https://mlog.club/article/3446618)
+>
+> 
+>
+> > 关于逆向：https://blog.yuuoniy.cn/2018/08/03/XMAN-reversing-1/
+>
+> 
 
 
 
 
 
+> 
+>
+> * 基于Miasm框架(一个Python开源逆向工程框架)，进行反混淆
+>
+> https://github.com/cea-sec/miasm
+> [反混淆：恢复被OLLVM保护的程序](https://www.freebuf.com/articles/terminal/130142.html)
+>
+> 
+>
+> 
+>
+> * IDA插件，利用micro code API进行反混淆
+>
+> Hex-rays：[Hex-Rays Microcode API vs. Obfuscating Compiler](http://www.hexblog.com/?p=1248)
+> 项目地址：[Github-RolfRolles / HexRaysDeob](https://github.com/RolfRolles/HexRaysDeob)
+> [使用IDA microcode去除ollvm混淆(上)](https://xz.aliyun.com/t/6749)
+>
+> 
+>
+> 
+>
+> * DecLLVM，针对OLLVM的IDA分析插件
+>   [Github-F8LEFT / DecLLVM](https://github.com/F8LEFT/DecLLVM)
+>   [Gitlab-F8LEFT / DecLLVM](https://gitlab.com/F8LEFT/DecLLVM)
+>   [吾爱破解2016安全挑战赛cm7 Android CrackMe 分析详解](https://www.52pojie.cn/thread-484892-1-1.html)
+>
+> 
+>
+> * Unicorn 引擎
+>   [[翻译]Unicorn引擎教程](https://bbs.pediy.com/thread-224330.htm)
+>   [[原创]使用unicorn engin还原Armariris字符串混淆](https://bbs.pediy.com/thread-252257.htm)
+>
+> 
+>
+> * Angr 符号执行框架
+>   Github里有
+>
+> 
+>
+> 
 
 
 
 
 
+> 关于符号执行：
+> 
+>
+> [符号执行](https://pdfs.semanticscholar.org/a29f/c90b207befb42f67a040c6a07ea6699f6bad.pdf)是一种重要的形式化方法和软件分析技术，通过使用符号执行技术，将程序中变量的值表示为符号值和常量组成的计算表达式，符号是指取值集合的记号，程序计算的输出被表示为输入符号值的函数，其在软件测试和程序验证中发挥着重要作用，并可以应用于程序漏洞的检测。
+>
+> 符号执行的发展是从静态符号执行到动态符号执行到[选择性符号执行](http://dslab.epfl.ch/pubs/selsymbex.pdf)，动态符号执行会以具体数值作为输入来模拟执行程序，是[混合执行](http://mir.cs.illinois.edu/marinov/publications/SenETAL05CUTE.pdf)(concolic execution)的典型代表，有很高的精确度，目前较新的符号执行工具有[Triton](https://github.com/JonathanSalwan/Triton)和[angr](https://github.com/angr/angr)
+>
+> 关于符号执行的paper：https://github.com/saswatanand/symexbib
+>
+> 符号执行的框架：Miasm、Angr、Triton
 
 
 
