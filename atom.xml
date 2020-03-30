@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2020-03-29T12:53:31.653Z</updated>
+  <updated>2020-03-30T15:13:46.413Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -15,6 +15,65 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Link-Library-of-C++</title>
+    <link href="http://magic-king.net/2020/03/30/Link-Library-of-C/"/>
+    <id>http://magic-king.net/2020/03/30/Link-Library-of-C/</id>
+    <published>2020-03-30T13:43:06.000Z</published>
+    <updated>2020-03-30T15:13:46.413Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;0x00-序&quot;&gt;&lt;a href=&quot;#0x00-序&quot; class=&quot;headerlink&quot; title=&quot;0x00 序&quot;&gt;&lt;/a&gt;0x00 序&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.runoob.com/w3cnote/cpp-static-library-an
+      
+    
+    </summary>
+    
+    
+      <category term="C++" scheme="http://magic-king.net/categories/C/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Computer-Virus</title>
+    <link href="http://magic-king.net/2020/03/30/Computer-Virus/"/>
+    <id>http://magic-king.net/2020/03/30/Computer-Virus/</id>
+    <published>2020-03-30T13:26:46.000Z</published>
+    <updated>2020-03-30T13:29:08.770Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="Virus" scheme="http://magic-king.net/categories/Virus/"/>
+    
+      <category term="Reverse" scheme="http://magic-king.net/categories/Virus/Reverse/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Virtual_hard_disk</title>
+    <link href="http://magic-king.net/2020/03/30/Virtual-hard-disk/"/>
+    <id>http://magic-king.net/2020/03/30/Virtual-hard-disk/</id>
+    <published>2020-03-30T12:28:34.000Z</published>
+    <updated>2020-03-30T13:13:15.197Z</updated>
+    
+    <summary type="html">
+    
+      something about vhdx&amp;vhd
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>lsp-hijack</title>
@@ -149,7 +208,7 @@
     <link href="http://magic-king.net/2020/02/27/ollvm-learning/"/>
     <id>http://magic-king.net/2020/02/27/ollvm-learning/</id>
     <published>2020-02-27T02:09:14.000Z</published>
-    <updated>2020-03-29T15:16:22.190Z</updated>
+    <updated>2020-03-30T13:27:16.451Z</updated>
     
     <summary type="html">
     
@@ -161,6 +220,8 @@
       <category term="reverse" scheme="http://magic-king.net/categories/reverse/"/>
     
       <category term="llvm" scheme="http://magic-king.net/categories/reverse/llvm/"/>
+    
+      <category term="Compile" scheme="http://magic-king.net/categories/reverse/llvm/Compile/"/>
     
     
       <category term="reverse" scheme="http://magic-king.net/tags/reverse/"/>
@@ -1005,7 +1066,7 @@
     
     <summary type="html">
     
-      It is Magic.&lt;br&gt;the content has been encrypted, enter the password to read.&lt;br&gt;
+      It is Magic.&lt;/br&gt;the content has been encrypted, enter the password to read.&lt;/br&gt;
     
     </summary>
     
