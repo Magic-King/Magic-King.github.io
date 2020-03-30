@@ -2,7 +2,7 @@
 title: ollvm-learning
 date: 2020-02-27 10:09:14
 tags: [reverse, ollvm]
-categories: [reverse, llvm]
+categories: [reverse, llvm, Compile]
 description: Learning about ollvm
 password:
 ---
