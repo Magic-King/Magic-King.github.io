@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2020-04-12T15:09:40.809Z</updated>
+  <updated>2020-04-13T06:36:06.551Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://magic-king.net/2020/04/12/XSS-Attack/"/>
     <id>http://magic-king.net/2020/04/12/XSS-Attack/</id>
     <published>2020-04-12T04:34:18.000Z</published>
-    <updated>2020-04-12T15:09:40.809Z</updated>
+    <updated>2020-04-13T06:36:06.551Z</updated>
     
     <summary type="html">
     
@@ -67,7 +67,7 @@
     <link href="http://magic-king.net/2020/03/30/Computer-Virus/"/>
     <id>http://magic-king.net/2020/03/30/Computer-Virus/</id>
     <published>2020-03-30T13:26:46.000Z</published>
-    <updated>2020-04-07T13:50:25.080Z</updated>
+    <updated>2020-04-13T14:30:45.100Z</updated>
     
     <summary type="html">
     
@@ -1095,7 +1095,7 @@
     
     <summary type="html">
     
-      It is Magic.&lt;br&gt;the content has been encrypted, enter the password to read.&lt;br&gt;
+      It is Magic.&lt;/br&gt;the content has been encrypted, enter the password to read.&lt;/br&gt;
     
     </summary>
     
