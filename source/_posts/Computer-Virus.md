@@ -85,7 +85,9 @@ password:
 
 之前是把病毒内嵌进入html中，当加载html时执行了`vbscript`脚本，类似于现在html自动执行`javascript`脚本
 
-大概病毒文件长下面这个样，由于密文过长就不粘贴了，然后同各国execute执行解密函数
+大概病毒文件长下面这个样，由于密文过长就不粘贴了，然后通过execute执行解密函数
+
+加密的算法是先生成四个算子，每个字符减去对应的算子，解密时再按顺序加回来
 
 ```html
 script language=vbscript>
@@ -823,4 +825,18 @@ rm $tmp
 
 
 
-https://blog.csdn.net/simon798/article/details/98848050
+通过劫持hook实现键盘记录器：https://blog.csdn.net/simon798/article/details/98848050
+
+
+
+
+
+
+
+
+
+### 二进制文件病毒：binary file virus 
+
+### 
+
+该病毒以寄生方式挂接到二进制可执行文件（不管该文件能否直接执行）。二进制可执行文件包含可由 CPU 直接解释的二进制指令。这些类型的病毒通常称为文件感染型病毒。

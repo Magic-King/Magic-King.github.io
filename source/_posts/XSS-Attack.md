@@ -319,23 +319,29 @@ $ python -m http.server 8000
 
 
 
-## 构造一个XSS网站以及防护
+## 构造一个XSS网站以及其对抗
 
 
 
-通过上面的靶场练习已经很熟悉了
+通过上面的靶场练习已经很熟悉XSS的原理了
 
 
 
-flask和其模板jinja2 禁用html转义
+刚开始再用flask基本实现一个搜索功能时，发现无法XSS，后面经查询Flask和jinja2都有在传输时对数据进行html转义，但默认是Flask关闭html转义，jinja2开启html转义
 
-https://blog.csdn.net/super_tiger_lee/article/details/77837443
+> flask和其模板jinja2 禁用html转义
+>
+> https://blog.csdn.net/super_tiger_lee/article/details/77837443
+>
+> https://www.jianshu.com/p/6950b616f2b7
+>
+> 简单来说，在使用变量 `{{var}}` 利用jinja管道的方法，对 `var` 变量进行信任，而不进行html转义，即写为 `{{ var | safe }}`
+>
+> 
 
-https://www.jianshu.com/p/6950b616f2b7
 
 
-
-
+在前后台传输数据遇到的问题：
 
 > 太久没写flask有点生疏，然后导致表单获取请求时一直为空，忘记啥原因了，这边mark一下
 >
@@ -347,9 +353,11 @@ https://www.jianshu.com/p/6950b616f2b7
 
 
 
-* 在评论时，防止get重复评论，需要用post去请求评论
+* 在评论时，防止get请求刷新后重复评论，需要用post去请求评论
 
 
+
+实现html转义，有html包提供的方法，但代码里我们可以直接仿造其写一个(其实很简单)
 
 ```python
 import html
@@ -362,11 +370,11 @@ ret = html.unescape(tran_s)
 
 
 
-
-
 下面给出代码
 
 前端部分
+
+主要用jinja2模板写的
 
 ```html
 <!DOCTYPE html>
@@ -492,7 +500,15 @@ blockquote {
 
 
 
-后端部分
+后端部分：
+
+通过Python的Flask实现
+
+通过路由来接收搜索和评论请求，把评论内容存储在一个数组里（毕竟是临时的，重启Flask应用即可清除评论）
+
+XSS的对抗将输入进行html编码实现，勾选框即可启用
+
+escape仿照了HTML包里面对于html编码的实现，利用python的字符串替代直接替换相关的html符号，实现html编码
 
 ```python
 # !/usr/bin/env python
@@ -514,6 +530,9 @@ comment = []
 def index():
 	return render_template("XSS.html", comment=comment, query=None)
 
+
+
+# Realize the Reflected XSS attack Vulnerable Search box
 @app.route('/rxss', methods=["GET","POST"])
 def rxss():
 	if request.method == "GET":
@@ -528,6 +547,8 @@ def rxss():
 	return render_template("XSS.html", query=qdata)
 
 
+
+# Realize the Persistent XSS attack Vulnerable Comment
 @app.route('/pxss', methods=["GET","POST"])
 def pxss():
 	if request.method == "POST":
@@ -544,7 +565,8 @@ def pxss():
 	#return render_template("XSS.html", comment=comment)
 	return redirect(url_for('index'))
 
-# 检查字符串是否含有标签
+
+# 检查字符串是否含有标签并编码
 def escape(s, quote=True):
     """
     Replace special characters "&", "<" and ">" to HTML-safe sequences.
