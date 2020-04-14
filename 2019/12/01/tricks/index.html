@@ -98,12 +98,12 @@
 
 
 
-  <meta name="description" content="To record some strange tricksPython1.something about math.log如图，当math.log(125,5)时应该值为3的，但是出了一个bug  好奇心驱使我去写一个脚本看看，然后发现这些能hack math.log函数的不在少数 12345for i in range(2,101):4for j in range(100):44ij = i**">
+  <meta name="description" content="To record some strange tricksPython1.something about math.log如图，当math.log(125,5)时应该值为3的，但是出了一个bug  好奇心驱使我去写一个脚本看看，然后发现这些能hack math.log函数的不在少数 12345for i in range(2,101):	for j in range(100):		ij = i**">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tricks">
 <meta property="og:url" content="http://magic-king.net/2019/12/01/tricks/index.html">
 <meta property="og:site_name" content="Hexo&amp;Magic">
-<meta property="og:description" content="To record some strange tricksPython1.something about math.log如图，当math.log(125,5)时应该值为3的，但是出了一个bug  好奇心驱使我去写一个脚本看看，然后发现这些能hack math.log函数的不在少数 12345for i in range(2,101):4for j in range(100):44ij = i**">
+<meta property="og:description" content="To record some strange tricksPython1.something about math.log如图，当math.log(125,5)时应该值为3的，但是出了一个bug  好奇心驱使我去写一个脚本看看，然后发现这些能hack math.log函数的不在少数 12345for i in range(2,101):	for j in range(100):		ij = i**">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://magic-king.net/images/loading.gif">
 <meta property="og:image" content="https://magic-king.net/images/loading.gif">
@@ -111,7 +111,7 @@
 <meta property="og:updated_time" content="2019-12-01T11:46:37.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tricks">
-<meta name="twitter:description" content="To record some strange tricksPython1.something about math.log如图，当math.log(125,5)时应该值为3的，但是出了一个bug  好奇心驱使我去写一个脚本看看，然后发现这些能hack math.log函数的不在少数 12345for i in range(2,101):4for j in range(100):44ij = i**">
+<meta name="twitter:description" content="To record some strange tricksPython1.something about math.log如图，当math.log(125,5)时应该值为3的，但是出了一个bug  好奇心驱使我去写一个脚本看看，然后发现这些能hack math.log函数的不在少数 12345for i in range(2,101):	for j in range(100):		ij = i**">
 <meta name="twitter:image" content="https://magic-king.net/images/loading.gif">
 
 
@@ -470,7 +470,7 @@
         <h1 id="To-record-some-strange-tricks"><a href="#To-record-some-strange-tricks" class="headerlink" title="To record some strange tricks"></a>To record some strange tricks</h1><h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><h5 id="1-something-about-math-log"><a href="#1-something-about-math-log" class="headerlink" title="1.something about math.log"></a>1.something about math.log</h5><p>如图，当math.log(125,5)时应该值为3的，但是出了一个bug</p>
 <p><img src="https://magic-king.net/images/loading.gif" data-original="tricks\1.jpg" alt></p>
 <p>好奇心驱使我去写一个脚本看看，然后发现这些能hack math.log函数的不在少数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>,<span class="number">101</span>):</span><br><span class="line">4<span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">44ij = i**j</span><br><span class="line">        <span class="keyword">if</span> math.log(ij, i) != j:</span><br><span class="line">            print(i,<span class="string">'\t'</span>,j)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>,<span class="number">101</span>):</span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">		ij = i**j</span><br><span class="line">        <span class="keyword">if</span> math.log(ij, i) != j:</span><br><span class="line">            print(i,<span class="string">'\t'</span>,j)</span><br></pre></td></tr></table></figure>
 <p>然后去ubuntu虚拟机尝试了python2，发现也有这个问题</p>
 <p><img src="https://magic-king.net/images/loading.gif" data-original="tricks\2.jpg" alt></p>
 <p>看了官方文档，发现有底数的对数函数是通过换底公式实现的，统一换成以e为底的对数去计算，因此会有除法的溢出导致以上问题。</p>
