@@ -105,18 +105,18 @@
 <meta property="og:site_name" content="Hexo&amp;Magic">
 <meta property="og:description" content="关于VMware虚拟机中，Ubuntu开机黑屏解决若干相当于Mark 没想到，在写系统安全内核模块时，锁屏开出来后，他界面就崩了，我想着重启能解决一切问题，然后重启完他就凉了 一直在冒一个白色的光标，心想着继续重启看看有没提示 1piix4_smbus:HostSMBuscontrollernotenabled 然后再启动一行时看见这个，搜索解决办法 但是网上都是大同小异的办法——进入终端，禁用模">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://magic-king.net/images/loading.gif">
-<meta property="og:image" content="https://magic-king.net/images/loading.gif">
-<meta property="og:image" content="https://magic-king.net/images/loading.gif">
-<meta property="og:image" content="https://magic-king.net/images/loading.gif">
-<meta property="og:image" content="https://magic-king.net/images/loading.gif">
-<meta property="og:image" content="https://magic-king.net/images/loading.gif">
-<meta property="og:image" content="https://magic-king.net/images/loading.gif">
+<meta property="og:image" content="http://magic-king.net/2020/02/20/VMware-Ubuntu-blackScreen-fix/1.png">
+<meta property="og:image" content="http://magic-king.net/2020/02/20/VMware-Ubuntu-blackScreen-fix/2.png">
+<meta property="og:image" content="http://magic-king.net/2020/02/20/VMware-Ubuntu-blackScreen-fix/3.png">
+<meta property="og:image" content="http://magic-king.net/2020/02/20/VMware-Ubuntu-blackScreen-fix/4.png">
+<meta property="og:image" content="http://magic-king.net/2020/02/20/VMware-Ubuntu-blackScreen-fix/5.png">
+<meta property="og:image" content="http://magic-king.net/2020/02/20/VMware-Ubuntu-blackScreen-fix/6.png">
+<meta property="og:image" content="http://magic-king.net/2020/02/20/VMware-Ubuntu-blackScreen-fix/7.png">
 <meta property="og:updated_time" content="2020-02-22T08:13:06.069Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VMware-Ubuntu-blackScreen-fix">
 <meta name="twitter:description" content="关于VMware虚拟机中，Ubuntu开机黑屏解决若干相当于Mark 没想到，在写系统安全内核模块时，锁屏开出来后，他界面就崩了，我想着重启能解决一切问题，然后重启完他就凉了 一直在冒一个白色的光标，心想着继续重启看看有没提示 1piix4_smbus:HostSMBuscontrollernotenabled 然后再启动一行时看见这个，搜索解决办法 但是网上都是大同小异的办法——进入终端，禁用模">
-<meta name="twitter:image" content="https://magic-king.net/images/loading.gif">
+<meta name="twitter:image" content="http://magic-king.net/2020/02/20/VMware-Ubuntu-blackScreen-fix/1.png">
 
 
 
@@ -528,7 +528,7 @@
 </blockquote>
 <p>但是我用这个命令重启之后，以为他能恢复原样，但是他没有！</p>
 <p>用tty1的startx进入黑屏，然后他就没法动了，我们进tty2的<code>ps -ef</code>查看进程，发现都是正常的啊</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="VMware-Ubuntu-blackScreen-fix/1.png" alt></p>
+<p><img src="/2020/02/20/VMware-Ubuntu-blackScreen-fix/1.png" alt></p>
 <p>可见gnome正常运行啊</p>
 <blockquote>
 <p><a href="https://askubuntu.com/questions/999180/16-04-to-17-10-login-loop-because-of-xsession-and-upstart" target="_blank" rel="noopener">https://askubuntu.com/questions/999180/16-04-to-17-10-login-loop-because-of-xsession-and-upstart</a></p>
@@ -548,10 +548,10 @@
 <p>清空日志：<a href="https://www.cnblogs.com/Jimmy1988/p/8892483.html" target="_blank" rel="noopener">https://www.cnblogs.com/Jimmy1988/p/8892483.html</a></p>
 </blockquote>
 <p>找到疑似的几个错误，注意10:51:02是正常启动完系统进入tty1的时间</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="VMware-Ubuntu-blackScreen-fix/2.png" alt></p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="VMware-Ubuntu-blackScreen-fix/3.png" alt></p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="VMware-Ubuntu-blackScreen-fix/4.png" alt></p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="VMware-Ubuntu-blackScreen-fix/5.png" alt></p>
+<p><img src="/2020/02/20/VMware-Ubuntu-blackScreen-fix/2.png" alt></p>
+<p><img src="/2020/02/20/VMware-Ubuntu-blackScreen-fix/3.png" alt></p>
+<p><img src="/2020/02/20/VMware-Ubuntu-blackScreen-fix/4.png" alt></p>
+<p><img src="/2020/02/20/VMware-Ubuntu-blackScreen-fix/5.png" alt></p>
 <p>后面全是主题解析错误，也就是无法打开桌面</p>
 <p>但是根据第二张图的日志中lightdm.service一直在重启失败</p>
 <blockquote>
@@ -559,9 +559,9 @@
 <p><a href="https://baike.baidu.com/item/LightDM/9557430?fr=aladdin" target="_blank" rel="noopener">LightDM_百度百科</a></p>
 </blockquote>
 <p>我们看下服务状态</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="VMware-Ubuntu-blackScreen-fix/6.png" alt></p>
+<p><img src="/2020/02/20/VMware-Ubuntu-blackScreen-fix/6.png" alt></p>
 <p>然后发现服务启动过后，卡在了莫名其妙的地方</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="VMware-Ubuntu-blackScreen-fix/7.png" alt></p>
+<p><img src="/2020/02/20/VMware-Ubuntu-blackScreen-fix/7.png" alt></p>
 <p>想要更新软件包试试</p>
 <p>然后发现还没网</p>
 <blockquote>
@@ -674,7 +674,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="https://magic-king.net/images/loading.gif" data-original="/images/avatar.jpg" alt="Magic King">
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Magic King">
             
               <p class="site-author-name" itemprop="name">Magic King</p>
               <div class="site-description motion-element" itemprop="description">Now You See Me!</div>
@@ -687,7 +687,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-count">54</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -770,7 +770,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">33</span>
+                      
+                    
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -865,7 +867,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">39</span>
+                      
+                    
+                    <span class="site-state-item-count">40</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1519,5 +1523,5 @@
 	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
   
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 </html>

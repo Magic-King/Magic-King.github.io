@@ -105,12 +105,12 @@
 <meta property="og:site_name" content="Hexo&amp;Magic">
 <meta property="og:description" content="something about vhdx&amp;vhd">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://magic-king.net/images/loading.gif">
+<meta property="og:image" content="http://magic-king.net/2020/03/30/Virtual-hard-disk/VHDX-Visual.png">
 <meta property="og:updated_time" content="2020-03-30T13:13:15.197Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Virtual_hard_disk">
 <meta name="twitter:description" content="something about vhdx&amp;vhd">
-<meta name="twitter:image" content="https://magic-king.net/images/loading.gif">
+<meta name="twitter:image" content="http://magic-king.net/2020/03/30/Virtual-hard-disk/VHDX-Visual.png">
 
 
 
@@ -491,7 +491,7 @@
 <li>磁盘转换：物理到虚拟，虚拟到物理</li>
 <li>生命周期管理和重新配置</li>
 </ul>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="Virtual-hard-disk/VHDX-Visual.png" alt></p>
+<p><img src="/2020/03/30/Virtual-hard-disk/VHDX-Visual.png" alt></p>
 <p>VHDX模拟硬盘，与文件系统的格式无关，也与分区无关。vhdx具有与物理硬盘驱动器相同的特征。假如创建一个ntfs格式的vhdx就如上图所示</p>
 <h4 id="老师给的vhdx使用攻略"><a href="#老师给的vhdx使用攻略" class="headerlink" title="老师给的vhdx使用攻略"></a>老师给的vhdx使用攻略</h4><p>由于我的硬盘快炸了就不实验这个了</p>
 <figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">下载vhdx文件，放到一个妥帖的地方备份先。</span><br><span class="line">一个有空闲80G以上的硬盘比如E:，解压缩vhdx放到e:下</span><br><span class="line">“以管理员身份”运行“命令提示符”，执行：</span><br><span class="line">bcdedit /copy &#123;current&#125; -d "windows 10 x64 v2004 20h1 b19041"</span><br><span class="line">会返回一个uuid，像这样子：</span><br><span class="line">&#123;78088406<span class="string">-4</span>d9e<span class="string">-11</span>e9<span class="string">-951</span>e<span class="string">-97</span>df5fa30904&#125;</span><br><span class="line">然后继续执行（注意uuid换成你返回的）（注意把E换成你的盘符，大括号中括号要保持不要删）</span><br><span class="line">bcdedit /set &#123;78088406<span class="string">-4</span>d9e<span class="string">-11</span>e9<span class="string">-951</span>e<span class="string">-97</span>df5fa30904&#125; osdevice vhd=[e:]\Windows10x64-v2004<span class="string">-20</span>h1-b19041.vhdx</span><br><span class="line">bcdedit /set &#123;78088406<span class="string">-4</span>d9e<span class="string">-11</span>e9<span class="string">-951</span>e<span class="string">-97</span>df5fa30904&#125; device vhd=[e:]\Windows10x64-v2004<span class="string">-20</span>h1-b19041.vhdx</span><br><span class="line">bcdedit /set &#123;78088406<span class="string">-4</span>d9e<span class="string">-11</span>e9<span class="string">-951</span>e<span class="string">-97</span>df5fa30904&#125; hypervisorlaunchtype OFF</span><br><span class="line">然后重开机，注意有个开机选择菜单，</span><br><span class="line">选这个v2004即可进入新的windows</span><br><span class="line">不选或直接回车的话，会继续旧的windows。</span><br><span class="line">将来如果想删掉，直接把vhdx删掉就完事了。</span><br><span class="line"></span><br><span class="line">附</span><br><span class="line">$ md5sum W*</span><br><span class="line">52cd80b26541bb92e306291362a930cb *Windows10x64-v2004<span class="string">-20</span>h1-b19041.7z</span><br><span class="line">fc99df570f50bd7b4cfd0b08a905a11e *Windows10x64-v2004<span class="string">-20</span>h1-b19041.vhdx</span><br></pre></td></tr></table></figure>
@@ -599,7 +599,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="https://magic-king.net/images/loading.gif" data-original="/images/avatar.jpg" alt="Magic King">
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Magic King">
             
               <p class="site-author-name" itemprop="name">Magic King</p>
               <div class="site-description motion-element" itemprop="description">Now You See Me!</div>
@@ -612,7 +612,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-count">54</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -695,7 +695,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">33</span>
+                      
+                    
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -790,7 +792,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">39</span>
+                      
+                    
+                    <span class="site-state-item-count">40</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1444,5 +1448,5 @@
 	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
   
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 </html>

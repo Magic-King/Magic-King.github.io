@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2020-04-13T06:36:06.551Z</updated>
+  <updated>2020-04-14T06:42:07.701Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>pwn-learning</title>
+    <link href="http://magic-king.net/2020/04/14/pwn-learning/"/>
+    <id>http://magic-king.net/2020/04/14/pwn-learning/</id>
+    <published>2020-04-14T06:33:19.000Z</published>
+    <updated>2020-04-14T06:42:07.701Z</updated>
+    
+    <summary type="html">
+    
+      Something about pwn!
+    
+    </summary>
+    
+    
+      <category term="pwn" scheme="http://magic-king.net/categories/pwn/"/>
+    
+    
+      <category term="ctf" scheme="http://magic-king.net/tags/ctf/"/>
+    
+      <category term="pwn" scheme="http://magic-king.net/tags/pwn/"/>
+    
+      <category term="security" scheme="http://magic-king.net/tags/security/"/>
+    
+  </entry>
   
   <entry>
     <title>XSS Attack</title>
@@ -67,7 +92,7 @@
     <link href="http://magic-king.net/2020/03/30/Computer-Virus/"/>
     <id>http://magic-king.net/2020/03/30/Computer-Virus/</id>
     <published>2020-03-30T13:26:46.000Z</published>
-    <updated>2020-04-13T14:30:45.100Z</updated>
+    <updated>2020-04-14T12:35:36.047Z</updated>
     
     <summary type="html">
     
@@ -387,7 +412,7 @@
     <link href="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/"/>
     <id>http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/</id>
     <published>2020-02-03T07:35:17.000Z</published>
-    <updated>2020-04-08T05:46:17.447Z</updated>
+    <updated>2020-04-15T06:00:34.062Z</updated>
     
     <summary type="html">
     
@@ -1095,7 +1120,7 @@
     
     <summary type="html">
     
-      It is Magic.&lt;br&gt;the content has been encrypted, enter the password to read.&lt;br&gt;
+      It is Magic.&lt;/br&gt;the content has been encrypted, enter the password to read.&lt;/br&gt;
     
     </summary>
     

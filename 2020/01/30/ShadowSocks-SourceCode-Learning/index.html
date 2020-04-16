@@ -106,17 +106,17 @@
 <meta property="og:site_name" content="Hexo&amp;Magic">
 <meta property="og:description" content="关于ShadowSocks的学习对待科学上网的工具，既然开源的话，就要有科学的精神对其进行学习。 其GitHub官方网址：https://github.com/shadowsocks 本文学习的源码来自：https://github.com/shadowsocks/shadowsocks 版本是2.9.1的python版本  参考： shadowsocks 源码分析：整体结构 你也能写个 Shad">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://magic-king.net/images/loading.gif">
-<meta property="og:image" content="https://magic-king.net/images/loading.gif">
-<meta property="og:image" content="https://magic-king.net/images/loading.gif">
-<meta property="og:image" content="https://magic-king.net/images/loading.gif">
-<meta property="og:image" content="https://magic-king.net/images/loading.gif">
-<meta property="og:image" content="https://magic-king.net/images/loading.gif">
+<meta property="og:image" content="http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/1.png">
+<meta property="og:image" content="http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/2.png">
+<meta property="og:image" content="http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/3.png">
+<meta property="og:image" content="http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/4.png">
+<meta property="og:image" content="http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/5.png">
+<meta property="og:image" content="http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/6.png">
 <meta property="og:updated_time" content="2020-02-25T06:16:54.535Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ShadowSocks-SourceCode-Learning">
 <meta name="twitter:description" content="关于ShadowSocks的学习对待科学上网的工具，既然开源的话，就要有科学的精神对其进行学习。 其GitHub官方网址：https://github.com/shadowsocks 本文学习的源码来自：https://github.com/shadowsocks/shadowsocks 版本是2.9.1的python版本  参考： shadowsocks 源码分析：整体结构 你也能写个 Shad">
-<meta name="twitter:image" content="https://magic-king.net/images/loading.gif">
+<meta name="twitter:image" content="http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/1.png">
 
 
 
@@ -534,9 +534,9 @@
 <li>将寻址方式扩展为包含域名和v6 IP地址（即IPv6）</li>
 </ul>
 <p>socks协议的设计初衷是在保证网络隔离的情况下，提高部分人员的网络访问权限。但是他却被发现了新的用途：突破网络通信限制，这和该协议的设计初衷正好相反。</p>
-<h4 id="Socks5协议流程"><a href="#Socks5协议流程" class="headerlink" title="Socks5协议流程"></a>Socks5协议流程</h4><p><img src="https://magic-king.net/images/loading.gif" data-original="ShadowSocks-SourceCode-Learning/1.png" alt></p>
+<h4 id="Socks5协议流程"><a href="#Socks5协议流程" class="headerlink" title="Socks5协议流程"></a>Socks5协议流程</h4><p><img src="/2020/01/30/ShadowSocks-SourceCode-Learning/1.png" alt></p>
 <p>建立TCP连接后，客户端需要先发送请求来协商版本及认证方式，详细可见<a href="https://www.ietf.org/rfc/rfc1928.txt" target="_blank" rel="noopener">rfc1928</a></p>
-<h2 id="Shadowsocks原理"><a href="#Shadowsocks原理" class="headerlink" title="Shadowsocks原理"></a>Shadowsocks原理</h2><p><img src="https://magic-king.net/images/loading.gif" data-original="ShadowSocks-SourceCode-Learning/2.png" alt></p>
+<h2 id="Shadowsocks原理"><a href="#Shadowsocks原理" class="headerlink" title="Shadowsocks原理"></a>Shadowsocks原理</h2><p><img src="/2020/01/30/ShadowSocks-SourceCode-Learning/2.png" alt></p>
 <ul>
 <li><strong>PC</strong>是需要利用shadowsocks代理的应用；</li>
 <li><strong>SS Local</strong>：为shadowsocks客户端，通常运行在PC/手机上（也可以运行在任务PC可 以到达的位置），用于与shadowsocks服务端建立连接。</li>
@@ -606,7 +606,7 @@
 <p><a href="https://www.cnblogs.com/wxlog/p/10566628.html" target="_blank" rel="noopener">https://www.cnblogs.com/wxlog/p/10566628.html</a></p>
 </blockquote>
 <p>由此直接看到下面的<code>cipher</code>，里面定义了ss的加密方法</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="ShadowSocks-SourceCode-Learning/3.png" alt></p>
+<p><img src="/2020/01/30/ShadowSocks-SourceCode-Learning/3.png" alt></p>
 <p>这也就是crypto模块对外提供的所有加密方法</p>
 <p><code>def load_openssl()</code>方法用来寻找运行系统中的openssl库</p>
 <p>全局变量<code>libcrypto</code>用来存放打开的openssl对象</p>
@@ -621,11 +621,11 @@
 </blockquote>
 <p>但是查了下<code>libsodium</code>是一个新的软件库，为了加解密、签名、哈希等。是一个现代的密码库，着重于移植性、安全性，是NaCl(Networking and Cryptographt library)的一个分支==&gt;<a href="http://nacl.cr.yp.to/" target="_blank" rel="noopener">http://nacl.cr.yp.to/</a></p>
 <p>这里面也是实现了三种加密（都没听过，往后有时间可以了解一下</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="ShadowSocks-SourceCode-Learning/4.png" alt></p>
+<p><img src="/2020/01/30/ShadowSocks-SourceCode-Learning/4.png" alt></p>
 <h4 id="util-py"><a href="#util-py" class="headerlink" title="util.py"></a>util.py</h4><p>基本在Crypto文件夹下的所有文件基本都引用了这个模块</p>
 <p>这模块提供了①查找dll库的函数：<code>def find_library_nt(name)</code>、<code>def find_library(possible_lib_names, search_symbol, library_name)</code><br>②测试加解密函数：<code>def run_cipher(cipher, decipher)</code><br>③检验引入的库是否存在：<code>def test_find_library()</code></p>
 <p>其main函数主要是为了检测是否引入所有所需的dll库，所以引入这个模块可确保其他编写加密的文件不会出现无法调用库的情况</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="ShadowSocks-SourceCode-Learning/5.png" alt></p>
+<p><img src="/2020/01/30/ShadowSocks-SourceCode-Learning/5.png" alt></p>
 <h4 id="table-py"><a href="#table-py" class="headerlink" title="table.py"></a>table.py</h4><p>好像是一种单表替换加密</p>
 <h3 id="init-py"><a href="#init-py" class="headerlink" title="__init__.py"></a>__init__.py</h3><p>一个很正常的init文件，跟crypto的__init__.py差不多</p>
 <h3 id="asyncdns-py"><a href="#asyncdns-py" class="headerlink" title="asyncdns.py"></a>asyncdns.py</h3><p>从文件名就可以看出，这是一个异步的DNS查询</p>
@@ -634,7 +634,7 @@
 <p>以下是该文件里对DNS协议写的一些通用的工具类函数用于解析地址、回应等，以及构造地址和请求</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_address</span><span class="params">(address)</span></span></span><br><span class="line"><span class="function"><span class="title">def</span> <span class="title">build_request</span><span class="params">(address, qtype)</span></span></span><br><span class="line"><span class="function"><span class="title">def</span> <span class="title">parse_ip</span><span class="params">(addrtype, data, length, offset)</span></span></span><br><span class="line"><span class="function"><span class="title">def</span> <span class="title">parse_name</span><span class="params">(data, offset)</span></span></span><br><span class="line"><span class="function"><span class="title">def</span> <span class="title">parse_record</span><span class="params">(data, offset, question=False)</span></span></span><br><span class="line"><span class="function"><span class="title">def</span> <span class="title">parse_header</span><span class="params">(data)</span></span></span><br><span class="line"><span class="function"><span class="title">def</span> <span class="title">parse_response</span><span class="params">(data)</span></span></span><br></pre></td></tr></table></figure>
 <p>采用了<code>class DNSResponse(object)</code>这个类来存储DNS回应，即目标的hostname、请求、以及answer</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="ShadowSocks-SourceCode-Learning/6.png" alt></p>
+<p><img src="/2020/01/30/ShadowSocks-SourceCode-Learning/6.png" alt></p>
 <p><code>class DNSResolver(object)</code>类实现了简单的异步查询DNS，其中异步缓存采用了LRUCache的方式（具体实现在<code>lru_cache.py</code>中）</p>
 <p>核心处理方法：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 只有可读事件</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_event</span><span class="params">(self, sock, fd, event)</span>:</span></span><br><span class="line">    	<span class="comment"># 防御性编程，实际上是个无用的判断</span></span><br><span class="line">        <span class="keyword">if</span> sock != self._sock:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">if</span> event &amp; eventloop.POLL_ERR:</span><br><span class="line">            <span class="comment"># 当错误发生时,重新初始化sock</span></span><br><span class="line">            logging.error(<span class="string">'dns socket err'</span>)</span><br><span class="line">            <span class="comment"># 从事件循环中移除 slef._sock</span></span><br><span class="line">            self._loop.remove(self._sock)</span><br><span class="line">            self._sock.close()</span><br><span class="line">            <span class="comment"># TODO when dns server is IPv6</span></span><br><span class="line">            <span class="comment"># 初始化sock</span></span><br><span class="line">            self._sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM,</span><br><span class="line">                                       socket.SOL_UDP)</span><br><span class="line">            self._sock.setblocking(<span class="literal">False</span>)</span><br><span class="line">            <span class="comment"># 重新加入事件循环</span></span><br><span class="line">            self._loop.add(self._sock, eventloop.POLL_IN, self)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="string">'''</span></span><br><span class="line"><span class="string">			读取一个 UDP 包，并取出前 1024 个字节</span></span><br><span class="line"><span class="string">        	注意：如果一个 UDP 包超过 1024 字节，比如：2048 字节。</span></span><br><span class="line"><span class="string">        	一次 recvfrom(1024) 也会消耗整个 UDP 包。这里是认为</span></span><br><span class="line"><span class="string">        	DNS 查询返回的 UDP 包都不会超过 1024 字节。</span></span><br><span class="line"><span class="string">            '''</span></span><br><span class="line">            data, addr = sock.recvfrom(<span class="number">1024</span>)</span><br><span class="line">            <span class="keyword">if</span> addr[<span class="number">0</span>] <span class="keyword">not</span> <span class="keyword">in</span> self._servers:</span><br><span class="line">                logging.warn(<span class="string">'received a packet other than our dns'</span>)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            self._handle_data(data)</span><br></pre></td></tr></table></figure>
@@ -748,7 +748,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="https://magic-king.net/images/loading.gif" data-original="/images/avatar.jpg" alt="Magic King">
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Magic King">
             
               <p class="site-author-name" itemprop="name">Magic King</p>
               <div class="site-description motion-element" itemprop="description">Now You See Me!</div>
@@ -761,7 +761,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-count">54</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -844,7 +844,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">33</span>
+                      
+                    
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -939,7 +941,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">39</span>
+                      
+                    
+                    <span class="site-state-item-count">40</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1593,5 +1597,5 @@
 	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
   
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 </html>

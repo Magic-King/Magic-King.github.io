@@ -105,16 +105,16 @@
 <meta property="og:site_name" content="Hexo&amp;Magic">
 <meta property="og:description" content="SSH端口转发 参考： ssh端口转发的三种方式 SSH 端口转发教程 玩转SSH端口转发 实战 SSH 端口转发  课上看老师演示过，感觉端口转发这个操作真的是贼好用，直接利用外部公网ip连接到了他的虚拟机内网，便想具体学习学习 总所皆知，ssh是我们常用的工具之一，基本快赶上vim的使用频率。我们一般都会使用ssh来进行远程连接服务器，但是这次来学习一次ssh骚操作——ssh端口转发 SSH端">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://magic-king.net/images/loading.gif">
-<meta property="og:image" content="https://magic-king.net/images/loading.gif">
-<meta property="og:image" content="https://magic-king.net/images/loading.gif">
-<meta property="og:image" content="https://magic-king.net/images/loading.gif">
-<meta property="og:image" content="https://magic-king.net/images/loading.gif">
+<meta property="og:image" content="http://magic-king.net/2020/02/22/SSH-Port-Forwarding/1.png">
+<meta property="og:image" content="http://magic-king.net/2020/02/22/SSH-Port-Forwarding/local-port-forwarding-single.svg">
+<meta property="og:image" content="http://magic-king.net/2020/02/22/SSH-Port-Forwarding/local-port-forwarding-two.svg">
+<meta property="og:image" content="http://magic-king.net/2020/02/22/SSH-Port-Forwarding/remote-port-forwarding.svg">
+<meta property="og:image" content="http://magic-king.net/2020/02/22/SSH-Port-Forwarding/dynamic-port-forwarding.svg">
 <meta property="og:updated_time" content="2020-02-25T12:08:51.463Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SSH端口转发">
 <meta name="twitter:description" content="SSH端口转发 参考： ssh端口转发的三种方式 SSH 端口转发教程 玩转SSH端口转发 实战 SSH 端口转发  课上看老师演示过，感觉端口转发这个操作真的是贼好用，直接利用外部公网ip连接到了他的虚拟机内网，便想具体学习学习 总所皆知，ssh是我们常用的工具之一，基本快赶上vim的使用频率。我们一般都会使用ssh来进行远程连接服务器，但是这次来学习一次ssh骚操作——ssh端口转发 SSH端">
-<meta name="twitter:image" content="https://magic-king.net/images/loading.gif">
+<meta name="twitter:image" content="http://magic-king.net/2020/02/22/SSH-Port-Forwarding/1.png">
 
 
 
@@ -496,19 +496,19 @@
 <p><code>ssh -L 本地网卡地址:本地端口:目标地址:目标端口</code></p>
 <p>也可以是：<code>ssh -L [bind_address]:port_a:remote_host:port_b user@host</code></p>
 <p>将本地绑定的地址的a端口的流量转发至<code>user@host</code>主机的<code>remote_host</code>的<code>port_b</code>端口</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="SSH-Port-Forwarding/1.png" alt></p>
+<p><img src="/2020/02/22/SSH-Port-Forwarding/1.png" alt></p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -L 1234:localhost:22 root@remote_ip</span><br></pre></td></tr></table></figure>
 <p>如上所示，我们在本地将1234端口的数据转发到远程主机的22端口，访问我本地localhost的1234端口(左)，等于以localhost的身份访问我远程主机22端口 </p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="SSH-Port-Forwarding/local-port-forwarding-single.svg" alt></p>
+<p><img src="/2020/02/22/SSH-Port-Forwarding/local-port-forwarding-single.svg" alt></p>
 <p>上图中，远程的机器上起了一个服务 <code>python3 -m http.server</code>，它监听端口 <code>8000</code>，现在我们想在本机访问这个服务，但由于防火墙的存在，<code>8000</code> 端口无法直接访问，于是我们使用 ssh 端口转发。首先在 A 上执行 <code>ssh -L 1234:localhost:8000 user_b@ip_b</code> 建立 ssh 隧道，它表示：所有对 <code>A:1234</code> 端口的请求，相当于在 <code>B</code> 机器上对 <code>localhost:8000</code> 的请求。因此在 A 上执行 <code>curl localhost:1234</code> 就相当于访问 B 机器上的 python 服务。</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="SSH-Port-Forwarding/local-port-forwarding-two.svg" alt></p>
+<p><img src="/2020/02/22/SSH-Port-Forwarding/local-port-forwarding-two.svg" alt></p>
 <p>假如web服务部署在其他机器上(Remote Machine C)，可以看到我们只是把上例中的 <code>localhost</code> 换成了 C 机器的 hostname/IP 就可以了。此时，发送到 <code>A:1234</code> 的请求相当于从 B 机器上对 <code>remote:8000</code> 的请求，图中在 <code>/etc/hosts</code> 中设置了 hostname 和 IP 的对应关系，直接用机器 C 的 IP 也是可以的。</p>
 <p>同时可以看到，机器 A 由于防火墙无法访问内网的服务，但是由于①机器A可以ssh到内网机器B②B有权限访问到内网的其他服务，通过本地端口转发可以实现从A访问内网的服务。</p>
 <p>机器A通过ssh隧道访问本地端口，相当于机器B访问remote:port。</p>
 <h2 id="远程端口转发"><a href="#远程端口转发" class="headerlink" title="远程端口转发"></a>远程端口转发</h2><p>远程端口转发（<strong>Remote Port Forwarding</strong>），是将将发送到远程端口的请求，转发到目标端口。其命令行语法是：<code>ssh -R 远程网卡地址:远程端口:目标地址:目标端口</code>。</p>
 <p>当然也可以是：<code>ssh -R &lt;prot_a&gt;:&lt;remote_host&gt;:&lt;port_a&gt; user_a@ip_a</code></p>
 <p>远程转发最常用的功能是<strong>内网穿透</strong>。有一个公网ip的主机，便可以借助ssh隧道的远程转发实现内网渗透，达到外网访问内网资源的目的。需要注意的是ssh远程转发<strong>默认只能绑定远程主机的本地地址</strong>，即<code>127.0.0.1</code>。如果想要监听来自其他主机的连接，需要修改远程主机ssh的配置,将”GatewayPorts”改成“yes”，重启ssh后生效。</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="SSH-Port-Forwarding/remote-port-forwarding.svg" alt></p>
+<p><img src="/2020/02/22/SSH-Port-Forwarding/remote-port-forwarding.svg" alt></p>
 <p>如图，假如A可以联网且有公网ip，B可以联网（即可以远程连接A），此时执行命令的是属于内网里且没用公网ip的机器B</p>
 <p>我们可以通过访问A的公网ip达到访问内网BC所部署的服务</p>
 <p>简单来说在本地执行ssh命令称为本地转发，在远程机器中执行命令就属于远程转发</p>
@@ -517,7 +517,7 @@
 <p>该命令让ssh监听本地8080端口，经过8080端口的流量都通过ssh隧道由远程服务器代为请求，从而达到获取被屏蔽资源、隐藏真实身份的目的。</p>
 <p>这个模式对本地和远程转发都有效，它的工作模式和 Shadow Socks 很像，会在本地创建一个 Socks5 代理服务，监听端口 <code>&lt;port&gt;</code>，并将所有请求转发到远程机器上</p>
 <p>动态转发实际上实现了正向代理功能，因此可以用来科学上网。本地转发也可以做正向代理，但要对每一个请求的主机和端口做转发，比较繁琐，实践中不会这么用。</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="SSH-Port-Forwarding/dynamic-port-forwarding.svg" alt></p>
+<p><img src="/2020/02/22/SSH-Port-Forwarding/dynamic-port-forwarding.svg" alt></p>
 <p>图中我们通过 <code>curl -x socks5h://...</code> 来指定使用 Socks5 代理，在机器 A 上请求 <code>ip_c:8000</code> 时，相当于在 B 机器上发起对 <code>ip_c:8000</code> 的请求。</p>
 <hr>
 <ul>
@@ -624,7 +624,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="https://magic-king.net/images/loading.gif" data-original="/images/avatar.jpg" alt="Magic King">
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Magic King">
             
               <p class="site-author-name" itemprop="name">Magic King</p>
               <div class="site-description motion-element" itemprop="description">Now You See Me!</div>
@@ -637,7 +637,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-count">54</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -720,7 +720,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">33</span>
+                      
+                    
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -815,7 +817,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">39</span>
+                      
+                    
+                    <span class="site-state-item-count">40</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1469,5 +1473,5 @@
 	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
   
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 </html>
