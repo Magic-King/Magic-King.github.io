@@ -15,11 +15,11 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
 
 
 
@@ -44,9 +44,9 @@
 
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
 
-<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+<link rel="stylesheet" href="/css/main.css?v=7.1.1"/>
 
 
 
@@ -99,13 +99,12 @@
 
 
   <meta name="description" content="稀疏矩阵向量乘 本文参考:  FPGA矩阵计算并行算法与结构(知网) 稀疏矩阵向量乘法xFPGA 稀疏矩阵向量乘法x并行编程方法 稀疏矩阵存储格式总结 深度学习FPGA加速器设计  在矩阵中，若数值为0的元素数目远远多于非0元素的数目，并且非0元素分布没有规律时，则称该矩阵为稀疏矩阵；与之相反，若非0元素数目占大多数时，则称该矩阵为稠密矩阵。定义非零元素的总数比上矩阵所有元素的总数为矩阵的稠密度。">
-<meta name="keywords" content="SpMV">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpMV">
 <meta property="og:url" content="http://magic-king.net/2019/05/19/SpMV/index.html">
 <meta property="og:site_name" content="Hexo&amp;Magic">
 <meta property="og:description" content="稀疏矩阵向量乘 本文参考:  FPGA矩阵计算并行算法与结构(知网) 稀疏矩阵向量乘法xFPGA 稀疏矩阵向量乘法x并行编程方法 稀疏矩阵存储格式总结 深度学习FPGA加速器设计  在矩阵中，若数值为0的元素数目远远多于非0元素的数目，并且非0元素分布没有规律时，则称该矩阵为稀疏矩阵；与之相反，若非0元素数目占大多数时，则称该矩阵为稠密矩阵。定义非零元素的总数比上矩阵所有元素的总数为矩阵的稠密度。">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://s8.51cto.com/wyfs02/M02/6E/B9/wKioL1WD-rnzJXs6AAAoveikjls134.jpg">
 <meta property="og:image" content="http://s2.51cto.com/wyfs02/M00/6E/B9/wKioL1WD-r7BqYmdAAB38WzGMbw735.jpg">
 <meta property="og:image" content="http://s2.51cto.com/wyfs02/M00/6E/BD/wKiom1WD-RLR2LssAABQf6mXvLM286.jpg">
@@ -119,21 +118,24 @@
 <meta property="og:image" content="https://xupsh.github.io/pp4fpgas-cn/images/placeholder.png">
 <meta property="og:image" content="https://xupsh.github.io/pp4fpgas-cn/images/spmv_partial_unroll.jpg">
 <meta property="og:image" content="https://xupsh.github.io/pp4fpgas-cn/images/spmv_unrolled_behavior.jpg">
-<meta property="og:updated_time" content="2019-05-23T07:45:32.710Z">
+<meta property="article:published_time" content="2019-05-19T08:21:36.000Z">
+<meta property="article:modified_time" content="2019-05-23T07:45:32.710Z">
+<meta property="article:author" content="Magic King">
+<meta property="article:tag" content="SpMV">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SpMV">
-<meta name="twitter:description" content="稀疏矩阵向量乘 本文参考:  FPGA矩阵计算并行算法与结构(知网) 稀疏矩阵向量乘法xFPGA 稀疏矩阵向量乘法x并行编程方法 稀疏矩阵存储格式总结 深度学习FPGA加速器设计  在矩阵中，若数值为0的元素数目远远多于非0元素的数目，并且非0元素分布没有规律时，则称该矩阵为稀疏矩阵；与之相反，若非0元素数目占大多数时，则称该矩阵为稠密矩阵。定义非零元素的总数比上矩阵所有元素的总数为矩阵的稠密度。">
 <meta name="twitter:image" content="http://s8.51cto.com/wyfs02/M02/6E/B9/wKioL1WD-rnzJXs6AAAoveikjls134.jpg">
 
 
+  
 
-  <link rel="alternate" href="/atom.xml" title="Hexo&Magic" type="application/atom+xml">
+
+  <link rel="alternate" href="/atom.xml" title="Hexo&Magic" type="application/atom+xml"/>
 
 
 
   
   
-  <link rel="canonical" href="http://magic-king.net/2019/05/19/SpMV/">
+  <link rel="canonical" href="http://magic-king.net/2019/05/19/SpMV/"/>
 
 
 
@@ -182,7 +184,7 @@
   </style>
 </noscript>
 
-</head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -240,7 +242,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
 
   </li>
         
@@ -257,7 +259,7 @@
 
     
 
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>关于</a>
 
   </li>
         
@@ -274,7 +276,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
 
   </li>
         
@@ -291,7 +293,7 @@
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
 
   </li>
         
@@ -308,7 +310,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
 
   </li>
 
@@ -319,7 +321,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
         </li>
       
     </ul>
@@ -339,7 +341,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -389,16 +393,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://magic-king.net/2019/05/19/SpMV/">
+    <link itemprop="mainEntityOfPage" href="http://magic-king.net/2019/05/19/SpMV/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Magic King">
-      <meta itemprop="description" content="Now You See Me!">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Magic King"/>
+      <meta itemprop="description" content="Now You See Me!"/>
+      <meta itemprop="image" content="/images/avatar.jpg"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo&Magic">
+      <meta itemprop="name" content="Hexo&Magic"/>
     </span>
 
     
@@ -484,7 +488,8 @@
 
           
             <span class="post-meta-divider">|</span>
-            <span class="post-meta-item-icon">
+            <span class="post-meta-item-icon"
+            >
             <i class="fa fa-eye"></i>
              阅读次数： 
             <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
@@ -777,7 +782,9 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Magic King">
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Magic King"/>
             
               <p class="site-author-name" itemprop="name">Magic King</p>
               <div class="site-description motion-element" itemprop="description">Now You See Me!</div>
@@ -788,9 +795,9 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/">
+                  <a href="/archives/%20%7C%7C%20archive">
                 
-                    <span class="site-state-item-count">54</span>
+                    <span class="site-state-item-count">55</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -802,7 +809,7 @@
                 <div class="site-state-item site-state-categories">
                   
                     
-                      <a href="/categories/">
+                      <a href="/categories/%20%7C%7C%20th">
                     
                   
                     
@@ -887,7 +894,7 @@
                 <div class="site-state-item site-state-tags">
                   
                     
-                      <a href="/tags/">
+                      <a href="/tags/%20%7C%7C%20tags">
                     
                   
                     
@@ -972,7 +979,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">40</span>
+                      
+                    
+                    <span class="site-state-item-count">41</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1032,7 +1041,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#稀疏矩阵向量乘"><span class="nav-number">1.</span> <span class="nav-text">稀疏矩阵向量乘</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#稀疏矩阵向量乘法的优化"><span class="nav-number">1.1.</span> <span class="nav-text">稀疏矩阵向量乘法的优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FPGA上的稀疏矩阵向量乘稀疏矩阵向量乘法"><span class="nav-number">1.2.</span> <span class="nav-text">FPGA上的稀疏矩阵向量乘稀疏矩阵向量乘法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-背景"><span class="nav-number">1.2.1.</span> <span class="nav-text">6.1 背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-基本实现"><span class="nav-number">1.2.2.</span> <span class="nav-text">6.2 基本实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-测试平台"><span class="nav-number">1.2.3.</span> <span class="nav-text">6.3 测试平台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-指定循环的属性"><span class="nav-number">1.2.4.</span> <span class="nav-text">6.4 指定循环的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-5-C-RTL-协同仿真"><span class="nav-number">1.2.5.</span> <span class="nav-text">6.5 C/RTL 协同仿真</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-6-循环的优化与数组的分块"><span class="nav-number">1.2.6.</span> <span class="nav-text">6.6 循环的优化与数组的分块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-7小结"><span class="nav-number">1.2.7.</span> <span class="nav-text">6.7小结</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#稀疏矩阵向量乘"><span class="nav-number">1.</span> <span class="nav-text">稀疏矩阵向量乘</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#稀疏矩阵向量乘法的优化"><span class="nav-number">1.1.</span> <span class="nav-text">稀疏矩阵向量乘法的优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FPGA上的稀疏矩阵向量乘稀疏矩阵向量乘法"><span class="nav-number">1.2.</span> <span class="nav-text">FPGA上的稀疏矩阵向量乘稀疏矩阵向量乘法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-背景"><span class="nav-number">1.2.1.</span> <span class="nav-text">6.1 背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-基本实现"><span class="nav-number">1.2.2.</span> <span class="nav-text">6.2 基本实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-测试平台"><span class="nav-number">1.2.3.</span> <span class="nav-text">6.3 测试平台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-指定循环的属性"><span class="nav-number">1.2.4.</span> <span class="nav-text">6.4 指定循环的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-5-C-RTL-协同仿真"><span class="nav-number">1.2.5.</span> <span class="nav-text">6.5 C&#x2F;RTL 协同仿真</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-6-循环的优化与数组的分块"><span class="nav-number">1.2.6.</span> <span class="nav-text">6.6 循环的优化与数组的分块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-7小结"><span class="nav-number">1.2.7.</span> <span class="nav-text">6.7小结</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1066,7 +1075,7 @@
 
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0 </div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0 </div>
 
 
 
@@ -1159,7 +1168,7 @@
     
     
   
-  <script color="0,0,255" opacity="0.5" zindex="-2" count="666" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script color='0,0,255' opacity='0.5' zIndex='-2' count='666' src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
 

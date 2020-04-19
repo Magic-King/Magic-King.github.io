@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1"/>
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="About IDA Script">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IDA-Script">
+<meta property="og:url" content="http://magic-king.net/2020/04/19/IDA-Script-Programming/index.html">
+<meta property="og:site_name" content="Hexo&amp;Magic">
+<meta property="og:description" content="About IDA Script">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/carterMgj/blog_img/master/2017-10-10-IDA-python/3.png">
+<meta property="article:published_time" content="2020-04-19T08:02:33.000Z">
+<meta property="article:modified_time" content="2020-04-19T08:57:07.050Z">
+<meta property="article:author" content="Magic King">
+<meta property="article:tag" content="reverse">
+<meta property="article:tag" content="IDA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/carterMgj/blog_img/master/2017-10-10-IDA-python/3.png">
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Hexo&Magic" type="application/atom+xml"/>
+
+
+
+  
+  
+  <link rel="canonical" href="http://magic-king.net/2020/04/19/IDA-Script-Programming/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>IDA-Script | Hexo&Magic</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo&Magic</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://magic-king.net/2020/04/19/IDA-Script-Programming/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Magic King"/>
+      <meta itemprop="description" content="Now You See Me!"/>
+      <meta itemprop="image" content="/images/avatar.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo&Magic"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">IDA-Script
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-04-19 16:02:33 / 修改时间：16:57:07" itemprop="dateCreated datePublished" datetime="2020-04-19T16:02:33+08:00">2020-04-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/reverse/" itemprop="url" rel="index"><span itemprop="name">reverse</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-description">About IDA Script</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="IDA-脚本入门"><a href="#IDA-脚本入门" class="headerlink" title="IDA 脚本入门"></a>IDA 脚本入门</h1><p>总所皆知，IDA是一个非常好用的逆向静态分析工具，上节课，老师带我们体验到了ida脚本的魅力，我们这次就来了解一波IDA的脚本</p>
+<blockquote>
+<p>Reference:</p>
+<p><a href="https://blog.csdn.net/lacoucou/article/details/79349677" target="_blank" rel="noopener">IDA Pro 脚本系统(idc idaPython)帮助文档索引</a></p>
+<p><a href="https://www.jianshu.com/p/366cd488cb24" target="_blank" rel="noopener">2018-07-14 IDA-脚本编写</a></p>
+<p>idc</p>
+<p><a href="https://www.hex-rays.com/products/ida/support/idadoc/162.shtml" target="_blank" rel="noopener">IDA Help: Alphabetical list of IDC functions</a></p>
+<p><a href="https://bbs.pediy.com/thread-219016.htm" target="_blank" rel="noopener">[翻译][原创]IDC脚本 - IDC脚本语言官方教程</a></p>
+<p><a href="https://www.cnblogs.com/gwind/p/8250842.html" target="_blank" rel="noopener">IDA-IDC脚本编写语法</a></p>
+<p>IDA Python</p>
+<p><a href="https://gitee.com/it-ebooks/it-ebooks-2018-04to07/raw/master/IDAPython%20%E5%88%9D%E5%AD%A6%E8%80%85%E6%8C%87%E5%8D%97.pdf" target="_blank" rel="noopener">IDAPython初学者指南</a>：本地版本[here](./IDA-Script-Programming/IDAPython 初学者指南.pdf)</p>
+<p><a href="https://www.hex-rays.com/products/ida/support/idapython_docs/" target="_blank" rel="noopener">IDAPython Docs</a>：hex-rays官方文档</p>
+<p><a href="https://cartermgj.github.io/2017/10/10/ida-python/" target="_blank" rel="noopener">IDA-python学习小结</a></p>
+<p><a href="https://wizardforcel.gitbooks.io/grey-hat-python/content/41.html" target="_blank" rel="noopener"> IDAPYTHON — IDA 脚本</a></p>
+<p>​        <a href="https://wizardforcel.gitbooks.io/grey-hat-python/content/43.html" target="_blank" rel="noopener">IDAPython 函数</a></p>
+<p><a href="https://blog.csdn.net/qq_35056292/article/details/89421793" target="_blank" rel="noopener">IDApython插件编写及脚本批量分析教程</a></p>
+</blockquote>
+<p>我解到了IDA脚本主要有IDA python 和 IDC</p>
+<p>IDC脚本语言是一种类似C的脚本语言，和C语言有着类似的语言标记。然而，由于IDC是一种脚本语言，就无法包含指针这样的高级特性了，但是所有的变量类型，脚本解释器都是可以支持的。<strong>IDC中的变量是弱类型</strong>的，一个变量可以保存任何类型的数据，因此变量声明的时候是不需要指定变量类型的，比如你可以这样进行变量声明：<code>auto myvar;</code></p>
+<p>IDA python 为IDA中集成的python解释器（美中不足的就是目前是python2.7版本），能够调用所有的idc的函数以及所有python脚本，他可以充分利用python的数据处理能力和所有python模块</p>
+<p>脚本的用处很多，以现在的我的了解来说，ida脚本最多的用处是用来脱壳和寻找pwn的易被攻击的函数</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ul>
+<li><code>shift + F2</code> 会弹出一个对话框，可以将脚本直接写在里面，点run运行，即<code>File -&gt; Script Command</code></li>
+<li>菜单栏中 <code>File -&gt; Script file</code>载入idc文件，同样，<code>alt + F7</code></li>
+</ul>
+<p>输出在下面的Output Window里</p>
+<h2 id="IDC"><a href="#IDC" class="headerlink" title="IDC"></a>IDC</h2><p>IDC脚本语言借用了很多C语言的语法，因此我们很快就能上手</p>
+<ul>
+<li><h4 id="IDC变量"><a href="#IDC变量" class="headerlink" title="IDC变量"></a>IDC变量</h4></li>
+</ul>
+<p><code>auto</code>： IDC关键字auto用于引入一个局部变量，如<code>auto var,addr;</code></p>
+<ol>
+<li>IDC认可使用<code>/* */</code>的c语言风格进行多行注释。</li>
+<li>也使用<code>//</code>的C++风格进行行尾注释</li>
+<li>使用<code>;</code>作为终止符（和c语言中一样）</li>
+<li>IDC并不支持c风格数组类型，指针,结构体,联合之类，复杂的数据类型</li>
+</ol>
+<p><code>extern</code>：IDA使用<code>extern</code>关键字引入全局变量申明</p>
+<ul>
+<li><h4 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h4></li>
+</ul>
+<p>IDC<strong>支持c中的所有表达式和逻辑运算符，包括三元运算符（？：）。</strong></p>
+<p><strong>支持</strong>逗号运算符，但是 <strong>不支持</strong> op=(+=,*=,&gt;&gt;=等)复合赋值运算符。</p>
+<p><strong>不支持</strong>算术移位，如果要移位只能修改最高位和最低位。如下所示：</p>
+<p>提供<strong>分片运算</strong>，使用方括号和其实索引（包括）与结束索引（不包括）来指定至少一个索引。这个就像python数组一样，比如<code>s1 = str[7:9]</code>、<code>s2 = str[:6]</code>、<code>s3 = str[10:]</code></p>
+<ul>
+<li><h4 id="IDC语句"><a href="#IDC语句" class="headerlink" title="IDC语句"></a>IDC语句</h4></li>
+</ul>
+<p>语句以分号结尾，但是不支持复合语句。</p>
+<p>引入<code>try/catch</code>块和相关的throw语句，相当与C++的异常处理。</p>
+<p>使用和C语言一样的花括号和语义。在花括号中可以申明变量，<strong>申明变量</strong>必须位于花括号内的<strong>第一条语句</strong>。</p>
+<p><strong>Message</strong>类似于c语言中的print</p>
+<ul>
+<li><h4 id="IDC函数"><a href="#IDC函数" class="headerlink" title="IDC函数"></a>IDC函数</h4></li>
+</ul>
+<ul>
+<li><strong>.idc文件</strong>支持用户定义的函数。</li>
+<li>IDC命令对话框<strong>不支持</strong>用户定义的函数。</li>
+<li>使用<strong>static</strong>声明用户定义的函数。</li>
+<li>函数的参数列表以<strong>逗号</strong>隔开。</li>
+</ul>
+<ul>
+<li><p>若需要返回值 ，使用<strong>return</strong></p>
+<ul>
+<li>可以将函数的引用作为参数传递给另外一个函数，并将函数引用的作为函数的结果返回。</li>
+</ul>
+</li>
+<li><p>main()函数依旧为函数入口</p>
+</li>
+</ul>
+<ul>
+<li><h3 id="IDC程序"><a href="#IDC程序" class="headerlink" title="IDC程序"></a>IDC程序</h3></li>
+</ul>
+<ul>
+<li>当执行大量的IDC语句的时候，需要创建一个独立的IDC程序文件。</li>
+<li>IDC程序文件，<strong>至少定义一个没有参数的main函数</strong>。</li>
+<li>IDC文件必须包含*<em>#include&lt;idc.idc&gt; *</em>这个文件，由此获得宏定义。</li>
+</ul>
+<p>拿老师给的示例程序来说</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;idc.idc&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">//part1:helloworld</span></span><br><span class="line"><span class="comment">static main()&#123;</span></span><br><span class="line"><span class="comment">	//Wait();</span></span><br><span class="line"><span class="comment">	Message("Hello world");</span></span><br><span class="line"><span class="comment">	//Exit(0);</span></span><br><span class="line"><span class="comment">	return 0;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//part2:see segment</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="title">list_segs</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;	<span class="keyword">auto</span> ea, i=<span class="number">0</span>;</span><br><span class="line">	ea = FirstSeg();</span><br><span class="line">	<span class="keyword">while</span> (ea != BADADDR)</span><br><span class="line">	&#123;	Message(<span class="string">"\nsegment %d 0x%08X-0x%08X\n"</span>, </span><br><span class="line"> 			i, ea, SegEnd(ea));</span><br><span class="line">		list_func_with_ref(ea);</span><br><span class="line">		ea = NextSeg(ea);</span><br><span class="line">		i++;</span><br><span class="line">&#125;	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">static main()</span></span><br><span class="line"><span class="comment">&#123;		//Wait();</span></span><br><span class="line"><span class="comment">		list_segs();</span></span><br><span class="line"><span class="comment">		//func_list_ref();		</span></span><br><span class="line"><span class="comment">		Message("\n\n bye \n\n");		</span></span><br><span class="line"><span class="comment">		//Exit(0);</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//part3:see function</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="title">list_func_with_ref</span><span class="params">(ea)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">auto</span> func;</span><br><span class="line">    func = SegStart(ea);</span><br><span class="line">    <span class="comment">//Message("first addr is %x\n", func); // note: first address maybe not a func</span></span><br><span class="line">    <span class="keyword">while</span> (func != BADADDR &amp;&amp; func &lt; SegEnd(ea))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (GetFunctionFlags(func) != <span class="number">-1</span>) <span class="comment">// if really a func</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">auto</span> ref, tip;</span><br><span class="line">            <span class="keyword">if</span> (func&gt;=SegStart(ea) &amp;&amp; func&lt;SegEnd(ea))</span><br><span class="line">                tip = <span class="string">"Internal"</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                tip = <span class="string">"External"</span>;</span><br><span class="line">            Message(<span class="string">"%s Function 0x%08X %s\n"</span>, tip, func, GetFunctionName(func));</span><br><span class="line">            <span class="keyword">for</span> (ref=RfirstB(func); ref != BADADDR; ref=RnextB(func, ref))</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">auto</span> caller_name, caller_addr;</span><br><span class="line">                caller_name = GetFunctionName(ref);</span><br><span class="line">                caller_addr = GetFunctionAttr(ref, FUNCATTR_START);</span><br><span class="line">                Message(<span class="string">"  called at 0x%08X by 0x%08X(%s)\n"</span>, ref, caller_addr, caller_name);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        func=NextFunction(func);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;		</span><br><span class="line">		Message(<span class="string">"Hello!"</span>);</span><br><span class="line">		<span class="comment">//Wait();</span></span><br><span class="line">		list_segs();</span><br><span class="line">		<span class="keyword">auto</span> ea;</span><br><span class="line">		<span class="comment">//ea = FirstSeg();</span></span><br><span class="line">		<span class="comment">//list_func_with_ref(ea);		</span></span><br><span class="line">		Message(<span class="string">"\n\n bye \n\n"</span>);		</span><br><span class="line">		<span class="comment">//Exit(0);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>首先在头部引入<code>#include &lt;idc.idc&gt;</code>，这个是必须的，包含了idc里面的宏定义</p>
+<p><code>FirstSeg()</code>获取第一个Segment段的地址，然后调用<code>list_ref_function</code>展示其中的函数，将此过程进行循环每一个segment</p>
+<p><code>list_ref_function</code>：通过<code>GetFunctionFlags</code>来判断是否是一个地址是否有函数开始标志，来获取函数的地址和名字，并用Message函数打印出来</p>
+<h2 id="IDA-Python"><a href="#IDA-Python" class="headerlink" title="IDA Python"></a>IDA Python</h2><p>IDA Python 由三个分离的模块组成,他们分别是 idc,idautils 和 idaapi。</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">idc:</span>这是兼容idc函数的模块  </span><br><span class="line"><span class="symbol">idautils:</span>很使用的一个模块，大多数处理都是需要依托于这个模块  </span><br><span class="line"><span class="symbol">idaapi:</span>允许使用者通过类的形式，访问更多底层的数据</span><br></pre></td></tr></table></figure>
+
+<p>IDA Python 的强大之处在于它能遍历所有的指令,所有的交叉引用地址,还有搜索所有的代码和数据。</p>
+<h4 id="一些功能"><a href="#一些功能" class="headerlink" title="一些功能"></a>一些功能</h4><blockquote>
+<p>指令处理</p>
+</blockquote>
+<ol>
+<li>获取当前指令地址：ea=here() print “0x%x %s”%(ea,ea)</li>
+<li>获取当前的汇编指令：idc.GetDisasm(ea)</li>
+<li>获取当前处于的段：idc.SegName()</li>
+<li>获取该段程序最低和最高地址：hex(MinEA()) hex(MaxEA())</li>
+<li>获取下(上)一条汇编指令地址：ea = here() ; next_instr = idc.NextHead(ea) PrevHead(ea)</li>
+</ol>
+<blockquote>
+<p>函数操作</p>
+</blockquote>
+<ol>
+<li><p>获取程序所有函数的名称：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="function"><span class="keyword">func</span> <span class="title">in</span> <span class="title">idautils</span>.<span class="title">Functions</span><span class="params">()</span></span>:</span><br><span class="line"> <span class="built_in">print</span> hex(<span class="function"><span class="keyword">func</span>), <span class="title">idc</span>.<span class="title">GetFunctionName</span><span class="params">(<span class="keyword">func</span>)</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>计算当前函数有多少条指令</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ea = here()</span><br><span class="line">len(<span class="name">list</span>(<span class="name">idautils</span>.FuncItems(<span class="name">ea</span>)))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取当前IDB中记录的所有有名字函数的地址和名称： idautils.Names() 返回的是一个以元组组成的列表，函数的起始地址指向了其plt表<img src="https://raw.githubusercontent.com/carterMgj/blog_img/master/2017-10-10-IDA-python/3.png" alt="img"></p>
+</li>
+</ol>
+<blockquote>
+<p>指令操作</p>
+</blockquote>
+<ol>
+<li>给定地址，打印指令 idc.GetDisasm(ea)</li>
+<li>给定函数中一个地址，得到整个函数的指令列表 idautils.FuncItems(here())</li>
+<li>获取函数的一些flag信息： idc.GetFunctionFlags(func)</li>
+<li>对一条汇编指令进行拆解： 获取指令的操作：idc.GetMnem(here()) 获取指令的操作数：idc.GetOpType(ea,n) 根据返回的数值，可以判断操作数类型（普通寄存器、常量字符串等）</li>
+<li>对汇编指令中用到的操作数，求取其引用的地址，也就是双击该操作数后跳转到的地址 hex(idc.GetOperandValue(here(),1))</li>
+</ol>
+<blockquote>
+<p>交叉引用</p>
+</blockquote>
+<ol>
+<li>指令从哪个地方来：idautils.CodeRefsTo(here(),0)</li>
+<li>指令下一步去到哪儿：idautils.CodeRefsFrom(here(),0)</li>
+<li>数据从哪个地方来：idautils.DataRefsTo(here(),0)</li>
+<li>数据下一步去到哪儿：idautils.DataRefsFrom(here(),0)</li>
+<li>较为通用的一种获取xref：idautils.XrefsTo(here(),flag) 其中flag=0时，所有的交叉引用都会被显示</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/reverse/" rel="tag"># reverse</a>
+          
+            <a href="/tags/IDA/" rel="tag"># IDA</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/14/pwn-learning/" rel="next" title="pwn-learning">
+                <i class="fa fa-chevron-left"></i> pwn-learning
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Magic King"/>
+            
+              <p class="site-author-name" itemprop="name">Magic King</p>
+              <div class="site-description motion-element" itemprop="description">Now You See Me!</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">55</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/%20%7C%7C%20th">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/%20%7C%7C%20tags">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Magic-King" title="GitHub &rarr; https://github.com/Magic-King" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IDA-脚本入门"><span class="nav-number">1.</span> <span class="nav-text">IDA 脚本入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">1.1.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDC"><span class="nav-number">1.2.</span> <span class="nav-text">IDC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#IDC变量"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">IDC变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表达式"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IDC语句"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">IDC语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IDC函数"><span class="nav-number">1.2.0.4.</span> <span class="nav-text">IDC函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IDC程序"><span class="nav-number">1.2.1.</span> <span class="nav-text">IDC程序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDA-Python"><span class="nav-number">1.3.</span> <span class="nav-text">IDA Python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一些功能"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">一些功能</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Magic King</span>
+
+  
+
+  
+</div>
+
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0 </div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-2' count='666' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+  
+  
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+</body>
+</html>
