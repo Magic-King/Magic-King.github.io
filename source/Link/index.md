@@ -33,7 +33,7 @@ date: 2020-04-22 15:14:04
     border-width: 0 0 0 3px;
     border-style: solid;
     box-shadow: 0 8px 16px 0px rgba(10, 14, 29, 0.04), 0px 8px 64px 0px rgba(10, 14, 29, 0.08);">
-    <img src="index/github.png" style="zoom:10%;display:inline" border="0">&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/">GitHub</a>
+    <img src="index/github.png" style="zoom:15%;display:inline" border="0">&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/">GitHub</a>
 </div>
 
 <div style="
@@ -47,7 +47,7 @@ date: 2020-04-22 15:14:04
     border-width: 0 0 0 3px;
     border-style: solid;
     box-shadow: 0 8px 16px 0px rgba(10, 14, 29, 0.04), 0px 8px 64px 0px rgba(10, 14, 29, 0.08);">
-    <img src="index/iconfont.png" style="zoom:10%;display:inline;" border="0">&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.iconfont.cn/">IconFont</a>
+    <img src="index/iconfont.png" style="zoom:15%;display:inline;" border="0">&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.iconfont.cn/">IconFont</a>
 </div>
 
 
