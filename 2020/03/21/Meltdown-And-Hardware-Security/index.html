@@ -570,6 +570,7 @@
 <p>所以一般情况下，除非恶意程序通过软件漏洞提权获得了内核权限，否则是无论如何也绕不过CPU 的权限检查从而能访问内核地址的。</p>
 <p>具体来看，假设非法访问内存的指令为</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mov rax  byte[x]  <span class="comment">// 将内核地址x处的内容存到寄存器rax</span></span><br></pre></td></tr></table></figure>
+
 <p>操作系统会事先标注好内核的内存地址范围，如果 x 在内核的这个地址范围内，并且 CPU 不是以内核模式运行的话，那么该指令会被 CPU 标注为非法，引起异常，异常处理程序会将 <code>rax</code> 清空为0，并且终结此程序，这样后续指令再来读 <code>rax</code> 的时候就只能读到0了。目前看来这一整套流程还是无懈可击的。</p>
 <p>然而这里一个重要的前提假设是：<strong>CPU 在做权限检查并且将 <code>rax</code> 清零的过程中，不会泄露任何关于 [x] 的信息</strong>。</p>
 <p>一般的恶意攻击者，采用的是前一种方法进行攻击：提权，让CPU通过权限检查，然而Meltdown却另辟蹊径，在 <code>rax</code> 寄存器清零的过程中，采用了侧信道攻击获取信息</p>
@@ -587,7 +588,8 @@
 <p>Meltdown与Spectre利用这种侧信道可以进行越权内存访问，甚至读取整个内核的内存数据。</p>
 </blockquote>
 <h4 id="Meltdown攻击指令序列"><a href="#Meltdown攻击指令序列" class="headerlink" title="Meltdown攻击指令序列"></a>Meltdown攻击指令序列</h4><p>以一个简化的meltdown攻击指令序列为例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">; rcx = kernel address</span><br><span class="line">; rbx = probe_array</span><br><span class="line">mov rax, byte [rcx]</span><br><span class="line">shl rax, 0xc</span><br><span class="line">mov rbx, qword [rbx + rax]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">; rcx &#x3D; kernel address</span><br><span class="line">; rbx &#x3D; probe_array</span><br><span class="line">mov rax, byte [rcx]</span><br><span class="line">shl rax, 0xc</span><br><span class="line">mov rbx, qword [rbx + rax]</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li><p><code>rcx</code>为我们非法访问的内核地址，<code>rcx</code>寄存器存放用户空间程序不可访问的内核地址</p>
 </li>
@@ -609,7 +611,7 @@
 <blockquote>
 <p>至于和meltdown同期的spectre漏洞，和 meltdown 的原理相似，利用分支预测错误的 speculative execution，访问到不该访问的信息，并且同样是通过 cache 这个side channel 传递出去。而且由于利用的分支预测原理普及率非常高，Spectre 的影响面更大一些。</p>
 </blockquote>
-<p>具体的Meltdown的exploit分析可以看这篇文章：<a href="https://www.freebuf.com/articles/system/159811.html#0X02 Exploit 分析" target="_blank" rel="noopener">Meltdown_Exploit分析</a></p>
+<p>具体的Meltdown的exploit分析可以看这篇文章：[Meltdown_Exploit分析](<a href="https://www.freebuf.com/articles/system/159811.html#0X02" target="_blank" rel="noopener">https://www.freebuf.com/articles/system/159811.html#0X02</a> Exploit 分析)</p>
 <p>我现在只是懂了他为什么这么做，但是我还想懂得他为什么会想到这么做（要去思考1.他做了什么2.他为什么这么做3.他为什么这样想4.忘了哪看到的逻辑层次(绝对不是百度搜出来的那个)</p>
 <p>//TODO</p>
 <p><a href="https://github.com/IAIK/meltdown/tree/master/libkdump" target="_blank" rel="noopener">libkdump</a>这是作者开源出来的exp库，我们可以通过阅读(//TODO：等我对操作系统有着更深层次的理解时，来分析代码)并编译它，或者直接利用他编译后的库来使用</p>
@@ -618,6 +620,9 @@
 </li>
 <li><p>windows已经推送漏洞更新了，在某个系统补丁里0.0</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//以管理员权限打开powershell运行命令</span><br><span class="line">//可以看到提示</span><br><span class="line"><span class="built_in">Set-ExecutionPolicy</span> Bypass</span><br><span class="line">Install-Module SpeculationControl</span><br><span class="line">Get-SpeculationControlSettings</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
 </ul>
 <p>其余可参见文章：<a href="https://www.freebuf.com/articles/system/159577.html" target="_blank" rel="noopener">史上最大CPU漏洞Meltdown &amp; Spectre 影响与修复指南</a></p>

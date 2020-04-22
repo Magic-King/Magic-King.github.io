@@ -520,6 +520,7 @@
 <p>将本地绑定的地址的a端口的流量转发至<code>user@host</code>主机的<code>remote_host</code>的<code>port_b</code>端口</p>
 <p><img src="/2020/02/22/SSH-Port-Forwarding/1.png" alt></p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -L 1234:localhost:22 root@remote_ip</span><br></pre></td></tr></table></figure>
+
 <p>如上所示，我们在本地将1234端口的数据转发到远程主机的22端口，访问我本地localhost的1234端口(左)，等于以localhost的身份访问我远程主机22端口 </p>
 <p><img src="/2020/02/22/SSH-Port-Forwarding/local-port-forwarding-single.svg" alt></p>
 <p>上图中，远程的机器上起了一个服务 <code>python3 -m http.server</code>，它监听端口 <code>8000</code>，现在我们想在本机访问这个服务，但由于防火墙的存在，<code>8000</code> 端口无法直接访问，于是我们使用 ssh 端口转发。首先在 A 上执行 <code>ssh -L 1234:localhost:8000 user_b@ip_b</code> 建立 ssh 隧道，它表示：所有对 <code>A:1234</code> 端口的请求，相当于在 <code>B</code> 机器上对 <code>localhost:8000</code> 的请求。因此在 A 上执行 <code>curl localhost:1234</code> 就相当于访问 B 机器上的 python 服务。</p>
@@ -536,6 +537,7 @@
 <p>简单来说在本地执行ssh命令称为本地转发，在远程机器中执行命令就属于远程转发</p>
 <h2 id="动态端口转发"><a href="#动态端口转发" class="headerlink" title="动态端口转发"></a>动态端口转发</h2><p>无论本地转发还是远程转发，都需要指定本地和远程主机的端口。动态转发（<strong>Dynamic Port Forwarding</strong>）则摆脱这种限制，只绑定本地端口，远程主机和端口由发起的请求决定。动态转发的语法是：<code>ssh -D bind_address:port</code>，也可以是<code>ssh -D &lt;port&gt; user@remote_ip</code>，一个转发示例：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -D 8080 username@host</span><br></pre></td></tr></table></figure>
+
 <p>该命令让ssh监听本地8080端口，经过8080端口的流量都通过ssh隧道由远程服务器代为请求，从而达到获取被屏蔽资源、隐藏真实身份的目的。</p>
 <p>这个模式对本地和远程转发都有效，它的工作模式和 Shadow Socks 很像，会在本地创建一个 Socks5 代理服务，监听端口 <code>&lt;port&gt;</code>，并将所有请求转发到远程机器上</p>
 <p>动态转发实际上实现了正向代理功能，因此可以用来科学上网。本地转发也可以做正向代理，但要对每一个请求的主机和端口做转发，比较繁琐，实践中不会这么用。</p>

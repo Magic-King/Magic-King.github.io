@@ -528,11 +528,22 @@
 <p>只托管部分用于多终端的同步的文件</p>
 <p><strong>注意</strong>：使用第三方主题时，要删除第三方主题的.git文件夹删除，不然无法push到远程仓库</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git init  //初始化本地仓库</span><br><span class="line">git add source //将必要的文件依次添加，有些文件夹如npm install产生的node_modules由于路径过长不好处理，所以这里没有用`git add .`命令了，而是依次添加必要文件，如下图所示,其实也可以用'git add .'命令，在.gitignore文件中加入不需要同步的文件即可</span><br><span class="line">git commit -m "Blog Source Hexo"</span><br><span class="line">git branch hexo  //新建hexo分支</span><br><span class="line">git checkout hexo  //切换到hexo分支上</span><br><span class="line">git remote add origin git@github.com:yourname/yourname.github.io.git  //将本地与Github项目对接</span><br><span class="line">git push origin hexo  //push到Github项目的hexo分支上</span><br></pre></td></tr></table></figure>
+
+
+
 <p>多出来的hexo的分支，用于文件同步，原有的master分支用于部署静态博客页面</p>
 <h3 id="在新终端进行更新博客"><a href="#在新终端进行更新博客" class="headerlink" title="在新终端进行更新博客"></a>在新终端进行更新博客</h3><p>先从github中把文件clone到本地，然后安装相应组件。然后通过git的提交同步内容，用hexo的命令部署博客到gitPages里。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git clone -b hexo git@github.com:yourname/yourname.github.io.git  //将Github中hexo分支clone到本地</span><br><span class="line">cd  yourname.github.io  //切换到刚刚clone的文件夹内</span><br><span class="line">npm install    //注意，这里一定要切换到刚刚clone的文件夹内执行，安装必要的所需组件，不用再init</span><br><span class="line">hexo new post "new blog name"   //新建一个.md文件，并编辑完成自己的博客内容</span><br><span class="line">git add source  //经测试每次只要更新sorcerer中的文件到Github中即可，因为只是新建了一篇新博客，如果更改了主题样式的话还是建议用'git add .'</span><br><span class="line">git commit -m "XX"</span><br><span class="line">git push origin hexo  //更新分支</span><br><span class="line">hexo d -g   //push更新完分支之后将自己写的博客对接到自己搭的博客网站上，同时同步了Github中的master</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="已有博客的终端更新博客"><a href="#已有博客的终端更新博客" class="headerlink" title="已有博客的终端更新博客"></a>已有博客的终端更新博客</h3><p>进入相应的文件夹，更新博客直行命令即可。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git pull origin hexo//先pull完成本地和远端的融合</span><br><span class="line">hexo new post <span class="string">"new blog"</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"Blog update"</span></span><br><span class="line">git push origin hexo</span><br><span class="line">hexo d -g</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 
       
     </div>

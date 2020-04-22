@@ -993,7 +993,8 @@
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;代码&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;代码&lt;/th&gt;
+&lt;th align=
       
     
     </summary>
@@ -1099,7 +1100,7 @@
       
         &lt;h1 id=&quot;Make&quot;&gt;&lt;a href=&quot;#Make&quot; class=&quot;headerlink&quot; title=&quot;Make&quot;&gt;&lt;/a&gt;&lt;center&gt;Make&lt;/center&gt;&lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;本文参考：&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;&amp;quot;/Makefile/《GNU+make中文手册-
+&lt;p&gt;&lt;a href makefile 《gnu+make中文手册-v3.80》.p
       
     
     </summary>

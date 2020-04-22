@@ -519,7 +519,7 @@
       
         <h1 id="Make"><a href="#Make" class="headerlink" title="Make"></a><center>Make</center></h1><blockquote>
 <p>本文参考：</p>
-<p><a href="&quot;/Makefile/《GNU+make中文手册-v3.80》.pdf&quot;">GNU+make中文手册</a></p>
+<p><a href makefile 《gnu+make中文手册-v3.80》.pdf"">GNU+make中文手册</a></p>
 <p><a href="/Makefile/make">GNU+make原版官方手册</a></p>
 <p><a href="https://zh.wikipedia.org/wiki/Make" target="_blank" rel="noopener">make wiki</a></p>
 <p><a href="https://zhuanlan.zhihu.com/p/47390641" target="_blank" rel="noopener">Makefile由浅入深</a></p>
@@ -538,6 +538,9 @@
 </ol>
 <p>只要我们的makefile写得够好，所有的这一切，我们只用一个make命令就可以完成，make命令会自动智能 地根据当前的文件修改的情况来确定哪些文件需要重编译，从而自动编译所需要的文件和链接目标程序。 </p>
 <h3 id="Makefile规则"><a href="#Makefile规则" class="headerlink" title="Makefile规则"></a>Makefile规则</h3><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Makefile中，用#表示注释</span></span><br><span class="line">target ...:	prerequisites	...</span><br><span class="line">	command 1</span><br><span class="line">	<span class="comment">#注意命令前要用Tab</span></span><br><span class="line">	command 2</span><br><span class="line">	...</span><br><span class="line">	...</span><br><span class="line"><span class="comment">#可以使用“\”表示续行，但是“\”之后不能有空格</span></span><br></pre></td></tr></table></figure>
+
+
+
 <ul>
 <li><p>target</p>
 <p>可以是一个object file（目标文件），也可以是一个执行文件，还可以是一个标签（label）。对 于标签这种特性，在后续的“伪目标”章节中会有叙述。</p>
@@ -554,6 +557,9 @@
 <p>这就是Makefile中最核心的规则。</p>
 <h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><p>采用GNU make 手册中的例子</p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">edit : main.o kbd.o command.o display.o \</span><br><span class="line">        insert.o search.o files.o utils.o</span><br><span class="line">    cc -o edit main.o kbd.o command.o display.o \</span><br><span class="line">        insert.o search.o files.o utils.o</span><br><span class="line"></span><br><span class="line">main.o : main.c defs.h</span><br><span class="line">    cc -c main.c</span><br><span class="line">kbd.o : kbd.c defs.h command.h</span><br><span class="line">    cc -c kbd.c</span><br><span class="line">command.o : command.c defs.h command.h</span><br><span class="line">    cc -c command.c</span><br><span class="line">display.o : display.c defs.h buffer.h</span><br><span class="line">    cc -c display.c</span><br><span class="line">insert.o : insert.c defs.h buffer.h</span><br><span class="line">    cc -c insert.c</span><br><span class="line">search.o : search.c defs.h buffer.h</span><br><span class="line">    cc -c search.c</span><br><span class="line">files.o : files.c defs.h buffer.h command.h</span><br><span class="line">    cc -c files.c</span><br><span class="line">utils.o : utils.c defs.h</span><br><span class="line">    cc -c utils.c</span><br><span class="line">clean :</span><br><span class="line">    rm edit main.o kbd.o command.o display.o \</span><br><span class="line">        insert.o search.o files.o utils.o</span><br></pre></td></tr></table></figure>
+
+
+
 <p>该工程有3个头文件和8个c文件</p>
 <p>其中反斜杠(“\”)是换行符，注意换行符之后不能用空格。换行符又利用Makefile的阅读。</p>
 <p>把Makefile放在处于工程下的，然后在该目录下输入<code>make</code>命令，就可以生成可执行文件了。如果要删除执行文件和所有的中间目标文件，那么只需要执行<code>make clean</code>就可以了。</p>
@@ -571,6 +577,9 @@
 </ol>
 <p>一上面那个工程为示例：</p>
 <figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">在默认的方式下，也就是我们只输入 <span class="built_in">make</span> 命令。那么，</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span><span class="built_in">make</span>会在当前目录下找名字叫“Makefile”或“makefile”的文件。</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>如果找到，它会找文件中的第一个目标文件（target），在上面的例子中，他会找到“<span class="keyword">edit</span>”这个 文件，并把这个文件作为最终的目标文件。</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>如果<span class="keyword">edit</span>文件不存在，或是<span class="keyword">edit</span>所依赖的后面的 .o 文件的文件修改时间要比 <span class="keyword">edit</span> 这个 文件新，那么，他就会执行后面所定义的命令来生成 <span class="keyword">edit</span> 这个文件。</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span>如果 <span class="keyword">edit</span> 所依赖的 .o 文件也不存在，那么<span class="built_in">make</span>会在当前文件中找目标为 .o 文件 的依赖性，如果找到则再根据那一个规则生成 .o 文件。（这有点像一个堆栈的过程）</span><br><span class="line"></span><br><span class="line"><span class="number">5.</span>当然，你的C文件和H文件是存在的啦，于是<span class="built_in">make</span>会生成 .o 文件，然后再用 .o 文件生 成<span class="built_in">make</span>的终极任务，也就是执行文件 <span class="keyword">edit</span> 了。</span><br></pre></td></tr></table></figure>
+
+
+
 <p>这就是整个make的依赖性，make会一层又一层地去找文件的依赖关系，直到最终编译出第一个目标文件。在 找寻的过程中，如果出现错误，比如最后被依赖的文件找不到，那么make就会直接退出，并报错，而对于所定义的命令的错误，或是编译不成功，make根本不理。make只管文件的依赖性。</p>
 <p>像 <code>clean</code> 这种，没有被第一个目标文件直接或间接关联，那么它后面所定义的命 令将不会被自动执行，不过，我们可以显示要make执行。即命令—— <code>make clean</code> ，以此来清除所有 的目标文件，以便重编译。</p>
 <p>如果这个工程已被编译过了，当我们修改了其中一个源文件，比如 <code>file.c</code> ， 那么根据我们的依赖性，我们的目标 <code>file.o</code> 会被重编译（也就是在这个依性关系后面所定义的命令）， 于是 <code>file.o</code> 的文件也是最新的啦，于是 <code>file.o</code> 的文件修改时间要比 <code>edit</code> 要新，所 以 <code>edit</code> 也会被重新链接了（详见 <code>edit</code> 目标文件后定义的命令）。比如我们改变了 <code>command.h</code> ，那么， <code>kdb.o</code> 、 <code>command.o</code> 和 <code>files.o</code> 都 会被重编译，并且， <code>edit</code> 会被重链接。</p>
@@ -579,21 +588,33 @@
 <p>跟通常编程一样，变量名最好简(jian)洁(dan)易(cu)懂(bao)，有利于人们明白其代表的含义。</p>
 <p>在上面例子中，edit后面的一串便可以进行替代了。</p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">edit : main.o kbd.o command.o display.o \</span><br><span class="line">        insert.o search.o files.o utils.o</span><br><span class="line">    cc -o edit main.o kbd.o command.o display.o \</span><br><span class="line">        insert.o search.o files.o utils.o</span><br></pre></td></tr></table></figure>
+
+
+
 <p>当我们需要添加文件时，需要修改多个地方，使用变量能很好地为我们节省时间。</p>
 <p>只需在前面声明变量就好，比如<code>objects</code>，<code>objs</code>，<code>obj</code>等等，只要能很好明白其代表的含义就行</p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">objs = main.o kbd.o command.o display.o \</span><br><span class="line">     insert.o search.o files.o utils.o</span><br><span class="line">     </span><br><span class="line">edit : <span class="variable">$(objs)</span></span><br><span class="line">    cc -o edit <span class="variable">$(objs)</span></span><br><span class="line">main.o : main.c defs.h</span><br><span class="line">    cc -c main.c</span><br><span class="line">kbd.o : kbd.c defs.h command.h</span><br><span class="line">    cc -c kbd.c</span><br><span class="line">command.o : command.c defs.h command.h</span><br><span class="line">    cc -c command.c</span><br><span class="line">display.o : display.c defs.h buffer.h</span><br><span class="line">    cc -c display.c</span><br><span class="line">insert.o : insert.c defs.h buffer.h</span><br><span class="line">    cc -c insert.c</span><br><span class="line">search.o : search.c defs.h buffer.h</span><br><span class="line">    cc -c search.c</span><br><span class="line">files.o : files.c defs.h buffer.h command.h</span><br><span class="line">    cc -c files.c</span><br><span class="line">utils.o : utils.c defs.h</span><br><span class="line">    cc -c utils.c</span><br><span class="line">clean :</span><br><span class="line">    rm edit <span class="variable">$(objs)</span></span><br></pre></td></tr></table></figure>
+
+
+
 <p>比如这样，当我们需要添加新的 <code>.o</code> 文件的时候，只需要修改<code>objs =    ...</code>就行了</p>
 <h3 id="Makefile的自动推导"><a href="#Makefile的自动推导" class="headerlink" title="Makefile的自动推导"></a>Makefile的自动推导</h3><p>GNU的make可以自动推到文件及文件依赖关系后面的命令，于是我们就没必要去在每一个 <code>.o</code> 文件后都写上类似的命令，因为，我们的make会自动识别，并自己推导命令。</p>
 <p>只要make看到一个 <code>.o</code> 文件，它就会自动的把 <code>.c</code> 文件加在依赖关系中，如果make找到一个<code>whatever.o</code> ，那么 <code>whatever.c</code> 就会是 <code>whatever.o</code> 的依赖文件。并且 <code>cc -c whatever.c</code> 也会被推导出来，于是，我们的makefile再也不用写得这么复杂。我们的 新makefile又出炉了。</p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">objects = main.o kbd.o command.o display.o \</span><br><span class="line">    insert.o search.o files.o utils.o</span><br><span class="line"></span><br><span class="line">edit : <span class="variable">$(objects)</span></span><br><span class="line">    cc -o edit <span class="variable">$(objects)</span></span><br><span class="line"></span><br><span class="line">main.o : defs.h</span><br><span class="line">kbd.o : defs.h command.h</span><br><span class="line">command.o : defs.h command.h</span><br><span class="line">display.o : defs.h buffer.h</span><br><span class="line">insert.o : defs.h buffer.h</span><br><span class="line">search.o : defs.h buffer.h</span><br><span class="line">files.o : defs.h buffer.h command.h</span><br><span class="line">utils.o : defs.h</span><br><span class="line"></span><br><span class="line">.PHONY : clean</span><br><span class="line">clean :</span><br><span class="line">    rm edit <span class="variable">$(objects)</span></span><br></pre></td></tr></table></figure>
+
 <p>这种方法，也就是make的“隐晦规则”。</p>
 <p><code>.PHONY</code> 表示 <code>clean</code> 是个伪目标 文件。</p>
 <h4 id="另类风格的Makefile"><a href="#另类风格的Makefile" class="headerlink" title="另类风格的Makefile"></a>另类风格的Makefile</h4><p>既然我们的make可以自动推导命令，那么我看到那堆 <code>.o</code> 和 <code>.h</code> 的依赖就有点不爽，那么多的 重复的 <code>.h</code> ，能不能把其收拢起来，好吧，没有问题，这个对于make来说很容易，谁叫它提供了自动 推导命令和文件的功能呢？来看看最新风格的makefile吧。</p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">objects = main.o kbd.o command.o display.o \</span><br><span class="line">    insert.o search.o files.o utils.o</span><br><span class="line"></span><br><span class="line">edit : <span class="variable">$(objects)</span></span><br><span class="line">    cc -o edit <span class="variable">$(objects)</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$(objects)</span> : defs.h</span><br><span class="line">kbd.o command.o files.o : command.h</span><br><span class="line">display.o insert.o search.o files.o : buffer.h</span><br><span class="line"></span><br><span class="line">.PHONY : clean</span><br><span class="line">clean :</span><br><span class="line">    rm edit <span class="variable">$(objects)</span></span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="清空目标文件的规则"><a href="#清空目标文件的规则" class="headerlink" title="清空目标文件的规则"></a>清空目标文件的规则</h3><p>每个Makefile中都应该写一个清空目标文件（ <code>.o</code> 和执行文件）的规则，这不仅便于重编译，也很 利于保持文件的清洁。</p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">clean:</span></span><br><span class="line">    rm edit <span class="variable">$(objects)</span></span><br></pre></td></tr></table></figure>
+
 <p>更为稳健的做法是：</p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.PHONY : clean</span><br><span class="line">clean :</span><br><span class="line">    -rm edit <span class="variable">$(objects)</span></span><br></pre></td></tr></table></figure>
+
 <p>前面说过， <code>.PHONY</code> 表示 <code>clean</code> 是一个“伪目标”。而在 <code>rm</code> 命令前面加了一个小减号的 意思就是，也许某些文件出现问题，但不要管，继续做后面的事。当然， <code>clean</code> 的规则不要放在文件 的开头，不然，这就会变成make的默认目标，相信谁也不愿意这样。不成文的规矩是——“clean从来都是放 在文件的最后”。</p>
 <h3 id="Makefile里有什么？"><a href="#Makefile里有什么？" class="headerlink" title="Makefile里有什么？"></a>Makefile里有什么？</h3><p>Makefile里主要包含了五个东西：显式规则、隐晦规则、变量定义、文件指示和注释。</p>
 <ol>
@@ -615,11 +636,14 @@
 <p>当然，你可以使用别的文件名来书写Makefile，比如：“Make.Linux”，“Make.Solaris” ，“Make.AIX”等，如果要指定特定的Makefile，你可以使用make的 <code>-f</code> 和 <code>--file</code> 参数， 如： <code>make -f Make.Linux</code> 或 <code>make --file Make.AIX</code> 。</p>
 <h3 id="引用其他的Makefile"><a href="#引用其他的Makefile" class="headerlink" title="引用其他的Makefile"></a>引用其他的Makefile</h3><p>在Makefile使用 <code>include</code> 关键字可以把别的Makefile包含进来，这很像C语言的 <code>#include</code> ，被包含的文件会原模原样的放在当前文件的包含位置。 <code>include</code> 的语法是：</p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span> &lt;filename&gt;</span><br></pre></td></tr></table></figure>
+
 <p><code>filename</code> 可以是当前操作系统Shell的文件模式（可以包含路径和通配符）。</p>
 <p>在 <code>include</code> 前面可以有一些空字符，但是绝不能是 <code>Tab</code> 键开始。 <code>include</code> 和 <code>&lt;filename&gt;</code> 可以用一个或多个空格隔开。举个例子，你有这样几个Makefile： <code>a.mk</code> 、 <code>b.mk</code> 、 <code>c.mk</code> ，还有一个文件叫 <code>foo.make</code> ，以及一个变量 <code>$(bar)</code> ，其包含 了 <code>e.mk</code> 和 <code>f.mk</code> ，那么，下面的语句：</p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bar	=	e.mk	f.mk</span><br><span class="line"><span class="keyword">include</span> foo.make *.mk <span class="variable">$(bar)</span></span><br></pre></td></tr></table></figure>
+
 <p>等价于：</p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span> foo.make a.mk b.mk c.mk e.mk f.mk</span><br></pre></td></tr></table></figure>
+
 <p>make命令开始时，会找寻 <code>include</code> 所指出的其它Makefile，并把其内容安置在当前的位置。就好 像C/C++的 <code>#include</code> 指令一样。如果文件都没有指定绝对路径或是相对路径的话，make会在当前目 录下首先寻找，如果当前目录下没有找到，那么，make还会在下面的几个目录下找：</p>
 <ol>
 <li>如果make执行时，有 <code>-I</code> 或 <code>--include-dir</code> 参数，那么make就会在这个参数所指定的目 录下去寻找。</li>
@@ -627,6 +651,7 @@
 </ol>
 <p>如果有文件没有找到的话，make会生成一条警告信息，但不会马上出现致命错误。它会继续载入其它的 文件，一旦完成makefile的读取，make会再重试这些没有找到，或是不能读取的文件，如果还是 不行，make才会出现一条致命信息。如果你想让make不理那些无法读取的文件，而继续执行，你可以 在include前加一个减号“-”。如：</p>
 <figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby"><span class="keyword">include</span> &lt;filename&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>其表示，无论include过程中出现什么错误，都不要报错继续执行。和其它版本make兼容的相关命令 是sinclude，其作用和这一个是一样的。</p>
 <h3 id="环境变量MAKEFILES"><a href="#环境变量MAKEFILES" class="headerlink" title="环境变量MAKEFILES"></a>环境变量MAKEFILES</h3><p>如果你的当前环境中定义了环境变量 <code>MAKEFILES</code> ，那么，make会把这个变量中的值做一个类似于<code>include</code> 的动作。这个变量中的值是其它的Makefile，用空格分隔。只是，它和 <code>include</code> 不 同的是，从这个环境变量中引入的Makefile的“目标”不会起作用，如果环境变量中定义的文件发现 错误，make也会不理。</p>
 <p>但是在这里我还是建议不要使用这个环境变量，因为只要这个变量一被定义，那么当你使用make时， 所有的Makefile都会受到它的影响，这绝不是你想看到的。在这里提这个事，只是为了告诉大家，也许 有时候你的Makefile出现了怪事，那么你可以看看当前环境中有没有定义这个变量。</p>

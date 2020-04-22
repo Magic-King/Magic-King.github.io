@@ -503,7 +503,7 @@
 <p>ssr也被加速器顺便给炸了，显示绑定了另外一个端口</p>
 <blockquote>
 <p>参考：</p>
-<p><a href="https://baike.baidu.com/item/LSP/2970?fromtitle=LSP协议&amp;fromid=807563&amp;fr=aladdin" target="_blank" rel="noopener">分层服务提供程序</a></p>
+<p><a href="https://baike.baidu.com/item/LSP/2970?fromtitle=LSP协议&fromid=807563&fr=aladdin" target="_blank" rel="noopener">分层服务提供程序</a></p>
 <p><a href="https://en.wikipedia.org/wiki/Layered_Service_Provider" target="_blank" rel="noopener">LSP-wiki</a></p>
 <p><a href="https://blog.csdn.net/sspdfn/article/details/86520816" target="_blank" rel="noopener">LSP劫持与网络数据转发代理服务器的心得笔记</a></p>
 </blockquote>
@@ -520,8 +520,12 @@
 </blockquote>
 <p>windows10 解决办法</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ netsh winsock reset</span><br></pre></td></tr></table></figure>
+
+
+
 <p>PS：用ping检查网络状况</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ping 127.0.0.1(判断本地tcp/ip协议是否正常)，</span><br><span class="line"><span class="comment">#ping  本地ip (判断网卡是否正常)，</span></span><br><span class="line">ping  gateway_ip <span class="comment"># 网关(判断路由器是否正常)，</span></span><br><span class="line">ping  14.215.177.39 <span class="comment"># 外网ip，百度的ip (判断网络连接是否正常),  </span></span><br><span class="line">ping  baidu.com <span class="comment"># 外网域名(判断DNS是否正常)，</span></span><br></pre></td></tr></table></figure>
+
 
       
     </div>
