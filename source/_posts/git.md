@@ -30,6 +30,10 @@ password:
 > [使用原理视角看Git](https://coding.net/help/doc/practice/git-principle.html)
 >
 > 
+>
+> git流程可视化图：https://zhuanlan.zhihu.com/p/132573100
+>
+> 
 
 
 
@@ -92,7 +96,7 @@ Git与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布
 >3. GIT分支和SVN的分支不同：分支在SVN中一点不特别，就是版本库中的另外的一个目录。
 >4. GIT没有一个全局的版本号，而SVN有：目前为止这是跟SVN相比GIT缺少的最大的一个特征。
 >5. GIT的内容完整性要优于SVN：GIT的内容存储使用的是SHA-1哈希算法。这能确保代码内容的完整性，确保在遇到磁盘故障和网络问题时降低对版本库的破坏。
->   
+> 
 >
 >
 

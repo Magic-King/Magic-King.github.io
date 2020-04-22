@@ -539,9 +539,55 @@ Kerberos
 
 
 
+------
 
 
 
+
+
+### PKI服务的突出优势
+
+
+
+* 节省费用
+* 企业内部互操作性&企业间互操作性
+* 一致的解释方案（兼容性）
+* 实际安全性（标准化&成熟性）
+* 安全服务提供者的选择（可度量&可靠性&认证管理）
+* 
+
+
+
+PKI服务的不可否认性实现
+
+* 数字签名+时间戳服务
+* 证据（原始数据+签名信息+密钥+时间戳）
+
+
+
+
+
+### PKI Architecture
+
+PKI架构
+
+
+
+![](Security-Protocols-and-Standards/PKI_Architecture.png)
+
+
+
+Application：常规系统软件，如数据库、操作系统、Webserver
+
+结合网络的分层结构
+
+可以层层叠加的
+
+
+
+
+
+Cryptographic Primitives：代码签名：CSP，Microsoft CryptoAPI 2.0
 
 
 
