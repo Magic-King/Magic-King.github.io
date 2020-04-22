@@ -120,10 +120,10 @@ deploy:
 
 
 # lazy load for image
-lazyload:
-  enable: true
-  onlypost: true
-  loadingImg: https://magic-king.net/images/loading.gif
+#lazyload:
+  #enable: true
+  #onlypost: false
+  #loadingImg: https://magic-king.net/images/loading.gif
   #loadingImg: https://cdn.jsdelivr.net/gh/zu1k/hexoblog@0.0.1.2/images/loading.png
 
 # hexo-tag-cloud
