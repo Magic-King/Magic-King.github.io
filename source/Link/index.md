@@ -40,7 +40,6 @@ date: 2020-04-22 15:14:04
 	color: #007bfc;
     border-color: #007bfc; position: relative;
     font-size: 15px;
-    max-width: 1290px;
     margin: 0px auto 40px auto;
     padding: 14px 16px;
     text-align: left;
@@ -48,6 +47,7 @@ date: 2020-04-22 15:14:04
     border-width: 0 0 0 3px;
     border-style: solid;
     box-shadow: 0 8px 16px 0px rgba(10, 14, 29, 0.04), 0px 8px 64px 0px rgba(10, 14, 29, 0.08);">
+    <span></span>
     <img src="index/iconfont.png" style="zoom:10%;" border="0"></img> <a href="https://www.iconfont.cn/">IconFont</a>
 </div>
 
