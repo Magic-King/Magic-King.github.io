@@ -333,7 +333,7 @@
 
     
 
-    <a href="/Link/" rel="section"><i class="menu-item-icon fa fa-fw fa-userful link"></i> <br/>Link</a>
+    <a href="/Link/" rel="section"><i class="menu-item-icon fa fa-fw fa-/images/show-magic.png"></i> <br/>Link</a>
 
   </li>
 
@@ -528,71 +528,71 @@
 <h4 id="对比："><a href="#对比：" class="headerlink" title="对比："></a>对比：</h4><ul>
 <li><h5 id="在执行python语句上不同"><a href="#在执行python语句上不同" class="headerlink" title="在执行python语句上不同"></a>在执行python语句上不同</h5></li>
 </ul>
-<p><img src="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/1.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/1.jpg" alt></p>
 <p><code>exec()</code>可以对变量a进行赋值，而<code>eval()</code>并不能对a进行赋值</p>
 <p><code>exec()</code>可以执行python的<code>import os</code>，而<code>eval()</code>不能直接执行python语句，但是可以执行表达式<code>&#39;__import__(&quot;os&quot;)&#39;</code>并返回结果</p>
 <blockquote>
 <p><code>__import__()</code>函数用于动态加载类和函数，可以将该引入模块作为一个动态对象使用</p>
 </blockquote>
-<p><img src="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/2.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/2.jpg" alt></p>
 <p>相较于exec：</p>
-<p><img src="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/3.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/3.jpg" alt></p>
 <ul>
 <li><h5 id="返回值不同"><a href="#返回值不同" class="headerlink" title="返回值不同"></a>返回值不同</h5></li>
 </ul>
-<p><img src="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/4.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/4.jpg" alt></p>
 <p>由图可见，eval在对表达式进行计算后，返回计算结果，而exec并无返回结果</p>
 <p>虽然有种种不同，但是还是会将第一个传入参数进行执行</p>
 <h3 id="存在的安全隐患"><a href="#存在的安全隐患" class="headerlink" title="存在的安全隐患"></a>存在的安全隐患</h3><p>以<code>eval()</code>函数为例，下图中的add函数使用<code>eval()</code>对传入参数进行处理，将传入的a，b拼接起来通过<code>eval()</code>计算返回结果</p>
-<p><img src="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/5.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/5.jpg" alt></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(a, b)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> eval(<span class="string">"%s + %s"</span> % (a, b))</span><br></pre></td></tr></table></figure>
 <p>通过eval进行执行表达式</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">add(<span class="string">"__import__('os').system('whoami')"</span>, <span class="number">2</span>)</span><br><span class="line">eval(<span class="string">"__import__('os').system('whoami')"</span>)</span><br><span class="line">add(<span class="string">"__import__('os').system('whoami') #"</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/6.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/6.jpg" alt></p>
 <p>成功执行命令，并返回结果2。</p>
 <p>返回结果0是因为<code>os.system()</code>执行成功的话，返回值为0。</p>
 <p>如同sql注入一样的思路，在执行语句后面加上注释，即可返回结果0。</p>
 <h3 id="防范"><a href="#防范" class="headerlink" title="防范"></a>防范</h3><p>通过上面可知，只要eval或exec中的传入变量可控，就存在执行系统命令的问题</p>
 <p>针对上面的例子<code>eval(&quot;__import__(&#39;os&#39;).system(&#39;whoami&#39;)&quot;)</code>的问题，存在一种常见的限制方法：即指定<code>eval()</code>或<code>exec()</code>的<strong>globals</strong>参数为<code>{&#39;builtins&#39;:None}</code>或者<code>{&#39;builtins&#39;:{}}</code>这样的形式就可以避免任意代码执行的隐患。这种方法实际上是限制了他们可用的python内置模块(builtins)</p>
 <p>在<code>eval()</code>和<code>exec()</code> ，<strong>globals</strong>参数用于指定运行时的全局命名空间，如果globals没有被提供，则使用python的全局命名空间</p>
-<p><img src="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/7.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/7.jpg" alt></p>
 <p>如上图，若不规定globals参数，则使用python全局的<code>a=1</code>，若提供了globals参数<code>{&#39;a&#39;:6}</code>，则使用globals参数里的数据，即eval的作用域就是<code>{&#39;a&#39;:6}</code></p>
-<p><img src="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/8.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/8.jpg" alt></p>
 <p>而且当eval使用了自己作用域里的参数，就不会使用python的全局命名空间</p>
 <h4 id="python的builtins模块"><a href="#python的builtins模块" class="headerlink" title="python的builtins模块"></a>python的builtins模块</h4><p>builtins模块是提供对python的所有“内建”标识符的直接访问功能。python解释器在加载时会首先加载内建名称空间并自动导入所对应的内建函数，在执行python的时候加上<code>-v</code>的选择就可以看到加载过程。</p>
 <blockquote>
 <p><a href="https://blog.csdn.net/qq_33339479/article/details/81501802" target="_blank" rel="noopener">python源码分析——内建模块builtins初始化</a></p>
 </blockquote>
-<p><img src="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/9.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/9.jpg" alt></p>
 <p>而且由于<strong>builtins</strong>的存在，使得在Python可以直接使用一些内建函数而不用显式的导入它们，例如input()、list()、<strong>import</strong> 等</p>
 <p>通过命令<code>dir(__builtins__)</code>就可以看到所有的内建函数</p>
-<p><img src="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/10.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/10.jpg" alt></p>
 <p>在python中使用上述函数都可以不用导入模块</p>
 <p>回到<code>exec/eval</code>问题中，值得注意的是，在<code>exec/eval</code>中，若globals参数被提供，但是没有提供自定义的builtins，那么<code>exec/eval</code>会将当前环境中的<strong>builtins</strong>拷贝至自己提供的globals里，例子如下图：</p>
-<p><img src="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/11.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/11.jpg" alt></p>
 <p>如图，若globals里不规定<code>__builtins__</code>，则会使用python全局的<strong>builtins</strong>，例如<code>in[25]</code>。如果定义了builtins，则会使用已经定义的<strong>builtins</strong>，如<code>in[27]</code>和<code>in[28]</code>。</p>
 <blockquote>
 <p>这里我没搞懂26为什么也可以，因为builtins在python3.x的时候已经和builtin合并了。</p>
 <p>后面实验时发现，builtins可以被当作模块所import，所以推测python初始化的时候使用的是<code>__builtins__</code>，实验证明这是正确的</p>
-<p><img src="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/12.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/12.jpg" alt></p>
 </blockquote>
 <p>exec的globals策略与eval相同</p>
 <p>因此可以通过指定globals参数，来控制eval运行执行的内置函数。这个方法看起来很有效的限制eval/exec对<strong>import</strong>等内置函数的使用，似乎可以防止任意代码执行。但是此方法仍然存在绕过</p>
 <h3 id="绕过"><a href="#绕过" class="headerlink" title="绕过"></a>绕过</h3><p>在上述防范中，通过globals参数对<strong>builtins</strong>中的内置函数范围进行限制，使得eval/exec无法随意使用”<strong>import</strong>”等内置函数来达成阻止任意代码执行</p>
 <p>但是却存在如下绕过：<code>(1, 2).class.bases[0].subclasses</code></p>
-<p><img src="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/13.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/13.jpg" alt></p>
 <p>如图，<code>(1,2)</code>是一个元组，<code>__class__</code>用于查看对象所在的类，很显然<code>(1,2)</code>是个元组类型的对象，即tuple类</p>
 <p><code>__bases__</code>属性返回所有直接父类所组成的元组（直接父类是因为python的多继承属性所导致）</p>
 <p>如<code>In[36]</code>可见元组类型的直接父类是object类</p>
 <p><code>__subclasses__</code> 可用来获取类的所有子类，贼恐怖</p>
-<p><img src="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/14.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/14.jpg" alt></p>
 <p>因为<code>(1,2).__class__.__bases__[0]</code>已经是object类了，而object类的子类众多，因此可以使用的类就非常丰富了</p>
 <p>比如list就在object类里，对应着<code>(1,2).__class__.__bases__[0].__subclasses__()[7]</code></p>
-<p><img src="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/15.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/15.jpg" alt></p>
 <p>这样就可以调用list函数，将其转为一个list</p>
 <p><strong>构造利用链的核心方法</strong>就是：只要追溯到object类并使用subclasses()使用object子类即可</p>
 <p>在object子类中，有执行系统命令的子类  <code>subprocess.Popen</code></p>
-<p><img src="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/16.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/16.jpg" alt></p>
 <blockquote>
 <p>subprocess 模块允许你生成新的进程，连接它们的输入、输出、错误管道，并且获取它们的返回码。</p>
 <p><code>subprocess.Popen(args, shell=True, stderr=subprocess.PIPE, stdin=subprocess.PIPE,stdout=subprocess.PIPE)</code></p>
@@ -605,18 +605,18 @@
 <p><strong>简而言之</strong><br>上面代码简而言之就是，接受args的命令，执行成功就将执行成功的结果存入stdout管道，执行失败的结果存入stderr管道。</p>
 </blockquote>
 <p>显然，利用链：<code>().__class__.bases[0].__subclasses__()[176](&quot;whoami&quot;)</code></p>
-<p><img src="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/17.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/17.jpg" alt></p>
 <p>可能由于我的引入库不同，导致了subclasses的列表选择不同，我在subclasses[217]找到<code>subprocess.Popen</code>，然后成功执行whoami命令</p>
 <p>每个python的运行环境不同，引入库的顺序不同，导致subprocess不一定在176位，甚至可能没有被引入</p>
-<p><img src="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/18.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/18.jpg" alt></p>
 <p>由图可见，虽然可能没被引入，但是这种方法能成功绕过。可见，虽然限制只允许使用list，但是我们仍然可以执行系统命令。因此，简单的使用{‘<strong>builtins</strong>‘: None}是无法满足eval的安全需求的</p>
 <p>实际上，可以使用ast.literal_eval()来代替eval()</p>
 <p>ast.literal_eval()允许传入的内容如下</p>
 <p>strings, bytes, numbers, tuples, lists, dicts, sets, booleans, None</p>
 <p>当不合法的字符传入时，程序则会报错，如下图</p>
-<p><img src="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/19.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/19.jpg" alt></p>
 <p>使用ast.literal_eval()代替eval和exec，可以有效的防止任意代码执行漏洞</p>
-<p><img src="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/20.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/20.jpg" alt></p>
 <p>甚至只要有任何不合法的字符传入，程序就会报错</p>
 <p>使用ast.literal_eval()代替eval和exec，可以有效的防止任意代码执行漏洞</p>
 <blockquote>
@@ -1576,5 +1576,5 @@
 	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
   
-</body>
+<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
 </html>

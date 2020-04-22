@@ -318,7 +318,7 @@
 
     
 
-    <a href="/Link/" rel="section"><i class="menu-item-icon fa fa-fw fa-userful link"></i> <br/>Link</a>
+    <a href="/Link/" rel="section"><i class="menu-item-icon fa fa-fw fa-/images/show-magic.png"></i> <br/>Link</a>
 
   </li>
 
@@ -517,9 +517,9 @@
 <p>原本我只想看看文件头的，没想到直接看到了FLAG</p>
 <p>看到文件头得知，这是一个ELF文件</p>
 <p>拖进IDA逆向，直接看main函数，没啥发现，然后F5得源码</p>
-<p><img src="/2020/01/06/XCTF-adworld-reverse-wp/1_2.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/01/06/XCTF-adworld-reverse-wp/1_2.jpg" alt></p>
 <p>心想着这哪有关于flag得信息，于是点v4到字符串到，看到了静态flag字符串，得到flag</p>
-<p><img src="/2020/01/06/XCTF-adworld-reverse-wp/1_1.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/01/06/XCTF-adworld-reverse-wp/1_1.jpg" alt></p>
 <p>看着这个字符串，应该是一个挺好玩得游戏</p>
 <h2 id="0x02-Open-source"><a href="#0x02-Open-source" class="headerlink" title="0x02 Open-source"></a>0x02 Open-source</h2><blockquote>
 <p>题目描述：菜鸡学逆向学得头皮发麻，终于它拿到了一段源代码</p>
@@ -530,7 +530,7 @@
 <p>该函数有4个判断，因为每个判断都和后面的hash计算有关，因此阅读每个if判断</p>
 <p>第一个判断是否为四个参数，第二个判断first是否为<code>0xcafe</code>，因为first被强转为int，因此需将十六进制转化为十进制，这边用python偷懒，算出为51966，第二个判断要过，即或运算两边都需要false，因此 second满足的条件为：<code>second %5 != 3 &amp;&amp; second %17 == 8</code>，最后一个判断即是c++的字符串比较，直接输入<code>h4cky0u</code>。</p>
 <p>用gcc将程序编译，得到可执行文件，运行以上结果，得到flag：<code>c0ffee</code></p>
-<p><img src="/2020/01/06/XCTF-adworld-reverse-wp/2_1.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/01/06/XCTF-adworld-reverse-wp/2_1.jpg" alt></p>
 <h2 id="0x03-simple-unpack"><a href="#0x03-simple-unpack" class="headerlink" title="0x03 simple-unpack"></a>0x03 simple-unpack</h2><blockquote>
 <p>题目描述：菜鸡拿到了一个被加壳的二进制文件</p>
 </blockquote>
@@ -1511,5 +1511,5 @@
 	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
   
-</body>
+<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
 </html>
