@@ -871,7 +871,7 @@ local_search:
   # Show top n results per article, show all results by setting to -1
   top_n_per_article: 1
   # Unescape html strings to the readable one.
-  unescape: true
+  unescape: false
 
 # Swiftype Search API Key
 #swiftype_key:
