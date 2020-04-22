@@ -98,12 +98,12 @@
 
 
 
-  <meta name="description" content="Git 引用： Git详细使用教程 Git教程 Git本地服务器搭建及使用方法 Git原理入门解析 使用原理视角看Git     Git 的诞生： 很多人都知道，Linus 在 1991 年创建了开源的 Linux，从此，Linux 系统不断发展，已经成为最大的服务器系统软件了。 Linus 虽然创建了 Linux，但 Linux 的壮大是靠全世界热心的志愿者参与的，这么多人在世界各地为 Linu">
+  <meta name="description" content="Git 引用： Git详细使用教程 Git教程 Git本地服务器搭建及使用方法 Git原理入门解析 使用原理视角看Git git流程可视化图：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;132573100     Git 的诞生： 很多人都知道，Linus 在 1991 年创建了开源的 Linux，从此，Linux 系统不断发展，已经成为最大的服务器系统软件了。 Linus 虽然创建">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git">
 <meta property="og:url" content="http://magic-king.net/2019/09/23/git/index.html">
 <meta property="og:site_name" content="Hexo&amp;Magic">
-<meta property="og:description" content="Git 引用： Git详细使用教程 Git教程 Git本地服务器搭建及使用方法 Git原理入门解析 使用原理视角看Git     Git 的诞生： 很多人都知道，Linus 在 1991 年创建了开源的 Linux，从此，Linux 系统不断发展，已经成为最大的服务器系统软件了。 Linus 虽然创建了 Linux，但 Linux 的壮大是靠全世界热心的志愿者参与的，这么多人在世界各地为 Linu">
+<meta property="og:description" content="Git 引用： Git详细使用教程 Git教程 Git本地服务器搭建及使用方法 Git原理入门解析 使用原理视角看Git git流程可视化图：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;132573100     Git 的诞生： 很多人都知道，Linus 在 1991 年创建了开源的 Linux，从此，Linux 系统不断发展，已经成为最大的服务器系统软件了。 Linus 虽然创建">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://magic-king.net/2019/09/23/git/git_1.png">
 <meta property="og:image" content="http://magic-king.net/2019/09/23/git/git_2.png">
@@ -124,7 +124,7 @@
 <meta property="og:image" content="http://magic-king.net/2019/09/23/git/git_17.png">
 <meta property="og:image" content="http://magic-king.net/2019/09/23/git/git_18.png">
 <meta property="article:published_time" content="2019-09-23T14:39:11.000Z">
-<meta property="article:modified_time" content="2019-09-29T14:27:00.458Z">
+<meta property="article:modified_time" content="2020-04-20T05:42:24.001Z">
 <meta property="article:author" content="Magic King">
 <meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary">
@@ -318,6 +318,23 @@
     <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
 
   </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-link">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/Link/" rel="section"><i class="menu-item-icon fa fa-fw fa-userful link"></i> <br/>Link</a>
+
+  </li>
 
       
       
@@ -458,7 +475,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-29 22:27:00" itemprop="dateModified" datetime="2019-09-29T22:27:00+08:00">2019-09-29</time>
+                <time title="修改时间：2020-04-20 13:42:24" itemprop="dateModified" datetime="2020-04-20T13:42:24+08:00">2020-04-20</time>
               
             
           </span>
@@ -525,6 +542,7 @@
 <p><a href="https://blog.csdn.net/yufeng1108/article/details/80619547" target="_blank" rel="noopener">Git本地服务器搭建及使用方法</a></p>
 <p><a href="https://www.wmyskxz.com/2019/08/16/git-yuan-li-ru-men-jian-xi/" target="_blank" rel="noopener">Git原理入门解析</a></p>
 <p><a href="https://coding.net/help/doc/practice/git-principle.html" target="_blank" rel="noopener">使用原理视角看Git</a></p>
+<p>git流程可视化图：<a href="https://zhuanlan.zhihu.com/p/132573100" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/132573100</a></p>
 </blockquote>
 <hr>
 <blockquote>
@@ -578,17 +596,25 @@
 <p><img src="/2019/09/23/git/git_4.png" alt></p>
 <p>如果我们要对项目进行管理，就切换到该项目目录底下，使用<code>git init</code>命令，进行初始化</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$git</span> init</span><br></pre></td></tr></table></figure>
+
 <p><code>git init</code> 命令只会做一件事，就是在项目的根目录下创建一个 <code>.git</code> 的子目录，用来保存当前项目的一些版本信息，我们可以继续使用 <code>tree -a</code> 命令查看该目录的完整结构，如下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$tree</span> -a</span><br><span class="line">.</span><br><span class="line">└── .git</span><br><span class="line">    ├── HEAD                                      </span><br><span class="line">    ├── branches</span><br><span class="line">    ├── config</span><br><span class="line">    ├── description</span><br><span class="line">    ├── hooks</span><br><span class="line">    │   ├── applypatch-msg.sample</span><br><span class="line">    │   ├── commit-msg.sample</span><br><span class="line">    │   ├── fsmonitor-watchman.sample</span><br><span class="line">    │   ├── post-update.sample</span><br><span class="line">    │   ├── pre-applypatch.sample</span><br><span class="line">    │   ├── pre-commit.sample</span><br><span class="line">    │   ├── pre-push.sample</span><br><span class="line">    │   ├── pre-rebase.sample</span><br><span class="line">    │   ├── pre-receive.sample</span><br><span class="line">    │   ├── prepare-commit-msg.sample</span><br><span class="line">    │   └── update.sample</span><br><span class="line">    ├── index</span><br><span class="line">    ├── info</span><br><span class="line">    │   └── exclude</span><br><span class="line">    ├── objects</span><br><span class="line">    │   ├── .DS_Store</span><br><span class="line">    │   ├── info</span><br><span class="line">    │   └── pack</span><br><span class="line">    └── refs</span><br><span class="line">        ├── heads</span><br><span class="line">        └── tags</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="Git目录解析"><a href="#Git目录解析" class="headerlink" title="Git目录解析"></a>Git目录解析</h3><h4 id="config-目录"><a href="#config-目录" class="headerlink" title="config 目录"></a>config 目录</h4><p>config 是仓库的配置文件，一个典型的配置文件如下，我们创建的远端，分支都在等信息都在配置文件里有表现；<code>fetch</code> 操作的行为也是在这里配置的：</p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[core]</span><br><span class="line">    repositoryformatversion = <span class="number">0</span></span><br><span class="line">    filemode = <span class="keyword">false</span></span><br><span class="line">    bare = <span class="keyword">false</span></span><br><span class="line">    logallrefupdates = <span class="keyword">true</span></span><br><span class="line">    symlinks = <span class="keyword">false</span></span><br><span class="line">    ignorecase = <span class="keyword">true</span></span><br><span class="line">[remote <span class="string">"origin"</span>]</span><br><span class="line">    url = git<span class="variable">@github</span>.<span class="symbol">com:</span>yanhaijing/zepto.fullpage.git</span><br><span class="line">    fetch = +refs/heads/*<span class="symbol">:refs/remotes/origin/*</span></span><br><span class="line">[branch <span class="string">"master"</span>]</span><br><span class="line">    remote = origin</span><br><span class="line">    merge = refs/heads/master</span><br><span class="line">[branch <span class="string">"dev"</span>]</span><br><span class="line">    remote = origin</span><br><span class="line">    merge = refs/heads/dev</span><br></pre></td></tr></table></figure>
+
 <h4 id="objects-目录"><a href="#objects-目录" class="headerlink" title="objects 目录"></a>objects 目录</h4><p>Git 可以通过一种算法可以得到任意文件的 <strong>“指纹”</strong>（40 位 16 进制数字），然后通过文件指纹存取数据，存取的数据都位于 objects 目录。</p>
 <p>例如我们可以手动创建一个测试文本文件并使用 <code>git add .</code> 命令来观察 <code>.git</code> 文件夹出现的变化：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ touch test.txt</span><br><span class="line">$ git add .</span><br></pre></td></tr></table></figure>
+
 <p><code>git add .</code> 命令就是用于把当前新增的变化添加进 Git 本地仓库的，在我们使用后，我们惊奇的发现 <code>.git</code> 目录下的 <code>objects/</code> 目录下多了一个目录：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">$ tree -a</span><br><span class="line">.</span><br><span class="line">├── .git</span><br><span class="line">│   ├── HEAD</span><br><span class="line">│   ├── branches</span><br><span class="line">│   ├── config</span><br><span class="line">│   ├── description</span><br><span class="line">│   ├── hooks</span><br><span class="line">│   │   ├── 节省篇幅..省略..</span><br><span class="line">│   ├── index</span><br><span class="line">│   ├── info</span><br><span class="line">│   │   └── exclude</span><br><span class="line">│   ├── objects</span><br><span class="line">│   │   ├── .DS_Store</span><br><span class="line">│   │   ├── e6</span><br><span class="line">│   │   │   └── 9de29bb2d1d6434b8b29ae775ad8c2e48c5391</span><br><span class="line">│   │   ├── info</span><br><span class="line">│   │   └── pack</span><br><span class="line">│   └── refs</span><br><span class="line">│       ├── heads</span><br><span class="line">│       └── tags</span><br><span class="line">└── test.txt</span><br></pre></td></tr></table></figure>
+
 <p>我们可以使用 <code>git hash-object test.txt</code> 命令来看看刚才我们创建的 <code>test.txt</code> 的 “文件指纹”：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">hash</span>-object test.txt</span><br><span class="line">e69de29bb2d1d6434b8b29ae775ad8c2e48c5391</span><br></pre></td></tr></table></figure>
+
 <p>这时候我们可以发现，新创建的目录 <code>e6</code> 其实是该文件哈希值的前两位，这其实是 Git 做的一层类似于索引一样的东西，并且默认采用 16 进制的两位数来当索引，是非常合适的。</p>
 <p>这边其实引入了Sha-1算法</p>
 <p>SHA-1将文件中的内容通过通过计算生成一个 40 位长度的hash值。</p>
@@ -609,14 +635,21 @@
 <p><img src="/2019/09/23/git/git_5.png" alt></p>
 <p>而 Commit 类型的数据则整合了 tree 和 blob 类型，保存了当前的所有变化，例如我们可以再在刚才的目录下新建一个目录，并添加一些文件试试：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir <span class="built_in">test</span></span><br><span class="line">$ touch <span class="built_in">test</span>/test.file</span><br><span class="line">$ tree -a</span><br><span class="line">.</span><br><span class="line">├── .git</span><br><span class="line">│   ├── HEAD</span><br><span class="line">│   ├── branches</span><br><span class="line">│   ├── config</span><br><span class="line">│   ├── description</span><br><span class="line">│   ├── hooks</span><br><span class="line">│   │   ├── 节省篇幅..省略..</span><br><span class="line">│   ├── index</span><br><span class="line">│   ├── info</span><br><span class="line">│   │   └── exclude</span><br><span class="line">│   ├── objects</span><br><span class="line">│   │   ├── .DS_Store</span><br><span class="line">│   │   ├── e6</span><br><span class="line">│   │   │   └── 9de29bb2d1d6434b8b29ae775ad8c2e48c5391</span><br><span class="line">│   │   ├── info</span><br><span class="line">│   │   └── pack</span><br><span class="line">│   └── refs</span><br><span class="line">│       ├── heads</span><br><span class="line">│       └── tags</span><br><span class="line">├── <span class="built_in">test</span></span><br><span class="line">│   └── test.file</span><br><span class="line">└── test.txt</span><br></pre></td></tr></table></figure>
+
+
+
 <p>提交完Commit在观察变化</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -a -m <span class="string">"test: 新增测试文件夹和测试文件观察.git文件的变化"</span></span><br><span class="line">[master (root-commit) 30d51b1] <span class="built_in">test</span>: 新增测试文件夹和测试文件观察.git文件的变化</span><br><span class="line"> 1 file changed, 0 insertions(+), 0 deletions(-)</span><br><span class="line"> create mode 100644 test.txt</span><br><span class="line">$ tree -a</span><br><span class="line">.</span><br><span class="line">├── .git</span><br><span class="line">│   ├── COMMIT_EDITMSG</span><br><span class="line">│   ├── HEAD</span><br><span class="line">│   ├── branches</span><br><span class="line">│   ├── config</span><br><span class="line">│   ├── description</span><br><span class="line">│   ├── hooks</span><br><span class="line">│   │   ├── ...省略...</span><br><span class="line">│   ├── index</span><br><span class="line">│   ├── info</span><br><span class="line">│   │   └── exclude</span><br><span class="line">│   ├── logs</span><br><span class="line">│   │   ├── HEAD</span><br><span class="line">│   │   └── refs</span><br><span class="line">│   │       └── heads</span><br><span class="line">│   │           └── master</span><br><span class="line">│   ├── objects</span><br><span class="line">│   │   ├── .DS_Store</span><br><span class="line">│   │   ├── 30</span><br><span class="line">│   │   │   └── d51b1edd2efd551dd6bd52d4520487b5708c0e</span><br><span class="line">│   │   ├── 5e</span><br><span class="line">│   │   │   └── fb9bc29c482e023e40e0a2b3b7e49cec842034</span><br><span class="line">│   │   ├── e6</span><br><span class="line">│   │   │   └── 9de29bb2d1d6434b8b29ae775ad8c2e48c5391</span><br><span class="line">│   │   ├── info</span><br><span class="line">│   │   └── pack</span><br><span class="line">│   └── refs</span><br><span class="line">│       ├── heads</span><br><span class="line">│       │   └── master</span><br><span class="line">│       └── tags</span><br><span class="line">├── <span class="built_in">test</span></span><br><span class="line">│   └── test.file</span><br><span class="line">└── test.txt</span><br></pre></td></tr></table></figure>
+
 <p>首先我们可以观察到我们提交了一个 Commit 的时候在第一句话里面返回了一个短的像是哈希值一样的东西： <code>[master (root-commit) 30d51b1]</code> 中 的 <code>30d51b1</code>，对应的我们也可以在 objects 找到刚才 commit 的对象，我们可以使用 <code>git cat-file -p</code> 命令输出一下当前文件的内容：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git cat-file -p 30d5</span><br><span class="line">tree 5efb9bc29c482e023e40e0a2b3b7e49cec842034</span><br><span class="line">author 我没有三颗心脏  1565742122 +0800</span><br><span class="line">committer 我没有三颗心脏  1565742122 +0800</span><br><span class="line"></span><br><span class="line"><span class="built_in">test</span>: 新增测试文件夹和测试文件观察.git文件的变化</span><br></pre></td></tr></table></figure>
+
 <p>我们发现这里面有提交的内容信息、作者信息、提交者信息以及 commit message，当然我们可以进一步看到提交的内容具体有哪些：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git cat-file -p 5efb</span><br><span class="line">100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5391    test.txt</span><br></pre></td></tr></table></figure>
+
 <p>我们再试着提交一个 commit 来观察变化:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ touch <span class="built_in">test</span>/test2.file</span><br><span class="line">$  git commit -a -m <span class="string">"test: 新增加一个 commit 以观察变化."</span></span><br><span class="line">[master 9dfabac] <span class="built_in">test</span>: 新增加一个 commit 以观察变化.</span><br><span class="line"> 2 files changed, 0 insertions(+), 0 deletions(-)</span><br><span class="line"> create mode 100644 <span class="built_in">test</span>/test.file</span><br><span class="line"> create mode 100644 <span class="built_in">test</span>/test2.file</span><br><span class="line">$ git cat-file -p 9dfabac</span><br><span class="line">tree c562bfb9441352f4c218b0028148289f1ea7d7cd</span><br><span class="line">parent 30d51b1edd2efd551dd6bd52d4520487b5708c0e</span><br><span class="line">author 龙滔  1565878699 +0800</span><br><span class="line">committer 龙滔  1565878699 +0800</span><br><span class="line"></span><br><span class="line"><span class="built_in">test</span>: 新增加一个 commit 以观察变化.</span><br></pre></td></tr></table></figure>
+
 <p>可以观察到这一次的 commit 多了一个 parent 的行，其中的 <strong>“指纹”</strong> 和上一次的 commit 一模一样，当我们提交两个 commit 之后我们的 Git 仓库可以简化为下图：</p>
 <p><img src="/2019/09/23/git/git_6.png" alt></p>
 <ul>
@@ -630,10 +663,16 @@
 </ul>
 <p>引用文件的内容都是 40 位长度的 commit</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cat .git/refs/heads/master</span><br><span class="line">9dfabac68470a588a4b4a78742249df46438874a</span><br></pre></td></tr></table></figure>
+
+
+
 <p>这就像是一个指针一样，它指向了你的最后一次提交（例如这里就指向了第二次提交的 commit），我们补充上分支信息，现在的 Git 仓库就会像下图所示：</p>
 <p><img src="/2019/09/23/git/git_7.png" alt></p>
 <h4 id="HEAD-目录"><a href="#HEAD-目录" class="headerlink" title="HEAD 目录"></a>HEAD 目录</h4><p>HEAD 目录下存储的是当前所在的位置，其内容是分支的名称：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cat HEAD</span><br><span class="line">ref: refs/heads/master</span><br></pre></td></tr></table></figure>
+
+
+
 <p>我们再补充上 HEAD 的信息，现在的 Git 仓库如下图所示：</p>
 <p><img src="/2019/09/23/git/git_8.png" alt></p>
 <h3 id="git的冲突处理"><a href="#git的冲突处理" class="headerlink" title="git的冲突处理"></a>git的冲突处理</h3><p>以下主要参考以下两篇文章</p>
@@ -674,35 +713,54 @@
 <h2 id="git基本操作"><a href="#git基本操作" class="headerlink" title="git基本操作"></a>git基本操作</h2><h3 id="git配置"><a href="#git配置" class="headerlink" title="git配置"></a>git配置</h3><p>Git 提供了一个叫做 git config 的工具，专门用来配置或读取相应的工作环境变量。<br>这些环境变量，决定了 Git 在各个环节的具体工作方式和行为。这些变量可以存放在以下三个不同的地方：</p>
 <blockquote>
 <p>/etc/gitconfig 文件：系统中对所有用户都普遍适用的配置。若使用 git config 时用 –system 选项，读写的就是这个文件。<br>~/.gitconfig 文件：用户目录下的配置文件只适用于该用户。若使用 git config 时用 –global 选项，读写的就是这个文件。<br>当前项目的 Git 目录中的配置文件（也就是工作目录中的 .git/config 文件）：这里的配置仅仅针对当前项目有效。每一个级别的配置都会覆盖上层的相同配置，所以 .git/config 里的配置会覆盖 /etc/gitconfig 中的同名变量。</p>
-<p>在 Windows 系统上，Git 会找寻用户主目录下的 .gitconfig 文件。主目录即 $HOME 变量指定的目录，一般都是 C:\Documents and Settings\$USER。</p>
+<p>在 Windows 系统上，Git 会找寻用户主目录下的 .gitconfig 文件。主目录即 $HOME 变量指定的目录，一般都是 C:\Documents and Settings$USER。</p>
 <p>此外，Git 还会尝试找寻 /etc/gitconfig 文件，只不过看当初 Git 装在什么目录，就以此作为根目录来定位。</p>
 </blockquote>
 <h4 id="1-用户信息-git-config-user"><a href="#1-用户信息-git-config-user" class="headerlink" title="1.用户信息    git config user"></a>1.用户信息    <code>git config user</code></h4><p>在使用git提交前，一定要配置提交者个人的用户名称和电子邮件</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"wyndam"</span></span><br><span class="line">$ git config --global user.email <span class="string">"only.night@qq.com"</span></span><br></pre></td></tr></table></figure>
+
 <p>如果用了<em><code>--global</code></em>选项，那么更改的配置文件就是位于你用户主目录下的那个，以后你所有的项目都会默认使用这里配置的用户信息。<br>如果要在某个特定的项目中使用其他名字或者电邮，只要去掉<em>–global</em>选项重新配置即可，新的设定保存在当前项目的 .git/config 文件里。</p>
 <h4 id="2-文本编辑器"><a href="#2-文本编辑器" class="headerlink" title="2.文本编辑器"></a>2.文本编辑器</h4><p>设置Git默认使用的文本编辑器, 一般可能会是 Vi 或者 Vim。如果你有其他偏好，比如 Emacs 的话，可以重新设置：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global core.editor emacs</span><br></pre></td></tr></table></figure>
+
+
+
 <h4 id="3-差异分析工具"><a href="#3-差异分析工具" class="headerlink" title="3.差异分析工具"></a>3.差异分析工具</h4><p>还有一个比较常用的是，在解决合并冲突时使用哪种差异分析工具。比如要改用 vimdiff 的话：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global merge.tool vimdiff</span><br></pre></td></tr></table></figure>
+
 <p>Git 可以理解 kdiff3，tkdiff，meld，xxdiff，emerge，vimdiff，gvimdiff，ecmerge，和 opendiff 等合并工具的输出信息。<br>当然，你也可以指定使用自己开发的工具。</p>
 <h4 id="4-查看配置信息-git-config-list"><a href="#4-查看配置信息-git-config-list" class="headerlink" title="4.查看配置信息    git config --list"></a>4.查看配置信息    <code>git config --list</code></h4><p>要检查已有的配置信息，可以使用 git config –list 命令：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$ git config --list</span><br><span class="line"></span><br><span class="line">core.symlinks=<span class="literal">false</span></span><br><span class="line">core.autocrlf=<span class="literal">true</span></span><br><span class="line">color.diff=auto</span><br><span class="line">color.status=auto</span><br><span class="line">color.branch=auto</span><br><span class="line">color.interactive=<span class="literal">true</span></span><br><span class="line">pack.packsizelimit=2g</span><br><span class="line">help.format=html</span><br><span class="line">http.sslcainfo=E:/Platform/Git/mingw32/ssl/certs/ca-bundle.crt</span><br><span class="line">diff.astextplain.textconv=astextplain</span><br><span class="line">rebase.autosquash=<span class="literal">true</span></span><br><span class="line">filter.lfs.clean=git-lfs clean %f</span><br><span class="line">filter.lfs.smudge=git-lfs smudge %f</span><br><span class="line">filter.lfs.required=<span class="literal">true</span></span><br><span class="line">user.name=Wyndam</span><br><span class="line">user.email=only.night@qq.com</span><br><span class="line">core.editor=subl</span><br></pre></td></tr></table></figure>
+
+
+
 <p>有时候会看到重复的变量名，那就说明它们来自不同的配置文件（比如 /etc/gitconfig 和 ~/.gitconfig），不过最终 Git 实际采用的是最后一个。<br>这些配置我们也可以在 ~/.gitconfig 或 /etc/gitconfig 看到，如下所示：</p>
 <figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[filter <span class="string">"lfs"</span>]</span><br><span class="line">    <span class="attr">clean</span> = git-lfs clean %f</span><br><span class="line">    <span class="attr">smudge</span> = git-lfs smudge %f</span><br><span class="line">    <span class="attr">required</span> = <span class="literal">true</span></span><br><span class="line">[user]</span><br><span class="line">    <span class="attr">name</span> = Wyndam</span><br><span class="line">    <span class="attr">email</span> = only.night@qq.com</span><br><span class="line">[core]</span><br><span class="line">    <span class="attr">editor</span> = subl</span><br></pre></td></tr></table></figure>
+
 <p>也可以直接查阅某个环境变量的设定，只要把特定的名字跟在后面即可，像这样：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git config user.email</span><br><span class="line"></span><br><span class="line">magic@outlook.com</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 <h3 id="新建git本地仓库"><a href="#新建git本地仓库" class="headerlink" title="新建git本地仓库"></a>新建git本地仓库</h3><p>Git 使用 git init 命令来初始化一个 Git 仓库，Git 的很多命令都需要在 Git 的仓库中运行，所以 git init 是使用 Git 的第一个命令。<br>在执行完成 git init 命令后，Git 仓库会生成一个 .git 目录，该目录包含了资源的所有元数据，其他的项目目录保持不变（不像 SVN 会在每个子目录生成 .svn 目录，Git 只在仓库的根目录生成 .git 目录）。</p>
 <p>在工作目录下使用命令<code>git init</code></p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$git</span> init (path)</span><br></pre></td></tr></table></figure>
+
 <p>若没有指定path，则默认当前目录下建立git仓库。</p>
 <p>初始化后，会在工作目录下会出现一个名为 .git 的目录，所有 Git 需要的数据和资源都存放在这个目录中。<br>如果当前目录下有几个文件想要纳入版本控制，需要先用 git add 命令告诉 Git 开始对这些文件进行跟踪，然后提交：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git add . (path|file)</span><br><span class="line">$ git commit -m <span class="string">"inital commit"</span></span><br></pre></td></tr></table></figure>
+
 <p>以上命令就是把文件/文件夹提交至仓库中，若是远程仓库，还需要命令<code>git    push</code></p>
 <h3 id="复制远程仓库-git-clone"><a href="#复制远程仓库-git-clone" class="headerlink" title="复制远程仓库 git clone"></a>复制远程仓库 git clone</h3><p>我们使用 git clone 从现有 Git 仓库中拷贝项目（类似 svn checkout）。<br>克隆仓库的命令格式为:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> &lt;repo|url&gt; (&lt;directory&gt;)</span><br></pre></td></tr></table></figure>
+
+
+
 <p>参数说明：</p>
-<p>\&lt;repo|url&gt;：为Git仓库的地址url</p>
-<p>\<directory>：为将git储存至目标目录，若为空，则默认本地目录</directory></p>
+<p>&lt;repo|url&gt;：为Git仓库的地址url</p>
+<p>&lt;directory&gt;：为将git储存至目标目录，若为空，则默认本地目录</p>
 <p>Git支持ssh，git，http和https协议（此外，可以使用ftp和ftps进行获取，但这效率低下且不建议使用；请勿使用它）。</p>
 <ul>
 <li>ssh://[user@]host.xz[:port]/path/to/repo.git/</li>
@@ -716,49 +774,114 @@
 </ul>
 <h3 id="查看状态git-status"><a href="#查看状态git-status" class="headerlink" title="查看状态git    status"></a>查看状态<code>git    status</code></h3><p>git status 以查看在你上次提交之后是否有修改。<br>我演示该命令的时候加了 -s 参数，以获得简短的结果输出。如果没加该参数会详细输出内容：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">Initial commit</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git rm --cached &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">        new file:   README.md</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="从缓存中移除文件-git-reset-HEAD"><a href="#从缓存中移除文件-git-reset-HEAD" class="headerlink" title="从缓存中移除文件 git reset HEAD"></a>从缓存中移除文件 git reset HEAD</h3><p>git reset HEAD 命令用于取消已缓存的内容。<br>我们先改动文件 README 文件，内容如下：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">#README.md</span></span><br><span class="line"></span><br><span class="line"><span class="section">##This is readme markdown file</span></span><br></pre></td></tr></table></figure>
+
 <p>HelloWorld.java 文件修改为：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Hello World!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>现在两个文件修改后，都提交到了缓存区，我们现在要取消其中一个的缓存，操作如下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ git status -s</span><br><span class="line"> M HelloWorld.java</span><br><span class="line"> M README.md</span><br><span class="line">$ git add .</span><br><span class="line">$ git status -s</span><br><span class="line">M  HelloWorld.java</span><br><span class="line">M  README.md</span><br><span class="line">$ git reset HEAD -- HelloWorld.java</span><br><span class="line">Unstaged changes after reset:</span><br><span class="line">M       HelloWorld.java</span><br><span class="line">$ git status -s</span><br><span class="line"> M HelloWorld.java</span><br><span class="line">M  README.md</span><br></pre></td></tr></table></figure>
+
 <p>现在执行 git commit，只会将 README.md 文件的改动提交，而 HelloWorld.java 是没有的。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m <span class="string">"change"</span></span><br><span class="line">[master ad5f6fe] change</span><br><span class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</span><br><span class="line">$ git status -s</span><br><span class="line"> M HelloWorld.java</span><br></pre></td></tr></table></figure>
+
+
+
 <p>可以看到 HelloWorld.java 文件的修改并为提交。<br>这时我们可以使用以下命令将 HelloWorld.java 的修改提交：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -am <span class="string">"修改 HelloWorld.java 文件"</span></span><br><span class="line">[master a055c08] 修改 HelloWorld.java 文件</span><br><span class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">nothing to commit, working directory clean</span><br></pre></td></tr></table></figure>
+
 <p>简而言之，执行 git reset HEAD 以取消之前 git add 添加，但不希望包含在下一提交快照中的缓存。</p>
 <h3 id="从缓存以及工作目录删除文件-git-rm"><a href="#从缓存以及工作目录删除文件-git-rm" class="headerlink" title="从缓存以及工作目录删除文件 git rm"></a>从缓存以及工作目录删除文件 git rm</h3><p>git rm 会将条目从缓存区中移除。这与 git reset HEAD 将条目取消缓存是有区别的。 “取消缓存”的意思就是将缓存区恢复为我们做出修改之前的样子。<br>默认情况下，git rm file 会将文件从缓存区和你的硬盘中（工作目录）删除。<br>如果你要在工作目录中留着该文件，可以使用 git rm –cached：<br>如我们删除 hello.java文件：(包括在本地目录下的文件，可能需要选项<strong>-f</strong>)</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git rm HelloWorld.java</span><br><span class="line">rm <span class="string">'HelloWorld.java'</span></span><br><span class="line">$ ls</span><br><span class="line">README.md</span><br></pre></td></tr></table></figure>
+
 <p>不从工作区中删除文件：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git rm README.md --cached</span><br><span class="line">rm <span class="string">'README.md'</span></span><br><span class="line">$ ls</span><br><span class="line">README.md</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="修改缓存中文件名-git-mv"><a href="#修改缓存中文件名-git-mv" class="headerlink" title="修改缓存中文件名 git mv"></a>修改缓存中文件名 git mv</h3><p>git mv 命令做得所有事情就是 git rm –cached 命令的操作， 重命名磁盘上的文件，然后再执行 git add 把新文件添加到缓存区。<br>我们先把刚移除的 README 添加回来：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git add README.md</span><br><span class="line">$ git mv README.md README</span><br><span class="line">$ ls</span><br><span class="line">README</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 <hr>
 <h3 id="Git分支管理"><a href="#Git分支管理" class="headerlink" title="Git分支管理"></a>Git分支管理</h3><p>几乎每一种版本控制系统都以某种形式支持分支。使用分支意味着你可以从开发主线上分离开来，然后在不影响主线的同时继续工作。<br>有人把 Git 的分支模型称为”必杀技特性”，而正是因为它，将 Git 从版本控制系统家族里区分出来。<br>创建分支命令：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#创建分支</span></span><br><span class="line">$ git branch [branch name]</span><br><span class="line"><span class="comment">#切换分支</span></span><br><span class="line">$ git checkout [branch name]</span><br><span class="line"><span class="comment">#创建并切换分支</span></span><br><span class="line">$ git checkout -b [branch name]</span><br><span class="line"><span class="comment">#合并分支</span></span><br><span class="line">$ git merge</span><br><span class="line"><span class="comment">#删除分支</span></span><br><span class="line">$ git branch -d [branch name]</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="Git分支管理-1"><a href="#Git分支管理-1" class="headerlink" title="Git分支管理"></a>Git分支管理</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#列出问题</span></span><br><span class="line">$ git branch</span><br><span class="line"><span class="comment">#无参数时，该命令会列出本地分支</span></span><br><span class="line">$ git branch</span><br><span class="line">* master</span><br><span class="line"><span class="comment">#创建分支</span></span><br><span class="line">$ git branch testbranch</span><br><span class="line">$ git branch</span><br><span class="line">*	branch</span><br><span class="line">	testbranch</span><br><span class="line">$ git branch testing</span><br><span class="line">$ git branch -D testing</span><br><span class="line">Deleted branch testing (was 84b13b9).</span><br><span class="line"><span class="comment">#合并分支,将分支[branch name] 合并到当前分支</span></span><br><span class="line">$ git merge [branch name]</span><br><span class="line">$ git merge <span class="built_in">test</span></span><br><span class="line">Updating b04e1bb..d3c2604</span><br><span class="line">Fast-forward</span><br><span class="line"> testB | 0</span><br><span class="line"> 1 file changed, 0 insertions(+), 0 deletions(-)</span><br><span class="line"> create mode 100644 testB</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="Git-查看提交历史-git-log"><a href="#Git-查看提交历史-git-log" class="headerlink" title="Git 查看提交历史    git log"></a>Git 查看提交历史    <code>git log</code></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span></span><br><span class="line">commit d3c26045edb80258c9b785f5cd70cff6c7130003 (HEAD -&gt; master, origin/<span class="built_in">test</span>, <span class="built_in">test</span>)</span><br><span class="line">Author: Magic &lt;xxx@qq.com&gt;</span><br><span class="line">Date:   Sat Sep 28 23:41:42 2019 +0800</span><br><span class="line"></span><br><span class="line">    ff</span><br><span class="line"></span><br><span class="line">commit b04e1bba77e04dde1e5649aaf32ef7029a1dbd5f (origin/master)</span><br><span class="line">Author: Magic &lt;xxx@qq.com&gt;</span><br><span class="line">Date:   Sat Sep 28 23:40:34 2019 +0800</span><br><span class="line"></span><br><span class="line">    fuck</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#可以用 --oneline 选项来查看历史记录的简洁的版本</span></span><br><span class="line">$ git <span class="built_in">log</span> --oneline</span><br><span class="line">d3c2604 (HEAD -&gt; master, origin/<span class="built_in">test</span>, <span class="built_in">test</span>) ff</span><br><span class="line">b04e1bb (origin/master) fuck</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#可以用 --graph 选项，查看历史中什么时候出现了分支、合并。以下为相同的命令，开启了拓扑图选项：</span></span><br><span class="line">$  git <span class="built_in">log</span> --graph</span><br><span class="line">* commit d3c26045edb80258c9b785f5cd70cff6c7130003 (HEAD -&gt; master, origin/<span class="built_in">test</span>, <span class="built_in">test</span>)</span><br><span class="line">| Author: Magic-King &lt;xxx@qq.com&gt;</span><br><span class="line">| Date:   Sat Sep 28 23:41:42 2019 +0800</span><br><span class="line">|</span><br><span class="line">|     ff</span><br><span class="line">|</span><br><span class="line">* commit b04e1bba77e04dde1e5649aaf32ef7029a1dbd5f (origin/master)</span><br><span class="line">  Author: Magic-King &lt;xxx@qq.com&gt;</span><br><span class="line">  Date:   Sat Sep 28 23:40:34 2019 +0800</span><br><span class="line"></span><br><span class="line">      fuck</span><br><span class="line">      </span><br><span class="line"><span class="comment">#可以用 ‘--reverse’参数来逆向显示所有日志</span></span><br><span class="line">$ git <span class="built_in">log</span> --reverse</span><br><span class="line">commit b04e1bba77e04dde1e5649aaf32ef7029a1dbd5f (origin/master)</span><br><span class="line">Author: Magic-King &lt;xxx@qq.com&gt;</span><br><span class="line">Date:   Sat Sep 28 23:40:34 2019 +0800</span><br><span class="line"></span><br><span class="line">    fuck</span><br><span class="line"></span><br><span class="line">commit d3c26045edb80258c9b785f5cd70cff6c7130003 (HEAD -&gt; master, origin/<span class="built_in">test</span>, <span class="built_in">test</span>)</span><br><span class="line">Author: Magic-King &lt;xxx@qq.com&gt;</span><br><span class="line">Date:   Sat Sep 28 23:41:42 2019 +0800</span><br><span class="line"></span><br><span class="line">    ff</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 <h3 id="Git-标签-git-tag"><a href="#Git-标签-git-tag" class="headerlink" title="Git 标签  git tag"></a>Git 标签  <code>git tag</code></h3><p>如果达到一个重要的阶段，并希望永远记住那个特别的提交快照，可以使用 git tag 给它打上标签。<br>比如说，我们想为我们的项目发布一个”1.0”版本。 可以用 git tag -a v1.0 命令给最新一次提交打上（HEAD）”v1.0”的标签。<br>-a 选项意为”创建一个带注解的标签”。 不用 -a 选项也可以执行的，但它不会记录这标签是啥时候打的，谁打的，也不会让你添加个标签的注解。 我推荐一直创建带注解的标签。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --oneline --graph --decorate</span><br><span class="line">*   2b5970d (HEAD -&gt; master, tag: v1.0) Merge branch <span class="string">'change_site'</span></span><br><span class="line">|\</span><br><span class="line">| * d17a0a0 (change_site) change the site</span><br><span class="line">* | e2714c9 新增加一行</span><br><span class="line">|/</span><br><span class="line">* 202199d (newtest) add test.txt file</span><br><span class="line">* a055c08 修改 HelloWorld.java 文件</span><br><span class="line">* ad5f6fe 修改</span><br><span class="line">* c2c167c 修改HelloWorld.java文件</span><br><span class="line">* f9393bf third commit ``</span><br><span class="line">* 316fafc second commit</span><br><span class="line">* fdd5c53 inital commit</span><br></pre></td></tr></table></figure>
+
+
+
 <p>如果我们忘了给某个提交打标签，又将它发布了，我们可以给它追加标签。<br>例如，假设我们发布了提交 85fc7e7(上面实例最后一行)，但是那时候忘了给它打标签。 我们现在也可以：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ git tag -a v0.9 a055c08</span><br><span class="line">$ git <span class="built_in">log</span> --oneline --graph --decorate</span><br><span class="line">*   2b5970d (HEAD -&gt; master, tag: v1.0) Merge branch <span class="string">'change_site'</span></span><br><span class="line">|\</span><br><span class="line">| * d17a0a0 (change_site) change the site</span><br><span class="line">* | e2714c9 新增加一行</span><br><span class="line">|/</span><br><span class="line">* 202199d (newtest) add test.txt file</span><br><span class="line">* a055c08 (tag: v0.9) 修改 HelloWorld.java 文件</span><br><span class="line">* ad5f6fe 修改</span><br><span class="line">* c2c167c 修改HelloWorld.java文件</span><br><span class="line">* f9393bf third commit ``</span><br><span class="line">* 316fafc second commit</span><br><span class="line">* fdd5c53 inital commit</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 <p>如果要查看所有标签可以使用以下命令：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag</span><br></pre></td></tr></table></figure>
+
 <p>指定标签信息命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag -a &lt;tagname&gt; -m <span class="string">"标签"</span></span><br></pre></td></tr></table></figure>
+
 <p>PGP签名标签命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag -s &lt;tagname&gt; -m <span class="string">"标签"</span></span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="Git-远程仓库的操作"><a href="#Git-远程仓库的操作" class="headerlink" title="Git 远程仓库的操作"></a>Git 远程仓库的操作</h3><h4 id="查看当前远程库"><a href="#查看当前远程库" class="headerlink" title="查看当前远程库"></a>查看当前远程库</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git remote</span><br><span class="line">origin</span><br><span class="line">$ git remote -v</span><br><span class="line">origin  git@xx.xx.xxx.xxx:/test.git (fetch)</span><br><span class="line">origin  git@xx.xx.xxx.xxx:/test.git (push)</span><br></pre></td></tr></table></figure>
+
+
+
 <h4 id="提取远程库"><a href="#提取远程库" class="headerlink" title="提取远程库"></a>提取远程库</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git pull</span><br></pre></td></tr></table></figure>
+
 <p>该命令就是在执行 git fetch 之后紧接着执行 git merge 远程分支到你所在的任意分支。<br>假设你配置好了一个远程仓库，并且你想要提取更新的数据，你可以首先执行 git fetch [alias] 告诉 Git 去获取它有你没有的数据，然后你可以执行 git merge [alias]/[branch] 以将服务器上的任何更新（假设有人这时候推送到服务器了）合并到你的当前分支。</p>
 <p>接下来我们在 Github 上点击”test.txt” 并在线修改它。之后我们在本地更新修改。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch origin</span><br><span class="line">remote: Counting objects: 3, <span class="keyword">done</span>.</span><br><span class="line">remote: Compressing objects: 100% (3/3), <span class="keyword">done</span>.</span><br><span class="line">remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0</span><br><span class="line">Unpacking objects: 100% (3/3), <span class="keyword">done</span>.</span><br><span class="line">From github.com:onlynight/GitAdd</span><br><span class="line">   774112b..37be49b  master     -&gt; origin/master</span><br><span class="line">$ git merge origin/master</span><br><span class="line">Updating 774112b..37be49b</span><br><span class="line">Fast-forward</span><br><span class="line"> test.txt | 1 +</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 <h4 id="推送远程库"><a href="#推送远程库" class="headerlink" title="推送远程库"></a>推送远程库</h4><p>推送你的新分支与数据到某个远端仓库命令</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#该命令将你的 [branch] 分支推送成为 [alias] 远程仓库上的 [branch] 分支</span></span><br><span class="line">$ git push [<span class="built_in">alias</span>] [branch]</span><br><span class="line"></span><br><span class="line">$ git push origin master</span><br><span class="line">Everything up-to-date</span><br></pre></td></tr></table></figure>
+
+
+
 <h4 id="删除远程分支"><a href="#删除远程分支" class="headerlink" title="删除远程分支"></a>删除远程分支</h4><p>注意：如果要<em>删除远程分支</em>同样也是使用push命令，在分支前加上”:”表示<em>删除远程分支</em>，代码如下</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin :&lt;branch name&gt;</span><br></pre></td></tr></table></figure>
+
+
+
 <h4 id="删除本地仓库的远程仓库链接"><a href="#删除本地仓库的远程仓库链接" class="headerlink" title="删除本地仓库的远程仓库链接"></a>删除本地仓库的远程仓库链接</h4><p>删除远程仓库你可以使用命令</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">git remote rm [<span class="built_in">alias</span>]</span><br><span class="line"></span><br><span class="line">$ git remote -v</span><br><span class="line">origin  git@github.com:onlynight/GitAdd.git (fetch)</span><br><span class="line">origin  git@github.com:onlynight/GitAdd.git (push)</span><br><span class="line">$ git remote -v</span><br><span class="line">origin  git@github.com:onlynight/GitAdd.git (fetch)</span><br><span class="line">origin  git@github.com:onlynight/GitAdd.git (push)</span><br><span class="line">origin2 git@github.com:onlnynight/GitAdd.git (fetch)</span><br><span class="line">origin2 git@github.com:onlnynight/GitAdd.git (push)</span><br><span class="line">$ git remote rm origin2</span><br><span class="line">$ git remote -v</span><br><span class="line">origin  git@github.com:onlynight/GitAdd.git (fetch)</span><br><span class="line">origin  git@github.com:onlynight/GitAdd.git (push)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
 <h3 id="忽略特殊文件"><a href="#忽略特殊文件" class="headerlink" title="忽略特殊文件"></a>忽略特殊文件</h3><p>有些时候，你必须把某些文件放到Git工作目录中，但又不能提交它们，比如保存了数据库密码的配置文件啦，等等，每次<code>git status</code>都会显示<code>Untracked files ...</code>，有强迫症的童鞋心里肯定不爽。</p>
 <p>好在Git考虑到了大家的感受，这个问题解决起来也很简单，在Git工作区的根目录下创建一个特殊的<code>.gitignore</code>文件，然后把要忽略的文件名填进去，Git就会自动忽略这些文件。</p>
 <p>不需要从头写<code>.gitignore</code>文件，GitHub已经为我们准备了各种配置文件，只需要组合一下就可以使用了。所有配置文件可以直接在线浏览：<a href="https://github.com/github/gitignore" target="_blank" rel="noopener">https://github.com/github/gitignore</a></p>
@@ -771,14 +894,20 @@
 <p>举个例子：</p>
 <p>假设你在Windows下进行Python开发，Windows会自动在有图片的目录下生成隐藏的缩略图文件，如果有自定义目录，目录下就会有<code>Desktop.ini</code>文件，因此你需要忽略Windows自动生成的垃圾文件：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Windows:</span></span><br><span class="line">Thumbs.db</span><br><span class="line">ehthumbs.db</span><br><span class="line">Desktop.ini</span><br><span class="line"><span class="comment"># Python:</span></span><br><span class="line">*.py[cod]</span><br><span class="line">*.so</span><br><span class="line">*.egg</span><br><span class="line">*.egg-info</span><br><span class="line">dist</span><br><span class="line">build</span><br><span class="line"><span class="comment"># My configurations:</span></span><br><span class="line">db.ini</span><br><span class="line">deploy_key_rsa</span><br></pre></td></tr></table></figure>
+
+
+
 <p>最后一步就是把<code>.gitignore</code>也提交到Git，就完成了！当然检验<code>.gitignore</code>的标准是<code>git status</code>命令是不是说<code>working directory clean</code>。</p>
 <p>使用Windows的童鞋注意了，如果你在资源管理器里新建一个<code>.gitignore</code>文件，它会非常弱智地提示你必须输入文件名，但是在文本编辑器里“保存”或者“另存为”就可以把文件保存为<code>.gitignore</code>了。</p>
 <p>有些时候，你想添加一个文件到Git，但发现添加不了，原因是这个文件被<code>.gitignore</code>忽略了：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git add App.class</span><br><span class="line">The following paths are ignored by one of your .gitignore files:</span><br><span class="line">App.class</span><br><span class="line">Use -f if you really want to add them.</span><br></pre></td></tr></table></figure>
+
 <p>如果你确实想添加该文件，可以用<code>-f</code>强制添加到Git：</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="keyword">add</span><span class="bash"> -f App.class</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add -f <span class="module-access"><span class="module"><span class="identifier">App</span>.</span></span><span class="keyword">class</span></span><br></pre></td></tr></table></figure>
+
 <p>或者你发现，可能是<code>.gitignore</code>写得有问题，需要找出来到底哪个规则写错了，可以用<code>git check-ignore</code>命令检查：</p>
 <figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git<span class="built_in"> check-ignore </span>-v App.class</span><br><span class="line"><span class="keyword">.gitignore</span>:3:*.class	App.class</span><br></pre></td></tr></table></figure>
+
 <p>Git会告诉我们，<code>.gitignore</code>的第3行规则忽略了该文件，于是我们就可以知道应该修订哪个规则。</p>
 <ul>
 <li>后续：搭建git服务器</li>
@@ -904,7 +1033,7 @@
                 
                   <a href="/archives/%20%7C%7C%20archive">
                 
-                    <span class="site-state-item-count">55</span>
+                    <span class="site-state-item-count">56</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

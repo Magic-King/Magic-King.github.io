@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2020-04-19T08:57:07.050Z</updated>
+  <updated>2020-04-21T05:34:43.550Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Security in CSI:Cyber</title>
+    <link href="http://magic-king.net/2020/04/21/Security-in-CSI-Cyber/"/>
+    <id>http://magic-king.net/2020/04/21/Security-in-CSI-Cyber/</id>
+    <published>2020-04-21T05:31:02.000Z</published>
+    <updated>2020-04-21T05:34:43.550Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;CSI&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>IDA-Script</title>
@@ -44,7 +65,7 @@
     <link href="http://magic-king.net/2020/04/14/pwn-learning/"/>
     <id>http://magic-king.net/2020/04/14/pwn-learning/</id>
     <published>2020-04-14T06:33:19.000Z</published>
-    <updated>2020-04-16T13:20:21.656Z</updated>
+    <updated>2020-04-21T13:48:57.590Z</updated>
     
     <summary type="html">
     
@@ -435,7 +456,7 @@
     <link href="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/"/>
     <id>http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/</id>
     <published>2020-02-03T07:35:17.000Z</published>
-    <updated>2020-04-15T06:00:34.062Z</updated>
+    <updated>2020-04-22T07:09:15.010Z</updated>
     
     <summary type="html">
     
@@ -936,7 +957,7 @@
     <link href="http://magic-king.net/2019/09/23/git/"/>
     <id>http://magic-king.net/2019/09/23/git/</id>
     <published>2019-09-23T14:39:11.000Z</published>
-    <updated>2019-09-29T14:27:00.458Z</updated>
+    <updated>2020-04-20T05:42:24.001Z</updated>
     
     <summary type="html">
     
