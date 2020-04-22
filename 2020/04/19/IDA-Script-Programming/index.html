@@ -619,7 +619,7 @@
 <li><p>计算当前函数有多少条指令</p>
 <figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ea = here()</span><br><span class="line">len(<span class="name">list</span>(<span class="name">idautils</span>.FuncItems(<span class="name">ea</span>)))</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>获取当前IDB中记录的所有有名字函数的地址和名称： idautils.Names() 返回的是一个以元组组成的列表，函数的起始地址指向了其plt表<img src="https://magic-king.net/images/loading.gif" data-original="https://raw.githubusercontent.com/carterMgj/blog_img/master/2017-10-10-IDA-python/3.png" alt="img"></p>
+<li><p>获取当前IDB中记录的所有有名字函数的地址和名称： idautils.Names() 返回的是一个以元组组成的列表，函数的起始地址指向了其plt表<img src="https://raw.githubusercontent.com/carterMgj/blog_img/master/2017-10-10-IDA-python/3.png" alt="img"></p>
 </li>
 </ol>
 <blockquote>
@@ -1603,5 +1603,5 @@
 	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
   
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 </html>

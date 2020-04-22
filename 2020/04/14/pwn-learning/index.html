@@ -535,7 +535,7 @@
 <h2 id="0x00-序"><a href="#0x00-序" class="headerlink" title="0x00 序"></a>0x00 序</h2><p>关于Pwn的前置技能</p>
 <h3 id="从C语言到可执行程序"><a href="#从C语言到可执行程序" class="headerlink" title="从C语言到可执行程序"></a>从C语言到可执行程序</h3><p>我们一般编译，直接<code>gcc -o test test.c</code>就编译出可执行程序可以直接跑了</p>
 <p>不过编译并没有表面上一条命令这么简单，通过上学期的编译原理我们可以知道，编译要经过词法分析、语法分析、语义分析等等，经过编译器的前端生成未经优化过的中间代码，然后再由后端优化生成可执行程序的汇编代码，再进一步转成可执行的二进制代码（机器码）</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/04/14/pwn-learning/Compile.png" alt></p>
+<p><img src="/2020/04/14/pwn-learning/Compile.png" alt></p>
 <p>如上图，为gcc编译的过程：编译，汇编，链接</p>
 <blockquote>
 <p>其实还少了一部分——预编译：<code>p1.c</code>，<code>p2.c</code>经过预编译<code>gcc -E p1.c p2.c</code>生成<code>p1.i</code>，<code>p2.i</code></p>
@@ -580,7 +580,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/04/14/pwn-learning/Assemble.png" alt></p>
+<p><img src="/2020/04/14/pwn-learning/Assemble.png" alt></p>
 <p>我们一般阅读的都是十六进制表示（比如所说的74/75破解）</p>
 <ul>
 <li><p>链接：将多个目标文件或库文件链接成可执行程序</p>
@@ -605,7 +605,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/04/14/pwn-learning/link.png" alt></p>
+<p><img src="/2020/04/14/pwn-learning/link.png" alt></p>
 <p>如上图，链接将<code>sum.o</code>、<code>main.o</code>、<code>libprint.a</code>三个目标代码整合至可执行程序<code>a.out</code>里</p>
 <p>这就是链接的过程</p>
 <h3 id="机器指令如何执行"><a href="#机器指令如何执行" class="headerlink" title="机器指令如何执行"></a>机器指令如何执行</h3>
@@ -1571,5 +1571,5 @@
 	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
   
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 </html>

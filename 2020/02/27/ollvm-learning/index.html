@@ -595,9 +595,9 @@
 <p>LLVM最初是在2000年由伊利诺伊大学香槟分校(UUIC)的学生Chris Lattner及其硕士顾问Vikram Adve创建的研究项目，并在2003年发布第一个正式版本，目的是提供一种基于SSA的现代编译策略，这种策略能够支持任何编程语言的静态和动态编译。</p>
 <p>有意思的是，他的作者原本想要写一个低层虚拟机的，然而他并没有被当成虚拟机来用，逐渐地偏离了他原本的方向。现在llvm不是任何单词的缩写，而是一种体系，包含了一系列的项目</p>
 <p>对于LLVM核心（LLVM Core）来说，它是一个编译器基础设施框架，它包含了为我们编写编译器一系列的库（如程序分析、代码优化、机器代码生成等），并且提供了调用这些库的相关工具，如llvm-opt可以调用LLVM优化相关的库，llvm-mc可以调用LLVM机器代码生成相关的库。并为此提供了一个非常方便简单、具备类型的、平台无关的统一中间代码语言，称之为LLVM IR.</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/27/ollvm-learning/3.png" alt></p>
+<p><img src="/2020/02/27/ollvm-learning/3.png" alt></p>
 <p>以上是一个正常编译器的流程，源代码经过前端编译成中间代码，在经过优化和后端生成相应的机器码，即可执行文件</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/27/ollvm-learning/2.png" alt></p>
+<p><img src="/2020/02/27/ollvm-learning/2.png" alt></p>
 <p>LLVM编译一个源文件的过程：预处理 -&gt; 词法分析 -&gt; Token -&gt; 语法分析 -&gt; AST -&gt; 代码生成 -&gt; LLVM IR -&gt; 优化 -&gt; 生成汇编代码 -&gt; Link -&gt; 目标文件</p>
 <blockquote>
 <p>其中IR(intermediate representation)是前端语言生成的中间代码表示，也是Pass操作的对象，它主要包含四个部分：</p>
@@ -606,9 +606,9 @@
 <p>（3）BasicBlock：每个函数会被划分为一些block，它的划分标准是：一个block只有一个入口和一个出口。</p>
 <p>（4）Instruction：具体的指令。</p>
 <p>IR中各部分的具体关系如下图：</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/27/ollvm-learning/IR-relation.png" alt></p>
+<p><img src="/2020/02/27/ollvm-learning/IR-relation.png" alt></p>
 </blockquote>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/27/ollvm-learning/4.png" alt></p>
+<p><img src="/2020/02/27/ollvm-learning/4.png" alt></p>
 <p>拿个例子来说就是：首先，我们有C代码程序文件，然后经过了Clang前端（或者古老的llvm-gcc前端，这是在Clang出现以前使用的前端，可以产生LLVM IR），然后会产生LLVM IR。在这里，我们可以发现LLVM IR是以.bc结尾，缩写代表的单词是bitcode，它是序列化的数据，用以存储在磁盘中。而LLVM IR非常牛逼的创建了三种LLVM IR表示格式，除了bitcode这种用以存储的格式，第二种是用于人类可读的的格式，一般以.ll结尾。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ clang a.c -S -emit-llvm<span class="comment"># 生成.ll可读文件</span></span><br></pre></td></tr></table></figure>
 <p>这条命令即可产生<code>.ll</code>文件</p>
@@ -621,7 +621,7 @@
 <ul>
 <li><h4 id="llvm-和-clang-的关系"><a href="#llvm-和-clang-的关系" class="headerlink" title="llvm 和 clang 的关系"></a>llvm 和 clang 的关系</h4></li>
 </ul>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/27/ollvm-learning/1.png" alt></p>
+<p><img src="/2020/02/27/ollvm-learning/1.png" alt></p>
 <p>对于 LLVM 来说，其前端是 clang，在编译源码文件的时候使用的编译工具也是 clang。<br>而生成中间 IR 代码后，llvm需要对 IR 代码进行一些操作，例如添加一些代码混淆功能。LLVM 的做法是通过编写 Pass(其实就是对应的一个个模块，每个类实现不同的功能)来实现混淆的功<br>能。所以实现混淆，其实就是编写功能性的 Pass</p>
 <h3 id="Obfuscator-LLVM"><a href="#Obfuscator-LLVM" class="headerlink" title="Obfuscator-LLVM"></a>Obfuscator-LLVM</h3><p>Obfuscator-LLVM是由瑞士伊夫尔东莱班的应用科学与艺术大学信息安全小组（HEIG-VD）于2010年6月发起的一个项目。</p>
 <p>该项目的目的是提供<a href="http://www.llvm.org/" target="_blank" rel="noopener">LLVM</a>编译套件的开源分支，该套件能够通过<a href="http://en.wikipedia.org/wiki/Obfuscation_(software" target="_blank" rel="noopener">代码混淆</a>)和防篡改来提高软件安全性。由于我们目前大部分工作在<a href="http://en.wikipedia.org/wiki/Intermediate_language" target="_blank" rel="noopener">中间表示</a>（IR）级别，因此我们的工具与所有编程语言（C，C ++，Objective-C，Ada和Fortran）和目标平台（x86，x86-64，PowerPC，PowerPC-64）兼容。</p>
@@ -685,20 +685,20 @@
 <p>源代码如下，关于混淆之后的执行文件和源文件打包在了<a href="./ollvm-learning/test.zip">here</a></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Hello LLVM"</span>);</span><br><span class="line">	<span class="keyword">char</span> *a= <span class="string">"Hello fucking bug"</span>;</span><br><span class="line">	<span class="comment">//a = "Hello O-LLVM!I will fuck you!";</span></span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=<span class="number">10</span>;i++)&#123;</span><br><span class="line">		sum += i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\nthe answer of what i do is %d\n"</span>,a,sum);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"test finished!\n"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>以下是gcc编译的文件通过ida逆向所得的流程图</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/27/ollvm-learning/test_gcc_ida.png" alt="test_gcc_ida"></p>
+<p><img src="/2020/02/27/ollvm-learning/test_gcc_ida.png" alt="test_gcc_ida"></p>
 <p>以下是用clang9.0 编译test的流程图，可见大体的流程是和gcc相同的，不过通过ida的万能F5反编译出来的源码，clang版本的基本和源码差不多，gcc版本的循环的变量挺奇怪的，但是总体流程还是不变的</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/27/ollvm-learning/test_clang_ida.png" alt="test_clang_ida"></p>
+<p><img src="/2020/02/27/ollvm-learning/test_clang_ida.png" alt="test_clang_ida"></p>
 <p>下图是加了ollvm的bcf选项的反汇编结果，可见添加了许多虚假控制流，真正执行的循环是左半部分，他把for循环结束之后的该执行的语句放到了右半部分，在添加虚假控制流</p>
 <p>看反汇编的代码，他把for循环放入了一个while循环里，然后用一个if控制是否结束原来的循环，加入结束，就用<code>goto</code>到达最后执行的语句里，这里又写了一个假的while，经我看下来，这个while也就执行一次，循环就退出了，果然混淆后想搞懂流程贼麻烦</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/27/ollvm-learning/test_bcf_ida.png" alt="ollvm-bcf"></p>
+<p><img src="/2020/02/27/ollvm-learning/test_bcf_ida.png" alt="ollvm-bcf"></p>
 <p>ollvm编译fla选项，由于适配llvm9.0的fla选项失败了，所以这边是引用-split选项得出来的反汇编结果，split也就是fla平坦化所选择的选项</p>
 <p>对比原来的clang反汇编出来的结果是不是多了许多可供选择的路，正如wiki所说是用switch控制的</p>
 <p>反汇编出来的代码嵌套了多层while循环，并加入if判断，低层应该就是用switch实现的，然后再某几个switch case加入break破坏循环达到控制流程的目的</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/27/ollvm-learning/test_split_ida.png" alt="ollvm-fla"></p>
+<p><img src="/2020/02/27/ollvm-learning/test_split_ida.png" alt="ollvm-fla"></p>
 <p>这个是最简单的，和clang编译的版本对比，主要区别在于分块之后的左边的块，他把其指令进行了替换，具体咋替换看我后面的源码分析</p>
 <p>不过可惜的是，这个代码替换对于ida来说好像不是什么大事情，利用万能的F5反汇编时，他成功把循环里的加法还原了，产生的代码和clang版本没混淆的一模一样</p>
 <p>可能这需要和其他几个选项一起使用会比较好</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/27/ollvm-learning/test_sub_ida.png" alt="ollvm-sub"></p>
+<p><img src="/2020/02/27/ollvm-learning/test_sub_ida.png" alt="ollvm-sub"></p>
 <p>//TODO：字符串混淆</p>
 <h3 id="o-llvm源码分析"><a href="#o-llvm源码分析" class="headerlink" title="o-llvm源码分析"></a>o-llvm源码分析</h3><p>通过我们手动将ollvm与llvm9.0打包的过程，我们可以非常清楚地了解了ollvm的源码结构</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">./include/llvm/Transforms/Obfuscation/ <span class="comment"># obfuscation的头文件</span></span><br><span class="line">./include/llvm/Transforms/CryptoUtils.h <span class="comment"># obfuscation的加密工具类的头文件</span></span><br><span class="line">./lib/Transforms/IPO/LLVMBuild.txt <span class="comment"># pass模块编译的模块注册</span></span><br><span class="line">./lib/Transforms/IPO/PassManagerBuilder.cpp <span class="comment"># Pass注册</span></span><br><span class="line">./lib/Transforms/Obfuscation/ <span class="comment"># obfuscation source code</span></span><br><span class="line">./lib/Transforms/CMakeLists.txt <span class="comment"># 加入子目录</span></span><br><span class="line">./lib/Transforms/LLVMBuild.txt <span class="comment"># 加入LLVM编译子目录</span></span><br></pre></td></tr></table></figure>
@@ -709,7 +709,7 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// This file implements BogusControlFlow's pass, inserting bogus control flow.</span></span><br><span class="line"><span class="comment">// It adds bogus flow to a given basic block this way:</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Before :</span></span><br><span class="line"><span class="comment">// 	         		     entry</span></span><br><span class="line"><span class="comment">//      			       |</span></span><br><span class="line"><span class="comment">//  	    	  	 ______v______</span></span><br><span class="line"><span class="comment">//   	    		|   Original  |</span></span><br><span class="line"><span class="comment">//   	    		|_____________|</span></span><br><span class="line"><span class="comment">//             		       |</span></span><br><span class="line"><span class="comment">// 		        	       v</span></span><br><span class="line"><span class="comment">//		        	     return</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// After :</span></span><br><span class="line"><span class="comment">//           		     entry</span></span><br><span class="line"><span class="comment">//             		       |</span></span><br><span class="line"><span class="comment">//            		   ____v_____</span></span><br><span class="line"><span class="comment">//      			  |condition*| (false)</span></span><br><span class="line"><span class="comment">//           		  |__________|----+</span></span><br><span class="line"><span class="comment">//           		 (true)|          |</span></span><br><span class="line"><span class="comment">//             		       |          |</span></span><br><span class="line"><span class="comment">//           		 ______v______    |</span></span><br><span class="line"><span class="comment">// 		        +--&gt;|   Original* |   |</span></span><br><span class="line"><span class="comment">// 		        |   |_____________| (true)</span></span><br><span class="line"><span class="comment">// 		        |   (false)|    !-----------&gt; return</span></span><br><span class="line"><span class="comment">// 		        |    ______v______    |</span></span><br><span class="line"><span class="comment">// 		        |   |   Altered   |&lt;--!</span></span><br><span class="line"><span class="comment">// 		        |   |_____________|</span></span><br><span class="line"><span class="comment">// 		        |__________|</span></span><br><span class="line"><span class="comment">//</span></span><br></pre></td></tr></table></figure>
 <p>他的Cpp文件先写好了Debug信息，再定义了以下为pass提供的选项常量</p>
 <p>其中，我们最常见的 <code>cl::opt&lt;data_type&gt;</code>是用来传递llvm之间pass共享的参数，也就是我们在编译时所给的<code>-bcf_prob = 50</code>这个命令行编译参数可以传递到pass的核心所在</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/27/ollvm-learning/SourceCode_bcf_1.png" alt></p>
+<p><img src="/2020/02/27/ollvm-learning/SourceCode_bcf_1.png" alt></p>
 <p><code>cl::opt</code>这个用法让我想起了c++中<code>std::cout</code>、<code>using namespace std</code>，经查询发现，这是一个类似于python的import的一个语法，namespace是为了和c的.h区分开来</p>
 <blockquote>
 <p>详细可见：</p>
@@ -731,7 +731,7 @@
 <p><a href="https://sq.163yun.com/blog/article/175307579596922880：这个讲的特别形象，配合着图一起阅读，这边借用其一张图" target="_blank" rel="noopener">https://sq.163yun.com/blog/article/175307579596922880：这个讲的特别形象，配合着图一起阅读，这边借用其一张图</a></p>
 </blockquote>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/27/ollvm-learning/bcf_addBogusFlow.png" alt></p>
+<p><img src="/2020/02/27/ollvm-learning/bcf_addBogusFlow.png" alt></p>
 <p>如图，对于上述函数，分离其基本块，创建一个入口entry，然后加入一个恒真的分支，把生成相似的基本块放至错误分支里，即其永远不会执行的垃圾代码，将所执行的基本块放入正确分支里</p>
 <p><code>createAlteredBasicBlock()</code>函数用于生成与给定基本块相似的基本块，将操作运算符进行重新映射，重新映射节点，重新映射对应的数据，然后加入随机的指令</p>
 <p>对于<code>doF()</code>函数，该函数的功能是将Function中所有为真的判断语句进行替换，比如之前的<code>1.0 == 1.0</code>。它的思想是定义两个全局变量x、y并且初始化为0，然后遍历Module内的所有指令，并将所有的FCMP_TRUE分支指令替换为<code>y&lt;10 || x*x(x-1)%2 ==0</code>，我们从反汇编的代码来看，很明显的就有y&lt;10这个分支</p>
@@ -770,22 +770,22 @@
 <p>拿一个例子来理解：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func1</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     <span class="keyword">int</span> result;</span><br><span class="line">     <span class="keyword">if</span>(a&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            result=a+b;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">else</span>&#123;</span><br><span class="line">            result=a-b;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如下图，这是原本上面这个函数的IR图</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/27/ollvm-learning/fla_1.png" alt></p>
+<p><img src="/2020/02/27/ollvm-learning/fla_1.png" alt></p>
 <p>先判断第一个基本块有没有if语句，我们这个函数刚开始明显没有，先将第一块分开成一个基本块</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/27/ollvm-learning/fla_2.png" alt></p>
+<p><img src="/2020/02/27/ollvm-learning/fla_2.png" alt></p>
 <p>然后创建三个基本块<code>loopEntry</code>、<code>loopEnd</code>、<code>swDefault</code>，组成如下图左边的流程</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/27/ollvm-learning/fla_3.png" alt></p>
+<p><img src="/2020/02/27/ollvm-learning/fla_3.png" alt></p>
 <p>这时候，switch语句我们已经可以看见了，接下来就是将vector里存储的每个基本块加入switch-case语句中，每一个basicblock对应一个case，并且caseVar为刚开始产生的随机数值，如下图所示</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/27/ollvm-learning/fla_4.png" alt></p>
+<p><img src="/2020/02/27/ollvm-learning/fla_4.png" alt></p>
 <p>添加完全部基本块之后，需要修改每个基本块的跳转关系，使得每个基本块执行完毕之后，会重新设置caseVar的值，从而跳转到<code>loopEnd</code>块，然后回到switch-case的判断语句中，能够顺利跳转到下个case，处理后即为下图成型</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/27/ollvm-learning/fla_5.png" alt></p>
+<p><img src="/2020/02/27/ollvm-learning/fla_5.png" alt></p>
 <h4 id="Substitution"><a href="#Substitution" class="headerlink" title="Substitution"></a>Substitution</h4><p>Substitution的主要功能是对程序的一些指令进行替换。</p>
 <p>其中文件位于<code>./include/llvm/Transforms/Obfuscation/substitution.cpp</code></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NUMBER_ADD_SUBST 4</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NUMBER_SUB_SUBST 3</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NUMBER_AND_SUBST 2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NUMBER_OR_SUBST 2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NUMBER_XOR_SUBST 2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> cl::opt&lt;<span class="keyword">int</span>&gt;</span><br><span class="line">ObfTimes(<span class="string">"sub_loop"</span>,</span><br><span class="line">         cl::desc(<span class="string">"Choose how many time the -sub pass loops on a function"</span>),</span><br><span class="line">         cl::value_desc(<span class="string">"number of times"</span>), cl::init(<span class="number">1</span>), cl::Optional);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Stats</span></span><br><span class="line">STATISTIC(Add, <span class="string">"Add substitued"</span>);</span><br><span class="line">STATISTIC(Sub, <span class="string">"Sub substitued"</span>);</span><br><span class="line"><span class="comment">// STATISTIC(Mul,  "Mul substitued");</span></span><br><span class="line"><span class="comment">// STATISTIC(Div,  "Div substitued");</span></span><br><span class="line"><span class="comment">// STATISTIC(Rem,  "Rem substitued");</span></span><br><span class="line"><span class="comment">// STATISTIC(Shi,  "Shift substitued");</span></span><br><span class="line">STATISTIC(And, <span class="string">"And substitued"</span>);</span><br><span class="line">STATISTIC(Or, <span class="string">"Or substitued"</span>);</span><br><span class="line">STATISTIC(Xor, <span class="string">"Xor substitued"</span>);</span><br></pre></td></tr></table></figure>
 <p>如上代码，通过该文件的宏定义，就可知每种运算替换的方式有多少种，可以对哪些指令进行替换：很明显的有：加减、位的与、或、异或，五种运算的替换</p>
 <p>而注释的是未实现的运算替换，在官方wiki里可以知道，为了保证混淆再恢复之后的正确性，避免浮点数运算带来的程序误差，所以没有实现这些运算的替换（乘、除、取余，移位）</p>
 <p>在源文件里，类似地，在相应的namespace里定义了这些内容，与之前两个混淆方式类似，<code>substitution</code>继承于<code>FunctionPass</code>，以<code>runOnFuntion</code>函数为入口，里面再判断flag参数正确之后，朴实无华地调用了<code>substitute(tmp)</code>函数己行混淆</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/02/27/ollvm-learning/sub_1.png" alt></p>
+<p><img src="/2020/02/27/ollvm-learning/sub_1.png" alt></p>
 <p>主函数<code>substitute()</code>很简单，用一个while循环维护混淆次数(即给的flag参数<code>-sub_loop</code>)，然后两层<code>for</code>循环。第一个for循环用来遍历函数中的基本块(Basic Block)，第二个<code>for</code>循环用于遍历每个基本块中的所有指令，然后采用一个<code>switch-case</code>语句用来针对不同指令的不同替换操作，case里用随机数来决定用哪种方式去替换</p>
 <p>接下来的所有代码都是其替换方式的实现</p>
 <blockquote>
@@ -1847,5 +1847,5 @@
 	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
   
-<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</body>
 </html>
