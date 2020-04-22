@@ -1137,6 +1137,22 @@ seo这东西是使自己的文章能被百度、谷歌搜录，能被搜索到�
 
 
 
+------
+
+
+
+#### 新增Page更改图标
+
+`hexo new page "xxx"`
+
+然后在主题配置`_config.yml`中的menu项中这么写
+
+```
+xxx: /xxx/ || to_icon
+```
+
+to_icon为图标，图标可以在这找：https://fontawesome.com/
+
 
 
 
