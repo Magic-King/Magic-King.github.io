@@ -165,7 +165,7 @@ menu:
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
-  Link: /Link/ || userful link
+  Link: /Link/ || /images/show-magic
 
 # Enable / Disable menu icons / item badges.
 menu_settings:
