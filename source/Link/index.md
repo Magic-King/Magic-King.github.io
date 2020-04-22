@@ -21,8 +21,8 @@ date: 2020-04-22 15:14:04
 
 
 
-<div style="display: block; 
-	color: #007bfc;
+<div style="
+    color: #007bfc;
     border-color: #007bfc; position: relative;
     font-size: 15px;
     max-width: 1290px;
@@ -36,7 +36,7 @@ date: 2020-04-22 15:14:04
     <img src="index/github.png" style="zoom:10%;" border="0"> <a href="https://github.com/">GitHub</a>
 </div>
 
-<div style="display: block; 
+<div style="
 	color: #007bfc;
     border-color: #007bfc; position: relative;
     font-size: 15px;
@@ -48,7 +48,7 @@ date: 2020-04-22 15:14:04
     border-style: solid;
     box-shadow: 0 8px 16px 0px rgba(10, 14, 29, 0.04), 0px 8px 64px 0px rgba(10, 14, 29, 0.08);">
     <span></span>
-    <img src="index/iconfont.png" style="zoom:10%;" border="0"></img> <a href="https://www.iconfont.cn/">IconFont</a>
+    <img src="index/iconfont.png" style="zoom:10%;float:left;" border="0" align="left"></img><a href="https://www.iconfont.cn/">IconFont</a>
 </div>
 
 
