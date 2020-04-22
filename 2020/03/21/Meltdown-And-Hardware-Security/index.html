@@ -603,7 +603,7 @@
 <p>目前看起来确实没啥问题，因为<code>rbx</code>也会清零，任何关于内核地址的信息都没有留下来。</p>
 <p>但是问题的关键就在第三行指令：<strong>如果地址 <code>rbx + rax</code> 不在cache中的话，CPU 会自动将这一地址调入cache中，以便之后访问时获得更好的性能，然而异常处理并不会将这个cache flush掉。而这条 cache 的地址是和 <code>rax</code> 直接相关的，这样就相当于在 CPU 硬件中留下了和 <code>rax</code> 相关的信息。</strong></p>
 <p>那么如何还原 <code>rbx + rax</code> 这个被cache的地址呢？这时候需要用到的原理就是利用cache的访问延时，即已经被cache的数据访问时间短，没有被cache的数据访问时间长。由于<code>rbx</code>这个array是在用户地址空间内的，可以自由操作，首先我们要确保整个 <code>rbx</code>这个数组都是没有被cache的，然后执行上述攻击代码，这时候 <code>rbx + rax</code> 这个地址就已经被cache了，接下来遍历整个<code>rbx</code> 探测数组，来测量访问时间，访问时间最短的那个 page 就可以确定为 <code>rbx + rax</code>。（如下图，图来自原论文meltdown）</p>
-<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/03/21/Meltdown-And-Hardware-Security/rbx+84page_size.jpg" alt></p>
+<p><img src="/2020/03/21/Meltdown-And-Hardware-Security/rbx+84page_size.jpg" alt></p>
 <p>可以看到访问速度最快的，就是已经被cache到的内核地址空间中的一个字节byte，如此循环，即可获得全部内核空间的数据。</p>
 <p>github中的PoC就是利用<code>sudo cat /proc/kallsyms | grep “linux_proc_banner”</code>获取<code>linux_proc_banner</code>在内核中的地址，再读取该地址上的值，去获取 <code>/proc/version</code> 的内容，证明漏洞存在</p>
 <blockquote>
