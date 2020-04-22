@@ -490,11 +490,11 @@
 
       
         <h1 id="To-record-some-strange-tricks"><a href="#To-record-some-strange-tricks" class="headerlink" title="To record some strange tricks"></a>To record some strange tricks</h1><h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><h5 id="1-something-about-math-log"><a href="#1-something-about-math-log" class="headerlink" title="1.something about math.log"></a>1.something about math.log</h5><p>如图，当math.log(125,5)时应该值为3的，但是出了一个bug</p>
-<p><img src="/2019/12/01/tricks/1.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/12/01/tricks/1.jpg" alt></p>
 <p>好奇心驱使我去写一个脚本看看，然后发现这些能hack math.log函数的不在少数</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>,<span class="number">101</span>):</span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">		ij = i**j</span><br><span class="line">        <span class="keyword">if</span> math.log(ij, i) != j:</span><br><span class="line">            print(i,<span class="string">'\t'</span>,j)</span><br></pre></td></tr></table></figure>
 <p>然后去ubuntu虚拟机尝试了python2，发现也有这个问题</p>
-<p><img src="/2019/12/01/tricks/2.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/12/01/tricks/2.jpg" alt></p>
 <p>看了官方文档，发现有底数的对数函数是通过换底公式实现的，统一换成以e为底的对数去计算，因此会有除法的溢出导致以上问题。</p>
 <blockquote>
 <ul>
@@ -506,7 +506,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">math.log(x[,base]) = log(x) / log(base)</span><br></pre></td></tr></table></figure>
 <p>哪怕是<code>math.log(x**y,x)</code>也会有这个问题。</p>
 <p>最有力的证明：</p>
-<p><img src="/2019/12/01/tricks/3.jpg" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2019/12/01/tricks/3.jpg" alt></p>
 <hr>
 
       
@@ -1461,5 +1461,5 @@
 	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
   
-</body>
+<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
 </html>

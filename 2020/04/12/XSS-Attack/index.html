@@ -551,7 +551,7 @@
 </ol>
 <p>反射型 XSS 漏洞常见于通过 URL 传递参数的功能，如网站搜索、跳转等。</p>
 <p>由于需要用户主动打开恶意的 URL 才能生效，攻击者往往会结合多种手段诱导用户点击。</p>
-<p><img src="/2020/04/12/XSS-Attack/Reflected-XSS.png" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/04/12/XSS-Attack/Reflected-XSS.png" alt></p>
 <p>如图，攻击者给出一个诱使你点进去的超链接（包含脚本）(1)，用户点进去该网站(2&amp;3)，服务器将该请求返回给用户，返回的页面形成victim’s browser里的内容，然后执行了脚本，将自身的cookie发送给攻击者</p>
 <ul>
 <li><h4 id="存储型XSS"><a href="#存储型XSS" class="headerlink" title="存储型XSS"></a>存储型XSS</h4></li>
@@ -564,7 +564,7 @@
 <li>恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。</li>
 </ol>
 <p>这种攻击常见于带有用户保存数据的网站功能，如论坛发帖、评论区、用户私信等。</p>
-<p><img src="/2020/04/12/XSS-Attack/store-XSS.png" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/04/12/XSS-Attack/store-XSS.png" alt></p>
 <p>如图，很简单的在一个评论区里，攻击者在评论区进行评论了一个脚本(1)，此时，服务器将这个脚本存储下来，并作为评论展示给每个用户。当其他用户浏览评论时(2&amp;3)，服务器将脚本返回给用户，用户加载给页面，即评论区的脚本时，将自身的cookie以get方式发给攻击者的网站(4)，此时攻击者就获得了用户的cookie</p>
 <ul>
 <li><strong>反射型 XSS 和存储型 XSS 的区别</strong>是：存储型 XSS 的恶意代码存在数据库里，反射型 XSS 的恶意代码存在 URL 里。</li>
@@ -648,7 +648,7 @@
 <p>注意，题目js源码中有对http的过滤</p>
 <p>当然也可以用google的jsapi：<code>https://xss-game.appspot.com/level6/frame#hTTps://google.com/jsapi?callback=alert</code></p>
 <p>通关撒花</p>
-<p><img src="/2020/04/12/XSS-Attack/XSS-game_done.png" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/04/12/XSS-Attack/XSS-game_done.png" alt></p>
 <p>最后通向了其XSS学习网站：<a href="https://www.google.com/about/appsecurity/learning/xss/index.html" target="_blank" rel="noopener">https://www.google.com/about/appsecurity/learning/xss/index.html</a></p>
 <h2 id="构造一个XSS网站以及其对抗"><a href="#构造一个XSS网站以及其对抗" class="headerlink" title="构造一个XSS网站以及其对抗"></a>构造一个XSS网站以及其对抗</h2><p>通过上面的靶场练习已经很熟悉XSS的原理了</p>
 <p>刚开始再用flask基本实现一个搜索功能时，发现无法XSS，后面经查询Flask和jinja2都有在传输时对数据进行html转义，但默认是Flask关闭html转义，jinja2开启html转义</p>
@@ -1640,5 +1640,5 @@
 	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
   
-</body>
+<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
 </html>

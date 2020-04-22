@@ -513,7 +513,7 @@
 <p>在写关于病毒程序之前，忽然想学习一下有关C++库文件的编写</p>
 <p>库，是可复用代码的集合</p>
 <p>总所周知，库文件分为静态链接库和动态链接库，两者有一定的区别</p>
-<p><img src="/2020/03/30/Link-Library-of-C/Compile.png" alt></p>
+<p><img src="https://magic-king.net/images/loading.gif" data-original="/2020/03/30/Link-Library-of-C/Compile.png" alt></p>
 <p>静态链接库在编译时，就通过链接成为可执行文件的一部分，简单来说，就是将库函数融入目标程序内，即使目标程序没有和库文件在一起也能运行；而动态链接库是在程序运行时调用的，其库并没有融入目标程序内，运行时可以随意加载和移除，节省内存空间。</p>
 <p>动态链接库和静态链接库的<strong>相同点是它们都实现了代码的共享，不同点是静态链接库文件中的代码被包含目标程序中，该lib中不能再包含其他动态链接或者静态链接的库了。而动态链接库可以被调用的目标程序动态地“引用”和“卸载”，一个动态链接库中可以包含其他动态链接库或者静态链接库</strong>。在大型的软件项目中一般要实现很多功能，如果把所有单独的功能写成一个个lib文件的话，程序运行的时候要占用很大的内存空间，导致运行缓慢；但是如果将功能写成dll文件，就可以在用到该功能的时候调用功能对应的dll文件，不用这个功能时将dll文件移除内存，这样可以节省内存空间。</p>
 <ul>
@@ -1574,5 +1574,5 @@
 	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
   
-</body>
+<script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
 </html>
