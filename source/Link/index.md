@@ -52,4 +52,12 @@ date: 2020-04-22 15:14:04
 
 
 
+
+
+
+
+[^oh my ]: favicon.ico
+
+
+
 [^magic to the network]:http://npsboost.com/、https://maying.co/
