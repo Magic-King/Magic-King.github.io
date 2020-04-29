@@ -77,7 +77,7 @@ categories: hexo
 >
 > hexo+gitpage优化：
 >
-> https://blog.lgf.im/2020/03/speedup-github-page/#
+> https://blog.lgf.im/2020/speedup-github-page.html
 >
 > 
 

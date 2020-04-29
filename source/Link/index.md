@@ -39,6 +39,8 @@ date: 2020-04-22 15:14:04
     box-shadow: 0 8px 16px 0px rgba(10, 14, 29, 0.04), 0px 8px 64px 0px rgba(10, 14, 29, 0.08);">
     <img src="index/github.png" style="zoom:15%;display:inline;vertical-align: middle;" border="0">&nbsp;&nbsp;<a href="https://github.com/">GitHub</a>
 </div>
+https://elixir.bootlin.com/linux/latest/source
+
 <div style="
 	color: #007bfc;
     border-color: #007bfc; position: relative;
@@ -200,7 +202,51 @@ date: 2020-04-22 15:14:04
     border-width: 0 0 0 3px;
     border-style: solid;
     box-shadow: 0 8px 16px 0px rgba(10, 14, 29, 0.04), 0px 8px 64px 0px rgba(10, 14, 29, 0.08);">
-    <img src="" style="zoom:15%;display:inline;vertical-align: middle;" border="0">&nbsp;&nbsp;<a href="https://wooyun.x10sec.org/">Wooyun Mirror</a> :<a href="https://github.com/hanc00l/wooyun_public">Mirror Code</a>
+    <img src="" style="zoom:15%;display:inline;vertical-align: middle;" border="0">&nbsp;&nbsp;<a href="https://wooyun.x10sec.org/">Wooyun Mirror</a> :<a href="https://github.com/hanc00l/wooyun_public">Mirror Code</a> &amp; http://wy.zone.ci/
+</div>
+<div style="
+    color: #007bfc;
+    border-color: #007bfc; position: relative;
+    font-size: 17px;
+    max-width: 1290px;
+    margin: 0px auto 40px auto;
+    padding: 14px 16px;
+    text-align: left;
+    border-radius: 0;
+    border-width: 0 0 0 3px;
+    border-style: solid;
+    box-shadow: 0 8px 16px 0px rgba(10, 14, 29, 0.04), 0px 8px 64px 0px rgba(10, 14, 29, 0.08);">
+    <img src="" style="zoom:15%;display:inline;vertical-align: middle;" border="0">&nbsp;&nbsp;<a href="https://shimo.im/docs/GRhxtGtvP6rHDxw9">Blog of  BUUCTF's dalao's</a> : some blog
+</div>
+
+<div style="
+    color: #007bfc;
+    border-color: #007bfc; position: relative;
+    font-size: 17px;
+    max-width: 1290px;
+    margin: 0px auto 40px auto;
+    padding: 14px 16px;
+    text-align: left;
+    border-radius: 0;
+    border-width: 0 0 0 3px;
+    border-style: solid;
+    box-shadow: 0 8px 16px 0px rgba(10, 14, 29, 0.04), 0px 8px 64px 0px rgba(10, 14, 29, 0.08);">
+    <img src="" style="zoom:15%;display:inline;vertical-align: middle;" border="0">&nbsp;&nbsp;<a href="https://lug.ustc.edu.cn/wiki/start">中国科学技术大学 Linux 用户协会</a>
+</div>
+
+<div style="
+    color: #007bfc;
+    border-color: #007bfc; position: relative;
+    font-size: 17px;
+    max-width: 1290px;
+    margin: 0px auto 40px auto;
+    padding: 14px 16px;
+    text-align: left;
+    border-radius: 0;
+    border-width: 0 0 0 3px;
+    border-style: solid;
+    box-shadow: 0 8px 16px 0px rgba(10, 14, 29, 0.04), 0px 8px 64px 0px rgba(10, 14, 29, 0.08);">
+    <img src="index/segmentFault.png" style="zoom:15%;display:inline;vertical-align: middle;" border="0">&nbsp;&nbsp;<a href="https://segmentfault.com/">Segment Fault</a>
 </div>
 
 
@@ -208,8 +254,20 @@ date: 2020-04-22 15:14:04
 
 
 
+
+
+>  https://www.hackerone.com/
+>
+> 
+
+
+
+
 [^oh my ]: favicon.ico
 
-
-
 [^magic to the network]:http://npsboost.com/、https://maying.co/
+
+
+
+
+

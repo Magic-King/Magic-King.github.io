@@ -40,6 +40,18 @@ As for programming， I have learned java、python and some cpp.
 
 
 
+### why i choose cyber security？
+
+When many people talk about this, they may think it as hacker (really more as cracker).But that's one for me.Be a hacker, be free, to think deep. 
+
+On the other hand , that's what I ever read.A Hacker is more like an assassin as [the Assassin's Creed](https://assassinscreed.ubisoft.com/game/en-us/home).And my favorite : We walk in the darkness to serve the light.
+
+I think that's what white hat like.They work in the cyber where we couldn't see to secure our security. 
+
+
+
+
+
 # About this blog
 
 
@@ -52,3 +64,10 @@ It is powered by [Hexo](https://hexo.io/zh-cn/) and the theme is [NexT](https://
 
 You can find articles by [categories](../categories/) and [tags](../tags/).
 You can subscribe my blog by [RSS](../atom.xml).
+
+
+
+
+
+
+
