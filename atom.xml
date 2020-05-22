@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2020-04-28T15:22:52.701Z</updated>
+  <updated>2020-05-22T07:36:59.389Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -15,6 +15,62 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>gdb-learning</title>
+    <link href="http://magic-king.net/2020/05/22/gdb-learning/"/>
+    <id>http://magic-king.net/2020/05/22/gdb-learning/</id>
+    <published>2020-05-22T07:36:59.000Z</published>
+    <updated>2020-05-22T07:36:59.389Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Metasploit</title>
+    <link href="http://magic-king.net/2020/05/21/Metasploit/"/>
+    <id>http://magic-king.net/2020/05/21/Metasploit/</id>
+    <published>2020-05-21T11:47:40.000Z</published>
+    <updated>2020-05-22T07:28:44.265Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;0x00-序&quot;&gt;&lt;a href=&quot;#0x00-序&quot; class=&quot;headerlink&quot; title=&quot;0x00 序&quot;&gt;&lt;/a&gt;0x00 序&lt;/h2&gt;&lt;p&gt;课上体验了一把msf的一套流程，但是由于靶机已经上了补丁，所以失败了，这次来记录一下Metasploit的一套攻击流程，也不知道为啥，网上所有的入门
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Data Backup</title>
+    <link href="http://magic-king.net/2020/05/15/Data-Backup/"/>
+    <id>http://magic-king.net/2020/05/15/Data-Backup/</id>
+    <published>2020-05-15T06:09:35.000Z</published>
+    <updated>2020-05-15T06:17:55.873Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;0x00-序&quot;&gt;&lt;a href=&quot;#0x00-序&quot; class=&quot;headerlink&quot; title=&quot;0x00 序&quot;&gt;&lt;/a&gt;0x00 序&lt;/h2&gt;&lt;p&gt;最近硬盘频繁崩溃，让我对我的电脑产生了担忧，于是就准备把上次老师说的备份来实现一下（虽然以前也有备份，但肯定没有现在电脑的资料全面）&lt;/p&gt;
+&lt;p&gt;
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Security Storage</title>
@@ -473,7 +529,7 @@
     <link href="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/"/>
     <id>http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/</id>
     <published>2020-02-03T07:35:17.000Z</published>
-    <updated>2020-04-22T07:09:15.010Z</updated>
+    <updated>2020-05-20T07:13:15.019Z</updated>
     
     <summary type="html">
     
