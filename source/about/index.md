@@ -18,10 +18,20 @@ type: about
 
 
 
-<audio autoplay="autoplay" loop="loop">
+<audio id="bgmusic" autoplay="autoplay" loop="loop" preload="auto">
      <source src="http://m10.music.126.net/20200527144038/80d4764a0efd077fed0816fb810e0810/ymusic/7b75/da08/c57a/1fe3f8665c3fde02b5ed5d9076f1751e.mp3" type="audio/mpeg" />
 Your browser does not support the audio element.
 </audio>
+<script>
+getVideo();
+function getVideo(){
+    document.getElementById("bgmusic").volume =0.1;
+}
+</script>
+
+
+
+
 
 
 
