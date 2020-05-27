@@ -22,10 +22,13 @@ type: about
      <source src="res/Avril Lavigne - Sk8er Boi.mp3" type="audio/mpeg" />
 Your browser does not support the audio element.
 </audio>
-<script defer="defer">
-var myVideo=document.getElementById("bgmusic");
-myVideo.volume=0.1;
-myVideo.play();
+<script>
+function play(){
+	var myVideo=document.getElementById("bgmusic");
+	myVideo.volume=0.1;
+	myVideo.play();
+}
+window.onload=play;
 </script>
 
 
