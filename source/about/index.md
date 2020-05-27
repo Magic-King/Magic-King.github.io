@@ -25,6 +25,7 @@ Your browser does not support the audio element.
 <script defer="defer">
 var myVideo=document.getElementById("bgmusic");
 myVideo.volume=0.1;
+myVideo.play();
 </script>
 
 
