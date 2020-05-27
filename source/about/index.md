@@ -19,7 +19,7 @@ type: about
 
 
 <audio id="bgmusic" autoplay="none" loop="loop" preload="auto">
-     <source src="http://music.163.com/song/media/outer/url?id=2117894.mp3" type="audio/mpeg" />
+     <source src="res/Avril Lavigne - Sk8er Boi.mp3" type="audio/mpeg" />
 Your browser does not support the audio element.
 </audio>
 <script defer="defer">
