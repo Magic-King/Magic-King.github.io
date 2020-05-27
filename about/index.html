@@ -98,15 +98,15 @@
 
 
 
-  <meta name="description" content="I wanna try everythingYou will see a different me       Your browser does not support the audio element.   var myVideo&#x3D;document.getElementById(&quot;bgmusic&quot;); myVideo.volume&#x3D;0.1; myVideo.play();         A">
+  <meta name="description" content="I wanna try everythingYou will see a different me       Your browser does not support the audio element.   function play(){     var myVideo&#x3D;document.getElementById(&quot;bgmusic&quot;);     myVideo.volume&#x3D;0.1;">
 <meta property="og:type" content="website">
 <meta property="og:title" content="about">
 <meta property="og:url" content="http://magic-king.net/about/index.html">
 <meta property="og:site_name" content="Hexo&amp;Magic">
-<meta property="og:description" content="I wanna try everythingYou will see a different me       Your browser does not support the audio element.   var myVideo&#x3D;document.getElementById(&quot;bgmusic&quot;); myVideo.volume&#x3D;0.1; myVideo.play();         A">
+<meta property="og:description" content="I wanna try everythingYou will see a different me       Your browser does not support the audio element.   function play(){     var myVideo&#x3D;document.getElementById(&quot;bgmusic&quot;);     myVideo.volume&#x3D;0.1;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-05-13T05:19:52.000Z">
-<meta property="article:modified_time" content="2020-05-27T06:51:43.444Z">
+<meta property="article:modified_time" content="2020-05-27T06:59:04.747Z">
 <meta property="article:author" content="Magic King">
 <meta name="twitter:card" content="summary">
 
@@ -435,10 +435,13 @@
      <source src="res/Avril Lavigne - Sk8er Boi.mp3" type="audio/mpeg">
 Your browser does not support the audio element.
 </audio>
-<script defer="defer">
-var myVideo=document.getElementById("bgmusic");
-myVideo.volume=0.1;
-myVideo.play();
+<script>
+function play(){
+    var myVideo=document.getElementById("bgmusic");
+    myVideo.volume=0.1;
+    myVideo.play();
+}
+window.onload=play;
 </script>
 
 
