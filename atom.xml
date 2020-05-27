@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2020-05-22T07:36:59.389Z</updated>
+  <updated>2020-05-25T15:00:37.761Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -21,13 +21,22 @@
     <link href="http://magic-king.net/2020/05/22/gdb-learning/"/>
     <id>http://magic-king.net/2020/05/22/gdb-learning/</id>
     <published>2020-05-22T07:36:59.000Z</published>
-    <updated>2020-05-22T07:36:59.389Z</updated>
+    <updated>2020-05-25T15:00:37.761Z</updated>
     
     <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;关于gdb的学习&quot;&gt;&lt;a href=&quot;#关于gdb的学习&quot; class=&quot;headerlink&quot; title=&quot;关于gdb的学习&quot;&gt;&lt;/a&gt;&lt;center&gt;关于gdb的学习&lt;/center&gt;&lt;/h1&gt;&lt;h2 id=&quot;0x00-序&quot;&gt;&lt;a href=&quot;#0x00-序&quot; class=&quot;headerlink&quot;
+      
     
     </summary>
     
     
+      <category term="reverse" scheme="http://magic-king.net/categories/reverse/"/>
+    
+    
+      <category term="reverse" scheme="http://magic-king.net/tags/reverse/"/>
     
   </entry>
   
@@ -1234,7 +1243,7 @@
     <link href="http://magic-king.net/2019/05/27/LOVE/"/>
     <id>http://magic-king.net/2019/05/27/LOVE/</id>
     <published>2019-05-27T12:13:14.000Z</published>
-    <updated>2020-04-29T02:44:03.059Z</updated>
+    <updated>2020-05-25T06:03:54.406Z</updated>
     
     <summary type="html">
     
