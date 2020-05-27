@@ -23,11 +23,8 @@ type: about
 Your browser does not support the audio element.
 </audio>
 <script defer="defer">
-    window.onload=function(){
-		var myVideo=document.getElementById("bgmusic");
-		myVideo.volume=0.2;
-        myVideo.play();
-    }
+var myVideo=document.getElementById("bgmusic");
+myVideo.volume=0.1;
 </script>
 
 
