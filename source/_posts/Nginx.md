@@ -436,6 +436,45 @@ http {
 
 
 
+给出一个反向代理的简单例子
+
+参考：https://www.jianshu.com/p/bcfb5a3a5903
+
+```nginx
+# 添加上面的https
+server {
+      listen 443 ssl;
+      ssl_certificate      server.crt;
+      ssl_certificate_key  server_nopwd.key;
+}
+
+server {
+    listen 8080;
+
+    # 访问8080端口，跳转到网易首页
+    location / {
+        proxy_pass https://163.com;
+        proxy_redirect     off;
+        proxy_set_header   Host             $host;
+        proxy_set_header   X-Real-IP        $remote_addr;
+        proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+    }
+
+    # 访问 8080:/readme.md 从github上获取相应的文件
+   location /readme.md {
+        proxy_set_header  X-Real-IP  $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass https://github.com/yidao620c/scrapy-cookbook/blob/master/README.md;
+    }
+}
+```
+
+
+
+
+
+
+
 ### **静态站点配置**
 
 有时候，我们需要配置静态站点(即 html 文件和一堆静态资源)。
