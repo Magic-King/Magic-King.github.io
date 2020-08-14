@@ -1,23 +1,1716 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
 
-{% block content %}
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1"/>
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="关于gdb的学习0x00 序GDB是一个由GNU开源组织发布的、UNIX&#x2F;LINUX操作系统下的、基于命令行的、功能强大的程序调试工具。 对于一名Linux下工作的c++程序员，gdb是必不可少的工具。 gdb作为一个动态调试工具，有着非常强大的功能，往常我偏爱于静态调试，比较喜欢直接用IDA和objdump直接还原出源码或汇编进行阅读，对于动态调试方面是比较弱的，但是没有关系，这次我们来学习学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gdb-learning">
+<meta property="og:url" content="http://magic-king.net/2020/05/22/gdb-learning/index.html">
+<meta property="og:site_name" content="Hexo&amp;Magic">
+<meta property="og:description" content="关于gdb的学习0x00 序GDB是一个由GNU开源组织发布的、UNIX&#x2F;LINUX操作系统下的、基于命令行的、功能强大的程序调试工具。 对于一名Linux下工作的c++程序员，gdb是必不可少的工具。 gdb作为一个动态调试工具，有着非常强大的功能，往常我偏爱于静态调试，比较喜欢直接用IDA和objdump直接还原出源码或汇编进行阅读，对于动态调试方面是比较弱的，但是没有关系，这次我们来学习学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-22T07:36:59.000Z">
+<meta property="article:modified_time" content="2020-05-25T15:00:37.761Z">
+<meta property="article:author" content="Magic King">
+<meta property="article:tag" content="reverse">
+<meta name="twitter:card" content="summary">
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Hexo&Magic" type="application/atom+xml"/>
+
+
+
+  
+  
+  <link rel="canonical" href="http://magic-king.net/2020/05/22/gdb-learning/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>gdb-learning | Hexo&Magic</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo&Magic</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
   </div>
 
-{% endblock %}
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-link">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/Link/" rel="section"><i class="menu-item-icon fa fa-fw fa-magic"></i> <br/>Link</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://magic-king.net/2020/05/22/gdb-learning/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Magic King"/>
+      <meta itemprop="description" content="Now You See Me!"/>
+      <meta itemprop="image" content="/images/avatar.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo&Magic"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">gdb-learning
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-22 15:36:59" itemprop="dateCreated datePublished" datetime="2020-05-22T15:36:59+08:00">2020-05-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-05-25 23:00:37" itemprop="dateModified" datetime="2020-05-25T23:00:37+08:00">2020-05-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/reverse/" itemprop="url" rel="index"><span itemprop="name">reverse</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="关于gdb的学习"><a href="#关于gdb的学习" class="headerlink" title="关于gdb的学习"></a><center>关于gdb的学习</center></h1><h2 id="0x00-序"><a href="#0x00-序" class="headerlink" title="0x00 序"></a>0x00 序</h2><p>GDB是一个由GNU开源组织发布的、UNIX/LINUX操作系统下的、基于命令行的、功能强大的程序调试工具。 对于一名Linux下工作的c++程序员，gdb是必不可少的工具。</p>
+<p>gdb作为一个动态调试工具，有着非常强大的功能，往常我偏爱于静态调试，比较喜欢直接用IDA和objdump直接还原出源码或汇编进行阅读，对于动态调试方面是比较弱的，但是没有关系，这次我们来学习学习gdb，顺便加深对动态调试的使用。</p>
+<blockquote>
+<p>参考：(通过google，甚至找到了03年的gdb教程，搞不好这工具比我年龄还大，也充分说明了他的实用性)</p>
+<p><a href="http://www.gnu.org/software/gdb/" target="_blank" rel="noopener">gdb - GNU Project Debugger</a> ： 项目官网</p>
+<p><a href="https://sourceware.org/gdb/onlinedocs/gdb/" target="_blank" rel="noopener">Debugging with GDB</a> ：官方文档</p>
+<p><a href="https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/gdb.html" target="_blank" rel="noopener">Linux Tools Quick Tutorial : GDB</a></p>
+<p><a href="https://sites.google.com/site/shuzhifeng/linux-c-c-gdb-jiao-cheng-xiang-jie" target="_blank" rel="noopener">linux c/c++ GDB教程详解</a></p>
+<p><a href="https://github.com/hellogcc/100-gdb-tips" target="_blank" rel="noopener">GDB-100-tips - Github</a> ：在线gitbook版本（<a href="https://wizardforcel.gitbooks.io/100-gdb-tips/" target="_blank" rel="noopener">here</a>）</p>
+<p><a href="https://firmianay.gitbooks.io/ctf-all-in-one/content/doc/2.3.1_gdb.html" target="_blank" rel="noopener">https://firmianay.gitbooks.io/ctf-all-in-one/content/doc/2.3.1_gdb.html</a></p>
+</blockquote>
+<h2 id="0x01-gdb命令参考"><a href="#0x01-gdb命令参考" class="headerlink" title="0x01 gdb命令参考"></a>0x01 gdb命令参考</h2><p>这边作为备忘，列出常用的命令，方便查阅</p>
+<p>主要参考：<a href="https://github.com/hellogcc/100-gdb-tips/blob/master/refcard.pdf" target="_blank" rel="noopener">https://github.com/hellogcc/100-gdb-tips/blob/master/refcard.pdf</a></p>
+<p>若有不会的，可在gdb命令行交互模式查看帮助：<code>help command</code></p>
+<h4 id="重要命令"><a href="#重要命令" class="headerlink" title="重要命令"></a>重要命令</h4><table>
+<thead>
+<tr>
+<th align="left">gdb命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>gdb program [core]</code></td>
+<td>调试程序</td>
+</tr>
+<tr>
+<td align="left"><code>b [file:]function</code></td>
+<td>在函数下断点，此时参数也可以是地址(*0x00124365)、文件行号</td>
+</tr>
+<tr>
+<td align="left">run [arglist]</td>
+<td>以arglist为参数，运行该程序</td>
+</tr>
+<tr>
+<td align="left">bt</td>
+<td>backtrace，打印程序堆栈信息</td>
+</tr>
+<tr>
+<td align="left">p expression</td>
+<td>print，计算表达式的值</td>
+</tr>
+<tr>
+<td align="left">c</td>
+<td>continue，继续运行程序（当遇到断点时）</td>
+</tr>
+<tr>
+<td align="left">n</td>
+<td>next，单步跟踪程序，当遇到函数调用时，也不进入此函数。函数当一行命令使用</td>
+</tr>
+<tr>
+<td align="left">s</td>
+<td>step，单步调试，如果有函数调用，则进入函数内</td>
+</tr>
+<tr>
+<td align="left">until</td>
+<td>运行程序直至循环结束，后跟参数行号<code>i</code>，则运行至第<code>i</code>行</td>
+</tr>
+<tr>
+<td align="left">finish</td>
+<td>运行程序，直到当前函数完成返回，并打印返回时的堆栈地址和返回值及参数值等信息</td>
+</tr>
+<tr>
+<td align="left">call function</td>
+<td>调用程序内可见的函数，并传递参数，就是把一个函数拿来单独使用</td>
+</tr>
+<tr>
+<td align="left">q</td>
+<td>quit，退出gdb</td>
+</tr>
+</tbody></table>
+<p>第一个命令的<code>core</code> 是指一般错误是有个核心已转储，此时会产生一个coredump文件，这里可以利用这个coredump文件进行调试</p>
+<p>具体参考：<a href="https://www.cnblogs.com/luhouxiang/p/6830316.html" target="_blank" rel="noopener">https://www.cnblogs.com/luhouxiang/p/6830316.html</a></p>
+<p>查看当前栈前16个元素：<code>&gt; x/16x $esp</code></p>
+<h4 id="设置断点"><a href="#设置断点" class="headerlink" title="设置断点"></a>设置断点</h4><table>
+<thead>
+<tr>
+<th>gdb命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>b [file:]n</code></td>
+<td>break，在file文件下第n行设置断点</td>
+</tr>
+<tr>
+<td><code>b [file:]function</code></td>
+<td>break，在file文件下的function函数下断点，（断点在函数开始的位置）</td>
+</tr>
+<tr>
+<td>b +offset</td>
+<td>在现在停止的地方偏移offset行设置断点</td>
+</tr>
+<tr>
+<td>b *addr</td>
+<td>在addr地址设置断点</td>
+</tr>
+<tr>
+<td>b … if expression</td>
+<td>在表达式条件下，设置断点</td>
+</tr>
+<tr>
+<td>delete n</td>
+<td>删除n号断点</td>
+</tr>
+<tr>
+<td>clear n</td>
+<td>清除第n行的断点</td>
+</tr>
+<tr>
+<td>disable n</td>
+<td>暂停第n个断点</td>
+</tr>
+<tr>
+<td>enable n</td>
+<td>开启第n个断点</td>
+</tr>
+<tr>
+<td>info b</td>
+<td>显示目前从程序断点情况</td>
+</tr>
+<tr>
+<td>delete breakpoints</td>
+<td>清除所有断点</td>
+</tr>
+</tbody></table>
+<h4 id="查看源代码"><a href="#查看源代码" class="headerlink" title="查看源代码"></a>查看源代码</h4><table>
+<thead>
+<tr>
+<th>gdb命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>list</td>
+<td>列出程序源代码</td>
+</tr>
+<tr>
+<td>list n</td>
+<td>显示以当前为行号前后10行代码</td>
+</tr>
+<tr>
+<td>list func</td>
+<td>显示func所在函数的源代码</td>
+</tr>
+<tr>
+<td>list</td>
+<td>接着上次list命令输出下边的内容</td>
+</tr>
+</tbody></table>
+<h4 id="打印表达式"><a href="#打印表达式" class="headerlink" title="打印表达式"></a>打印表达式</h4><table>
+<thead>
+<tr>
+<th>gdb命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>print expr</td>
+<td>expr可以是任何当前正在被测试程序的有效表达式，包括数字、变量、函数调用</td>
+</tr>
+<tr>
+<td>print a</td>
+<td>打印a的值</td>
+</tr>
+<tr>
+<td>print ++a</td>
+<td>把a的值+1，并显示出来</td>
+</tr>
+<tr>
+<td>print test(2)</td>
+<td>把2作为test函数的参数，调用test()函数</td>
+</tr>
+<tr>
+<td>display expr</td>
+<td>在单步运行时将非常有用，使用display命令设置一个表达式后，它将在每次单步进行指令后，紧接着输出被设置的表达式及值</td>
+</tr>
+<tr>
+<td>watch expr</td>
+<td>设置一个监视点，一旦被监视的“表达式”的值改变，gdb将强行终止正在被调试的程序。如： watch a</td>
+</tr>
+<tr>
+<td>whatis func&amp;var</td>
+<td>查询变量或函数</td>
+</tr>
+<tr>
+<td>info function</td>
+<td>查询函数</td>
+</tr>
+<tr>
+<td>info locals</td>
+<td>显示当前堆栈页的所有变量</td>
+</tr>
+</tbody></table>
+<h4 id="查询运行信息"><a href="#查询运行信息" class="headerlink" title="查询运行信息"></a>查询运行信息</h4><table>
+<thead>
+<tr>
+<th>gdb命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>where/bt</td>
+<td>当前运行的堆栈列表</td>
+</tr>
+<tr>
+<td>bt</td>
+<td>backtrace，显示当前调用堆栈</td>
+</tr>
+<tr>
+<td>up/down</td>
+<td>改变堆栈显示的深度</td>
+</tr>
+<tr>
+<td>set args</td>
+<td>参数:指定运行时的参数</td>
+</tr>
+<tr>
+<td>show args</td>
+<td>查看设置好的参数</td>
+</tr>
+<tr>
+<td>info program</td>
+<td>来查看程序的是否在运行，进程号，被暂停的原因</td>
+</tr>
+</tbody></table>
+<h4 id="分割窗口"><a href="#分割窗口" class="headerlink" title="分割窗口"></a>分割窗口</h4><ul>
+<li>layout：用于分割窗口，可以一边查看代码，一边测试：</li>
+<li>layout src：显示源代码窗口</li>
+<li>layout asm：显示反汇编窗口</li>
+<li>layout regs：显示源代码/反汇编和CPU寄存器窗口</li>
+<li>layout split：显示源代码和反汇编窗口</li>
+<li>Ctrl + L：刷新窗口</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/reverse/" rel="tag"># reverse</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/21/Metasploit/" rel="next" title="Metasploit">
+                <i class="fa fa-chevron-left"></i> Metasploit
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/01/Virtualization-Introduction/" rel="prev" title="Virtualization Introduction">
+                Virtualization Introduction <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Magic King"/>
+            
+              <p class="site-author-name" itemprop="name">Magic King</p>
+              <div class="site-description motion-element" itemprop="description">Now You See Me!</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">61</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/%20%7C%7C%20th">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/%20%7C%7C%20tags">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Magic-King" title="GitHub &rarr; https://github.com/Magic-King" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关于gdb的学习"><span class="nav-number">1.</span> <span class="nav-text">关于gdb的学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-序"><span class="nav-number">1.1.</span> <span class="nav-text">0x00 序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-gdb命令参考"><span class="nav-number">1.2.</span> <span class="nav-text">0x01 gdb命令参考</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#重要命令"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">重要命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置断点"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">设置断点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看源代码"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">查看源代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打印表达式"><span class="nav-number">1.2.0.4.</span> <span class="nav-text">打印表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询运行信息"><span class="nav-number">1.2.0.5.</span> <span class="nav-text">查询运行信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分割窗口"><span class="nav-number">1.2.0.6.</span> <span class="nav-text">分割窗口</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Magic King</span>
+
+  
+
+  
+</div>
+
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0 </div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color='255,255,255' opacity='0.5' zIndex='-2' count='169' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+  
+  
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+</body>
+</html>

@@ -1,23 +1,1603 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
 
-{% block content %}
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1"/>
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Nginx安装及配置 本文参考： Nginx安装配置_菜鸟教程 Nginx中文文档 Nginx简易教程  概述什么是nginx? Nginx (engine x) 是一款轻量级的Web 服务器 、反向代理服务器及电子邮件（IMAP&#x2F;POP3）代理服务器。 什么是反向代理？ 反向代理（Reverse Proxy）方式是指以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx">
+<meta property="og:url" content="http://magic-king.net/2019/05/19/Nginx/index.html">
+<meta property="og:site_name" content="Hexo&amp;Magic">
+<meta property="og:description" content="Nginx安装及配置 本文参考： Nginx安装配置_菜鸟教程 Nginx中文文档 Nginx简易教程  概述什么是nginx? Nginx (engine x) 是一款轻量级的Web 服务器 、反向代理服务器及电子邮件（IMAP&#x2F;POP3）代理服务器。 什么是反向代理？ 反向代理（Reverse Proxy）方式是指以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-ed1a226ae675b102b6eb7394b6db9235_hd.jpg">
+<meta property="article:published_time" content="2019-05-19T06:01:01.000Z">
+<meta property="article:modified_time" content="2020-07-25T03:18:04.131Z">
+<meta property="article:author" content="Magic King">
+<meta property="article:tag" content="nginx">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic2.zhimg.com/80/v2-ed1a226ae675b102b6eb7394b6db9235_hd.jpg">
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Hexo&Magic" type="application/atom+xml"/>
+
+
+
+  
+  
+  <link rel="canonical" href="http://magic-king.net/2019/05/19/Nginx/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Nginx | Hexo&Magic</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo&Magic</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
   </div>
 
-{% endblock %}
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-link">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/Link/" rel="section"><i class="menu-item-icon fa fa-fw fa-magic"></i> <br/>Link</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://magic-king.net/2019/05/19/Nginx/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Magic King"/>
+      <meta itemprop="description" content="Now You See Me!"/>
+      <meta itemprop="image" content="/images/avatar.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo&Magic"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Nginx
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-19 14:01:01" itemprop="dateCreated datePublished" datetime="2019-05-19T14:01:01+08:00">2019-05-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-07-25 11:18:04" itemprop="dateModified" datetime="2020-07-25T11:18:04+08:00">2020-07-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/nginx/" itemprop="url" rel="index"><span itemprop="name">nginx</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Nginx安装及配置"><a href="#Nginx安装及配置" class="headerlink" title="Nginx安装及配置"></a>Nginx安装及配置</h1><blockquote>
+<p>本文参考：</p>
+<p><a href="https://www.runoob.com/linux/nginx-install-setup.html" target="_blank" rel="noopener">Nginx安装配置_菜鸟教程</a></p>
+<p><a href="http://www.nginx.cn/doc/" target="_blank" rel="noopener">Nginx中文文档</a></p>
+<p><a href="https://www.cnblogs.com/jingmoxukong/p/5945200.html" target="_blank" rel="noopener">Nginx简易教程</a></p>
+</blockquote>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><strong>什么是nginx?</strong></p>
+<p>Nginx (engine x) 是一款轻量级的Web 服务器 、反向代理服务器及电子邮件（IMAP/POP3）代理服务器。</p>
+<p><strong>什么是反向代理？</strong></p>
+<p>反向代理（Reverse Proxy）方式是指以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。</p>
+<p><img src="https://pic2.zhimg.com/80/v2-ed1a226ae675b102b6eb7394b6db9235_hd.jpg" alt="img"></p>
+<h2 id="安装与使用"><a href="#安装与使用" class="headerlink" title="安装与使用"></a><strong>安装与使用</strong></h2><p><strong>安装</strong></p>
+<p>nginx官网下载地址：<a href="https://link.zhihu.com/?target=http%3A//nginx.org">http://nginx.org</a>，发布版本分为 Linux 和 windows 版本。</p>
+<p>也可以下载源码，编译后运行。</p>
+<p><strong>从源代码编译 Nginx</strong></p>
+<p>把源码解压缩之后，在终端里运行如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ .&#x2F;configure</span><br><span class="line">$ make</span><br><span class="line">$ sudo make install</span><br></pre></td></tr></table></figure>
+
+<p>默认情况下，Nginx 会被安装在 /usr/local/nginx。通过设定编译选项，你可以改变这个设定。</p>
+<p><strong>Windows 安装</strong></p>
+<p>为了安装 Nginx / Win32，需先下载它(<a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">Nginx官方下载</a>)。然后解压之，然后运行即可。下面以 C 盘根目录为例说明下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx-0.8.54   start nginx</span><br></pre></td></tr></table></figure>
+
+<p>Nginx / Win32 是运行在一个控制台程序，而非 windows 服务方式的。服务器方式目前还是开发尝试中。</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a><strong>使用</strong></h3><p>nginx 的使用比较简单，就是几条命令。</p>
+<p><strong>常用到的命令如下：</strong></p>
+<ul>
+<li><strong>nginx -s stop ：</strong>快速关闭Nginx，可能不保存相关信息，并迅速终止web服务。</li>
+<li><strong>nginx -s quit ：</strong>平稳关闭Nginx，保存相关信息，有安排的结束web服务。</li>
+<li><strong>nginx -s reload ：</strong>因改变了Nginx相关配置，需要重新加载配置而重载。</li>
+<li><strong>nginx -s reopen ：</strong>重新打开日志文件。</li>
+<li><strong>nginx -c filename ：</strong>为 Nginx 指定一个配置文件，来代替缺省的。</li>
+<li><strong>nginx -t ：</strong>不运行，而仅仅测试配置文件。nginx 将检查配置文件的语法的正确性，并尝试打开配置文件中所引用到的文件。</li>
+<li><strong>nginx -v：</strong>显示 nginx 的版本。</li>
+<li><strong>nginx -V：</strong>显示 nginx 的版本，编译器版本和配置参数。</li>
+</ul>
+<p>如果不想每次都敲命令，可以在nginx安装目录下新添一个启动批处理文件startup.bat，双击即可运行。内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">rem 如果启动前已经启动nginx并记录下pid文件，会kill指定进程</span><br><span class="line">nginx.exe -s stop</span><br><span class="line"></span><br><span class="line">rem 测试配置文件语法正确性</span><br><span class="line">nginx.exe -t -c conf&#x2F;nginx.conf</span><br><span class="line"></span><br><span class="line">rem 显示版本信息</span><br><span class="line">nginx.exe -v</span><br><span class="line"></span><br><span class="line">rem 按照指定配置去启动nginx</span><br><span class="line">nginx.exe -c conf&#x2F;nginx.conf</span><br></pre></td></tr></table></figure>
+
+<p>如果是运行在 Linux 下，写一个 shell 脚本，大同小异。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="nginx-配置实战"><a href="#nginx-配置实战" class="headerlink" title="nginx 配置实战"></a><strong>nginx 配置实战</strong></h3><p>我始终认为，各种开发工具的配置还是结合实战来讲述，会让人更易理解。</p>
+<h3 id="http反向代理配置"><a href="#http反向代理配置" class="headerlink" title="http反向代理配置"></a><strong>http反向代理配置</strong></h3><p>我们先实现一个小目标：不考虑复杂的配置，仅仅是完成一个 http 反向代理。</p>
+<h3 id="nginx-conf-配置文件如下："><a href="#nginx-conf-配置文件如下：" class="headerlink" title="nginx.conf 配置文件如下："></a><strong>nginx.conf 配置文件如下：</strong></h3><p>注：conf / nginx.conf 是 nginx 的默认配置文件。你也可以使用 nginx -c 指定你的配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line">#运行用户</span><br><span class="line">#user somebody;</span><br><span class="line"></span><br><span class="line">#启动进程,通常设置成和cpu的数量相等</span><br><span class="line">worker_processes  1;</span><br><span class="line"></span><br><span class="line">#全局错误日志</span><br><span class="line">error_log  D:&#x2F;Tools&#x2F;nginx-1.10.1&#x2F;logs&#x2F;error.log;</span><br><span class="line">error_log  D:&#x2F;Tools&#x2F;nginx-1.10.1&#x2F;logs&#x2F;notice.log  notice;</span><br><span class="line">error_log  D:&#x2F;Tools&#x2F;nginx-1.10.1&#x2F;logs&#x2F;info.log  info;</span><br><span class="line"></span><br><span class="line">#PID文件，记录当前启动的nginx的进程ID</span><br><span class="line">pid        D:&#x2F;Tools&#x2F;nginx-1.10.1&#x2F;logs&#x2F;nginx.pid;</span><br><span class="line"></span><br><span class="line">#工作模式及连接数上限</span><br><span class="line">events &#123;</span><br><span class="line">   worker_connections 1024;    #单个后台worker process进程的最大并发链接数</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#设定http服务器，利用它的反向代理功能提供负载均衡支持</span><br><span class="line">http &#123;</span><br><span class="line">   #设定mime类型(邮件支持类型),类型由mime.types文件定义</span><br><span class="line">   include       D:&#x2F;Tools&#x2F;nginx-1.10.1&#x2F;conf&#x2F;mime.types;</span><br><span class="line">   default_type  application&#x2F;octet-stream;</span><br><span class="line">   </span><br><span class="line">   #设定日志</span><br><span class="line">   log_format  main  &#39;[$remote_addr] - [$remote_user] [$time_local] &quot;$request&quot; &#39;</span><br><span class="line">                     &#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39;</span><br><span class="line">                     &#39;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#39;;</span><br><span class="line">                     </span><br><span class="line">   access_log    D:&#x2F;Tools&#x2F;nginx-1.10.1&#x2F;logs&#x2F;access.log main;</span><br><span class="line">   rewrite_log     on;</span><br><span class="line">   </span><br><span class="line">   #sendfile 指令指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件，对于普通应用，</span><br><span class="line">   #必须设为 on,如果用来进行下载等应用磁盘IO重负载应用，可设置为 off，以平衡磁盘与网络I&#x2F;O处理速度，降低系统的uptime.</span><br><span class="line">   sendfile        on;</span><br><span class="line">   #tcp_nopush     on;</span><br><span class="line"></span><br><span class="line">   #连接超时时间</span><br><span class="line">   keepalive_timeout  120;</span><br><span class="line">   tcp_nodelay        on;</span><br><span class="line">   </span><br><span class="line">   #gzip压缩开关</span><br><span class="line">   #gzip  on;</span><br><span class="line"></span><br><span class="line">   #设定实际的服务器列表 </span><br><span class="line">   upstream zp_server1&#123;</span><br><span class="line">       server 127.0.0.1:8089;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   #HTTP服务器</span><br><span class="line">   server &#123;</span><br><span class="line">       #监听80端口，80端口是知名端口号，用于HTTP协议</span><br><span class="line">       listen       80;</span><br><span class="line">       </span><br><span class="line">       #定义使用www.xx.com访问</span><br><span class="line">       server_name  www.helloworld.com;</span><br><span class="line">       </span><br><span class="line">       #首页</span><br><span class="line">       index index.html</span><br><span class="line">       </span><br><span class="line">       #指向webapp的目录</span><br><span class="line">       root D:_WorkspaceProjectgithubzpSpringNotesspring-securityspring-shirosrcmainwebapp;</span><br><span class="line">       </span><br><span class="line">       #编码格式</span><br><span class="line">       charset utf-8;</span><br><span class="line">       </span><br><span class="line">       #代理配置参数</span><br><span class="line">       proxy_connect_timeout 180;</span><br><span class="line">       proxy_send_timeout 180;</span><br><span class="line">       proxy_read_timeout 180;</span><br><span class="line">       proxy_set_header Host $host;</span><br><span class="line">       proxy_set_header X-Forwarder-For $remote_addr;</span><br><span class="line"></span><br><span class="line">       #反向代理的路径（和upstream绑定），location 后面设置映射的路径</span><br><span class="line">       location &#x2F; &#123;</span><br><span class="line">           proxy_pass http:&#x2F;&#x2F;zp_server1;</span><br><span class="line">       &#125; </span><br><span class="line"></span><br><span class="line">       #静态文件，nginx自己处理</span><br><span class="line">       location ~ ^&#x2F;(images|javascript|js|css|flash|media|static)&#x2F; &#123;</span><br><span class="line">           root D:_WorkspaceProjectgithubzpSpringNotesspring-securityspring-shirosrcmainwebappiews;</span><br><span class="line">           #过期30天，静态文件不怎么更新，过期可以设大一点，如果频繁更新，则可以设置得小一点。</span><br><span class="line">           expires 30d;</span><br><span class="line">       &#125;</span><br><span class="line">   </span><br><span class="line">       #设定查看Nginx状态的地址</span><br><span class="line">       location &#x2F;NginxStatus &#123;</span><br><span class="line">           stub_status           on;</span><br><span class="line">           access_log            on;</span><br><span class="line">           auth_basic            &quot;NginxStatus&quot;;</span><br><span class="line">           auth_basic_user_file  conf&#x2F;htpasswd;</span><br><span class="line">       &#125;</span><br><span class="line">   </span><br><span class="line">       #禁止访问 .htxxx 文件</span><br><span class="line">       location ~ &#x2F;.ht &#123;</span><br><span class="line">           deny all;</span><br><span class="line">       &#125;</span><br><span class="line">       </span><br><span class="line">       #错误处理页面（可选择性配置）</span><br><span class="line">       #error_page   404              &#x2F;404.html;</span><br><span class="line">       #error_page   500 502 503 504  &#x2F;50x.html;</span><br><span class="line">       #location &#x3D; &#x2F;50x.html &#123;</span><br><span class="line">       #    root   html;</span><br><span class="line">       #&#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>好了，让我们来试试吧：</p>
+<ol>
+<li>启动 webapp，注意启动绑定的端口要和nginx中的 upstream 设置的端口保持一致。</li>
+<li>更改 host：在 C:WindowsSystem32driversetc 目录下的host文件中添加一条DNS 记录127.0.0.1 <a href="https://link.zhihu.com/?target=http%3A//www.helloworld.com">http://www.helloworld.com</a></li>
+<li>启动前文中 startup.bat 的命令</li>
+<li>在浏览器中访问 <a href="https://link.zhihu.com/?target=http%3A//www.helloworld.com">http://www.helloworld.com</a>，不出意外，已经可以访问了。</li>
+</ol>
+<h3 id="负载均衡配置"><a href="#负载均衡配置" class="headerlink" title="负载均衡配置"></a><strong>负载均衡配置</strong></h3><p>上一个例子中，代理仅仅指向一个服务器。</p>
+<p>但是，网站在实际运营过程中，多半都是有多台服务器运行着同样的app，这时需要使用负载均衡来分流。</p>
+<p>nginx也可以实现简单的负载均衡功能。</p>
+<p>假设这样一个应用场景：将应用部署在 192.168.1.11:80、192.168.1.12:80、192.168.1.13:80 三台linux环境的服务器上。网站域名叫 <a href="https://link.zhihu.com/?target=http%3A//www.helloworld.com">http://www.helloworld.com</a>，公网IP为 192.168.1.11。在公网IP所在的服务器上部署 nginx，对所有请求做负载均衡处理。</p>
+<p>nginx.conf 配置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    #设定mime类型,类型由mime.type文件定义</span><br><span class="line">   include       &#x2F;etc&#x2F;nginx&#x2F;mime.types;</span><br><span class="line">   default_type  application&#x2F;octet-stream;</span><br><span class="line">   #设定日志格式</span><br><span class="line">   access_log    &#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log;</span><br><span class="line"></span><br><span class="line">   #设定负载均衡的服务器列表</span><br><span class="line">   upstream load_balance_server &#123;</span><br><span class="line">       #weigth参数表示权值，权值越高被分配到的几率越大</span><br><span class="line">       server 192.168.1.11:80   weight&#x3D;5;</span><br><span class="line">       server 192.168.1.12:80   weight&#x3D;1;</span><br><span class="line">       server 192.168.1.13:80   weight&#x3D;6;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">  #HTTP服务器</span><br><span class="line">  server &#123;</span><br><span class="line">       #侦听80端口</span><br><span class="line">       listen       80;</span><br><span class="line">       </span><br><span class="line">       #定义使用www.xx.com访问</span><br><span class="line">       server_name  www.helloworld.com;</span><br><span class="line"></span><br><span class="line">       #对所有请求进行负载均衡请求</span><br><span class="line">       location &#x2F; &#123;</span><br><span class="line">           root        &#x2F;root;                 #定义服务器的默认网站根目录位置</span><br><span class="line">           index       index.html index.htm;  #定义首页索引文件的名称</span><br><span class="line">           proxy_pass  http:&#x2F;&#x2F;load_balance_server ;#请求转向load_balance_server 定义的服务器列表</span><br><span class="line"></span><br><span class="line">           #以下是一些反向代理的配置(可选择性配置)</span><br><span class="line">           #proxy_redirect off;</span><br><span class="line">           proxy_set_header Host $host;</span><br><span class="line">           proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">           #后端的Web服务器可以通过X-Forwarded-For获取用户真实IP</span><br><span class="line">           proxy_set_header X-Forwarded-For $remote_addr;</span><br><span class="line">           proxy_connect_timeout 90;          #nginx跟后端服务器连接超时时间(代理连接超时)</span><br><span class="line">           proxy_send_timeout 90;             #后端服务器数据回传时间(代理发送超时)</span><br><span class="line">           proxy_read_timeout 90;             #连接成功后，后端服务器响应时间(代理接收超时)</span><br><span class="line">           proxy_buffer_size 4k;              #设置代理服务器（nginx）保存用户头信息的缓冲区大小</span><br><span class="line">           proxy_buffers 4 32k;               #proxy_buffers缓冲区，网页平均在32k以下的话，这样设置</span><br><span class="line">           proxy_busy_buffers_size 64k;       #高负荷下缓冲大小（proxy_buffers*2）</span><br><span class="line">           proxy_temp_file_write_size 64k;    #设定缓存文件夹大小，大于这个值，将从upstream服务器传</span><br><span class="line">           </span><br><span class="line">           client_max_body_size 10m;          #允许客户端请求的最大单文件字节数</span><br><span class="line">           client_body_buffer_size 128k;      #缓冲区代理缓冲用户端请求的最大字节数</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="网站有多个webapp的配置"><a href="#网站有多个webapp的配置" class="headerlink" title="网站有多个webapp的配置"></a><strong>网站有多个webapp的配置</strong></h3><p>当一个网站功能越来越丰富时，往往需要将一些功能相对独立的模块剥离出来，独立维护。这样的话，通常，会有多个 webapp。</p>
+<p>举个例子：假如 <a href="https://link.zhihu.com/?target=http%3A//www.helloworld.com">http://www.helloworld.com</a> 站点有好几个webapp，finance（金融）、product（产品）、admin（用户中心）。访问这些应用的方式通过上下文(context)来进行区分:</p>
+<ul>
+<li><a href="https://link.zhihu.com/?target=http%3A//www.helloworld.com/finance/">http://www.helloworld.com/finance/</a></li>
+<li><a href="https://link.zhihu.com/?target=http%3A//www.helloworld.com/product/">http://www.helloworld.com/product/</a></li>
+<li><a href="https://link.zhihu.com/?target=http%3A//www.helloworld.com/admin/">http://www.helloworld.com/admin/</a></li>
+</ul>
+<p>我们知道，http的默认端口号是80，如果在一台服务器上同时启动这3个 webapp 应用，都用80端口，肯定是不成的。所以，这三个应用需要分别绑定不同的端口号。</p>
+<p>那么，问题来了，用户在实际访问 <a href="https://link.zhihu.com/?target=http%3A//www.helloworld.com">http://www.helloworld.com</a> 站点时，访问不同 webapp，总不会还带着对应的端口号去访问吧。所以，你再次需要用到反向代理来做处理。</p>
+<p>配置也不难，来看看怎么做吧：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">   #此处省略一些基本配置</span><br><span class="line">   </span><br><span class="line">   upstream product_server&#123;</span><br><span class="line">       server www.helloworld.com:8081;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   upstream admin_server&#123;</span><br><span class="line">       server www.helloworld.com:8082;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   upstream finance_server&#123;</span><br><span class="line">       server www.helloworld.com:8083;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   server &#123;</span><br><span class="line">       #此处省略一些基本配置</span><br><span class="line">       #默认指向product的server</span><br><span class="line">       location &#x2F; &#123;</span><br><span class="line">           proxy_pass http:&#x2F;&#x2F;product_server;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       location &#x2F;product&#x2F;&#123;</span><br><span class="line">           proxy_pass http:&#x2F;&#x2F;product_server;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       location &#x2F;admin&#x2F; &#123;</span><br><span class="line">           proxy_pass http:&#x2F;&#x2F;admin_server;</span><br><span class="line">       &#125;</span><br><span class="line">       </span><br><span class="line">       location &#x2F;finance&#x2F; &#123;</span><br><span class="line">           proxy_pass http:&#x2F;&#x2F;finance_server;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="https反向代理配置"><a href="#https反向代理配置" class="headerlink" title="https反向代理配置"></a><strong>https反向代理配置</strong></h3><p>一些对安全性要求比较高的站点，可能会使用 HTTPS（一种使用ssl通信标准的安全HTTP协议）。</p>
+<p>这里不科普 HTTP 协议和 SSL 标准。但是，使用 nginx 配置 https 需要知道几点：</p>
+<ul>
+<li>HTTPS 的固定端口号是 443，不同于 HTTP 的 80 端口</li>
+<li>SSL 标准需要引入安全证书，所以在 nginx.conf 中你需要指定证书和它对应的 key</li>
+</ul>
+<p>其他和 http 反向代理基本一样，只是在 Server 部分配置有些不同。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#HTTP服务器</span><br><span class="line"> server &#123;</span><br><span class="line">     #监听443端口。443为知名端口号，主要用于HTTPS协议</span><br><span class="line">     listen       443 ssl;</span><br><span class="line"></span><br><span class="line">     #定义使用www.xx.com访问</span><br><span class="line">     server_name  www.helloworld.com;</span><br><span class="line"></span><br><span class="line">     #ssl证书文件位置(常见证书文件格式为：crt&#x2F;pem)</span><br><span class="line">     ssl_certificate      cert.pem;</span><br><span class="line">     #ssl证书key位置</span><br><span class="line">     ssl_certificate_key  cert.key;</span><br><span class="line"></span><br><span class="line">     #ssl配置参数（选择性配置）</span><br><span class="line">     ssl_session_cache    shared:SSL:1m;</span><br><span class="line">     ssl_session_timeout  5m;</span><br><span class="line">     #数字签名，此处使用MD5</span><br><span class="line">     ssl_ciphers  HIGH:!aNULL:!MD5;</span><br><span class="line">     ssl_prefer_server_ciphers  on;</span><br><span class="line"></span><br><span class="line">     location &#x2F; &#123;</span><br><span class="line">         root   &#x2F;root;</span><br><span class="line">         index  index.html index.htm;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>给出一个反向代理的简单例子</p>
+<p>参考：<a href="https://www.jianshu.com/p/bcfb5a3a5903" target="_blank" rel="noopener">https://www.jianshu.com/p/bcfb5a3a5903</a></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加上面的https</span></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">      <span class="attribute">listen</span> <span class="number">443</span> ssl;</span><br><span class="line">      <span class="attribute">ssl_certificate</span>      server.crt;</span><br><span class="line">      <span class="attribute">ssl_certificate_key</span>  server_nopwd.key;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">8080</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 访问8080端口，跳转到网易首页</span></span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> https://163.com;</span><br><span class="line">        <span class="attribute">proxy_redirect</span>     <span class="literal">off</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span>   Host             <span class="variable">$host</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span>   X-Real-IP        <span class="variable">$remote_addr</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span>   X-Forwarded-For  <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 访问 8080:/readme.md 从github上获取相应的文件</span></span><br><span class="line">   <span class="attribute">location</span> /readme.md &#123;</span><br><span class="line">        <span class="attribute">proxy_set_header</span>  X-Real-IP  <span class="variable">$remote_addr</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">        <span class="attribute">proxy_pass</span> https://github.com/yidao620c/scrapy-cookbook/blob/master/README.md;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="静态站点配置"><a href="#静态站点配置" class="headerlink" title="静态站点配置"></a><strong>静态站点配置</strong></h3><p>有时候，我们需要配置静态站点(即 html 文件和一堆静态资源)。</p>
+<p>举例来说：如果所有的静态资源都放在了 /app/dist 目录下，我们只需要在 nginx.conf 中指定首页以及这个站点的 host 即可。</p>
+<p>配置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">worker_processes  1;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">   worker_connections  1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">   include       mime.types;</span><br><span class="line">   default_type  application&#x2F;octet-stream;</span><br><span class="line">   sendfile        on;</span><br><span class="line">   keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">   gzip on;</span><br><span class="line">   gzip_types text&#x2F;plain application&#x2F;x-javascript text&#x2F;css application&#x2F;xml text&#x2F;javascript application&#x2F;javascript image&#x2F;jpeg image&#x2F;gif image&#x2F;png;</span><br><span class="line">   gzip_vary on;</span><br><span class="line"></span><br><span class="line">   server &#123;</span><br><span class="line">       listen       80;</span><br><span class="line">       server_name  static.zp.cn;</span><br><span class="line"></span><br><span class="line">       location &#x2F; &#123;</span><br><span class="line">           root &#x2F;app&#x2F;dist;</span><br><span class="line">           index index.html;</span><br><span class="line">           #转发任何请求到 index.html</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后，添加 HOST：127.0.0.1 <a href="https://link.zhihu.com/?target=http%3A//static.zp.cn">http://static.zp.cn</a>，此时，在本地浏览器访问 <a href="https://link.zhihu.com/?target=http%3A//static.zp.cn">http://static.zp.cn</a> ，就可以访问静态站点了。</p>
+<h3 id="跨域解决方案"><a href="#跨域解决方案" class="headerlink" title="跨域解决方案"></a><strong>跨域解决方案</strong></h3><p>web 领域开发中，经常采用前后端分离模式。这种模式下，前端和后端分别是独立的 web 应用程序，例如：后端是 Java 程序，前端是 React 或 Vue 应用。</p>
+<p>各自独立的 web app 在互相访问时，势必存在跨域问题。解决跨域问题一般有两种思路：</p>
+<h3 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a><strong>CORS</strong></h3><p>在后端服务器设置 HTTP 响应头，把你需要运行访问的域名加入加入 Access-Control-Allow-Origin 中。</p>
+<h3 id="jsonp"><a href="#jsonp" class="headerlink" title="jsonp"></a><strong>jsonp</strong></h3><p>把后端根据请求，构造json数据，并返回，前端用 jsonp 跨域。</p>
+<p>这两种思路，本文不展开讨论。</p>
+<p>需要说明的是，nginx 根据第一种思路，也提供了一种解决跨域的解决方案。</p>
+<p>举例：<a href="https://link.zhihu.com/?target=http%3A//www.helloworld.com">http://www.helloworld.com</a> 网站是由一个前端 app ，一个后端 app 组成的。前端端口号为 9000， 后端端口号为 8080。</p>
+<p>前端和后端如果使用 http 进行交互时，请求会被拒绝，因为存在跨域问题。来看看，nginx 是怎么解决的吧：</p>
+<p>首先，在 enable-cors.conf 文件中设置 cors ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># allow origin list</span><br><span class="line">set $ACAO &#39;*&#39;;</span><br><span class="line"></span><br><span class="line"># set single origin</span><br><span class="line">if ($http_origin ~* (www.helloworld.com)$) &#123;</span><br><span class="line"> set $ACAO $http_origin;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if ($cors &#x3D; &quot;trueget&quot;) &#123;</span><br><span class="line">   add_header &#39;Access-Control-Allow-Origin&#39; &quot;$http_origin&quot;;</span><br><span class="line">   add_header &#39;Access-Control-Allow-Credentials&#39; &#39;true&#39;;</span><br><span class="line">   add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET, POST, OPTIONS&#39;;</span><br><span class="line">   add_header &#39;Access-Control-Allow-Headers&#39; &#39;DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type&#39;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if ($request_method &#x3D; &#39;OPTIONS&#39;) &#123;</span><br><span class="line"> set $cors &quot;$&#123;cors&#125;options&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if ($request_method &#x3D; &#39;GET&#39;) &#123;</span><br><span class="line"> set $cors &quot;$&#123;cors&#125;get&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if ($request_method &#x3D; &#39;POST&#39;) &#123;</span><br><span class="line"> set $cors &quot;$&#123;cors&#125;post&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>接下来，在你的服务器中 include enable-cors.conf 来引入跨域配置：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ----------------------------------------------------</span></span><br><span class="line"><span class="comment"># 此文件为项目 nginx 配置片段</span></span><br><span class="line"><span class="comment"># 可以直接在 nginx config 中 include（推荐）</span></span><br><span class="line"><span class="comment"># 或者 copy 到现有 nginx 中，自行配置</span></span><br><span class="line"><span class="comment"># www.helloworld.com 域名需配合 dns hosts 进行配置</span></span><br><span class="line"><span class="comment"># 其中，api 开启了 cors，需配合本目录下另一份配置文件</span></span><br><span class="line"><span class="comment"># ----------------------------------------------------</span></span><br><span class="line"><span class="attribute">upstream</span> front_server&#123;</span><br><span class="line"> <span class="attribute">server</span> www.helloworld.com:<span class="number">9000</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="attribute">upstream</span> api_server&#123;</span><br><span class="line"> <span class="attribute">server</span> www.helloworld.com:<span class="number">8080</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line"> <span class="attribute">listen</span>       <span class="number">80</span>;</span><br><span class="line"> <span class="attribute">server_name</span>  www.helloworld.com;</span><br><span class="line"></span><br><span class="line"> <span class="attribute">location</span> <span class="regexp">~ ^/api/</span> &#123;</span><br><span class="line">   <span class="attribute">include</span> enable-cors.conf;</span><br><span class="line">   <span class="attribute">proxy_pass</span> http://api_server;</span><br><span class="line">   <span class="attribute">rewrite</span> <span class="string">"^/api/(.*)$"</span> /<span class="variable">$1</span> <span class="literal">break</span>;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="attribute">location</span> <span class="regexp">~ ^/</span> &#123;</span><br><span class="line">   <span class="attribute">proxy_pass</span> http://front_server;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nginx/" rel="tag"># nginx</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/17/nginx-rtmp/" rel="next" title="nginx+rtmp">
+                <i class="fa fa-chevron-left"></i> nginx+rtmp
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/19/SpMV/" rel="prev" title="SpMV">
+                SpMV <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Magic King"/>
+            
+              <p class="site-author-name" itemprop="name">Magic King</p>
+              <div class="site-description motion-element" itemprop="description">Now You See Me!</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">61</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/%20%7C%7C%20th">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/%20%7C%7C%20tags">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Magic-King" title="GitHub &rarr; https://github.com/Magic-King" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx安装及配置"><span class="nav-number">1.</span> <span class="nav-text">Nginx安装及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装与使用"><span class="nav-number">1.2.</span> <span class="nav-text">安装与使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">1.2.1.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">1.3.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nginx-配置实战"><span class="nav-number">1.3.1.</span> <span class="nav-text">nginx 配置实战</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http反向代理配置"><span class="nav-number">1.3.2.</span> <span class="nav-text">http反向代理配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nginx-conf-配置文件如下："><span class="nav-number">1.3.3.</span> <span class="nav-text">nginx.conf 配置文件如下：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#负载均衡配置"><span class="nav-number">1.3.4.</span> <span class="nav-text">负载均衡配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网站有多个webapp的配置"><span class="nav-number">1.3.5.</span> <span class="nav-text">网站有多个webapp的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#https反向代理配置"><span class="nav-number">1.3.6.</span> <span class="nav-text">https反向代理配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态站点配置"><span class="nav-number">1.3.7.</span> <span class="nav-text">静态站点配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跨域解决方案"><span class="nav-number">1.3.8.</span> <span class="nav-text">跨域解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CORS"><span class="nav-number">1.3.9.</span> <span class="nav-text">CORS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jsonp"><span class="nav-number">1.3.10.</span> <span class="nav-text">jsonp</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Magic King</span>
+
+  
+
+  
+</div>
+
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0 </div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color='255,255,255' opacity='0.5' zIndex='-2' count='169' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+  
+  
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+</body>
+</html>

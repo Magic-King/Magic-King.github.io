@@ -1,23 +1,1799 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
 
-{% block content %}
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1"/>
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Linux Study Note 参考： 黑马程序员-linux从入门到精通  Linux系统的文件linux一切皆文件 文件操作种类：创建文件、编辑文件、保存文件、关闭文件、重命名文件、删除文件、恢复文件 文件目录结构Bin：全称binary，含义是二进制。该目录中存储的都是一些二进制文件，文件都是可以被运行的。 Dev：该目录中主要存放的是外接设备，例如盘、其他的光盘等。在其中的外接设备是不能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux Note">
+<meta property="og:url" content="http://magic-king.net/2019/08/22/Linux-Command/index.html">
+<meta property="og:site_name" content="Hexo&amp;Magic">
+<meta property="og:description" content="Linux Study Note 参考： 黑马程序员-linux从入门到精通  Linux系统的文件linux一切皆文件 文件操作种类：创建文件、编辑文件、保存文件、关闭文件、重命名文件、删除文件、恢复文件 文件目录结构Bin：全称binary，含义是二进制。该目录中存储的都是一些二进制文件，文件都是可以被运行的。 Dev：该目录中主要存放的是外接设备，例如盘、其他的光盘等。在其中的外接设备是不能">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/ls_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/ls_2.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/Linux-Command%5Cls_3.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/ls_4.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/ls_5.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/pwd.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/cd_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/cd_2.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/cd_3.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/mkdir_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/mkdir_2.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/touch_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/touch_2.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/touch_3.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/cp_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/cp_2.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/mv_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/mv_2.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/mv_3.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/rm_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/rm_2.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/rm_3.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/rm_4.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/rm_5.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/cdx_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/cdx_2.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/cat_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/cat_2.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/df_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/free_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/head_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/tail_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/less_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/wc_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/hostname_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/id_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/whoami.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/ps_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/ps_2.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/ps_3.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/top_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/du_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/du_2.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/find_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/find_2.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/find_3.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/find_4.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/service_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/kill_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/kill_2.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/ifconfig_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/ifconfig_2.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/shutdown_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/uptime_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/uname_1.png">
+<meta property="og:image" content="http://magic-king.net/2019/08/22/Linux-Command/netstat_1.png">
+<meta property="article:published_time" content="2019-08-22T14:21:03.000Z">
+<meta property="article:modified_time" content="2019-09-04T15:12:44.349Z">
+<meta property="article:author" content="Magic King">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://magic-king.net/2019/08/22/Linux-Command/ls_1.png">
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Hexo&Magic" type="application/atom+xml"/>
+
+
+
+  
+  
+  <link rel="canonical" href="http://magic-king.net/2019/08/22/Linux-Command/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Linux Note | Hexo&Magic</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo&Magic</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
   </div>
 
-{% endblock %}
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-link">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/Link/" rel="section"><i class="menu-item-icon fa fa-fw fa-magic"></i> <br/>Link</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://magic-king.net/2019/08/22/Linux-Command/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Magic King"/>
+      <meta itemprop="description" content="Now You See Me!"/>
+      <meta itemprop="image" content="/images/avatar.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo&Magic"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux Note
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-22 22:21:03" itemprop="dateCreated datePublished" datetime="2019-08-22T22:21:03+08:00">2019-08-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-04 23:12:44" itemprop="dateModified" datetime="2019-09-04T23:12:44+08:00">2019-09-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Linux-Study-Note"><a href="#Linux-Study-Note" class="headerlink" title="Linux Study Note"></a>Linux Study Note</h1><blockquote>
+<p>参考：</p>
+<p><a href="https://www.bilibili.com/video/av23360560?from=search&seid=11213656872957708813" target="_blank" rel="noopener">黑马程序员-linux从入门到精通</a></p>
+</blockquote>
+<h2 id="Linux系统的文件"><a href="#Linux系统的文件" class="headerlink" title="Linux系统的文件"></a>Linux系统的文件</h2><p>linux一切皆文件</p>
+<p>文件操作种类：创建文件、编辑文件、保存文件、关闭文件、重命名文件、删除文件、恢复文件</p>
+<h3 id="文件目录结构"><a href="#文件目录结构" class="headerlink" title="文件目录结构"></a>文件目录结构</h3><p>Bin：全称binary，含义是二进制。该目录中存储的都是一些二进制文件，文件都是可以被运行的。</p>
+<p>Dev：该目录中主要存放的是外接设备，例如盘、其他的光盘等。在其中的外接设备是不能直接被使用的，需要<strong>挂载（类似windows下的分配盘符</strong>。</p>
+<p>Etc：该目录主要存储一些配置文件。</p>
+<p>Home：表示“家”，表示<strong>除了root用户以外其他用户的家目录</strong>，类似于windows下的User/用户目录。</p>
+<p>Proc：process，表示进程，该目录中存储的是Linux运行时候的进程。</p>
+<p>Root：该目录是root用户自己的家目录。</p>
+<p>Sbin：全称super binary，该目录也是存储一些可以被执行的二进制文件，但是必须得有super权限的用户才能执行。</p>
+<p>Tmp：表示“临时”的，当系统运行时候产生的临时文件会在这个目录存着。</p>
+<p>Usr：全称是User Software Resource，注意不是user的缩写。存放的是用户自己安装的软件。类似于windows下的program files。</p>
+<p>Var：存放的程序/系统的日志文件的目录。</p>
+<p>Mnt：当外接设备需要挂载的时候，就需要挂载到mnt目录下。</p>
+<h2 id="Linux的基本指令"><a href="#Linux的基本指令" class="headerlink" title="Linux的基本指令"></a>Linux的基本指令</h2><p>linux指令指在linux终端（命令行）中输入的内容。</p>
+<p>一个完整的指令的标准格式：Linux通用的格式</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">指令主体 (空格) [选项] (空格) [操作对象]</span></span><br></pre></td></tr></table></figure>
+
+<p>一个指令可以包含多个选项，操作对象也可以是多个。</p>
+<h4 id="1-ls指令"><a href="#1-ls指令" class="headerlink" title="1.ls指令"></a>1.<code>ls</code>指令</h4><p>含义：ls（list）</p>
+<h5 id="用法1：-ls"><a href="#用法1：-ls" class="headerlink" title="用法1：#ls"></a>用法1：#ls</h5><p>含义：列出当前工作目录下的所有文件/文件夹的名称</p>
+<p><img src="/2019/08/22/Linux-Command/ls_1.png" alt></p>
+<h5 id="用法2：-ls-路径"><a href="#用法2：-ls-路径" class="headerlink" title="用法2：#ls    路径"></a>用法2：#ls    路径</h5><p>含义：列出指定路径下的所有文件/文件夹的名称</p>
+<p>路径分为相对路径和绝对路径</p>
+<p><img src="/2019/08/22/Linux-Command/ls_2.png" alt></p>
+<h5 id="用法3：-ls-选项-路径"><a href="#用法3：-ls-选项-路径" class="headerlink" title="用法3：#ls    选项    路径"></a>用法3：#ls    选项    路径</h5><p>含义：在列出指定路径下的文件/文件夹的名称，并以指定的格式进行显示。</p>
+<p>常见的语法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">ls -l 路径</span></span><br><span class="line"><span class="meta">#</span><span class="bash">ls -la 路径</span></span><br></pre></td></tr></table></figure>
+
+
+<p>选项解释：</p>
+<p>​         -l：表示list，表示以详细列表的形式进行展示</p>
+<p>​         -a：表示all，显示所有的文件/文件夹（包含了隐藏文件/文件夹）</p>
+<p><img src="/2019/08/22/Linux-Command/Linux-Command%5Cls_3.png" alt="img"></p>
+<p>上述列表中的第一列表示文档类型，<strong>其中 “ - ” 表示改行对应的文档类型为文件，“ d ” 表示文档类型为文件夹</strong>。</p>
+<p><img src="/2019/08/22/Linux-Command/ls_4.png" alt></p>
+<p><strong>在Linux中，隐藏文档一般以 “ . ” 开头。</strong> </p>
+<h5 id="用法4：-ls-lh-路径"><a href="#用法4：-ls-lh-路径" class="headerlink" title="用法4：#ls    -lh    路径"></a>用法4：#ls    -lh    路径</h5><p>含义：列出指定路径下的所有文件/文件夹的名称，以列表的形式并且在显示文档大小的时候以<strong>可读性较高的形式显示</strong></p>
+<p><img src="/2019/08/22/Linux-Command/ls_5.png" alt></p>
+<p>ls列出的结果颜色说明，<strong>其中蓝色的名称表示文件夹，黑色的表示文件，绿色的其权限为拥有所有权限</strong></p>
+<h4 id="2-pwd指令"><a href="#2-pwd指令" class="headerlink" title="2.pwd指令"></a>2.<code>pwd</code>指令</h4><p>用法：#pwd                    （print working directory，打印当前工作目录）</p>
+<p><img src="/2019/08/22/Linux-Command/pwd.png" alt></p>
+<h4 id="3-cd指令"><a href="#3-cd指令" class="headerlink" title="3.cd指令"></a>3.<code>cd</code>指令</h4><p>命令：#cd            （change directory，改变目录）</p>
+<p>作用：用于切换当前的工作目录</p>
+<h5 id="语法：-cd-路径"><a href="#语法：-cd-路径" class="headerlink" title="语法：#cd    路径"></a>语法：#cd    路径</h5><p>P.S. 在linux中有一个特殊符号~，用于表示当前用户的家目录</p>
+<p><img src="/2019/08/22/Linux-Command/cd_1.png" alt></p>
+<p><img src="/2019/08/22/Linux-Command/cd_2.png" alt></p>
+<p><img src="/2019/08/22/Linux-Command/cd_3.png" alt></p>
+<h4 id="4-mkdir指令"><a href="#4-mkdir指令" class="headerlink" title="4.mkdir指令"></a>4.<code>mkdir</code>指令</h4><p>指令：mkdir        （make directory，创建目录）</p>
+<h5 id="语法1：-mkdir-路径"><a href="#语法1：-mkdir-路径" class="headerlink" title="语法1：#mkdir    路径"></a>语法1：#mkdir    路径</h5><p>路径，可以是文件夹名称也可以是包含名称的一个完整路径</p>
+<p>假如是文件夹名称，则在当前目录下创建该文件夹</p>
+<h5 id="语法2：-mkdir-p-路径"><a href="#语法2：-mkdir-p-路径" class="headerlink" title="语法2：#mkdir    -p    路径"></a>语法2：#mkdir    -p    路径</h5><p>含义：<strong>当一次性创建多层不存在的目录的时候</strong>，添加-p参数，否则会报错</p>
+<p><img src="/2019/08/22/Linux-Command/mkdir_1.png" alt></p>
+<h5 id="语法3：-mkdir-路径1-路径2-路径3-…"><a href="#语法3：-mkdir-路径1-路径2-路径3-…" class="headerlink" title="语法3：#mkdir    路径1    路径2    路径3    …"></a>语法3：#mkdir    路径1    路径2    路径3    …</h5><p>表示一次性创建多个目录</p>
+<p><img src="/2019/08/22/Linux-Command/mkdir_2.png" alt></p>
+<h4 id="5-touch指令"><a href="#5-touch指令" class="headerlink" title="5.touch指令"></a>5.<code>touch</code>指令</h4><p>作用：创建文件</p>
+<p>语法：#touch    文件路径</p>
+<p>路径可以是直接的文件名也可以是路径</p>
+<p><img src="/2019/08/22/Linux-Command/touch_1.png" alt></p>
+<p>一次性创建多个文件</p>
+<p><img src="/2019/08/22/Linux-Command/touch_2.png" alt></p>
+<p><img src="/2019/08/22/Linux-Command/touch_3.png" alt></p>
+<h4 id="6-cp指令"><a href="#6-cp指令" class="headerlink" title="6.cp指令"></a>6.<code>cp</code>指令</h4><p>指令含义：cp        （copy，复制）</p>
+<p>作用：复制文件/文件夹到指定位置</p>
+<h5 id="语法：-cp-被复制的文档路径-文档被复制到的路径"><a href="#语法：-cp-被复制的文档路径-文档被复制到的路径" class="headerlink" title="语法：#cp    被复制的文档路径    文档被复制到的路径"></a>语法：#cp    被复制的文档路径    文档被复制到的路径</h5><p>简单来说就是#cp    源地址    目的地址</p>
+<p><img src="/2019/08/22/Linux-Command/cp_1.png" alt></p>
+<p><strong>注意：Linux在复制过程中是可以重新对新位置的文件进行重命名的，但是如果不是必须的需要，则建议保持前后名称一致。</strong></p>
+<p><strong>当使用cp命令进行文件夹复制操作的时候需要添加选项“-r”（-r表示递归复制），否则目录将被忽略</strong></p>
+<p><img src="/2019/08/22/Linux-Command/cp_2.png" alt></p>
+<h4 id="7-mv指令"><a href="#7-mv指令" class="headerlink" title="7.mv指令"></a>7.<code>mv</code>指令</h4><p>指令含义：mv        （move，移动，剪切）</p>
+<p>作用：移动文档到新的位置</p>
+<h5 id="语法：-mv-需要移动的文件路径-需要保存的位置路径"><a href="#语法：-mv-需要移动的文件路径-需要保存的位置路径" class="headerlink" title="语法：#mv    需要移动的文件路径    需要保存的位置路径"></a>语法：#mv    需要移动的文件路径    需要保存的位置路径</h5><p><img src="/2019/08/22/Linux-Command/mv_1.png" alt></p>
+<p><img src="/2019/08/22/Linux-Command/mv_2.png" alt></p>
+<p>注：在Linux中重命名的命令也是mv，语法和移动语法一样。</p>
+<p><img src="/2019/08/22/Linux-Command/mv_3.png" alt></p>
+<h4 id="8-rm指令"><a href="#8-rm指令" class="headerlink" title="8.rm指令"></a>8.<code>rm</code>指令</h4><p>指令含义：rm        （remove，移除，删除）</p>
+<h5 id="语法：-rm-选项-需要移除的文件路径"><a href="#语法：-rm-选项-需要移除的文件路径" class="headerlink" title="语法：#rm    选项    需要移除的文件路径"></a>语法：#rm    选项    需要移除的文件路径</h5><p>选项：    -f：force，强制删除，不提示是否删除</p>
+<p>​                -r：表示递归</p>
+<p>在删除的时候如果不带选项，会提示是否删除，如果需要确认则输入“y/yes”，否则输入</p>
+<p><strong>注意：如果在删除的时候不想频繁的确认，则可以在指令中添加选项“-f”，表示force（强制）。</strong></p>
+<p><img src="/2019/08/22/Linux-Command/rm_1.png" alt></p>
+<p><img src="/2019/08/22/Linux-Command/rm_2.png" alt></p>
+<p>删除一个文件夹：</p>
+<p><img src="/2019/08/22/Linux-Command/rm_3.png" alt></p>
+<p><strong>注意：删除一个目录的时候需要做递归删除，并且一般也不需要进行删除确认询问，所以移除目录的时候一般需要使用-rf选项。</strong></p>
+<p>删除多个文件：</p>
+<p><img src="/2019/08/22/Linux-Command/rm_4.png" alt></p>
+<p>删除一个目录下具有公共特性的文件，例如都以Linux开头</p>
+<p><img src="/2019/08/22/Linux-Command/rm_5.png" alt></p>
+<p>其中<strong>*称之为通配符，意思表示任意的字符，Linux*，则表示只要文件以Linux开头，后续字符则不管</strong>。</p>
+<h4 id="9-vim指令"><a href="#9-vim指令" class="headerlink" title="9.vim指令"></a>9.<code>vim</code>指令</h4><p>指令：vim    （Vim是一款文本编辑器，号称编辑器之神）</p>
+<h5 id="语法：-vim-文件路径"><a href="#语法：-vim-文件路径" class="headerlink" title="语法：#vim    文件路径"></a>语法：#vim    文件路径</h5><p>作用：可以打开一个文件，文件不存在时，可以创建该文件</p>
+<p>vim其他用法参考本文后续。</p>
+<h4 id="10-输出重定向"><a href="#10-输出重定向" class="headerlink" title="10.输出重定向"></a>10.输出重定向</h4><p><strong>一般命令的输出都会显示在终端中，有些时候需要将一些命令的执行结果想要保存到文件中进行后续的分析/统计，则这时候需要使用到的输出重定向技术。</strong></p>
+<p>&gt;：覆输出，会覆盖掉原先的文件内容</p>
+<p>&gt;&gt;：追加输出，不会覆盖原始文件内容，会在原始内容末尾继续添加</p>
+<h5 id="语法：-正常执行的指令-gt-gt-gt-文件的路径"><a href="#语法：-正常执行的指令-gt-gt-gt-文件的路径" class="headerlink" title="语法：#正常执行的指令 &gt; / &gt;&gt;文件的路径"></a>语法：#正常执行的指令 &gt; / &gt;&gt;文件的路径</h5><p>注意：文件可以不存在，不存在则新建</p>
+<p><img src="/2019/08/22/Linux-Command/cdx_1.png" alt></p>
+<p><img src="/2019/08/22/Linux-Command/cdx_2.png" alt></p>
+<h4 id="11-cat指令"><a href="#11-cat指令" class="headerlink" title="11.cat指令"></a>11.<code>cat</code>指令</h4><p>作用1：cat有直接打开一个文件的功能。</p>
+<h5 id="语法1：-cat-文件的路径"><a href="#语法1：-cat-文件的路径" class="headerlink" title="语法1：#cat    文件的路径"></a>语法1：#cat    文件的路径</h5><p><img src="/2019/08/22/Linux-Command/cat_1.png" alt></p>
+<p>作用2：cat还可以对文件惊醒合并</p>
+<h5 id="语法2：-cat-待合并的文件路径1-待合并的文件路径2-…-文件路径n-gt-合并之后的文件路径"><a href="#语法2：-cat-待合并的文件路径1-待合并的文件路径2-…-文件路径n-gt-合并之后的文件路径" class="headerlink" title="语法2：#cat    待合并的文件路径1    待合并的文件路径2    …    文件路径n    &gt;    合并之后的文件路径"></a>语法2：#cat    待合并的文件路径1    待合并的文件路径2    …    文件路径n    &gt;    合并之后的文件路径</h5><p><img src="/2019/08/22/Linux-Command/cat_2.png" alt></p>
+<h4 id="12-df指令"><a href="#12-df指令" class="headerlink" title="12.df指令"></a>12.<code>df</code>指令</h4><p>作用：查看磁盘空间</p>
+<h5 id="语法：-df-h"><a href="#语法：-df-h" class="headerlink" title="语法：#df    -h"></a>语法：#df    -h</h5><p>-h表示以较高可读性的形式展示大小</p>
+<p><img src="/2019/08/22/Linux-Command/df_1.png" alt></p>
+<h4 id="13-free指令"><a href="#13-free指令" class="headerlink" title="13.free指令"></a>13.<code>free</code>指令</h4><p>作用：查看内存使用情况</p>
+<h5 id="语法：-free-m"><a href="#语法：-free-m" class="headerlink" title="语法：#free    -m"></a>语法：#free    -m</h5><p>-m表示以mb为单位查看</p>
+<p><img src="/2019/08/22/Linux-Command/free_1.png" alt></p>
+<p>剩余的真实可用的内存为1665mb。</p>
+<p>Swap：用于临时内存，当系统真实内存不够用的时候可以临时使用磁盘空间来充当内存。</p>
+<h4 id="14-head指令"><a href="#14-head指令" class="headerlink" title="14.head指令"></a>14.<code>head</code>指令</h4><p>作用：查看一个文件的前n行，若不指定n，则默认显示前10行。</p>
+<h5 id="语法：-head-n-文件路径"><a href="#语法：-head-n-文件路径" class="headerlink" title="语法：#head    -n    文件路径"></a>语法：#head    -n    文件路径</h5><p>n表示数字</p>
+<p><img src="/2019/08/22/Linux-Command/head_1.png" alt></p>
+<h4 id="15-tail指令"><a href="#15-tail指令" class="headerlink" title="15.tail指令"></a>15.<code>tail</code>指令</h4><p>作用1：查看一个文件的末n行，如果n不指定，则默认显示后10行</p>
+<h5 id="语法：-tail-n-文件路径"><a href="#语法：-tail-n-文件路径" class="headerlink" title="语法：#tail    -n    文件路径"></a>语法：#tail    -n    文件路径</h5><p>n表示数字</p>
+<p><img src="/2019/08/22/Linux-Command/tail_1.png" alt></p>
+<p>作用2：可以通过tail指令来查看一个文件的动态变化内容（变化的内容不能是用户手动添加的）</p>
+<h5 id="语法：-tail-f-文件路径"><a href="#语法：-tail-f-文件路径" class="headerlink" title="语法：#tail    -f    文件路径"></a>语法：#tail    -f    文件路径</h5><p><strong>该命令一般用于查看系统的日志比较多</strong></p>
+<h4 id="16-less指令"><a href="#16-less指令" class="headerlink" title="16.less指令"></a>16.<code>less</code>指令</h4><p>作用：查看文件，以较少的内容进行输出，按下辅助功能键（数字+回车，空格键+上下方向键）查看更多</p>
+<h5 id="语法：-less-需要查看的文件路径"><a href="#语法：-less-需要查看的文件路径" class="headerlink" title="语法：#less    需要查看的文件路径"></a>语法：#less    需要查看的文件路径</h5><p><img src="/2019/08/22/Linux-Command/less_1.png" alt></p>
+<p>退出的时候只需要按下q键</p>
+<h4 id="17-wc指令"><a href="#17-wc指令" class="headerlink" title="17.wc指令"></a>17.<code>wc</code>指令</h4><p>作用：统计文件内容信息（包含行数、单词数、字节数）</p>
+<h4 id="语法：-wc-lwc-需要统计的文件路径"><a href="#语法：-wc-lwc-需要统计的文件路径" class="headerlink" title="语法：#wc    -lwc    需要统计的文件路径"></a>语法：#wc    -lwc    需要统计的文件路径</h4><p>-l：表示lines，行数</p>
+<p>-w：表示words，单词数，依照空格来判断单词数量</p>
+<p>-c：表示bytes，字节数</p>
+<p><img src="/2019/08/22/Linux-Command/wc_1.png" alt></p>
+<h4 id="18-date指令"><a href="#18-date指令" class="headerlink" title="18.date指令"></a>18.<code>date</code>指令</h4><p>作用：表示操作时间日期（读取、设置）</p>
+<h5 id="语法1：-date"><a href="#语法1：-date" class="headerlink" title="语法1：#date"></a>语法1：#date</h5><p>输出的形式：2019年8月24日    星期六    20:13:14</p>
+<h5 id="语法2：-date-F-（等价于-date-“-Y-m-d”）"><a href="#语法2：-date-F-（等价于-date-“-Y-m-d”）" class="headerlink" title="语法2：#date    +%F    （等价于    #date    “+%Y-%m-%d”）"></a>语法2：#date    +%F    （等价于    #date    “+%Y-%m-%d”）</h5><p>输出形式：2019-08-24</p>
+<h5 id="语法3：-date-“-F-T”-（等价于-date-“-Y-m-d-H-M-S”）"><a href="#语法3：-date-“-F-T”-（等价于-date-“-Y-m-d-H-M-S”）" class="headerlink" title="语法3：#date    “+%F  %T”    （等价于    #date    “+%Y-%m-%d    %H:%M:%S”）"></a>语法3：#date    “+%F  %T”    （等价于    #date    “+%Y-%m-%d    %H:%M:%S”）</h5><p>引号表示让“年月日与时分秒”成为一个不可分割的整体</p>
+<p>输出的形式：2019-08-24    20:13:14</p>
+<h5 id="语法4：-date-d-“-1-day”-“-Y-m-d-H-M-S”"><a href="#语法4：-date-d-“-1-day”-“-Y-m-d-H-M-S”" class="headerlink" title="语法4：#date    -d    “-1  day”    “+%Y-%m-%d  %H:%M:%S”"></a>语法4：#date    -d    “-1  day”    “+%Y-%m-%d  %H:%M:%S”</h5><p>用于获取之前或者之后的某个时间（备份）</p>
+<p>符号的可选值：+（之后）、-（之前）</p>
+<p>单位的可选值：day（天）、month（月份）、year（年）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash">F：表示完整的年月日</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash">T：表示完整的时分秒</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash">Y：表示四位年份</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash">m：表示两位月份（带前导0）</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash">d：表示日期（带前导0）</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash">H：表示小时（带前导0）</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash">M：表示分钟（带前导0）</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash">S：表示秒数（带前导0）</span></span><br><span class="line"></span><br><span class="line">(以下摘自#date --help)</span><br><span class="line"><span class="meta">  %</span><span class="bash">%	一个文字的 %</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">a	当前locale 的星期名缩写(例如： 日，代表星期日)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">A	当前locale 的星期名全称 (如：星期日)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">b	当前locale 的月名缩写 (如：一，代表一月)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">B	当前locale 的月名全称 (如：一月)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">c	当前locale 的日期和时间 (如：2005年3月3日 星期四 23:05:25)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">C	世纪；比如 %Y，通常为省略当前年份的后两位数字(例如：20)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">d	按月计的日期(例如：01)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">D	按月计的日期；等于%m/%d/%y</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">e	按月计的日期，添加空格，等于%_d</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">F	完整日期格式，等价于 %Y-%m-%d</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">g	ISO-8601 格式年份的最后两位 (参见%G)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">G	ISO-8601 格式年份 (参见%V)，一般只和 %V 结合使用</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">h	等于%b</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">H	小时(00-23)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">I	小时(00-12)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">j	按年计的日期(001-366)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">k   hour, space padded ( 0..23); same as %_H</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">l   hour, space padded ( 1..12); same as %_I</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">m   month (01..12)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">M   minute (00..59)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">n	换行</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">N	纳秒(000000000-999999999)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">p	当前locale 下的<span class="string">"上午"</span>或者<span class="string">"下午"</span>，未知时输出为空</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">P	与%p 类似，但是输出小写字母</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">r	当前locale 下的 12 小时时钟时间 (如：11:11:04 下午)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">R	24 小时时间的时和分，等价于 %H:%M</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">s	自UTC 时间 1970-01-01 00:00:00 以来所经过的秒数</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">S	秒(00-60)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">t	输出制表符 Tab</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">T	时间，等于%H:%M:%S</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">u	星期，1 代表星期一</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">U	一年中的第几周，以周日为每星期第一天(00-53)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">V	ISO-8601 格式规范下的一年中第几周，以周一为每星期第一天(01-53)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">w	一星期中的第几日(0-6)，0 代表周一</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">W	一年中的第几周，以周一为每星期第一天(00-53)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">x	当前locale 下的日期描述 (如：12/31/99)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">X	当前locale 下的时间描述 (如：23:13:48)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">y	年份最后两位数位 (00-99)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">Y	年份</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">z +hhmm		数字时区(例如，-0400)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">:z +hh:mm		数字时区(例如，-04:00)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">::z +hh:mm:ss	数字时区(例如，-04:00:00)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">:::z			数字时区带有必要的精度 (例如，-04，+05:30)</span></span><br><span class="line"><span class="meta">  %</span><span class="bash">Z			按字母表排序的时区缩写 (例如，EDT)</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="19-cal指令"><a href="#19-cal指令" class="headerlink" title="19.cal指令"></a>19.<code>cal</code>指令</h4><p>作用：用来操作日历的</p>
+<h5 id="语法1：-cal-（等价于-cal-l）"><a href="#语法1：-cal-（等价于-cal-l）" class="headerlink" title="语法1：#cal                （等价于#cal    -l）"></a>语法1：#cal                （等价于#cal    -l）</h5><p>直接输出当前月份日历</p>
+<h5 id="语法2：-cal-3"><a href="#语法2：-cal-3" class="headerlink" title="语法2：#cal    -3"></a>语法2：#cal    -3</h5><p>表示输出上一个月+本月+下个月的日历</p>
+<h5 id="语法3：-cal-y-年份"><a href="#语法3：-cal-y-年份" class="headerlink" title="语法3：#cal    -y    年份"></a>语法3：#cal    -y    年份</h5><p>表示输出某一个年份的日历</p>
+<h4 id="20-clear-ctrl-L-指令"><a href="#20-clear-ctrl-L-指令" class="headerlink" title="20.clear  |  (ctrl+L)   指令"></a>20.<code>clear</code>  |  <code>(ctrl+L)</code>   指令</h4><p>作用：清除终端中已经存在的命令和结果（信息）</p>
+<h5 id="语法：-clear-或-快捷键-ctrl-L"><a href="#语法：-clear-或-快捷键-ctrl-L" class="headerlink" title="语法：#clear        或         快捷键 ctrl  +  L"></a>语法：#clear        或         快捷键 ctrl  +  L</h5><p>注意：该命令并不是真的清除了之前的信息，而是把之前的信息都隐藏到了最上面，可以通过滚动条继续查看以前的信息。</p>
+<h4 id="21-管道pipe"><a href="#21-管道pipe" class="headerlink" title="21.管道pipe"></a>21.管道pipe</h4><h5 id="管道符："><a href="#管道符：" class="headerlink" title="管道符：    |"></a>管道符：    |</h5><p>作用：管道一般可以用于“<strong>过滤</strong>”，“特殊”，“扩展处理”</p>
+<h5 id="语法：管道不能单独使用，必须需要配合前面的指令一起使用，起作用主要是辅助作用"><a href="#语法：管道不能单独使用，必须需要配合前面的指令一起使用，起作用主要是辅助作用" class="headerlink" title="语法：管道不能单独使用，必须需要配合前面的指令一起使用，起作用主要是辅助作用"></a>语法：管道不能单独使用，必须需要配合前面的指令一起使用，起作用<strong>主要是辅助作用</strong></h5><p><strong>①过滤</strong>案例（<strong>高频率使用</strong>）：需要通过管道查询出根目录下包含“y”字母的文档名称。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">ls	| grep y</span></span><br><span class="line"></span><br><span class="line">针对上面这个命令说明：</span><br><span class="line">①以管道作为分界线，前面的命令有个输出，后面需要先输入，然后再过滤，最后再输出，通俗的讲就是管道前面的输出就是后面指令的输入；</span><br><span class="line">②grep指令：主要用于过滤</span><br></pre></td></tr></table></figure>
+
+
+
+<p>②特殊用法案例：通过管道的操作方法来实现<code>less</code>的等价效果（了解）</p>
+<p>之前通过less查看一个文件，可以<code>#less</code> 路径</p>
+<p>现在通过管道还可以这么：<code>#cat 路径|less</code></p>
+<p>③扩展处理：统计某个目录下的文档的总个数？</p>
+<p><strong>答：#ls / | wc -l</strong></p>
+<h4 id="22-hostname指令"><a href="#22-hostname指令" class="headerlink" title="22.hostname指令"></a>22.<code>hostname</code>指令</h4><p>作用：操作服务器的主机名（读取or设置）</p>
+<h5 id="语法1：-hostname"><a href="#语法1：-hostname" class="headerlink" title="语法1：#hostname"></a>语法1：#hostname</h5><p>含义：表示输出完整的主机名</p>
+<p>语法2：#hostname    -f</p>
+<p>含义：表示输出当前主机名中的FQDN（全限定域名）</p>
+<p><img src="/2019/08/22/Linux-Command/hostname_1.png" alt></p>
+<h4 id="23-id指令"><a href="#23-id指令" class="headerlink" title="23.id指令"></a>23.<code>id</code>指令</h4><p>作用：查看一个用户的一些基本信息（包含用户id，用户组id，附加组id…），该指令如果不指定用户则默认当前用户。</p>
+<h5 id="语法1：-id"><a href="#语法1：-id" class="headerlink" title="语法1：#id"></a>语法1：#id</h5><p>默认显示当前执行该命令的用户的基本信息</p>
+<h5 id="语法2：-id-username"><a href="#语法2：-id-username" class="headerlink" title="语法2：#id    username"></a>语法2：#id    username</h5><p>显示指定账户（username）的基本信息</p>
+<p><img src="/2019/08/22/Linux-Command/id_1.png" alt></p>
+<p>验证用户信息可通过文件（<code>/etc/passwd</code>）</p>
+<p>验证用户组信息可通过文件（<code>/etv/group</code>）</p>
+<h4 id="24-whoami指令"><a href="#24-whoami指令" class="headerlink" title="24.whoami指令"></a>24.<code>whoami</code>指令</h4><p>作用：“我是谁？”，显示当前登录的用户名，<strong>一般用于shell脚本，用于获取当前操作系统的用户名方便记录日志。</strong></p>
+<h5 id="语法：-whoami"><a href="#语法：-whoami" class="headerlink" title="语法：#whoami"></a>语法：#whoami</h5><p><img src="/2019/08/22/Linux-Command/whoami.png" alt></p>
+<h4 id="25-ps-ef指令"><a href="#25-ps-ef指令" class="headerlink" title="25.ps -ef指令"></a>25.<code>ps -ef</code>指令</h4><p>指令：ps</p>
+<p>作用：用于查看服务器进程信息</p>
+<p>选项含义：</p>
+<p>​    -e：等价于“-A”，表示列出全部的进程</p>
+<p>​    -f：显示全部的列（显示全字段）</p>
+<p><img src="/2019/08/22/Linux-Command/ps_1.png" alt></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">各列的含义：</span><br><span class="line"></span><br><span class="line"><span class="built_in">UID</span>：该进程执行的用户<span class="keyword">id</span>；</span><br><span class="line">PID：进程<span class="keyword">id</span>；</span><br><span class="line">PPID：该进程的父级进程<span class="keyword">id</span>，如果一个程序的父级进程找不到，该程序的进程称之为僵尸进程（parent process ID）；</span><br><span class="line">C：Cpu的占用率，其形式是百分数；</span><br><span class="line">STIME：进行的启动时间；</span><br><span class="line">TTY：终端设备，发起该进程的设备识别符号，如果显示“?”则表示该进程并不是由终端设备发起；</span><br><span class="line">TIME：进程的执行时间；</span><br><span class="line"><span class="built_in">CMD</span>：该进程的名称或者对应的路径</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/2019/08/22/Linux-Command/ps_2.png" alt></p>
+<p><img src="/2019/08/22/Linux-Command/ps_3.png" alt></p>
+<h5 id="ps-ef-grep-“进程名称”"><a href="#ps-ef-grep-“进程名称”" class="headerlink" title="#ps    -ef    |    grep    “进程名称”"></a>#ps    -ef    |    grep    “进程名称”</h5><p>用于查看特定进程的状态</p>
+<h4 id="26-top指令"><a href="#26-top指令" class="headerlink" title="26.top指令"></a>26.<code>top</code>指令</h4><p>作用：查看服务器的进程占用的资源</p>
+<h5 id="语法：进入命令：-top（动态显示）"><a href="#语法：进入命令：-top（动态显示）" class="headerlink" title="语法：进入命令：#top（动态显示）"></a>语法：进入命令：#top（动态显示）</h5><h5 id="退出命令：按下q键"><a href="#退出命令：按下q键" class="headerlink" title="退出命令：按下q键"></a>退出命令：按下q键</h5><p><img src="/2019/08/22/Linux-Command/top_1.png" alt></p>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">表头含义：</span><br><span class="line">PID：进程id；</span><br><span class="line">USER：该进程对应的用户；</span><br><span class="line">PR：优先级；</span><br><span class="line">VIRT：虚拟内存；</span><br><span class="line">RES：常驻内存；</span><br><span class="line">SHR：共享内存；</span><br><span class="line">	计算一个进程实际使用的内存 = 常驻内存（RES）- 共享内存（SHR）</span><br><span class="line">S：表示进程的状态status（sleeping，其中S表示睡眠，R表示运行）；</span><br><span class="line"><span class="tag">%<span class="selector-tag">CPU</span></span>：表示CPU的占用百分比；</span><br><span class="line"><span class="tag">%<span class="selector-tag">MEM</span></span>：表示内存的占用百分比；</span><br><span class="line">TIME+：执行的时间；</span><br><span class="line">COMMAND：进程的名称或者路径</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在运行top命令时，可以有如下快捷键：</p>
+<p>M：表示将结果按照内存（MEM）从高到低进行降序排列</p>
+<p>P：表示将结果按照CPU使用率从高到低进行降序排列</p>
+<p>1：当服务器拥有多个CPU的时候可以使用“1”快捷键来切换是否展示显示各个cpu的详细信息</p>
+<h4 id="27-du-sh指令"><a href="#27-du-sh指令" class="headerlink" title="27.du -sh指令"></a>27.<code>du -sh</code>指令</h4><p>作用：查看目录的真实大小</p>
+<h5 id="语法：-du-sh-目录路径"><a href="#语法：-du-sh-目录路径" class="headerlink" title="语法：#du    -sh    目录路径"></a>语法：#du    -sh    目录路径</h5><p>选项含义：</p>
+<p>​        -s：summaries，只显示汇总的大小</p>
+<p>​        -h：表示以高可读性的形式进行显示</p>
+<p><img src="/2019/08/22/Linux-Command/du_1.png" alt></p>
+<p><img src="/2019/08/22/Linux-Command/du_2.png" alt></p>
+<h4 id="28-find指令"><a href="#28-find指令" class="headerlink" title="28.find指令"></a>28.<code>find</code>指令</h4><p>作用：用于查找文件（参数贼多，55个）</p>
+<h5 id="语法：-find-路径范围-选项-选项的值"><a href="#语法：-find-路径范围-选项-选项的值" class="headerlink" title="语法：#find    路径范围    选项    选项的值"></a>语法：#find    路径范围    选项    选项的值</h5><p>选项：</p>
+<p>​    -name：按照文件名称进行搜索（支持模糊搜索）</p>
+<p>​    -type：按照文件的类型进行搜索（文件类型：“-”表示文件，在使用find的使用需要用f来替换；“d”表示文件夹）</p>
+<p><img src="/2019/08/22/Linux-Command/find_1.png" alt></p>
+<p><img src="/2019/08/22/Linux-Command/find_2.png" alt></p>
+<p>注：*为通配符，匹配所有字符</p>
+<p><img src="/2019/08/22/Linux-Command/find_3.png" alt></p>
+<p><img src="/2019/08/22/Linux-Command/find_4.png" alt></p>
+<h4 id="29-service指令"><a href="#29-service指令" class="headerlink" title="29.service指令"></a>29.<code>service</code>指令</h4><p>作用：用于控制一些软件的服务启动、停止、重启</p>
+<h5 id="语法：-service-服务名-start-stop-restart"><a href="#语法：-service-服务名-start-stop-restart" class="headerlink" title="语法：#service    服务名    start/stop/restart"></a>语法：#service    服务名    start/stop/restart</h5><p>例：启动本机安装的Apache，其服务名为httpd</p>
+<p><img src="/2019/08/22/Linux-Command/service_1.png" alt></p>
+<ul>
+<li>其服务启动规则可自己编写，后续将会专门开一篇讲述</li>
+</ul>
+<h4 id="30-kill指令"><a href="#30-kill指令" class="headerlink" title="30.kill指令"></a>30.<code>kill</code>指令</h4><p>作用：表示杀死进程（当遇到僵尸进程或者处于某些原因需要关闭进程的时候）</p>
+<h5 id="语法：-kill-进程的PID（需要配合ps一起使用）"><a href="#语法：-kill-进程的PID（需要配合ps一起使用）" class="headerlink" title="语法：#kill    进程的PID（需要配合ps一起使用）"></a>语法：#kill    进程的PID（需要配合ps一起使用）</h5><p><img src="/2019/08/22/Linux-Command/kill_1.png" alt></p>
+<p>与kill相似的命令：#killall</p>
+<h5 id="语法：-killall-进程名称"><a href="#语法：-killall-进程名称" class="headerlink" title="语法：#killall    进程名称"></a>语法：#killall    进程名称</h5><p><img src="/2019/08/22/Linux-Command/kill_2.png" alt></p>
+<h4 id="31-ifconfig指令"><a href="#31-ifconfig指令" class="headerlink" title="31.ifconfig指令"></a>31.<code>ifconfig</code>指令</h4><p>作用：用于操作网卡相关的指令</p>
+<p>语法：#ifconfig（获取网卡信息）</p>
+<p>注意该命令在windows环境下为ipconfig</p>
+<p>Eth0表示Linux中的一个网卡，eth0是其名称。Lo（<strong>loop，本地回还网卡，其ip地址一般都是127.0.0.1</strong>）也是一个网卡名称。注意：inet addr就是网卡的ip地址。</p>
+<p><img src="/2019/08/22/Linux-Command/ifconfig_1.png" alt></p>
+<p><img src="/2019/08/22/Linux-Command/ifconfig_2.png" alt></p>
+<h4 id="32-reboot指令"><a href="#32-reboot指令" class="headerlink" title="32.reboot指令"></a>32.<code>reboot</code>指令</h4><p>作用：重启计算机</p>
+<h5 id="语法1：-reboot"><a href="#语法1：-reboot" class="headerlink" title="语法1：#reboot"></a>语法1：#reboot</h5><p>重启</p>
+<h5 id="语法2：-reboot-w"><a href="#语法2：-reboot-w" class="headerlink" title="语法2：#reboot    -w"></a>语法2：#reboot    -w</h5><p>模拟重启，但是不重启（只写关机与开机的日志信息）</p>
+<h4 id="33-shutdown指令"><a href="#33-shutdown指令" class="headerlink" title="33.shutdown指令"></a>33.<code>shutdown</code>指令</h4><p>作用：关机（慎用）</p>
+<h5 id="语法1：-shutdown-h-now-“关机提示”"><a href="#语法1：-shutdown-h-now-“关机提示”" class="headerlink" title="语法1：#shutdown    -h    now    “关机提示”"></a>语法1：#shutdown    -h    now    “关机提示”</h5><h5 id="shutdown-h-time-14-41-“关机提示”"><a href="#shutdown-h-time-14-41-“关机提示”" class="headerlink" title="#shutdown    -h    time(14:41)    “关机提示”"></a>#shutdown    -h    time(14:41)    “关机提示”</h5><p><img src="/2019/08/22/Linux-Command/shutdown_1.png" alt></p>
+<p>如果想要取消关机计划的话，则可以按照以下方式去尝试：</p>
+<p><strong>①针对于centos7.x之前的版本：ctrl+c</strong></p>
+<p><strong>②针对于centos7.x（包含）之后的版本：#shutdown  -c</strong></p>
+<blockquote>
+<p>除了shutdown关机以外，还有以下几个关机命令</p>
+<p><code>#init    0</code></p>
+<p><code>#halt</code></p>
+<p><code>#poweroff</code></p>
+</blockquote>
+<h4 id="34-uptime指令"><a href="#34-uptime指令" class="headerlink" title="34.uptime指令"></a>34.<code>uptime</code>指令</h4><p>作用：输出计算机的持续在线时间（计算机从开机到现在运行的时间）</p>
+<h5 id="语法：-uptime"><a href="#语法：-uptime" class="headerlink" title="语法：#uptime"></a>语法：#uptime</h5><p><img src="/2019/08/22/Linux-Command/uptime_1.png" alt></p>
+<h4 id="35-uname指令"><a href="#35-uname指令" class="headerlink" title="35.uname指令"></a>35.<code>uname</code>指令</h4><p>作用：获取计算机操作系统的相关信息</p>
+<h5 id="语法1：-uname"><a href="#语法1：-uname" class="headerlink" title="语法1：#uname"></a>语法1：#uname</h5><p>获取操作系统类型</p>
+<h5 id="语法2：-uname-a"><a href="#语法2：-uname-a" class="headerlink" title="语法2：#uname    -a"></a>语法2：#uname    -a</h5><p>-a：表示all，表示获取全部的系统信息（<strong>类型、全部主机名、内核版本、发布时间、开源计划</strong>）</p>
+<p><img src="/2019/08/22/Linux-Command/uname_1.png" alt></p>
+<h4 id="36-netstat-tnlp指令"><a href="#36-netstat-tnlp指令" class="headerlink" title="36.netstat    -tnlp指令"></a>36.<code>netstat    -tnlp</code>指令</h4><p>作用：查看网络连接状态</p>
+<h5 id="语法：-netstat-tnlp"><a href="#语法：-netstat-tnlp" class="headerlink" title="语法：#netstat    -tnlp"></a>语法：#netstat    -tnlp</h5><p><img src="/2019/08/22/Linux-Command/netstat_1.png" alt></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">选项说明：</span><br><span class="line">	-t：表示只列出tcp协议的连接；</span><br><span class="line">	-n：表示将地址从字母组合转化成ip地址，将协议转化成端口号来显示；</span><br><span class="line">	-l：表示过滤出“state（状态）”列中其值为LISTEN（监听）的连接；</span><br><span class="line">	-p：表示显示发起连接的进程pid和进程名称；</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="37-man指令"><a href="#37-man指令" class="headerlink" title="37.man指令"></a>37.<code>man</code>指令</h4><p>作用：manual，手册（包含了Linux中全部的命令手册，英文）</p>
+<h5 id="语法：-man-命令"><a href="#语法：-man-命令" class="headerlink" title="语法：#man    命令"></a>语法：#man    命令</h5><p>退出按下q键</p>
+<p>例：#man    cp</p>
+<h2 id="编辑器之神——Vim编辑器"><a href="#编辑器之神——Vim编辑器" class="headerlink" title="编辑器之神——Vim编辑器"></a>编辑器之神——Vim编辑器</h2>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/19/url/" rel="next" title="url">
+                <i class="fa fa-chevron-left"></i> url
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/04/Compiler/" rel="prev" title="Compiler">
+                Compiler <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Magic King"/>
+            
+              <p class="site-author-name" itemprop="name">Magic King</p>
+              <div class="site-description motion-element" itemprop="description">Now You See Me!</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">61</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/%20%7C%7C%20th">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/%20%7C%7C%20tags">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Magic-King" title="GitHub &rarr; https://github.com/Magic-King" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux-Study-Note"><span class="nav-number">1.</span> <span class="nav-text">Linux Study Note</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统的文件"><span class="nav-number">1.1.</span> <span class="nav-text">Linux系统的文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件目录结构"><span class="nav-number">1.1.1.</span> <span class="nav-text">文件目录结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux的基本指令"><span class="nav-number">1.2.</span> <span class="nav-text">Linux的基本指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-ls指令"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">1.ls指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#用法1：-ls"><span class="nav-number">1.2.0.1.1.</span> <span class="nav-text">用法1：#ls</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用法2：-ls-路径"><span class="nav-number">1.2.0.1.2.</span> <span class="nav-text">用法2：#ls    路径</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用法3：-ls-选项-路径"><span class="nav-number">1.2.0.1.3.</span> <span class="nav-text">用法3：#ls    选项    路径</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用法4：-ls-lh-路径"><span class="nav-number">1.2.0.1.4.</span> <span class="nav-text">用法4：#ls    -lh    路径</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-pwd指令"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">2.pwd指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-cd指令"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">3.cd指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-cd-路径"><span class="nav-number">1.2.0.3.1.</span> <span class="nav-text">语法：#cd    路径</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-mkdir指令"><span class="nav-number">1.2.0.4.</span> <span class="nav-text">4.mkdir指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法1：-mkdir-路径"><span class="nav-number">1.2.0.4.1.</span> <span class="nav-text">语法1：#mkdir    路径</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#语法2：-mkdir-p-路径"><span class="nav-number">1.2.0.4.2.</span> <span class="nav-text">语法2：#mkdir    -p    路径</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#语法3：-mkdir-路径1-路径2-路径3-…"><span class="nav-number">1.2.0.4.3.</span> <span class="nav-text">语法3：#mkdir    路径1    路径2    路径3    …</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-touch指令"><span class="nav-number">1.2.0.5.</span> <span class="nav-text">5.touch指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-cp指令"><span class="nav-number">1.2.0.6.</span> <span class="nav-text">6.cp指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-cp-被复制的文档路径-文档被复制到的路径"><span class="nav-number">1.2.0.6.1.</span> <span class="nav-text">语法：#cp    被复制的文档路径    文档被复制到的路径</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-mv指令"><span class="nav-number">1.2.0.7.</span> <span class="nav-text">7.mv指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-mv-需要移动的文件路径-需要保存的位置路径"><span class="nav-number">1.2.0.7.1.</span> <span class="nav-text">语法：#mv    需要移动的文件路径    需要保存的位置路径</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-rm指令"><span class="nav-number">1.2.0.8.</span> <span class="nav-text">8.rm指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-rm-选项-需要移除的文件路径"><span class="nav-number">1.2.0.8.1.</span> <span class="nav-text">语法：#rm    选项    需要移除的文件路径</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-vim指令"><span class="nav-number">1.2.0.9.</span> <span class="nav-text">9.vim指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-vim-文件路径"><span class="nav-number">1.2.0.9.1.</span> <span class="nav-text">语法：#vim    文件路径</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-输出重定向"><span class="nav-number">1.2.0.10.</span> <span class="nav-text">10.输出重定向</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-正常执行的指令-gt-gt-gt-文件的路径"><span class="nav-number">1.2.0.10.1.</span> <span class="nav-text">语法：#正常执行的指令 &gt; &#x2F; &gt;&gt;文件的路径</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-cat指令"><span class="nav-number">1.2.0.11.</span> <span class="nav-text">11.cat指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法1：-cat-文件的路径"><span class="nav-number">1.2.0.11.1.</span> <span class="nav-text">语法1：#cat    文件的路径</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#语法2：-cat-待合并的文件路径1-待合并的文件路径2-…-文件路径n-gt-合并之后的文件路径"><span class="nav-number">1.2.0.11.2.</span> <span class="nav-text">语法2：#cat    待合并的文件路径1    待合并的文件路径2    …    文件路径n    &gt;    合并之后的文件路径</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-df指令"><span class="nav-number">1.2.0.12.</span> <span class="nav-text">12.df指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-df-h"><span class="nav-number">1.2.0.12.1.</span> <span class="nav-text">语法：#df    -h</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-free指令"><span class="nav-number">1.2.0.13.</span> <span class="nav-text">13.free指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-free-m"><span class="nav-number">1.2.0.13.1.</span> <span class="nav-text">语法：#free    -m</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-head指令"><span class="nav-number">1.2.0.14.</span> <span class="nav-text">14.head指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-head-n-文件路径"><span class="nav-number">1.2.0.14.1.</span> <span class="nav-text">语法：#head    -n    文件路径</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-tail指令"><span class="nav-number">1.2.0.15.</span> <span class="nav-text">15.tail指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-tail-n-文件路径"><span class="nav-number">1.2.0.15.1.</span> <span class="nav-text">语法：#tail    -n    文件路径</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-tail-f-文件路径"><span class="nav-number">1.2.0.15.2.</span> <span class="nav-text">语法：#tail    -f    文件路径</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-less指令"><span class="nav-number">1.2.0.16.</span> <span class="nav-text">16.less指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-less-需要查看的文件路径"><span class="nav-number">1.2.0.16.1.</span> <span class="nav-text">语法：#less    需要查看的文件路径</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#17-wc指令"><span class="nav-number">1.2.0.17.</span> <span class="nav-text">17.wc指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#语法：-wc-lwc-需要统计的文件路径"><span class="nav-number">1.2.0.18.</span> <span class="nav-text">语法：#wc    -lwc    需要统计的文件路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#18-date指令"><span class="nav-number">1.2.0.19.</span> <span class="nav-text">18.date指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法1：-date"><span class="nav-number">1.2.0.19.1.</span> <span class="nav-text">语法1：#date</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#语法2：-date-F-（等价于-date-“-Y-m-d”）"><span class="nav-number">1.2.0.19.2.</span> <span class="nav-text">语法2：#date    +%F    （等价于    #date    “+%Y-%m-%d”）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#语法3：-date-“-F-T”-（等价于-date-“-Y-m-d-H-M-S”）"><span class="nav-number">1.2.0.19.3.</span> <span class="nav-text">语法3：#date    “+%F  %T”    （等价于    #date    “+%Y-%m-%d    %H:%M:%S”）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#语法4：-date-d-“-1-day”-“-Y-m-d-H-M-S”"><span class="nav-number">1.2.0.19.4.</span> <span class="nav-text">语法4：#date    -d    “-1  day”    “+%Y-%m-%d  %H:%M:%S”</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#19-cal指令"><span class="nav-number">1.2.0.20.</span> <span class="nav-text">19.cal指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法1：-cal-（等价于-cal-l）"><span class="nav-number">1.2.0.20.1.</span> <span class="nav-text">语法1：#cal                （等价于#cal    -l）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#语法2：-cal-3"><span class="nav-number">1.2.0.20.2.</span> <span class="nav-text">语法2：#cal    -3</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#语法3：-cal-y-年份"><span class="nav-number">1.2.0.20.3.</span> <span class="nav-text">语法3：#cal    -y    年份</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#20-clear-ctrl-L-指令"><span class="nav-number">1.2.0.21.</span> <span class="nav-text">20.clear  |  (ctrl+L)   指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-clear-或-快捷键-ctrl-L"><span class="nav-number">1.2.0.21.1.</span> <span class="nav-text">语法：#clear        或         快捷键 ctrl  +  L</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#21-管道pipe"><span class="nav-number">1.2.0.22.</span> <span class="nav-text">21.管道pipe</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#管道符："><span class="nav-number">1.2.0.22.1.</span> <span class="nav-text">管道符：    |</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：管道不能单独使用，必须需要配合前面的指令一起使用，起作用主要是辅助作用"><span class="nav-number">1.2.0.22.2.</span> <span class="nav-text">语法：管道不能单独使用，必须需要配合前面的指令一起使用，起作用主要是辅助作用</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#22-hostname指令"><span class="nav-number">1.2.0.23.</span> <span class="nav-text">22.hostname指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法1：-hostname"><span class="nav-number">1.2.0.23.1.</span> <span class="nav-text">语法1：#hostname</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#23-id指令"><span class="nav-number">1.2.0.24.</span> <span class="nav-text">23.id指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法1：-id"><span class="nav-number">1.2.0.24.1.</span> <span class="nav-text">语法1：#id</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#语法2：-id-username"><span class="nav-number">1.2.0.24.2.</span> <span class="nav-text">语法2：#id    username</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#24-whoami指令"><span class="nav-number">1.2.0.25.</span> <span class="nav-text">24.whoami指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-whoami"><span class="nav-number">1.2.0.25.1.</span> <span class="nav-text">语法：#whoami</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#25-ps-ef指令"><span class="nav-number">1.2.0.26.</span> <span class="nav-text">25.ps -ef指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ps-ef-grep-“进程名称”"><span class="nav-number">1.2.0.26.1.</span> <span class="nav-text">#ps    -ef    |    grep    “进程名称”</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#26-top指令"><span class="nav-number">1.2.0.27.</span> <span class="nav-text">26.top指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：进入命令：-top（动态显示）"><span class="nav-number">1.2.0.27.1.</span> <span class="nav-text">语法：进入命令：#top（动态显示）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#退出命令：按下q键"><span class="nav-number">1.2.0.27.2.</span> <span class="nav-text">退出命令：按下q键</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#27-du-sh指令"><span class="nav-number">1.2.0.28.</span> <span class="nav-text">27.du -sh指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-du-sh-目录路径"><span class="nav-number">1.2.0.28.1.</span> <span class="nav-text">语法：#du    -sh    目录路径</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#28-find指令"><span class="nav-number">1.2.0.29.</span> <span class="nav-text">28.find指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-find-路径范围-选项-选项的值"><span class="nav-number">1.2.0.29.1.</span> <span class="nav-text">语法：#find    路径范围    选项    选项的值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#29-service指令"><span class="nav-number">1.2.0.30.</span> <span class="nav-text">29.service指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-service-服务名-start-stop-restart"><span class="nav-number">1.2.0.30.1.</span> <span class="nav-text">语法：#service    服务名    start&#x2F;stop&#x2F;restart</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#30-kill指令"><span class="nav-number">1.2.0.31.</span> <span class="nav-text">30.kill指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-kill-进程的PID（需要配合ps一起使用）"><span class="nav-number">1.2.0.31.1.</span> <span class="nav-text">语法：#kill    进程的PID（需要配合ps一起使用）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-killall-进程名称"><span class="nav-number">1.2.0.31.2.</span> <span class="nav-text">语法：#killall    进程名称</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#31-ifconfig指令"><span class="nav-number">1.2.0.32.</span> <span class="nav-text">31.ifconfig指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#32-reboot指令"><span class="nav-number">1.2.0.33.</span> <span class="nav-text">32.reboot指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法1：-reboot"><span class="nav-number">1.2.0.33.1.</span> <span class="nav-text">语法1：#reboot</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#语法2：-reboot-w"><span class="nav-number">1.2.0.33.2.</span> <span class="nav-text">语法2：#reboot    -w</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#33-shutdown指令"><span class="nav-number">1.2.0.34.</span> <span class="nav-text">33.shutdown指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法1：-shutdown-h-now-“关机提示”"><span class="nav-number">1.2.0.34.1.</span> <span class="nav-text">语法1：#shutdown    -h    now    “关机提示”</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#shutdown-h-time-14-41-“关机提示”"><span class="nav-number">1.2.0.34.2.</span> <span class="nav-text">#shutdown    -h    time(14:41)    “关机提示”</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#34-uptime指令"><span class="nav-number">1.2.0.35.</span> <span class="nav-text">34.uptime指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-uptime"><span class="nav-number">1.2.0.35.1.</span> <span class="nav-text">语法：#uptime</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#35-uname指令"><span class="nav-number">1.2.0.36.</span> <span class="nav-text">35.uname指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法1：-uname"><span class="nav-number">1.2.0.36.1.</span> <span class="nav-text">语法1：#uname</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#语法2：-uname-a"><span class="nav-number">1.2.0.36.2.</span> <span class="nav-text">语法2：#uname    -a</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#36-netstat-tnlp指令"><span class="nav-number">1.2.0.37.</span> <span class="nav-text">36.netstat    -tnlp指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-netstat-tnlp"><span class="nav-number">1.2.0.37.1.</span> <span class="nav-text">语法：#netstat    -tnlp</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#37-man指令"><span class="nav-number">1.2.0.38.</span> <span class="nav-text">37.man指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语法：-man-命令"><span class="nav-number">1.2.0.38.1.</span> <span class="nav-text">语法：#man    命令</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编辑器之神——Vim编辑器"><span class="nav-number">1.3.</span> <span class="nav-text">编辑器之神——Vim编辑器</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Magic King</span>
+
+  
+
+  
+</div>
+
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0 </div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color='255,255,255' opacity='0.5' zIndex='-2' count='169' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+  
+  
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+</body>
+</html>

@@ -1,23 +1,1779 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
 
-{% block content %}
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1"/>
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Security Protocols and Standards–PKI Principles and technology安全协议与标准 * PKI concepts&#x2F;content&#x2F;significance * Core PKI Service * Certificate and CRL(证书吊销列表) * Trust Model * PKCS：The Public-Key Cryptogra">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Security-Protocols-and-Standards">
+<meta property="og:url" content="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/index.html">
+<meta property="og:site_name" content="Hexo&amp;Magic">
+<meta property="og:description" content="Security Protocols and Standards–PKI Principles and technology安全协议与标准 * PKI concepts&#x2F;content&#x2F;significance * Core PKI Service * Certificate and CRL(证书吊销列表) * Trust Model * PKCS：The Public-Key Cryptogra">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/attack-types.png">
+<meta property="og:image" content="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/securityProtocols.png">
+<meta property="og:image" content="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/MAC.png">
+<meta property="og:image" content="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/dataFormat1.png">
+<meta property="og:image" content="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/dataFormat2.png">
+<meta property="og:image" content="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/Layers.png">
+<meta property="og:image" content="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/PKI_Architecture.png">
+<meta property="article:published_time" content="2020-02-03T07:35:17.000Z">
+<meta property="article:modified_time" content="2020-05-20T07:13:15.019Z">
+<meta property="article:author" content="Magic King">
+<meta property="article:tag" content="StudyNote">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/attack-types.png">
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Hexo&Magic" type="application/atom+xml"/>
+
+
+
+  
+  
+  <link rel="canonical" href="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Security-Protocols-and-Standards | Hexo&Magic</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo&Magic</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
   </div>
 
-{% endblock %}
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-link">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/Link/" rel="section"><i class="menu-item-icon fa fa-fw fa-magic"></i> <br/>Link</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Magic King"/>
+      <meta itemprop="description" content="Now You See Me!"/>
+      <meta itemprop="image" content="/images/avatar.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo&Magic"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Security-Protocols-and-Standards
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-03 15:35:17" itemprop="dateCreated datePublished" datetime="2020-02-03T15:35:17+08:00">2020-02-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-05-20 15:13:15" itemprop="dateModified" datetime="2020-05-20T15:13:15+08:00">2020-05-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Crypto/" itemprop="url" rel="index"><span itemprop="name">Crypto</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Security-Protocols-and-Standards–PKI-Principles-and-technology"><a href="#Security-Protocols-and-Standards–PKI-Principles-and-technology" class="headerlink" title="Security Protocols and Standards–PKI Principles and technology"></a><center>Security Protocols and Standards</center><br><p align="right">–PKI Principles and technology</p></h1><center>安全协议与标准</center>
+* PKI concepts/content/significance
+* Core PKI Service
+* Certificate and CRL(证书吊销列表)
+* Trust Model
+* PKCS：The Public-Key Cryptography Standards
+* CA(证书认证中心：Certificate Authority) Standards
+* PKI Security Protocols：SMIME，SSL，SET(安全电子交易协议)，VPN
+* PKI/CA Design and Implementation
+* Related Laws
+* \* Bitcoin & BlockChain
+
+
+
+
+
+
+
+<h2 id="1-Review-to-Cryptography"><a href="#1-Review-to-Cryptography" class="headerlink" title="1.Review to Cryptography"></a>1.Review to Cryptography</h2><blockquote>
+<h4 id="Security-Requirment-安全需求"><a href="#Security-Requirment-安全需求" class="headerlink" title="Security Requirment(安全需求)"></a>Security Requirment(安全需求)</h4><ul>
+<li>Confidentiality(机密性)：防止被未授权人员读取信息</li>
+<li>Integrity(完整性)：保持数据一致完整</li>
+<li>Availability(可用性)：保持数据可用</li>
+<li>Authentication(认证性)：保证人的身份正确</li>
+<li>Non-repudiation(抗抵赖性)：确保数据不会被否定</li>
+<li>Access control(访问控制)：防止未授权人员访问</li>
+</ul>
+<p>前三个被称为信息安全的CIA三要素</p>
+</blockquote>
+<h4 id="攻击的类型"><a href="#攻击的类型" class="headerlink" title="攻击的类型"></a>攻击的类型</h4><p><img src="/2020/02/03/Security-Protocols-and-Standards/attack-types.png" alt></p>
+<p>攻击分为两种类型：主动攻击和被动攻击</p>
+<ul>
+<li>被动攻击(Passive attack)：只能观察到流量或数据</li>
+<li>主动攻击(Active attack)：可以主动修改流量或数据，比如中间人攻击。通常比较难实现，但是攻击十分有效，比如邮件的伪造，TCP/IP spoofing（IP欺骗），session hijacking（会话劫持）</li>
+</ul>
+<h4 id="安全服务"><a href="#安全服务" class="headerlink" title="安全服务"></a>安全服务</h4><p>ISO7498-2中定义了5大类可选的安全服务：</p>
+<ul>
+<li>认证性</li>
+<li>访问控制</li>
+<li>数据保密性</li>
+<li>数据完整性</li>
+<li>不可否认性</li>
+</ul>
+<h4 id="安全机制"><a href="#安全机制" class="headerlink" title="安全机制"></a>安全机制</h4><p>三大基本设施</p>
+<ul>
+<li>Encryption(加密)</li>
+<li>Digital signatures(数字签名)</li>
+<li>Checksums/hash algorithm(校验码/哈希算法)</li>
+</ul>
+<p>一种安全服务可能结合多种安全机制</p>
+<h3 id="Security-Protocol"><a href="#Security-Protocol" class="headerlink" title="Security Protocol"></a>Security Protocol</h3><p><img src="/2020/02/03/Security-Protocols-and-Standards/securityProtocols.png" alt></p>
+<p>一种安全协议里包含一个或多个安全服务，而安全服务提供多种安全机制，在一个安全机制里可能用到多种算法（机制由算法实现），这就是<strong>协议与服务、机制、算法之间的关系</strong></p>
+<p>对称加密由加密过程可分为：流加密(Stream cipher)和块加密(Block cipher)</p>
+<p>Key Distribution Center(KDC)：密钥分发中心</p>
+<h4 id="块加密方式"><a href="#块加密方式" class="headerlink" title="块加密方式"></a>块加密方式</h4><ul>
+<li>Electronic Code Book(ECB)</li>
+<li>Cipher Block Chain(CBC)</li>
+<li>Cipher Feed Back(CFB)</li>
+<li>Output Feed Back(OFB)</li>
+<li>Counter(CTR)</li>
+</ul>
+<h4 id="公钥应用"><a href="#公钥应用" class="headerlink" title="公钥应用"></a>公钥应用</h4><ul>
+<li>加解密</li>
+<li>数字签名</li>
+<li>密钥交换</li>
+</ul>
+<h5 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h5><ul>
+<li>RSA</li>
+<li>DH：key exchange algorithm</li>
+<li>Elgamal</li>
+<li>DSA</li>
+</ul>
+<h3 id="对称加密vs非对称加密"><a href="#对称加密vs非对称加密" class="headerlink" title="对称加密vs非对称加密"></a>对称加密vs非对称加密</h3><h4 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h4><ul>
+<li>优点<ul>
+<li>速度快、处理量大，适用于对应用数据的直接加密</li>
+<li>加密密钥长度短，一般为40bit至128bit</li>
+<li>还可以构造各种加密体制，如产生伪随机数、hash函数</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>密钥在双方都要一致、保密，传递较难</li>
+<li>大型网络中密钥量大，难以管理，一般需要TTP</li>
+<li>密钥需要经常更换</li>
+</ul>
+</li>
+</ul>
+<h4 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h4><ul>
+<li>优点<ul>
+<li>只有私钥保密，公钥公开</li>
+<li>网络上的密钥管理只需要一个功能性TTP，而不是一个绝对安全的TTP，不需在线，可以离线</li>
+<li>密钥生命周期相对较长</li>
+<li>许多公钥方案可以产生数字签名机制</li>
+<li>在大型网络上，所需的密钥相对较少</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>速度慢、处理量少，适用于密钥交换</li>
+<li>密钥长度相对较长</li>
+<li>安全性没有得到理论性证明</li>
+<li>历史较短</li>
+</ul>
+</li>
+</ul>
+<h4 id="哈希函数"><a href="#哈希函数" class="headerlink" title="哈希函数"></a>哈希函数</h4><p>弱碰撞：给定x，寻找y，使得<code>H(y) =  H(x)</code></p>
+<p>强碰撞：寻找x，y，使得<code>H(y) = H(x)</code></p>
+<h4 id="Message-Authertication-Code-MAC"><a href="#Message-Authertication-Code-MAC" class="headerlink" title="Message Authertication Code(MAC)"></a>Message Authertication Code(MAC)</h4><p>消息认证码MAC</p>
+<p><img src="/2020/02/03/Security-Protocols-and-Standards/MAC.png" alt></p>
+<h4 id="数字签名（Digital-Signature）"><a href="#数字签名（Digital-Signature）" class="headerlink" title="数字签名（Digital Signature）"></a>数字签名（Digital Signature）</h4><h4 id="Key-Management"><a href="#Key-Management" class="headerlink" title="Key Management"></a>Key Management</h4><p>密码学最难的部分</p>
+<p>密钥分为两种</p>
+<ul>
+<li>Short-term session keys(ephemeral keys)</li>
+<li>Long-term keys<ul>
+<li>认证</li>
+<li>加密</li>
+</ul>
+</li>
+</ul>
+<h5 id="主要问题"><a href="#主要问题" class="headerlink" title="主要问题"></a>主要问题</h5><ul>
+<li>Distributing keys(分发密钥)<ul>
+<li>获取其他人的公钥</li>
+<li>分发自己的公钥</li>
+</ul>
+</li>
+<li>Establishing a shared key with another party(与另一方建立共享密钥)<ul>
+<li>保密性</li>
+<li>认证性</li>
+</ul>
+</li>
+<li>Key storage<ul>
+<li>安全存储密钥</li>
+</ul>
+</li>
+<li>Revocation<ul>
+<li>Revoking published keys：撤销公钥</li>
+<li>Determining whether a published key is still valid：验证公钥的可用性</li>
+</ul>
+</li>
+</ul>
+<h5 id="Key-Lifetime-and-Key-Compromise"><a href="#Key-Lifetime-and-Key-Compromise" class="headerlink" title="Key Lifetime and Key Compromise"></a>Key Lifetime and Key Compromise</h5><p>公钥有着更长的生命周期(decades)</p>
+<p>私钥或者传统密钥有着更短的生命周期(a year or two)</p>
+<h5 id="Key-Distribution-Problem"><a href="#Key-Distribution-Problem" class="headerlink" title="Key Distribution Problem"></a>Key Distribution Problem</h5><p>！中间人攻击</p>
+<p>解决办法：CA（Certification authority）</p>
+<ul>
+<li>对称加密密钥管理认证：KDC/KEY DISTRIBUTION CENTER</li>
+<li>非对称加密密钥管理认证：CA/CERTIFICATE AUTHORITY</li>
+</ul>
+<h4 id="Data-Format"><a href="#Data-Format" class="headerlink" title="Data Format"></a>Data Format</h4><p>一种正确的加密内容的格式如下图所示</p>
+<p><img src="/2020/02/03/Security-Protocols-and-Standards/dataFormat1.png" alt></p>
+<p>PGP和S/MIME，SSL，SSH的格式不同于他们的 bit-bagging format</p>
+<p><img src="/2020/02/03/Security-Protocols-and-Standards/dataFormat2.png" alt></p>
+<h4 id="Security-Protocol：Layers"><a href="#Security-Protocol：Layers" class="headerlink" title="Security Protocol：Layers"></a>Security Protocol：Layers</h4><p>层次越高，就越容易部署应用；层次越低，数据就越透明</p>
+<p><img src="/2020/02/03/Security-Protocols-and-Standards/Layers.png" alt></p>
+<h4 id="PKI（Public-Key-Infrastructure）"><a href="#PKI（Public-Key-Infrastructure）" class="headerlink" title="PKI（Public Key Infrastructure）"></a>PKI（Public Key Infrastructure）</h4><p>Internet安全系统解决方案，PKI采用数字证书机制管理公钥，通过第三方可信机构CA，把用户的公钥和身份信息进行有效捆绑，在Internet上有效验证用户的身份</p>
+<p>国际标准PKIX：系统化、标准化</p>
+<p>PKIX系列标准(Public Key Infrastructure on X.509)是由因特网网络工程技术小组的PKI小组制定，PKIX的标准化是建立互操作的基础。标准主要定义基于X.509的PKI框架模型，并以RFC形式发布</p>
+<hr>
+<p>安全：可靠性==》可靠性（网课的可靠性和安全性，没有可靠性，安全性没用）</p>
+<p>安全协议与标准</p>
+<p>协议：至少两方参与</p>
+<p>网络协议的三要素：语法、语义、同步</p>
+<p>围绕PKI的相关协议和理论</p>
+<p>PKI：安全基础设施：Public Key Infrastructure</p>
+<ul>
+<li>基础设施协议</li>
+<li>应用的协议</li>
+</ul>
+<blockquote>
+<p>参考书：</p>
+<p>PKI技术，荆继武，冯登国，科学出版社（偏理论</p>
+<p>PKI原理与技术，谢冬青，清华大学出版社</p>
+<p>PKI/CA与数字证书技术大全，张明德，刘伟，电子工业出版社（偏实践</p>
+</blockquote>
+<hr>
+<p>可靠性和安全性的区别，其两者之间的包含性</p>
+<p>面对问题需要系统的方法</p>
+<blockquote>
+<ul>
+<li><p>环境安全</p>
+</li>
+<li><p>物理安全</p>
+</li>
+<li><p>物理网路</p>
+</li>
+<li><p>平台可靠性</p>
+</li>
+</ul>
+</blockquote>
+<p>安全——木桶理论</p>
+<p>安全：生态的概念</p>
+<p> 蝴蝶效应</p>
+<p>黑天鹅理论</p>
+<p>CIA三定理</p>
+<p>被动攻击&amp;主动攻击</p>
+<ul>
+<li>被动攻击：可以监控数据</li>
+<li>主动攻击：可以修改数据</li>
+</ul>
+<p>属性证书</p>
+<p>身份证书</p>
+<p>两者结合解决身份认证问题</p>
+<p>协议：至少两方，交互信息、有限交互</p>
+<p>怎么打padding</p>
+<hr>
+<p>公钥算法的功能</p>
+<ul>
+<li>加解密：保密性</li>
+<li>数字签名：认证性</li>
+<li>密钥交换：密钥管理</li>
+</ul>
+<ul>
+<li><p>RSA：数字签名加解密</p>
+</li>
+<li><p>DH：密钥交换</p>
+</li>
+<li><p>Elgamal</p>
+</li>
+<li><p>DSA：基于离散对数的</p>
+</li>
+<li><p>椭圆曲线</p>
+</li>
+</ul>
+<hr>
+<p>IPV4，网络低层没有考虑安全</p>
+<p>我国IPv4的地址匮乏，主网模式下大量NAT、内网穿透的使用，大力推广IPV6</p>
+<p>PKI：Public Key Instruction</p>
+<p>密码学五大奠基：</p>
+<ul>
+<li>对称密码</li>
+<li>公钥加密</li>
+<li>数字签名</li>
+<li>HASH</li>
+<li>MAC</li>
+</ul>
+<p>协议：网络协议&amp;应用协议</p>
+<p>报告：中国PKI技术和应用发展，调研</p>
+<p>网站学习：技术体术标准化，商密SM系列标准</p>
+<p>报告：综述、涉及了什么</p>
+<p>ddl:10day</p>
+<hr>
+<h4 id="网络安全基础设施"><a href="#网络安全基础设施" class="headerlink" title="网络安全基础设施"></a>网络安全基础设施</h4><ul>
+<li>提供网络安全基本框架，可以被组织内任何需要安全服务的应用和对象使用</li>
+<li>接入点统一的，便于使用</li>
+</ul>
+<h4 id="安全登录（认证）"><a href="#安全登录（认证）" class="headerlink" title="安全登录（认证）"></a>安全登录（认证）</h4><p>认证：确认一个实体确实是其向其他人声明的</p>
+<p>用户标识&amp;认证信息&amp;防止口令截取&amp;监听&amp;重放攻击</p>
+<p>选择好口令：长度，质量，经常修改</p>
+<p>口令不再网络上直接传输</p>
+<blockquote>
+<ul>
+<li>认证：<br>①Kerboeros：纯密码<pre><code>基于用户名/口令</code></pre>②数字证书</li>
+</ul>
+<ul>
+<li>授权：是一个访问控制问题<br>对资源控制</li>
+</ul>
+</blockquote>
+<p>Kerberos</p>
+<hr>
+<h3 id="X-509-Certificate"><a href="#X-509-Certificate" class="headerlink" title="X.509 Certificate"></a>X.509 Certificate</h3><p>数字证书的合法有效性验证包含</p>
+<ul>
+<li>签名验证：自签名证书</li>
+</ul>
+<p>…</p>
+<ul>
+<li>证书链</li>
+</ul>
+<hr>
+<h3 id="PKI服务的突出优势"><a href="#PKI服务的突出优势" class="headerlink" title="PKI服务的突出优势"></a>PKI服务的突出优势</h3><ul>
+<li>节省费用</li>
+<li>企业内部互操作性&amp;企业间互操作性</li>
+<li>一致的解释方案（兼容性）</li>
+<li>实际安全性（标准化&amp;成熟性）</li>
+<li>安全服务提供者的选择（可度量&amp;可靠性&amp;认证管理）</li>
+<li></li>
+</ul>
+<p>PKI服务的不可否认性实现</p>
+<ul>
+<li>数字签名+时间戳服务</li>
+<li>证据（原始数据+签名信息+密钥+时间戳）</li>
+</ul>
+<h3 id="PKI-Architecture"><a href="#PKI-Architecture" class="headerlink" title="PKI Architecture"></a>PKI Architecture</h3><p>PKI架构</p>
+<p><img src="/2020/02/03/Security-Protocols-and-Standards/PKI_Architecture.png" alt></p>
+<p>Application：常规系统软件，如数据库、操作系统、Webserver</p>
+<p>结合网络的分层结构</p>
+<p>可以层层叠加的</p>
+<p>Cryptographic Primitives：代码签名：CSP，Microsoft CryptoAPI 2.0</p>
+<hr>
+<p>PKCS#标准列表</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/StudyNote/" rel="tag"># StudyNote</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/30/ShadowSocks-SourceCode-Learning/" rel="next" title="ShadowSocks-SourceCode-Learning">
+                <i class="fa fa-chevron-left"></i> ShadowSocks-SourceCode-Learning
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/13/CTF-Wargame/" rel="prev" title="CTF-Wargame">
+                CTF-Wargame <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Magic King"/>
+            
+              <p class="site-author-name" itemprop="name">Magic King</p>
+              <div class="site-description motion-element" itemprop="description">Now You See Me!</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">61</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/%20%7C%7C%20th">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/%20%7C%7C%20tags">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Magic-King" title="GitHub &rarr; https://github.com/Magic-King" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Security-Protocols-and-Standards–PKI-Principles-and-technology"><span class="nav-number">1.</span> <span class="nav-text">Security Protocols and Standards
+–PKI Principles and technology</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Review-to-Cryptography"><span class="nav-number">1.1.</span> <span class="nav-text">1.Review to Cryptography</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Security-Requirment-安全需求"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">Security Requirment(安全需求)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#攻击的类型"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">攻击的类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全服务"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">安全服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全机制"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">安全机制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Security-Protocol"><span class="nav-number">1.1.1.</span> <span class="nav-text">Security Protocol</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#块加密方式"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">块加密方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#公钥应用"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">公钥应用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#算法"><span class="nav-number">1.1.1.2.1.</span> <span class="nav-text">算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对称加密vs非对称加密"><span class="nav-number">1.1.2.</span> <span class="nav-text">对称加密vs非对称加密</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对称加密"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">对称加密</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非对称加密"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">非对称加密</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#哈希函数"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">哈希函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Message-Authertication-Code-MAC"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">Message Authertication Code(MAC)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数字签名（Digital-Signature）"><span class="nav-number">1.1.2.5.</span> <span class="nav-text">数字签名（Digital Signature）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Key-Management"><span class="nav-number">1.1.2.6.</span> <span class="nav-text">Key Management</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#主要问题"><span class="nav-number">1.1.2.6.1.</span> <span class="nav-text">主要问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Key-Lifetime-and-Key-Compromise"><span class="nav-number">1.1.2.6.2.</span> <span class="nav-text">Key Lifetime and Key Compromise</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Key-Distribution-Problem"><span class="nav-number">1.1.2.6.3.</span> <span class="nav-text">Key Distribution Problem</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-Format"><span class="nav-number">1.1.2.7.</span> <span class="nav-text">Data Format</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Security-Protocol：Layers"><span class="nav-number">1.1.2.8.</span> <span class="nav-text">Security Protocol：Layers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PKI（Public-Key-Infrastructure）"><span class="nav-number">1.1.2.9.</span> <span class="nav-text">PKI（Public Key Infrastructure）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络安全基础设施"><span class="nav-number">1.1.2.10.</span> <span class="nav-text">网络安全基础设施</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全登录（认证）"><span class="nav-number">1.1.2.11.</span> <span class="nav-text">安全登录（认证）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#X-509-Certificate"><span class="nav-number">1.1.3.</span> <span class="nav-text">X.509 Certificate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PKI服务的突出优势"><span class="nav-number">1.1.4.</span> <span class="nav-text">PKI服务的突出优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PKI-Architecture"><span class="nav-number">1.1.5.</span> <span class="nav-text">PKI Architecture</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Magic King</span>
+
+  
+
+  
+</div>
+
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0 </div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color='255,255,255' opacity='0.5' zIndex='-2' count='169' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+  
+  
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+</body>
+</html>
