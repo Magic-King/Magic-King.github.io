@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2020-11-05T02:53:43.788Z</updated>
+  <updated>2020-11-18T13:15:26.228Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Data-Backup/科学数据备份 – 山大网安俱乐部</title>
+    <link href="http://magic-king.net/2020/11/18/Data-Backup/%E7%A7%91%E5%AD%A6%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%20%E2%80%93%20%E5%B1%B1%E5%A4%A7%E7%BD%91%E5%AE%89%E4%BF%B1%E4%B9%90%E9%83%A8/"/>
+    <id>http://magic-king.net/2020/11/18/Data-Backup/科学数据备份 – 山大网安俱乐部/</id>
+    <published>2020-11-18T13:15:26.220Z</published>
+    <updated>2020-11-18T13:15:26.228Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;!DOCTYPE html&gt;
+&lt;!-- saved from url=(0049)https://sec.sdunet.cn/posts/data-security/backup/ --&gt;
+&lt;html lang=&quot;zh&quot; dir=&quot;ltr&quot;&gt;&lt;head prefix=&quot;og: http://ogp.me/ns#&quot;&gt;&lt;
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Data-Backup/科学数据备份 – 山大网安俱乐部_files/main.min</title>
+    <link href="http://magic-king.net/2020/11/18/Data-Backup/%E7%A7%91%E5%AD%A6%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%20%E2%80%93%20%E5%B1%B1%E5%A4%A7%E7%BD%91%E5%AE%89%E4%BF%B1%E4%B9%90%E9%83%A8_files/main.min/"/>
+    <id>http://magic-king.net/2020/11/18/Data-Backup/科学数据备份 – 山大网安俱乐部_files/main.min/</id>
+    <published>2020-11-18T13:15:26.135Z</published>
+    <updated>2020-11-18T13:15:26.136Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        .theme__light .chroma{background-color:#f5f2f0}.theme__light .chroma .err{color:#a61717;background-color:#e3d2d2}.theme__light .chroma .lntd{vertical-align:top;
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Reading-Note-of-A-Mathematical-Theory-of-Communication</title>
