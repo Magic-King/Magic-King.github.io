@@ -39,6 +39,58 @@ password:
 
 
 
+------
+
+
+
+
+
+> 参考资料：
+>
+> > 仅供参考的阅读资料(我觉得可能没软用)
+> >
+> > 存储方案：[适用于个人用户的最佳数据备份方案有哪些？](https://www.zhihu.com/question/23565277)
+> >
+> > [个人数据备份方案](https://www.cnblogs.com/BillySir/p/6392091.html)
+> >
+> > 
+>
+> [当前工作环境下的个人数据备份方案及实践](https://www.oheng.com/%E5%BD%93%E5%89%8D%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E4%B8%AA%E4%BA%BA%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%E6%96%B9%E6%A1%88%E5%8F%8A%E5%AE%9E%E8%B7%B5/)
+>
+> [数据备份与灾难恢复](https://www.jianshu.com/p/2a1c339f113f)：感觉这篇更多的是针对企业的数据备份、容灾
+>
+> * [全平台的备份指南，让你从此重装不再难](https://sspai.com/post/56272) :极度推荐的备份方法，虽然他的本意是面对系统重装的
+>
+> [个人数据备份方案设计](https://maxiee.github.io/post/DataBackupmd/)
+>
+> [简易个人数据备份方案](https://www.yywr.net/96.yy)
+>
+> [软件使用 篇二：个人数据的备份经验1-通过脚本自动化备份](https://post.smzdm.com/p/507822/)
+>
+> [免费个人数据备份软件介绍：FreeFileSync、Syncthing](https://cloud.tencent.com/developer/news/180449)
+>
+> > DISM++：Dism++ 是一款 Windows 系统管理优化工具，它解决了我们安装、维护系统的一大痛点问题——自定义设置和优化。相当于一个 “一站式” 管理优化工具集。
+> >
+> > [Dism++ ，强大的 Windows 系统优化工具](https://zhuanlan.zhihu.com/p/37664732)
+> >
+> > [Dism++，也许是最强的实用工具](http://www.chuyu.me/zh-Hans/)：汉化官网，gui版本
+> >
+> > 之前了解的，不过之后感觉没有什么用了，已经决定使用scoop了
+> >
+> > 
+>
+> 
+
+之前还了解过portableApps，不过感觉其界面UI不行，还是主要面向可移动应用，不过可以自己制作相关的portableApp，在其官网上都给出了教程
+
+但是portableApps意味着就无法使用右键菜单了，也没法命令行快速启动，这是挺蛋疼的。不过这是一种可以方便移植到U盘的解决办法
+
+
+
+
+
+
+
 ## 0x01 用rsync备份
 
 
@@ -171,9 +223,77 @@ rsync可以依靠rsync协议或者ssh协议通道来进行备份，本质上是�
 
 
 
+## 0x02 备份指南
 
 
 
+* 备份的321原则
+  * 3：存储 3 份完整文件，一份原件加上两份拷贝。
+  * 2：将文件起码保持在两种不同的介质上。
+  * 1：将一份拷贝保存在异地。
+
+
+
+然后在做备份时，需要对备份文件的每个目录写个Readme，方便解释如何备份，如何恢复
+
+然后再做个总目录，就完美了
+
+
+
+一个备份目录示例如下（摘自参考链接中的少数派，个人正在制作相关的备份目录）：
+
+```
+重装指南
+├── 目录.md
+├── Google Chrome 扩展
+│   ├── 如何备份.md
+│   ├── Proxy SwitchyOmega.bak
+│   └── 扩展列表.md
+├── 桌面程序
+│   ├── 如何备份.md
+│   ├── Bandizip
+│   │   └── Bandizip Settings.reg
+│   ├── Directory Opus
+│   │   └── Opus Config.ocb
+│   ├── DnsJumper
+│   │   └── DnsJumper.ini
+│   ├── Everything
+│   │   └── Everything.ini
+│   ├── Listary
+│   │   └── Preferences.json
+│   ├── Snipaste
+│   │   └── config.ini
+│   └── VSCode
+│       ├── 扩展列表.md
+│       ├── 键位绑定.json
+│       ├── 全局设置.json
+│       └── 代码片段
+│           ├── c.json
+│           ├── ...
+│           └── markdown.json
+├── Linux 安装指南
+│   ├── CentOS.md
+│   ├── 软件列表.md
+│   └── WSL.md
+├── Mac 安装指南
+│   ├── 如何备份.md
+│   ├── brew bundle.md
+│   ├── 应用程序.md
+│   └── 手动安装.md
+├── 手机应用列表
+│   ├── 如何备份.md
+│   ├── Android.md
+│   └── iPhone.md
+├── oh-my-zsh
+│   ├── 如何备份.md
+│   ├── zshrc-mac.md
+│   ├── zshrc-vps.md
+│   └── zshrc-wsl.md
+└── Windows 安装指南
+    ├── 如何备份.md
+    ├── 第一次配置.md
+    └── 软件列表.md
+```
 
 
 
