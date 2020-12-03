@@ -1770,7 +1770,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2ab673;
+  background: #ffff2a;
 }
 .feed-link,
 .chat {
@@ -2817,8 +2817,4 @@ ul.breadcrumb li+li:last-child {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-body {
-/*background:url(/images/background.jpg);*/
-  background: #fc354c; /* fallback for old browsers */
 }
