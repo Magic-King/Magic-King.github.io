@@ -198,11 +198,11 @@
       <category term="pwn" scheme="http://magic-king.net/categories/pwn/"/>
     
     
-      <category term="security" scheme="http://magic-king.net/tags/security/"/>
-    
       <category term="ctf" scheme="http://magic-king.net/tags/ctf/"/>
     
       <category term="pwn" scheme="http://magic-king.net/tags/pwn/"/>
+    
+      <category term="security" scheme="http://magic-king.net/tags/security/"/>
     
   </entry>
   
@@ -790,9 +790,9 @@
       <category term="DDoS" scheme="http://magic-king.net/categories/DDoS/"/>
     
     
-      <category term="Network" scheme="http://magic-king.net/tags/Network/"/>
-    
       <category term="DDoS" scheme="http://magic-king.net/tags/DDoS/"/>
+    
+      <category term="Network" scheme="http://magic-king.net/tags/Network/"/>
     
       <category term="JavaScript" scheme="http://magic-king.net/tags/JavaScript/"/>
     
