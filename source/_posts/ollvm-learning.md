@@ -856,7 +856,7 @@ STATISTIC(Xor, "Xor substitued");
 
 适配llvm9.0和ollvm4.0时发生了许多错误
 
-可见 [bug_Log](./ollvm-learning/bug_log.txt)
+可见 [bug_Log](ollvm-learning/bug_log.txt)
 
 [Segmentation Fault 的原因若干](https://www.cnblogs.com/wpgraceii/p/10622582.html)
 

@@ -25,6 +25,10 @@ date: 2020-04-22 15:14:04
 
 
 
+黑客精神：http://catb.org/~esr/faqs/hacker-howto.html
+
+
+
 <div style="
     color: #007bfc;
     border-color: #007bfc; position: relative;
@@ -298,3 +302,37 @@ https://www.ctftools.com/down/
 fmyy.pro
 
 [pwnki](https://www.cnblogs.com/luoleqi/)
+
+[0xpat](https://0xpat.github.io/)
+
+
+
+https://veteransec.com/
+
+https://www.offensive-security.com/
+
+
+
+------
+
+### Links To Everything
+
+------
+
+
+
+* #### 国内安全团队
+
+
+
+* #### 国外安全团队
+
+
+
+* #### 高校安全研究实验室
+
+
+
+
+
+
