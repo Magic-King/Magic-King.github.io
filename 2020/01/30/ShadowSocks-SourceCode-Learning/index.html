@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1"/>
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="关于ShadowSocks的学习对待科学上网的工具，既然开源的话，就要有科学的精神对其进行学习。 其GitHub官方网址：https:&#x2F;&#x2F;github.com&#x2F;shadowsocks 本文学习的源码来自：https:&#x2F;&#x2F;github.com&#x2F;shadowsocks&#x2F;shadowsocks 版本是2.9.1的python版本  参考： shadowsocks 源码分析：整体结构 你也能写个 Shad">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ShadowSocks-SourceCode-Learning">
+<meta property="og:url" content="http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/index.html">
+<meta property="og:site_name" content="Hexo&amp;Magic">
+<meta property="og:description" content="关于ShadowSocks的学习对待科学上网的工具，既然开源的话，就要有科学的精神对其进行学习。 其GitHub官方网址：https:&#x2F;&#x2F;github.com&#x2F;shadowsocks 本文学习的源码来自：https:&#x2F;&#x2F;github.com&#x2F;shadowsocks&#x2F;shadowsocks 版本是2.9.1的python版本  参考： shadowsocks 源码分析：整体结构 你也能写个 Shad">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/1.png">
+<meta property="og:image" content="http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/2.png">
+<meta property="og:image" content="http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/3.png">
+<meta property="og:image" content="http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/4.png">
+<meta property="og:image" content="http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/5.png">
+<meta property="og:image" content="http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/6.png">
+<meta property="article:published_time" content="2020-01-30T13:39:16.000Z">
+<meta property="article:modified_time" content="2020-02-25T06:16:54.535Z">
+<meta property="article:author" content="Magic King">
+<meta property="article:tag" content="Network">
+<meta property="article:tag" content="ShadowSocks">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/1.png">
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Hexo&Magic" type="application/atom+xml"/>
+
+
+
+  
+  
+  <link rel="canonical" href="http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>ShadowSocks-SourceCode-Learning | Hexo&Magic</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo&Magic</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-link">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/Link/" rel="section"><i class="menu-item-icon fa fa-fw fa-magic"></i> <br/>Link</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Magic King"/>
+      <meta itemprop="description" content="Now You See Me!"/>
+      <meta itemprop="image" content="/images/avatar.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo&Magic"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ShadowSocks-SourceCode-Learning
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-30 21:39:16" itemprop="dateCreated datePublished" datetime="2020-01-30T21:39:16+08:00">2020-01-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-25 14:16:54" itemprop="dateModified" datetime="2020-02-25T14:16:54+08:00">2020-02-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">Network</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="关于ShadowSocks的学习"><a href="#关于ShadowSocks的学习" class="headerlink" title="关于ShadowSocks的学习"></a>关于ShadowSocks的学习</h1><p>对待科学上网的工具，既然开源的话，就要有科学的精神对其进行学习。</p>
+<p>其GitHub官方网址：<a href="https://github.com/shadowsocks" target="_blank" rel="noopener">https://github.com/shadowsocks</a></p>
+<p>本文学习的源码来自：<a href="https://github.com/shadowsocks/shadowsocks" target="_blank" rel="noopener">https://github.com/shadowsocks/shadowsocks</a></p>
+<p>版本是2.9.1的python版本</p>
+<blockquote>
+<p>参考：</p>
+<p><a href="https://bitmingw.com/2017/03/25/shadowsocks-code-analysis-overview/" target="_blank" rel="noopener">shadowsocks 源码分析：整体结构</a></p>
+<p><a href="https://segmentfault.com/a/1190000011862912" target="_blank" rel="noopener">你也能写个 Shadowsocks</a></p>
+<p><a href="https://huiliu.github.io/2016/03/19/shadowsocks.html" target="_blank" rel="noopener">shadowsocks源码分析：ssserver</a></p>
+<p><a href="https://0x01.io/2016/02/28/shadowsocks-源码阅读/" target="_blank" rel="noopener">shadowsocks 源码阅读</a></p>
+<p><a href="https://loggerhead.me/posts/shadowsocks-yuan-ma-fen-xi-xie-yi-yu-jie-gou.html" target="_blank" rel="noopener">Shadowsocks 源码分析——协议与结构</a></p>
+<p><a href="[https://blog.gfkui.com/2018/04/29/shadowsocks%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/index.html](https://blog.gfkui.com/2018/04/29/shadowsocks客户端源码分析/index.html)">shadowsocks客户端源码分析</a></p>
+</blockquote>
+<p>这个世界上不应该仅有一种声音。</p>
+<p>但是。。。</p>
+<h2 id="关于SOCKS协议"><a href="#关于SOCKS协议" class="headerlink" title="关于SOCKS协议"></a>关于SOCKS协议</h2><p>ShadowSocks的数据传输时建立在SOCK5协议之上，SOCKS5 是 TCP/IP 层面的网络代理协议。</p>
+<p>ss-server 端解密出来的数据就是采用 SOCKS5 协议封装的，通过 SOCKS5 协议 ss-server 端能读出本机软件想访问的服务的真正地址以及要传输的原数据</p>
+<blockquote>
+<p>关于Socks5学习：</p>
+<p><a href="http://zhihan.me/network/2017/09/24/socks5-protocol/" target="_blank" rel="noopener">socks5 协议简介</a></p>
+<p><a href="https://www.cnblogs.com/yinzhengjie/p/7357860.html" target="_blank" rel="noopener">HTTP协议和SOCKS5协议</a></p>
+<p><a href="https://zh.wikipedia.org/wiki/SOCKS" target="_blank" rel="noopener">socks-wiki</a></p>
+<p><a href="https://www.ietf.org/rfc/rfc1928.txt" target="_blank" rel="noopener">rfc1928</a></p>
+<p><a href="https://www.ietf.org/rfc/rfc1929.txt" target="_blank" rel="noopener">rfc1929</a></p>
+</blockquote>
+<p>socks是一种网络传输协议，主要用于客户端与外网服务器之间通讯的中间传递。根据OSI七层模型来划分，SOCKS属于会话层协议，位于表示层与传输层之间。</p>
+<p>socks5协议将socks4协议扩展：</p>
+<ul>
+<li>对UDP连接的支持</li>
+<li>多种用户身份验证方式和通信加密方式</li>
+<li>将寻址方式扩展为包含域名和v6 IP地址（即IPv6）</li>
+</ul>
+<p>socks协议的设计初衷是在保证网络隔离的情况下，提高部分人员的网络访问权限。但是他却被发现了新的用途：突破网络通信限制，这和该协议的设计初衷正好相反。</p>
+<h4 id="Socks5协议流程"><a href="#Socks5协议流程" class="headerlink" title="Socks5协议流程"></a>Socks5协议流程</h4><p><img src="/2020/01/30/ShadowSocks-SourceCode-Learning/1.png" alt></p>
+<p>建立TCP连接后，客户端需要先发送请求来协商版本及认证方式，详细可见<a href="https://www.ietf.org/rfc/rfc1928.txt" target="_blank" rel="noopener">rfc1928</a></p>
+<h2 id="Shadowsocks原理"><a href="#Shadowsocks原理" class="headerlink" title="Shadowsocks原理"></a>Shadowsocks原理</h2><p><img src="/2020/01/30/ShadowSocks-SourceCode-Learning/2.png" alt></p>
+<ul>
+<li><strong>PC</strong>是需要利用shadowsocks代理的应用；</li>
+<li><strong>SS Local</strong>：为shadowsocks客户端，通常运行在PC/手机上（也可以运行在任务PC可 以到达的位置），用于与shadowsocks服务端建立连接。</li>
+<li><strong>GFW</strong>：你懂的</li>
+<li><strong>ss server</strong>：shadowsocks服务端，与ss local通讯，完成ss local请 求的访问，并将返回数据加密返回给ss local</li>
+</ul>
+<p>混淆时实在ClientHello阶段，即第1阶段时进行混淆，加入jiade目标网址</p>
+<h2 id="shadowsocks源码分析"><a href="#shadowsocks源码分析" class="headerlink" title="shadowsocks源码分析"></a>shadowsocks源码分析</h2><p>shadowsocks文件树形结构图如下</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">├── .gitignore</span><br><span class="line">├── .travis.yml</span><br><span class="line">├── CHANGES</span><br><span class="line">├── CONTRIBUTING.md</span><br><span class="line">├── debian</span><br><span class="line">│   ├── changelog</span><br><span class="line">│   ├── compat</span><br><span class="line">│   ├── config.json</span><br><span class="line">│   ├── control</span><br><span class="line">│   ├── copyright</span><br><span class="line">│   ├── docs</span><br><span class="line">│   ├── init.d</span><br><span class="line">│   ├── install</span><br><span class="line">│   ├── rules</span><br><span class="line">│   ├── shadowsocks.default</span><br><span class="line">│   ├── shadowsocks.manpages</span><br><span class="line">│   ├── <span class="keyword">source</span></span><br><span class="line">│   │   └── format</span><br><span class="line">│   ├── sslocal.<span class="number">1</span></span><br><span class="line">│   └── ssserver.<span class="number">1</span></span><br><span class="line">├── Dockerfile</span><br><span class="line">├── LICENSE</span><br><span class="line">├── MANIFEST.in</span><br><span class="line">├── README.md</span><br><span class="line">├── README.rst</span><br><span class="line">├── setup.<span class="keyword">py</span></span><br><span class="line">├── shadowsocks</span><br><span class="line">│   ├── asyncdns.<span class="keyword">py</span></span><br><span class="line">│   ├── common.<span class="keyword">py</span></span><br><span class="line">│   ├── crypto</span><br><span class="line">│   │   ├── __init__.<span class="keyword">py</span></span><br><span class="line">│   │   ├── openssl.<span class="keyword">py</span></span><br><span class="line">│   │   ├── rc4_md5.<span class="keyword">py</span></span><br><span class="line">│   │   ├── sodium.<span class="keyword">py</span></span><br><span class="line">│   │   ├── table.<span class="keyword">py</span></span><br><span class="line">│   │   └── util.<span class="keyword">py</span></span><br><span class="line">│   ├── daemon.<span class="keyword">py</span></span><br><span class="line">│   ├── encrypt.<span class="keyword">py</span></span><br><span class="line">│   ├── eventloop.<span class="keyword">py</span></span><br><span class="line">│   ├── __init__.<span class="keyword">py</span></span><br><span class="line">│   ├── local.<span class="keyword">py</span></span><br><span class="line">│   ├── lru_cache.<span class="keyword">py</span></span><br><span class="line">│   ├── manager.<span class="keyword">py</span></span><br><span class="line">│   ├── server.<span class="keyword">py</span></span><br><span class="line">│   ├── <span class="keyword">shell</span>.<span class="keyword">py</span></span><br><span class="line">│   ├── tcprelay.<span class="keyword">py</span></span><br><span class="line">│   └── udprelay.<span class="keyword">py</span></span><br><span class="line">├── tests</span><br><span class="line">├─tests</span><br><span class="line">│  ├──  aes-cfb1.json</span><br><span class="line">│  ├──  aes-cfb8.json</span><br><span class="line">│  ├──  aes-ctr.json</span><br><span class="line">│  ├──  aes.json</span><br><span class="line">│  ├──  assert.<span class="keyword">sh</span></span><br><span class="line">│  ├──  chacha20-ietf.json</span><br><span class="line">│  ├──  chacha20.json</span><br><span class="line">│  ├──  client-multi-server-ip.json</span><br><span class="line">│  ├──  coverage_server.<span class="keyword">py</span></span><br><span class="line">│  ├──  fastopen.json</span><br><span class="line">│  ├──  gen_multiple_passwd.<span class="keyword">py</span></span><br><span class="line">│  ├──  graceful.json</span><br><span class="line">│  ├──  graceful_cli.<span class="keyword">py</span></span><br><span class="line">│  ├──  graceful_server.<span class="keyword">py</span></span><br><span class="line">│  ├──  ipv6-client-side.json</span><br><span class="line">│  ├──  ipv6.json</span><br><span class="line">│  ├──  jenkins.<span class="keyword">sh</span></span><br><span class="line">│  ├──  nose_plugin.<span class="keyword">py</span></span><br><span class="line">│  ├──  rc4-md5-ota.json</span><br><span class="line">│  ├──  rc4-md5.json</span><br><span class="line">│  ├──  salsa20-ctr.json</span><br><span class="line">│  ├──  salsa20.json</span><br><span class="line">│  ├──  server-dnsserver.json</span><br><span class="line">│  ├──  server-multi-passwd-client-side.json</span><br><span class="line">│  ├──  server-multi-passwd-<span class="built_in">empty</span>.json</span><br><span class="line">│  ├──  server-multi-passwd-performance.json</span><br><span class="line">│  ├──  server-multi-passwd-table.json</span><br><span class="line">│  ├──  server-multi-passwd.json</span><br><span class="line">│  ├──  server-multi-ports.json</span><br><span class="line">│  ├──  setup_tc.<span class="keyword">sh</span></span><br><span class="line">│  ├──  table.json</span><br><span class="line">│  ├──  test.<span class="keyword">py</span></span><br><span class="line">│  ├──  test_command.<span class="keyword">sh</span></span><br><span class="line">│  ├──  test_daemon.<span class="keyword">sh</span></span><br><span class="line">│  ├──  test_graceful_restart.<span class="keyword">sh</span></span><br><span class="line">│  ├──  test_large_file.<span class="keyword">sh</span></span><br><span class="line">│  ├──  test_udp_src.<span class="keyword">py</span></span><br><span class="line">│  ├──  test_udp_src.<span class="keyword">sh</span></span><br><span class="line">│  ├──  workers.json</span><br><span class="line">│  │</span><br><span class="line">│  ├─libsodium</span><br><span class="line">│  │    └── install.<span class="keyword">sh</span></span><br><span class="line">│  │</span><br><span class="line">│  └─socksify</span><br><span class="line">│       ├── install.<span class="keyword">sh</span></span><br><span class="line">│       └── socks.<span class="keyword">conf</span></span><br><span class="line">|</span><br><span class="line">└── utils</span><br><span class="line">    ├── autoban.<span class="keyword">py</span></span><br><span class="line">    ├── fail2ban</span><br><span class="line">    │   └── shadowsocks.<span class="keyword">conf</span></span><br><span class="line">    └── README.md</span><br></pre></td></tr></table></figure>
+
+
+
+<p>有过python工程经验（类似于Flask）很明显得知，工程核心代码位于<code>shadowsocks</code>里，其他提供了打包测试功能。</p>
+<p>对于核心代码：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">├── shadowsocks</span><br><span class="line">│   ├── asyncdns.py</span><br><span class="line">│   ├── common.py</span><br><span class="line">│   ├── crypto</span><br><span class="line">│   │   ├── __init__.py</span><br><span class="line">│   │   ├── openssl.py</span><br><span class="line">│   │   ├── rc4_md5.py</span><br><span class="line">│   │   ├── sodium.py</span><br><span class="line">│   │   ├── <span class="selector-tag">table</span>.py</span><br><span class="line">│   │   └── util.py</span><br><span class="line">│   ├── daemon.py</span><br><span class="line">│   ├── encrypt.py</span><br><span class="line">│   ├── eventloop.py</span><br><span class="line">│   ├── __init__.py</span><br><span class="line">│   ├── local.py</span><br><span class="line">│   ├── lru_cache.py</span><br><span class="line">│   ├── manager.py</span><br><span class="line">│   ├── server.py</span><br><span class="line">│   ├── shell.py</span><br><span class="line">│   ├── tcprelay.py</span><br><span class="line">│   └── udprelay.py</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><strong>tcprelay.py</strong>提供了类TCPRelay, TCPRelayHandler来处理TCP代理连接</li>
+<li><strong>udprelay.py</strong>提供了类UDPRelay，UDPRelayHandler来处理UDP代理连接</li>
+<li><strong>eventloop.py</strong>提供了类EventLoop对<code>epoll</code>, <code>kqueue</code>, <code>select</code>方法的包装，提供统一的IO复用接口</li>
+<li><strong>encrypt.py</strong>提供加密解密相关接口<ul>
+<li>具体的加密实现在crypto文件夹中实现</li>
+</ul>
+</li>
+<li><strong>daemon.py</strong>：用于实现守护进程；</li>
+<li><strong>shell.py</strong>：读取命令行参数，检查配置</li>
+<li><strong>common.py</strong>包含一些通用接口</li>
+<li><strong>lru_cache.py</strong>：实现了LRU缓存</li>
+<li><strong>server.py</strong>是服务端入口ssserver；</li>
+<li><strong>local.py</strong>是客户端入口sslocal；</li>
+</ul>
+<p>可以看到，基本每个文件中，都有这一行的引入模块</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> absolute_import, division, print_function, \</span><br><span class="line">    with_statement</span><br></pre></td></tr></table></figure>
+
+<p>这个模块是为了引入下一版本的python特性，提高代码对最新python版本的兼容性。</p>
+<p>在<code>setup.py</code>中可见，该代码可在python2.6，python2.7以及python3.3，python3.4及以上版本运行，因此会引入该库来解决兼容性问题</p>
+<p>主要是为了兼容<code>import</code>，除法<code>/</code>，<code>print</code>，<code>with</code></p>
+<blockquote>
+<blockquote>
+<p>about <code>__future__</code>：</p>
+<p><a href="https://www.liaoxuefeng.com/wiki/897692888725344/923030465280480" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/897692888725344/923030465280480</a></p>
+</blockquote>
+<ul>
+<li>import</li>
+</ul>
+<p><a href="https://blog.csdn.net/caiqiiqi/article/details/51050800" target="_blank" rel="noopener">https://blog.csdn.net/caiqiiqi/article/details/51050800</a></p>
+<p>Python 2.4或之前, Python会先查找当前目录下有没有string.py, 若找到了，则引入该模块，然后你在main.py中可以直接用string了。</p>
+<p>而引入absolute_import 可以先从系统库中引用。</p>
+<ul>
+<li><code>/</code></li>
+</ul>
+<p>python2中，<code>/</code>为整除，而python3中，整除是<code>//</code>。</p>
+<ul>
+<li>print</li>
+</ul>
+<p>python2中，print是一个语法结构，而python3中，print是一个内置函数，有多个参数</p>
+<p>即明显地，python2中，<code>print &#39;hello world&#39;</code>；而在python3中，<code>print(&#39;hello world&#39;)</code></p>
+<ul>
+<li>with</li>
+</ul>
+<p><a href="http://www.voidcn.com/article/p-wrgsfqdl-boq.html" target="_blank" rel="noopener">http://www.voidcn.com/article/p-wrgsfqdl-boq.html</a></p>
+<p>python2.5需要引入的语法，没有看到2和3有什么区别，应该是为了兼容所引入的。</p>
+<p>在stackoverflow的一个问题里说的很清楚了：<a href="https://stackoverflow.com/questions/3791903/which-python-version-needs-from-future-import-with-statement" target="_blank" rel="noopener">https://stackoverflow.com/questions/3791903/which-python-version-needs-from-future-import-with-statement</a></p>
+<p>version&lt;=2.4不支持，version2.5需要这个import with_statement，在version&gt;=2.6的时候，python已经将with内嵌进去了。</p>
+</blockquote>
+<h3 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h3><h4 id="openssl-py"><a href="#openssl-py" class="headerlink" title="openssl.py"></a>openssl.py</h4><p><code>from ctypes import ...</code>：ctypes是python和C的桥梁，ctypes是python标准库之一，里面引入了许多C的函数以及变量类型</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/gaowengang/p/7919219.html" target="_blank" rel="noopener">https://www.cnblogs.com/gaowengang/p/7919219.html</a></p>
+</blockquote>
+<p><code>__all__ = [&#39;cipher&#39;]</code>规定了对外暴露的接口</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/wxlog/p/10566628.html" target="_blank" rel="noopener">https://www.cnblogs.com/wxlog/p/10566628.html</a></p>
+</blockquote>
+<p>由此直接看到下面的<code>cipher</code>，里面定义了ss的加密方法</p>
+<p><img src="/2020/01/30/ShadowSocks-SourceCode-Learning/3.png" alt></p>
+<p>这也就是crypto模块对外提供的所有加密方法</p>
+<p><code>def load_openssl()</code>方法用来寻找运行系统中的openssl库</p>
+<p>全局变量<code>libcrypto</code>用来存放打开的openssl对象</p>
+<p>定义了一个<code>OpenSSLCrypto</code>对象用来加密</p>
+<p>函数<code>def run_method(method)</code>用来调用该对象进行加解密</p>
+<p>然后下面有一堆的<code>test</code>函数</p>
+<h4 id="rc4-md5-py"><a href="#rc4-md5-py" class="headerlink" title="rc4_md5.py"></a>rc4_md5.py</h4><p>直接调用<code>hashlib</code>模块的md5进行运算，没啥好说的</p>
+<h4 id="sodium-py"><a href="#sodium-py" class="headerlink" title="sodium.py"></a>sodium.py</h4><p>soudium是钠的意思，好像也是在英语中代表着纯盐</p>
+<blockquote>
+<p><a href="https://blog.abyss.moe/archives/24/" target="_blank" rel="noopener">https://blog.abyss.moe/archives/24/</a></p>
+<p><a href="https://github.com/jedisct1/libsodium" target="_blank" rel="noopener">https://github.com/jedisct1/libsodium</a></p>
+</blockquote>
+<p>但是查了下<code>libsodium</code>是一个新的软件库，为了加解密、签名、哈希等。是一个现代的密码库，着重于移植性、安全性，是NaCl(Networking and Cryptographt library)的一个分支==&gt;<a href="http://nacl.cr.yp.to/" target="_blank" rel="noopener">http://nacl.cr.yp.to/</a></p>
+<p>这里面也是实现了三种加密（都没听过，往后有时间可以了解一下</p>
+<p><img src="/2020/01/30/ShadowSocks-SourceCode-Learning/4.png" alt></p>
+<h4 id="util-py"><a href="#util-py" class="headerlink" title="util.py"></a>util.py</h4><p>基本在Crypto文件夹下的所有文件基本都引用了这个模块</p>
+<p>这模块提供了①查找dll库的函数：<code>def find_library_nt(name)</code>、<code>def find_library(possible_lib_names, search_symbol, library_name)</code><br>②测试加解密函数：<code>def run_cipher(cipher, decipher)</code><br>③检验引入的库是否存在：<code>def test_find_library()</code></p>
+<p>其main函数主要是为了检测是否引入所有所需的dll库，所以引入这个模块可确保其他编写加密的文件不会出现无法调用库的情况</p>
+<p><img src="/2020/01/30/ShadowSocks-SourceCode-Learning/5.png" alt></p>
+<h4 id="table-py"><a href="#table-py" class="headerlink" title="table.py"></a>table.py</h4><p>好像是一种单表替换加密</p>
+<h3 id="init-py"><a href="#init-py" class="headerlink" title="__init__.py"></a>__init__.py</h3><p>一个很正常的init文件，跟crypto的_<em>init_</em>.py差不多</p>
+<h3 id="asyncdns-py"><a href="#asyncdns-py" class="headerlink" title="asyncdns.py"></a>asyncdns.py</h3><p>从文件名就可以看出，这是一个异步的DNS查询</p>
+<p>其文件里提到了rfc1035，即DNS协议</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 规定了hostname的格式</span></span><br><span class="line">VALID_HOSTNAME = re.compile(<span class="string">br"(?!-)[A-Z\d\-_]&#123;1,63&#125;(?&lt;!-)$"</span>, re.IGNORECASE)</span><br><span class="line"><span class="comment"># 以及后面对hostname的判断</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_valid_hostname</span><span class="params">(hostname)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> len(hostname) &gt; <span class="number">255</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">if</span> hostname[<span class="number">-1</span>] == <span class="string">b'.'</span>:</span><br><span class="line">        hostname = hostname[:<span class="number">-1</span>]</span><br><span class="line">    <span class="keyword">return</span> all(VALID_HOSTNAME.match(x) <span class="keyword">for</span> x <span class="keyword">in</span> hostname.split(<span class="string">b'.'</span>))</span><br></pre></td></tr></table></figure>
+
+
+
+<p>以下是该文件里对DNS协议写的一些通用的工具类函数用于解析地址、回应等，以及构造地址和请求</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_address</span><span class="params">(address)</span></span></span><br><span class="line"><span class="function"><span class="title">def</span> <span class="title">build_request</span><span class="params">(address, qtype)</span></span></span><br><span class="line"><span class="function"><span class="title">def</span> <span class="title">parse_ip</span><span class="params">(addrtype, data, length, offset)</span></span></span><br><span class="line"><span class="function"><span class="title">def</span> <span class="title">parse_name</span><span class="params">(data, offset)</span></span></span><br><span class="line"><span class="function"><span class="title">def</span> <span class="title">parse_record</span><span class="params">(data, offset, question=False)</span></span></span><br><span class="line"><span class="function"><span class="title">def</span> <span class="title">parse_header</span><span class="params">(data)</span></span></span><br><span class="line"><span class="function"><span class="title">def</span> <span class="title">parse_response</span><span class="params">(data)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>采用了<code>class DNSResponse(object)</code>这个类来存储DNS回应，即目标的hostname、请求、以及answer</p>
+<p><img src="/2020/01/30/ShadowSocks-SourceCode-Learning/6.png" alt></p>
+<p><code>class DNSResolver(object)</code>类实现了简单的异步查询DNS，其中异步缓存采用了LRUCache的方式（具体实现在<code>lru_cache.py</code>中）</p>
+<p>核心处理方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 只有可读事件</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_event</span><span class="params">(self, sock, fd, event)</span>:</span></span><br><span class="line">    	<span class="comment"># 防御性编程，实际上是个无用的判断</span></span><br><span class="line">        <span class="keyword">if</span> sock != self._sock:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">if</span> event &amp; eventloop.POLL_ERR:</span><br><span class="line">            <span class="comment"># 当错误发生时,重新初始化sock</span></span><br><span class="line">            logging.error(<span class="string">'dns socket err'</span>)</span><br><span class="line">            <span class="comment"># 从事件循环中移除 slef._sock</span></span><br><span class="line">            self._loop.remove(self._sock)</span><br><span class="line">            self._sock.close()</span><br><span class="line">            <span class="comment"># TODO when dns server is IPv6</span></span><br><span class="line">            <span class="comment"># 初始化sock</span></span><br><span class="line">            self._sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM,</span><br><span class="line">                                       socket.SOL_UDP)</span><br><span class="line">            self._sock.setblocking(<span class="literal">False</span>)</span><br><span class="line">            <span class="comment"># 重新加入事件循环</span></span><br><span class="line">            self._loop.add(self._sock, eventloop.POLL_IN, self)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="string">'''</span></span><br><span class="line"><span class="string">			读取一个 UDP 包，并取出前 1024 个字节</span></span><br><span class="line"><span class="string">        	注意：如果一个 UDP 包超过 1024 字节，比如：2048 字节。</span></span><br><span class="line"><span class="string">        	一次 recvfrom(1024) 也会消耗整个 UDP 包。这里是认为</span></span><br><span class="line"><span class="string">        	DNS 查询返回的 UDP 包都不会超过 1024 字节。</span></span><br><span class="line"><span class="string">            '''</span></span><br><span class="line">            data, addr = sock.recvfrom(<span class="number">1024</span>)</span><br><span class="line">            <span class="keyword">if</span> addr[<span class="number">0</span>] <span class="keyword">not</span> <span class="keyword">in</span> self._servers:</span><br><span class="line">                logging.warn(<span class="string">'received a packet other than our dns'</span>)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            self._handle_data(data)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="common-py"><a href="#common-py" class="headerlink" title="common.py"></a>common.py</h3><p>该文件提供了都是些工具类的函数，如bytes和str的互相转化（python2中bytes属于str类）、是否是ip</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ip地址转换函数</span></span><br><span class="line"><span class="comment"># 数值格式(numeric):存储地址的二进制格式</span></span><br><span class="line"><span class="comment"># 点分十进制:就是我们常见的ip(192.168.1.1)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">inet_pton</span><span class="params">(family, addr)</span> # 将点分十进制的<span class="title">ip</span>地址转化为用于网络传输的数值格式</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">def</span> <span class="title">inet_ntop</span><span class="params">(family, ipstr)</span># 将数值格式转化为点分十进制的<span class="title">ip</span>地址格式</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"># 大概某个版本前的<span class="title">socket</span>没有<span class="title">ip</span>地址转换函数</span></span><br><span class="line"><span class="function"><span class="title">def</span> <span class="title">patch_socket</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> hasattr(socket, <span class="string">'inet_pton'</span>):</span><br><span class="line">        socket.inet_pton = inet_pton</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> hasattr(socket, <span class="string">'inet_ntop'</span>):</span><br><span class="line">        socket.inet_ntop = inet_ntop</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pack_addr</span><span class="params">(address)</span> # 打包地址</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">def</span> <span class="title">parse_header</span><span class="params">(data)</span> # 解析<span class="title">socket5</span>头部</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">class</span> <span class="title">IPNetwork</span><span class="params">(object)</span> # 初始化网络列表</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="daemon-py"><a href="#daemon-py" class="headerlink" title="daemon.py"></a>daemon.py</h3><h3 id="encrypt-py"><a href="#encrypt-py" class="headerlink" title="encrypt.py"></a>encrypt.py</h3>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Network/" rel="tag"># Network</a>
+          
+            <a href="/tags/ShadowSocks/" rel="tag"># ShadowSocks</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/25/Debug-Introduction/" rel="next" title="Debug-Introduction">
+                <i class="fa fa-chevron-left"></i> Debug-Introduction
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/03/Security-Protocols-and-Standards/" rel="prev" title="Security-Protocols-and-Standards">
+                Security-Protocols-and-Standards <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Magic King"/>
+            
+              <p class="site-author-name" itemprop="name">Magic King</p>
+              <div class="site-description motion-element" itemprop="description">Now You See Me!</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">62</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/%20%7C%7C%20th">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/%20%7C%7C%20tags">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Magic-King" title="GitHub &rarr; https://github.com/Magic-King" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关于ShadowSocks的学习"><span class="nav-number">1.</span> <span class="nav-text">关于ShadowSocks的学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于SOCKS协议"><span class="nav-number">1.1.</span> <span class="nav-text">关于SOCKS协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Socks5协议流程"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">Socks5协议流程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shadowsocks原理"><span class="nav-number">1.2.</span> <span class="nav-text">Shadowsocks原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shadowsocks源码分析"><span class="nav-number">1.3.</span> <span class="nav-text">shadowsocks源码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Crypto"><span class="nav-number">1.3.1.</span> <span class="nav-text">Crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#openssl-py"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">openssl.py</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rc4-md5-py"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">rc4_md5.py</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sodium-py"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">sodium.py</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#util-py"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">util.py</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#table-py"><span class="nav-number">1.3.1.5.</span> <span class="nav-text">table.py</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#init-py"><span class="nav-number">1.3.2.</span> <span class="nav-text">__init__.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#asyncdns-py"><span class="nav-number">1.3.3.</span> <span class="nav-text">asyncdns.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#common-py"><span class="nav-number">1.3.4.</span> <span class="nav-text">common.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#daemon-py"><span class="nav-number">1.3.5.</span> <span class="nav-text">daemon.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#encrypt-py"><span class="nav-number">1.3.6.</span> <span class="nav-text">encrypt.py</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Magic King</span>
+
+  
+
+  
+</div>
+
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0 </div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color='255,255,255' opacity='0.5' zIndex='-2' count='169' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+  
+  
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+</body>
+</html>

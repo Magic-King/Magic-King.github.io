@@ -1,0 +1,1509 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo&amp;Magic</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://magic-king.net/"/>
+  <updated>2019-05-13T07:47:10.456Z</updated>
+  <id>http://magic-king.net/</id>
+  
+  <author>
+    <name>Magic King</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://magic-king.net/2021/01/07/hello-world/"/>
+    <id>http://magic-king.net/2021/01/07/hello-world/</id>
+    <published>2021-01-07T12:34:29.542Z</published>
+    <updated>2019-05-13T07:47:10.456Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_b
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Reading-Note-of-A-Mathematical-Theory-of-Communication</title>
+    <link href="http://magic-king.net/2020/09/25/Reading-Note-of-A-Mathematical-Theory-of-Communication/"/>
+    <id>http://magic-king.net/2020/09/25/Reading-Note-of-A-Mathematical-Theory-of-Communication/</id>
+    <published>2020-09-25T13:28:50.000Z</published>
+    <updated>2020-11-05T02:53:43.788Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;【论文阅读笔记】A-Mathematical-Theory-of-Communication&quot;&gt;&lt;a href=&quot;#【论文阅读笔记】A-Mathematical-Theory-of-Communication&quot; class=&quot;headerlink&quot; title=&quot;【论文阅读笔记】A Mathematic
+      
+    
+    </summary>
+    
+    
+      <category term="Network" scheme="http://magic-king.net/categories/Network/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Virtualization Introduction</title>
+    <link href="http://magic-king.net/2020/06/01/Virtualization-Introduction/"/>
+    <id>http://magic-king.net/2020/06/01/Virtualization-Introduction/</id>
+    <published>2020-06-01T14:25:36.000Z</published>
+    <updated>2020-06-01T16:02:51.123Z</updated>
+    
+    <summary type="html">
+    
+      to introduce something about virtualization technology
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>gdb-learning</title>
+    <link href="http://magic-king.net/2020/05/22/gdb-learning/"/>
+    <id>http://magic-king.net/2020/05/22/gdb-learning/</id>
+    <published>2020-05-22T07:36:59.000Z</published>
+    <updated>2020-05-25T15:00:37.761Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;关于gdb的学习&quot;&gt;&lt;a href=&quot;#关于gdb的学习&quot; class=&quot;headerlink&quot; title=&quot;关于gdb的学习&quot;&gt;&lt;/a&gt;&lt;center&gt;关于gdb的学习&lt;/center&gt;&lt;/h1&gt;&lt;h2 id=&quot;0x00-序&quot;&gt;&lt;a href=&quot;#0x00-序&quot; class=&quot;headerlink&quot;
+      
+    
+    </summary>
+    
+    
+      <category term="reverse" scheme="http://magic-king.net/categories/reverse/"/>
+    
+    
+      <category term="reverse" scheme="http://magic-king.net/tags/reverse/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Metasploit</title>
+    <link href="http://magic-king.net/2020/05/21/Metasploit/"/>
+    <id>http://magic-king.net/2020/05/21/Metasploit/</id>
+    <published>2020-05-21T11:47:40.000Z</published>
+    <updated>2020-05-22T07:28:44.265Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;0x00-序&quot;&gt;&lt;a href=&quot;#0x00-序&quot; class=&quot;headerlink&quot; title=&quot;0x00 序&quot;&gt;&lt;/a&gt;0x00 序&lt;/h2&gt;&lt;p&gt;课上体验了一把msf的一套流程，但是由于靶机已经上了补丁，所以失败了，这次来记录一下Metasploit的一套攻击流程，也不知道为啥，网上所有的入门
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Data Backup</title>
+    <link href="http://magic-king.net/2020/05/15/Data-Backup/"/>
+    <id>http://magic-king.net/2020/05/15/Data-Backup/</id>
+    <published>2020-05-15T06:09:35.000Z</published>
+    <updated>2020-12-29T13:13:17.409Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;0x00-序&quot;&gt;&lt;a href=&quot;#0x00-序&quot; class=&quot;headerlink&quot; title=&quot;0x00 序&quot;&gt;&lt;/a&gt;0x00 序&lt;/h2&gt;&lt;p&gt;最近硬盘频繁崩溃，让我对我的电脑产生了担忧，于是就准备把上次老师说的备份来实现一下（虽然以前也有备份，但肯定没有现在电脑的资料全面）&lt;/p&gt;
+&lt;p&gt;
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Security Storage</title>
+    <link href="http://magic-king.net/2020/04/27/Security-Storage/"/>
+    <id>http://magic-king.net/2020/04/27/Security-Storage/</id>
+    <published>2020-04-27T13:36:22.000Z</published>
+    <updated>2020-04-28T15:22:52.701Z</updated>
+    
+    <summary type="html">
+    
+      About Linux security storage
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Security in CSI:Cyber</title>
+    <link href="http://magic-king.net/2020/04/21/Security-in-CSI-Cyber/"/>
+    <id>http://magic-king.net/2020/04/21/Security-in-CSI-Cyber/</id>
+    <published>2020-04-21T05:31:02.000Z</published>
+    <updated>2020-04-21T05:34:43.550Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;CSI&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>IDA-Script</title>
+    <link href="http://magic-king.net/2020/04/19/IDA-Script-Programming/"/>
+    <id>http://magic-king.net/2020/04/19/IDA-Script-Programming/</id>
+    <published>2020-04-19T08:02:33.000Z</published>
+    <updated>2020-04-19T08:57:07.050Z</updated>
+    
+    <summary type="html">
+    
+      About IDA Script
+    
+    </summary>
+    
+    
+      <category term="reverse" scheme="http://magic-king.net/categories/reverse/"/>
+    
+    
+      <category term="reverse" scheme="http://magic-king.net/tags/reverse/"/>
+    
+      <category term="IDA" scheme="http://magic-king.net/tags/IDA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>pwn-learning</title>
+    <link href="http://magic-king.net/2020/04/14/pwn-learning/"/>
+    <id>http://magic-king.net/2020/04/14/pwn-learning/</id>
+    <published>2020-04-14T06:33:19.000Z</published>
+    <updated>2020-04-21T13:48:57.590Z</updated>
+    
+    <summary type="html">
+    
+      Something about pwn!
+    
+    </summary>
+    
+    
+      <category term="pwn" scheme="http://magic-king.net/categories/pwn/"/>
+    
+    
+      <category term="ctf" scheme="http://magic-king.net/tags/ctf/"/>
+    
+      <category term="security" scheme="http://magic-king.net/tags/security/"/>
+    
+      <category term="pwn" scheme="http://magic-king.net/tags/pwn/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>XSS Attack</title>
+    <link href="http://magic-king.net/2020/04/12/XSS-Attack/"/>
+    <id>http://magic-king.net/2020/04/12/XSS-Attack/</id>
+    <published>2020-04-12T04:34:18.000Z</published>
+    <updated>2020-04-13T06:36:06.551Z</updated>
+    
+    <summary type="html">
+    
+      Something about XSS Attack
+    
+    </summary>
+    
+    
+      <category term="Web" scheme="http://magic-king.net/categories/Web/"/>
+    
+    
+      <category term="ctf" scheme="http://magic-king.net/tags/ctf/"/>
+    
+      <category term="web" scheme="http://magic-king.net/tags/web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Link-Library-of-C++</title>
+    <link href="http://magic-king.net/2020/03/30/Link-Library-of-C/"/>
+    <id>http://magic-king.net/2020/03/30/Link-Library-of-C/</id>
+    <published>2020-03-30T13:43:06.000Z</published>
+    <updated>2020-03-30T15:13:46.413Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;0x00-序&quot;&gt;&lt;a href=&quot;#0x00-序&quot; class=&quot;headerlink&quot; title=&quot;0x00 序&quot;&gt;&lt;/a&gt;0x00 序&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.runoob.com/w3cnote/cpp-static-library-an
+      
+    
+    </summary>
+    
+    
+      <category term="C++" scheme="http://magic-king.net/categories/C/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Computer-Virus</title>
+    <link href="http://magic-king.net/2020/03/30/Computer-Virus/"/>
+    <id>http://magic-king.net/2020/03/30/Computer-Virus/</id>
+    <published>2020-03-30T13:26:46.000Z</published>
+    <updated>2020-04-19T07:48:55.688Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;0x00-序&quot;&gt;&lt;a href=&quot;#0x00-序&quot; class=&quot;headerlink&quot; title=&quot;0x00 序&quot;&gt;&lt;/a&gt;0x00 序&lt;/h1&gt;&lt;p&gt;最近新型冠状病毒肆虐全球，然后我发现林老师的课紧随时事，上次刚了解完熔断，这次便来了病毒&lt;/p&gt;
+&lt;p&gt;所谓计算机病毒，无非也就是一段程序，只不过这
+      
+    
+    </summary>
+    
+    
+      <category term="Virus" scheme="http://magic-king.net/categories/Virus/"/>
+    
+      <category term="Reverse" scheme="http://magic-king.net/categories/Virus/Reverse/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Virtual_hard_disk</title>
+    <link href="http://magic-king.net/2020/03/30/Virtual-hard-disk/"/>
+    <id>http://magic-king.net/2020/03/30/Virtual-hard-disk/</id>
+    <published>2020-03-30T12:28:34.000Z</published>
+    <updated>2020-04-30T03:19:17.005Z</updated>
+    
+    <summary type="html">
+    
+      something about vhdx&amp;vhd
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>lsp-hijack</title>
+    <link href="http://magic-king.net/2020/03/25/lsp-hijack/"/>
+    <id>http://magic-king.net/2020/03/25/lsp-hijack/</id>
+    <published>2020-03-25T06:17:01.000Z</published>
+    <updated>2020-03-29T12:53:31.653Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;序&quot;&gt;&lt;a href=&quot;#序&quot; class=&quot;headerlink&quot; title=&quot;序&quot;&gt;&lt;/a&gt;序&lt;/h2&gt;&lt;p&gt;原本只是想白嫖免费的腾讯加速器，用完卸了，没想到还卸载不了。&lt;/p&gt;
+&lt;p&gt;其中有两个dll删除时总是显示正在运行中，用&lt;code&gt;tasklist /m xxx.dll&lt;/code&gt;查看
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Meltdown And Hardware Security</title>
+    <link href="http://magic-king.net/2020/03/21/Meltdown-And-Hardware-Security/"/>
+    <id>http://magic-king.net/2020/03/21/Meltdown-And-Hardware-Security/</id>
+    <published>2020-03-21T07:57:45.000Z</published>
+    <updated>2020-03-23T14:13:57.997Z</updated>
+    
+    <summary type="html">
+    
+      Something about Meltdown
+    
+    </summary>
+    
+    
+      <category term="Hardware" scheme="http://magic-king.net/categories/Hardware/"/>
+    
+      <category term="Security" scheme="http://magic-king.net/categories/Hardware/Security/"/>
+    
+      <category term="CPU" scheme="http://magic-king.net/categories/Hardware/Security/CPU/"/>
+    
+    
+      <category term="CVE" scheme="http://magic-king.net/tags/CVE/"/>
+    
+      <category term="hardware" scheme="http://magic-king.net/tags/hardware/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CVE-2020-0796</title>
+    <link href="http://magic-king.net/2020/03/16/CVE-2020-0796/"/>
+    <id>http://magic-king.net/2020/03/16/CVE-2020-0796/</id>
+    <published>2020-03-16T05:38:00.000Z</published>
+    <updated>2020-04-08T06:09:55.024Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;details about new SMB wormable bug leak:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://portal.msrc.microsoft.com/en-US/security-guidance/advisory/adv200005&quot; target=&quot;_
+      
+    
+    </summary>
+    
+    
+      <category term="CVE" scheme="http://magic-king.net/categories/CVE/"/>
+    
+      <category term="Windows" scheme="http://magic-king.net/categories/CVE/Windows/"/>
+    
+    
+      <category term="CVE" scheme="http://magic-king.net/tags/CVE/"/>
+    
+      <category term="Windows" scheme="http://magic-king.net/tags/Windows/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iptables</title>
+    <link href="http://magic-king.net/2020/03/16/iptables/"/>
+    <id>http://magic-king.net/2020/03/16/iptables/</id>
+    <published>2020-03-16T03:22:59.000Z</published>
+    <updated>2020-03-19T12:08:43.376Z</updated>
+    
+    <summary type="html">
+    
+      learning about iptables
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://magic-king.net/categories/linux/"/>
+    
+      <category term="Network" scheme="http://magic-king.net/categories/linux/Network/"/>
+    
+    
+      <category term="linux" scheme="http://magic-king.net/tags/linux/"/>
+    
+      <category term="security" scheme="http://magic-king.net/tags/security/"/>
+    
+      <category term="network" scheme="http://magic-king.net/tags/network/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ntop</title>
+    <link href="http://magic-king.net/2020/03/06/Ntop/"/>
+    <id>http://magic-king.net/2020/03/06/Ntop/</id>
+    <published>2020-03-06T06:06:41.000Z</published>
+    <updated>2020-03-06T06:44:02.559Z</updated>
+    
+    <summary type="html">
+    
+      Something about Ntop and Ntopng
+    
+    </summary>
+    
+    
+      <category term="Network" scheme="http://magic-king.net/categories/Network/"/>
+    
+    
+      <category term="Network" scheme="http://magic-king.net/tags/Network/"/>
+    
+      <category term="Ntop" scheme="http://magic-king.net/tags/Ntop/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ollvm-learning</title>
+    <link href="http://magic-king.net/2020/02/27/ollvm-learning/"/>
+    <id>http://magic-king.net/2020/02/27/ollvm-learning/</id>
+    <published>2020-02-27T02:09:14.000Z</published>
+    <updated>2020-12-29T09:36:23.613Z</updated>
+    
+    <summary type="html">
+    
+      Learning about ollvm
+    
+    </summary>
+    
+    
+      <category term="reverse" scheme="http://magic-king.net/categories/reverse/"/>
+    
+      <category term="llvm" scheme="http://magic-king.net/categories/reverse/llvm/"/>
+    
+      <category term="Compile" scheme="http://magic-king.net/categories/reverse/llvm/Compile/"/>
+    
+    
+      <category term="reverse" scheme="http://magic-king.net/tags/reverse/"/>
+    
+      <category term="ollvm" scheme="http://magic-king.net/tags/ollvm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SSH端口转发</title>
+    <link href="http://magic-king.net/2020/02/22/SSH-Port-Forwarding/"/>
+    <id>http://magic-king.net/2020/02/22/SSH-Port-Forwarding/</id>
+    <published>2020-02-22T10:12:51.000Z</published>
+    <updated>2020-02-25T12:08:51.463Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;SSH端口转发&quot;&gt;&lt;a href=&quot;#SSH端口转发&quot; class=&quot;headerlink&quot; title=&quot;SSH端口转发&quot;&gt;&lt;/a&gt;&lt;center&gt;SSH端口转发&lt;/center&gt;&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;参考：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://juejin.im/po
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>VMware-Ubuntu-blackScreen-fix</title>
+    <link href="http://magic-king.net/2020/02/20/VMware-Ubuntu-blackScreen-fix/"/>
+    <id>http://magic-king.net/2020/02/20/VMware-Ubuntu-blackScreen-fix/</id>
+    <published>2020-02-20T15:16:49.000Z</published>
+    <updated>2020-02-22T08:13:06.069Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;关于VMware虚拟机中，Ubuntu开机黑屏解决若干&quot;&gt;&lt;a href=&quot;#关于VMware虚拟机中，Ubuntu开机黑屏解决若干&quot; class=&quot;headerlink&quot; title=&quot;关于VMware虚拟机中，Ubuntu开机黑屏解决若干&quot;&gt;&lt;/a&gt;关于VMware虚拟机中，Ubuntu开机黑屏解决
+      
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://magic-king.net/categories/linux/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux内核编程入门</title>
+    <link href="http://magic-king.net/2020/02/20/Linux-Kernel-Coding-Introdution/"/>
+    <id>http://magic-king.net/2020/02/20/Linux-Kernel-Coding-Introdution/</id>
+    <published>2020-02-20T06:58:13.000Z</published>
+    <updated>2020-02-22T09:35:27.610Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Linux-内核编程入门-amp-简介&quot;&gt;&lt;a href=&quot;#Linux-内核编程入门-amp-简介&quot; class=&quot;headerlink&quot; title=&quot;Linux 内核编程入门&amp;amp;简介&quot;&gt;&lt;/a&gt;Linux 内核编程入门&amp;amp;简介&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;Linux可加载内
+      
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://magic-king.net/categories/linux/"/>
+    
+    
+      <category term="linux" scheme="http://magic-king.net/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Role-Based-Access-Control</title>
+    <link href="http://magic-king.net/2020/02/19/Role-Based-Access-Control/"/>
+    <id>http://magic-king.net/2020/02/19/Role-Based-Access-Control/</id>
+    <published>2020-02-19T01:59:25.000Z</published>
+    <updated>2020-02-23T15:41:24.410Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Role-Based-Access-Control&quot;&gt;&lt;a href=&quot;#Role-Based-Access-Control&quot; class=&quot;headerlink&quot; title=&quot;Role Based Access Control&quot;&gt;&lt;/a&gt;&lt;center&gt;Role Based Access Contr
+      
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://magic-king.net/categories/linux/"/>
+    
+    
+      <category term="linux" scheme="http://magic-king.net/tags/linux/"/>
+    
+      <category term="security" scheme="http://magic-king.net/tags/security/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CTF-Wargame</title>
+    <link href="http://magic-king.net/2020/02/13/CTF-Wargame/"/>
+    <id>http://magic-king.net/2020/02/13/CTF-Wargame/</id>
+    <published>2020-02-13T08:01:07.000Z</published>
+    <updated>2020-02-27T12:18:55.897Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;鉴于最近的状态，看逆向又看不进去，就找了个简单的靶场玩一玩&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://overthewire.org/wargames/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://overthewire.org/wargames/&lt;/a&gt;&lt;/p&gt;
+&lt;h1
+      
+    
+    </summary>
+    
+    
+      <category term="CTF" scheme="http://magic-king.net/categories/CTF/"/>
+    
+    
+      <category term="CTF" scheme="http://magic-king.net/tags/CTF/"/>
+    
+      <category term="wargame" scheme="http://magic-king.net/tags/wargame/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Security-Protocols-and-Standards</title>
+    <link href="http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/"/>
+    <id>http://magic-king.net/2020/02/03/Security-Protocols-and-Standards/</id>
+    <published>2020-02-03T07:35:17.000Z</published>
+    <updated>2020-08-26T07:31:11.510Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Security-Protocols-and-Standards–PKI-Principles-and-technology&quot;&gt;&lt;a href=&quot;#Security-Protocols-and-Standards–PKI-Principles-and-technology&quot; class=&quot;headerl
+      
+    
+    </summary>
+    
+    
+      <category term="Crypto" scheme="http://magic-king.net/categories/Crypto/"/>
+    
+    
+      <category term="StudyNote" scheme="http://magic-king.net/tags/StudyNote/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ShadowSocks-SourceCode-Learning</title>
+    <link href="http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/"/>
+    <id>http://magic-king.net/2020/01/30/ShadowSocks-SourceCode-Learning/</id>
+    <published>2020-01-30T13:39:16.000Z</published>
+    <updated>2020-02-25T06:16:54.535Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;关于ShadowSocks的学习&quot;&gt;&lt;a href=&quot;#关于ShadowSocks的学习&quot; class=&quot;headerlink&quot; title=&quot;关于ShadowSocks的学习&quot;&gt;&lt;/a&gt;关于ShadowSocks的学习&lt;/h1&gt;&lt;p&gt;对待科学上网的工具，既然开源的话，就要有科学的精神对其进行学习。&lt;/
+      
+    
+    </summary>
+    
+    
+      <category term="Network" scheme="http://magic-king.net/categories/Network/"/>
+    
+    
+      <category term="Network" scheme="http://magic-king.net/tags/Network/"/>
+    
+      <category term="ShadowSocks" scheme="http://magic-king.net/tags/ShadowSocks/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Debug-Introduction</title>
+    <link href="http://magic-king.net/2020/01/25/Debug-Introduction/"/>
+    <id>http://magic-king.net/2020/01/25/Debug-Introduction/</id>
+    <published>2020-01-25T08:05:34.000Z</published>
+    <updated>2020-04-16T08:23:52.016Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Debug-入门&quot;&gt;&lt;a href=&quot;#Debug-入门&quot; class=&quot;headerlink&quot; title=&quot;Debug 入门&quot;&gt;&lt;/a&gt;Debug 入门&lt;/h1&gt;&lt;p&gt;在以前打ACM的时候，debug全靠&lt;code&gt;printf&lt;/code&gt;和大脑跑程序，但是现在做逆向的时候发现了debug的新知识
+      
+    
+    </summary>
+    
+    
+      <category term="reverse" scheme="http://magic-king.net/categories/reverse/"/>
+    
+    
+      <category term="debug" scheme="http://magic-king.net/tags/debug/"/>
+    
+      <category term="reverse" scheme="http://magic-king.net/tags/reverse/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>XCTF-adworld-reverse-wp</title>
+    <link href="http://magic-king.net/2020/01/06/XCTF-adworld-reverse-wp/"/>
+    <id>http://magic-king.net/2020/01/06/XCTF-adworld-reverse-wp/</id>
+    <published>2020-01-06T12:15:35.000Z</published>
+    <updated>2020-01-06T14:13:39.128Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Reverse-amp-WriteUp&quot;&gt;&lt;a href=&quot;#Reverse-amp-WriteUp&quot; class=&quot;headerlink&quot; title=&quot;Reverse&amp;amp;WriteUp&quot;&gt;&lt;/a&gt;&lt;center&gt;Reverse&amp;amp;WriteUp&lt;/center&gt;&lt;/h1&gt;&lt;p&gt;开始入坑逆
+      
+    
+    </summary>
+    
+    
+      <category term="ctf" scheme="http://magic-king.net/categories/ctf/"/>
+    
+    
+      <category term="reverse" scheme="http://magic-king.net/tags/reverse/"/>
+    
+      <category term="ctf" scheme="http://magic-king.net/tags/ctf/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Database-System</title>
+    <link href="http://magic-king.net/2020/01/02/Database-System/"/>
+    <id>http://magic-king.net/2020/01/02/Database-System/</id>
+    <published>2020-01-02T03:15:07.000Z</published>
+    <updated>2020-01-05T07:47:28.457Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;数据库系统概念&quot;&gt;&lt;a href=&quot;#数据库系统概念&quot; class=&quot;headerlink&quot; title=&quot;数据库系统概念&quot;&gt;&lt;/a&gt;数据库系统概念&lt;/h1&gt;&lt;h2 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h2&gt;&lt;p&gt;DBM
+      
+    
+    </summary>
+    
+    
+      <category term="Database" scheme="http://magic-king.net/categories/Database/"/>
+    
+    
+      <category term="StudyNote" scheme="http://magic-king.net/tags/StudyNote/"/>
+    
+      <category term="Database" scheme="http://magic-king.net/tags/Database/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Functions with potential code execution risks in Python</title>
+    <link href="http://magic-king.net/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/"/>
+    <id>http://magic-king.net/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/</id>
+    <published>2019-12-30T10:52:35.000Z</published>
+    <updated>2019-12-30T13:28:23.781Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Python中有潜在代码执行风险的函数&quot;&gt;&lt;a href=&quot;#Python中有潜在代码执行风险的函数&quot; class=&quot;headerlink&quot; title=&quot;Python中有潜在代码执行风险的函数&quot;&gt;&lt;/a&gt;Python中有潜在代码执行风险的函数&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;参考：&lt;/p&gt;
+&lt;
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>QRCodeAttack</title>
+    <link href="http://magic-king.net/2019/12/30/QRCodeAttack/"/>
+    <id>http://magic-king.net/2019/12/30/QRCodeAttack/</id>
+    <published>2019-12-30T07:35:01.000Z</published>
+    <updated>2019-12-30T10:09:09.722Z</updated>
+    
+    <summary type="html">
+    
+      Something about QRCode.
+    
+    </summary>
+    
+    
+      <category term="QRCode" scheme="http://magic-king.net/categories/QRCode/"/>
+    
+    
+      <category term="QRCode" scheme="http://magic-king.net/tags/QRCode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>BlockChain</title>
+    <link href="http://magic-king.net/2019/12/26/BlockChain/"/>
+    <id>http://magic-king.net/2019/12/26/BlockChain/</id>
+    <published>2019-12-26T06:20:45.000Z</published>
+    <updated>2019-12-30T03:11:01.030Z</updated>
+    
+    <summary type="html">
+    
+      The courese of BlockChain.There are some notes.
+    
+    </summary>
+    
+    
+      <category term="BlockChain" scheme="http://magic-king.net/categories/BlockChain/"/>
+    
+    
+      <category term="StudyNote" scheme="http://magic-king.net/tags/StudyNote/"/>
+    
+      <category term="BlockChain" scheme="http://magic-king.net/tags/BlockChain/"/>
+    
+      <category term="bitcoin" scheme="http://magic-king.net/tags/bitcoin/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DDoS-JavaScript</title>
+    <link href="http://magic-king.net/2019/12/12/DDoS-Javascript/"/>
+    <id>http://magic-king.net/2019/12/12/DDoS-Javascript/</id>
+    <published>2019-12-12T07:41:36.000Z</published>
+    <updated>2019-12-12T07:57:24.579Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;关于JavaScript的DDoS攻击&quot;&gt;&lt;a href=&quot;#关于JavaScript的DDoS攻击&quot; class=&quot;headerlink&quot; title=&quot;关于JavaScript的DDoS攻击&quot;&gt;&lt;/a&gt;关于JavaScript的DDoS攻击&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;引用：&lt;/p&gt;
+&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="DDoS" scheme="http://magic-king.net/categories/DDoS/"/>
+    
+    
+      <category term="DDoS" scheme="http://magic-king.net/tags/DDoS/"/>
+    
+      <category term="Network" scheme="http://magic-king.net/tags/Network/"/>
+    
+      <category term="JavaScript" scheme="http://magic-king.net/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>tricks</title>
+    <link href="http://magic-king.net/2019/12/01/tricks/"/>
+    <id>http://magic-king.net/2019/12/01/tricks/</id>
+    <published>2019-12-01T11:01:11.000Z</published>
+    <updated>2019-12-01T11:46:37.055Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;To-record-some-strange-tricks&quot;&gt;&lt;a href=&quot;#To-record-some-strange-tricks&quot; class=&quot;headerlink&quot; title=&quot;To record some strange tricks&quot;&gt;&lt;/a&gt;To record some stra
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>aria2</title>
+    <link href="http://magic-king.net/2019/11/27/aria2/"/>
+    <id>http://magic-king.net/2019/11/27/aria2/</id>
+    <published>2019-11-27T10:05:33.000Z</published>
+    <updated>2019-11-27T13:10:28.933Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Aria2&quot;&gt;&lt;a href=&quot;#Aria2&quot; class=&quot;headerlink&quot; title=&quot;Aria2&quot;&gt;&lt;/a&gt;Aria2&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;参考：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://aria2.github.io/&quot; target=&quot;_blank&quot; rel=
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Le Petit Prince Note</title>
+    <link href="http://magic-king.net/2019/11/26/Le-Petit-Prince-Note/"/>
+    <id>http://magic-king.net/2019/11/26/Le-Petit-Prince-Note/</id>
+    <published>2019-11-26T12:06:22.000Z</published>
+    <updated>2019-11-26T12:21:41.862Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Le-Petit-Prince&quot;&gt;&lt;a href=&quot;#Le-Petit-Prince&quot; class=&quot;headerlink&quot; title=&quot;Le Petit Prince&quot;&gt;&lt;/a&gt;Le Petit Prince&lt;/h1&gt;&lt;p&gt;小王子&lt;/p&gt;
+&lt;p&gt;希望我能如小王子一样，被一朵玫瑰所驯化~&lt;/p&gt;
+&lt;p
+      
+    
+    </summary>
+    
+    
+      <category term="Reading" scheme="http://magic-king.net/categories/Reading/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>SDUCTF2019-wp</title>
+    <link href="http://magic-king.net/2019/11/15/SDUCTF2019-wp/"/>
+    <id>http://magic-king.net/2019/11/15/SDUCTF2019-wp/</id>
+    <published>2019-11-15T05:39:00.000Z</published>
+    <updated>2019-11-19T10:23:31.663Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;SDUCTF2019-WriteUp&quot;&gt;&lt;a href=&quot;#SDUCTF2019-WriteUp&quot; class=&quot;headerlink&quot; title=&quot;SDUCTF2019-WriteUp&quot;&gt;&lt;/a&gt;&lt;center&gt;SDUCTF2019-WriteUp&lt;/center&gt;&lt;/h1&gt;&lt;p&gt;刚入门了ctf2周
+      
+    
+    </summary>
+    
+    
+      <category term="ctf" scheme="http://magic-king.net/categories/ctf/"/>
+    
+    
+      <category term="ctf" scheme="http://magic-king.net/tags/ctf/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>XCTF-adworld-web-wp</title>
+    <link href="http://magic-king.net/2019/11/11/XCTF-adworld-web-wp/"/>
+    <id>http://magic-king.net/2019/11/11/XCTF-adworld-web-wp/</id>
+    <published>2019-11-11T11:26:17.000Z</published>
+    <updated>2019-11-12T11:58:40.595Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Web-amp-WriteUp&quot;&gt;&lt;a href=&quot;#Web-amp-WriteUp&quot; class=&quot;headerlink&quot; title=&quot;Web&amp;amp;WriteUp&quot;&gt;&lt;/a&gt;&lt;center&gt;Web&amp;amp;WriteUp&lt;/center&gt;&lt;/h1&gt;&lt;p&gt;Web如同一座正三角冰山，等着去探索。。。
+      
+    
+    </summary>
+    
+    
+      <category term="ctf" scheme="http://magic-king.net/categories/ctf/"/>
+    
+    
+      <category term="ctf" scheme="http://magic-king.net/tags/ctf/"/>
+    
+      <category term="web" scheme="http://magic-king.net/tags/web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>XCTF-adworld-crypto-wp</title>
+    <link href="http://magic-king.net/2019/11/10/XCTF-adworld-crypto-wp/"/>
+    <id>http://magic-king.net/2019/11/10/XCTF-adworld-crypto-wp/</id>
+    <published>2019-11-10T13:14:36.000Z</published>
+    <updated>2019-11-11T11:19:18.162Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Crypto-amp-WriteUp&quot;&gt;&lt;a href=&quot;#Crypto-amp-WriteUp&quot; class=&quot;headerlink&quot; title=&quot;Crypto&amp;amp;WriteUp&quot;&gt;&lt;/a&gt;&lt;center&gt;Crypto&amp;amp;WriteUp&lt;/center&gt;&lt;/h1&gt;&lt;p&gt;crypto永远充
+      
+    
+    </summary>
+    
+    
+      <category term="ctf" scheme="http://magic-king.net/categories/ctf/"/>
+    
+    
+      <category term="ctf" scheme="http://magic-king.net/tags/ctf/"/>
+    
+      <category term="crypto" scheme="http://magic-king.net/tags/crypto/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>XCTF-adworld-misc-wp</title>
+    <link href="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/"/>
+    <id>http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/</id>
+    <published>2019-11-08T13:53:39.000Z</published>
+    <updated>2019-11-09T11:28:14.211Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Misc-amp-WriteUp&quot;&gt;&lt;a href=&quot;#Misc-amp-WriteUp&quot; class=&quot;headerlink&quot; title=&quot;Misc&amp;amp;WriteUp&quot;&gt;&lt;/a&gt;&lt;center&gt;Misc&amp;amp;WriteUp&lt;/center&gt;&lt;/h1&gt;&lt;p&gt;msic永远充满了惊喜&lt;/p&gt;
+&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="ctf" scheme="http://magic-king.net/categories/ctf/"/>
+    
+    
+      <category term="ctf" scheme="http://magic-king.net/tags/ctf/"/>
+    
+      <category term="misc" scheme="http://magic-king.net/tags/misc/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Object-oriented Programming</title>
+    <link href="http://magic-king.net/2019/10/21/Object-oriented-Programming/"/>
+    <id>http://magic-king.net/2019/10/21/Object-oriented-Programming/</id>
+    <published>2019-10-21T12:22:11.000Z</published>
+    <updated>2019-10-21T13:29:09.307Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;虽然一直再写面向对象编程的语言，但是压根没有对象可以面对，希望写完这篇能有对象可以让我面对！！！&lt;/p&gt;
+&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt; 面向对象编程(Object-oriented Programmin
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>CVE-2019-14287</title>
+    <link href="http://magic-king.net/2019/10/18/CVE-2019-14287/"/>
+    <id>http://magic-king.net/2019/10/18/CVE-2019-14287/</id>
+    <published>2019-10-18T14:59:58.000Z</published>
+    <updated>2019-10-19T13:00:08.873Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;引用：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.sudo.ws/alerts/minus_1_uid.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Potential bypass of Runas user restrictions  (su
+      
+    
+    </summary>
+    
+    
+      <category term="CVE" scheme="http://magic-king.net/categories/CVE/"/>
+    
+      <category term="linux" scheme="http://magic-king.net/categories/CVE/linux/"/>
+    
+    
+      <category term="CVE" scheme="http://magic-king.net/tags/CVE/"/>
+    
+      <category term="linux" scheme="http://magic-king.net/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>pacman</title>
+    <link href="http://magic-king.net/2019/10/11/pacman/"/>
+    <id>http://magic-king.net/2019/10/11/pacman/</id>
+    <published>2019-10-11T13:33:53.000Z</published>
+    <updated>2019-10-11T14:51:59.827Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;包管理工具-Pacman&quot;&gt;&lt;a href=&quot;#包管理工具-Pacman&quot; class=&quot;headerlink&quot; title=&quot;包管理工具 Pacman&quot;&gt;&lt;/a&gt;包管理工具 Pacman&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;参考：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.archl
+      
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://magic-king.net/categories/linux/"/>
+    
+    
+      <category term="linux" scheme="http://magic-king.net/tags/linux/"/>
+    
+      <category term="ArchLinux" scheme="http://magic-king.net/tags/ArchLinux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js_banned</title>
+    <link href="http://magic-king.net/2019/10/09/js-banned/"/>
+    <id>http://magic-king.net/2019/10/09/js-banned/</id>
+    <published>2019-10-09T10:32:10.000Z</published>
+    <updated>2019-10-09T11:09:52.660Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;序：原本想从网页上搞些网课答案下来，懒得用爬虫，便想直接复制粘贴更方便，结果遭遇了网页的复制和控制台禁用，本着求知的精神，就有了这篇文章。&lt;/p&gt;
+&lt;h1 id=&quot;网页中部分禁用及破解&quot;&gt;&lt;a href=&quot;#网页中部分禁用及破解&quot; class=&quot;headerlink&quot; title=&quot;网页中部分禁用及破解&quot;&gt;&lt;/a
+      
+    
+    </summary>
+    
+    
+      <category term="web" scheme="http://magic-king.net/categories/web/"/>
+    
+    
+      <category term="web" scheme="http://magic-king.net/tags/web/"/>
+    
+      <category term="javascript" scheme="http://magic-king.net/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>git</title>
+    <link href="http://magic-king.net/2019/09/23/git/"/>
+    <id>http://magic-king.net/2019/09/23/git/</id>
+    <published>2019-09-23T14:39:11.000Z</published>
+    <updated>2020-04-20T05:42:24.001Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Git&quot;&gt;&lt;a href=&quot;#Git&quot; class=&quot;headerlink&quot; title=&quot;Git&quot;&gt;&lt;/a&gt;&lt;center&gt;Git&lt;/center&gt;&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;引用：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/tgbus189901403
+      
+    
+    </summary>
+    
+    
+      <category term="git" scheme="http://magic-king.net/categories/git/"/>
+    
+    
+      <category term="git" scheme="http://magic-king.net/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Regular Expression</title>
+    <link href="http://magic-king.net/2019/09/22/re/"/>
+    <id>http://magic-king.net/2019/09/22/re/</id>
+    <published>2019-09-22T06:00:51.000Z</published>
+    <updated>2019-09-22T07:17:56.130Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;正则表达式的规则&quot;&gt;&lt;a href=&quot;#正则表达式的规则&quot; class=&quot;headerlink&quot; title=&quot;正则表达式的规则&quot;&gt;&lt;/a&gt;正则表达式的规则&lt;/h2&gt;&lt;p&gt;常用元字符&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;left&quot;&gt;代码&lt;/th&gt;
+&lt;th align=
+      
+    
+    </summary>
+    
+    
+      <category term="re" scheme="http://magic-king.net/categories/re/"/>
+    
+    
+      <category term="Re" scheme="http://magic-king.net/tags/Re/"/>
+    
+      <category term="python" scheme="http://magic-king.net/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Compiler</title>
+    <link href="http://magic-king.net/2019/09/04/Compiler/"/>
+    <id>http://magic-king.net/2019/09/04/Compiler/</id>
+    <published>2019-09-04T15:11:48.000Z</published>
+    <updated>2019-12-24T11:07:47.971Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;一、引论&quot;&gt;&lt;a href=&quot;#一、引论&quot; class=&quot;headerlink&quot; title=&quot;一、引论&quot;&gt;&lt;/a&gt;一、引论&lt;/h2&gt;&lt;p&gt;编译原理是良好的数学基础和好的工程结构功能的结合。&lt;/p&gt;
+&lt;p&gt;Compiler：编译，述而不作，忠于编写的东西&lt;/p&gt;
+&lt;p&gt;编译器从&lt;strong&gt;逻辑&lt;/s
+      
+    
+    </summary>
+    
+    
+      <category term="Compiler" scheme="http://magic-king.net/categories/Compiler/"/>
+    
+    
+      <category term="StudyNote" scheme="http://magic-king.net/tags/StudyNote/"/>
+    
+      <category term="Compilier" scheme="http://magic-king.net/tags/Compilier/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux Note</title>
+    <link href="http://magic-king.net/2019/08/22/Linux-Command/"/>
+    <id>http://magic-king.net/2019/08/22/Linux-Command/</id>
+    <published>2019-08-22T14:21:03.000Z</published>
+    <updated>2019-09-04T15:12:44.349Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Linux-Study-Note&quot;&gt;&lt;a href=&quot;#Linux-Study-Note&quot; class=&quot;headerlink&quot; title=&quot;Linux Study Note&quot;&gt;&lt;/a&gt;Linux Study Note&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;参考：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;h
+      
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://magic-king.net/categories/linux/"/>
+    
+    
+      <category term="linux" scheme="http://magic-king.net/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>url</title>
+    <link href="http://magic-king.net/2019/08/19/url/"/>
+    <id>http://magic-king.net/2019/08/19/url/</id>
+    <published>2019-08-19T15:26:38.000Z</published>
+    <updated>2019-08-19T15:56:21.105Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;URL&quot;&gt;&lt;a href=&quot;#URL&quot; class=&quot;headerlink&quot; title=&quot;URL&quot;&gt;&lt;/a&gt;URL&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;引用：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;[https://zh.wikipedia.org/wiki/%E7%BB%9F%E4%B8%80%E8%
+      
+    
+    </summary>
+    
+    
+    
+      <category term="url" scheme="http://magic-king.net/tags/url/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Makefile</title>
+    <link href="http://magic-king.net/2019/06/06/Makefile/"/>
+    <id>http://magic-king.net/2019/06/06/Makefile/</id>
+    <published>2019-06-06T01:11:19.000Z</published>
+    <updated>2019-07-04T10:05:55.396Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Make&quot;&gt;&lt;a href=&quot;#Make&quot; class=&quot;headerlink&quot; title=&quot;Make&quot;&gt;&lt;/a&gt;&lt;center&gt;Make&lt;/center&gt;&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;本文参考：&lt;/p&gt;
+&lt;p&gt;&lt;a href makefile 《gnu+make中文手册-v3.80》.p
+      
+    
+    </summary>
+    
+    
+      <category term="C++" scheme="http://magic-king.net/categories/C/"/>
+    
+    
+      <category term="c++" scheme="http://magic-king.net/tags/c/"/>
+    
+      <category term="make" scheme="http://magic-king.net/tags/make/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>IPFS</title>
+    <link href="http://magic-king.net/2019/05/30/IPFS/"/>
+    <id>http://magic-king.net/2019/05/30/IPFS/</id>
+    <published>2019-05-30T14:40:32.000Z</published>
+    <updated>2019-09-04T15:13:38.541Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="Network" scheme="http://magic-king.net/categories/Network/"/>
+    
+    
+      <category term="Network" scheme="http://magic-king.net/tags/Network/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ARM</title>
+    <link href="http://magic-king.net/2019/05/28/ARM/"/>
+    <id>http://magic-king.net/2019/05/28/ARM/</id>
+    <published>2019-05-28T15:06:13.000Z</published>
+    <updated>2019-05-30T09:02:17.289Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;ARM指令集详解&quot;&gt;&lt;a href=&quot;#ARM指令集详解&quot; class=&quot;headerlink&quot; title=&quot;ARM指令集详解&quot;&gt;&lt;/a&gt;ARM指令集详解&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;引用：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/u014069939/
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>LOVE</title>
+    <link href="http://magic-king.net/2019/05/27/LOVE/"/>
+    <id>http://magic-king.net/2019/05/27/LOVE/</id>
+    <published>2019-05-27T12:13:14.000Z</published>
+    <updated>2020-08-14T14:50:43.613Z</updated>
+    
+    <summary type="html">
+    
+      It is Magic.&lt;/br&gt;the content has been encrypted, enter the password to read.&lt;/br&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Movie</title>
+    <link href="http://magic-king.net/2019/05/27/Movie/"/>
+    <id>http://magic-king.net/2019/05/27/Movie/</id>
+    <published>2019-05-27T08:45:10.000Z</published>
+    <updated>2020-09-01T13:12:05.183Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;To-the-movie&quot;&gt;&lt;a href=&quot;#To-the-movie&quot; class=&quot;headerlink&quot; title=&quot;To the movie&quot;&gt;&lt;/a&gt;To the movie&lt;/h1&gt;&lt;h2 id=&quot;In-the-wanda&quot;&gt;&lt;a href=&quot;#In-the-wanda&quot; class=&quot;
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Magic</title>
+    <link href="http://magic-king.net/2019/05/20/Magic/"/>
+    <id>http://magic-king.net/2019/05/20/Magic/</id>
+    <published>2019-05-20T05:14:27.000Z</published>
+    <updated>2020-03-23T06:09:52.687Z</updated>
+    
+    <summary type="html">
+    
+      It is Magic.
+    
+    </summary>
+    
+    
+      <category term="Magic" scheme="http://magic-king.net/categories/Magic/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>SpMV</title>
+    <link href="http://magic-king.net/2019/05/19/SpMV/"/>
+    <id>http://magic-king.net/2019/05/19/SpMV/</id>
+    <published>2019-05-19T08:21:36.000Z</published>
+    <updated>2019-05-23T07:45:32.710Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;稀疏矩阵向量乘&quot;&gt;&lt;a href=&quot;#稀疏矩阵向量乘&quot; class=&quot;headerlink&quot; title=&quot;稀疏矩阵向量乘&quot;&gt;&lt;/a&gt;稀疏矩阵向量乘&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;本文参考: &lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://kns.cnki.net/KCMS/detail/de
+      
+    
+    </summary>
+    
+    
+      <category term="SpMV" scheme="http://magic-king.net/categories/SpMV/"/>
+    
+    
+      <category term="SpMV" scheme="http://magic-king.net/tags/SpMV/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nginx</title>
+    <link href="http://magic-king.net/2019/05/19/Nginx/"/>
+    <id>http://magic-king.net/2019/05/19/Nginx/</id>
+    <published>2019-05-19T06:01:01.000Z</published>
+    <updated>2020-07-25T03:18:04.131Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Nginx安装及配置&quot;&gt;&lt;a href=&quot;#Nginx安装及配置&quot; class=&quot;headerlink&quot; title=&quot;Nginx安装及配置&quot;&gt;&lt;/a&gt;Nginx安装及配置&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;本文参考：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.runoob.com/
+      
+    
+    </summary>
+    
+    
+      <category term="nginx" scheme="http://magic-king.net/categories/nginx/"/>
+    
+    
+      <category term="nginx" scheme="http://magic-king.net/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>nginx+rtmp</title>
+    <link href="http://magic-king.net/2019/05/17/nginx-rtmp/"/>
+    <id>http://magic-king.net/2019/05/17/nginx-rtmp/</id>
+    <published>2019-05-17T14:22:38.000Z</published>
+    <updated>2019-05-20T13:55:42.941Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;nginx-rtmp-搭建视频直播服务器&quot;&gt;&lt;a href=&quot;#nginx-rtmp-搭建视频直播服务器&quot; class=&quot;headerlink&quot; title=&quot;nginx+rtmp 搭建视频直播服务器&quot;&gt;&lt;/a&gt;nginx+rtmp 搭建视频直播服务器&lt;/h1&gt;&lt;h2 id=&quot;服务器安装配置&quot;&gt;&lt;a h
+      
+    
+    </summary>
+    
+    
+      <category term="nginx" scheme="http://magic-king.net/categories/nginx/"/>
+    
+    
+      <category term="nginx" scheme="http://magic-king.net/tags/nginx/"/>
+    
+      <category term="rtmp" scheme="http://magic-king.net/tags/rtmp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo+gitPages Synchronization</title>
+    <link href="http://magic-king.net/2019/05/16/hexo-gitPages-Synchronization/"/>
+    <id>http://magic-king.net/2019/05/16/hexo-gitPages-Synchronization/</id>
+    <published>2019-05-16T07:30:39.000Z</published>
+    <updated>2019-05-18T08:58:32.587Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Hexo-gitPages-的博客多端同步管理及迁移&quot;&gt;&lt;a href=&quot;#Hexo-gitPages-的博客多端同步管理及迁移&quot; class=&quot;headerlink&quot; title=&quot;Hexo+gitPages 的博客多端同步管理及迁移&quot;&gt;&lt;/a&gt;Hexo+gitPages 的博客多端同步管理及迁移&lt;/
+      
+    
+    </summary>
+    
+    
+      <category term="hexo" scheme="http://magic-king.net/categories/hexo/"/>
+    
+    
+      <category term="hexo" scheme="http://magic-king.net/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Markdown Syntax</title>
+    <link href="http://magic-king.net/2019/05/14/Markdown-Syntax/"/>
+    <id>http://magic-king.net/2019/05/14/Markdown-Syntax/</id>
+    <published>2019-05-14T08:43:54.000Z</published>
+    <updated>2019-08-23T13:49:57.403Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Markdown-Syntax&quot;&gt;&lt;a href=&quot;#Markdown-Syntax&quot; class=&quot;headerlink&quot; title=&quot;Markdown Syntax&quot;&gt;&lt;/a&gt;&lt;center&gt;Markdown Syntax&lt;/center&gt;&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;本文参考&lt;/p&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="Markdown" scheme="http://magic-king.net/categories/Markdown/"/>
+    
+    
+      <category term="Markdown" scheme="http://magic-king.net/tags/Markdown/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo+gitpages</title>
+    <link href="http://magic-king.net/2019/05/14/hexo-gitpages/"/>
+    <id>http://magic-king.net/2019/05/14/hexo-gitpages/</id>
+    <published>2019-05-14T08:41:30.000Z</published>
+    <updated>2020-04-26T10:02:42.446Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;hexo-gitPages搭建个人博客&quot;&gt;&lt;a href=&quot;#hexo-gitPages搭建个人博客&quot; class=&quot;headerlink&quot; title=&quot;hexo+gitPages搭建个人博客&quot;&gt;&lt;/a&gt;hexo+gitPages搭建个人博客&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;本文参考&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="hexo" scheme="http://magic-king.net/categories/hexo/"/>
+    
+    
+      <category term="hexo" scheme="http://magic-king.net/tags/hexo/"/>
+    
+  </entry>
+  
+</feed>
