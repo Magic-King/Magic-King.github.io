@@ -679,7 +679,7 @@
     <link href="http://magic-king.net/2020/01/02/Database-System/"/>
     <id>http://magic-king.net/2020/01/02/Database-System/</id>
     <published>2020-01-02T03:15:07.000Z</published>
-    <updated>2020-01-05T07:47:28.457Z</updated>
+    <updated>2021-01-16T11:48:41.230Z</updated>
     
     <summary type="html">
     
@@ -705,7 +705,7 @@
     <link href="http://magic-king.net/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/"/>
     <id>http://magic-king.net/2019/12/30/Functions-with-potential-code-execution-risks-in-Python/</id>
     <published>2019-12-30T10:52:35.000Z</published>
-    <updated>2019-12-30T13:28:23.781Z</updated>
+    <updated>2021-01-16T11:48:18.324Z</updated>
     
     <summary type="html">
     
@@ -727,7 +727,7 @@
     <link href="http://magic-king.net/2019/12/30/QRCodeAttack/"/>
     <id>http://magic-king.net/2019/12/30/QRCodeAttack/</id>
     <published>2019-12-30T07:35:01.000Z</published>
-    <updated>2019-12-30T10:09:09.722Z</updated>
+    <updated>2021-01-16T11:47:56.261Z</updated>
     
     <summary type="html">
     
@@ -748,7 +748,7 @@
     <link href="http://magic-king.net/2019/12/26/BlockChain/"/>
     <id>http://magic-king.net/2019/12/26/BlockChain/</id>
     <published>2019-12-26T06:20:45.000Z</published>
-    <updated>2019-12-30T03:11:01.030Z</updated>
+    <updated>2021-01-16T11:47:41.667Z</updated>
     
     <summary type="html">
     
@@ -803,7 +803,7 @@
     <link href="http://magic-king.net/2019/12/01/tricks/"/>
     <id>http://magic-king.net/2019/12/01/tricks/</id>
     <published>2019-12-01T11:01:11.000Z</published>
-    <updated>2019-12-01T11:46:37.055Z</updated>
+    <updated>2021-01-16T11:46:22.719Z</updated>
     
     <summary type="html">
     
@@ -869,7 +869,7 @@
     <link href="http://magic-king.net/2019/11/15/SDUCTF2019-wp/"/>
     <id>http://magic-king.net/2019/11/15/SDUCTF2019-wp/</id>
     <published>2019-11-15T05:39:00.000Z</published>
-    <updated>2019-11-19T10:23:31.663Z</updated>
+    <updated>2021-01-16T11:45:47.552Z</updated>
     
     <summary type="html">
     
@@ -893,7 +893,7 @@
     <link href="http://magic-king.net/2019/11/11/XCTF-adworld-web-wp/"/>
     <id>http://magic-king.net/2019/11/11/XCTF-adworld-web-wp/</id>
     <published>2019-11-11T11:26:17.000Z</published>
-    <updated>2019-11-12T11:58:40.595Z</updated>
+    <updated>2021-01-16T11:44:55.669Z</updated>
     
     <summary type="html">
     
@@ -919,7 +919,7 @@
     <link href="http://magic-king.net/2019/11/10/XCTF-adworld-crypto-wp/"/>
     <id>http://magic-king.net/2019/11/10/XCTF-adworld-crypto-wp/</id>
     <published>2019-11-10T13:14:36.000Z</published>
-    <updated>2019-11-11T11:19:18.162Z</updated>
+    <updated>2021-01-16T11:45:13.840Z</updated>
     
     <summary type="html">
     
@@ -945,7 +945,7 @@
     <link href="http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/"/>
     <id>http://magic-king.net/2019/11/08/XCTF-adworld-misc-wp/</id>
     <published>2019-11-08T13:53:39.000Z</published>
-    <updated>2019-11-09T11:28:14.211Z</updated>
+    <updated>2021-01-16T11:42:19.335Z</updated>
     
     <summary type="html">
     
@@ -1163,7 +1163,7 @@
     <link href="http://magic-king.net/2019/08/22/Linux-Command/"/>
     <id>http://magic-king.net/2019/08/22/Linux-Command/</id>
     <published>2019-08-22T14:21:03.000Z</published>
-    <updated>2019-09-04T15:12:44.349Z</updated>
+    <updated>2021-01-16T11:38:55.769Z</updated>
     
     <summary type="html">
     
@@ -1237,25 +1237,6 @@
   </entry>
   
   <entry>
-    <title>IPFS</title>
-    <link href="http://magic-king.net/2019/05/30/IPFS/"/>
-    <id>http://magic-king.net/2019/05/30/IPFS/</id>
-    <published>2019-05-30T14:40:32.000Z</published>
-    <updated>2019-09-04T15:13:38.541Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-      <category term="Network" scheme="http://magic-king.net/categories/Network/"/>
-    
-    
-      <category term="Network" scheme="http://magic-king.net/tags/Network/"/>
-    
-  </entry>
-  
-  <entry>
     <title>ARM</title>
     <link href="http://magic-king.net/2019/05/28/ARM/"/>
     <id>http://magic-king.net/2019/05/28/ARM/</id>
@@ -1282,7 +1263,7 @@
     <link href="http://magic-king.net/2019/05/27/LOVE/"/>
     <id>http://magic-king.net/2019/05/27/LOVE/</id>
     <published>2019-05-27T12:13:14.000Z</published>
-    <updated>2020-08-14T14:50:43.613Z</updated>
+    <updated>2021-01-16T12:48:13.382Z</updated>
     
     <summary type="html">
     
@@ -1299,7 +1280,7 @@
     <link href="http://magic-king.net/2019/05/27/Movie/"/>
     <id>http://magic-king.net/2019/05/27/Movie/</id>
     <published>2019-05-27T08:45:10.000Z</published>
-    <updated>2020-09-01T13:12:05.183Z</updated>
+    <updated>2021-01-16T12:50:48.231Z</updated>
     
     <summary type="html">
     
