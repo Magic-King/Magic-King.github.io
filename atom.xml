@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://magic-king.net/"/>
-  <updated>2019-05-13T07:47:10.456Z</updated>
+  <updated>2020-11-05T02:53:43.788Z</updated>
   <id>http://magic-king.net/</id>
   
   <author>
@@ -15,26 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://magic-king.net/2021/01/07/hello-world/"/>
-    <id>http://magic-king.net/2021/01/07/hello-world/</id>
-    <published>2021-01-07T12:34:29.542Z</published>
-    <updated>2019-05-13T07:47:10.456Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_b
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
   
   <entry>
     <title>Reading-Note-of-A-Mathematical-Theory-of-Communication</title>
@@ -1013,7 +993,7 @@
     <link href="http://magic-king.net/2019/10/18/CVE-2019-14287/"/>
     <id>http://magic-king.net/2019/10/18/CVE-2019-14287/</id>
     <published>2019-10-18T14:59:58.000Z</published>
-    <updated>2019-10-19T13:00:08.873Z</updated>
+    <updated>2021-01-15T14:15:49.131Z</updated>
     
     <summary type="html">
     
@@ -1503,6 +1483,26 @@
     
     
       <category term="hexo" scheme="http://magic-king.net/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://magic-king.net/2019/05/13/hello-world/"/>
+    <id>http://magic-king.net/2019/05/13/hello-world/</id>
+    <published>2019-05-13T04:13:20.000Z</published>
+    <updated>2021-01-15T08:18:08.380Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_b
+      
+    
+    </summary>
+    
+    
     
   </entry>
   
