@@ -577,7 +577,7 @@ $uncompyle6 models.pyc > models.py
 
 利用uncompyle6反编译的pyc文件和在线编译文件相同，也挺快的
 
-![](XCTF-adworld-crypto-wp\11_1.jpg)
+![](XCTF-adworld-crypto-wp/11_1.jpg)
 
 
 

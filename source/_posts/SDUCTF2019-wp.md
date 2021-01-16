@@ -43,7 +43,7 @@ PS.刚准备写wp又放出来一题QAQ
 
 直接F12查看源码，找到flag
 
-![](SDUCTF2019-wp\web1.jpg)
+![](SDUCTF2019-wp/web1.jpg)
 
 
 
@@ -53,7 +53,7 @@ PS.刚准备写wp又放出来一题QAQ
 
 进入页面一个灰色的按钮，F12查看源码
 
-![](SDUCTF2019-wp\web2-1.jpg)
+![](SDUCTF2019-wp/web2-1.jpg)
 
 删除button标签里的disabled即可点击按钮
 
@@ -61,11 +61,11 @@ PS.刚准备写wp又放出来一题QAQ
 <input style="width: 150px; height: 60px; font-size: 30px;" type="button" onclick="c()" value="flag" disabled="">
 ```
 
-![](SDUCTF2019-wp\web2-3.jpg)
+![](SDUCTF2019-wp/web2-3.jpg)
 
 后面好奇，发现flag就在click2.js里，被base64加密过
 
-![](SDUCTF2019-wp\web2-2.jpg)
+![](SDUCTF2019-wp/web2-2.jpg)
 
 
 
@@ -87,7 +87,7 @@ PS.刚准备写wp又放出来一题QAQ
 
 利用burpsuite抓包即可，因为所有请求被burpsuite拦截，所以可以看到`/flag_is_here.html`但是页面上给的是fake ctf，明显不是flag，查看源码得到flag，我是直接用repeater发一个包获得Response。
 
-![](SDUCTF2019-wp\web3.jpg)
+![](SDUCTF2019-wp/web3.jpg)
 
 
 
@@ -95,15 +95,15 @@ PS.刚准备写wp又放出来一题QAQ
 
 > 题目描述： 简单的提交，芝麻开门 
 
-<img src="SDUCTF2019-wp\web4.jpg" style="zoom:50%;" />
+<img src="SDUCTF2019-wp/web4.jpg" style="zoom:50%;" />
 
 直接复制题目的zhimakaimen进去，返回的是口令错误
 
-![](SDUCTF2019-wp\web4-1.jpg)
+![](SDUCTF2019-wp/web4-1.jpg)
 
 查看burpsuite拦截的包，好像是因为他的输入框有长度限制，所以少了一个字母
 
-![](SDUCTF2019-wp\web4-2.jpg)
+![](SDUCTF2019-wp/web4-2.jpg)
 
 利用burpsuite的repeater重新发一个完整的包，得到flag
 
@@ -125,7 +125,7 @@ PS.刚准备写wp又放出来一题QAQ
 
 曲奇==cookies，直接查看网站cookies即可
 
-![](SDUCTF2019-wp\web6.jpg)
+![](SDUCTF2019-wp/web6.jpg)
 
 flag即在内容里，注意flag要进行url解码
 
@@ -137,9 +137,9 @@ flag即在内容里，注意flag要进行url解码
 
 > 题目描述： 你就是个没有感情的浏览器 
 
-![](SDUCTF2019-wp\web7.jpg)
+![](SDUCTF2019-wp/web7.jpg)
 
-![](SDUCTF2019-wp\web7-2.jpg)
+![](SDUCTF2019-wp/web7-2.jpg)
 
 我是一个莫得感情的get机器
 
@@ -149,7 +149,7 @@ flag即在内容里，注意flag要进行url解码
 
 > 题目描述：  小王正在追剧《亲爱的，热爱的》，电脑屏幕。。。。（谁帮我编个） 当他再次醒来。。。。。。。 
 
-![](SDUCTF2019-wp\web8.jpg)
+![](SDUCTF2019-wp/web8.jpg)
 
 有题目已知，用burpsuite改http头属性`User-Agent`即可
 
@@ -165,9 +165,9 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 
 > 题目描述：  你就是一个没有感情的浏览器 
 
-![](SDUCTF2019-wp\web9.jpg)
+![](SDUCTF2019-wp/web9.jpg)
 
-<img src="SDUCTF2019-wp\web9-2.jpg" style="zoom:50%;" />
+<img src="SDUCTF2019-wp/web9-2.jpg" style="zoom:50%;" />
 
 
 
@@ -182,13 +182,13 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 
 > 题目描述：  小明同学用vim编辑主页的时候，实验室断电了！ 
 
-![](SDUCTF2019-wp\web10.jpg)
+![](SDUCTF2019-wp/web10.jpg)
 
 由题目得知用vim时断电，用过vim的人都知道，当vim非正常退出时会创建一个保护的缓存文件，现在word也一样。
 
 直接百度搜vim异常退出的备份文件，因为上次做过类似的，试试`index.php.bak`和`index.php~`没用，就百度了一下，得知备份文件格式为`.index.php.swp`，访问`url/.index.php.swp`下载文件得到`.index.php.swp`
 
-![](SDUCTF2019-wp\web10-2.jpg)
+![](SDUCTF2019-wp/web10-2.jpg)
 
 得知flag在`url/vimvimvimvim.php`里，果然vim是最好的编辑器（狗头保命
 
@@ -205,13 +205,13 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 
 
 
-![](SDUCTF2019-wp\web11.jpg)
+![](SDUCTF2019-wp/web11.jpg)
 
 看刀`<!--php eval(@$_POST["cmd"]);-->`就可知是一句话木马，对这个稍微了解一下，去github获取中国蚁剑即可
 
 不过有一个坑，就是他默认访问是`index.php`，但是通过中国蚁剑连不上，回头看页面，发现在题目中有一个`shell.php`，于是尝试`url/shell.php`加上密码`cmd`，成功连上得到flag
 
-![](SDUCTF2019-wp\web11-2.jpg)
+![](SDUCTF2019-wp/web11-2.jpg)
 
 
 
@@ -221,7 +221,7 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 
 > 题目描述：  达拉崩吧打怪小游戏 
 
-![](SDUCTF2019-wp\web12.jpg)
+![](SDUCTF2019-wp/web12.jpg)
 
 
 
@@ -240,17 +240,17 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 
 
 
-![](SDUCTF2019-wp\web12-2.jpg)
+![](SDUCTF2019-wp/web12-2.jpg)
 
 
 
-<img src="SDUCTF2019-wp\web12-3.jpg" style="zoom:50%;" />
+<img src="SDUCTF2019-wp/web12-3.jpg" style="zoom:50%;" />
 
 
 
 然后得到flag
 
-![](SDUCTF2019-wp\web12-4.jpg)
+![](SDUCTF2019-wp/web12-4.jpg)
 
 
 
@@ -258,7 +258,7 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 
 > 题目描述： 你了解http头吗？ 
 
-![](SDUCTF2019-wp\web13.jpg)
+![](SDUCTF2019-wp/web13.jpg)
 
 根据题目，直接查看http Response Headers
 
@@ -308,11 +308,11 @@ Disallow: f1ag_1s_h3re.php
 
 
 
-![](SDUCTF2019-wp\web17-1.jpg)
+![](SDUCTF2019-wp/web17-1.jpg)
 
 尝试将Cookie改成`Cookie: Login=1`，发现成功得到flag在button上
 
-![](SDUCTF2019-wp\web17-2.jpg)
+![](SDUCTF2019-wp/web17-2.jpg)
 
 
 
@@ -320,7 +320,7 @@ Disallow: f1ag_1s_h3re.php
 
 > 题目描述： md5是坚不可破的，是真的吗？ 
 
-![](SDUCTF2019-wp\web18-1.jpg)
+![](SDUCTF2019-wp/web18-1.jpg)
 
 进入页面之后直接查看源码，如题直接百度搜索php MD5漏洞。
 
@@ -370,11 +370,11 @@ PHP在处理哈希字符串时，它把每一个以“0E”开头的哈希值都
 
 > 题目描述： php是最好的语言? 
 
-![](SDUCTF2019-wp\web19.jpg)
+![](SDUCTF2019-wp/web19.jpg)
 
 进入页面如上图，点击查看source.php
 
-![](SDUCTF2019-wp\web19-2.jpg)
+![](SDUCTF2019-wp/web19-2.jpg)
 
 ```php
 <?php if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -397,7 +397,7 @@ PHP在处理哈希字符串时，它把每一个以“0E”开头的哈希值都
 
 得到flag
 
-![](SDUCTF2019-wp\web19-3.jpg)
+![](SDUCTF2019-wp/web19-3.jpg)
 
 
 
@@ -412,7 +412,7 @@ PHP在处理哈希字符串时，它把每一个以“0E”开头的哈希值都
 
 进入网页查看源码
 
-![](SDUCTF2019-wp\web20.jpg)
+![](SDUCTF2019-wp/web20.jpg)
 
 百度得知waf是` Web Application Firewall `的简称。
 
@@ -433,11 +433,11 @@ base64>>>c3lzdGVtKCdjYXQgZmZmZmxsbGxhYWFhZ2dnZycpOw==
 
 注：别在网页中解base64，不同网页也许会将字符串先url编码或者Unicode编码在进行base64加密，直接用burpsuite带的base64encode，然后发包即可
 
-![](SDUCTF2019-wp\web20-1.jpg)
+![](SDUCTF2019-wp/web20-1.jpg)
 
 得知flag在同目录下的ffffllllaaaagggg里
 
-![](SDUCTF2019-wp\web20-2.jpg)
+![](SDUCTF2019-wp/web20-2.jpg)
 
 得到flag
 
@@ -449,15 +449,15 @@ base64>>>c3lzdGVtKCdjYXQgZmZmZmxsbGxhYWFhZ2dnZycpOw==
 
 进入页面
 
-![](SDUCTF2019-wp\web21.jpg)
+![](SDUCTF2019-wp/web21.jpg)
 
 如题，提交get请求`url/?first=cyber`
 
-![](SDUCTF2019-wp\web21-2.jpg)
+![](SDUCTF2019-wp/web21-2.jpg)
 
 如题，提交post请求`sceond=ans`（因为计算式每次都会变，所以我这用ans替代，不过也没关系，得到如下页面
 
-![](SDUCTF2019-wp\web21-3.jpg)
+![](SDUCTF2019-wp/web21-3.jpg)
 
 因为每次刷新get页面是计算式都会变，所以我想到了用python的requests的库，脚本如下
 
@@ -501,7 +501,7 @@ aa = qa()
 
 跑出来结果如下，得到flag
 
-![](SDUCTF2019-wp\web21-4.jpg)
+![](SDUCTF2019-wp/web21-4.jpg)
 
 
 
@@ -519,7 +519,7 @@ aa = qa()
 >
 > https://www.cnblogs.com/xhds/p/10884647.html 
 
-![](SDUCTF2019-wp\web23-2.jpg)
+![](SDUCTF2019-wp/web23-2.jpg)
 
 然后发现GitHack一波就得到flag了emmmmmmmm
 
@@ -535,7 +535,7 @@ aa = qa()
 
 进入发现是一个登陆网页，想要注入却是登陆失败，那就注册一个试试
 
-![](SDUCTF2019-wp\web24-7.jpg)
+![](SDUCTF2019-wp/web24-7.jpg)
 
 注册后登陆进去，是一个可以上传图片的网页，其他啥东西也没有，推测是用图片做一句话木马
 
@@ -559,7 +559,7 @@ MD5(172.2.0.2) = fd40c7f4125a9b9ff1a4e75d293e3080
 
 后面实在没思路了，就打算对网站进行一波路径扫描，结果发现了惊喜，有一个`www.tar.gz`，访问下载文件，发现就是php源码了。
 
-![](SDUCTF2019-wp\web24.jpg)
+![](SDUCTF2019-wp/web24.jpg)
 
 不过我还没到能完全审计php源码的高度，我就将其中一部分的源码取用百度搜索，果然搜到了原题
 
@@ -636,7 +636,7 @@ echo urlencode(base64_encode(serialize($register)));
 
 不过在用户已登录时改Cookie时没用，要等到退出账户到登陆界面时设置新建Cookie，再刷新得到如下界面说明成功了
 
-![](SDUCTF2019-wp\web24-8.png)
+![](SDUCTF2019-wp/web24-8.png)
 
 此时，去访问`url/upload/`即可看到我们修改的php后缀的文件，同时在上传做php图片马时也遇到了问题
 
@@ -667,25 +667,25 @@ $isgm = new ISGM();
 
 然后尝试自己写了一个，拼接在一起也没有躲开这个错误的厄运
 
-![](SDUCTF2019-wp\web24-3.jpg)
+![](SDUCTF2019-wp/web24-3.jpg)
 
 查看图片马的源码发现如下：
 
-![](SDUCTF2019-wp\web24-9.jpg)
+![](SDUCTF2019-wp/web24-9.jpg)
 
 可能是png文件尾和php头部拼接，导致一些转义问题，php失去头部`<?php`导致解析php解析失败
 
 然后尝试用jpg文件去做一个图片马、上传，果然成功了
 
-![](SDUCTF2019-wp\web24-2.jpg)
+![](SDUCTF2019-wp/web24-2.jpg)
 
 然后用中国蚁剑连上服务器，在根目录下找到flag
 
-![](SDUCTF2019-wp\web24-6.jpg)
+![](SDUCTF2019-wp/web24-6.jpg)
 
 
 
-![](SDUCTF2019-wp\web24-5.jpg)
+![](SDUCTF2019-wp/web24-5.jpg)
 
 
 
@@ -727,7 +727,7 @@ $isgm = new ISGM();
 
 或者用一些pdf编辑器也做的到。
 
-![](SDUCTF2019-wp\misc2.jpg)
+![](SDUCTF2019-wp/misc2.jpg)
 
 
 
@@ -739,7 +739,7 @@ $isgm = new ISGM();
 
 用StegSolve查看，原以为是加密，，没想到是藏在不同色差层。
 
-![](SDUCTF2019-wp\misc3.jpg)
+![](SDUCTF2019-wp/misc3.jpg)
 
 
 
@@ -755,7 +755,7 @@ $isgm = new ISGM();
 
 查看频谱图就可得flag
 
-![](SDUCTF2019-wp\misc4.jpg)
+![](SDUCTF2019-wp/misc4.jpg)
 
 
 
@@ -771,7 +771,7 @@ $isgm = new ISGM();
 
 另一种办法，用010editor打开，直接搜索flag，得到flag
 
-![](SDUCTF2019-wp\misc5.jpg)
+![](SDUCTF2019-wp/misc5.jpg)
 
 
 
@@ -787,7 +787,7 @@ $isgm = new ISGM();
 
 四个压缩文件分别是QRcode四等分，用画图把他们拼一起，获得一张完整的二维码，扫码得到flag。
 
-![](SDUCTF2019-wp\misc6.jpg)
+![](SDUCTF2019-wp/misc6.jpg)
 
 
 
@@ -797,13 +797,13 @@ $isgm = new ISGM();
 
 ~~发现没有截图，就说下思路把~~，转手就去把图截了，显示一个password.zip伪加密，用ZipCenOp解开伪加密，看到里面还有一个压缩包
 
-![](SDUCTF2019-wp\misc7.jpg)
+![](SDUCTF2019-wp/misc7.jpg)
 
 但是压缩包里面是一个图片文件，写着flag不在这
 
 于是就把里面那个zip拖进010editor查看，发现是隐写一个压缩包，直接看到flag，复制提交就完了
 
-![](SDUCTF2019-wp\misc7-2.jpg)
+![](SDUCTF2019-wp/misc7-2.jpg)
 
 
 
@@ -815,7 +815,7 @@ $isgm = new ISGM();
 
 又是没有思路的pwn，上网搜索得知python有个pwn库可以计算随机数种子，既然是猜，我就自己找一波规律。
 
-![](SDUCTF2019-wp\pwn2-sjb.jpg)
+![](SDUCTF2019-wp/pwn2-sjb.jpg)
 
 ```
 robot: 		bsj sjb jbs
@@ -841,7 +841,7 @@ I can win: 	jbs bsj sjb
 
 
 
-![](SDUCTF2019-wp\pwn1.jpg)
+![](SDUCTF2019-wp/pwn1.jpg)
 
 虽然pwn还没入门，不过这确实是最简单得pwn。
 
@@ -859,7 +859,7 @@ I can win: 	jbs bsj sjb
 
 用IDA逆向，看到主函数。
 
-![](SDUCTF2019-wp\pwn3-3.jpg)
+![](SDUCTF2019-wp/pwn3-3.jpg)
 
 进入hello()函数可以看到如下：其中有get函数
 
@@ -867,13 +867,13 @@ I can win: 	jbs bsj sjb
 
 
 
-![](SDUCTF2019-wp\pwn3-4.jpg)
+![](SDUCTF2019-wp/pwn3-4.jpg)
 
 
 
 还在其中找到success，这应该就是我们getshell的函数
 
-![](SDUCTF2019-wp\pwn3-2.jpg)
+![](SDUCTF2019-wp/pwn3-2.jpg)
 
 
 
@@ -895,13 +895,13 @@ sh.interactive()
 
 用pwntools直接构造exp，getshell，获得flag
 
-![](SDUCTF2019-wp\pwn3.jpg)
+![](SDUCTF2019-wp/pwn3.jpg)
 
 
 
 其中遇到了一个编码问题：
 
-![](SDUCTF2019-wp\pwn3-5.jpg)
+![](SDUCTF2019-wp/pwn3-5.jpg)
 
 因为地址用p32转成地址形式为`b'\x86\x84\x04\x08`所以一直编码不成功，导致payload连接失败不能成功getshell
 
@@ -1053,7 +1053,7 @@ ans = hashlib.md5(str(s+mobj).encode('utf-8')).hexdigest()
 
 最明显的，先把中尉名字`Georges Painvin`百度一波，得知时`ADFGVX密码`对照密码表，解得flag：`flag{youarearealhacker}`
 
-![图源自百度百科](SDUCTF2019-wp\crypto6.jpg)
+![图源自百度百科](SDUCTF2019-wp/crypto6.jpg)
 
 
 
@@ -1103,7 +1103,7 @@ And 十分真实，都把顺序放我TODO List下了，妈耶
 
 什么密码？https://blog.csdn.net/qq_40574571/article/details/80164981
 
-![](SDUCTF2019-wp\crypto8.jpg)
+![](SDUCTF2019-wp/crypto8.jpg)
 
 
 
@@ -1143,7 +1143,7 @@ And 十分真实，都把顺序放我TODO List下了，妈耶
 
 通过工具`d2j-dex2jar`和`jd-gui`两者逆向apk得到flag
 
-![](SDUCTF2019-wp\mobile-apk1.jpg)
+![](SDUCTF2019-wp/mobile-apk1.jpg)
 
 ### 0x02 apk2
 
@@ -1151,7 +1151,7 @@ And 十分真实，都把顺序放我TODO List下了，妈耶
 
 通过工具`d2j-dex2jar`和`jd-gui`两者逆向apk得到flag
 
-![](SDUCTF2019-wp\mobile-apk2.jpg)
+![](SDUCTF2019-wp/mobile-apk2.jpg)
 
 
 
@@ -1169,11 +1169,11 @@ And 十分真实，都把顺序放我TODO List下了，妈耶
 
 于是现去网上下了一个jeb逆向，然后找一个样例现学jeb
 
-![](SDUCTF2019-wp\mobile-apk3-2.jpg)
+![](SDUCTF2019-wp/mobile-apk3-2.jpg)
 
 直觉看这个字符串有用，然后在下面果然发现
 
-![](SDUCTF2019-wp\mobile-apk3-1.jpg)
+![](SDUCTF2019-wp/mobile-apk3-1.jpg)
 
 
 
@@ -1211,7 +1211,7 @@ apk3：sductf{Easy_Apk_1s_n0t_hard_4_U!}
 
 发现包里和以前的apk解压不同，apk3是多了一个Kotlin文件夹，而这个fuck app 是多了一个lib文件夹，猜主要的函数在里面，打开`lib/arm64-v8a`得到一个`libnative-lib.so`，拖进IDA里进行逆向
 
-![](SDUCTF2019-wp\mobile-apk4-fuck.jpg)
+![](SDUCTF2019-wp/mobile-apk4-fuck.jpg)
 
 
 
@@ -1231,7 +1231,7 @@ apk3：sductf{Easy_Apk_1s_n0t_hard_4_U!}
 
 > 题目描述： 都是java程序员，互相偷个代码谁不会呀！ 
 
-![](SDUCTF2019-wp\re1-java.jpg)
+![](SDUCTF2019-wp/re1-java.jpg)
 
 下载附件得到jar包，直接解压得到文件，打开`main.class`，看到flag明文就在main.class里
 
@@ -1243,7 +1243,7 @@ apk3：sductf{Easy_Apk_1s_n0t_hard_4_U!}
 
 下载附件得到sductf.exe，拖入辣个女人ida进行逆向，直接得到flag
 
-![](SDUCTF2019-wp\re2-sductf.jpg)
+![](SDUCTF2019-wp/re2-sductf.jpg)
 
 
 
@@ -1270,13 +1270,13 @@ apk3：sductf{Easy_Apk_1s_n0t_hard_4_U!}
 
 乱逛发现有一个字符串，但是解码出来是一个奇怪的东西，继续找主函数main
 
-![](SDUCTF2019-wp\re3-rust-2.jpg)
+![](SDUCTF2019-wp/re3-rust-2.jpg)
 
 
 
 主函数入口
 
-![](SDUCTF2019-wp\re3-rust-3.jpg)
+![](SDUCTF2019-wp/re3-rust-3.jpg)
 
 
 
@@ -1284,7 +1284,7 @@ apk3：sductf{Easy_Apk_1s_n0t_hard_4_U!}
 
 
 
-![](SDUCTF2019-wp\re3-rust-4.jpg)
+![](SDUCTF2019-wp/re3-rust-4.jpg)
 
 
 
@@ -1292,7 +1292,7 @@ apk3：sductf{Easy_Apk_1s_n0t_hard_4_U!}
 
 
 
-![](SDUCTF2019-wp\re3-rust-5.jpg)
+![](SDUCTF2019-wp/re3-rust-5.jpg)
 
 
 
@@ -1308,19 +1308,19 @@ apk3：sductf{Easy_Apk_1s_n0t_hard_4_U!}
 
 逆向main函数无思路，便开TextView查看，看到如下图黄色字符串感觉很奇怪，而且下面有一个Congratulations！，猜测这段字符串是flag
 
-![](SDUCTF2019-wp\re4-1.jpg)
+![](SDUCTF2019-wp/re4-1.jpg)
 
 
 
 F5进入查看具体函数，大概是对输入字符串的每一位与0x16进行异或得到v5字符串
 
-![](SDUCTF2019-wp\re4-2.jpg)
+![](SDUCTF2019-wp/re4-2.jpg)
 
 于是用python逆函数一波，果然得到flag
 
 
 
-![](SDUCTF2019-wp\re4-3.jpg)
+![](SDUCTF2019-wp/re4-3.jpg)
 
 
 

@@ -96,13 +96,13 @@ DBMS的目标：方便、高效地存取数据库信息
 
 如下图所示
 
-![](Database-System\1.jpg)
+![](Database-System/1.jpg)
 
 
 
 下图为各系统间的关系
 
-![](Database-System\2.jpg)
+![](Database-System/2.jpg)
 
 
 
@@ -135,7 +135,7 @@ DBMS的目标：方便、高效地存取数据库信息
 数据统一按表结构存放
 
 <center>数据库VS文件系统</center>  
-![](Database-System\3.jpg)
+![](Database-System/3.jpg)
 
 
 
@@ -193,11 +193,11 @@ person Tom;
 
 **视图层**：最高层次的抽象，只描述整个数据库的某部分数据。视图层提供了防止用户访问数据库的某些部分的安全性机制
 
-![](Database-System\4.jpg)
+![](Database-System/4.jpg)
 
 如图，下图的COBOL和PL/I是由由逻辑层创建的两个视图，而最下面那个即是物理层所存放的数据
 
-![](Database-System\5.jpg)
+![](Database-System/5.jpg)
 
 
 
@@ -289,7 +289,7 @@ create table deptment(
 
 可以用实体关系图（entity-relationship diagram，E-R图）来表示
 
-![](Database-System\6.jpg)
+![](Database-System/6.jpg)
 
 
 
@@ -326,7 +326,7 @@ create table deptment(
 
 
 
-![](Database-System\7.jpg)
+![](Database-System/7.jpg)
 
 
 
@@ -339,7 +339,7 @@ create table deptment(
 
 过程如下图
 
-![](Database-System\8.jpg)
+![](Database-System/8.jpg)
 
 两方面来评估一个给定查询：①正则表达式②每个操作有不同的实现算法
 
@@ -361,7 +361,7 @@ create table deptment(
 
 
 
-![](Database-System\9.jpg)
+![](Database-System/9.jpg)
 
 
 
@@ -1062,7 +1062,7 @@ where instructor.ID = teacher.ID
 >
 >   
 >
->   ------
+> ------
 >
 >   
 >

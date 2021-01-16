@@ -351,7 +351,7 @@ cap定理，又称布鲁尔定理：任意分布式系统**不能同时拥有**�
 
 一般是淘宝的系统可用性可以达到5个9，意思是他的可用水平是99.999%，即全年停机时间不超过`(1-0.99999)*365*24*60 = 5.256min`
 
-![](BlockChain\3.jpg)
+![](BlockChain/3.jpg)
 
 **CP without A **：一旦发生网络故障或者消息丢失等情况，就要牺牲用户的体验，等待所有数据全部一致了之后再让用户访问系统。分布式存储系统(Redis、Hbase),分布式协调组件Zookeeper.
 
@@ -535,7 +535,7 @@ SM(m)算法：
 * 区块链的核心是一个点对点的分布式账本，此类账本具有加密安全性，且仅可追加内容，同时不可更改（很难），只有在对等身份成员之间达成共识或协议时才能更新
 * 区块链可以定义为一个平台，在此平台上，对等点可以通过交易交换值，而不需要中央信任仲裁者。
 
-![](BlockChain\4.jpg)
+![](BlockChain/4.jpg)
 
 
 
@@ -772,7 +772,7 @@ SM(m)算法：
   >
   > e) 处理消息并生成输出哈希值。
 
-  ![](BlockChain\6.jpg)
+  ![](BlockChain/6.jpg)
 
 
 
@@ -825,7 +825,7 @@ EC-DES签名
 
 
 
-![](BlockChain\7.jpg)
+![](BlockChain/7.jpg)
 
 区块链的底层由四部分构成
 
@@ -844,7 +844,7 @@ EC-DES签名
 
 不同的虚拟货币采用不同的共识机制，常见的共识机制如POW、POS、DPOS、PBFT等
 
-![](BlockChain\8.jpg)
+![](BlockChain/8.jpg)
 
 
 
@@ -890,7 +890,7 @@ POW工作量证明的三要素：①工作量证明函数	②Merkle树	③难度
 
 
 
-![](BlockChain\9.jpg)
+![](BlockChain/9.jpg)
 
 如图为不同位发生hash碰撞的可能性，最右边是发生hash碰撞的可能性，左边是经过多少个数之后可能达到发生的可能性。
 
@@ -1128,7 +1128,7 @@ SPV：简化支付验证（Simplified Payment Verification），轻钱包并不�
 
 
 
-![](BlockChain\14.jpg)
+![](BlockChain/14.jpg)
 
 1. 节点总是认为最长的链是正确的链，并致力于在最长的链上进行扩展。
 
@@ -1602,7 +1602,7 @@ Raft的记账过程按以下步骤完成：
 
 
 
-![](BlockChain\16.jpg)
+![](BlockChain/16.jpg)
 
 
 
@@ -1643,13 +1643,13 @@ Raft的记账过程按以下步骤完成：
 
 
 
-![](BlockChain\18.jpg)
+![](BlockChain/18.jpg)
 
 
 
 
 
-![](BlockChain\19.jpg)
+![](BlockChain/19.jpg)
 
 
 

@@ -63,7 +63,7 @@ exec的第一个参数可以是code object，因此它可以执行复杂的代�
 
 
 
-![](Functions-with-potential-code-execution-risks-in-Python\1.jpg)
+![](Functions-with-potential-code-execution-risks-in-Python/1.jpg)
 
 
 
@@ -75,11 +75,11 @@ exec的第一个参数可以是code object，因此它可以执行复杂的代�
 
 
 
-![](Functions-with-potential-code-execution-risks-in-Python\2.jpg)
+![](Functions-with-potential-code-execution-risks-in-Python/2.jpg)
 
 相较于exec：
 
-![](Functions-with-potential-code-execution-risks-in-Python\3.jpg)
+![](Functions-with-potential-code-execution-risks-in-Python/3.jpg)
 
 
 
@@ -89,7 +89,7 @@ exec的第一个参数可以是code object，因此它可以执行复杂的代�
 
 
 
-![](Functions-with-potential-code-execution-risks-in-Python\4.jpg)
+![](Functions-with-potential-code-execution-risks-in-Python/4.jpg)
 
 由图可见，eval在对表达式进行计算后，返回计算结果，而exec并无返回结果
 
@@ -105,7 +105,7 @@ exec的第一个参数可以是code object，因此它可以执行复杂的代�
 
 以`eval()`函数为例，下图中的add函数使用`eval()`对传入参数进行处理，将传入的a，b拼接起来通过`eval()`计算返回结果
 
-![](Functions-with-potential-code-execution-risks-in-Python\5.jpg)
+![](Functions-with-potential-code-execution-risks-in-Python/5.jpg)
 
 ```python
 def add(a, b):
@@ -122,7 +122,7 @@ add("__import__('os').system('whoami') #", 2)
 
 
 
-![](Functions-with-potential-code-execution-risks-in-Python\6.jpg)
+![](Functions-with-potential-code-execution-risks-in-Python/6.jpg)
 
 成功执行命令，并返回结果2。
 
@@ -140,11 +140,11 @@ add("__import__('os').system('whoami') #", 2)
 
 在`eval()`和`exec()` ，**globals**参数用于指定运行时的全局命名空间，如果globals没有被提供，则使用python的全局命名空间
 
-![](Functions-with-potential-code-execution-risks-in-Python\7.jpg)
+![](Functions-with-potential-code-execution-risks-in-Python/7.jpg)
 
 如上图，若不规定globals参数，则使用python全局的`a=1`，若提供了globals参数`{'a':6}`，则使用globals参数里的数据，即eval的作用域就是`{'a':6}`
 
-![](Functions-with-potential-code-execution-risks-in-Python\8.jpg)
+![](Functions-with-potential-code-execution-risks-in-Python/8.jpg)
 
 而且当eval使用了自己作用域里的参数，就不会使用python的全局命名空间
 
@@ -156,19 +156,19 @@ builtins模块是提供对python的所有“内建”标识符的直接访问功
 
 > [python源码分析——内建模块builtins初始化](https://blog.csdn.net/qq_33339479/article/details/81501802)
 
-![](Functions-with-potential-code-execution-risks-in-Python\9.jpg)
+![](Functions-with-potential-code-execution-risks-in-Python/9.jpg)
 
 而且由于**builtins**的存在，使得在Python可以直接使用一些内建函数而不用显式的导入它们，例如input()、list()、**import** 等
 
 通过命令`dir(__builtins__)`就可以看到所有的内建函数
 
-![](Functions-with-potential-code-execution-risks-in-Python\10.jpg)
+![](Functions-with-potential-code-execution-risks-in-Python/10.jpg)
 
 在python中使用上述函数都可以不用导入模块
 
 回到`exec/eval`问题中，值得注意的是，在`exec/eval`中，若globals参数被提供，但是没有提供自定义的builtins，那么`exec/eval`会将当前环境中的**builtins**拷贝至自己提供的globals里，例子如下图：
 
-![](Functions-with-potential-code-execution-risks-in-Python\11.jpg)
+![](Functions-with-potential-code-execution-risks-in-Python/11.jpg)
 
 如图，若globals里不规定`__builtins__`，则会使用python全局的**builtins**，例如`in[25]`。如果定义了builtins，则会使用已经定义的**builtins**，如`in[27]`和`in[28]`。
 
@@ -176,7 +176,7 @@ builtins模块是提供对python的所有“内建”标识符的直接访问功
 >
 > 后面实验时发现，builtins可以被当作模块所import，所以推测python初始化的时候使用的是`__builtins__`，实验证明这是正确的
 >
-> ![](Functions-with-potential-code-execution-risks-in-Python\12.jpg)
+> ![](Functions-with-potential-code-execution-risks-in-Python/12.jpg)
 
 
 
@@ -194,7 +194,7 @@ exec的globals策略与eval相同
 
 
 
-![](Functions-with-potential-code-execution-risks-in-Python\13.jpg)
+![](Functions-with-potential-code-execution-risks-in-Python/13.jpg)
 
 如图，`(1,2)`是一个元组，`__class__`用于查看对象所在的类，很显然`(1,2)`是个元组类型的对象，即tuple类
 
@@ -204,13 +204,13 @@ exec的globals策略与eval相同
 
 `__subclasses__` 可用来获取类的所有子类，贼恐怖
 
-![](Functions-with-potential-code-execution-risks-in-Python\14.jpg)
+![](Functions-with-potential-code-execution-risks-in-Python/14.jpg)
 
 因为`(1,2).__class__.__bases__[0]`已经是object类了，而object类的子类众多，因此可以使用的类就非常丰富了
 
 比如list就在object类里，对应着`(1,2).__class__.__bases__[0].__subclasses__()[7]`
 
-![](Functions-with-potential-code-execution-risks-in-Python\15.jpg)
+![](Functions-with-potential-code-execution-risks-in-Python/15.jpg)
 
 这样就可以调用list函数，将其转为一个list
 
@@ -218,7 +218,7 @@ exec的globals策略与eval相同
 
 在object子类中，有执行系统命令的子类  `subprocess.Popen`
 
-![](Functions-with-potential-code-execution-risks-in-Python\16.jpg)
+![](Functions-with-potential-code-execution-risks-in-Python/16.jpg)
 
 
 
@@ -246,13 +246,13 @@ exec的globals策略与eval相同
 
 显然，利用链：`().__class__.bases[0].__subclasses__()[176]("whoami")`
 
-![](Functions-with-potential-code-execution-risks-in-Python\17.jpg)
+![](Functions-with-potential-code-execution-risks-in-Python/17.jpg)
 
 可能由于我的引入库不同，导致了subclasses的列表选择不同，我在subclasses[217]找到`subprocess.Popen`，然后成功执行whoami命令
 
 每个python的运行环境不同，引入库的顺序不同，导致subprocess不一定在176位，甚至可能没有被引入
 
-![](Functions-with-potential-code-execution-risks-in-Python\18.jpg)
+![](Functions-with-potential-code-execution-risks-in-Python/18.jpg)
 
 由图可见，虽然可能没被引入，但是这种方法能成功绕过。可见，虽然限制只允许使用list，但是我们仍然可以执行系统命令。因此，简单的使用{'**builtins**': None}是无法满足eval的安全需求的
 
@@ -264,11 +264,11 @@ strings, bytes, numbers, tuples, lists, dicts, sets, booleans, None
 
 当不合法的字符传入时，程序则会报错，如下图
 
-![](Functions-with-potential-code-execution-risks-in-Python\19.jpg)
+![](Functions-with-potential-code-execution-risks-in-Python/19.jpg)
 
 使用ast.literal_eval()代替eval和exec，可以有效的防止任意代码执行漏洞
 
-![](Functions-with-potential-code-execution-risks-in-Python\20.jpg)
+![](Functions-with-potential-code-execution-risks-in-Python/20.jpg)
 
 甚至只要有任何不合法的字符传入，程序就会报错
 

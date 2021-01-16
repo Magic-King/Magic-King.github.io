@@ -138,7 +138,7 @@ didi bike:
 
 
 
-<img src="QRCodeAttack\11.jpg" style="zoom:150%;" />
+<img src="QRCodeAttack/11.jpg" style="zoom:150%;" />
 
 
 

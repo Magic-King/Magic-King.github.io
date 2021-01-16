@@ -33,7 +33,7 @@ password:
 
 如图，当math.log(125,5)时应该值为3的，但是出了一个bug
 
-![](tricks\1.jpg)
+![](tricks/1.jpg)
 
 
 
@@ -49,7 +49,7 @@ for i in range(2,101):
 
 然后去ubuntu虚拟机尝试了python2，发现也有这个问题
 
-![](tricks\2.jpg)
+![](tricks/2.jpg)
 
 
 
@@ -67,7 +67,7 @@ math.log(x[,base]) = log(x) / log(base)
 
 最有力的证明：
 
-![](tricks\3.jpg)
+![](tricks/3.jpg)
 
 
 

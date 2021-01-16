@@ -123,7 +123,7 @@ linux指令指在linux终端（命令行）中输入的内容。
 
 
 
-![img](Linux-Command\ls_3.png)
+![img](Linux-Command/ls_3.png)
 
 
 

@@ -39,7 +39,7 @@ Web如同一座正三角冰山，等着去探索。。。
 
 利用burp suite 发包得到flag
 
-![](XCTF-adworld-web-wp\2.jpg)
+![](XCTF-adworld-web-wp/2.jpg)
 
 
 
@@ -59,7 +59,7 @@ Web如同一座正三角冰山，等着去探索。。。
 
 查看源码肯定是没有flag的，根据题目robots可联想到web的robots.txt协议
 
-![](XCTF-adworld-web-wp\3.jpg)
+![](XCTF-adworld-web-wp/3.jpg)
 
 
 
@@ -84,11 +84,11 @@ Web如同一座正三角冰山，等着去探索。。。
 
 直接访问http://xxx.xxx.xxx.xxx/robots.txt
 
-![](XCTF-adworld-web-wp\3_2.jpg)
+![](XCTF-adworld-web-wp/3_2.jpg)
 
 得到一个php路径，直接访问得到flag
 
-![](XCTF-adworld-web-wp\3_3.jpg)
+![](XCTF-adworld-web-wp/3_3.jpg)
 
 
 
@@ -100,7 +100,7 @@ Web如同一座正三角冰山，等着去探索。。。
 
 
 
-<img src="XCTF-adworld-web-wp\4.jpg" style="zoom:50%;" />
+<img src="XCTF-adworld-web-wp/4.jpg" style="zoom:50%;" />
 
  php的备份有两种：*.php~和*.php.bak 
 
@@ -209,7 +209,7 @@ chrome在console中输入命令` javascript:alert(document.cookie)  `
 
 直接访问网站，提示需要特定ip访问
 
-<img src="XCTF-adworld-web-wp\8.jpg" style="zoom: 80%;" />
+<img src="XCTF-adworld-web-wp/8.jpg" style="zoom: 80%;" />
 
 由题目描述猜想是改http请求，进行下一步.
 
@@ -239,7 +239,7 @@ X-Forwarded-For: client, proxy1, proxy2
 
 然后得到如下页面
 
-<img src="XCTF-adworld-web-wp\8_1.jpg"  />
+<img src="XCTF-adworld-web-wp/8_1.jpg"  />
 
 
 
@@ -291,7 +291,7 @@ X-Forwarded-For: client, proxy1, proxy2
 
 但是没有得到结果
 
-![](XCTF-adworld-web-wp\8_2.jpg)
+![](XCTF-adworld-web-wp/8_2.jpg)
 
 
 
@@ -301,7 +301,7 @@ X-Forwarded-For: client, proxy1, proxy2
 
 
 
-![](XCTF-adworld-web-wp\8_3.jpg)
+![](XCTF-adworld-web-wp/8_3.jpg)
 
 
 
@@ -347,7 +347,7 @@ X-Forwarded-For: client, proxy1, proxy2
 
 
 
-![](XCTF-adworld-web-wp\10.jpg)
+![](XCTF-adworld-web-wp/10.jpg)
 
 >  webshell就是以asp、php、jsp或者cgi等网页文件形式存在的一种命令执行环境，也可以将 其称做为一种网页后门。黑客在入侵了一个网站后，通常会将asp或php后门文件与网站服 务器WEB目录下正常的网页文件混在一起，然后就可以使用浏览器来访问asp或者php后门，得到一个命令执行环境，以达到控制网站服务器的目的。 顾名思义，"web"的含义是显然需要服务器开放web服务，"shell"的含义是取得对服务器某 种程度上操作权限。webshell常常被称为入侵者通过网站端口对网站服务器的某种程度上操 作的权限。由于webshell其大多是以动态脚本的形式出现，也有人称之为网站的后门工具。 首先新建一个index.php文件，把PHP代码输入到里面，电脑可能会自动识别它为病毒，并 删除，可以恢复后使用  
 
@@ -426,7 +426,7 @@ if($b>1234){
 
 >  发现“0”为 true，所以可以把参数 a 构造为’0’或者‘alph’这种转换后为 0 但本身不为 False 的 形式 数字和字符混合的字符串转换为整数后只保留数字 
 
-![](XCTF-adworld-web-wp\12.jpg)
+![](XCTF-adworld-web-wp/12.jpg)
 
 
 
