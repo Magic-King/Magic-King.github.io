@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" />
+
+    <meta name="generator" content="Hugo 0.80.0" /><meta name="theme-color" content="#fff" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <title>ollvm-learning | Magic&#39;s Blog</title>
+
+    <link rel="stylesheet" href="/css/meme.min.1f4c5fe5adb3349df9da6989fd6db24f6a03001a3a1e7dc3d57bd70c1c9dbaa6.css"/>
+
+    
+    
+        <script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js" defer></script><script src="/js/meme.min.2d20bc81759366b494993c8ad6e1b42c8480678ba0aa957544d5f8756a67c15d.js"></script>
+
+    
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" media="print" onload="this.media='all'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" /></noscript>
+
+    <meta name="author" content="Magic" /><meta name="description" content="Learning about ollvm" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Magic&#39;s Blog" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="Magic&#39;s Blog" />
+    <meta name="msapplication-starturl" content="../../" />
+    <meta name="msapplication-TileColor" content="#fff" />
+    <meta name="msapplication-TileImage" content="../../icons/mstile-150x150.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    
+    
+
+    
+    <link rel="canonical" href="https://magic-king.net/posts/ollvm-learning/" />
+    
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "datePublished": "2020-02-27T10:09:14+08:00",
+        "dateModified": "2021-02-09T17:27:35+08:00",
+        "url": "https://magic-king.net/posts/ollvm-learning/",
+        "headline": "ollvm-learning",
+        "description": "Learning about ollvm",
+        "inLanguage" : "zh-CN",
+        "articleSection": "posts",
+        "wordCount":  12554 ,
+        "image": ["https://magic-king.net/posts/ollvm-learning/3.png","https://magic-king.net/posts/ollvm-learning/2.png","https://magic-king.net/posts/ollvm-learning/IR-relation.png","https://magic-king.net/posts/ollvm-learning/4.png","https://magic-king.net/posts/ollvm-learning/1.png","https://magic-king.net/posts/ollvm-learning/test_gcc_ida.png","https://magic-king.net/posts/ollvm-learning/test_clang_ida.png","https://magic-king.net/posts/ollvm-learning/test_bcf_ida.png","https://magic-king.net/posts/ollvm-learning/test_split_ida.png","https://magic-king.net/posts/ollvm-learning/test_sub_ida.png","https://magic-king.net/posts/ollvm-learning/SourceCode_bcf_1.png","https://magic-king.net/posts/ollvm-learning/bcf_addBogusFlow.png","https://magic-king.net/posts/ollvm-learning/fla_1.png","https://magic-king.net/posts/ollvm-learning/fla_2.png","https://magic-king.net/posts/ollvm-learning/fla_3.png","https://magic-king.net/posts/ollvm-learning/fla_4.png","https://magic-king.net/posts/ollvm-learning/fla_5.png","https://magic-king.net/posts/ollvm-learning/sub_1.png"],
+        "author": {
+            "@type": "Person",
+            "description": "Now You See Me!",
+            "email": "Ma9icKing@gmail.com",
+            "image": "https://magic-king.net/icons/favicon",
+            "url": "https://magic-king.net/",
+            "name": "Magic"
+        },
+        "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Magic's Blog",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://magic-king.net/icons/favicon.ico"
+            },
+            "url": "https://magic-king.net/"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebSite",
+            "@id": "https://magic-king.net/"
+        }
+    }
+</script>
+
+    
+
+<meta name="twitter:card" content="summary_large_image" />
+
+
+
+    
+
+
+
+<meta property="og:title" content="ollvm-learning" />
+<meta property="og:description" content="Learning about ollvm" />
+<meta property="og:url" content="https://magic-king.net/posts/ollvm-learning/" />
+<meta property="og:site_name" content="Magic&#39;s Blog" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://magic-king.net/posts/ollvm-learning/3.png" />
+<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2020-02-27T10:09:14&#43;08:00" />
+    <meta property="article:modified_time" content="2021-02-09T17:27:35&#43;08:00" />
+    
+    <meta property="article:section" content="posts" />
+
+
+
+    
+</head>
+
+    <body>
+        <div class="container">
+            
+    <header class="header">
+        
+            <div class="header-wrapper">
+                <div class="header-inner single">
+                    
+    <div class="site-brand">
+        
+            <a href="/" class="brand">Magic&#39;s Blog</a>
+        
+    </div>
+
+                    <nav class="nav">
+    <ul class="menu" id="menu">
+        
+            
+        
+        
+        
+        
+            
+                <li class="menu-item"><a href="/posts/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon archive"><path d="M32 448c0 17.7 14.3 32 32 32h384c17.7 0 32-14.3 32-32V160H32v288zm160-212c0-6.6 5.4-12 12-12h104c6.6 0 12 5.4 12 12v8c0 6.6-5.4 12-12 12H204c-6.6 0-12-5.4-12-12v-8zM480 32H32C14.3 32 0 46.3 0 64v48c0 8.8 7.2 16 16 16h480c8.8 0 16-7.2 16-16V64c0-17.7-14.3-32-32-32z"/></svg><span class="menu-item-name">Archive</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/categories/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon th"><path d="M149.333 56v80c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V56c0-13.255 10.745-24 24-24h101.333c13.255 0 24 10.745 24 24zm181.334 240v-80c0-13.255-10.745-24-24-24H205.333c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24h101.333c13.256 0 24.001-10.745 24.001-24zm32-240v80c0 13.255 10.745 24 24 24H488c13.255 0 24-10.745 24-24V56c0-13.255-10.745-24-24-24H386.667c-13.255 0-24 10.745-24 24zm-32 80V56c0-13.255-10.745-24-24-24H205.333c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24h101.333c13.256 0 24.001-10.745 24.001-24zm-205.334 56H24c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24h101.333c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24zM0 376v80c0 13.255 10.745 24 24 24h101.333c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H24c-13.255 0-24 10.745-24 24zm386.667-56H488c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H386.667c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24zm0 160H488c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H386.667c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24zM181.333 376v80c0 13.255 10.745 24 24 24h101.333c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H205.333c-13.255 0-24 10.745-24 24z"/></svg><span class="menu-item-name">Categories</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/tags/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="icon tags"><path d="M497.941 225.941L286.059 14.059A48 48 0 0 0 252.118 0H48C21.49 0 0 21.49 0 48v204.118a48 48 0 0 0 14.059 33.941l211.882 211.882c18.744 18.745 49.136 18.746 67.882 0l204.118-204.118c18.745-18.745 18.745-49.137 0-67.882zM112 160c-26.51 0-48-21.49-48-48s21.49-48 48-48 48 21.49 48 48-21.49 48-48 48zm513.941 133.823L421.823 497.941c-18.745 18.745-49.137 18.745-67.882 0l-.36-.36L527.64 323.522c16.999-16.999 26.36-39.6 26.36-63.64s-9.362-46.641-26.36-63.64L331.397 0h48.721a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882z"/></svg><span class="menu-item-name">Tags</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/about/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="icon user-circle"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z"/></svg><span class="menu-item-name">About</span></a>
+                </li>
+            
+        
+            
+                
+                    
+                    
+                        <li class="menu-item">
+                            <a id="theme-switcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-light"><path d="M193.2 104.5l48.8-97.5a18 18 0 0128 0l48.8 97.5 103.4 -34.5a18 18 0 0119.8 19.8l-34.5 103.4l97.5 48.8a18 18 0 010 28l-97.5 48.8 34.5 103.4a18 18 0 01-19.8 19.8l-103.4-34.5-48.8 97.5a18 18 0 01-28 0l-48.8-97.5l-103.4 34.5a18 18 0 01-19.8-19.8l34.5-103.4-97.5-48.8a18 18 0 010-28l97.5-48.8-34.5-103.4a18 18 0 0119.8-19.8zM256 128a128 128 0 10.01 0M256 160a96 96 0 10.01 0"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-dark"><path d="M27 412a256 256 0 10154-407a11.5 11.5 0 00-5 20a201.5 201.5 0 01-134 374a11.5 11.5 0 00-15 13"/></svg></a>
+                        </li>
+                    
+                
+            
+        
+            
+                <li class="menu-item search-item">
+                        <form id="search" class="search" role="search">
+    <label for="search-input"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon search-icon"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></label>
+    <input type="search" id="search-input" class="search-input">
+</form>
+
+<template id="search-result" hidden>
+    <article class="content post">
+        <h2 class="post-title"><a class="summary-title-link"></a></h2>
+        <summary class="summary"></summary>
+        <div class="read-more-container">
+            <a class="read-more-link">阅读更多 »</a>
+        </div>
+    </article>
+</template>
+
+                    </li>
+                
+            
+        
+    </ul>
+</nav>
+
+                    
+                </div>
+            </div>
+            
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle"></label>
+    <label for="nav-toggle" class="nav-curtain"></label>
+
+
+        
+    </header>
+
+
+
+
+            
+            
+    <main class="main single" id="main">
+    <div class="main-inner">
+
+        
+
+        <article class="content post h-entry" data-align="justify" data-type="posts" data-toc-num="true">
+
+            <h1 class="post-title p-name">ollvm-learning</h1>
+
+            
+
+            
+                <div class="post-description p-summary">Learning about ollvm</div>
+                
+            
+
+            
+                
+
+<div class="post-meta">
+    
+        
+        <time datetime="2020-02-27T10:09:14&#43;08:00" class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;2020.2.27</time>
+    
+    
+        
+        <time datetime="2021-02-09T17:27:35&#43;08:00" class="post-meta-item modified dt-updated"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M400 64h-48V12c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v52H160V12c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v52H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm-6 400H54a6 6 0 0 1-6-6V160h352v298a6 6 0 0 1-6 6zm-52.849-200.65L198.842 404.519c-4.705 4.667-12.303 4.637-16.971-.068l-75.091-75.699c-4.667-4.705-4.637-12.303.068-16.971l22.719-22.536c4.705-4.667 12.303-4.637 16.97.069l44.104 44.461 111.072-110.181c4.705-4.667 12.303-4.637 16.971.068l22.536 22.718c4.667 4.705 4.636 12.303-.069 16.97z"/></svg>&nbsp;2021.2.9</time>
+    
+    
+    
+        
+        
+        
+            
+                <span class="post-meta-item category"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M464 128H272l-54.63-54.63c-6-6-14.14-9.37-22.63-9.37H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48zm0 272H48V112h140.12l54.63 54.63c6 6 14.14 9.37 22.63 9.37H464v224z"/></svg>&nbsp;<a href="/categories/reverse/" class="category-link p-category">reverse</a>/<a href="/categories/llvm/" class="category-link p-category">llvm</a>/<a href="/categories/compiler/" class="category-link p-category">compiler</a></span>
+            
+        
+    
+    
+        
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;12554</span>
+    
+    
+        
+        <span class="post-meta-item reading-time"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>&nbsp;26&nbsp;分钟</span>
+    
+    
+        
+            
+            <span class="post-meta-item busuanzi-page-pv" id="busuanzi_container_page_pv"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon post-meta-icon"><path d="M288 144a110.94 110.94 0 0 0-31.24 5 55.4 55.4 0 0 1 7.24 27 56 56 0 0 1-56 56 55.4 55.4 0 0 1-27-7.24A111.71 111.71 0 1 0 288 144zm284.52 97.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400c-98.65 0-189.09-55-237.93-144C98.91 167 189.34 112 288 112s189.09 55 237.93 144C477.1 345 386.66 400 288 400z"/></svg>&nbsp;<span id="busuanzi_value_page_pv"></span></span>
+        
+    
+    
+</div>
+
+            
+
+            <div class="post-body e-content">
+              <h1 id="llvm"><a href="#llvm" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>llvm</h1>
+<blockquote>
+<p>参考：</p>
+<p><a href="http://llvm.org/" target="_blank" rel="noopener">LLVM官网</a></p>
+<p><a href="http://llvm.org/docs/" target="_blank" rel="noopener">LLVM-docs</a> ：注意要查看对应版本的文档，每个版本文档都有所改变</p>
+<p><a href="https://github.com/llvm/llvm-project/" target="_blank" rel="noopener">Github-llvm/llvm-project</a></p>
+<p><a href="https://github.com/llvm-mirror/llvm" target="_blank" rel="noopener">Github-llvm-mirror/llvm</a></p>
+<p><a href="https://www.jianshu.com/p/707c4f8af150" target="_blank" rel="noopener">LLVM基础(IR简介&amp;CFG图生成&amp;可视化)</a>：可以生成可视化的IR流程图</p>
+<p>参考的GitHub</p>
+<p><a href="https://github.com/heroims/obfuscator" target="_blank" rel="noopener">Github-heroims/obfuscator</a> ：移植好的ollvm9.0等</p>
+<p><a href="https://heroims.github.io/2019/01/06/OLLVM%E4%BB%A3%E7%A0%81%E6%B7%B7%E6%B7%86%E7%A7%BB%E6%A4%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/" target="_blank" rel="noopener">OLLVM代码混淆移植与使用</a> ：heroims的博客</p>
+<p><a href="https://github.com/iamywang/obfuscator" target="_blank" rel="noopener">Github-iamywang/obfuscator</a></p>
+<p><a href="https://github.com/HikariObfuscator/Hikari" target="_blank" rel="noopener">Github-HikariObfuscator/Hikari</a></p>
+<p><a href="https://github.com/GoSSIP-SJTU/Armariris" target="_blank" rel="noopener">Github-GoSSIP-SJTU/Armariris</a></p>
+<p><a href="https://github.com/obfuscator-llvm/obfuscator" target="_blank" rel="noopener">Github-obfuscator-llvm/obfuscator</a> ：官方版本</p>
+<p><a href="https://github.com/obfuscator-llvm/obfuscator/wiki" target="_blank" rel="noopener">obfuscator-wiki</a></p>
+<p><a href="https://bbs.pediy.com/thread-225756.htm" target="_blank" rel="noopener">pediy.com---[原创]ollvm快速学习</a></p>
+<p><a href="https://juejin.im/post/5bfba01df265da614273939a" target="_blank" rel="noopener">llvm入门</a></p>
+<p><a href="https://heroims.github.io/2019/01/06/OLLVM%E4%BB%A3%E7%A0%81%E6%B7%B7%E6%B7%86%E7%A7%BB%E6%A4%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/" target="_blank" rel="noopener">OLLVM代码混淆移植与使用</a></p>
+<p><a href="https://www.leadroyal.cn/?p=659" target="_blank" rel="noopener">llvm学习（三）：移植ollvm等作品到单独编译的Pass</a></p>
+<p><a href="https://zhuanlan.zhihu.com/frozengene" target="_blank" rel="noopener">蓝色的味道</a>：谁说不能与龙一起跳舞：Clang / LLVM</p>
+<p><a href="https://www.jianshu.com/p/e0637f3169a3" target="_blank" rel="noopener">OLLVM代码混淆移植与使用</a></p>
+<p><a href="https://zhuanlan.zhihu.com/llvm-tutorial" target="_blank" rel="noopener">llvm入门笔记</a></p>
+<p><a href="https://www.jianshu.com/p/333cf1c02a0e" target="_blank" rel="noopener">llvm编译流程</a></p>
+<p><a href="https://www.jianshu.com/p/942875aa73cc" target="_blank" rel="noopener">LLVM学习总结与OLLVM项目分析</a></p>
+<p><a href="https://sq.163yun.com/blog/article/175307579596922880" target="_blank" rel="noopener">Obfuscator-llvm源码分析</a></p>
+<p><a href="https://blog.csdn.net/king_jie0210/article/details/81705540" target="_blank" rel="noopener">ollvm源码分析</a></p>
+<p><a href="https://bbs.pediy.com/thread-255130.htm" target="_blank" rel="noopener">[原创]ollvm源码分析 - Pass之Flattening</a></p>
+<p><a href="https://bbs.pediy.com/thread-255078.htm" target="_blank" rel="noopener">[原创]ollvm源码分析 - Pass之SplitBaiscBlocks</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/27617441" target="_blank" rel="noopener">GoSSIP安全研究项目：孤挺花（Armariris） LLVM混淆框架</a></p>
+<p><a href="https://mp.weixin.qq.com/s/rORMNBExWVyGvWMFvYTXPw" target="_blank" rel="noopener">为OLLVM添加字符串混淆功能</a></p>
+<p><a href="http://www.nagain.com/activity/article/14/" target="_blank" rel="noopener">llvm之旅第四站 － 编写Pass</a></p>
+<p><a href="https://github.com/haidragon/study_obscure" target="_blank" rel="noopener">Github-haidragon / study_obscure</a></p>
+<p><a href="https://bbs.pediy.com/thread-225681.htm" target="_blank" rel="noopener">[原创]Fllvm（Fuck-ollvm）介绍</a></p>
+</blockquote>
+<h2 id="啥是llvm"><a href="#啥是llvm" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>啥是LLVM？</h2>
+<blockquote>
+<p><a href="https://bbs.pediy.com/thread-247981.htm" target="_blank" rel="noopener">[原创]LLVM了解篇剧场版</a></p>
+</blockquote>
+<p>以上这篇文章简要地介绍了LLVM</p>
+<p>LLVM：Low Level Virtual Machine(最初)</p>
+<p>官方定义：<strong>LLVM是一个模块化和可重用的编译器和工具链技术的集合</strong></p>
+<p>LLVM最初是在2000年由伊利诺伊大学香槟分校(UUIC)的学生Chris Lattner及其硕士顾问Vikram Adve创建的研究项目，并在2003年发布第一个正式版本，目的是提供一种基于SSA的现代编译策略，这种策略能够支持任何编程语言的静态和动态编译。</p>
+<p>有意思的是，他的作者原本想要写一个低层虚拟机的，然而他并没有被当成虚拟机来用，逐渐地偏离了他原本的方向。现在llvm不是任何单词的缩写，而是一种体系，包含了一系列的项目</p>
+<p>对于LLVM核心（LLVM Core）来说，它是一个编译器基础设施框架，它包含了为我们编写编译器一系列的库（如程序分析、代码优化、机器代码生成等），并且提供了调用这些库的相关工具，如llvm-opt可以调用LLVM优化相关的库，llvm-mc可以调用LLVM机器代码生成相关的库。并为此提供了一个非常方便简单、具备类型的、平台无关的统一中间代码语言，称之为LLVM IR.</p>
+<p><img src="/posts/ollvm-learning/3.png" alt=""></p>
+<p>以上是一个正常编译器的流程，源代码经过前端编译成中间代码，在经过优化和后端生成相应的机器码，即可执行文件</p>
+<p><img src="/posts/ollvm-learning/2.png" alt=""></p>
+<p>LLVM编译一个源文件的过程：预处理 -&gt; 词法分析 -&gt; Token -&gt; 语法分析 -&gt; AST -&gt; 代码生成 -&gt; LLVM IR -&gt; 优化 -&gt; 生成汇编代码 -&gt; Link -&gt; 目标文件</p>
+<blockquote>
+<p>其中IR(intermediate representation)是前端语言生成的中间代码表示，也是Pass操作的对象，它主要包含四个部分：</p>
+<p>（1）Module：比如一个.c或者.cpp文件。</p>
+<p>（2）Function：代表文件中的一个函数。</p>
+<p>（3）BasicBlock：每个函数会被划分为一些block，它的划分标准是：一个block只有一个入口和一个出口。</p>
+<p>（4）Instruction：具体的指令。</p>
+<p>IR中各部分的具体关系如下图：</p>
+<p><img src="/posts/ollvm-learning/IR-relation.png" alt=""></p>
+</blockquote>
+<p><img src="/posts/ollvm-learning/4.png" alt=""></p>
+<p>拿个例子来说就是：首先，我们有C代码程序文件，然后经过了Clang前端（或者古老的llvm-gcc前端，这是在Clang出现以前使用的前端，可以产生LLVM IR），然后会产生LLVM IR。在这里，我们可以发现LLVM IR是以.bc结尾，缩写代表的单词是bitcode，它是序列化的数据，用以存储在磁盘中。而LLVM IR非常牛逼的创建了三种LLVM IR表示格式，除了bitcode这种用以存储的格式，第二种是用于人类可读的的格式，一般以.ll结尾。</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">$ clang a.c -S -emit-llvm# 生成.ll可读文件
+</code></pre></td></tr></table></div>
+</div>
+</div><p>这条命令即可产生<code>.ll</code>文件</p>
+<p>而第三种格式则是内存表示格式，这一般是用于我们程序开发，去操作LLVM IR。那么这里面有一个宏观的概念，那就是一个编译单元（即一个.c文件），在LLVM IR中代表着一个Module，而一个Module里面含有Global Value，主要包括Global Variable 和 Function，而至于Global Alias大家接触比较少，我们暂时忽略。而一个Function里面包含着Basic Block，而一个 Basic Block里面包含着指令，如add。那么关系你可以认为是Module -&gt; Function -&gt; Basic Block -&gt; Instructions. 这是一个宏观的认识，需要具备。而这一个也就是我们常常去查阅的相关LLVM IR的API，如：<a href="http://llvm.org/docs/doxygen/html/classllvm_1_1GlobalValue.html" target="_blank" rel="noopener">llvm-GlobeValue</a></p>
+<p>而这里明确的一点是，这三者是完全等价的，并且可以转换的</p>
+<p>再回到上面的流程图，即产生<code>.bc</code>的阶段。产生完毕后，它这里直接进入<code>llvm-link</code>阶段，其实不太完整。若是我们使用了O2等优化，我们在这里还会经历一个优化的阶段，即对这一个编译单元的优化，大约包括了40多种优化Pass，如死代码消除，内联等。而经过优化后，依然是.bc文件，然后再进入llvm-link阶段。而在llvm-link阶段，所要做的其实就是把多个.bc文件合并成一个.bc文件，并且做链接时优化，在这篇文章中提到过一个例子：<a href="http://llvm.org/docs/LinkTimeOptimization.html" target="_blank" rel="noopener">LLVM Link Time Optimization</a>，可以查阅一下是如何进行链接时优化的。</p>
+<p>而经过<code>llvm-link</code>阶段后，我们得到了一个新的<code>.bc</code>文件，那么我们会再次进入优化阶段，重新再进行一次优化。因为经过<code>llvm-link</code>后，我们的IR结构可能发生了一些变化，从而可能更有利于我们优化，得到更优化的IR。而这一步骤后，可以得到最终优化后的.bc，正式进入代码生成阶段。</p>
+<p>而在这一幅图中，只列举出来了一个llc，即走机器代码生成的路径。其实对于LLVM来说，还可以有一个过程，那就是lli，即解释执行LLVM IR。不过我们这里不多谈，我们重点在机器代码生成。那么llc的作用就是把LLVM IR 编译成汇编文件<code>.s</code>，这里你可以把LLVM IR想象成一个编程语言，然后经过了llc编译器，最后产生了汇编文件。如同C程序，经过Clang，产生了LLVM IR一般。那么，产生了汇编文件以后，就可以调用系统的汇编器，如GNU的as，从而产生目标文件object file，即<code>.o</code>文件了。而细心的童鞋可能注意到了这里还有一条路径是<code>llvm-mc</code>，直接走生成object file的过程。而这条路径在如今来说，并不是每个平台都会走，核心在于LLVM本身的集成汇编器，即<code>-fintegrated-as</code>，使用集成汇编器既可以使用MCLoweing到MCInst，再使用MCStreamers直接到<code>.o</code>，当然也可以到<code>.s</code>。而目前本身的集成汇编器，我认为是并非完美，但是以发展趋势来看，会大一统的，从而做到没有平台差异，这也是LLVM做集成汇编器的一大理由。而生成完.o文件，剩下的过程就很简单了，就是链接器链接相关的库，然后和目标文件一起生存可执行文件<code>.out / .exe</code>了。</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 二进制代码形式</span>
+$ clang -emit-llvm -c main.c -o main.bc
+
+<span class="c1"># 可读文本代码形式</span>
+$ clang -emit-llvm –S -c main.c -o main.ll
+</code></pre></td></tr></table></div>
+</div>
+</div><ul>
+<li>
+<h4 id="llvm-和-clang-的关系"><a href="#llvm-和-clang-的关系" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>llvm 和 clang 的关系</h4>
+</li>
+</ul>
+<p><img src="/posts/ollvm-learning/1.png" alt=""></p>
+<p>对于 LLVM 来说，其前端是 clang，在编译源码文件的时候使用的编译工具也是 clang。
+而生成中间 IR 代码后，llvm需要对 IR 代码进行一些操作，例如添加一些代码混淆功能。LLVM 的做法是通过编写 Pass(其实就是对应的一个个模块，每个类实现不同的功能)来实现混淆的功
+能。所以实现混淆，其实就是编写功能性的 Pass</p>
+<h3 id="obfuscator-llvm"><a href="#obfuscator-llvm" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Obfuscator-LLVM</h3>
+<p>Obfuscator-LLVM是由瑞士伊夫尔东莱班的应用科学与艺术大学信息安全小组（HEIG-VD）于2010年6月发起的一个项目。</p>
+<p>该项目的目的是提供<a href="http://www.llvm.org/" target="_blank" rel="noopener">LLVM</a>编译套件的开源分支，该套件能够通过<a href="http://en.wikipedia.org/wiki/Obfuscation_(software)" target="_blank" rel="noopener">代码混淆</a>和防篡改来提高软件安全性。由于我们目前大部分工作在<a href="http://en.wikipedia.org/wiki/Intermediate_language" target="_blank" rel="noopener">中间表示</a>（IR）级别，因此我们的工具与所有编程语言（C，C ++，Objective-C，Ada和Fortran）和目标平台（x86，x86-64，PowerPC，PowerPC-64）兼容。</p>
+<p>LLVM当前支持的ARM，Thumb，SPARC，Alpha，CellSPU，MIPS，MSP430，SystemZ和XCore）。</p>
+<p>Obfuscator-LLVM的目的主要是在编译时增强软件就对抗向工程和编译时修改（动态调试？）</p>
+<h4 id="install"><a href="#install" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Install</h4>
+<p>可以直接从github上下载源码</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">$ git clone -b llvm-4.0 https://github.com/obfuscator-llvm/obfuscator.git
+$ mkdir build
+$ <span class="nb">cd</span> build
+<span class="c1"># 如果不想跑测试用例加上-DLLVM_INCLUDE_TESTS=OFF </span>
+$ cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release ../obfuscator/
+$ make -j7
+</code></pre></td></tr></table></div>
+</div>
+</div><p>然而我在4核4G虚拟机里编译将近2h，还报错了tcl</p>
+<p>我现在只想再来几根内存条 :(</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">error:virtual memory exhausted:Cannot allocate memory
+$ make -j7 &gt;&gt;40%
+
+$ make -j4 &gt;&gt;95%
+
+$ make -j2 &gt;&gt;100%
+</code></pre></td></tr></table></div>
+</div>
+</div><h4 id="o-llvm手动打包"><a href="#o-llvm手动打包" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>o-llvm手动打包</h4>
+<blockquote>
+<p><a href="http://www.few.vu.nl/~lsc300/LLVM/doxygen/index.html" target="_blank" rel="noopener">http://www.few.vu.nl/~lsc300/LLVM/doxygen/index.html</a></p>
+<p>API Document</p>
+</blockquote>
+<p>因为我下的ollvm9.0的<code>-fla</code>有bug，所以决定亲自打包一波，顺便再深入了解ollvm</p>
+<p>由Diffinity将ollvm4.0和llvm4.0进行对比，发现了以下文件的不同，也就意味着我们将ollvm打包进最新的llvm也需要修改以下文件。</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">./include/llvm/Transforms/Obfuscation/ <span class="c1"># obfuscation的头文件</span>
+./include/llvm/Transforms/CryptoUtils.h <span class="c1"># obfuscation的头文件</span>
+./lib/Transforms/IPO/LLVMBuild.txt
+./lib/Transforms/IPO/PassManagerBuilder.cpp <span class="c1"># Pass注册</span>
+./lib/Transforms/Obfuscation/ <span class="c1"># obfuscation source code</span>
+./lib/Transforms/CMakeLists.txt
+./lib/Transforms/LLVMBuild.txt
+./tools/clang <span class="c1"># 集成clang,要在gitignore里取消clang的注释</span>
+./.gitignore
+./CMakeLists.txt
+./CODE_OWNERS.TXT
+./LICENSE.TXT
+</code></pre></td></tr></table></div>
+</div>
+</div><p>从自己的github的obfuscator仓库中clone下来，注意一定要clone，直接下载downloadzip没有.git信息，虽然他真的很慢。</p>
+<p>然后创建自己的llvm9.0分支</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">$ git clone git@github.com:Magic-King/obfuscator.git
+Cloning into <span class="s1">&#39;obfuscator&#39;</span>...
+remote: Enumerating objects: 86723, <span class="k">done</span>.
+remote: Total <span class="m">86723</span> <span class="o">(</span>delta 0<span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta 0<span class="o">)</span>, pack-reused <span class="m">86723</span>
+Receiving objects: 100% <span class="o">(</span>86723/86723<span class="o">)</span>, 132.79 MiB <span class="p">|</span> 35.00 KiB/s, <span class="k">done</span>.
+Resolving deltas: 100% <span class="o">(</span>15346/15346<span class="o">)</span>, <span class="k">done</span>.
+$ git  branch -a
+* master
+  remotes/origin/HEAD -&gt; origin/master
+  remotes/origin/clang-425.0.24
+  remotes/origin/llvm-3.3
+  remotes/origin/llvm-3.4
+  remotes/origin/llvm-3.5
+  remotes/origin/llvm-3.6.1
+  remotes/origin/llvm-4.0
+  remotes/origin/master
+
+$ git  branch -r
+  origin/HEAD -&gt; origin/master
+  origin/clang-425.0.24
+  origin/llvm-3.3
+  origin/llvm-3.4
+  origin/llvm-3.5
+  origin/llvm-3.6.1
+  origin/llvm-4.0
+  origin/master
+
+$ git remote add origin git@github.com:Magic-King/obfuscator.git
+fatal: remote origin already exists.
+
+$ git checkout -b llvm-9.0
+Switched to a new branch <span class="s1">&#39;llvm-9.0
+</span><span class="s1">
+</span><span class="s1">$ git push origin llvm-9.0
+</span><span class="s1">Total 0 (delta 0), reused 0 (delta 0)
+</span><span class="s1">remote:
+</span><span class="s1">remote: Create a pull request for &#39;</span>llvm-9.0<span class="err">&#39;</span> on GitHub by visiting:
+remote:      https://github.com/Magic-King/obfuscator/pull/new/llvm-9.0
+remote:
+To github.com:Magic-King/obfuscator.git
+ * <span class="o">[</span>new branch<span class="o">]</span>          llvm-9.0 -&gt; llvm-9.0
+
+</code></pre></td></tr></table></div>
+</div>
+</div><p>然后把最新的llvm9.0.1放入<code>obfuscator/</code>文件夹下，把clang放入 <code>obfuscator/tools/clang</code>里</p>
+<p>然后将obfuscator-llvm4.0移植到obfuscate里，具体可以查看我的github的commit记录</p>
+<p>网址如下：https://github.com/Magic-King/obfuscator/commits/llvm-9.0</p>
+<p>但是，手动打包之后，<code>-fla</code>还是有问题，不过其他选项倒是没问题，应该是<code>-fla</code>和llvm-9.0不兼容的问题</p>
+<h4 id="o-llvm的特点"><a href="#o-llvm的特点" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>o-llvm的特点</h4>
+<ul>
+<li><a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Instructions-Substitution" target="_blank" rel="noopener">nstructions Substitution</a> <code>-mllvm -sub</code>：指令替换</li>
+<li><a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Bogus-Control-Flow" target="_blank" rel="noopener">Bogus Control Flow</a> <code>-mllvm -bcf</code>：伪控制流</li>
+<li><a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Control-Flow-Flattening" target="_blank" rel="noopener">Control Flow Flattening</a> <code>-mllvm -fla</code>：激活控制流扁平化</li>
+<li><a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Functions-annotations" target="_blank" rel="noopener">Functions annotations</a>：可以针对一些特定函数进行混淆（选择性混淆）</li>
+</ul>
+<h5 id="nstructions-substitutionhttpsgithubcomobfuscator-llvmobfuscatorwikiinstructions-substitution"><a href="#nstructions-substitutionhttpsgithubcomobfuscator-llvmobfuscatorwikiinstructions-substitution" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Instructions-Substitution" target="_blank" rel="noopener">nstructions Substitution</a></h5>
+<p>这种混淆技术的目标仅在于用功能上等效但更复杂的指令序列代替标准的二进制运算符（如加，减或布尔运算符）。当几个等效的指令序列可用时，随机选择一个。</p>
+<p>这种混淆非常简单，并且不会增加很多安全性，因为可以通过重新优化生成的代码轻松地将其删除。但是，如果伪随机数发生器使用不同的值作为种子，则指令替换会在生成的二进制文件中带来多样性。</p>
+<p>当前，只有整数运算符可用，因为用浮点值替代运算符会带来舍入误差和不必要的数值误差。</p>
+<p>可用的编译器选项：</p>
+<ul>
+<li><code>-mllvm -sub</code>：激活指令替换</li>
+<li><code>-mllvm -sub_loop=3</code>：如果激活了通行证，则将其应用到功能上3次。默认值：1。</li>
+</ul>
+<p>wiki中提到了可替换的运算：add、sub、and、or、xor。</p>
+<h5 id="bogus-control-flowhttpsgithubcomobfuscator-llvmobfuscatorwikibogus-control-flow"><a href="#bogus-control-flowhttpsgithubcomobfuscator-llvmobfuscatorwikibogus-control-flow" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Bogus-Control-Flow" target="_blank" rel="noopener">Bogus Control Flow</a></h5>
+<p>该方法通过在当前基本块之前添加一个基本块来修改函数调用图。这个新的基本块包含一个不透明的谓词，然后有条件地跳转到原始的基本块。</p>
+<p>原始的基本块也将被克隆并填充以随机选择的垃圾指令。</p>
+<p>可用的编译器选项：</p>
+<ul>
+<li><code>-mllvm -bcf</code>：激活伪控制流程</li>
+<li><code>-mllvm -bcf_loop=3</code>：如果激活了通行证，则将其应用到功能上3次。默认值：1</li>
+<li><code>-mllvm -bcf_prob=40</code>：如果激活了通行证，则基本团块将以40％的概率被混淆。默认值：30</li>
+</ul>
+<h5 id="control-flow-flatteninghttpsgithubcomobfuscator-llvmobfuscatorwikicontrol-flow-flattening"><a href="#control-flow-flatteninghttpsgithubcomobfuscator-llvmobfuscatorwikicontrol-flow-flattening" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Control-Flow-Flattening" target="_blank" rel="noopener">Control Flow Flattening</a></h5>
+<p>此过程的目的是完全弄平程序的控制流程图。简单来说就是拆分基本块并置于无限循环中，程序流程由switch控制</p>
+<p>可用的编译器选项：</p>
+<ul>
+<li><code>-mllvm -fla</code>：激活控制流展平</li>
+<li><code>-mllvm -split</code>：激活基本块分割。一起使用可改善展平性。</li>
+<li><code>-mllvm -split_num=3</code>：如果激活了通行证，则在每个基本块上应用3次。默认值：1</li>
+</ul>
+<h5 id="functions-annotationshttpsgithubcomobfuscator-llvmobfuscatorwikifunctions-annotations"><a href="#functions-annotationshttpsgithubcomobfuscator-llvmobfuscatorwikifunctions-annotations" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Functions-annotations" target="_blank" rel="noopener">Functions annotations</a></h5>
+<p>注释使您可以按功能指定要应用（或不应用）混淆的功能</p>
+<p>用法：只需向您的函数添加属性。</p>
+<p>例如：</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="kt">int</span> <span class="nf">foo</span><span class="p">()</span> <span class="n">__attribute</span><span class="p">((</span><span class="n">__annotate__</span><span class="p">((</span><span class="s">&#34;fla&#34;</span><span class="p">))));</span>
+<span class="kt">int</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table></div>
+</div>
+</div><p>您可以为每个功能添加使用一个或多个注释。如果要禁用功能的混淆，也可以使用“反向标志”（例如，如果要禁用功能的伪造控制流，请使用注释“ nobcf”）。</p>
+<h4 id="对比"><a href="#对比" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>对比</h4>
+<p>我自己写了一个测试文件，然后用于clang和ollvm混淆的各种测试</p>
+<p>源代码如下，关于混淆之后的执行文件和源文件打包在了<a href="./ollvm-learning/test.zip">here</a></p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Hello LLVM&#34;</span><span class="p">);</span>
+	<span class="kt">char</span> <span class="o">*</span><span class="n">a</span><span class="o">=</span> <span class="s">&#34;Hello fucking bug&#34;</span><span class="p">;</span>
+	<span class="c1">//a = &#34;Hello O-LLVM!I will fuck you!&#34;;
+</span><span class="c1"></span>	<span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">10</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="n">sum</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%s</span><span class="se">\n</span><span class="s">the answer of what i do is %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">sum</span><span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;test finished!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table></div>
+</div>
+</div><p>以下是gcc编译的文件通过ida逆向所得的流程图</p>
+<p><img src="/posts/ollvm-learning/test_gcc_ida.png" alt="test_gcc_ida"></p>
+<p>以下是用clang9.0 编译test的流程图，可见大体的流程是和gcc相同的，不过通过ida的万能F5反编译出来的源码，clang版本的基本和源码差不多，gcc版本的循环的变量挺奇怪的，但是总体流程还是不变的</p>
+<p><img src="/posts/ollvm-learning/test_clang_ida.png" alt="test_clang_ida"></p>
+<p>下图是加了ollvm的bcf选项的反汇编结果，可见添加了许多虚假控制流，真正执行的循环是左半部分，他把for循环结束之后的该执行的语句放到了右半部分，在添加虚假控制流</p>
+<p>看反汇编的代码，他把for循环放入了一个while循环里，然后用一个if控制是否结束原来的循环，加入结束，就用<code>goto</code>到达最后执行的语句里，这里又写了一个假的while，经我看下来，这个while也就执行一次，循环就退出了，果然混淆后想搞懂流程贼麻烦</p>
+<p><img src="/posts/ollvm-learning/test_bcf_ida.png" alt="ollvm-bcf"  /></p>
+<p>ollvm编译fla选项，由于适配llvm9.0的fla选项失败了，所以这边是引用-split选项得出来的反汇编结果，split也就是fla平坦化所选择的选项</p>
+<p>对比原来的clang反汇编出来的结果是不是多了许多可供选择的路，正如wiki所说是用switch控制的</p>
+<p>反汇编出来的代码嵌套了多层while循环，并加入if判断，低层应该就是用switch实现的，然后再某几个switch case加入break破坏循环达到控制流程的目的</p>
+<p><img src="/posts/ollvm-learning/test_split_ida.png" alt="ollvm-fla"></p>
+<p>这个是最简单的，和clang编译的版本对比，主要区别在于分块之后的左边的块，他把其指令进行了替换，具体咋替换看我后面的源码分析</p>
+<p>不过可惜的是，这个代码替换对于ida来说好像不是什么大事情，利用万能的F5反汇编时，他成功把循环里的加法还原了，产生的代码和clang版本没混淆的一模一样</p>
+<p>可能这需要和其他几个选项一起使用会比较好</p>
+<p><img src="/posts/ollvm-learning/test_sub_ida.png" alt="ollvm-sub"></p>
+<p>//TODO：字符串混淆</p>
+<h3 id="o-llvm源码分析"><a href="#o-llvm源码分析" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>o-llvm源码分析</h3>
+<p>通过我们手动将ollvm与llvm9.0打包的过程，我们可以非常清楚地了解了ollvm的源码结构</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">./include/llvm/Transforms/Obfuscation/ <span class="c1"># obfuscation的头文件</span>
+./include/llvm/Transforms/CryptoUtils.h <span class="c1"># obfuscation的加密工具类的头文件</span>
+./lib/Transforms/IPO/LLVMBuild.txt <span class="c1"># pass模块编译的模块注册</span>
+./lib/Transforms/IPO/PassManagerBuilder.cpp <span class="c1"># Pass注册</span>
+./lib/Transforms/Obfuscation/ <span class="c1"># obfuscation source code</span>
+./lib/Transforms/CMakeLists.txt <span class="c1"># 加入子目录</span>
+./lib/Transforms/LLVMBuild.txt <span class="c1"># 加入LLVM编译子目录</span>
+</code></pre></td></tr></table></div>
+</div>
+</div><p>我们知道，ollvm就是通过编写llvm的pass来将其中间语言IR进行不同程度的混淆</p>
+<h4 id="bogus-control-flow"><a href="#bogus-control-flow" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Bogus Control Flow</h4>
+<p><strong>Bogus Control Flow</strong>的功能是为函数增加新的虚假控制流和添加垃圾指令。</p>
+<p>其中文件位于<code>./include/llvm/Transforms/Obfuscation/BogusControlFlow.cpp</code></p>
+<p>其中的注释跟我们非常形象的演示了其的工作内容</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// This file implements BogusControlFlow&#39;s pass, inserting bogus control flow.
+</span><span class="c1">// It adds bogus flow to a given basic block this way:
+</span><span class="c1">//
+</span><span class="c1">// Before :
+</span><span class="c1">// 	         		     entry
+</span><span class="c1">//      			       |
+</span><span class="c1">//  	    	  	 ______v______
+</span><span class="c1">//   	    		|   Original  |
+</span><span class="c1">//   	    		|_____________|
+</span><span class="c1">//             		       |
+</span><span class="c1">// 		        	       v
+</span><span class="c1">//		        	     return
+</span><span class="c1">//
+</span><span class="c1">// After :
+</span><span class="c1">//           		     entry
+</span><span class="c1">//             		       |
+</span><span class="c1">//            		   ____v_____
+</span><span class="c1">//      			  |condition*| (false)
+</span><span class="c1">//           		  |__________|----+
+</span><span class="c1">//           		 (true)|          |
+</span><span class="c1">//             		       |          |
+</span><span class="c1">//           		 ______v______    |
+</span><span class="c1">// 		        +--&gt;|   Original* |   |
+</span><span class="c1">// 		        |   |_____________| (true)
+</span><span class="c1">// 		        |   (false)|    !-----------&gt; return
+</span><span class="c1">// 		        |    ______v______    |
+</span><span class="c1">// 		        |   |   Altered   |&lt;--!
+</span><span class="c1">// 		        |   |_____________|
+</span><span class="c1">// 		        |__________|
+</span><span class="c1">//
+</span></code></pre></td></tr></table></div>
+</div>
+</div><p>他的Cpp文件先写好了Debug信息，再定义了以下为pass提供的选项常量</p>
+<p>其中，我们最常见的 <code>cl::opt&lt;data_type&gt;</code>是用来传递llvm之间pass共享的参数，也就是我们在编译时所给的<code>-bcf_prob = 50</code>这个命令行编译参数可以传递到pass的核心所在</p>
+<p><img src="/posts/ollvm-learning/SourceCode_bcf_1.png" alt=""></p>
+<p><code>cl::opt</code>这个用法让我想起了c++中<code>std::cout</code>、<code>using namespace std</code>，经查询发现，这是一个类似于python的import的一个语法，namespace是为了和c的.h区分开来</p>
+<blockquote>
+<p>详细可见：</p>
+<p><a href="https://www.cnblogs.com/MrYuan/p/4955956.html" target="_blank" rel="noopener">C++ Namespace 详解</a></p>
+<p><a href="https://www.runoob.com/cplusplus/cpp-namespaces.html" target="_blank" rel="noopener">C++ 命名空间</a></p>
+<p><a href="https://blog.csdn.net/fengbingchun/article/details/78575978" target="_blank" rel="noopener">C++/C++11中命名空间(namespace)的使用</a>：这里面有一段折磨人的代码，读懂了应该就懂了c++的namespace的作用域</p>
+</blockquote>
+<p>目前读下来，最常见的应该就是<code>namespace llvm</code>和 <code>namespace cl</code>了</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">BogusControlFlow</span> <span class="o">:</span> <span class="k">public</span> <span class="n">FunctionPass</span>
+</code></pre></td></tr></table></div>
+</div>
+</div><p>这里，BogusControlFlow继承至FunctionPass，因此它的入口函数即为runOnFunction</p>
+<blockquote>
+<p>struct的继承和class的继承有很大的区别，struct的继承是基于子类(struct)的public继承，class是基于子类(class)的private继承</p>
+</blockquote>
+<p>整个namespace写了一个struct 类用于混淆</p>
+<p>其中<code>runOnFunction</code>为入口函数，先判断bcf的两个参数<code>-bcf_loop</code>和<code>-bcf_prob</code>是否符合正确范围内，然后检查是否启用了<code>-bcf</code>选项，假如启用了，则进入核心函数<code>bogus(F);</code>，然后继续处理<code>doF(*F.getParent());</code></p>
+<p>在<code>bogus()</code>函数里，先实现了Debug的相关部分，在每次进入函数前输出debug信息，用于处理debug模式下的<code>-bcf</code>选项。然后定义一个list链表，用于储存BasicBlock，BasicBlock用for循环利用迭代器的模式从传入的 <code>F</code> 获取。一个while循环，当基本块非空时，利用<code>cryptoutils</code>工具类获取随机数，从链表中选择基本块进行混淆(用<code>addBogusFlow(basicBlock, F);</code>函数)，并标记已混淆过该块，防止重复混淆某一基本块，否则就不混淆。然后弹出链表中的第一块，这样直到混淆次数为0为止。</p>
+<p><code>addBogusFlow()</code>函数，将给定的基本块进行添加虚假控制流。首先获得一个基本块Basic Block，利用createAlteredBasicBlock()函数生成一个与原基本块相似的Basci Block，然后利用<code>BasicBlock-&gt;getTerminator()-&gt;eraseFromParent();</code>把他们的父母节点擦除，然后创建两个条件恒为真的左右子节点，然后将其创建分支循环。（其过程是创建一个恒真的分支，进入分支的基本块后，加入一个判断，若真进入原基本块，若假进入假基本块，经假基本块的垃圾代码之后，再进入原基本块。在为真时，进入原基本块，将基本块主体执行完之后，在加入分支判断，正确返回结果，错误跳转至混假基本块进行循环）</p>
+<blockquote>
+<p><a href="https://sq.163yun.com/blog/article/175307579596922880" target="_blank" rel="noopener">https://sq.163yun.com/blog/article/175307579596922880</a>：这个讲的特别形象，配合着图一起阅读，这边借用其一张图</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">){</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table></div>
+</div>
+</div><p><img src="/posts/ollvm-learning/bcf_addBogusFlow.png" alt=""></p>
+<p>如图，对于上述函数，分离其基本块，创建一个入口entry，然后加入一个恒真的分支，把生成相似的基本块放至错误分支里，即其永远不会执行的垃圾代码，将所执行的基本块放入正确分支里</p>
+<p><code>createAlteredBasicBlock()</code>函数用于生成与给定基本块相似的基本块，将操作运算符进行重新映射，重新映射节点，重新映射对应的数据，然后加入随机的指令</p>
+<p>对于<code>doF()</code>函数，该函数的功能是将Function中所有为真的判断语句进行替换，比如之前的<code>1.0 == 1.0 </code>。它的思想是定义两个全局变量x、y并且初始化为0，然后遍历Module内的所有指令，并将所有的FCMP_TRUE分支指令替换为<code>y&lt;10 || x*x(x-1)%2 ==0</code>，我们从反汇编的代码来看，很明显的就有y&lt;10这个分支</p>
+<h4 id="flattening"><a href="#flattening" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Flattening</h4>
+<p><strong>Flattening</strong>的主要功能是为函数增加switch-case语句，使得函数变得扁平化。下面就对它的实现源码进行分析。</p>
+<p>其中文件位于<code>./include/llvm/Transforms/Obfuscation/Flattening.cpp</code></p>
+<p>Flattening继承了<code>FunctionPass</code>，因此它的入口函数即为<code>runOnFunction</code>。在<code>runOnFunction</code>函数的具体实现中，首先判断是否包含了启动<code>-fla</code>的命令。在编译目标程序代码时，如要启动fla模块，需要带上参数<code>-mllvm -fla</code>。</p>
+<p>参数检查完毕之后，调用flatten函数。flatten函数是该Pass的核心，下面对该函数进行分析。</p>
+<p>先是声明了一些后面要用的变量，然后创建了一个数组，用来存储随机数种子</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">// SCRAMBLER
+</span><span class="c1"></span>  <span class="kt">char</span> <span class="n">scrambling_key</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+  <span class="n">llvm</span><span class="o">::</span><span class="n">cryptoutils</span><span class="o">-&gt;</span><span class="n">get_bytes</span><span class="p">(</span><span class="n">scrambling_key</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span>
+  <span class="c1">// END OF SCRAMBLER  
+</span><span class="c1">// Lower switch
+</span><span class="c1"></span>  <span class="n">FunctionPass</span> <span class="o">*</span><span class="n">lower</span> <span class="o">=</span> <span class="n">createLowerSwitchPass</span><span class="p">();</span>
+  <span class="n">lower</span><span class="o">-&gt;</span><span class="n">runOnFunction</span><span class="p">(</span><span class="o">*</span><span class="n">f</span><span class="p">);</span>
+</code></pre></td></tr></table></div>
+</div>
+</div><p>后两行调用了外部一个外部pass：<code>creatLowerSwitchPass()</code>，用来消除当前函数的内部用switch方式的代码，将其全转换成<code>if else</code>的调用，方便后面的代码块分割</p>
+<p>然后一个for循环，像bcf那样，将函数分为各个基本块储存在<code>vector&lt;BasicBlock *&gt; origBB</code>的一个向量数组里，等等的代码是针对基本块的操作，就像乐高那样一块块进行拼接。</p>
+<p>然后的话，若只有一个以下的基本块，那么无法平坦化，直接返回<code>false</code></p>
+<p>然后开始遍历基本块，先把第一块从vector数组中移除，因为按照他的流程平坦化的设计，第一块进行单独处理，作为整个混淆流程的开始逻辑，所以紧接着先对第一块进行处理。</p>
+<p>检查第一块中是否包含条件跳转分支，如果包含条件跳转分支，则按照条件分支的位置进行代码块分割，分割逻辑跟SplitBasicBlock的逻辑一致，整个分割的目的也是为了后面进行流程平坦化准备的</p>
+<p>然后开始是核心代码了</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">// Create switch variable and set as it
+</span><span class="c1"></span>  <span class="n">switchVar</span> <span class="o">=</span>
+      <span class="k">new</span> <span class="n">AllocaInst</span><span class="p">(</span><span class="n">Type</span><span class="o">::</span><span class="n">getInt32Ty</span><span class="p">(</span><span class="n">f</span><span class="o">-&gt;</span><span class="n">getContext</span><span class="p">()),</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#34;switchVar&#34;</span><span class="p">,</span> <span class="n">insert</span><span class="p">);</span>
+  <span class="k">new</span> <span class="nf">StoreInst</span><span class="p">(</span>
+      <span class="n">ConstantInt</span><span class="o">::</span><span class="n">get</span><span class="p">(</span><span class="n">Type</span><span class="o">::</span><span class="n">getInt32Ty</span><span class="p">(</span><span class="n">f</span><span class="o">-&gt;</span><span class="n">getContext</span><span class="p">()),</span>
+                       <span class="n">llvm</span><span class="o">::</span><span class="n">cryptoutils</span><span class="o">-&gt;</span><span class="n">scramble32</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">scrambling_key</span><span class="p">)),</span>
+      <span class="n">switchVar</span><span class="p">,</span> <span class="n">insert</span><span class="p">);</span>
+</code></pre></td></tr></table></div>
+</div>
+</div><p>这一段创建了一个switch用的变量，相当于是<code>switch(caseVar)</code>，并通过<code>StoreInst</code>进行赋值，这时就用上了之前的随机数种子，将生成的随机数用作case。</p>
+<p>接着创建了两个空的基本块<code>loopEntry</code>和<code>loopEnd</code>，然后将switch语句放入<code>loopEntry</code>中，将第一块基本块连接上<code>loopEntry</code>，<code>loopEnd</code>跳转回<code>loopEntry</code>，在switch语句加入默认的<code>swDefault</code>基本块大概成型了</p>
+<p>大概就和下面这个流程图差不多了</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">//				  	+--------+
+</span><span class="c1">//                  |first bb|
+</span><span class="c1">//                  +---+----+
+</span><span class="c1">//                      |
+</span><span class="c1">//                 +----v----+
+</span><span class="c1">//                 |loopEntry| &lt;--------+
+</span><span class="c1">//                 +----+----+          |
+</span><span class="c1">//                      |               |
+</span><span class="c1">//                 +----v---+           |
+</span><span class="c1">//                 | switch |           |
+</span><span class="c1">//                 +----+---+           |
+</span><span class="c1">//                      |               |
+</span><span class="c1">//         +------------+               |
+</span><span class="c1">//         |                            |
+</span><span class="c1">//	+------v-------+                    |
+</span><span class="c1">//	| default case |                    |
+</span><span class="c1">//	+------+-------+                    |
+</span><span class="c1">//         |                            |
+</span><span class="c1">//         +-----------+                |
+</span><span class="c1">//                     |                |
+</span><span class="c1">//                     |                |
+</span><span class="c1">//                     v                |
+</span><span class="c1">//               +-----+------+         |
+</span><span class="c1">//               |  loopEnd   +---------+
+</span><span class="c1">//               +------------+
+</span></code></pre></td></tr></table></div>
+</div>
+</div><p>骨架成型了，接下来把剩余的基本块往switch语句中填入就行了。</p>
+<p>但是填入之后肯定是个死循环了，我们这时候就要活用flatten的思想，控制switch case的caseVar的值来达到控制流程的目的——很简单，在每个基本块即每个case之后，补上一条对caseVar的值更新的语句即可达到控制流程的目的</p>
+<p>剩下代码就是来更新每个case中代码块对caseVar的操作了，怎么更新呢，很简单，就是更新成当前代码块原后续逻辑块在当前这个代码框架下的case值</p>
+<p>接下来的操作分三种情况来进行</p>
+<ul>
+<li>
+<p>case中代码块没有后续块，那就是一个返回块，不需要更新caseVar</p>
+</li>
+<li>
+<p>case中代码块只有一个后续块，也就是一个无条件跳转分支，直接更新成后续块对应的case即可</p>
+</li>
+<li>
+<p>case中代码块有2个后续块，也就是一个条件跳转分支，通过successor对象（就是后续块的意思）直接在switch结构中查找出对应的case值</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">SelectInst</span> <span class="o">*</span><span class="n">sel</span> <span class="o">=</span><span class="n">SelectInst</span><span class="o">::</span><span class="n">Create</span><span class="p">(</span><span class="n">br</span><span class="o">-&gt;</span><span class="n">getCondition</span><span class="p">(),</span> <span class="n">numCaseTrue</span><span class="p">,</span> <span class="n">numCaseFalse</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">,</span><span class="n">i</span><span class="o">-&gt;</span><span class="n">getTerminator</span><span class="p">());</span>
+</code></pre></td></tr></table></div>
+</div>
+</div><p>如上，使用llvm的SelectInst来实现分支选择，像227行写的，根据br-&gt;getCondition()是否为True来决定是跳转到numCaseTrue还是numCaseFalse</p>
+</li>
+</ul>
+<p>最后这样就成功平坦化成功了</p>
+<p>拿一个例子来理解：</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="kt">int</span> <span class="nf">func1</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+     <span class="kt">int</span> <span class="n">result</span><span class="p">;</span>
+     <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">){</span>
+            <span class="n">result</span><span class="o">=</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span>
+     <span class="p">}</span>
+     <span class="k">else</span><span class="p">{</span>
+            <span class="n">result</span><span class="o">=</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">;</span>
+     <span class="p">}</span>
+     <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table></div>
+</div>
+</div><p>如下图，这是原本上面这个函数的IR图</p>
+<p><img src="/posts/ollvm-learning/fla_1.png" alt=""></p>
+<p>先判断第一个基本块有没有if语句，我们这个函数刚开始明显没有，先将第一块分开成一个基本块</p>
+<p><img src="/posts/ollvm-learning/fla_2.png" alt=""></p>
+<p>然后创建三个基本块<code>loopEntry</code>、<code>loopEnd</code>、<code>swDefault</code>，组成如下图左边的流程</p>
+<p><img src="/posts/ollvm-learning/fla_3.png" alt=""></p>
+<p>这时候，switch语句我们已经可以看见了，接下来就是将vector里存储的每个基本块加入switch-case语句中，每一个basicblock对应一个case，并且caseVar为刚开始产生的随机数值，如下图所示</p>
+<p><img src="/posts/ollvm-learning/fla_4.png" alt=""></p>
+<p>添加完全部基本块之后，需要修改每个基本块的跳转关系，使得每个基本块执行完毕之后，会重新设置caseVar的值，从而跳转到<code>loopEnd</code>块，然后回到switch-case的判断语句中，能够顺利跳转到下个case，处理后即为下图成型</p>
+<p><img src="/posts/ollvm-learning/fla_5.png" alt=""></p>
+<h4 id="substitution"><a href="#substitution" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Substitution</h4>
+<p>Substitution的主要功能是对程序的一些指令进行替换。</p>
+<p>其中文件位于<code>./include/llvm/Transforms/Obfuscation/substitution.cpp</code></p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#define NUMBER_ADD_SUBST 4
+</span><span class="cp">#define NUMBER_SUB_SUBST 3
+</span><span class="cp">#define NUMBER_AND_SUBST 2
+</span><span class="cp">#define NUMBER_OR_SUBST 2
+</span><span class="cp">#define NUMBER_XOR_SUBST 2
+</span><span class="cp"></span>
+<span class="k">static</span> <span class="n">cl</span><span class="o">::</span><span class="n">opt</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span>
+<span class="n">ObfTimes</span><span class="p">(</span><span class="s">&#34;sub_loop&#34;</span><span class="p">,</span>
+         <span class="n">cl</span><span class="o">::</span><span class="n">desc</span><span class="p">(</span><span class="s">&#34;Choose how many time the -sub pass loops on a function&#34;</span><span class="p">),</span>
+         <span class="n">cl</span><span class="o">::</span><span class="n">value_desc</span><span class="p">(</span><span class="s">&#34;number of times&#34;</span><span class="p">),</span> <span class="n">cl</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">cl</span><span class="o">::</span><span class="n">Optional</span><span class="p">);</span>
+
+
+<span class="c1">// Stats
+</span><span class="c1"></span><span class="n">STATISTIC</span><span class="p">(</span><span class="n">Add</span><span class="p">,</span> <span class="s">&#34;Add substitued&#34;</span><span class="p">);</span>
+<span class="n">STATISTIC</span><span class="p">(</span><span class="n">Sub</span><span class="p">,</span> <span class="s">&#34;Sub substitued&#34;</span><span class="p">);</span>
+<span class="c1">// STATISTIC(Mul,  &#34;Mul substitued&#34;);
+</span><span class="c1">// STATISTIC(Div,  &#34;Div substitued&#34;);
+</span><span class="c1">// STATISTIC(Rem,  &#34;Rem substitued&#34;);
+</span><span class="c1">// STATISTIC(Shi,  &#34;Shift substitued&#34;);
+</span><span class="c1"></span><span class="n">STATISTIC</span><span class="p">(</span><span class="n">And</span><span class="p">,</span> <span class="s">&#34;And substitued&#34;</span><span class="p">);</span>
+<span class="n">STATISTIC</span><span class="p">(</span><span class="n">Or</span><span class="p">,</span> <span class="s">&#34;Or substitued&#34;</span><span class="p">);</span>
+<span class="n">STATISTIC</span><span class="p">(</span><span class="n">Xor</span><span class="p">,</span> <span class="s">&#34;Xor substitued&#34;</span><span class="p">);</span>
+</code></pre></td></tr></table></div>
+</div>
+</div><p>如上代码，通过该文件的宏定义，就可知每种运算替换的方式有多少种，可以对哪些指令进行替换：很明显的有：加减、位的与、或、异或，五种运算的替换</p>
+<p>而注释的是未实现的运算替换，在官方wiki里可以知道，为了保证混淆再恢复之后的正确性，避免浮点数运算带来的程序误差，所以没有实现这些运算的替换（乘、除、取余，移位）</p>
+<p>在源文件里，类似地，在相应的namespace里定义了这些内容，与之前两个混淆方式类似，<code>substitution</code>继承于<code>FunctionPass</code>，以<code>runOnFuntion</code>函数为入口，里面再判断flag参数正确之后，朴实无华地调用了<code>substitute(tmp)</code>函数己行混淆</p>
+<p><img src="/posts/ollvm-learning/sub_1.png" alt=""></p>
+<p>主函数<code>substitute()</code>很简单，用一个while循环维护混淆次数(即给的flag参数<code>-sub_loop</code>)，然后两层<code>for</code>循环。第一个for循环用来遍历函数中的基本块(Basic Block)，第二个<code>for</code>循环用于遍历每个基本块中的所有指令，然后采用一个<code>switch-case</code>语句用来针对不同指令的不同替换操作，case里用随机数来决定用哪种方式去替换</p>
+<p>接下来的所有代码都是其替换方式的实现</p>
+<blockquote>
+<p><a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Instructions-Substitution" target="_blank" rel="noopener">Instructions-Substitution</a>：在其官方wiki里都有说明是怎样的替换方式，在其注释下代码很好理解，相关的函数不懂就查查llvm的函数库就可以了</p>
+<ul>
+<li>
+<p><code>Add</code>指令支持4种替换方法，分别是</p>
+<ul>
+<li><code>a = b - (-c)</code></li>
+<li><code>a = -(-b + (-c))</code></li>
+<li><code>r = rand (); a = b + r; a = a + c; a = a – r </code></li>
+<li><code>r = rand (); a = b - r; a = a + b; a = a + r </code></li>
+</ul>
+</li>
+<li>
+<p><code>Sub</code>指令支持3种替换方法，分别是</p>
+<ul>
+<li><code>a = b + (-c)</code></li>
+<li><code>r = rand (); a = b + r; a = a - c; a = a – r </code></li>
+<li><code>r = rand (); a = b - r; a = a - c; a = a + r </code></li>
+</ul>
+</li>
+<li>
+<p><code>And</code> 指令支持1种替换方法，分别是</p>
+<ul>
+<li><code>a = b &amp; c</code> =&gt; <code>a = (b^~c)&amp; b</code></li>
+</ul>
+</li>
+<li>
+<p><code>Or</code>指令支持1种替换方法，分别是</p>
+<ul>
+<li><code>a = b | c</code> =&gt; <code>a = (b &amp; c) | (b ^ c) </code></li>
+</ul>
+</li>
+<li>
+<p><code>Xor</code> 指令支持1种替换方法，分别是</p>
+<ul>
+<li><code>a = a ^ b </code>=&gt; <code>a = (!a &amp; b) | (a &amp; !b) </code></li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h4 id="stringobfuscation"><a href="#stringobfuscation" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>StringObfuscation</h4>
+<p>有很多大佬对于ollvm的混淆进行了升级，每个版本对于其混淆的实现方式各不相同，这边我分析的是上海交通大学的孤挺花项目的字符串混淆实现分析，项目地址为：https://github.com/GoSSIP-SJTU/Armariris</p>
+<p>与上面三种原有项目的混淆方式不同，字符串混淆的类<code>StringObfuscationPass</code>继承至<code>ModulePass</code>，在入口函数<code>runOnModule</code>里重写了父类函数，在里面实现了加密，在私有函数中实现了解密函数，在加密的末尾实现了调用，保证函数运行的正确性</p>
+<p>函数的思想：是以两个vector来存储静态变量和加密后的字符串，利用Module类的<code>global_iterator</code>迭代器遍历全局变量，判断是否为<code>.str.</code>类型，即字符串类型，进行加密替换，加密方式采用了最原始的异或加密</p>
+<h4 id="bug寻找"><a href="#bug寻找" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>bug寻找</h4>
+<p>适配llvm9.0和ollvm4.0时发生了许多错误</p>
+<p>可见 <a href="ollvm-learning/bug_log.txt">bug_Log</a></p>
+<p><a href="https://www.cnblogs.com/wpgraceii/p/10622582.html" target="_blank" rel="noopener">Segmentation Fault 的原因若干</a></p>
+<p>最快的当然还是把相关错误的llvm4.0的代码移植到llvm9.0处</p>
+<p>解决string_obf error编译时报强制转换类型错误方法 ：http://hellollvm.org/slides/porting-ollvm.pdf</p>
+<blockquote>
+<p><a href="http://hellollvm.org/" target="_blank" rel="noopener">http://hellollvm.org/</a></p>
+</blockquote>
+<h3 id="对抗"><a href="#对抗" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>对抗</h3>
+<p>//TODO：大坑，现在对逆向还不是很熟悉，先对方法了解一波</p>
+<p>引用项目Fllvm(虽然他不开源)中，作者对自己改写的ollvm变版fllvm的自信，来学习对抗ollvm的方式</p>
+<blockquote>
+<p>Fllvm与当前反混淆工具的对抗：当前应对ollvm混淆的大体方法为：自写脚本、bcf、decllvm、符合执行。前三个无论是自己找规律，还是基于capstone(反汇编引擎)，对Fllvm都只存在理论的可行性，基本用途不大。</p>
+</blockquote>
+<p>由作者一段话可知，大概就是找规律写脚本复原，或者采用符号执行的方式去反混淆(原谅我真的找不到作者所说的bcf是啥)</p>
+<p>我看的大多找规律的都是从原版ollvm的混淆方式入手，写反混淆的脚本去运行</p>
+<p>还是能用符号执行分析的大佬比较nb</p>
+<blockquote>
+<p>资料：</p>
+<p><a href="https://www.freebuf.com/articles/terminal/130142.html" target="_blank" rel="noopener">反混淆：恢复被OLLVM保护的程序</a></p>
+<p><a href="https://bbs.pediy.com/thread-252321.htm" target="_blank" rel="noopener">[原创]ARM64 OLLVM反混淆</a></p>
+<p><a href="https://www.anquanke.com/post/id/200744" target="_blank" rel="noopener">Android OLLVM反混淆实战</a>：基于Angr</p>
+<p><a href="https://www.hacking8.com/uploadfile/kcon/2019/24%E6%97%A5/%E5%9F%BA%E4%BA%8E%E7%AC%A6%E5%8F%B7%E6%89%A7%E8%A1%8C%E7%9A%84%E5%8F%8D%E6%B7%B7%E6%B7%86%E6%96%B9%E6%B3%95%E7%A0%94%E7%A9%B6.pdf" target="_blank" rel="noopener">基于符号执行的反混淆方法研究.pdf</a></p>
+<p><a href="https://www.hacking8.com/uploadfile/kcon/2019/24%E6%97%A5/%E5%9F%BA%E4%BA%8E%E7%AC%A6%E5%8F%B7%E6%89%A7%E8%A1%8C%E7%9A%84%E5%8F%8D%E6%B7%B7%E6%B7%86%E6%96%B9%E6%B3%95%E7%A0%94%E7%A9%B6.pdf" target="_blank" rel="noopener">基于符号执行的反混淆方法研究.pdf</a></p>
+<p><a href="https://security.tencent.com/index.php/blog/msg/112" target="_blank" rel="noopener">利用符号执行去除控制流平坦化</a></p>
+<p><a href="https://www.cnblogs.com/h2zZhou/p/6637890.html" target="_blank" rel="noopener">反混淆：恢复被OLLVM保护的程序</a></p>
+<p><a href="https://mlog.club/article/3446618" target="_blank" rel="noopener">使用Binary Ninja去除ollvm流程平坦混淆</a></p>
+<blockquote>
+<p>关于逆向：https://blog.yuuoniy.cn/2018/08/03/XMAN-reversing-1/</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<ul>
+<li>基于Miasm框架(一个Python开源逆向工程框架)，进行反混淆</li>
+</ul>
+<p><a href="https://github.com/cea-sec/miasm" target="_blank" rel="noopener">https://github.com/cea-sec/miasm</a>
+<a href="https://www.freebuf.com/articles/terminal/130142.html" target="_blank" rel="noopener">反混淆：恢复被OLLVM保护的程序</a></p>
+<ul>
+<li>IDA插件，利用micro code API进行反混淆</li>
+</ul>
+<p>Hex-rays：<a href="http://www.hexblog.com/?p=1248" target="_blank" rel="noopener">Hex-Rays Microcode API vs. Obfuscating Compiler</a>
+项目地址：<a href="https://github.com/RolfRolles/HexRaysDeob" target="_blank" rel="noopener">Github-RolfRolles / HexRaysDeob</a>
+<a href="https://xz.aliyun.com/t/6749" target="_blank" rel="noopener">使用IDA microcode去除ollvm混淆(上)</a></p>
+<ul>
+<li>
+<p>DecLLVM，针对OLLVM的IDA分析插件
+<a href="https://github.com/F8LEFT/DecLLVM" target="_blank" rel="noopener">Github-F8LEFT / DecLLVM</a>
+<a href="https://gitlab.com/F8LEFT/DecLLVM" target="_blank" rel="noopener">Gitlab-F8LEFT / DecLLVM</a>
+<a href="https://www.52pojie.cn/thread-484892-1-1.html" target="_blank" rel="noopener">吾爱破解2016安全挑战赛cm7 Android CrackMe 分析详解</a></p>
+</li>
+<li>
+<p>Unicorn 引擎
+<a href="https://bbs.pediy.com/thread-224330.htm" target="_blank" rel="noopener">[翻译]Unicorn引擎教程</a>
+<a href="https://bbs.pediy.com/thread-252257.htm" target="_blank" rel="noopener">[原创]使用unicorn engin还原Armariris字符串混淆</a></p>
+</li>
+<li>
+<p>Angr 符号执行框架
+Github里有</p>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>关于符号执行：</p>
+<p><a href="https://pdfs.semanticscholar.org/a29f/c90b207befb42f67a040c6a07ea6699f6bad.pdf" target="_blank" rel="noopener">符号执行</a>是一种重要的形式化方法和软件分析技术，通过使用符号执行技术，将程序中变量的值表示为符号值和常量组成的计算表达式，符号是指取值集合的记号，程序计算的输出被表示为输入符号值的函数，其在软件测试和程序验证中发挥着重要作用，并可以应用于程序漏洞的检测。</p>
+<p>符号执行的发展是从静态符号执行到动态符号执行到<a href="http://dslab.epfl.ch/pubs/selsymbex.pdf" target="_blank" rel="noopener">选择性符号执行</a>，动态符号执行会以具体数值作为输入来模拟执行程序，是<a href="http://mir.cs.illinois.edu/marinov/publications/SenETAL05CUTE.pdf" target="_blank" rel="noopener">混合执行</a>(concolic execution)的典型代表，有很高的精确度，目前较新的符号执行工具有<a href="https://github.com/JonathanSalwan/Triton" target="_blank" rel="noopener">Triton</a>和<a href="https://github.com/angr/angr" target="_blank" rel="noopener">angr</a></p>
+<p>关于符号执行的paper：https://github.com/saswatanand/symexbib</p>
+<p>符号执行的框架：Miasm、Angr、Triton</p>
+</blockquote>
+
+            </div>
+
+            
+    
+    
+        <ul class="post-copyright">
+            <li class="copyright-item author"><span class="copyright-item-text">作者</span>：<a href="https://magic-king.net/" class="p-author h-card" target="_blank" rel="noopener">Magic</a></li>
+            
+                
+                
+                
+                
+                <li class="copyright-item link"><span class="copyright-item-text">链接</span>：<a href="/posts/ollvm-learning/" target="_blank" rel="noopener">https://magic-king.net/posts/ollvm-learning/</a></li>
+            
+            <li class="copyright-item license"><span class="copyright-item-text">许可</span>：<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></li>
+            
+        </ul>
+    
+
+
+
+        </article>
+
+        
+
+        
+    <div class="updated-badge-container">
+        <span title="Updated @ 2021-02-09 17:27:35 CST" style="cursor:help">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2021-02-09</text><text x="915" y="140" textLength="650" transform="scale(.1)">2021-02-09</text></g></svg>
+        </span></div>
+
+
+
+        
+
+
+        <div class="post-share">
+
+        
+
+        <div class="share-items">
+
+            
+                <div class="share-item twitter">
+                    
+                    <a href="https://twitter.com/share?url=https://magic-king.net/posts/ollvm-learning/&amp;text=ollvm-learning&amp;hashtags=reverse,ollvm,&amp;via=%25!s%28%3cnil%3e%29" title="分享到「Twitter」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon twitter-icon"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item facebook">
+                    
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://magic-king.net/posts/ollvm-learning/&amp;hashtag=%23reverse" title="分享到「Facebook」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon facebook-icon"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg></a>
+                </div>
+            
+
+            
+
+            
+                <div class="share-item telegram">
+                    
+                    <a href="https://t.me/share/url?url=https://magic-king.net/posts/ollvm-learning/&amp;text=ollvm-learning" title="分享到「Telegram」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="icon telegram-icon"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm121.8 169.9l-40.7 191.8c-3 13.6-11.1 16.9-22.4 10.5l-62-45.7-29.9 28.8c-3.3 3.3-6.1 6.1-12.5 6.1l4.4-63.1 114.9-103.8c5-4.4-1.1-6.9-7.7-2.5l-142 89.4-61.2-19.1c-13.3-4.2-13.6-13.3 2.8-19.7l239.1-92.2c11.1-4 20.8 2.7 17.2 19.5z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item weibo">
+                    
+                    <a href="https://service.weibo.com/share/share.php?&amp;url=https://magic-king.net/posts/ollvm-learning/&amp;title=ollvm-learning&amp;pic=https://magic-king.net/posts/ollvm-learning/3.png&amp;searchPic=false" title="分享到「新浪微博」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon weibo-icon"><path d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7 0 395.3 0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"/></svg></a>
+                </div>
+            
+
+            
+
+            
+                <div class="share-item qq">
+                    
+                    <a href="https://connect.qq.com/widget/shareqq/index.html?url=https://magic-king.net/posts/ollvm-learning/&amp;title=ollvm-learning&amp;summary=Learning%20about%20ollvm&amp;pics=https://magic-king.net/posts/ollvm-learning/3.png&amp;site=Magic%27s%20Blog" title="分享到「QQ」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon qq-icon"><path d="M433.754 420.445c-11.526 1.393-44.86-52.741-44.86-52.741 0 31.345-16.136 72.247-51.051 101.786 16.842 5.192 54.843 19.167 45.803 34.421-7.316 12.343-125.51 7.881-159.632 4.037-34.122 3.844-152.316 8.306-159.632-4.037-9.045-15.25 28.918-29.214 45.783-34.415-34.92-29.539-51.059-70.445-51.059-101.792 0 0-33.334 54.134-44.859 52.741-5.37-.65-12.424-29.644 9.347-99.704 10.261-33.024 21.995-60.478 40.144-105.779C60.683 98.063 108.982.006 224 0c113.737.006 163.156 96.133 160.264 214.963 18.118 45.223 29.912 72.85 40.144 105.778 21.768 70.06 14.716 99.053 9.346 99.704z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item qzone">
+                    
+                    <a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://magic-king.net/posts/ollvm-learning/&amp;title=ollvm-learning&amp;summary=Learning%20about%20ollvm&amp;pics=https://magic-king.net/posts/ollvm-learning/3.png&amp;site=Magic%27s%20Blog" title="分享到「QQ 空间」" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon qzone-icon"><path d="M23.985 9.202c-.032-.099-.127-.223-.334-.258-.207-.036-7.351-1.406-7.351-1.406s-.105-.022-.198-.07c-.092-.047-.127-.167-.127-.167S12.447.956 12.349.77C12.25.583 12.104.532 12 .532c-.104 0-.251.051-.349.238-.098.186-3.626 6.531-3.626 6.531s-.035.12-.128.167c-.092.047-.197.07-.197.07S.556 8.908.348 8.943c-.208.036-.302.16-.333.258a.477.477 0 0 0 .125.449l5.362 5.49s.072.08.119.172c.016.104.005.21.005.21s-1.189 7.242-1.22 7.45.075.369.159.43c.083.062.233.106.421.013.189-.093 6.812-3.261 6.812-3.261s.098-.044.201-.061c.103-.017.201.061.201.061s6.623 3.168 6.812 3.261c.188.094.338.049.421-.013a.463.463 0 0 0 .159-.43c-.021-.14-.93-5.677-.93-5.677.876-.54 1.425-1.039 1.849-1.747-2.594.969-6.006 1.717-9.415 1.866-.915.041-2.41.097-3.473-.015-.678-.071-1.17-.144-1.243-.438-.053-.215.054-.46.545-.831a2640.5 2640.5 0 0 1 2.861-2.155c1.285-.968 3.559-2.47 3.559-2.731 0-.285-2.144-.781-4.037-.781-1.945 0-2.275.132-2.811.168-.488.034-.769.005-.804-.138-.06-.248.183-.389.588-.568.709-.314 1.86-.594 1.984-.626.194-.052 3.082-.805 5.618-.535 1.318.14 3.244.668 3.244 1.276 0 .342-1.721 1.494-3.225 2.597-1.149.843-2.217 1.561-2.217 1.688 0 .342 3.533 1.241 6.689 1.01l.003-.022c.048-.092.119-.172.119-.172l5.362-5.49a.477.477 0 0 0 .127-.449z"/></svg></a>
+                </div>
+            
+
+            
+                <div class="share-item qrcode">
+                    <div class="qrcode-container" title="通过「二维码」"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon qrcode-icon"><path d="M0 224h192V32H0v192zM64 96h64v64H64V96zm192-64v192h192V32H256zm128 128h-64V96h64v64zM0 480h192V288H0v192zm64-128h64v64H64v-64zm352-64h32v128h-96v-32h-32v96h-64V288h96v32h64v-32zm0 160h32v32h-32v-32zm-64 0h32v32h-32v-32z"/></svg><div id="qrcode-img"></div>
+                    </div>
+                    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+
+<script>
+    var typeNumber = 0;
+    var errorCorrectionLevel = 'L';
+    var qr = qrcode(typeNumber, errorCorrectionLevel);
+    qr.addData('https:\/\/magic-king.net\/posts\/ollvm-learning\/');
+    qr.make();
+    document.getElementById('qrcode-img').innerHTML = qr.createImgTag();
+</script>
+
+                </div>
+            
+
+        </div>
+
+    </div>
+
+
+
+
+        
+    
+    
+        <div class="related-posts">
+            <h2 class="related-title">相关文章：<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon related-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"/></svg></h2>
+            <ul class="related-list">
+                
+                    <li class="related-item">
+                        <a href="/posts/gdb-learning/" class="related-link">gdb-learning</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/posts/ida-script/" class="related-link">IDA-Script</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/posts/computer-virus/" class="related-link">Computer-Virus</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/posts/debug-introduction/" class="related-link">Debug-Introduction</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/posts/xctf-adworld-reverse-wp/" class="related-link">XCTF-adworld-reverse-wp</a>
+                    </li>
+                
+            </ul>
+        </div>
+    
+
+
+
+        
+    
+        <div class="post-tags">
+            
+                
+                
+                
+                
+                    
+                    <a href="/tags/reverse/" rel="tag" class="post-tags-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>reverse</a>
+                
+            
+                
+                
+                
+                
+                    
+                    <a href="/tags/ollvm/" rel="tag" class="post-tags-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>ollvm</a>
+                
+            
+        </div>
+    
+
+
+
+        
+
+
+        
+
+
+        
+    
+        
+        
+    
+    
+    
+    
+        <ul class="post-nav">
+            
+                <li class="post-nav-prev">
+                    <a href="/posts/ntop/" rel="prev">&lt; Ntop</a>
+                </li>
+            
+            
+                <li class="post-nav-next">
+                    <a href="/posts/ssh%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/" rel="next">SSH端口转发 &gt;</a>
+                </li>
+            
+        </ul>
+    
+
+
+
+        
+
+
+    </div>
+</main>
+
+
+            
+    <div id="back-to-top" class="back-to-top">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a>
+    </div>
+
+
+            
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="site-info">©&nbsp;2021–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;Magic</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+                <div class="busuanzi-site-uv-and-pv">
+                    <span id="busuanzi_container_site_uv">本站访客数&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon busuanzi-site-uv"><path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"/></svg>&nbsp;<span id="busuanzi_value_site_uv"></span></span>&nbsp;|&nbsp;<span id="busuanzi_container_site_pv">本站访问量&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon busuanzi-site-pv"><path d="M288 144a110.94 110.94 0 0 0-31.24 5 55.4 55.4 0 0 1 7.24 27 56 56 0 0 1-56 56 55.4 55.4 0 0 1-27-7.24A111.71 111.71 0 1 0 288 144zm284.52 97.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400c-98.65 0-189.09-55-237.93-144C98.91 167 189.34 112 288 112s189.09 55 237.93 144C477.1 345 386.66 400 288 400z"/></svg>&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+                </div>
+
+            
+    
+        <ul class="socials"><li class="socials-item">
+                    <a href="/rss.xml" target="_blank" rel="external noopener" title="RSS"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon social-icon"><path d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24h-4.801zM3.291 17.415c1.814 0 3.293 1.479 3.293 3.295 0 1.813-1.485 3.29-3.301 3.29C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295zM15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91z"/></svg></a>
+                </li><li class="socials-item">
+                    <a href="mailto:ma9icking@gmail.com" target="_blank" rel="external noopener" title="Email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon social-icon"><path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"/></svg></a>
+                </li><li class="socials-item">
+                    <a href="https://github.com/Magic-King" target="_blank" rel="external noopener" title="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon social-icon"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+                </li></ul>
+    
+
+
+
+            
+        </div>
+    </footer>
+
+
+        </div>
+        
+
+        
+
+
+    <script>
+    if (typeof MathJax === 'undefined') {
+        window.MathJax = {
+            loader: {
+                load: ['[tex]/mhchem']
+            },
+            
+            tex: {
+                inlineMath: {'[+]': [['$', '$']]},
+                tags: 'ams',
+                packages: {'[+]': ['mhchem']}
+            }
+        };
+        (function() {
+            var script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+            script.defer = true;
+            document.head.appendChild(script);
+        })();
+    } else {
+        MathJax.texReset();
+        MathJax.typeset();
+    }
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.8.3/dist/mermaid.min.js"></script>
+<script>
+    let mermaidConfig = {
+        startOnLoad: true,
+        flowchart: {
+            useMaxWidth: false,
+            htmlLabels: true
+        },
+        theme: 'default'
+    };
+    mermaid.initialize(mermaidConfig);
+</script>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
+
+<script>
+    mediumZoom(document.querySelectorAll('div.post-body img'), {
+        background: 'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'
+    })
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+    
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+
+
+
+    </body>
+</html>
