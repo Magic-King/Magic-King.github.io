@@ -289,21 +289,21 @@ drwxr-xr-x 3 root    root    4096 Oct 16  2018 ..
 -rw-r----- 1 bandit5 bandit4   33 Oct 16  2018 -file08
 -rw-r----- 1 bandit5 bandit4   33 Oct 16  2018 -file09
 bandit4@bandit:~/inhere$ cat ./-file00
-����������~%	C[�걱>��| �
+����������~%	C[�걱>��| �
 bandit4@bandit:~/inhere$ cat ./-file01
-���U"7�w���H��ê�Q����(���#���
+���U"7�w���H��ê�Q����(���#���
 bandit4@bandit:~/inhere$ cat ./-file02
-�T�v��(�ִ�����A*�
-2J�Ş؇_�y7
+�T�v��(�ִ�����A*�
+2J�Ş؇_�y7
 bandit4@bandit:~/inhere$ cat ./-file03
-��.A��u��#���w$N?c�-��Db3��=��
+��.A��u��#���w$N?c�-��Db3��=��
 bandit4@bandit:~/inhere$ cat ./-file05
-+��pm���;��:D��^��@�gl�Q�
++��pm���;��:D��^��@�gl�Q�
 bandit4@bandit:~/inhere$ cat ./-file04
-�=<�W�����ht�Z��!��{�U
+�=<�W�����ht�Z��!��{�U
                           �
                           bandit4@bandit:~/inhere$ cat ./-file06
-��@�%@���ZP*E��1�V���̫*����
+��@�%@���ZP*E��1�V���̫*����
 bandit4@bandit:~/inhere$ cat ./-file07
 koReBOKuIDDepwhWk7jZC0RTdopnAYKh
 bandit4@bandit:~/inhere$ 

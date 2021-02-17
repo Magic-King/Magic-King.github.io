@@ -100,7 +100,7 @@ uglyURLs = false
     # 座右铭或简介
     motto = "Now You See Me!"
     # 头像
-    avatar = "/icons/favicon"
+    avatar = "/icons/favicon.ico"
     # 网站（默认值：baseURL）
     website = "https://magic-king.net/"
     # 推特
