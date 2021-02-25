@@ -194,7 +194,7 @@ void matrixvector(DTYPE A[SIZE][SIZE], DTYPE *y, DTYPE *x)
 
 int main(){
     int fail = 0;
-    DTYPE M[SIZE][SIZE] = {{3,4,0,0},{0,5,9,0},{2,0,3,1},{0,4,0,6}};
+    DTYPE M[SIZE][SIZE] = { {3,4,0,0},{0,5,9,0},{2,0,3,1},{0,4,0,6} };
     DTYPE x[SIZE] = {1,2,3,4};
     DTYPE y_sw[SIZE];
     DTYPE values[] = {3,4,5,9,2,3,1,4,6};
