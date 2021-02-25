@@ -831,7 +831,7 @@ uglyURLs = false
     imageHostURL = "/posts/"
 
     # 是否将 HTML 的头部元数据中的图片链接也替换为外链
-    headAlso = true
+    headAlso = false
 
 
     ######################################
