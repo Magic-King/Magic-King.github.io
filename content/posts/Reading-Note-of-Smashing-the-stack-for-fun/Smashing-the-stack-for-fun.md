@@ -1349,11 +1349,13 @@ void usage(void) {
 
 
 
-读后感
+#### 读后感
 
+阅读这篇论文只要有一丁点汇编知识和操作系统的内存相关的知识
 
+感觉这篇论文以最简洁的语言讲述了缓冲区溢出到底是如何工作的，从零开始演示了shellcode是如何产生的，如何将shellcode放入缓冲区，如何去优化shellcode（虽然现在都用metasploit生成了）。
 
-感觉这篇论文以最简洁的语言讲述了缓冲区溢出到底是如何工作的，当然只要有一丁点汇编知识和操作系统的内存相关的知识，就能轻松理解这篇论文。
+这篇论文从提出问题到解决问题都感觉阐述的十分清晰，如果想要快速了解栈溢出的话，还是可以直接参考ctf-wki中的[stackoverflow入门](https://ctf-wiki.org/pwn/linux/stackoverflow/stackoverflow-basic/)
 
 
 
