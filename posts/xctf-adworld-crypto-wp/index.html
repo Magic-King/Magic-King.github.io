@@ -1,0 +1,859 @@
+<!doctype html><html lang=zh-cn><head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#"><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=theme-color content="#fff"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=format-detection content="telephone=no, date=no, address=no, email=no"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><title>XCTF-adworld-crypto-wp | Magic's Blog</title><link rel=stylesheet href=/css/meme.min.b1f218c611af8aa4204ad1285f7c33d736b17a9b8436ab5bde0a7f57aa28bb1d.css><script src=https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js defer></script><script src=/js/meme.min.009a0b83c250beab5ead6d2b3ab4b4ba3d2e15b162ce06c18a8c42b69a2e934b.js></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Noto+Serif+SC:wght@400;500;700&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" media=print onload="this.media='all'"><noscript><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Noto+Serif+SC:wght@400;500;700&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap"></noscript><meta name=author content="Magic"><meta name=description content="Crypto&WriteUp crypto永远充满了google和常识（还有工具 攻防世界&Crypto新……"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=mask-icon href=/icons/safari-pinned-tab.svg color=#2a6df4><link rel=apple-touch-icon sizes=180x180 href=/icons/apple-touch-icon.png><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-title content="Magic's Blog"><meta name=apple-mobile-web-app-status-bar-style content="black"><meta name=mobile-web-app-capable content="yes"><meta name=application-name content="Magic's Blog"><meta name=msapplication-starturl content="../../"><meta name=msapplication-TileColor content="#fff"><meta name=msapplication-TileImage content="../../icons/mstile-150x150.png"><link rel=manifest href=/manifest.json><link rel=canonical href=https://magic-king.net/posts/xctf-adworld-crypto-wp/><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","datePublished":"2019-11-10T21:14:36+08:00","dateModified":"2021-02-25T14:01:04+00:00","url":"https://magic-king.net/posts/xctf-adworld-crypto-wp/","headline":"XCTF-adworld-crypto-wp","description":"Crypto\u0026WriteUp crypto永远充满了google和常识（还有工具 攻防世界\u0026Crypto新……","inLanguage":"zh-CN","articleSection":"posts","wordCount":5824,"image":["https://magic-king.net/11_1.jpg"],"author":{"@type":"Person","description":"Now You See Me!","email":"Ma9icKing@gmail.com","image":"https://magic-king.net/icons/favicon.ico","url":"https://magic-king.net/","name":"Magic"},"license":"[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)","publisher":{"@type":"Organization","name":"Magic's Blog","logo":{"@type":"ImageObject","url":"https://magic-king.net/icons/favicon.ico"},"url":"https://magic-king.net/"},"mainEntityOfPage":{"@type":"WebSite","@id":"https://magic-king.net/"}}</script><meta name=twitter:card content="summary_large_image"><meta property="og:title" content="XCTF-adworld-crypto-wp"><meta property="og:description" content="Crypto&WriteUp crypto永远充满了google和常识（还有工具 攻防世界&Crypto新……"><meta property="og:url" content="https://magic-king.net/posts/xctf-adworld-crypto-wp/"><meta property="og:site_name" content="Magic's Blog"><meta property="og:locale" content="zh"><meta property="og:image" content="https://magic-king.net/11_1.jpg"><meta property="og:type" content="article"><meta property="article:published_time" content="2019-11-10T21:14:36+08:00"><meta property="article:modified_time" content="2021-02-25T14:01:04+00:00"><meta property="article:section" content="posts"></head><body><div class=container><header class=header><div class=header-wrapper><div class="header-inner single"><div class=site-brand><a href=/ class=brand>Magic's Blog</a></div><nav class=nav><ul class=menu id=menu><li class=menu-item><a href=/posts/><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon archive"><path d="M32 448c0 17.7 14.3 32 32 32h384c17.7.0 32-14.3 32-32V160H32v288zm160-212c0-6.6 5.4-12 12-12h104c6.6.0 12 5.4 12 12v8c0 6.6-5.4 12-12 12H204c-6.6.0-12-5.4-12-12v-8zM480 32H32C14.3 32 0 46.3.0 64v48c0 8.8 7.2 16 16 16h480c8.8.0 16-7.2 16-16V64c0-17.7-14.3-32-32-32z"/></svg><span class=menu-item-name>Archive</span></a></li><li class=menu-item><a href=/categories/><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon th"><path d="M149.333 56v80c0 13.255-10.745 24-24 24H24c-13.255.0-24-10.745-24-24V56c0-13.255 10.745-24 24-24h101.333c13.255.0 24 10.745 24 24zm181.334 240v-80c0-13.255-10.745-24-24-24H205.333c-13.255.0-24 10.745-24 24v80c0 13.255 10.745 24 24 24h101.333c13.256.0 24.001-10.745 24.001-24zm32-240v80c0 13.255 10.745 24 24 24H488c13.255.0 24-10.745 24-24V56c0-13.255-10.745-24-24-24H386.667c-13.255.0-24 10.745-24 24zm-32 80V56c0-13.255-10.745-24-24-24H205.333c-13.255.0-24 10.745-24 24v80c0 13.255 10.745 24 24 24h101.333c13.256.0 24.001-10.745 24.001-24zm-205.334 56H24c-13.255.0-24 10.745-24 24v80c0 13.255 10.745 24 24 24h101.333c13.255.0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24zM0 376v80c0 13.255 10.745 24 24 24h101.333c13.255.0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H24c-13.255.0-24 10.745-24 24zm386.667-56H488c13.255.0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H386.667c-13.255.0-24 10.745-24 24v80c0 13.255 10.745 24 24 24zm0 160H488c13.255.0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H386.667c-13.255.0-24 10.745-24 24v80c0 13.255 10.745 24 24 24zM181.333 376v80c0 13.255 10.745 24 24 24h101.333c13.255.0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H205.333c-13.255.0-24 10.745-24 24z"/></svg><span class=menu-item-name>Categories</span></a></li><li class=menu-item><a href=/tags/><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="icon tags"><path d="M497.941 225.941 286.059 14.059A48 48 0 00252.118.0H48C21.49.0.0 21.49.0 48v204.118a48 48 0 0014.059 33.941l211.882 211.882c18.744 18.745 49.136 18.746 67.882.0l204.118-204.118c18.745-18.745 18.745-49.137.0-67.882zM112 160c-26.51.0-48-21.49-48-48s21.49-48 48-48 48 21.49 48 48-21.49 48-48 48zm513.941 133.823L421.823 497.941c-18.745 18.745-49.137 18.745-67.882.0l-.36-.36L527.64 323.522c16.999-16.999 26.36-39.6 26.36-63.64s-9.362-46.641-26.36-63.64L331.397.0h48.721a48 48 0 0133.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137.0 67.882z"/></svg><span class=menu-item-name>Tags</span></a></li><li class=menu-item><a href=/about/><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="icon user-circle"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6.0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7.0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4.0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9s28-2.7 40.9-6.9c2.3-.7 4.7-1.1 7.1-1.1 42.9.0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z"/></svg><span class=menu-item-name>About</span></a></li><li class=menu-item><a id=theme-switcher href=#><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-light"><path d="M193.2 104.5 242 7a18 18 0 0128 0l48.8 97.5L422.2 70A18 18 0 01442 89.8l-34.5 103.4L505 242a18 18 0 010 28l-97.5 48.8L442 422.2A18 18 0 01422.2 442l-103.4-34.5L270 505a18 18 0 01-28 0l-48.8-97.5L89.8 442A18 18 0 0170 422.2l34.5-103.4-97.5-48.8a18 18 0 010-28l97.5-48.8L70 89.8A18 18 0 0189.8 70zM256 128a128 128 0 10.01.0M256 160a96 96 0 10.01.0"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-dark"><path d="M27 412A256 256 0 10181 5a11.5 11.5.0 00-5 20A201.5 201.5.0 0142 399a11.5 11.5.0 00-15 13"/></svg></a></li><li class="menu-item search-item"><form id=search class=search role=search><label for=search-input><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon search-icon"><path d="M505 442.7 405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9.0 208 0S0 93.1.0 208s93.1 208 208 208c48.3.0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9.0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7.0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7.0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></label><input type=search id=search-input class=search-input></form><template id=search-result hidden><article class="content post"><h2 class=post-title><a class=summary-title-link></a></h2><summary class=summary></summary><div class=read-more-container><a class=read-more-link>阅读更多 »</a></div></article></template></li></ul></nav></div></div><input type=checkbox id=nav-toggle aria-hidden=true>
+<label for=nav-toggle class=nav-toggle></label><label for=nav-toggle class=nav-curtain></label></header><main class="main single" id=main><div class=main-inner><article class="content post h-entry" data-align=justify data-type=posts data-toc-num=true><h1 class="post-title p-name">XCTF-adworld-crypto-wp</h1><div class=post-meta><time datetime=2019-11-10T21:14:36+08:00 class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6.0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6.0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6.0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6.0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6.0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6.0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6.0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6.0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6.0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6.0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6.0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6.0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5.0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6.0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6.0 12 5.4 12 12v52h48c26.5.0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3.0 6-2.7 6-6z"/></svg>&nbsp;2019.11.10</time>
+<time datetime=2021-02-25T14:01:04+00:00 class="post-meta-item modified dt-updated"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M4e2 64h-48V12c0-6.627-5.373-12-12-12h-40c-6.627.0-12 5.373-12 12v52H160V12c0-6.627-5.373-12-12-12h-40c-6.627.0-12 5.373-12 12v52H48C21.49 64 0 85.49.0 112v352c0 26.51 21.49 48 48 48h352c26.51.0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm-6 4e2H54a6 6 0 01-6-6V160h352v298a6 6 0 01-6 6zm-52.849-200.65L198.842 404.519c-4.705 4.667-12.303 4.637-16.971-.068l-75.091-75.699c-4.667-4.705-4.637-12.303.068-16.971l22.719-22.536c4.705-4.667 12.303-4.637 16.97.069l44.104 44.461 111.072-110.181c4.705-4.667 12.303-4.637 16.971.068l22.536 22.718c4.667 4.705 4.636 12.303-.069 16.97z"/></svg>&nbsp;2021.2.25</time>
+<span class="post-meta-item category"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M464 128H272l-54.63-54.63c-6-6-14.14-9.37-22.63-9.37H48C21.49 64 0 85.49.0 112v288c0 26.51 21.49 48 48 48h416c26.51.0 48-21.49 48-48V176c0-26.51-21.49-48-48-48zm0 272H48V112h140.12l54.63 54.63c6 6 14.14 9.37 22.63 9.37H464v224z"/></svg>&nbsp;<a href=/categories/crypto/ class="category-link p-category">crypto</a></span>
+<span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3.0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9.0l60.1 60.1c18.8 18.7 18.8 49.1.0 67.9zM284.2 99.8 21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3.0-17l-111-111c-4.8-4.7-12.4-4.7-17.1.0zM124.1 339.9c-5.5-5.5-5.5-14.3.0-19.8l154-154c5.5-5.5 14.3-5.5 19.8.0s5.5 14.3.0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8.0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;5824</span>
+<span class="post-meta-item reading-time"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5.0-2e2-89.5-2e2-2e2S145.5 56 256 56s2e2 89.5 2e2 2e2-89.5 2e2-2e2 2e2zm61.8-104.4-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6.0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>&nbsp;12&nbsp;分钟</span>
+<span class="post-meta-item busuanzi-page-pv" id=busuanzi_container_page_pv><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon post-meta-icon"><path d="M288 144a110.94 110.94.0 00-31.24 5 55.4 55.4.0 017.24 27 56 56 0 01-56 56 55.4 55.4.0 01-27-7.24A111.71 111.71.0 10288 144zm284.52 97.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35.0 000 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35.0 000-29.19zM288 4e2c-98.65.0-189.09-55-237.93-144C98.91 167 189.34 112 288 112s189.09 55 237.93 144C477.1 345 386.66 4e2 288 4e2z"/></svg>&nbsp;<span id=busuanzi_value_page_pv></span></span></div><div class="post-body e-content"><h1 id=centercryptowriteupcenter><a href=#centercryptowriteupcenter class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><center>Crypto&WriteUp</center></h1><p>crypto永远充满了google和常识（还有工具</p><h1 id=center攻防世界crypto新手练习区center><a href=#center攻防世界crypto新手练习区center class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><center>攻防世界&Crypto新手练习区</center></h1><h2 id=0x01-幂数加密><a href=#0x01-幂数加密 class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>0x01 幂数加密</h2><blockquote><p>题目描述：你和小鱼终于走到了最后的一个谜题所在的地方，上面写着一段话“亲爱的朋友， 很开心你对网络安全有这么大的兴趣，希望你一直坚持下去，不要放弃 ，学到一些知识， 走进广阔的安全大世界”，你和小鱼接过谜题，开始了耐心细致的解答。flag为cyberpeace{你解答出的八位大写字母}</p></blockquote><p>下载附件打开查看是txt，里面放一段数字</p><pre><code>8842101220480224404014224202480122
+</code></pre><p>由ctf-wiki的常识可知，这是01248加密，即以0为分割，将其中的数加起来对应字母表的排位。</p><p>解得flag</p><pre><code>01248：
+23 5 12 12 4 15 14 5
+w  e l  l  d o  n  e
+</code></pre><h2 id=0x02-base64><a href=#0x02-base64 class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>0x02 base64</h2><blockquote><p>题目描述：元宵节灯谜是一种古老的传统民间观灯猜谜的习俗。 因为谜语能启迪智慧又饶有兴趣，灯谜增添节日气氛，是一项很有趣的活动。 你也很喜欢这个游戏，这不，今年元宵节，心里有个黑客梦的你，约上你青梅竹马的好伙伴小鱼， 来到了cyberpeace的攻防世界猜谜大会，也想着一展身手。 你们一起来到了小孩子叽叽喳喳吵吵闹闹的地方，你俩抬头一看，上面的大红灯笼上写着一些奇奇怪怪的 字符串，小鱼正纳闷呢，你神秘一笑，我知道这是什么了。</p></blockquote><p>打开附件是一段英文，有题目得知是base64编码，解码得flag</p><pre><code>Y3liZXJwZWFjZXtXZWxjb21lX3RvX25ld19Xb3JsZCF9
+cyberpeace{Welcome_to_new_World!}
+</code></pre><h2 id=0x03-caesar><a href=#0x03-caesar class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>0x03 Caesar</h2><blockquote><p>题目描述：你成功的解出了来了灯谜，小鱼一脸的意想不到“没想到你懂得这么多啊！” 你心里面有点小得意，“那可不是，论学习我没你成绩好轮别的我知道的可不比你少，走我们去看看下一个” 你们继续走，看到前面也是热热闹闹的，同样的大红灯笼高高挂起，旁边呢好多人叽叽喳喳说个不停。你一看 大灯笼，上面还是一对字符，你正冥思苦想呢，小鱼神秘一笑，对你说道，我知道这个的答案是什么了</p></blockquote><p>由题目得知是凯撒密码，随便百度一个工具进行暴力破解得知，移位12位</p><p>快捷：算出o和c得插值，但是我觉得更慢</p><pre><code>oknqdbqmoq{kag_tmhq_xqmdzqp_omqemd_qzodkbfuaz}
+cyberpeace{you_have_learned_caesar_encryption}
+</code></pre><h2 id=0x04-morse><a href=#0x04-morse class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>0x04 Morse</h2><blockquote><p>题目描述：小鱼得意的瞟了你一眼，神神气气的拿走了答对谜语的奖励，你心里暗暗较劲 想着下一个谜题一定要比小鱼更快的解出来。不知不觉你们走到了下一个谜题的地方，这个地方有些奇怪。 上面没什么提示信息，只是刻着一些0和1，感觉有着一些奇怪的规律，你觉得有些熟悉，但是就是想不起来 这些01代表着什么意思。一旁的小鱼看你眉头紧锁的样子，扑哧一笑，对你讲“不好意思我又猜到答案了。”(flag格式为cyberpeace{xxxxxxxxxx},均为小写)</p></blockquote><p>下载附件，打开文档是一串01串</p><pre><code>11 111 010 000 0 1010 111 100 0 00 000 000 111 00 10 1 0 010 0 000 1 00 10 110
+</code></pre><p>假如按<code>1:=.&0:=-</code>翻译则第一个字母可翻译，但是后面有一个字符无法翻译</p><p>因此，01调换顺序<code>1:=-&0:=.</code></p><p>利用python的str.replace的到<code>.-</code>的morsecode，找个在线工具直接翻译得到结果，需要自己加上cyberpeace{}格式：<code>cyberpeace{morsecodeissointeresting}</code></p><pre><code>morsecodeissointeresting
+</code></pre><p>可惜我后来没注意到需要全部小写，浪费了时间。</p><h2 id=0x05-railfence><a href=#0x05-railfence class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>0x05 Railfence</h2><blockquote><p>题目描述：被小鱼一连将了两军，你心里更加不服气了。两个人一起继续往前走， 一路上杂耍卖艺的很多，但是你俩毫无兴趣，直直的就冲着下一个谜题的地方去了。 到了一看，这个谜面看起来就已经有点像答案了样子了，旁边还画着一张画，是一副农家小院的 图画，上面画着一个农妇在栅栏里面喂5只小鸡，你嘿嘿一笑对着小鱼说这次可是我先找到答案了。</p></blockquote><p>打开附件是一个文档如下，如题目明显的是栅栏加密。找了个在线工具破解。</p><pre><code>ccehgyaefnpeoobe{lcirg}epriec_ora_g
+</code></pre><p>结果常规栅栏加密没跑出来，在看到题目有一个数字5盲猜这可能是栅栏加密的key，但是常规的是跑不出来flag的，后面看百科知道有个是www型栅栏加密</p><p><strong>PS:WWW型的加密密钥就不只能是字符串长度的因子，小于其长度的任何一个数都可能是其key值，所以第一步也是确定密钥。</strong></p><p>由题目可知key可能是5，一尝试果然正确，得到flag：<code>cyberpeace{railfence_cipher_gogogo}</code></p><p>附一个www型栅栏密码的网站： <a href="http://www.atoolbox.net/Tool.php?Id=777" target=_blank rel=noopener>http://www.atoolbox.net/Tool.php?Id=777</a></p><p>附赠一个栅栏密码的脚本</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=ch>#!/usr/bin/env python3</span>
+
+<span class=c1>#常见的栅栏解密</span>
+
+<span class=n>e</span> <span class=o>=</span> <span class=nb>input</span><span class=p>(</span><span class=s1>&#39;清输入要解密的字符串</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
+<span class=n>elen</span> <span class=o>=</span> <span class=nb>len</span><span class=p>(</span><span class=n>e</span><span class=p>)</span>  <span class=c1># 计算字符串长度</span>
+<span class=n>field</span> <span class=o>=</span> <span class=p>[]</span>
+<span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=n>elen</span><span class=p>):</span>  <span class=c1># 做一个循环，从2开始到数字elen（字符串长度）</span>
+    <span class=k>if</span> <span class=n>elen</span> <span class=o>%</span> <span class=n>i</span> <span class=o>==</span> <span class=mi>0</span><span class=p>:</span>  <span class=c1># 计算那些数字能整除字符串长度</span>
+        <span class=n>field</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>i</span><span class=p>)</span>  <span class=c1># 将能整出的数字加入到field里面</span>
+
+<span class=k>for</span> <span class=n>f</span> <span class=ow>in</span> <span class=n>field</span><span class=p>:</span>
+    <span class=n>b</span> <span class=o>=</span> <span class=n>elen</span> <span class=o>//</span> <span class=n>f</span>  <span class=c1># 用字符串实际长度除以上面计算出能整出的数字f</span>
+    <span class=n>result</span> <span class=o>=</span> <span class=p>{</span><span class=n>x</span><span class=p>:</span> <span class=s1>&#39;&#39;</span> <span class=k>for</span> <span class=n>x</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>b</span><span class=p>)}</span>
+    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>elen</span><span class=p>):</span>  <span class=c1># 字符串有多少位，就循环多少次</span>
+        <span class=n>a</span> <span class=o>=</span> <span class=n>i</span> <span class=o>%</span> <span class=n>b</span>
+        <span class=n>result</span><span class=o>.</span><span class=n>update</span><span class=p>({</span><span class=n>a</span><span class=p>:</span> <span class=n>result</span><span class=p>[</span><span class=n>a</span><span class=p>]</span> <span class=o>+</span> <span class=n>e</span><span class=p>[</span><span class=n>i</span><span class=p>]})</span>  <span class=c1># 字符串截断，并更新数据</span>
+    <span class=n>d</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span>
+    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>b</span><span class=p>):</span>
+        <span class=n>d</span> <span class=o>+=</span> <span class=n>result</span><span class=p>[</span><span class=n>i</span><span class=p>]</span>
+    <span class=k>print</span><span class=p>(</span><span class=s1>&#39;分为&#39;</span><span class=o>+</span><span class=nb>str</span><span class=p>(</span><span class=n>f</span><span class=p>)</span><span class=o>+</span><span class=s1>&#39;栏时，解密结果为：&#39;</span><span class=o>+</span><span class=n>d</span><span class=o>+</span><span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>  <span class=c1># 输出结果，并开始下一个循环</span>
+
+    
+<span class=c1>#W型加密</span>
+
+<span class=n>string</span><span class=o>=</span><span class=nb>input</span><span class=p>(</span><span class=s2>&#34;输入要加密的字符串</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
+<span class=n>length</span> <span class=o>=</span> <span class=nb>len</span><span class=p>(</span><span class=n>string</span><span class=p>)</span>
+
+<span class=c1>#猜想不会是一栏,和n栏（滑稽）因为这个就是原来字符串（狗头）</span>
+<span class=c1>#那么，就暴力遍历一波其中的那些⑧</span>
+
+<span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span><span class=n>length</span><span class=p>):</span>
+    <span class=n>result</span><span class=o>=</span><span class=p>{</span><span class=n>x</span><span class=p>:</span><span class=s2>&#34;&#34;</span><span class=k>for</span> <span class=n>x</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>i</span><span class=p>)}</span>  
+    <span class=k>for</span> <span class=n>a</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>length</span><span class=p>)</span> <span class=p>:</span>
+        <span class=n>width</span><span class=o>=</span><span class=n>i</span><span class=o>*</span><span class=mi>2</span><span class=o>-</span><span class=mi>2</span>
+        <span class=n>num</span><span class=o>=</span><span class=n>a</span><span class=o>%</span><span class=n>width</span>
+        <span class=k>if</span><span class=p>(</span><span class=n>num</span><span class=o>&lt;</span><span class=n>i</span><span class=p>):</span>
+            <span class=n>result</span><span class=o>.</span><span class=n>update</span><span class=p>({</span><span class=n>num</span><span class=p>:</span><span class=n>result</span><span class=p>[</span><span class=n>num</span><span class=p>]</span><span class=o>+</span><span class=n>string</span><span class=p>[</span><span class=n>a</span><span class=p>]})</span>           
+        <span class=k>else</span><span class=p>:</span>         
+            <span class=n>ll</span><span class=o>=</span><span class=mi>2</span><span class=o>*</span><span class=n>i</span><span class=o>-</span><span class=mi>2</span><span class=o>-</span><span class=n>num</span>
+            <span class=n>result</span><span class=o>.</span><span class=n>update</span><span class=p>({</span><span class=n>ll</span><span class=p>:</span><span class=n>result</span><span class=p>[</span><span class=n>ll</span><span class=p>]</span><span class=o>+</span><span class=n>string</span><span class=p>[</span><span class=n>a</span><span class=p>]})</span>               
+    <span class=n>d</span><span class=o>=</span><span class=s1>&#39;&#39;</span>
+    
+    <span class=k>for</span> <span class=n>k</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>i</span><span class=p>):</span>
+        <span class=n>d</span><span class=o>=</span><span class=n>d</span><span class=o>+</span><span class=n>result</span><span class=p>[</span><span class=n>k</span><span class=p>]</span>
+    <span class=k>print</span><span class=p>(</span><span class=s2>&#34;分为&#34;</span><span class=o>+</span><span class=nb>str</span><span class=p>(</span><span class=n>i</span><span class=p>)</span><span class=o>+</span><span class=s2>&#34;栏,结果是：&#34;</span><span class=o>+</span><span class=n>d</span><span class=p>)</span>
+
+</code></pre></td></tr></table></div></div></div><h2 id=0x06-转轮机加密><a href=#0x06-转轮机加密 class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>0x06 转轮机加密</h2><blockquote><p>题目描述：你俩继续往前走，来到了前面的下一个关卡，这个铺面墙上写了好多奇奇怪怪的 英文字母，排列的的整整齐齐，店面前面还有一个大大的类似于土耳其旋转烤肉的架子，上面一圈圈的 也刻着很多英文字母，你是一个小历史迷，对于二战时候的历史刚好特别熟悉，一拍大腿：“嗨呀！我知道 是什么东西了！”。提示：托马斯·杰斐逊</p></blockquote><p>看题目可知是转轮机算法</p><p>附件内容如下：</p><pre><code>1:   &lt; ZWAXJGDLUBVIQHKYPNTCRMOSFE &lt;
+2:   &lt; KPBELNACZDTRXMJQOYHGVSFUWI &lt;
+3:   &lt; BDMAIZVRNSJUWFHTEQGYXPLOCK &lt;
+4:   &lt; RPLNDVHGFCUKTEBSXQYIZMJWAO &lt;
+5:   &lt; IHFRLABEUOTSGJVDKCPMNZQWXY &lt;
+6:   &lt; AMKGHIWPNYCJBFZDRUSLOQXVET &lt;
+7:   &lt; GWTHSPYBXIZULVKMRAFDCEONJQ &lt;
+8:   &lt; NOZUTWDCVRJLXKISEFAPMYGHBQ &lt;
+9:   &lt; XPLTDSRFHENYVUBMCQWAOIKZGJ &lt;
+10:  &lt; UDNAJFBOWTGVRSCZQKELMXYIHP &lt;
+11： &lt; MNBVCXZQWERTPOIUYALSKDJFHG &lt;
+12： &lt; LVNCMXZPQOWEIURYTASBKJDFHG &lt;
+13： &lt; JZQAWSXCDERFVBGTYHNUMKILOP &lt;
+
+密钥为： 2,3,7,5,13,12,9,1,8,10,4,11,6
+密文为：NFQKSEVOQOFNP
+</code></pre><p>//TODO：还需要搞清楚转轮机算法的原理，有点混乱现在</p><p>官方wp给出以下python自动化脚本</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>re</span>
+<span class=n>sss</span><span class=o>=</span><span class=s1>&#39;&#39;&#39;1: &lt; ZWAXJGDLUBVIQHKYPNTCRMOSFE &lt; 2: &lt; KPBELNACZDTRXMJQOYHGVSFUWI &lt; 3: &lt; BDMAIZVRNSJUWFHTEQGYXPLOCK &lt; 4: &lt; RPLNDVHGFCUKTEBSXQYIZMJWAO &lt; 5: &lt; IHFRLABEUOTSGJVDKCPMNZQWXY &lt; 6: &lt; AMKGHIWPNYCJBFZDRUSLOQXVET &lt; 7: &lt; GWTHSPYBXIZULVKMRAFDCEONJQ &lt; 8: &lt; NOZUTWDCVRJLXKISEFAPMYGHBQ &lt; 9: &lt; XPLTDSRFHENYVUBMCQWAOIKZGJ &lt; 10: &lt; UDNAJFBOWTGVRSCZQKELMXYIHP &lt; 11 &lt; MNBVCXZQWERTPOIUYALSKDJFHG &lt; 12 &lt; LVNCMXZPQOWEIURYTASBKJDFHG &lt; 13 &lt; JZQAWSXCDERFVBGTYHNUMKILOP &lt;
+</span><span class=s1>&#39;&#39;&#39;</span>
+<span class=n>m</span><span class=o>=</span><span class=s2>&#34;NFQKSEVOQOFNP&#34;</span>
+<span class=n>content</span><span class=o>=</span><span class=n>re</span><span class=o>.</span><span class=n>findall</span><span class=p>(</span><span class=sa>r</span><span class=s1>&#39;&lt; (.*?) &lt;&#39;</span><span class=p>,</span><span class=n>sss</span><span class=p>,</span><span class=n>re</span><span class=o>.</span><span class=n>S</span><span class=p>)</span>
+<span class=n>iv</span><span class=o>=</span><span class=p>[</span><span class=mi>2</span><span class=p>,</span><span class=mi>3</span><span class=p>,</span><span class=mi>7</span><span class=p>,</span><span class=mi>5</span><span class=p>,</span><span class=mi>13</span><span class=p>,</span><span class=mi>12</span><span class=p>,</span><span class=mi>9</span><span class=p>,</span><span class=mi>1</span><span class=p>,</span><span class=mi>8</span><span class=p>,</span><span class=mi>10</span><span class=p>,</span><span class=mi>4</span><span class=p>,</span><span class=mi>11</span><span class=p>,</span><span class=mi>6</span><span class=p>]</span>
+<span class=n>vvv</span><span class=o>=</span><span class=p>[]</span>
+<span class=n>ans</span><span class=o>=</span><span class=s2>&#34;&#34;</span>
+<span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>13</span><span class=p>):</span>
+   <span class=n>index</span><span class=o>=</span><span class=n>content</span><span class=p>[</span><span class=n>iv</span><span class=p>[</span><span class=n>i</span><span class=p>]</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span><span class=o>.</span><span class=n>index</span><span class=p>(</span><span class=n>m</span><span class=p>[</span><span class=n>i</span><span class=p>])</span>
+   <span class=n>vvv</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>index</span><span class=p>)</span>
+<span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span><span class=mi>26</span><span class=p>):</span>
+   <span class=n>flag</span><span class=o>=</span><span class=s2>&#34;&#34;</span>
+   <span class=k>for</span> <span class=n>j</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>13</span><span class=p>):</span>
+       <span class=n>flag</span><span class=o>+=</span><span class=n>content</span><span class=p>[</span><span class=n>iv</span><span class=p>[</span><span class=n>j</span><span class=p>]</span><span class=o>-</span><span class=mi>1</span><span class=p>][(</span><span class=n>vvv</span><span class=p>[</span><span class=n>j</span><span class=p>]</span><span class=o>+</span><span class=n>i</span><span class=p>)</span><span class=o>%</span><span class=mi>26</span><span class=p>]</span>
+   <span class=k>print</span><span class=p>(</span><span class=n>flag</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div></div><h2 id=0x07-easy-rsa><a href=#0x07-easy-rsa class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>0x07 easy RSA</h2><p>打开附件查看。</p><pre><code>在一次RSA密钥对生成中，假设p=473398607161，q=4511491，e=17
+求解出d
+fi=(p-1)(q-1)
+
+--------------------------------------------------------------
+
+
+e*d=1 mod fi
+d=e^(fi(fi)-1)
+</code></pre><p>感谢舍友的cpp文件</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-cpp data-lang=cpp><span class=cp>#include</span><span class=cpf>&lt;iostream&gt;</span><span class=cp>
+</span><span class=cp>#include</span><span class=cpf>&lt;cstdio&gt;</span><span class=cp>
+</span><span class=cp>#define ll long long
+</span><span class=cp></span><span class=n>ll</span>  <span class=nf>gcd</span><span class=p>(</span><span class=n>ll</span> <span class=n>a</span><span class=p>,</span><span class=n>ll</span> <span class=n>b</span><span class=p>,</span><span class=n>ll</span><span class=o>&amp;</span><span class=n>aa</span><span class=p>,</span><span class=n>ll</span><span class=o>&amp;</span><span class=n>bb</span><span class=p>){</span>
+	<span class=n>ll</span> <span class=n>ab</span><span class=o>=</span><span class=mi>0</span><span class=p>,</span><span class=n>ba</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span><span class=n>aa</span><span class=o>=</span><span class=mi>1</span><span class=p>;</span><span class=n>bb</span><span class=o>=</span><span class=mi>1</span><span class=p>;</span>
+	<span class=k>while</span><span class=p>(</span><span class=mi>1</span><span class=p>){</span>
+		<span class=k>if</span><span class=p>(</span><span class=n>a</span><span class=o>==</span><span class=mi>0</span><span class=p>){</span><span class=n>aa</span><span class=o>=</span><span class=n>ba</span><span class=p>;</span><span class=k>return</span> <span class=n>b</span><span class=p>;}</span>
+		<span class=n>ba</span><span class=o>-=</span><span class=p>(</span><span class=n>b</span><span class=o>/</span><span class=n>a</span><span class=p>)</span><span class=o>*</span><span class=n>aa</span><span class=p>;</span><span class=n>bb</span><span class=o>-=</span><span class=p>(</span><span class=n>b</span><span class=o>/</span><span class=n>a</span><span class=p>)</span><span class=o>*</span><span class=n>ab</span><span class=p>;</span><span class=n>b</span><span class=o>%=</span><span class=n>a</span><span class=p>;</span>
+		<span class=k>if</span><span class=p>(</span><span class=n>b</span><span class=o>==</span><span class=mi>0</span><span class=p>){</span><span class=n>bb</span><span class=o>=</span><span class=n>ab</span><span class=p>;</span><span class=k>return</span> <span class=n>a</span><span class=p>;}</span>
+		<span class=n>aa</span><span class=o>-=</span><span class=p>(</span><span class=n>a</span><span class=o>/</span><span class=n>b</span><span class=p>)</span><span class=o>*</span><span class=n>ba</span><span class=p>;</span><span class=n>ab</span><span class=o>-=</span><span class=p>(</span><span class=n>a</span><span class=o>/</span><span class=n>b</span><span class=p>)</span><span class=o>*</span><span class=n>bb</span><span class=p>;</span><span class=n>a</span><span class=o>%=</span><span class=n>b</span><span class=p>;</span>
+	<span class=p>}</span>
+<span class=p>}</span>
+<span class=n>ll</span> <span class=nf>mod_inverse</span><span class=p>(</span><span class=n>ll</span> <span class=n>a</span><span class=p>,</span><span class=n>ll</span> <span class=n>mod</span><span class=p>){</span>
+	<span class=n>ll</span> <span class=n>res</span><span class=p>,</span><span class=n>temp</span><span class=p>;</span>
+	<span class=n>ll</span> <span class=n>d</span><span class=o>=</span><span class=n>gcd</span><span class=p>(</span><span class=n>a</span><span class=p>,</span><span class=n>mod</span><span class=p>,</span><span class=n>res</span><span class=p>,</span><span class=n>temp</span><span class=p>);</span>
+	<span class=k>if</span><span class=p>(</span><span class=n>d</span><span class=o>==</span><span class=mi>1</span><span class=p>)</span><span class=k>return</span> <span class=n>res</span><span class=p>;</span>
+	<span class=k>return</span> <span class=o>-</span><span class=mi>1</span><span class=p>;</span>
+<span class=p>}</span>
+<span class=kt>int</span> <span class=nf>main</span><span class=p>(){</span>
+	<span class=n>ll</span> <span class=n>p</span><span class=p>,</span><span class=n>q</span><span class=p>,</span><span class=n>e</span><span class=p>,</span><span class=n>d</span><span class=p>;</span>
+	<span class=n>p</span> <span class=o>=</span> <span class=mi>473398607161</span><span class=p>;</span>
+	<span class=n>q</span> <span class=o>=</span> <span class=mi>4511491</span><span class=p>;</span>
+	<span class=n>e</span> <span class=o>=</span> <span class=mi>17</span><span class=p>;</span>
+	<span class=n>std</span><span class=o>::</span><span class=n>cout</span><span class=o>&lt;&lt;</span><span class=n>mod_inverse</span><span class=p>(</span><span class=n>e</span><span class=p>,(</span><span class=n>p</span><span class=o>-</span><span class=mi>1</span><span class=p>)</span><span class=o>*</span><span class=p>(</span><span class=n>q</span><span class=o>-</span><span class=mi>1</span><span class=p>))</span><span class=o>&lt;&lt;</span><span class=n>std</span><span class=o>::</span><span class=n>endl</span><span class=p>;</span>
+<span class=p>}</span>
+
+</code></pre></td></tr></table></div></div></div><p>根据舍友给的rsa的cpp文件改出的python脚本，不会爆longlong哦（虽然原题也不会爆。</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python>
+<span class=k>def</span> <span class=nf>EX_GCD</span><span class=p>(</span><span class=n>a</span><span class=p>,</span><span class=n>b</span><span class=p>,</span><span class=n>arr</span><span class=p>):</span> <span class=c1>#扩展欧几里得</span>
+    <span class=k>if</span> <span class=n>b</span> <span class=o>==</span> <span class=mi>0</span><span class=p>:</span>
+        <span class=n>arr</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>=</span> <span class=mi>1</span>
+        <span class=n>arr</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>=</span> <span class=mi>0</span>
+        <span class=k>return</span> <span class=n>a</span>
+    <span class=n>g</span> <span class=o>=</span> <span class=n>EX_GCD</span><span class=p>(</span><span class=n>b</span><span class=p>,</span> <span class=n>a</span> <span class=o>%</span> <span class=n>b</span><span class=p>,</span> <span class=n>arr</span><span class=p>)</span>
+    <span class=n>t</span> <span class=o>=</span> <span class=n>arr</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span>
+    <span class=n>arr</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>=</span> <span class=n>arr</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span>
+    <span class=n>arr</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>=</span> <span class=n>t</span> <span class=o>-</span> <span class=nb>int</span><span class=p>(</span><span class=n>a</span> <span class=o>/</span> <span class=n>b</span><span class=p>)</span> <span class=o>*</span> <span class=n>arr</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span>
+    <span class=k>return</span> <span class=n>g</span>
+
+	
+<span class=k>def</span> <span class=nf>ModReverse</span><span class=p>(</span><span class=n>a</span><span class=p>,</span><span class=n>n</span><span class=p>):</span> <span class=c1>#ax=1(mod n) 求a模n的乘法逆x</span>
+    <span class=n>arr</span> <span class=o>=</span> <span class=p>[</span><span class=mi>0</span><span class=p>,</span><span class=mi>1</span><span class=p>,]</span>
+    <span class=n>gcd</span> <span class=o>=</span> <span class=n>EX_GCD</span><span class=p>(</span><span class=n>a</span><span class=p>,</span><span class=n>n</span><span class=p>,</span><span class=n>arr</span><span class=p>)</span>
+    <span class=k>if</span> <span class=n>gcd</span> <span class=o>==</span> <span class=mi>1</span><span class=p>:</span>
+        <span class=k>return</span> <span class=p>(</span><span class=n>arr</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>%</span> <span class=n>n</span> <span class=o>+</span> <span class=n>n</span><span class=p>)</span> <span class=o>%</span> <span class=n>n</span>
+    <span class=k>else</span><span class=p>:</span>
+        <span class=k>return</span> <span class=o>-</span><span class=mi>1</span>
+
+<span class=s1>&#39;&#39;&#39;
+</span><span class=s1>while True:
+</span><span class=s1>	a,b = eval(input())
+</span><span class=s1>	print(ModReverse(a,b))
+</span><span class=s1>&#39;&#39;&#39;</span>
+
+<span class=k>if</span> <span class=vm>__name__</span><span class=o>==</span><span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
+	<span class=k>while</span> <span class=bp>True</span><span class=p>:</span>
+		<span class=n>l</span> <span class=o>=</span> <span class=nb>input</span><span class=p>(</span><span class=s2>&#34;p,q,e:&#34;</span><span class=p>)</span>
+		<span class=n>p</span><span class=p>,</span><span class=n>q</span><span class=p>,</span><span class=n>e</span> <span class=o>=</span> <span class=nb>map</span><span class=p>(</span><span class=k>lambda</span> <span class=n>x</span><span class=p>:</span><span class=nb>int</span><span class=p>(</span><span class=n>x</span><span class=p>),</span><span class=n>l</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s2>&#34;,&#34;</span><span class=p>))</span>
+		<span class=n>fn</span> <span class=o>=</span> <span class=p>(</span><span class=n>p</span><span class=o>-</span><span class=mi>1</span><span class=p>)</span><span class=o>*</span><span class=p>(</span><span class=n>q</span><span class=o>-</span><span class=mi>1</span><span class=p>)</span>
+		<span class=c1>#print(l)</span>
+		<span class=n>d</span> <span class=o>=</span> <span class=n>ModReverse</span><span class=p>(</span><span class=n>e</span><span class=p>,</span><span class=n>fn</span><span class=p>)</span>
+		<span class=k>print</span><span class=p>(</span><span class=s2>&#34;d=</span><span class=si>%d</span><span class=s2>&#34;</span><span class=o>%</span><span class=n>d</span><span class=p>)</span>
+
+</code></pre></td></tr></table></div></div></div><p>PS：看官方wp给出了一个GitHub项目地址：一款可以解rsa的工具 <a href=https://github.com/3summer/CTF-RSA-tool target=_blank rel=noopener>https://github.com/3summer/CTF-RSA-tool</a></p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=n>python</span> <span class=n>solve</span><span class=o>.</span><span class=n>py</span> <span class=o>--</span><span class=n>verbose</span> <span class=o>--</span><span class=n>private</span> <span class=o>-</span><span class=n>N</span> <span class=mi>2135733555619387051</span> <span class=o>-</span><span class=n>e</span> <span class=mi>17</span> <span class=o>-</span><span class=n>p</span> <span class=mi>473398607161</span> <span class=o>-</span><span class=n>q</span> <span class=mi>4511491</span> 
+</code></pre></td></tr></table></div></div></div><h2 id=0x08-normal_rsa><a href=#0x08-normal_rsa class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>0x08 Normal_RSA</h2><blockquote><p>题目描述：你和小鱼走啊走走啊走，走到下一个题目一看你又一愣，怎么还是一个数学题啊 小鱼又一笑，hhhh数学在密码学里面很重要的！现在知道吃亏了吧！你哼一声不服气，我知道数学 很重要了！但是工具也很重要的，你看我拿工具把他解出来！你打开电脑折腾了一会还真的把答案 做了出来，小鱼有些吃惊，向你投过来一个赞叹的目光</p></blockquote><p>果然，解rsa都是需要工具的，看完官方wp后，发现只需要ctf-rsa-tools一行代码就能跑出flag来。</p><p>甚至连题目给的样例都是人家example里的（虽然是摘自PCTF。</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=n>python</span> <span class=n>solve</span><span class=o>.</span><span class=n>py</span> <span class=o>--</span><span class=n>verbose</span> <span class=o>-</span><span class=n>k</span> <span class=n>examples</span><span class=o>/</span><span class=n>jarvis_oj_mediumRSA</span><span class=o>/</span><span class=n>pubkey</span><span class=o>.</span><span class=n>pem</span> <span class=o>--</span><span class=n>decrypt</span> <span class=n>examples</span><span class=o>/</span><span class=n>jarvis_oj_mediumRSA</span><span class=o>/</span><span class=n>flag</span><span class=o>.</span><span class=n>enc</span>
+</code></pre></td></tr></table></div></div></div><p>不过在看wp时，发现有人给了另一种常规解法</p><p>他的解题思路解题思路是：①使用 openssl 解密.pem 中参数 --> ②参数十六进制转换为十进制 --> ③ 利用 factor 对大整数进行分解，得到 p 和 q --> ④用 rsatool 生成私钥文件: private.pem --> ⑤用 private.pem 解密 flag.enc</p><p>其中第三步factor用到的网站为：http://www.factordb.com/</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh><span class=c1>#1</span>
+<span class=nv>$openssl</span> rsa -pubin -text -modulus -in warmup -in pubkey.pem
+<span class=c1>#2将得到的modulus用python进行转换</span>
+<span class=nv>$python</span>
+&gt;&gt;&gt; 0xC2636AE5C3D8E43FFB97AB09028F1AAC6C0BF6CD3D70EBCA281BFFE97FBE30DD 
+<span class=m>87924348264132406875276140514499937145050893665602592992418171647042491658461</span>
+&gt;&gt;&gt;
+<span class=c1>#3 进入网站 http://www.factordb.com/  将大整数分解为p，q</span>
+<span class=c1>#p= 275127860351348928173285174381581152299 </span>
+<span class=c1>#q= 319576316814478949870590164193048041239</span>
+<span class=c1>#4 利用rsatool 生成私钥文件 private.pem</span>
+<span class=nv>$python</span> rsatool.py -o private.pem -e <span class=m>65537</span> -p XXX -q XXX
+<span class=c1>#5</span>
+<span class=nv>$openssl</span> rsautl -decrypt -in flag.enc -inkey private.pem
+</code></pre></td></tr></table></div></div></div><h2 id=0x09-不仅仅是morse><a href=#0x09-不仅仅是morse class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>0x09 不仅仅是Morse</h2><blockquote><p>题目描述：“这个题目和我们刚刚做的那个好像啊但是为什么按照刚刚的方法做出来答案却不对呢” ，你奇怪的问了问小鱼，“可能是因为还有一些奇怪的加密方式在里面吧，我们在仔细观察观察”。两个人 安安静静的坐下来开始思考，很耐心的把自己可以想到的加密方式一种种的过了一遍，十多分钟后两个人 异口同声的说“我想到了！”。一种食物,格式为cyberpeace{小写的你解出的答案}</p></blockquote><p>题目附件给了一大串摩斯电码，按常理找一个网站解密了</p><pre><code>--/.-/-.--/..--.-/-..././..--.-/..../.-/...-/./..--.-/.-/-./---/-/...././.-./..--.-/-.././-.-./---/-.././..../..../..../..../.-/.-/.-/.-/.-/-.../.-/.-/-.../-.../-.../.-/.-/-.../-.../.-/.-/.-/.-/.-/.-/.-/.-/-.../.-/.-/-.../.-/-.../.-/.-/.-/.-/.-/.-/.-/-.../-.../.-/-.../.-/.-/.-/-.../-.../.-/.-/.-/-.../-.../.-/.-/-.../.-/.-/.-/.-/-.../.-/-.../.-/.-/-.../.-/.-/.-/-.../-.../.-/-.../.-/.-/.-/-.../.-/.-/.-/-.../.-/.-/-.../.-/-.../-.../.-/.-/-.../-.../-.../.-/-.../.-/.-/.-/-.../.-/-.../.-/-.../-.../.-/.-/.-/-.../-.../.-/-.../.-/.-/.-/-.../.-/.-/-.../.-/.-/-.../.-/.-/.-/.-/-.../-.../.-/-.../-.../.-/.-/-.../-.../.-/.-/-.../.-/.-/-.../.-/.-/.-/-.../.-/.-/-.../.-/.-/-.../.-/.-/-.../.-/-.../.-/.-/-.../-.../.-/-.../.-/.-/.-/.-/-.../-.../.-/-.../.-/.-/-.../-.../.-
+</code></pre><p>摩斯电码解密网站： <a href=http://www.zhongguosou.com/zonghe/moErSiCodeConverter.aspx target=_blank rel=noopener>http://www.zhongguosou.com/zonghe/moErSiCodeConverter.aspx</a></p><p>解出来如下，明显嵌套了另外一种加密</p><pre><code>MAY..--.-BE..--.-HAVE..--.-ANOTHER..--.-DECODEHHHHAAAAABAABBBAABBAAAAAAAABAABABAAAAAAABBABAAABBAAABBAABAAAABABAABAAABBABAAABAAABAABABBAABBBABAAABABABBAAABBABAAABAABAABAAAABBABBAABBAABAABAAABAABAABAABABAABBABAAAABBABAABBA
+
+</code></pre><p>因为后面一串AB串，转摩斯翻译不出来，因为不晓得哪里分界，转为二进制也没有思路，百度得知这是培根密码</p><p>培根密码解密网站： <a href=http://rumkin.com/tools/cipher/baconian.php target=_blank rel=noopener>http://rumkin.com/tools/cipher/baconian.php</a></p><p>AB串解得<code>ATTACKANDDEFENCEWORLDISINTERESTING</code></p><p>记得小写。</p><h2 id=0x0a-混合编码><a href=#0x0a-混合编码 class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>0x0a 混合编码</h2><blockquote><p>题目描述：经过了前面那么多题目的历练，耐心细致在解题当中是 必不可少的品质，刚巧你们都有，你和小鱼越来越入迷。那么走向了下一个题目，这个题目好长 好长，你知道你们只要细心细致，答案总会被你们做出来的，你们开始慢慢的尝试，慢慢的猜想 ，功夫不负有心人，在你们耐心的一步步的解答下，答案跃然纸上，你俩默契一笑，相视击掌 走向了下面的挑战。格式为cyberpeace{小写的你解出的答案}</p></blockquote><p>这题感觉没什么好说的，下载附件发现</p><pre><code>JiM3NjsmIzEyMjsmIzY5OyYjMTIwOyYjNzk7JiM4MzsmIzU2OyYjMTIwOyYjNzc7JiM2ODsmIzY5OyYjMTE4OyYjNzc7JiM4NDsmIzY1OyYjNTI7JiM3NjsmIzEyMjsmIzEwNzsmIzUzOyYjNzY7JiMxMjI7JiM2OTsmIzEyMDsmIzc3OyYjODM7JiM1NjsmIzEyMDsmIzc3OyYjNjg7JiMxMDc7JiMxMTg7JiM3NzsmIzg0OyYjNjU7JiMxMjA7JiM3NjsmIzEyMjsmIzY5OyYjMTIwOyYjNzg7JiMxMDU7JiM1NjsmIzEyMDsmIzc3OyYjODQ7JiM2OTsmIzExODsmIzc5OyYjODQ7JiM5OTsmIzExODsmIzc3OyYjODQ7JiM2OTsmIzUwOyYjNzY7JiMxMjI7JiM2OTsmIzEyMDsmIzc4OyYjMTA1OyYjNTY7JiM1MzsmIzc4OyYjMTIxOyYjNTY7JiM1MzsmIzc5OyYjODM7JiM1NjsmIzEyMDsmIzc3OyYjNjg7JiM5OTsmIzExODsmIzc5OyYjODQ7JiM5OTsmIzExODsmIzc3OyYjODQ7JiM2OTsmIzExOTsmIzc2OyYjMTIyOyYjNjk7JiMxMTk7JiM3NzsmIzY3OyYjNTY7JiMxMjA7JiM3NzsmIzY4OyYjNjU7JiMxMTg7JiM3NzsmIzg0OyYjNjU7JiMxMjA7JiM3NjsmIzEyMjsmIzY5OyYjMTE5OyYjNzc7JiMxMDU7JiM1NjsmIzEyMDsmIzc3OyYjNjg7JiM2OTsmIzExODsmIzc3OyYjODQ7JiM2OTsmIzExOTsmIzc2OyYjMTIyOyYjMTA3OyYjNTM7JiM3NjsmIzEyMjsmIzY5OyYjMTE5OyYjNzc7JiM4MzsmIzU2OyYjMTIwOyYjNzc7JiM4NDsmIzEwNzsmIzExODsmIzc3OyYjODQ7JiM2OTsmIzEyMDsmIzc2OyYjMTIyOyYjNjk7JiMxMjA7JiM3ODsmIzY3OyYjNTY7JiMxMjA7JiM3NzsmIzY4OyYjMTAzOyYjMTE4OyYjNzc7JiM4NDsmIzY1OyYjMTE5Ow==
+</code></pre><p>明显的base64编码，解base64得到如下：</p><pre><code>&amp;#76;&amp;#122;&amp;#69;&amp;#120;&amp;#79;&amp;#83;&amp;#56;&amp;#120;&amp;#77;&amp;#68;&amp;#69;&amp;#118;&amp;#77;&amp;#84;&amp;#65;&amp;#52;&amp;#76;&amp;#122;&amp;#107;&amp;#53;&amp;#76;&amp;#122;&amp;#69;&amp;#120;&amp;#77;&amp;#83;&amp;#56;&amp;#120;&amp;#77;&amp;#68;&amp;#107;&amp;#118;&amp;#77;&amp;#84;&amp;#65;&amp;#120;&amp;#76;&amp;#122;&amp;#69;&amp;#120;&amp;#78;&amp;#105;&amp;#56;&amp;#120;&amp;#77;&amp;#84;&amp;#69;&amp;#118;&amp;#79;&amp;#84;&amp;#99;&amp;#118;&amp;#77;&amp;#84;&amp;#69;&amp;#50;&amp;#76;&amp;#122;&amp;#69;&amp;#120;&amp;#78;&amp;#105;&amp;#56;&amp;#53;&amp;#78;&amp;#121;&amp;#56;&amp;#53;&amp;#79;&amp;#83;&amp;#56;&amp;#120;&amp;#77;&amp;#68;&amp;#99;&amp;#118;&amp;#79;&amp;#84;&amp;#99;&amp;#118;&amp;#77;&amp;#84;&amp;#69;&amp;#119;&amp;#76;&amp;#122;&amp;#69;&amp;#119;&amp;#77;&amp;#67;&amp;#56;&amp;#120;&amp;#77;&amp;#68;&amp;#65;&amp;#118;&amp;#77;&amp;#84;&amp;#65;&amp;#120;&amp;#76;&amp;#122;&amp;#69;&amp;#119;&amp;#77;&amp;#105;&amp;#56;&amp;#120;&amp;#77;&amp;#68;&amp;#69;&amp;#118;&amp;#77;&amp;#84;&amp;#69;&amp;#119;&amp;#76;&amp;#122;&amp;#107;&amp;#53;&amp;#76;&amp;#122;&amp;#69;&amp;#119;&amp;#77;&amp;#83;&amp;#56;&amp;#120;&amp;#77;&amp;#84;&amp;#107;&amp;#118;&amp;#77;&amp;#84;&amp;#69;&amp;#120;&amp;#76;&amp;#122;&amp;#69;&amp;#120;&amp;#78;&amp;#67;&amp;#56;&amp;#120;&amp;#77;&amp;#68;&amp;#103;&amp;#118;&amp;#77;&amp;#84;&amp;#65;&amp;#119;
+</code></pre><p>明显的unicode编码，解码得到如下</p><pre><code>LzExOS8xMDEvMTA4Lzk5LzExMS8xMDkvMTAxLzExNi8xMTEvOTcvMTE2LzExNi85Ny85OS8xMDcvOTcvMTEwLzEwMC8xMDAvMTAxLzEwMi8xMDEvMTEwLzk5LzEwMS8xMTkvMTExLzExNC8xMDgvMTAw
+</code></pre><p>没有明显特征，解一波base64得到如下</p><pre><code>/119/101/108/99/111/109/101/116/111/97/116/116/97/99/107/97/110/100/100/101/102/101/110/99/101/119/111/114/108/100
+</code></pre><p>盲猜Ascii吗</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=o>&gt;&gt;&gt;</span> <span class=n>a</span> <span class=o>=</span> <span class=s1>&#39;/119/101/108/99/111/109/101/116/111/97/116/116/97/99/107/97/110/100/100/101/102/101/110/99/101/119/111/114/108/100&#39;</span>
+<span class=o>&gt;&gt;&gt;</span> <span class=n>l</span> <span class=o>=</span> <span class=n>a</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s1>&#39;/&#39;</span><span class=p>)</span>
+<span class=o>&gt;&gt;&gt;</span> <span class=n>s</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span>
+<span class=o>&gt;&gt;&gt;</span> <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>30</span><span class=p>):</span><span class=c1>#从i+1开始因为/的原因，l[0] = &#39;&#39;</span>
+<span class=o>...</span>     <span class=n>s</span> <span class=o>+=</span> <span class=nb>chr</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>l</span><span class=p>[</span><span class=n>i</span><span class=o>+</span><span class=mi>1</span><span class=p>]))</span>
+<span class=o>&gt;&gt;&gt;</span> <span class=n>s</span>
+<span class=s1>&#39;welcometoattackanddefenceworld&#39;</span>
+</code></pre></td></tr></table></div></div></div><p>得到flag：<code>cyberpeace{welcometoattackanddefenceworld}</code></p><h2 id=0x0b-easychallenge><a href=#0x0b-easychallenge class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>0x0b easychallenge</h2><blockquote><p>题目描述：你们走到了一个冷冷清清的谜题前面，小鱼看着题目给的信息束手无策，丈二和尚摸不着头脑 ，你嘿嘿一笑，拿出来了你随身带着的笔记本电脑，噼里啪啦的敲起来了键盘，清晰的函数逻辑和流程出现在 了电脑屏幕上，你敲敲键盘，更改了几处地方，运行以后答案变出现在了电脑屏幕上。</p></blockquote><p>下载附件发现是一个pyc文件，明显是一个已经编译的python文件</p><p>百度搜反编译pyc，找到一个在线反编译网站 <a href=https://tool.lu/pyc/ target=_blank rel=noopener>https://tool.lu/pyc/</a></p><p>反编译得到源代码：</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=ch>#!/usr/bin/env python</span>
+<span class=c1># encoding: utf-8</span>
+<span class=c1># 如果觉得不错，可以推荐给你的朋友！http://tool.lu/pyc</span>
+<span class=kn>import</span> <span class=nn>base64</span>
+
+<span class=k>def</span> <span class=nf>encode1</span><span class=p>(</span><span class=n>ans</span><span class=p>):</span>
+    <span class=n>s</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span>
+    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>ans</span><span class=p>:</span>
+        <span class=n>x</span> <span class=o>=</span> <span class=nb>ord</span><span class=p>(</span><span class=n>i</span><span class=p>)</span> <span class=o>^</span> <span class=mi>36</span>
+        <span class=n>x</span> <span class=o>=</span> <span class=n>x</span> <span class=o>+</span> <span class=mi>25</span>
+        <span class=n>s</span> <span class=o>+=</span> <span class=nb>chr</span><span class=p>(</span><span class=n>x</span><span class=p>)</span>
+    
+    <span class=k>return</span> <span class=n>s</span>
+
+
+<span class=k>def</span> <span class=nf>encode2</span><span class=p>(</span><span class=n>ans</span><span class=p>):</span>
+    <span class=n>s</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span>
+    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>ans</span><span class=p>:</span>
+        <span class=n>x</span> <span class=o>=</span> <span class=nb>ord</span><span class=p>(</span><span class=n>i</span><span class=p>)</span> <span class=o>+</span> <span class=mi>36</span>
+        <span class=n>x</span> <span class=o>=</span> <span class=n>x</span> <span class=o>^</span> <span class=mi>36</span>
+        <span class=n>s</span> <span class=o>+=</span> <span class=nb>chr</span><span class=p>(</span><span class=n>x</span><span class=p>)</span>
+    
+    <span class=k>return</span> <span class=n>s</span>
+
+
+<span class=k>def</span> <span class=nf>encode3</span><span class=p>(</span><span class=n>ans</span><span class=p>):</span>
+    <span class=k>return</span> <span class=n>base64</span><span class=o>.</span><span class=n>b32encode</span><span class=p>(</span><span class=n>ans</span><span class=p>)</span>
+
+<span class=n>flag</span> <span class=o>=</span> <span class=s1>&#39; &#39;</span>
+<span class=k>print</span> <span class=s1>&#39;Please Input your flag:&#39;</span>
+<span class=n>flag</span> <span class=o>=</span> <span class=nb>raw_input</span><span class=p>()</span>
+<span class=n>final</span> <span class=o>=</span> <span class=s1>&#39;UC7KOWVXWVNKNIC2XCXKHKK2W5NLBKNOUOSK3LNNVWW3E===&#39;</span>
+<span class=k>if</span> <span class=n>encode3</span><span class=p>(</span><span class=n>encode2</span><span class=p>(</span><span class=n>encode1</span><span class=p>(</span><span class=n>flag</span><span class=p>)))</span> <span class=o>==</span> <span class=n>final</span><span class=p>:</span>
+    <span class=k>print</span> <span class=s1>&#39;correct&#39;</span>
+<span class=k>else</span><span class=p>:</span>
+    <span class=k>print</span> <span class=s1>&#39;wrong&#39;</span>
+</code></pre></td></tr></table></div></div></div><p>易知chr和ord为反函数、<code>x^a^a=x</code>、<code>base64.b32decode()</code>和<code>base64.b32encode()</code>互为反函数</p><p>因此写一个python脚本即可得出flag</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=o>&gt;&gt;&gt;</span> <span class=n>final</span> <span class=o>=</span> <span class=s1>&#39;UC7KOWVXWVNKNIC2XCXKHKK2W5NLBKNOUOSK3LNNVWW3E===&#39;</span>
+<span class=o>&gt;&gt;&gt;</span> <span class=kn>import</span> <span class=nn>base64</span>
+<span class=o>&gt;&gt;&gt;</span> <span class=n>a</span> <span class=o>=</span> <span class=n>base64</span><span class=o>.</span><span class=n>b32decode</span><span class=p>(</span><span class=n>final</span><span class=p>)</span><span class=c1>#decode3</span>
+<span class=o>&gt;&gt;&gt;</span> <span class=n>a</span>
+<span class=sa>b</span><span class=s1>&#39;</span><span class=se>\xa0\xbe\xa7</span><span class=s1>Z</span><span class=se>\xb7\xb5</span><span class=s1>Z</span><span class=se>\xa6\xa0</span><span class=s1>Z</span><span class=se>\xb8\xae\xa3\xa9</span><span class=s1>Z</span><span class=se>\xb7</span><span class=s1>Z</span><span class=se>\xb0\xa9\xae\xa3\xa4\xad\xad\xad\xad\xad\xb2</span><span class=s1>&#39;</span>
+<span class=c1>#注意要将a的字节流转换</span>
+<span class=o>&gt;&gt;&gt;</span> <span class=n>b</span> <span class=o>=</span> <span class=s2>&#34;</span><span class=se>\xa0\xbe\xa7</span><span class=s2>Z</span><span class=se>\xb7\xb5</span><span class=s2>Z</span><span class=se>\xa6\xa0</span><span class=s2>Z</span><span class=se>\xb8\xae\xa3\xa9</span><span class=s2>Z</span><span class=se>\xb7</span><span class=s2>Z</span><span class=se>\xb0\xa9\xae\xa3\xa4\xad\xad\xad\xad\xad\xb2</span><span class=s2>&#34;</span>
+<span class=o>&gt;&gt;&gt;</span> <span class=n>s</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span><span class=c1>#decode2</span>
+<span class=o>&gt;&gt;&gt;</span> <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>b</span><span class=p>:</span>
+<span class=o>...</span>     <span class=n>s</span> <span class=o>+=</span> <span class=nb>chr</span><span class=p>((</span><span class=nb>ord</span><span class=p>(</span><span class=n>i</span><span class=p>)</span><span class=o>^</span><span class=mi>36</span><span class=p>)</span><span class=o>-</span><span class=mi>36</span><span class=p>)</span>
+<span class=o>...</span>
+<span class=o>&gt;&gt;&gt;</span>
+<span class=o>&gt;&gt;&gt;</span> <span class=n>s</span>
+<span class=s1>&#39;`v_ZomZ^`ZxfciZoZpifc</span><span class=se>\\</span><span class=s1>eeeeer&#39;</span>
+<span class=o>&gt;&gt;&gt;</span> <span class=n>l</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span><span class=c1>#decode1</span>
+<span class=o>&gt;&gt;&gt;</span> <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>s</span><span class=p>:</span>
+<span class=o>...</span>     <span class=n>l</span><span class=o>+=</span> <span class=nb>chr</span><span class=p>((</span><span class=nb>ord</span><span class=p>(</span><span class=n>i</span><span class=p>)</span><span class=o>-</span><span class=mi>25</span><span class=p>)</span><span class=o>^</span><span class=mi>36</span><span class=p>)</span>
+<span class=o>...</span>
+<span class=o>&gt;&gt;&gt;</span> <span class=n>l</span>
+<span class=s1>&#39;cyberpeace{interestinghhhhh}&#39;</span>
+
+</code></pre></td></tr></table></div></div></div><p>PS：</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1>#编译python文件为.pyc文件</span>
+<span class=nv>$python</span> -m compileall main.py
+
+<span class=c1>#pyc的反编译</span>
+<span class=c1>#依赖python的uncompyle</span>
+<span class=nv>$pip</span> install uncompyle
+
+<span class=c1>#查看帮助</span>
+<span class=nv>$uncompyle6</span> --help
+<span class=c1>#将models.pyc反编译成models.py</span>
+<span class=nv>$uncompyle6</span> models.pyc &gt; models.py
+
+
+</code></pre></td></tr></table></div></div></div><p>利用uncompyle6反编译的pyc文件和在线编译文件相同，也挺快的</p><p><img src=11_1.jpg alt></p><h2 id=0x0c-easy_ecc><a href=#0x0c-easy_ecc class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>0x0c easy_ECC</h2><blockquote><p>题目描述：转眼两个人又走到了下一个谜题的地方，这又是一种经典的密码学加密方式 而你刚好没有这个的工具，你对小鱼说“小鱼我知道数学真的很重要了，有了工具只是方便我们使用 懂了原理才能做到，小鱼你教我一下这个缇努怎么做吧！”在小鱼的一步步带领下，你终于明白了ECC 的基本原理，成功的解开了这个题目，两个人相视一笑，快步走向了下一个题目所在的位置。flag格式为cyberpeace{x+y的值}</p></blockquote><p>由题目可知：这是ECC加密</p><pre><code>已知椭圆曲线加密Ep(a,b)参数为
+
+p = 15424654874903
+
+a = 16546484
+
+b = 4548674875
+
+G(6478678675,5636379357093)
+
+私钥为
+
+k = 546768
+
+求公钥K(x,y)
+
+</code></pre><p>又因为题目说工具，了解其算法后，便找到了一个python的脚本计算公钥</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span><span class=lnt>157
+</span><span class=lnt>158
+</span><span class=lnt>159
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span><span class=lnt>162
+</span><span class=lnt>163
+</span><span class=lnt>164
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>collections</span>
+<span class=kn>import</span> <span class=nn>random</span>
+
+<span class=n>EllipticCurve</span> <span class=o>=</span> <span class=n>collections</span><span class=o>.</span><span class=n>namedtuple</span><span class=p>(</span><span class=s1>&#39;EllipticCurve&#39;</span><span class=p>,</span> <span class=s1>&#39;name p a b g n h&#39;</span><span class=p>)</span>
+
+<span class=n>curve</span> <span class=o>=</span> <span class=n>EllipticCurve</span><span class=p>(</span>
+   <span class=s1>&#39;secp256k1&#39;</span><span class=p>,</span>
+   <span class=c1># Field characteristic.</span>
+   <span class=n>p</span><span class=o>=</span><span class=nb>int</span><span class=p>(</span><span class=nb>input</span><span class=p>(</span><span class=s1>&#39;p=&#39;</span><span class=p>)),</span>
+   <span class=c1># Curve coefficients.</span>
+   <span class=n>a</span><span class=o>=</span><span class=nb>int</span><span class=p>(</span><span class=nb>input</span><span class=p>(</span><span class=s1>&#39;a=&#39;</span><span class=p>)),</span>
+   <span class=n>b</span><span class=o>=</span><span class=nb>int</span><span class=p>(</span><span class=nb>input</span><span class=p>(</span><span class=s1>&#39;b=&#39;</span><span class=p>)),</span>
+   <span class=c1># Base point.</span>
+   <span class=n>g</span><span class=o>=</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=nb>input</span><span class=p>(</span><span class=s1>&#39;Gx=&#39;</span><span class=p>)),</span>
+      <span class=nb>int</span><span class=p>(</span><span class=nb>input</span><span class=p>(</span><span class=s1>&#39;Gy=&#39;</span><span class=p>))),</span>
+   <span class=c1># Subgroup order.</span>
+   <span class=n>n</span><span class=o>=</span><span class=nb>int</span><span class=p>(</span><span class=nb>input</span><span class=p>(</span><span class=s1>&#39;k=&#39;</span><span class=p>)),</span>
+   <span class=c1># Subgroup cofactor.</span>
+   <span class=n>h</span><span class=o>=</span><span class=mi>1</span><span class=p>,</span>
+<span class=p>)</span>
+
+
+<span class=c1># Modular arithmetic ##########################################################</span>
+
+<span class=k>def</span> <span class=nf>inverse_mod</span><span class=p>(</span><span class=n>k</span><span class=p>,</span> <span class=n>p</span><span class=p>):</span>
+   <span class=s2>&#34;&#34;&#34;Returns the inverse of k modulo p.
+</span><span class=s2>
+</span><span class=s2>  This function returns the only integer x such that (x * k) % p == 1.
+</span><span class=s2>
+</span><span class=s2>  k must be non-zero and p must be a prime.
+</span><span class=s2>  &#34;&#34;&#34;</span>
+   <span class=k>if</span> <span class=n>k</span> <span class=o>==</span> <span class=mi>0</span><span class=p>:</span>
+       <span class=k>raise</span> <span class=ne>ZeroDivisionError</span><span class=p>(</span><span class=s1>&#39;division by zero&#39;</span><span class=p>)</span>
+
+   <span class=k>if</span> <span class=n>k</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>:</span>
+       <span class=c1># k ** -1 = p - (-k) ** -1 (mod p)</span>
+       <span class=k>return</span> <span class=n>p</span> <span class=o>-</span> <span class=n>inverse_mod</span><span class=p>(</span><span class=o>-</span><span class=n>k</span><span class=p>,</span> <span class=n>p</span><span class=p>)</span>
+
+   <span class=c1># Extended Euclidean algorithm.</span>
+   <span class=n>s</span><span class=p>,</span> <span class=n>old_s</span> <span class=o>=</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>1</span>
+   <span class=n>t</span><span class=p>,</span> <span class=n>old_t</span> <span class=o>=</span> <span class=mi>1</span><span class=p>,</span> <span class=mi>0</span>
+   <span class=n>r</span><span class=p>,</span> <span class=n>old_r</span> <span class=o>=</span> <span class=n>p</span><span class=p>,</span> <span class=n>k</span>
+
+   <span class=k>while</span> <span class=n>r</span> <span class=o>!=</span> <span class=mi>0</span><span class=p>:</span>
+       <span class=n>quotient</span> <span class=o>=</span> <span class=n>old_r</span> <span class=o>//</span> <span class=n>r</span>
+       <span class=n>old_r</span><span class=p>,</span> <span class=n>r</span> <span class=o>=</span> <span class=n>r</span><span class=p>,</span> <span class=n>old_r</span> <span class=o>-</span> <span class=n>quotient</span> <span class=o>*</span> <span class=n>r</span>
+       <span class=n>old_s</span><span class=p>,</span> <span class=n>s</span> <span class=o>=</span> <span class=n>s</span><span class=p>,</span> <span class=n>old_s</span> <span class=o>-</span> <span class=n>quotient</span> <span class=o>*</span> <span class=n>s</span>
+       <span class=n>old_t</span><span class=p>,</span> <span class=n>t</span> <span class=o>=</span> <span class=n>t</span><span class=p>,</span> <span class=n>old_t</span> <span class=o>-</span> <span class=n>quotient</span> <span class=o>*</span> <span class=n>t</span>
+
+   <span class=n>gcd</span><span class=p>,</span> <span class=n>x</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=n>old_r</span><span class=p>,</span> <span class=n>old_s</span><span class=p>,</span> <span class=n>old_t</span>
+
+   <span class=k>assert</span> <span class=n>gcd</span> <span class=o>==</span> <span class=mi>1</span>
+   <span class=k>assert</span> <span class=p>(</span><span class=n>k</span> <span class=o>*</span> <span class=n>x</span><span class=p>)</span> <span class=o>%</span> <span class=n>p</span> <span class=o>==</span> <span class=mi>1</span>
+
+   <span class=k>return</span> <span class=n>x</span> <span class=o>%</span> <span class=n>p</span>
+
+
+<span class=c1># Functions that work on curve points #########################################</span>
+
+<span class=k>def</span> <span class=nf>is_on_curve</span><span class=p>(</span><span class=n>point</span><span class=p>):</span>
+   <span class=s2>&#34;&#34;&#34;Returns True if the given point lies on the elliptic curve.&#34;&#34;&#34;</span>
+   <span class=k>if</span> <span class=n>point</span> <span class=ow>is</span> <span class=bp>None</span><span class=p>:</span>
+       <span class=c1># None represents the point at infinity.</span>
+       <span class=k>return</span> <span class=bp>True</span>
+
+   <span class=n>x</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=n>point</span>
+
+   <span class=k>return</span> <span class=p>(</span><span class=n>y</span> <span class=o>*</span> <span class=n>y</span> <span class=o>-</span> <span class=n>x</span> <span class=o>*</span> <span class=n>x</span> <span class=o>*</span> <span class=n>x</span> <span class=o>-</span> <span class=n>curve</span><span class=o>.</span><span class=n>a</span> <span class=o>*</span> <span class=n>x</span> <span class=o>-</span> <span class=n>curve</span><span class=o>.</span><span class=n>b</span><span class=p>)</span> <span class=o>%</span> <span class=n>curve</span><span class=o>.</span><span class=n>p</span> <span class=o>==</span> <span class=mi>0</span>
+
+
+<span class=k>def</span> <span class=nf>point_neg</span><span class=p>(</span><span class=n>point</span><span class=p>):</span>
+   <span class=s2>&#34;&#34;&#34;Returns -point.&#34;&#34;&#34;</span>
+   <span class=k>assert</span> <span class=n>is_on_curve</span><span class=p>(</span><span class=n>point</span><span class=p>)</span>
+
+   <span class=k>if</span> <span class=n>point</span> <span class=ow>is</span> <span class=bp>None</span><span class=p>:</span>
+       <span class=c1># -0 = 0</span>
+       <span class=k>return</span> <span class=bp>None</span>
+
+   <span class=n>x</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=n>point</span>
+   <span class=n>result</span> <span class=o>=</span> <span class=p>(</span><span class=n>x</span><span class=p>,</span> <span class=o>-</span><span class=n>y</span> <span class=o>%</span> <span class=n>curve</span><span class=o>.</span><span class=n>p</span><span class=p>)</span>
+
+   <span class=k>assert</span> <span class=n>is_on_curve</span><span class=p>(</span><span class=n>result</span><span class=p>)</span>
+
+   <span class=k>return</span> <span class=n>result</span>
+
+
+<span class=k>def</span> <span class=nf>point_add</span><span class=p>(</span><span class=n>point1</span><span class=p>,</span> <span class=n>point2</span><span class=p>):</span>
+   <span class=s2>&#34;&#34;&#34;Returns the result of point1 + point2 according to the group law.&#34;&#34;&#34;</span>
+   <span class=k>assert</span> <span class=n>is_on_curve</span><span class=p>(</span><span class=n>point1</span><span class=p>)</span>
+   <span class=k>assert</span> <span class=n>is_on_curve</span><span class=p>(</span><span class=n>point2</span><span class=p>)</span>
+
+   <span class=k>if</span> <span class=n>point1</span> <span class=ow>is</span> <span class=bp>None</span><span class=p>:</span>
+       <span class=c1># 0 + point2 = point2</span>
+       <span class=k>return</span> <span class=n>point2</span>
+   <span class=k>if</span> <span class=n>point2</span> <span class=ow>is</span> <span class=bp>None</span><span class=p>:</span>
+       <span class=c1># point1 + 0 = point1</span>
+       <span class=k>return</span> <span class=n>point1</span>
+
+   <span class=n>x1</span><span class=p>,</span> <span class=n>y1</span> <span class=o>=</span> <span class=n>point1</span>
+   <span class=n>x2</span><span class=p>,</span> <span class=n>y2</span> <span class=o>=</span> <span class=n>point2</span>
+
+   <span class=k>if</span> <span class=n>x1</span> <span class=o>==</span> <span class=n>x2</span> <span class=ow>and</span> <span class=n>y1</span> <span class=o>!=</span> <span class=n>y2</span><span class=p>:</span>
+       <span class=c1># point1 + (-point1) = 0</span>
+       <span class=k>return</span> <span class=bp>None</span>
+
+   <span class=k>if</span> <span class=n>x1</span> <span class=o>==</span> <span class=n>x2</span><span class=p>:</span>
+       <span class=c1># This is the case point1 == point2.</span>
+       <span class=n>m</span> <span class=o>=</span> <span class=p>(</span><span class=mi>3</span> <span class=o>*</span> <span class=n>x1</span> <span class=o>*</span> <span class=n>x1</span> <span class=o>+</span> <span class=n>curve</span><span class=o>.</span><span class=n>a</span><span class=p>)</span> <span class=o>*</span> <span class=n>inverse_mod</span><span class=p>(</span><span class=mi>2</span> <span class=o>*</span> <span class=n>y1</span><span class=p>,</span> <span class=n>curve</span><span class=o>.</span><span class=n>p</span><span class=p>)</span>
+   <span class=k>else</span><span class=p>:</span>
+       <span class=c1># This is the case point1 != point2.</span>
+       <span class=n>m</span> <span class=o>=</span> <span class=p>(</span><span class=n>y1</span> <span class=o>-</span> <span class=n>y2</span><span class=p>)</span> <span class=o>*</span> <span class=n>inverse_mod</span><span class=p>(</span><span class=n>x1</span> <span class=o>-</span> <span class=n>x2</span><span class=p>,</span> <span class=n>curve</span><span class=o>.</span><span class=n>p</span><span class=p>)</span>
+
+   <span class=n>x3</span> <span class=o>=</span> <span class=n>m</span> <span class=o>*</span> <span class=n>m</span> <span class=o>-</span> <span class=n>x1</span> <span class=o>-</span> <span class=n>x2</span>
+   <span class=n>y3</span> <span class=o>=</span> <span class=n>y1</span> <span class=o>+</span> <span class=n>m</span> <span class=o>*</span> <span class=p>(</span><span class=n>x3</span> <span class=o>-</span> <span class=n>x1</span><span class=p>)</span>
+   <span class=n>result</span> <span class=o>=</span> <span class=p>(</span><span class=n>x3</span> <span class=o>%</span> <span class=n>curve</span><span class=o>.</span><span class=n>p</span><span class=p>,</span>
+             <span class=o>-</span><span class=n>y3</span> <span class=o>%</span> <span class=n>curve</span><span class=o>.</span><span class=n>p</span><span class=p>)</span>
+
+   <span class=k>assert</span> <span class=n>is_on_curve</span><span class=p>(</span><span class=n>result</span><span class=p>)</span>
+
+   <span class=k>return</span> <span class=n>result</span>
+
+
+<span class=k>def</span> <span class=nf>scalar_mult</span><span class=p>(</span><span class=n>k</span><span class=p>,</span> <span class=n>point</span><span class=p>):</span>
+   <span class=s2>&#34;&#34;&#34;Returns k * point computed using the double and point_add algorithm.&#34;&#34;&#34;</span>
+   <span class=k>assert</span> <span class=n>is_on_curve</span><span class=p>(</span><span class=n>point</span><span class=p>)</span>
+
+
+
+   <span class=k>if</span> <span class=n>k</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>:</span>
+       <span class=c1># k * point = -k * (-point)</span>
+       <span class=k>return</span> <span class=n>scalar_mult</span><span class=p>(</span><span class=o>-</span><span class=n>k</span><span class=p>,</span> <span class=n>point_neg</span><span class=p>(</span><span class=n>point</span><span class=p>))</span>
+
+   <span class=n>result</span> <span class=o>=</span> <span class=bp>None</span>
+   <span class=n>addend</span> <span class=o>=</span> <span class=n>point</span>
+
+   <span class=k>while</span> <span class=n>k</span><span class=p>:</span>
+       <span class=k>if</span> <span class=n>k</span> <span class=o>&amp;</span> <span class=mi>1</span><span class=p>:</span>
+           <span class=c1># Add.</span>
+           <span class=n>result</span> <span class=o>=</span> <span class=n>point_add</span><span class=p>(</span><span class=n>result</span><span class=p>,</span> <span class=n>addend</span><span class=p>)</span>
+
+       <span class=c1># Double.</span>
+       <span class=n>addend</span> <span class=o>=</span> <span class=n>point_add</span><span class=p>(</span><span class=n>addend</span><span class=p>,</span> <span class=n>addend</span><span class=p>)</span>
+
+       <span class=n>k</span> <span class=o>&gt;&gt;=</span> <span class=mi>1</span>
+
+   <span class=k>assert</span> <span class=n>is_on_curve</span><span class=p>(</span><span class=n>result</span><span class=p>)</span>
+
+   <span class=k>return</span> <span class=n>result</span>
+
+
+<span class=c1># Keypair generation and ECDHE ################################################</span>
+
+<span class=k>def</span> <span class=nf>make_keypair</span><span class=p>():</span>
+   <span class=s2>&#34;&#34;&#34;Generates a random private-public key pair.&#34;&#34;&#34;</span>
+   <span class=n>private_key</span> <span class=o>=</span> <span class=n>curve</span><span class=o>.</span><span class=n>n</span>
+   <span class=n>public_key</span> <span class=o>=</span> <span class=n>scalar_mult</span><span class=p>(</span><span class=n>private_key</span><span class=p>,</span> <span class=n>curve</span><span class=o>.</span><span class=n>g</span><span class=p>)</span>
+
+   <span class=k>return</span> <span class=n>private_key</span><span class=p>,</span> <span class=n>public_key</span>
+
+
+
+<span class=n>private_key</span><span class=p>,</span> <span class=n>public_key</span> <span class=o>=</span> <span class=n>make_keypair</span><span class=p>()</span>
+<span class=k>print</span><span class=p>(</span><span class=s2>&#34;private key:&#34;</span><span class=p>,</span> <span class=nb>hex</span><span class=p>(</span><span class=n>private_key</span><span class=p>))</span>
+<span class=k>print</span><span class=p>(</span><span class=s2>&#34;public key: (0x{:x}, 0x{:x})&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=o>*</span><span class=n>public_key</span><span class=p>))</span>
+</code></pre></td></tr></table></div></div></div><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh><span class=nv>$python</span> ecc_calKey.py
+<span class=nv>p</span><span class=o>=</span><span class=m>15424654874903</span>
+<span class=nv>a</span><span class=o>=</span><span class=m>16546484</span>
+<span class=nv>b</span><span class=o>=</span><span class=m>4548674875</span>
+<span class=nv>Gx</span><span class=o>=</span><span class=m>6478678675</span>
+<span class=nv>Gy</span><span class=o>=</span><span class=m>5636379357093</span>
+<span class=nv>k</span><span class=o>=</span><span class=m>546768</span>
+private key: 0x857d0
+public key: <span class=o>(</span>0xcb19fe553fa, 0x50545408eb4<span class=o>)</span>
+
+<span class=nv>$python</span>
+&gt;&gt;&gt; 0x50545408eb4+0xcb19fe553fa
+<span class=m>19477226185390</span>
+&gt;&gt;&gt;
+</code></pre></td></tr></table></div></div></div></div><ul class=post-copyright><li class="copyright-item author"><span class=copyright-item-text>作者</span>：<a href=https://magic-king.net/ class="p-author h-card" target=_blank rel=noopener>Magic</a></li><li class="copyright-item link"><span class=copyright-item-text>链接</span>：<a href=/posts/xctf-adworld-crypto-wp/ target=_blank rel=noopener>https://magic-king.net/posts/xctf-adworld-crypto-wp/</a></li><li class="copyright-item license"><span class=copyright-item-text>许可</span>：<a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank rel=noopener>CC BY-NC-SA 4.0</a></li></ul></article><div class=updated-badge-container><span title="Updated @ 2021-02-25 14:01:04 UTC" style=cursor:help><svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2021-02-25</text><text x="915" y="140" textLength="650" transform="scale(.1)">2021-02-25</text></g></svg></span></div><div class=post-share><div class=share-items><div class="share-item twitter"><a href="https://twitter.com/share?url=https://magic-king.net/posts/xctf-adworld-crypto-wp/&text=XCTF-adworld-crypto-wp&hashtags=ctf,crypto,&via=%25!s%28%3cnil%3e%29" title=分享到「Twitter」 target=_blank rel=noopener><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon twitter-icon"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645.0 138.72-105.583 298.558-298.558 298.558-59.452.0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055.0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421.0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391.0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04.0-57.828 46.782-104.934 104.934-104.934 30.213.0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg></a></div><div class="share-item facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=https://magic-king.net/posts/xctf-adworld-crypto-wp/&hashtag=%23ctf" title=分享到「Facebook」 target=_blank rel=noopener><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon facebook-icon"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14.0 55.52 4.84 55.52 4.84v61h-31.28c-30.8.0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg></a></div><div class="share-item telegram"><a href="https://t.me/share/url?url=https://magic-king.net/posts/xctf-adworld-crypto-wp/&text=XCTF-adworld-crypto-wp" title=分享到「Telegram」 target=_blank rel=noopener><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="icon telegram-icon"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm121.8 169.9-40.7 191.8c-3 13.6-11.1 16.9-22.4 10.5l-62-45.7-29.9 28.8c-3.3 3.3-6.1 6.1-12.5 6.1l4.4-63.1 114.9-103.8c5-4.4-1.1-6.9-7.7-2.5l-142 89.4-61.2-19.1c-13.3-4.2-13.6-13.3 2.8-19.7l239.1-92.2c11.1-4 20.8 2.7 17.2 19.5z"/></svg></a></div><div class="share-item weibo"><a href="https://service.weibo.com/share/share.php?&url=https://magic-king.net/posts/xctf-adworld-crypto-wp/&title=XCTF-adworld-crypto-wp&pic=https://magic-king.net/11_1.jpg&searchPic=false" title=分享到「新浪微博」 target=_blank rel=noopener><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon weibo-icon"><path d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7.0 395.3.0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"/></svg></a></div><div class="share-item qq"><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://magic-king.net/posts/xctf-adworld-crypto-wp/&title=XCTF-adworld-crypto-wp&summary=Crypto&WriteUp%20crypto%e6%b0%b8%e8%bf%9c%e5%85%85%e6%bb%a1%e4%ba%86google%e5%92%8c%e5%b8%b8%e8%af%86%ef%bc%88%e8%bf%98%e6%9c%89%e5%b7%a5%e5%85%b7%20%e6%94%bb%e9%98%b2%e4%b8%96%e7%95%8c&Crypto%e6%96%b0%e2%80%a6%e2%80%a6&pics=https://magic-king.net/11_1.jpg&site=Magic%27s%20Blog" title=分享到「QQ」 target=_blank rel=noopener><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon qq-icon"><path d="M433.754 420.445c-11.526 1.393-44.86-52.741-44.86-52.741.0 31.345-16.136 72.247-51.051 101.786 16.842 5.192 54.843 19.167 45.803 34.421-7.316 12.343-125.51 7.881-159.632 4.037-34.122 3.844-152.316 8.306-159.632-4.037-9.045-15.25 28.918-29.214 45.783-34.415-34.92-29.539-51.059-70.445-51.059-101.792.0.0-33.334 54.134-44.859 52.741-5.37-.65-12.424-29.644 9.347-99.704 10.261-33.024 21.995-60.478 40.144-105.779C60.683 98.063 108.982.006 224 0c113.737.006 163.156 96.133 160.264 214.963 18.118 45.223 29.912 72.85 40.144 105.778 21.768 70.06 14.716 99.053 9.346 99.704z"/></svg></a></div><div class="share-item qzone"><a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://magic-king.net/posts/xctf-adworld-crypto-wp/&title=XCTF-adworld-crypto-wp&summary=Crypto&WriteUp%20crypto%e6%b0%b8%e8%bf%9c%e5%85%85%e6%bb%a1%e4%ba%86google%e5%92%8c%e5%b8%b8%e8%af%86%ef%bc%88%e8%bf%98%e6%9c%89%e5%b7%a5%e5%85%b7%20%e6%94%bb%e9%98%b2%e4%b8%96%e7%95%8c&Crypto%e6%96%b0%e2%80%a6%e2%80%a6&pics=https://magic-king.net/11_1.jpg&site=Magic%27s%20Blog" title="分享到「QQ 空间」" target=_blank rel=noopener><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon qzone-icon"><path d="M23.985 9.202c-.032-.099-.127-.223-.334-.258-.207-.036-7.351-1.406-7.351-1.406s-.105-.022-.198-.07c-.092-.047-.127-.167-.127-.167S12.447.956 12.349.77C12.25.583 12.104.532 12 .532s-.251.051-.349.238c-.098.186-3.626 6.531-3.626 6.531s-.035.12-.128.167c-.092.047-.197.07-.197.07S.556 8.908.348 8.943c-.208.036-.302.16-.333.258a.477.477.0 00.125.449l5.362 5.49s.072.08.119.172c.016.104.005.21.005.21s-1.189 7.242-1.22 7.45.075.369.159.43c.083.062.233.106.421.013.189-.093 6.812-3.261 6.812-3.261s.098-.044.201-.061.201.061.201.061 6.623 3.168 6.812 3.261c.188.094.338.049.421-.013a.463.463.0 00.159-.43c-.021-.14-.93-5.677-.93-5.677.876-.54 1.425-1.039 1.849-1.747-2.594.969-6.006 1.717-9.415 1.866-.915.041-2.41.097-3.473-.015-.678-.071-1.17-.144-1.243-.438-.053-.215.054-.46.545-.831a2640.5 2640.5.0 012.861-2.155c1.285-.968 3.559-2.47 3.559-2.731.0-.285-2.144-.781-4.037-.781-1.945.0-2.275.132-2.811.168-.488.034-.769.005-.804-.138-.06-.248.183-.389.588-.568.709-.314 1.86-.594 1.984-.626.194-.052 3.082-.805 5.618-.535 1.318.14 3.244.668 3.244 1.276.0.342-1.721 1.494-3.225 2.597-1.149.843-2.217 1.561-2.217 1.688.0.342 3.533 1.241 6.689 1.01l.003-.022c.048-.092.119-.172.119-.172l5.362-5.49a.477.477.0 00.127-.449z"/></svg></a></div><div class="share-item qrcode"><div class=qrcode-container title=通过「二维码」><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon qrcode-icon"><path d="M0 224h192V32H0v192zM64 96h64v64H64V96zm192-64v192h192V32H256zm128 128h-64V96h64v64zM0 480h192V288H0v192zm64-128h64v64H64v-64zm352-64h32v128h-96v-32h-32v96h-64V288h96v32h64v-32zm0 160h32v32h-32v-32zm-64 0h32v32h-32v-32z"/></svg><div id=qrcode-img></div></div><script src=https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js></script><script>var typeNumber=0,errorCorrectionLevel='L',qr=qrcode(typeNumber,errorCorrectionLevel);qr.addData('https://magic-king.net/posts/xctf-adworld-crypto-wp/'),qr.make(),document.getElementById('qrcode-img').innerHTML=qr.createImgTag()</script></div></div></div><div class=related-posts><h2 class=related-title>相关文章：<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon related-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6.0-12-5.4-12-12v-92h-92c-6.6.0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6.0 12 5.4 12 12v92h92c6.6.0 12 5.4 12 12v56z"/></svg></h2><ul class=related-list><li class=related-item><a href=/posts/blockchain/ class=related-link>BlockChain</a></li><li class=related-item><a href=/posts/sductf2019-wp/ class=related-link>SDUCTF2019-wp</a></li><li class=related-item><a href=/posts/xctf-adworld-web-wp/ class=related-link>XCTF-adworld-web-wp</a></li><li class=related-item><a href=/posts/xctf-adworld-misc-wp/ class=related-link>XCTF-adworld-misc-wp</a></li><li class=related-item><a href=/posts/security-protocols-and-standards/ class=related-link>Security-Protocols-and-Standards</a></li></ul></div><div class=post-tags><a href=/tags/ctf/ rel=tag class=post-tags-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49.0 48 0h204.118a48 48 0 0133.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137.0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882.0L14.059 286.059A48 48 0 010 252.118zM112 64c-26.51.0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>ctf</a>
+<a href=/tags/crypto/ rel=tag class=post-tags-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49.0 48 0h204.118a48 48 0 0133.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137.0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882.0L14.059 286.059A48 48 0 010 252.118zM112 64c-26.51.0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>crypto</a></div><ul class=post-nav><li class=post-nav-prev><a href=/posts/xctf-adworld-web-wp/ rel=prev>&lt; XCTF-adworld-web-wp</a></li><li class=post-nav-next><a href=/posts/xctf-adworld-misc-wp/ rel=next>XCTF-adworld-misc-wp ></a></li></ul></div></main><div id=back-to-top class=back-to-top><a href=#><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6.0-33.9L207 39c9.4-9.4 24.6-9.4 33.9.0l194.3 194.3c9.4 9.4 9.4 24.6.0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3.0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a></div><footer id=footer class=footer><div class=footer-inner><div class=site-info>©&nbsp;2021–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3.0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;Magic</div><div class=powered-by>Powered by <a href=https://github.com/gohugoio/hugo target=_blank rel=noopener>Hugo</a> | Theme is <a href=https://github.com/reuixiy/hugo-theme-meme target=_blank rel=noopener>MemE</a></div><div class=site-copyright><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank rel=noopener>CC BY-NC-SA 4.0</a></div><div class=busuanzi-site-uv-and-pv><span id=busuanzi_container_site_uv>本站访客数&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon busuanzi-site-uv"><path d="M224 256c70.7.0 128-57.3 128-128S294.7.0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2.0 422.4V464c0 26.5 21.5 48 48 48h352c26.5.0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"/></svg>&nbsp;<span id=busuanzi_value_site_uv></span></span>&nbsp;|&nbsp;<span id=busuanzi_container_site_pv>本站访问量&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon busuanzi-site-pv"><path d="M288 144a110.94 110.94.0 00-31.24 5 55.4 55.4.0 017.24 27 56 56 0 01-56 56 55.4 55.4.0 01-27-7.24A111.71 111.71.0 10288 144zm284.52 97.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35.0 000 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35.0 000-29.19zM288 4e2c-98.65.0-189.09-55-237.93-144C98.91 167 189.34 112 288 112s189.09 55 237.93 144C477.1 345 386.66 4e2 288 4e2z"/></svg>&nbsp;<span id=busuanzi_value_site_pv></span></span></div><ul class=socials><li class=socials-item><a href=/rss.xml target=_blank rel="external noopener" title=RSS><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon social-icon"><path d="M19.199 24C19.199 13.467 10.533 4.8.0 4.8V0c13.165.0 24 10.835 24 24h-4.801zM3.291 17.415c1.814.0 3.293 1.479 3.293 3.295.0 1.813-1.485 3.29-3.301 3.29C1.47 24 0 22.526.0 20.71s1.475-3.294 3.291-3.295zM15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727.0 15.909 7.184 15.909 15.91z"/></svg></a></li><li class=socials-item><a href=mailto:ma9icking@gmail.com target=_blank rel="external noopener" title=Email><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon social-icon"><path d="M464 64H48C21.49 64 0 85.49.0 112v288c0 26.51 21.49 48 48 48h416c26.51.0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 4e2V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V4e2H48z"/></svg></a></li><li class=socials-item><a href=https://github.com/Magic-King target=_blank rel="external noopener" title=GitHub><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon social-icon"><path d="M12 .297c-6.63.0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577.0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93.0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176.0.0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22.0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22.0 1.606-.015 2.896-.015 3.286.0.315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li></ul></div></footer></div><script>typeof MathJax=='undefined'?(window.MathJax={loader:{load:['[tex]/mhchem']},tex:{inlineMath:{'[+]':[['$','$']]},tags:'ams',packages:{'[+]':['mhchem']}}},function(){var a=document.createElement('script');a.src='https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js',a.defer=!0,document.head.appendChild(a)}()):(MathJax.texReset(),MathJax.typeset())</script><script src=https://cdn.jsdelivr.net/npm/mermaid@8.8.3/dist/mermaid.min.js></script><script>let mermaidConfig={startOnLoad:!0,flowchart:{useMaxWidth:!1,htmlLabels:!0},theme:'default'};mermaid.initialize(mermaidConfig)</script><script src=https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js></script><script>mediumZoom(document.querySelectorAll('div.post-body img'),{background:'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'})</script><script src=https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.min.js type=module defer></script><script async src=https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script></body></html>

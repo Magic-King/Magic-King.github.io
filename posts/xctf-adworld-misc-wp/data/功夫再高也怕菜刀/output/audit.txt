@@ -1,0 +1,23 @@
+Foremost version 1.5.7 by Jesse Kornblum, Kris Kendall, and Nick Mikus
+Audit File
+
+Foremost started at Fri Nov 08 00:03:29 2019
+Invocation: foremost -i D:\windows app\Xbox Download\ctf\功夫再高也怕菜刀\19ae303d520c4790b0401569b354e6a2.pcapng 
+Output directory: D:\0\Tool\foremost\foremost-master\binary\output
+Configuration file: D:\0\Tool\foremost\foremost-master\binary\foremost.conf
+------------------------------------------------------------------
+File: D:\windows app\Xbox Download\ctf\功夫再高也怕菜刀\19ae303d520c4790b0401569b354e6a2.pcapng
+Start: Fri Nov 08 00:03:29 2019
+Length: 2 MB (5953477627546441156 bytes)
+ 
+Num	 Name (bs=512)	       Size	 File Offset	 Comment 
+
+0:	00002778.zip 	      29 KB 	    1422689 	 
+Finish: Fri Nov 08 00:03:29 2019
+
+1 FILES EXTRACTED
+	
+zip:= 1
+------------------------------------------------------------------
+
+Foremost finished at Fri Nov 08 00:03:29 2019
