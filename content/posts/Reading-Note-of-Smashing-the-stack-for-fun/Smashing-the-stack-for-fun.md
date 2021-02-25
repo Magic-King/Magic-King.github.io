@@ -1,5 +1,5 @@
 ---
-title: Reading-Note-of-A-Mathematical-Theory-of-Communication
+title: Reading-Note-of-Smashing-The-Stack-For-Fun-And-Profit
 date: 2021-02-25T16:33:12+08:00
 tags: [thesis, studyNote]
 categories: [reverse，pwn]
