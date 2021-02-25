@@ -1,5 +1,5 @@
 ---
-title: SpMV
+title: spmv
 date: 2019-05-19T16:21:36+08:00
 tags: [spmv]
 categories: [algorithm]
