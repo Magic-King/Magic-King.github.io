@@ -1,5 +1,5 @@
 ---
-title: SSH端口转发
+title: ssh-port-forwarding
 date: 2020-02-22T18:12:51+08:00
 tags: [ssh]
 categories: [linux, network]
