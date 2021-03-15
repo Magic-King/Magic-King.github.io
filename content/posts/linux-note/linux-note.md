@@ -19,6 +19,8 @@ password:
 >
 > [黑马程序员-linux从入门到精通](<https://www.bilibili.com/video/av23360560?from=search&seid=11213656872957708813>)
 >
+> [黑马程序员 linux从入门到精通配套笔记.doc](黑马程序员 linux从入门到精通配套笔记.doc)
+>
 > 
 >
 > 
