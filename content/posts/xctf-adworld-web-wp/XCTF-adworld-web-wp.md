@@ -100,7 +100,7 @@ Web如同一座正三角冰山，等着去探索。。。
 
 
 
-<img src="XCTF-adworld-web-wp/4.jpg" style="zoom:50%;" />
+<img src="4.jpg" style="zoom:50%;" />
 
  php的备份有两种：*.php~和*.php.bak 
 
@@ -209,7 +209,7 @@ chrome在console中输入命令` javascript:alert(document.cookie)  `
 
 直接访问网站，提示需要特定ip访问
 
-<img src="XCTF-adworld-web-wp/8.jpg" style="zoom: 80%;" />
+<img src="8.jpg" style="zoom: 80%;" />
 
 由题目描述猜想是改http请求，进行下一步.
 
@@ -239,7 +239,7 @@ X-Forwarded-For: client, proxy1, proxy2
 
 然后得到如下页面
 
-<img src="XCTF-adworld-web-wp/8_1.jpg"  />
+<img src="8_1.jpg"  />
 
 
 
