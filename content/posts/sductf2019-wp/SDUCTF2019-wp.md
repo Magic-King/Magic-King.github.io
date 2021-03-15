@@ -95,7 +95,7 @@ PS.刚准备写wp又放出来一题QAQ
 
 > 题目描述： 简单的提交，芝麻开门 
 
-<img src="SDUCTF2019-wp/web4.jpg" style="zoom:50%;" />
+<img src="web4.jpg" style="zoom:50%;" />
 
 直接复制题目的zhimakaimen进去，返回的是口令错误
 
@@ -167,7 +167,7 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 
 ![](web9.jpg)
 
-<img src="SDUCTF2019-wp/web9-2.jpg" style="zoom:50%;" />
+<img src="web9-2.jpg" style="zoom:50%;" />
 
 
 
@@ -244,7 +244,7 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 
 
 
-<img src="SDUCTF2019-wp/web12-3.jpg" style="zoom:50%;" />
+<img src="web12-3.jpg" style="zoom:50%;" />
 
 
 
