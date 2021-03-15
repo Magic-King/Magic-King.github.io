@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Magic's Blog</title><link>https://magic-king.net/</link><description>Magic's Blog.&lt;br>NowYouSeeMe.</description><generator>Hugo 0.81.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>Ma9icKing@gmail.com (Magic)</managingEditor><webMaster>Ma9icKing@gmail.com (Magic)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Mon, 15 Mar 2021 03:33:41 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://magic-king.net/rss.xml"/><item><title>Reading-Note-of-Smashing-The-Stack-For-Fun</title><link>https://magic-king.net/posts/reading-note-of-smashing-the-stack-for-fun/</link><guid isPermaLink="true">https://magic-king.net/posts/reading-note-of-smashing-the-stack-for-fun/</guid><pubDate>Thu, 25 Feb 2021 16:33:12 +0800</pubDate><author>Ma9icKing@gmail.com (Magic)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="论文阅读笔记smashing-the-stack-for-fun-and-profit">论文阅读笔记：Smashing The Stack For Fun And Profit&lt;/h2>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Magic's Blog</title><link>https://magic-king.net/</link><description>Magic's Blog.&lt;br>NowYouSeeMe.</description><generator>Hugo 0.81.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>Ma9icKing@gmail.com (Magic)</managingEditor><webMaster>Ma9icKing@gmail.com (Magic)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Mon, 15 Mar 2021 03:38:18 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://magic-king.net/rss.xml"/><item><title>Reading-Note-of-Smashing-The-Stack-For-Fun</title><link>https://magic-king.net/posts/reading-note-of-smashing-the-stack-for-fun/</link><guid isPermaLink="true">https://magic-king.net/posts/reading-note-of-smashing-the-stack-for-fun/</guid><pubDate>Thu, 25 Feb 2021 16:33:12 +0800</pubDate><author>Ma9icKing@gmail.com (Magic)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="论文阅读笔记smashing-the-stack-for-fun-and-profit">论文阅读笔记：Smashing The Stack For Fun And Profit&lt;/h2>
 &lt;blockquote>
 &lt;p>原文：&lt;a href="./Smashing_The_Stack_For_Fun_And_Profit.pdf">Smashing The Stack For Fun And Profit&lt;/a>&lt;/p>
 &lt;/blockquote>
@@ -21768,7 +21768,7 @@ bt-save-metadata&lt;span class="o">=&lt;/span>&lt;span class="nb">true&lt;/span>
 &lt;blockquote>
 &lt;p>题目描述： 简单的提交，芝麻开门&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="SDUCTF2019-wp/web4.jpg" style="zoom:50%;" />&lt;/p>
+&lt;p>&lt;img src="web4.jpg" style="zoom:50%;" />&lt;/p>
 &lt;p>直接复制题目的zhimakaimen进去，返回的是口令错误&lt;/p>
 &lt;p>&lt;img src="web4-1.jpg" alt="">&lt;/p>
 &lt;p>查看burpsuite拦截的包，好像是因为他的输入框有长度限制，所以少了一个字母&lt;/p>
@@ -21813,7 +21813,7 @@ bt-save-metadata&lt;span class="o">=&lt;/span>&lt;span class="nb">true&lt;/span>
 &lt;p>题目描述： 你就是一个没有感情的浏览器&lt;/p>
 &lt;/blockquote>
 &lt;p>&lt;img src="web9.jpg" alt="">&lt;/p>
-&lt;p>&lt;img src="SDUCTF2019-wp/web9-2.jpg" style="zoom:50%;" />&lt;/p>
+&lt;p>&lt;img src="web9-2.jpg" style="zoom:50%;" />&lt;/p>
 &lt;p>我只是一个莫得感情的post机器&lt;/p>
 &lt;p>利用firefox插件HackBar发送post请求，或者用burpsuite也行&lt;/p>
 &lt;h3 id="0x0a-vim好用啊">0x0a vim好用啊&lt;/h3>
@@ -21850,7 +21850,7 @@ bt-save-metadata&lt;span class="o">=&lt;/span>&lt;span class="nb">true&lt;/span>
 &lt;p>JavaScript能表示并进行精确算术运算的整数范围为：正负2的53次方，也即从最小值-9007199254740992到最大值+9007199254740992之间的范围；对于超过这个范围的整数，JavaScript依旧可以进行运算，但却不保证运算结果的精度。值得注意的是，对于整数的位运算（比如移位等操作），JavaScript仅支持32位整型数，也即从-2147483648到+2147483647之间的整数。&lt;/p>
 &lt;/blockquote>
 &lt;p>&lt;img src="web12-2.jpg" alt="">&lt;/p>
-&lt;p>&lt;img src="SDUCTF2019-wp/web12-3.jpg" style="zoom:50%;" />&lt;/p>
+&lt;p>&lt;img src="web12-3.jpg" style="zoom:50%;" />&lt;/p>
 &lt;p>然后得到flag&lt;/p>
 &lt;p>&lt;img src="web12-4.jpg" alt="">&lt;/p>
 &lt;h3 id="0x0d-http头">0x0d HTTP头&lt;/h3>
