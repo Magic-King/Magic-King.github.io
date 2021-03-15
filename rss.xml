@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Magic's Blog</title><link>https://magic-king.net/</link><description>Magic's Blog.&lt;br>NowYouSeeMe.</description><generator>Hugo 0.81.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>Ma9icKing@gmail.com (Magic)</managingEditor><webMaster>Ma9icKing@gmail.com (Magic)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Mon, 15 Mar 2021 02:55:23 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://magic-king.net/rss.xml"/><item><title>Reading-Note-of-Smashing-The-Stack-For-Fun</title><link>https://magic-king.net/posts/reading-note-of-smashing-the-stack-for-fun/</link><guid isPermaLink="true">https://magic-king.net/posts/reading-note-of-smashing-the-stack-for-fun/</guid><pubDate>Thu, 25 Feb 2021 16:33:12 +0800</pubDate><author>Ma9icKing@gmail.com (Magic)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="论文阅读笔记smashing-the-stack-for-fun-and-profit">论文阅读笔记：Smashing The Stack For Fun And Profit&lt;/h2>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Magic's Blog</title><link>https://magic-king.net/</link><description>Magic's Blog.&lt;br>NowYouSeeMe.</description><generator>Hugo 0.81.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>Ma9icKing@gmail.com (Magic)</managingEditor><webMaster>Ma9icKing@gmail.com (Magic)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Mon, 15 Mar 2021 03:08:21 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://magic-king.net/rss.xml"/><item><title>Reading-Note-of-Smashing-The-Stack-For-Fun</title><link>https://magic-king.net/posts/reading-note-of-smashing-the-stack-for-fun/</link><guid isPermaLink="true">https://magic-king.net/posts/reading-note-of-smashing-the-stack-for-fun/</guid><pubDate>Thu, 25 Feb 2021 16:33:12 +0800</pubDate><author>Ma9icKing@gmail.com (Magic)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="论文阅读笔记smashing-the-stack-for-fun-and-profit">论文阅读笔记：Smashing The Stack For Fun And Profit&lt;/h2>
 &lt;blockquote>
 &lt;p>原文：&lt;a href="./Smashing_The_Stack_For_Fun_And_Profit.pdf">Smashing The Stack For Fun And Profit&lt;/a>&lt;/p>
 &lt;/blockquote>
@@ -29194,7 +29194,7 @@ B --&amp;gt; D[&amp;lt;数字&amp;gt;]
 C --&amp;gt; E[&amp;lt;数字&amp;gt;]
 E --&amp;gt; F[1]
 D --&amp;gt; G[0]
-&lt;/code>&lt;/pre>&lt;p>&lt;img src="Compiler%5C8.jpg" alt="">&lt;/p>
+&lt;/code>&lt;/pre>&lt;p>&lt;img src="8.jpg" alt="">&lt;/p>
 &lt;p>树与推导：句型推导过程 ⇔ 句型语法树的生长过程&lt;/p>
 &lt;p>①由推导构造语法树&lt;/p>
 &lt;p>从&lt;strong>识别符号&lt;/strong>开始，&lt;strong>自左向右&lt;/strong>建立&lt;strong>推导&lt;/strong>序列 ⇒ 由&lt;strong>根节点&lt;/strong>开始，&lt;strong>自上而下&lt;/strong>建立&lt;strong>语法树&lt;/strong>&lt;/p>
@@ -29227,7 +29227,7 @@ VT = {+,*,(,),i}
 A[源程序] --&amp;gt; B[词法分析程序]
 B -- Token --&amp;gt; C[语法分析程序]
 C -- get token --&amp;gt; B
-&lt;/code>&lt;/pre>&lt;p>&lt;img src="Compiler%5C9.jpg" alt="">&lt;/p>
+&lt;/code>&lt;/pre>&lt;p>&lt;img src="9.jpg" alt="">&lt;/p>
 &lt;blockquote>
 &lt;p>为什么将词法分析工作从语法分析工作中独立出来？&lt;/p>
 &lt;ul>
@@ -29314,7 +29314,7 @@ C -- get token --&amp;gt; B
 0--字母--&amp;gt;1
 1--字母或数字--&amp;gt;1
 1--其他--&amp;gt;2[*]
-&lt;/code>&lt;/pre>&lt;p>&lt;img src="Compiler%5C10.jpg" alt="">&lt;/p>
+&lt;/code>&lt;/pre>&lt;p>&lt;img src="10.jpg" alt="">&lt;/p>
 &lt;p>一个状态转换图可用于识别（或接受）一定的字符串&lt;/p>
 &lt;h3 id="33-正规表达式与有限自动机">3.3 正规表达式与有限自动机&lt;/h3>
 &lt;h4 id="1正规式与正规集">1.正规式与正规集&lt;/h4>
@@ -29417,7 +29417,7 @@ DFA --&amp;gt; minDFA(minDFA)
 &lt;/tbody>
 &lt;/table>
 &lt;p>如上表，可表示&lt;code>(a|b)*&lt;/code>，也可画成如下图&lt;/p>
-&lt;p>&lt;img src="Compiler%5C4.jpg" alt="">&lt;/p>
+&lt;p>&lt;img src="4.jpg" alt="">&lt;/p>
 &lt;p>&lt;strong>DFA的确定性&lt;/strong>&lt;/p>
 &lt;p>1.映射δ ： S × Σ → S 是一个单值函数。也就是说，对任何状态s∈S和输入符号 a ∈ Σ ，f（s，a）唯一地确定了下一状态。从转换图的角度来看，假定字母表 Σ 含有n个输入字符，那么，任何一个状态结最多只有n条弧射出，而且每条弧以一个不同的输入字符标记。&lt;/p>
 &lt;h5 id="nfa">NFA&lt;/h5>
@@ -29432,7 +29432,7 @@ DFA --&amp;gt; minDFA(minDFA)
 &lt;li>F ⊂ S 是一个终态集（可空），终态也称可接受状态或结束状态&lt;/li>
 &lt;/ul>
 &lt;/blockquote>
-&lt;p>&lt;img src="Compiler%5C5.jpg" alt="">&lt;/p>
+&lt;p>&lt;img src="5.jpg" alt="">&lt;/p>
 &lt;p>如图，为一个NFA&lt;/p>
 &lt;p>∑&lt;sup>*&lt;/sup> 上的符号串 t 被 NFA M 接受也可以这样理解：&lt;/p>
 &lt;p>对于Σ*中的任何一个串t，若存在一条从某一初态结到某一终态结的道路，且这条道路上所有弧的标记字依序连接成的串(不理采那些标记为ε的弧)等于t，则称t可为NFA M所识别(读出或接受)。若M的某些结既是初态结又是终态结，或者存在一条从某个初态结到某个终态结的道路,其上所有弧的标记均为ε，那么空字可为M所接受。&lt;/p>
@@ -29490,7 +29490,7 @@ A*是正规式,构造的等价NFA为
 &lt;/li>
 &lt;/ul>
 &lt;/blockquote>
-&lt;p>&lt;img src="Compiler%5C5.jpg" alt="">&lt;/p>
+&lt;p>&lt;img src="5.jpg" alt="">&lt;/p>
 &lt;p>如之前NFA的例子：&lt;/p>
 &lt;pre>&lt;code>I={1}, ε-closure(I) = {1,2}；
 I={5}, ε-closure(I) = {5,6,2}；
@@ -29508,7 +29508,7 @@ if U 不在 C 中:
 }
 }
 &lt;/code>&lt;/pre>&lt;p>例：&lt;/p>
-&lt;p>&lt;img src="Compiler%5C6.jpg" alt="">&lt;/p>
+&lt;p>&lt;img src="6.jpg" alt="">&lt;/p>
 &lt;p>如上图为实例NFA，构造其状态转换表&lt;/p>
 &lt;table>
 &lt;thead>
@@ -29557,7 +29557,7 @@ if U 不在 C 中:
 &lt;/tbody>
 &lt;/table>
 &lt;p>将其每个状态确定化，即得到如下等价DFA&lt;/p>
-&lt;p>&lt;img src="Compiler%5C7.jpg" alt="DFA">N&lt;/p>
+&lt;p>&lt;img src="7.jpg" alt="DFA">N&lt;/p>
 &lt;p>状态转换表如下，将一组状态替换成对应符号。&lt;/p>
 &lt;table>
 &lt;thead>
@@ -29623,7 +29623,7 @@ if U 不在 C 中:
 &lt;li>如果由 s 出发能导出的所有串的集合与 t 出发能导出的所有串的集合相等，我们称状态 s 与状态 t 是等价的。&lt;/li>
 &lt;/ul>
 &lt;/blockquote>
-&lt;p>&lt;img src="Compiler%5C7.jpg" alt="">&lt;/p>
+&lt;p>&lt;img src="7.jpg" alt="">&lt;/p>
 &lt;p>如上面示例的DFA，C和F是等价的。&lt;/p>
 &lt;p>C和F同是终态，读入a到达C和F，C和F同是终态，C和F读入a都到达C，读入b都到达E。&lt;/p>
 &lt;p>同理D和E也是等价的&lt;/p>
@@ -29841,7 +29841,7 @@ First(βi)表示βi所能导出串的第一个符号的集合。显然，每个�
 &lt;p>分析矩阵的元素M[A,a]中的下标A为非终结符，a为终结符或句子结束标记&amp;quot;#&amp;quot;，矩阵元素M[A,a]的内容为一条关于A的产生式。&lt;/p>
 &lt;p>它表明当用非终结符A向下推导而当前输入符为a时，所应采用的候选式。当矩阵元素为空时，则表示用A往下推导时遇到了不应该出现的符号，即A与a不能匹配。因此应该转向出错处理。&lt;/p>
 &lt;p>预测分析程序如下图&lt;/p>
-&lt;p>&lt;img src="Compiler%5C11.jpg" alt="">&lt;/p>
+&lt;p>&lt;img src="11.jpg" alt="">&lt;/p>
 &lt;p>①判断文法G[E]是否为LL(1)文法，若文法中含有左递归那么要先消除左递归，然后求select集&lt;/p>
 &lt;p>②构造预测分析表，对每个终结符或'#'号用a表示，则若a∈Select(A→α)。令 M[A,a]=A→α&lt;/p>
 &lt;p>把所有无定义的M[A,a]标上ERROR&lt;/p>
@@ -29881,7 +29881,7 @@ STOP/*分析成功，过程完毕*/
 T→T*F | F
 F→i| (E)
 并假定输入串为（i+i)*i，考察自下而上的分析过程&lt;/p>
-&lt;p>&lt;img src="Compiler%5C12.jpg" alt="">&lt;/p>
+&lt;p>&lt;img src="12.jpg" alt="">&lt;/p>
 &lt;p>&lt;strong>栈上的候选式不一定是句柄&lt;/strong>。例如，在第14步对栈顶为T，它是E的一候选式，但它不是句柄，不能归约成E。判定候选式是极为简单的事情，但判定句柄就不那么容易。而不同的自底向上方法给出不同的判定方法。&lt;/p>
 &lt;/blockquote>
 &lt;p>自下而上方法包括四个方法：&lt;/p>
@@ -29935,7 +29935,7 @@ F→i| (E)
 &lt;li>SLR(1)：表示简单的LR(1)，即只在动作不唯一的地方向前看一个符号，在动作唯一时则不向前看输入符号&lt;/li>
 &lt;/ul>
 &lt;h5 id="lr分析器的逻辑结构及工作流程">LR分析器的逻辑结构及工作流程&lt;/h5>
-&lt;p>&lt;img src="Compiler%5C13.jpg" alt="">&lt;/p>
+&lt;p>&lt;img src="13.jpg" alt="">&lt;/p>
 &lt;p>如图为LR分析器的逻辑结构，所有LR分析器的总控程序大致相同，只有分析表（即Go-Action表）不相同。&lt;/p>
 &lt;ul>
 &lt;li>&lt;strong>规范LR分析表构造法&lt;/strong>：用此法构造的分析表功能最强而且也适合很多文法，但是实现代价较高&lt;/li>
@@ -29945,11 +29945,11 @@ F→i| (E)
 &lt;h5 id="lr的分析过程">LR的分析过程&lt;/h5>
 &lt;p>两个栈：状态栈，符号栈&lt;/p>
 &lt;p>&lt;strong>移进：&lt;/strong>&lt;/p>
-&lt;p>&lt;img src="Compiler%5C14.jpg" alt="">&lt;/p>
+&lt;p>&lt;img src="14.jpg" alt="">&lt;/p>
 &lt;p>&lt;strong>归约：&lt;/strong>&lt;/p>
-&lt;p>&lt;img src="Compiler%5C15.jpg" alt="">&lt;/p>
+&lt;p>&lt;img src="15.jpg" alt="">&lt;/p>
 &lt;p>&lt;strong>接受&amp;amp;报错：&lt;/strong>&lt;/p>
-&lt;p>&lt;img src="Compiler%5C16.jpg" alt="">&lt;/p>
+&lt;p>&lt;img src="16.jpg" alt="">&lt;/p>
 &lt;p>所以各种LR分析器的最大区别在于其分析表，分析表决定了每一步该如何移进或者归约，直至接受，或者中途报错。&lt;/p>
 &lt;h5 id="lr0分析表的构造">LR(0)分析表的构造&lt;/h5>
 &lt;p>1.规范句型的活前缀&lt;/p>
@@ -30118,7 +30118,7 @@ return Closure(J)
 &lt;p>同心项目集：除去搜索符之外都相同的LR(1)项目集&lt;/p>
 &lt;p>合并同心项目集不会产生新的移进-归约冲突&lt;/p>
 &lt;p>将 LR(1) 合并同心项目集，如果没有归约-归约冲突，则为LALR(1)文法。&lt;/p>
-&lt;p>&lt;img src="Compiler%5C18.jpg" alt="">&lt;/p>
+&lt;p>&lt;img src="18.jpg" alt="">&lt;/p>
 &lt;blockquote>
 &lt;p>&lt;a href="https://www.cnblogs.com/henuliulei/p/10872483.html">参考，各语法分析器的区别&lt;/a>&lt;/p>
 &lt;/blockquote>
@@ -30169,17 +30169,17 @@ return Closure(J)
 &lt;h4 id="综合属性synthesized-attribute">综合属性（Synthesized Attribute）&lt;/h4>
 &lt;p>&lt;strong>S属性定义&lt;/strong>：仅仅使用综合属性的语法制导定义&lt;/p>
 &lt;p>例：&lt;/p>
-&lt;p>&lt;img src="Compiler%5C19.jpg" alt="">&lt;/p>
+&lt;p>&lt;img src="19.jpg" alt="">&lt;/p>
 &lt;p>语法分析树如下&lt;/p>
-&lt;p>&lt;img src="Compiler%5C20.jpg" alt="">&lt;/p>
+&lt;p>&lt;img src="20.jpg" alt="">&lt;/p>
 &lt;p>分析树的各节点属性的计算自下而上完成&lt;/p>
 &lt;h4 id="继承属性inherited-attribute">继承属性（Inherited Attribute）&lt;/h4>
 &lt;p>例：语法规则如下：&lt;/p>
-&lt;p>&lt;img src="Compiler%5C21.jpg" alt="">&lt;/p>
+&lt;p>&lt;img src="21.jpg" alt="">&lt;/p>
 &lt;p>分析树如下：&lt;/p>
 &lt;p>&lt;img src="22.jpg" alt="">&lt;/p>
 &lt;p>分析树的依赖图如下&lt;/p>
-&lt;p>&lt;img src="Compiler%5C23.jpg" alt="">&lt;/p>
+&lt;p>&lt;img src="23.jpg" alt="">&lt;/p>
 &lt;p>其中，L ➡ L&lt;sub>1&lt;/sub> ，id ； L&lt;sub>1&lt;/sub>.in := L.in；addtype(id.entry , L.in)；&lt;/p>
 &lt;h3 id="基于属性文法的处理方法">基于属性文法的处理方法&lt;/h3>
 &lt;h4 id="属性计算次序">属性计算次序&lt;/h4>
