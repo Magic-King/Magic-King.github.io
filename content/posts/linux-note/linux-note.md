@@ -1,5 +1,5 @@
 ---
-title: Linux Note
+title: linux-note
 date: 2019-08-22T22:21:03+08:00
 tags: [linux, studyNote]
 categories: [linux]
