@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">Magic&#39;s Blog</title>
     <subtitle type="html">Magic&#39;s Blog.&lt;br&gt;NowYouSeeMe.</subtitle>
-    <updated>2021-03-03T10:23:13&#43;08:00</updated>
+    <updated>2021-03-15T10:33:43&#43;08:00</updated>
     <id>https://magic-king.net/</id>
     <link rel="alternate" type="text/html" href="https://magic-king.net/" />
     <link rel="self" type="application/atom&#43;xml" href="https://magic-king.net/atom.xml" />
@@ -8350,10 +8350,10 @@ Github里有&lt;/p&gt;
         </entry>
     
         <entry>
-            <title type="text">SSH端口转发</title>
-            <link rel="alternate" type="text/html" href="https://magic-king.net/posts/ssh%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/" />
-            <id>https://magic-king.net/posts/ssh%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/</id>
-            <updated>2021-02-16T21:43:53&#43;08:00</updated>
+            <title type="text">ssh-port-forwarding</title>
+            <link rel="alternate" type="text/html" href="https://magic-king.net/posts/ssh-port-forwarding/" />
+            <id>https://magic-king.net/posts/ssh-port-forwarding/</id>
+            <updated>2021-03-12T10:41:52&#43;08:00</updated>
             <published>2020-02-22T18:12:51&#43;08:00</published>
             <author>
                     <name>Magic</name>
@@ -38733,7 +38733,7 @@ server {
             <title type="text">nginx&#43;rtmp</title>
             <link rel="alternate" type="text/html" href="https://magic-king.net/posts/nginx-rtmp/" />
             <id>https://magic-king.net/posts/nginx-rtmp/</id>
-            <updated>2021-02-11T12:29:50&#43;08:00</updated>
+            <updated>2021-03-15T10:33:13&#43;08:00</updated>
             <published>2019-05-17T22:22:38&#43;08:00</published>
             <author>
                     <name>Magic</name>
@@ -38929,56 +38929,56 @@ service nginx reload//重启nginx服务器
 &lt;li&gt;
 &lt;p&gt;其他返回码的话 RTMP 连接丢弃。
 重定向例子：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;http {&lt;/p&gt;
-&lt;p&gt;location /local_redirect {
-rewrite ^.&lt;em&gt;$ newname? permanent;
-}
-location /remote_redirect {
-# no domain name here, only ip
-rewrite ^.&lt;/em&gt;$ rtmp://192.168.1.123/someapp/somename? permanent;
-}&lt;/p&gt;
-&lt;p&gt;}&lt;/p&gt;
-&lt;p&gt;rtmp {
-application myapp1 {
-live on;
-# stream will be redirected to &#39;newname&#39;
-on_play http://localhost:8080/local_redirect;
-}
-application myapp2 {
-live on;
-# stream will be pulled from remote location
-# requires nginx &amp;gt;= 1.3.10
-on_play http://localhost:8080/remote_redirect;
-}&lt;/p&gt;
-&lt;p&gt;}&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
+&lt;pre&gt;&lt;code&gt; http {
+  
+  location /local_redirect {
+        rewrite ^.*$ newname? permanent;
+    }
+    location /remote_redirect {
+        # no domain name here, only ip
+        rewrite ^.*$ rtmp://192.168.1.123/someapp/somename? permanent;
+    }
+  
+  }
+  
+  
+  rtmp {
+    application myapp1 {
+        live on;
+        # stream will be redirected to &#39;newname&#39;
+        on_play http://localhost:8080/local_redirect;
+    }
+    application myapp2 {
+        live on;
+        # stream will be pulled from remote location
+        # requires nginx &amp;gt;= 1.3.10
+        on_play http://localhost:8080/remote_redirect;
+    }
 
-
-HTTP 请求接收到一些个参数。在 application/x-www-form-urlencoded MIME 类型下使用 POST 方法。以下参数会被传送给调用者：
-* call=play。
-* addr - 客户端 IP 地址。
-* app - application 名。
-* flashVer - 客户端 flash 版本。
-* swfUrl - 客户端 swf url。
-* tcUrl - tcUrl。
-* pageUrl - 客户端页面 url。
-* name - 流名。
+}
+  
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;HTTP 请求接收到一些个参数。在 application/x-www-form-urlencoded MIME 类型下使用 POST 方法。以下参数会被传送给调用者：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;call=play。&lt;/li&gt;
+&lt;li&gt;addr - 客户端 IP 地址。&lt;/li&gt;
+&lt;li&gt;app - application 名。&lt;/li&gt;
+&lt;li&gt;flashVer - 客户端 flash 版本。&lt;/li&gt;
+&lt;li&gt;swfUrl - 客户端 swf url。&lt;/li&gt;
+&lt;li&gt;tcUrl - tcUrl。&lt;/li&gt;
+&lt;li&gt;pageUrl - 客户端页面 url。&lt;/li&gt;
+&lt;li&gt;name - 流名。
 出了上述参数之外其他所有播放命令参数显式地发送回调。例如如果一个流由 url rtmp://localhost/app/movie?a=100&amp;amp;b=face&amp;amp;foo=bar 访问，然后呢 a,b 和 foo 发送回调。
-on_play http://example.com/my_callback;
-
-
-
-
-
-## 过程中使用到的额外软件
-
-* obs
-* 手机端:快直播
-* ffmpeg推流（没用过）
-
-&lt;/code&gt;&lt;/pre&gt;</content>
+on_play &lt;a href=&#34;http://example.com/my_callback;&#34;&gt;http://example.com/my_callback;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;过程中使用到的额外软件&#34;&gt;过程中使用到的额外软件&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;obs&lt;/li&gt;
+&lt;li&gt;手机端:快直播&lt;/li&gt;
+&lt;li&gt;ffmpeg推流（没用过）&lt;/li&gt;
+&lt;/ul&gt;
+</content>
             
             
             
