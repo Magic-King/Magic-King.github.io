@@ -224,7 +224,7 @@ on_play
 
 
 
-  ```
+```
  http {
   
   location /local_redirect {
@@ -253,7 +253,7 @@ on_play
 
 }
   
-  ```
+```
 
 
 
