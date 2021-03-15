@@ -99,11 +99,11 @@ msic永远充满了惊喜
 
 二维码大概在49帧，后面才发现有Stegsolve可以查看图片的每一帧
 
-<img src="XCTF-adworld-misc-wp/3_2.jpg" style="zoom:50%;" />
+<img src="3_2.jpg" style="zoom:50%;" />
 
 明显是个二维码，修补其三角定位，得到下图
 
-<img src="XCTF-adworld-misc-wp/3_3.jpg" style="zoom:50%;" />
+<img src="3_3.jpg" style="zoom:50%;" />
 
 
 
@@ -119,13 +119,13 @@ msic永远充满了惊喜
 
 >  题目描述：菜猫给了菜狗一张图，说图下面什么都没有 
 
-<img src="XCTF-adworld-misc-wp/4.jpg" style="zoom:50%;" />
+<img src="4.jpg" style="zoom:50%;" />
 
 
 
 打开附件是一个pdf，里面是一张图片，推测将pdf转为word格式之后，移走图片，发现flag就在图片底下
 
-<img src="XCTF-adworld-misc-wp/4_2.jpg" style="zoom:50%;" />
+<img src="4_2.jpg" style="zoom:50%;" />
 
 
 
@@ -141,13 +141,13 @@ msic永远充满了惊喜
 
 
 
-<img src="XCTF-adworld-misc-wp/5.jpg" style="zoom:50%;" />
+<img src="5.jpg" style="zoom:50%;" />
 
 
 
 打开附件发现一份文档
 
-<img src="XCTF-adworld-misc-wp/5_2.jpg" style="zoom: 25%;" />
+<img src="5_2.jpg" style="zoom: 25%;" />
 
 一开始没有思路，就先用之前的convert命令，将pdf的东西全部复制出来查看，发现
 
@@ -174,13 +174,13 @@ flag为：` flag{1NV151BL3M3554G3} `
 
 >  题目描述：菜狗最近学会了拼图，这是他刚拼好的，可是却搞错了一块(ps:双图层) 
 
-<img src="XCTF-adworld-misc-wp/6.jpg" style="zoom:50%;" />
+<img src="6.jpg" style="zoom:50%;" />
 
 下载完附件，只有一个文件，打开`flag.txt` ,里面写着`flag is not here`
 
 打开winhex查看该rar，发现里面还有一个secret.png，然后根据文件头（或者使用rar修复） 将A8 3C 7A 修改为 A8 3C 74 。 
 
-<img src="XCTF-adworld-misc-wp/6_3.jpg"/>
+<img src="6_3.jpg"/>
 
 然后解压得到secret.png，打开是一个空白图片，便想到用winhex查看。
 
@@ -202,11 +202,11 @@ flag为：` flag{1NV151BL3M3554G3} `
 
 >  题目描述：菜狗发现最近菜猫不爱理他，反而迷上了菜鸡 
 
-<img src="XCTF-adworld-misc-wp/7.jpg" style="zoom:50%;" />
+<img src="7.jpg" style="zoom:50%;" />
 
 下下来是一个jar包，用java运行，发现是一个小游戏，根据题目联想需要坚持60s。
 
-<img src="XCTF-adworld-misc-wp/7_2.jpg" style="zoom:25%;" />
+<img src="7_2.jpg" style="zoom:25%;" />
 
 
 
@@ -216,7 +216,7 @@ flag为：` flag{1NV151BL3M3554G3} `
 
 之后发现到下边只能卡入一半，于是突发思维，将小方块卡入右下角然后留下了一个小角，发现可以成功躲过60s（记得计时，在60s~70s时主动出去死亡即可，然后成功得到flag明文
 
-<img src="XCTF-adworld-misc-wp/7_4.jpg" style="zoom: 25%;" />
+<img src="7_4.jpg" style="zoom: 25%;" />
 
 
 
@@ -230,7 +230,7 @@ flag为：` flag{1NV151BL3M3554G3} `
 
 >  题目描述：菜狗截获了一张菜鸡发给菜猫的动态图，却发现另有玄机 
 
-<img src="XCTF-adworld-misc-wp/8.jpg" style="zoom:50%;" />
+<img src="8.jpg" style="zoom:50%;" />
 
 得到一个zip包，查看里面有103张黑白色的图片，联想到二进制。
 
@@ -242,7 +242,7 @@ flag为：` flag{1NV151BL3M3554G3} `
 
 二进制转字符串得到 flag：`flag{FuN_giF}`
 
-<img src="XCTF-adworld-misc-wp/8_2.jpg" style="zoom:50%;" />
+<img src="8_2.jpg" style="zoom:50%;" />
 
 
 
@@ -266,7 +266,7 @@ flag为：` flag{1NV151BL3M3554G3} `
 
 下下来附件是一个docx，发现是一段文字，贼像佛教里的文字
 
-<img src="XCTF-adworld-misc-wp/10_2.jpg" style="zoom: 50%;" />
+<img src="10_2.jpg" style="zoom: 50%;" />
 
 
 
@@ -280,7 +280,7 @@ flag为：` flag{1NV151BL3M3554G3} `
 
 >  题目描述：菜狗经过几天的学习，终于发现了如来十三掌最后一步的精髓 
 
-<img src="XCTF-adworld-misc-wp/11.jpg" style="zoom:50%;" />
+<img src="11.jpg" style="zoom:50%;" />
 
 
 
@@ -459,7 +459,7 @@ if __name__ == "__main__":
 
 >  题目描述：菜狗决定用菜刀和菜鸡决一死战 
 
-<img src="XCTF-adworld-misc-wp/12.jpg" style="zoom:50%;" />
+<img src="12.jpg" style="zoom:50%;" />
 
 
 
@@ -467,7 +467,7 @@ if __name__ == "__main__":
 
 用wireshark打开，`ctrl+F`查找flag
 
-<img src="XCTF-adworld-misc-wp/12_2.jpg"  />
+<img src="12_2.jpg"  />
 
 发现里面有zip和flag.txt还有6666.jpg。
 
