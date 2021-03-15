@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Magic's Blog</title><link>https://magic-king.net/</link><description>Magic's Blog.&lt;br>NowYouSeeMe.</description><generator>Hugo 0.81.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>Ma9icKing@gmail.com (Magic)</managingEditor><webMaster>Ma9icKing@gmail.com (Magic)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Mon, 15 Mar 2021 03:20:14 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://magic-king.net/rss.xml"/><item><title>Reading-Note-of-Smashing-The-Stack-For-Fun</title><link>https://magic-king.net/posts/reading-note-of-smashing-the-stack-for-fun/</link><guid isPermaLink="true">https://magic-king.net/posts/reading-note-of-smashing-the-stack-for-fun/</guid><pubDate>Thu, 25 Feb 2021 16:33:12 +0800</pubDate><author>Ma9icKing@gmail.com (Magic)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="论文阅读笔记smashing-the-stack-for-fun-and-profit">论文阅读笔记：Smashing The Stack For Fun And Profit&lt;/h2>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Magic's Blog</title><link>https://magic-king.net/</link><description>Magic's Blog.&lt;br>NowYouSeeMe.</description><generator>Hugo 0.81.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>Ma9icKing@gmail.com (Magic)</managingEditor><webMaster>Ma9icKing@gmail.com (Magic)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Mon, 15 Mar 2021 03:33:41 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://magic-king.net/rss.xml"/><item><title>Reading-Note-of-Smashing-The-Stack-For-Fun</title><link>https://magic-king.net/posts/reading-note-of-smashing-the-stack-for-fun/</link><guid isPermaLink="true">https://magic-king.net/posts/reading-note-of-smashing-the-stack-for-fun/</guid><pubDate>Thu, 25 Feb 2021 16:33:12 +0800</pubDate><author>Ma9icKing@gmail.com (Magic)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="论文阅读笔记smashing-the-stack-for-fun-and-profit">论文阅读笔记：Smashing The Stack For Fun And Profit&lt;/h2>
 &lt;blockquote>
 &lt;p>原文：&lt;a href="./Smashing_The_Stack_For_Fun_And_Profit.pdf">Smashing The Stack For Fun And Profit&lt;/a>&lt;/p>
 &lt;/blockquote>
@@ -22713,7 +22713,7 @@ Disallow: /registration
 &lt;blockquote>
 &lt;p>题目描述：X老师忘记删除备份文件，他派小宁同学去把备份文件找出来,一起来帮小宁同学吧！&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="XCTF-adworld-web-wp/4.jpg" style="zoom:50%;" />&lt;/p>
+&lt;p>&lt;img src="4.jpg" style="zoom:50%;" />&lt;/p>
 &lt;p>php的备份有两种：&lt;em>.php~和&lt;/em>.php.bak&lt;/p>
 &lt;p>如果网站存在备份文件，在地址栏最末加上/index.php~或/index.php.bak，即可得到备份文件 &lt;code>index.php.bak&lt;/code>&lt;/p>
 &lt;p>访问 http://url/index.php.bak 即自动下载了index.php.bak，打开查看flag就在里面&lt;/p>
@@ -22818,7 +22818,7 @@ Disallow: /registration
 &lt;p>题目描述：X老师告诉小宁其实xff和referer是可以伪造的&lt;/p>
 &lt;/blockquote>
 &lt;p>直接访问网站，提示需要特定ip访问&lt;/p>
-&lt;p>&lt;img src="XCTF-adworld-web-wp/8.jpg" style="zoom: 80%;" />&lt;/p>
+&lt;p>&lt;img src="8.jpg" style="zoom: 80%;" />&lt;/p>
 &lt;p>由题目描述猜想是改http请求，进行下一步.&lt;/p>
 &lt;p>百度xff可知&lt;/p>
 &lt;blockquote>
@@ -22832,7 +22832,7 @@ Disallow: /registration
 &lt;p>PS： Remote Address 无法伪造，因为建立 TCP 连接需要三次握手，如果伪造了源 IP，无法建立 TCP 连接，更不会有后面的 HTTP 请求&lt;/p>
 &lt;/blockquote>
 &lt;p>然后得到如下页面&lt;/p>
-&lt;p>&lt;img src="XCTF-adworld-web-wp/8_1.jpg" />&lt;/p>
+&lt;p>&lt;img src="8_1.jpg" />&lt;/p>
 &lt;p>百度Refer可知&lt;/p>
 &lt;blockquote>
 &lt;p>HTTP_REFERER提供了引导用户代理到当前页的前一页的地址信息，常见的一些应用场景有防盗链，统计文章有多少次是来自谷歌搜索结果，多少次来自百度搜索结果等。&lt;/p>
@@ -23934,25 +23934,25 @@ public key: &lt;span class="o">(&lt;/span>0xcb19fe553fa, 0x50545408eb4&lt;span c
 &lt;p>下载附件，发现是一个gif文件，打开查看发现在最后几秒闪过一个二维码&lt;/p>
 &lt;p>第一次做傻傻地用了linux下convert命令，将gif转到png，发现50多帧都被拆分成一个个png，&lt;/p>
 &lt;p>二维码大概在49帧，后面才发现有Stegsolve可以查看图片的每一帧&lt;/p>
-&lt;p>&lt;img src="XCTF-adworld-misc-wp/3_2.jpg" style="zoom:50%;" />&lt;/p>
+&lt;p>&lt;img src="3_2.jpg" style="zoom:50%;" />&lt;/p>
 &lt;p>明显是个二维码，修补其三角定位，得到下图&lt;/p>
-&lt;p>&lt;img src="XCTF-adworld-misc-wp/3_3.jpg" style="zoom:50%;" />&lt;/p>
+&lt;p>&lt;img src="3_3.jpg" style="zoom:50%;" />&lt;/p>
 &lt;p>扫码得到flag：&lt;code> flag{e7d478cf6b915f50ab1277f78502a2c5}&lt;/code>&lt;/p>
 &lt;h2 id="0x04-pdf">0x04 pdf&lt;/h2>
 &lt;blockquote>
 &lt;p>题目描述：菜猫给了菜狗一张图，说图下面什么都没有&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="XCTF-adworld-misc-wp/4.jpg" style="zoom:50%;" />&lt;/p>
+&lt;p>&lt;img src="4.jpg" style="zoom:50%;" />&lt;/p>
 &lt;p>打开附件是一个pdf，里面是一张图片，推测将pdf转为word格式之后，移走图片，发现flag就在图片底下&lt;/p>
-&lt;p>&lt;img src="XCTF-adworld-misc-wp/4_2.jpg" style="zoom:50%;" />&lt;/p>
+&lt;p>&lt;img src="4_2.jpg" style="zoom:50%;" />&lt;/p>
 &lt;p>易知得到flag：&lt;code>flag{security_through_obscurity}&lt;/code>&lt;/p>
 &lt;h2 id="0x05-stegano">0x05 stegano&lt;/h2>
 &lt;blockquote>
 &lt;p>题目描述：菜狗收到了图后很开心，玩起了pdf 提交格式为flag{xxx}，解密字符需小写&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="XCTF-adworld-misc-wp/5.jpg" style="zoom:50%;" />&lt;/p>
+&lt;p>&lt;img src="5.jpg" style="zoom:50%;" />&lt;/p>
 &lt;p>打开附件发现一份文档&lt;/p>
-&lt;p>&lt;img src="XCTF-adworld-misc-wp/5_2.jpg" style="zoom: 25%;" />&lt;/p>
+&lt;p>&lt;img src="5_2.jpg" style="zoom: 25%;" />&lt;/p>
 &lt;p>一开始没有思路，就先用之前的convert命令，将pdf的东西全部复制出来查看，发现&lt;/p>
 &lt;p>&lt;img src="5_3.jpg" alt="">&lt;/p>
 &lt;p>将AB转换为. - 可得到如下&lt;/p>
@@ -23964,10 +23964,10 @@ public key: &lt;span class="o">(&lt;/span>0xcb19fe553fa, 0x50545408eb4&lt;span c
 &lt;blockquote>
 &lt;p>题目描述：菜狗最近学会了拼图，这是他刚拼好的，可是却搞错了一块(ps:双图层)&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="XCTF-adworld-misc-wp/6.jpg" style="zoom:50%;" />&lt;/p>
+&lt;p>&lt;img src="6.jpg" style="zoom:50%;" />&lt;/p>
 &lt;p>下载完附件，只有一个文件，打开&lt;code>flag.txt&lt;/code> ,里面写着&lt;code>flag is not here&lt;/code>&lt;/p>
 &lt;p>打开winhex查看该rar，发现里面还有一个secret.png，然后根据文件头（或者使用rar修复） 将A8 3C 7A 修改为 A8 3C 74 。&lt;/p>
-&lt;img src="XCTF-adworld-misc-wp/6_3.jpg"/>
+&lt;img src="6_3.jpg"/>
 &lt;p>然后解压得到secret.png，打开是一个空白图片，便想到用winhex查看。&lt;/p>
 &lt;p>&lt;img src="6_2.jpg" alt="">&lt;/p>
 &lt;p>发现文件头是GIF，将后缀改为.gif，然后用Stegsolve分离出两帧图片，分别是二维码的上下部分，还少定位符，补齐定位符，扫码得到flag：&lt;code>flag：flag{yanji4n_bu_we1shi}&lt;/code>&lt;/p>
@@ -23976,24 +23976,24 @@ public key: &lt;span class="o">(&lt;/span>0xcb19fe553fa, 0x50545408eb4&lt;span c
 &lt;blockquote>
 &lt;p>题目描述：菜狗发现最近菜猫不爱理他，反而迷上了菜鸡&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="XCTF-adworld-misc-wp/7.jpg" style="zoom:50%;" />&lt;/p>
+&lt;p>&lt;img src="7.jpg" style="zoom:50%;" />&lt;/p>
 &lt;p>下下来是一个jar包，用java运行，发现是一个小游戏，根据题目联想需要坚持60s。&lt;/p>
-&lt;p>&lt;img src="XCTF-adworld-misc-wp/7_2.jpg" style="zoom:25%;" />&lt;/p>
+&lt;p>&lt;img src="7_2.jpg" style="zoom:25%;" />&lt;/p>
 &lt;p>玩了几次之后手残放弃，然后解压缩文件，用winhex打开文件搜索flag，在&lt;code>/cn/bjsxt/plane/PlaneGameFrame.class&lt;/code>里找到 &lt;code>flag{RGFqaURhbGlfSmlud2FuQ2hpamk=}&lt;/code>易知是base64编码，base64decode得到&lt;code>flag{DajiDali_JinwanChiji}&lt;/code>&lt;/p>
 &lt;p>第二种办法，我在找到flag后思考这是misc题也不是逆向题，便觉得这游戏肯定有bug，然后根据常识发现右边和下面的边界可以穿过来躲避障碍，但是完全卡入右边界之后无法返回。&lt;/p>
 &lt;p>之后发现到下边只能卡入一半，于是突发思维，将小方块卡入右下角然后留下了一个小角，发现可以成功躲过60s（记得计时，在60s~70s时主动出去死亡即可，然后成功得到flag明文&lt;/p>
-&lt;p>&lt;img src="XCTF-adworld-misc-wp/7_4.jpg" style="zoom: 25%;" />&lt;/p>
+&lt;p>&lt;img src="7_4.jpg" style="zoom: 25%;" />&lt;/p>
 &lt;h2 id="0x08-gif">0x08 gif&lt;/h2>
 &lt;blockquote>
 &lt;p>题目描述：菜狗截获了一张菜鸡发给菜猫的动态图，却发现另有玄机&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="XCTF-adworld-misc-wp/8.jpg" style="zoom:50%;" />&lt;/p>
+&lt;p>&lt;img src="8.jpg" style="zoom:50%;" />&lt;/p>
 &lt;p>得到一个zip包，查看里面有103张黑白色的图片，联想到二进制。&lt;/p>
 &lt;p>白色图片代表0，黑色图片代表1。&lt;/p>
 &lt;p>01100110前八位二进制换算后为 f 证明思路正确。&lt;/p>
 &lt;p>01100110011011000110000101100111011110110100011001110101010011100101111101100111011010010100011001111101&lt;/p>
 &lt;p>二进制转字符串得到 flag：&lt;code>flag{FuN_giF}&lt;/code>&lt;/p>
-&lt;p>&lt;img src="XCTF-adworld-misc-wp/8_2.jpg" style="zoom:50%;" />&lt;/p>
+&lt;p>&lt;img src="8_2.jpg" style="zoom:50%;" />&lt;/p>
 &lt;h2 id="0x09--掀桌子">0x09 掀桌子&lt;/h2>
 &lt;blockquote>
 &lt;p>题目描述：菜狗截获了一份报文如下c8e9aca0c6f2e5f3e8c4efe7a1a0d4e8e5a0e6ece1e7a0e9f3baa0e8eafae3f9e4eafae2eae4e3eaebfaebe3f5e7e9f3e4e3e8eaf9eaf3e2e4e6f2，生气地掀翻了桌子(╯°□°）╯︵ ┻━┻&lt;/p>
@@ -24007,14 +24007,14 @@ public key: &lt;span class="o">(&lt;/span>0xcb19fe553fa, 0x50545408eb4&lt;span c
 &lt;p>题目描述：菜狗为了打败菜猫，学了一套如来十三掌。&lt;/p>
 &lt;/blockquote>
 &lt;p>下下来附件是一个docx，发现是一段文字，贼像佛教里的文字&lt;/p>
-&lt;p>&lt;img src="XCTF-adworld-misc-wp/10_2.jpg" style="zoom: 50%;" />&lt;/p>
+&lt;p>&lt;img src="10_2.jpg" style="zoom: 50%;" />&lt;/p>
 &lt;p>搜索得到这是一种佛语加密，在网站 &lt;a href="http://keyfc.net/bbs/tools/tudoucode.aspx">http://keyfc.net/bbs/tools/tudoucode.aspx&lt;/a> &lt;a href="http://keyfc.net/bbs/tools/tudoucode.aspx">&lt;strong>与佛论禅&lt;/strong>&lt;/a> 可以翻译，但是将全文复制到chrome和firefox打开的网站里都解码失败了，后看他的说明，推测应该在复制过程中会将繁体字转换为简体字，这样你复制后的文字已经不是最初的原文了，所以解不出。试验过在MicrosoftEdge中能够成功解码。&lt;/p>
 &lt;p>解完是一串像base64编码的字符&lt;code>MzkuM3gvMUAwnzuvn3cgozMlMTuvqzAenJchMUAeqzWenzEmLJW9&lt;/code>，但是该字符解码得到是一串乱码，然后发现这个字符串需要先用rot13（与题目“如来十三掌”谐音）转一下，然后再base64解码，得到flag。&lt;/p>
 &lt;h2 id="0x0b--base64stego">0x0b base64stego&lt;/h2>
 &lt;blockquote>
 &lt;p>题目描述：菜狗经过几天的学习，终于发现了如来十三掌最后一步的精髓&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="XCTF-adworld-misc-wp/11.jpg" style="zoom:50%;" />&lt;/p>
+&lt;p>&lt;img src="11.jpg" style="zoom:50%;" />&lt;/p>
 &lt;p>打开压缩包，压缩包是伪加密的根据ctf-wiki里直接用winhex改一个标志位，或者用winrar修复即可&lt;/p>
 &lt;p>是一个&lt;code>stego.txt&lt;/code>可以看到很多行的base64编码&lt;/p>
 &lt;p>解码出来是在wiki百科上对Steganography的解释&lt;/p>
@@ -24192,10 +24192,10 @@ http://en.wikipedia.org
 &lt;blockquote>
 &lt;p>题目描述：菜狗决定用菜刀和菜鸡决一死战&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="XCTF-adworld-misc-wp/12.jpg" style="zoom:50%;" />&lt;/p>
+&lt;p>&lt;img src="12.jpg" style="zoom:50%;" />&lt;/p>
 &lt;p>下载附件发现是一个&lt;code>.pcapng&lt;/code>文件，是一个wireshark流量包。&lt;/p>
 &lt;p>用wireshark打开，&lt;code>ctrl+F&lt;/code>查找flag&lt;/p>
-&lt;p>&lt;img src="XCTF-adworld-misc-wp/12_2.jpg" />&lt;/p>
+&lt;p>&lt;img src="12_2.jpg" />&lt;/p>
 &lt;p>发现里面有zip和flag.txt还有6666.jpg。&lt;/p>
 &lt;p>追踪6666.jpg那一行的TCP请求，右键追踪TCP流&lt;/p>
 &lt;p>&lt;img src="12_3.jpg" alt="">&lt;/p>
