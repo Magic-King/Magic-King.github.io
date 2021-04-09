@@ -1,11 +1,4 @@
----
-title: ollvm-learning
-date: 2020-02-27T10:09:14+08:00
-tags: [reverse, ollvm]
-categories: [reverse, llvm, compiler]
-description: Learning about ollvm
-password:
----
+
 
 
 
@@ -429,7 +422,7 @@ int foo() {
 
 我自己写了一个测试文件，然后用于clang和ollvm混淆的各种测试
 
-源代码如下，关于混淆之后的执行文件和源文件打包在了[here](./ollvm-learning/test.zip)
+源代码如下，关于混淆之后的执行文件和源文件打包在了[here](./test.zip)
 
 ```c
 #include <stdio.h>
@@ -467,7 +460,7 @@ int main(){
 
 看反汇编的代码，他把for循环放入了一个while循环里，然后用一个if控制是否结束原来的循环，加入结束，就用`goto`到达最后执行的语句里，这里又写了一个假的while，经我看下来，这个while也就执行一次，循环就退出了，果然混淆后想搞懂流程贼麻烦
 
-<img src="ollvm-learning/test_bcf_ida.png" alt="ollvm-bcf"  />
+<img src="test_bcf_ida.png" alt="ollvm-bcf"  />
 
 
 
