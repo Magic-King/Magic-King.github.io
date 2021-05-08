@@ -460,7 +460,9 @@ int main(){
 
 看反汇编的代码，他把for循环放入了一个while循环里，然后用一个if控制是否结束原来的循环，加入结束，就用`goto`到达最后执行的语句里，这里又写了一个假的while，经我看下来，这个while也就执行一次，循环就退出了，果然混淆后想搞懂流程贼麻烦
 
-<img src="test_bcf_ida.png" alt="ollvm-bcf"  />
+![test_bcf_ida](test_bcf_ida.png)
+
+
 
 
 
