@@ -1,4 +1,11 @@
-
+---
+title: ollvm-learning
+date: 2020-02-27T10:09:14+08:00
+tags: [reverse, ollvm]
+categories: [reverse, llvm, compiler]
+description: Learning about ollvm
+password:
+---
 
 
 
