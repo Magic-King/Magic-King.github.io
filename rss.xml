@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Magic's Blog</title><link>https://magic-king.net/</link><description>Magic's Blog.&lt;br>NowYouSeeMe.</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>Ma9icKing@gmail.com (Magic)</managingEditor><webMaster>Ma9icKing@gmail.com (Magic)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Sat, 08 May 2021 08:56:07 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://magic-king.net/rss.xml"/><item><title>Mit6.828</title><link>https://magic-king.net/posts/mit6.828/</link><guid isPermaLink="true">https://magic-king.net/posts/mit6.828/</guid><pubDate>Sun, 04 Apr 2021 10:35:58 +0800</pubDate><author>Ma9icKing@gmail.com (Magic)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="0x00-序">0x00 序&lt;/h2>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Magic's Blog</title><link>https://magic-king.net/</link><description>Magic's Blog.&lt;br>NowYouSeeMe.</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>Ma9icKing@gmail.com (Magic)</managingEditor><webMaster>Ma9icKing@gmail.com (Magic)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Sat, 08 May 2021 09:41:44 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://magic-king.net/rss.xml"/><item><title>Mit6.828</title><link>https://magic-king.net/posts/mit6.828/</link><guid isPermaLink="true">https://magic-king.net/posts/mit6.828/</guid><pubDate>Sun, 04 Apr 2021 10:35:58 +0800</pubDate><author>Ma9icKing@gmail.com (Magic)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="0x00-序">0x00 序&lt;/h2>
 &lt;p>小菜鸡一直想复习一下操作系统，总感觉当初跟着老师学操作系统的时候，仿佛想小学跟着老师背语文一样，枯燥而又难理解。在学完大多课程之后，才发现操作系统是如此的重要，也正好在网上看到了MIT 6.828这门操作系统神课，就想着跟着这门课，加深我对操作系统的理解，以便对计算机的整体架构有着进一步的认识。&lt;/p>
 &lt;blockquote>
 &lt;p>Reference：&lt;/p>
@@ -6459,7 +6459,868 @@ sc@sc-virtual-machine:~$ sudo iptables -A FORWARD -i ens38 -j ACCEPT
 &lt;p>流量监控如下&lt;/p>
 &lt;p>&lt;img src="4.png" alt="">&lt;/p>
 &lt;p>针对某个流量的监控：我主机和虚拟机相互ping&lt;/p>
-&lt;p>&lt;img src="5.png" alt="">&lt;/p></description><category domain="https://magic-king.net/categories/network/">network</category><category domain="https://magic-king.net/tags/ntop/">ntop</category><category domain="https://magic-king.net/tags/network/">network</category></item><item><title>ssh-port-forwarding</title><link>https://magic-king.net/posts/ssh-port-forwarding/</link><guid isPermaLink="true">https://magic-king.net/posts/ssh-port-forwarding/</guid><pubDate>Sat, 22 Feb 2020 18:12:51 +0800</pubDate><author>Ma9icKing@gmail.com (Magic)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h1 id="centerssh端口转发center">&lt;center>SSH端口转发&lt;/center>&lt;/h1>
+&lt;p>&lt;img src="5.png" alt="">&lt;/p></description><category domain="https://magic-king.net/categories/network/">network</category><category domain="https://magic-king.net/tags/ntop/">ntop</category><category domain="https://magic-king.net/tags/network/">network</category></item><item><title>ollvm-learning</title><link>https://magic-king.net/posts/ollvm-learning/</link><guid isPermaLink="true">https://magic-king.net/posts/ollvm-learning/</guid><pubDate>Thu, 27 Feb 2020 10:09:14 +0800</pubDate><author>Ma9icKing@gmail.com (Magic)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h1 id="llvm">llvm&lt;/h1>
+&lt;blockquote>
+&lt;p>参考：&lt;/p>
+&lt;p>&lt;a href="http://llvm.org/">LLVM官网&lt;/a>&lt;/p>
+&lt;p>&lt;a href="http://llvm.org/docs/">LLVM-docs&lt;/a> ：注意要查看对应版本的文档，每个版本文档都有所改变&lt;/p>
+&lt;p>&lt;a href="https://github.com/llvm/llvm-project/">Github-llvm/llvm-project&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://github.com/llvm-mirror/llvm">Github-llvm-mirror/llvm&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://www.jianshu.com/p/707c4f8af150">LLVM基础(IR简介&amp;amp;CFG图生成&amp;amp;可视化)&lt;/a>：可以生成可视化的IR流程图&lt;/p>
+&lt;p>参考的GitHub&lt;/p>
+&lt;p>&lt;a href="https://github.com/heroims/obfuscator">Github-heroims/obfuscator&lt;/a> ：移植好的ollvm9.0等&lt;/p>
+&lt;p>&lt;a href="https://heroims.github.io/2019/01/06/OLLVM%E4%BB%A3%E7%A0%81%E6%B7%B7%E6%B7%86%E7%A7%BB%E6%A4%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/">OLLVM代码混淆移植与使用&lt;/a> ：heroims的博客&lt;/p>
+&lt;p>&lt;a href="https://github.com/iamywang/obfuscator">Github-iamywang/obfuscator&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://github.com/HikariObfuscator/Hikari">Github-HikariObfuscator/Hikari&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://github.com/GoSSIP-SJTU/Armariris">Github-GoSSIP-SJTU/Armariris&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://github.com/obfuscator-llvm/obfuscator">Github-obfuscator-llvm/obfuscator&lt;/a> ：官方版本&lt;/p>
+&lt;p>&lt;a href="https://github.com/obfuscator-llvm/obfuscator/wiki">obfuscator-wiki&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://bbs.pediy.com/thread-225756.htm">pediy.com---[原创]ollvm快速学习&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://juejin.im/post/5bfba01df265da614273939a">llvm入门&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://heroims.github.io/2019/01/06/OLLVM%E4%BB%A3%E7%A0%81%E6%B7%B7%E6%B7%86%E7%A7%BB%E6%A4%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/">OLLVM代码混淆移植与使用&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://www.leadroyal.cn/?p=659">llvm学习（三）：移植ollvm等作品到单独编译的Pass&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://zhuanlan.zhihu.com/frozengene">蓝色的味道&lt;/a>：谁说不能与龙一起跳舞：Clang / LLVM&lt;/p>
+&lt;p>&lt;a href="https://www.jianshu.com/p/e0637f3169a3">OLLVM代码混淆移植与使用&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://zhuanlan.zhihu.com/llvm-tutorial">llvm入门笔记&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://www.jianshu.com/p/333cf1c02a0e">llvm编译流程&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://www.jianshu.com/p/942875aa73cc">LLVM学习总结与OLLVM项目分析&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://sq.163yun.com/blog/article/175307579596922880">Obfuscator-llvm源码分析&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://blog.csdn.net/king_jie0210/article/details/81705540">ollvm源码分析&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://bbs.pediy.com/thread-255130.htm">[原创]ollvm源码分析 - Pass之Flattening&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://bbs.pediy.com/thread-255078.htm">[原创]ollvm源码分析 - Pass之SplitBaiscBlocks&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://zhuanlan.zhihu.com/p/27617441">GoSSIP安全研究项目：孤挺花（Armariris） LLVM混淆框架&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://mp.weixin.qq.com/s/rORMNBExWVyGvWMFvYTXPw">为OLLVM添加字符串混淆功能&lt;/a>&lt;/p>
+&lt;p>&lt;a href="http://www.nagain.com/activity/article/14/">llvm之旅第四站 － 编写Pass&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://github.com/haidragon/study_obscure">Github-haidragon / study_obscure&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://bbs.pediy.com/thread-225681.htm">[原创]Fllvm（Fuck-ollvm）介绍&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="啥是llvm">啥是LLVM？&lt;/h2>
+&lt;blockquote>
+&lt;p>&lt;a href="https://bbs.pediy.com/thread-247981.htm">[原创]LLVM了解篇剧场版&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>以上这篇文章简要地介绍了LLVM&lt;/p>
+&lt;p>LLVM：Low Level Virtual Machine(最初)&lt;/p>
+&lt;p>官方定义：&lt;strong>LLVM是一个模块化和可重用的编译器和工具链技术的集合&lt;/strong>&lt;/p>
+&lt;p>LLVM最初是在2000年由伊利诺伊大学香槟分校(UUIC)的学生Chris Lattner及其硕士顾问Vikram Adve创建的研究项目，并在2003年发布第一个正式版本，目的是提供一种基于SSA的现代编译策略，这种策略能够支持任何编程语言的静态和动态编译。&lt;/p>
+&lt;p>有意思的是，他的作者原本想要写一个低层虚拟机的，然而他并没有被当成虚拟机来用，逐渐地偏离了他原本的方向。现在llvm不是任何单词的缩写，而是一种体系，包含了一系列的项目&lt;/p>
+&lt;p>对于LLVM核心（LLVM Core）来说，它是一个编译器基础设施框架，它包含了为我们编写编译器一系列的库（如程序分析、代码优化、机器代码生成等），并且提供了调用这些库的相关工具，如llvm-opt可以调用LLVM优化相关的库，llvm-mc可以调用LLVM机器代码生成相关的库。并为此提供了一个非常方便简单、具备类型的、平台无关的统一中间代码语言，称之为LLVM IR.&lt;/p>
+&lt;p>&lt;img src="3.png" alt="">&lt;/p>
+&lt;p>以上是一个正常编译器的流程，源代码经过前端编译成中间代码，在经过优化和后端生成相应的机器码，即可执行文件&lt;/p>
+&lt;p>&lt;img src="2.png" alt="">&lt;/p>
+&lt;p>LLVM编译一个源文件的过程：预处理 -&amp;gt; 词法分析 -&amp;gt; Token -&amp;gt; 语法分析 -&amp;gt; AST -&amp;gt; 代码生成 -&amp;gt; LLVM IR -&amp;gt; 优化 -&amp;gt; 生成汇编代码 -&amp;gt; Link -&amp;gt; 目标文件&lt;/p>
+&lt;blockquote>
+&lt;p>其中IR(intermediate representation)是前端语言生成的中间代码表示，也是Pass操作的对象，它主要包含四个部分：&lt;/p>
+&lt;p>（1）Module：比如一个.c或者.cpp文件。&lt;/p>
+&lt;p>（2）Function：代表文件中的一个函数。&lt;/p>
+&lt;p>（3）BasicBlock：每个函数会被划分为一些block，它的划分标准是：一个block只有一个入口和一个出口。&lt;/p>
+&lt;p>（4）Instruction：具体的指令。&lt;/p>
+&lt;p>IR中各部分的具体关系如下图：&lt;/p>
+&lt;p>&lt;img src="IR-relation.png" alt="">&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="4.png" alt="">&lt;/p>
+&lt;p>拿个例子来说就是：首先，我们有C代码程序文件，然后经过了Clang前端（或者古老的llvm-gcc前端，这是在Clang出现以前使用的前端，可以产生LLVM IR），然后会产生LLVM IR。在这里，我们可以发现LLVM IR是以.bc结尾，缩写代表的单词是bitcode，它是序列化的数据，用以存储在磁盘中。而LLVM IR非常牛逼的创建了三种LLVM IR表示格式，除了bitcode这种用以存储的格式，第二种是用于人类可读的的格式，一般以.ll结尾。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">$ clang a.c -S -emit-llvm# 生成.ll可读文件
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这条命令即可产生&lt;code>.ll&lt;/code>文件&lt;/p>
+&lt;p>而第三种格式则是内存表示格式，这一般是用于我们程序开发，去操作LLVM IR。那么这里面有一个宏观的概念，那就是一个编译单元（即一个.c文件），在LLVM IR中代表着一个Module，而一个Module里面含有Global Value，主要包括Global Variable 和 Function，而至于Global Alias大家接触比较少，我们暂时忽略。而一个Function里面包含着Basic Block，而一个 Basic Block里面包含着指令，如add。那么关系你可以认为是Module -&amp;gt; Function -&amp;gt; Basic Block -&amp;gt; Instructions. 这是一个宏观的认识，需要具备。而这一个也就是我们常常去查阅的相关LLVM IR的API，如：&lt;a href="http://llvm.org/docs/doxygen/html/classllvm_1_1GlobalValue.html">llvm-GlobeValue&lt;/a>&lt;/p>
+&lt;p>而这里明确的一点是，这三者是完全等价的，并且可以转换的&lt;/p>
+&lt;p>再回到上面的流程图，即产生&lt;code>.bc&lt;/code>的阶段。产生完毕后，它这里直接进入&lt;code>llvm-link&lt;/code>阶段，其实不太完整。若是我们使用了O2等优化，我们在这里还会经历一个优化的阶段，即对这一个编译单元的优化，大约包括了40多种优化Pass，如死代码消除，内联等。而经过优化后，依然是.bc文件，然后再进入llvm-link阶段。而在llvm-link阶段，所要做的其实就是把多个.bc文件合并成一个.bc文件，并且做链接时优化，在这篇文章中提到过一个例子：&lt;a href="http://llvm.org/docs/LinkTimeOptimization.html">LLVM Link Time Optimization&lt;/a>，可以查阅一下是如何进行链接时优化的。&lt;/p>
+&lt;p>而经过&lt;code>llvm-link&lt;/code>阶段后，我们得到了一个新的&lt;code>.bc&lt;/code>文件，那么我们会再次进入优化阶段，重新再进行一次优化。因为经过&lt;code>llvm-link&lt;/code>后，我们的IR结构可能发生了一些变化，从而可能更有利于我们优化，得到更优化的IR。而这一步骤后，可以得到最终优化后的.bc，正式进入代码生成阶段。&lt;/p>
+&lt;p>而在这一幅图中，只列举出来了一个llc，即走机器代码生成的路径。其实对于LLVM来说，还可以有一个过程，那就是lli，即解释执行LLVM IR。不过我们这里不多谈，我们重点在机器代码生成。那么llc的作用就是把LLVM IR 编译成汇编文件&lt;code>.s&lt;/code>，这里你可以把LLVM IR想象成一个编程语言，然后经过了llc编译器，最后产生了汇编文件。如同C程序，经过Clang，产生了LLVM IR一般。那么，产生了汇编文件以后，就可以调用系统的汇编器，如GNU的as，从而产生目标文件object file，即&lt;code>.o&lt;/code>文件了。而细心的童鞋可能注意到了这里还有一条路径是&lt;code>llvm-mc&lt;/code>，直接走生成object file的过程。而这条路径在如今来说，并不是每个平台都会走，核心在于LLVM本身的集成汇编器，即&lt;code>-fintegrated-as&lt;/code>，使用集成汇编器既可以使用MCLoweing到MCInst，再使用MCStreamers直接到&lt;code>.o&lt;/code>，当然也可以到&lt;code>.s&lt;/code>。而目前本身的集成汇编器，我认为是并非完美，但是以发展趋势来看，会大一统的，从而做到没有平台差异，这也是LLVM做集成汇编器的一大理由。而生成完.o文件，剩下的过程就很简单了，就是链接器链接相关的库，然后和目标文件一起生存可执行文件&lt;code>.out / .exe&lt;/code>了。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1"># 二进制代码形式&lt;/span>
+$ clang -emit-llvm -c main.c -o main.bc
+&lt;span class="c1"># 可读文本代码形式&lt;/span>
+$ clang -emit-llvm –S -c main.c -o main.ll
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>
+&lt;h4 id="llvm-和-clang-的关系">llvm 和 clang 的关系&lt;/h4>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="1.png" alt="">&lt;/p>
+&lt;p>对于 LLVM 来说，其前端是 clang，在编译源码文件的时候使用的编译工具也是 clang。
+而生成中间 IR 代码后，llvm需要对 IR 代码进行一些操作，例如添加一些代码混淆功能。LLVM 的做法是通过编写 Pass(其实就是对应的一个个模块，每个类实现不同的功能)来实现混淆的功
+能。所以实现混淆，其实就是编写功能性的 Pass&lt;/p>
+&lt;h3 id="obfuscator-llvm">Obfuscator-LLVM&lt;/h3>
+&lt;p>Obfuscator-LLVM是由瑞士伊夫尔东莱班的应用科学与艺术大学信息安全小组（HEIG-VD）于2010年6月发起的一个项目。&lt;/p>
+&lt;p>该项目的目的是提供&lt;a href="http://www.llvm.org/">LLVM&lt;/a>编译套件的开源分支，该套件能够通过&lt;a href="http://en.wikipedia.org/wiki/Obfuscation_(software)">代码混淆&lt;/a>和防篡改来提高软件安全性。由于我们目前大部分工作在&lt;a href="http://en.wikipedia.org/wiki/Intermediate_language">中间表示&lt;/a>（IR）级别，因此我们的工具与所有编程语言（C，C ++，Objective-C，Ada和Fortran）和目标平台（x86，x86-64，PowerPC，PowerPC-64）兼容。&lt;/p>
+&lt;p>LLVM当前支持的ARM，Thumb，SPARC，Alpha，CellSPU，MIPS，MSP430，SystemZ和XCore）。&lt;/p>
+&lt;p>Obfuscator-LLVM的目的主要是在编译时增强软件就对抗向工程和编译时修改（动态调试？）&lt;/p>
+&lt;h4 id="install">Install&lt;/h4>
+&lt;p>可以直接从github上下载源码&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">$ git clone -b llvm-4.0 https://github.com/obfuscator-llvm/obfuscator.git
+$ mkdir build
+$ &lt;span class="nb">cd&lt;/span> build
+&lt;span class="c1"># 如果不想跑测试用例加上-DLLVM_INCLUDE_TESTS=OFF &lt;/span>
+$ cmake -DCMAKE_BUILD_TYPE&lt;span class="o">=&lt;/span>Release ../obfuscator/
+$ make -j7
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然而我在4核4G虚拟机里编译将近2h，还报错了tcl&lt;/p>
+&lt;p>我现在只想再来几根内存条 :(&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">error:virtual memory exhausted:Cannot allocate memory
+$ make -j7 &amp;gt;&amp;gt;40%
+$ make -j4 &amp;gt;&amp;gt;95%
+$ make -j2 &amp;gt;&amp;gt;100%
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="o-llvm手动打包">o-llvm手动打包&lt;/h4>
+&lt;blockquote>
+&lt;p>&lt;a href="http://www.few.vu.nl/~lsc300/LLVM/doxygen/index.html">http://www.few.vu.nl/~lsc300/LLVM/doxygen/index.html&lt;/a>&lt;/p>
+&lt;p>API Document&lt;/p>
+&lt;/blockquote>
+&lt;p>因为我下的ollvm9.0的&lt;code>-fla&lt;/code>有bug，所以决定亲自打包一波，顺便再深入了解ollvm&lt;/p>
+&lt;p>由Diffinity将ollvm4.0和llvm4.0进行对比，发现了以下文件的不同，也就意味着我们将ollvm打包进最新的llvm也需要修改以下文件。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">./include/llvm/Transforms/Obfuscation/ &lt;span class="c1"># obfuscation的头文件&lt;/span>
+./include/llvm/Transforms/CryptoUtils.h &lt;span class="c1"># obfuscation的头文件&lt;/span>
+./lib/Transforms/IPO/LLVMBuild.txt
+./lib/Transforms/IPO/PassManagerBuilder.cpp &lt;span class="c1"># Pass注册&lt;/span>
+./lib/Transforms/Obfuscation/ &lt;span class="c1"># obfuscation source code&lt;/span>
+./lib/Transforms/CMakeLists.txt
+./lib/Transforms/LLVMBuild.txt
+./tools/clang &lt;span class="c1"># 集成clang,要在gitignore里取消clang的注释&lt;/span>
+./.gitignore
+./CMakeLists.txt
+./CODE_OWNERS.TXT
+./LICENSE.TXT
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>从自己的github的obfuscator仓库中clone下来，注意一定要clone，直接下载downloadzip没有.git信息，虽然他真的很慢。&lt;/p>
+&lt;p>然后创建自己的llvm9.0分支&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">$ git clone git@github.com:Magic-King/obfuscator.git
+Cloning into &lt;span class="s1">&amp;#39;obfuscator&amp;#39;&lt;/span>...
+remote: Enumerating objects: 86723, &lt;span class="k">done&lt;/span>.
+remote: Total &lt;span class="m">86723&lt;/span> &lt;span class="o">(&lt;/span>delta 0&lt;span class="o">)&lt;/span>, reused &lt;span class="m">0&lt;/span> &lt;span class="o">(&lt;/span>delta 0&lt;span class="o">)&lt;/span>, pack-reused &lt;span class="m">86723&lt;/span>
+Receiving objects: 100% &lt;span class="o">(&lt;/span>86723/86723&lt;span class="o">)&lt;/span>, 132.79 MiB &lt;span class="p">|&lt;/span> 35.00 KiB/s, &lt;span class="k">done&lt;/span>.
+Resolving deltas: 100% &lt;span class="o">(&lt;/span>15346/15346&lt;span class="o">)&lt;/span>, &lt;span class="k">done&lt;/span>.
+$ git branch -a
+* master
+remotes/origin/HEAD -&amp;gt; origin/master
+remotes/origin/clang-425.0.24
+remotes/origin/llvm-3.3
+remotes/origin/llvm-3.4
+remotes/origin/llvm-3.5
+remotes/origin/llvm-3.6.1
+remotes/origin/llvm-4.0
+remotes/origin/master
+$ git branch -r
+origin/HEAD -&amp;gt; origin/master
+origin/clang-425.0.24
+origin/llvm-3.3
+origin/llvm-3.4
+origin/llvm-3.5
+origin/llvm-3.6.1
+origin/llvm-4.0
+origin/master
+$ git remote add origin git@github.com:Magic-King/obfuscator.git
+fatal: remote origin already exists.
+$ git checkout -b llvm-9.0
+Switched to a new branch &lt;span class="s1">&amp;#39;llvm-9.0
+&lt;/span>&lt;span class="s1">
+&lt;/span>&lt;span class="s1">$ git push origin llvm-9.0
+&lt;/span>&lt;span class="s1">Total 0 (delta 0), reused 0 (delta 0)
+&lt;/span>&lt;span class="s1">remote:
+&lt;/span>&lt;span class="s1">remote: Create a pull request for &amp;#39;&lt;/span>llvm-9.0&lt;span class="err">&amp;#39;&lt;/span> on GitHub by visiting:
+remote: https://github.com/Magic-King/obfuscator/pull/new/llvm-9.0
+remote:
+To github.com:Magic-King/obfuscator.git
+* &lt;span class="o">[&lt;/span>new branch&lt;span class="o">]&lt;/span> llvm-9.0 -&amp;gt; llvm-9.0
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后把最新的llvm9.0.1放入&lt;code>obfuscator/&lt;/code>文件夹下，把clang放入 &lt;code>obfuscator/tools/clang&lt;/code>里&lt;/p>
+&lt;p>然后将obfuscator-llvm4.0移植到obfuscate里，具体可以查看我的github的commit记录&lt;/p>
+&lt;p>网址如下：https://github.com/Magic-King/obfuscator/commits/llvm-9.0&lt;/p>
+&lt;p>但是，手动打包之后，&lt;code>-fla&lt;/code>还是有问题，不过其他选项倒是没问题，应该是&lt;code>-fla&lt;/code>和llvm-9.0不兼容的问题&lt;/p>
+&lt;h4 id="o-llvm的特点">o-llvm的特点&lt;/h4>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Instructions-Substitution">nstructions Substitution&lt;/a> &lt;code>-mllvm -sub&lt;/code>：指令替换&lt;/li>
+&lt;li>&lt;a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Bogus-Control-Flow">Bogus Control Flow&lt;/a> &lt;code>-mllvm -bcf&lt;/code>：伪控制流&lt;/li>
+&lt;li>&lt;a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Control-Flow-Flattening">Control Flow Flattening&lt;/a> &lt;code>-mllvm -fla&lt;/code>：激活控制流扁平化&lt;/li>
+&lt;li>&lt;a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Functions-annotations">Functions annotations&lt;/a>：可以针对一些特定函数进行混淆（选择性混淆）&lt;/li>
+&lt;/ul>
+&lt;h5 id="nstructions-substitutionhttpsgithubcomobfuscator-llvmobfuscatorwikiinstructions-substitution">&lt;a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Instructions-Substitution">nstructions Substitution&lt;/a>&lt;/h5>
+&lt;p>这种混淆技术的目标仅在于用功能上等效但更复杂的指令序列代替标准的二进制运算符（如加，减或布尔运算符）。当几个等效的指令序列可用时，随机选择一个。&lt;/p>
+&lt;p>这种混淆非常简单，并且不会增加很多安全性，因为可以通过重新优化生成的代码轻松地将其删除。但是，如果伪随机数发生器使用不同的值作为种子，则指令替换会在生成的二进制文件中带来多样性。&lt;/p>
+&lt;p>当前，只有整数运算符可用，因为用浮点值替代运算符会带来舍入误差和不必要的数值误差。&lt;/p>
+&lt;p>可用的编译器选项：&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>-mllvm -sub&lt;/code>：激活指令替换&lt;/li>
+&lt;li>&lt;code>-mllvm -sub_loop=3&lt;/code>：如果激活了通行证，则将其应用到功能上3次。默认值：1。&lt;/li>
+&lt;/ul>
+&lt;p>wiki中提到了可替换的运算：add、sub、and、or、xor。&lt;/p>
+&lt;h5 id="bogus-control-flowhttpsgithubcomobfuscator-llvmobfuscatorwikibogus-control-flow">&lt;a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Bogus-Control-Flow">Bogus Control Flow&lt;/a>&lt;/h5>
+&lt;p>该方法通过在当前基本块之前添加一个基本块来修改函数调用图。这个新的基本块包含一个不透明的谓词，然后有条件地跳转到原始的基本块。&lt;/p>
+&lt;p>原始的基本块也将被克隆并填充以随机选择的垃圾指令。&lt;/p>
+&lt;p>可用的编译器选项：&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>-mllvm -bcf&lt;/code>：激活伪控制流程&lt;/li>
+&lt;li>&lt;code>-mllvm -bcf_loop=3&lt;/code>：如果激活了通行证，则将其应用到功能上3次。默认值：1&lt;/li>
+&lt;li>&lt;code>-mllvm -bcf_prob=40&lt;/code>：如果激活了通行证，则基本团块将以40％的概率被混淆。默认值：30&lt;/li>
+&lt;/ul>
+&lt;h5 id="control-flow-flatteninghttpsgithubcomobfuscator-llvmobfuscatorwikicontrol-flow-flattening">&lt;a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Control-Flow-Flattening">Control Flow Flattening&lt;/a>&lt;/h5>
+&lt;p>此过程的目的是完全弄平程序的控制流程图。简单来说就是拆分基本块并置于无限循环中，程序流程由switch控制&lt;/p>
+&lt;p>可用的编译器选项：&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>-mllvm -fla&lt;/code>：激活控制流展平&lt;/li>
+&lt;li>&lt;code>-mllvm -split&lt;/code>：激活基本块分割。一起使用可改善展平性。&lt;/li>
+&lt;li>&lt;code>-mllvm -split_num=3&lt;/code>：如果激活了通行证，则在每个基本块上应用3次。默认值：1&lt;/li>
+&lt;/ul>
+&lt;h5 id="functions-annotationshttpsgithubcomobfuscator-llvmobfuscatorwikifunctions-annotations">&lt;a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Functions-annotations">Functions annotations&lt;/a>&lt;/h5>
+&lt;p>注释使您可以按功能指定要应用（或不应用）混淆的功能&lt;/p>
+&lt;p>用法：只需向您的函数添加属性。&lt;/p>
+&lt;p>例如：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="kt">int&lt;/span> &lt;span class="nf">foo&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="n">__attribute&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="n">__annotate__&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="s">&amp;#34;fla&amp;#34;&lt;/span>&lt;span class="p">))));&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="nf">foo&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>您可以为每个功能添加使用一个或多个注释。如果要禁用功能的混淆，也可以使用“反向标志”（例如，如果要禁用功能的伪造控制流，请使用注释“ nobcf”）。&lt;/p>
+&lt;h4 id="对比">对比&lt;/h4>
+&lt;p>我自己写了一个测试文件，然后用于clang和ollvm混淆的各种测试&lt;/p>
+&lt;p>源代码如下，关于混淆之后的执行文件和源文件打包在了&lt;a href="./test.zip">here&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;stdio.h&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;stdlib.h&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;span class="cp">&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">(){&lt;/span>
+&lt;span class="n">printf&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;Hello LLVM&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="kt">char&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;Hello fucking bug&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="c1">//a = &amp;#34;Hello O-LLVM!I will fuck you!&amp;#34;;
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="n">sum&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">&amp;lt;=&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;span class="n">sum&lt;/span> &lt;span class="o">+=&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="n">printf&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;%s&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s">the answer of what i do is %d&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s">&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">sum&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">printf&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;test finished!&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s">&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>以下是gcc编译的文件通过ida逆向所得的流程图&lt;/p>
+&lt;p>&lt;img src="test_gcc_ida.png" alt="test_gcc_ida">&lt;/p>
+&lt;p>以下是用clang9.0 编译test的流程图，可见大体的流程是和gcc相同的，不过通过ida的万能F5反编译出来的源码，clang版本的基本和源码差不多，gcc版本的循环的变量挺奇怪的，但是总体流程还是不变的&lt;/p>
+&lt;p>&lt;img src="test_clang_ida.png" alt="test_clang_ida">&lt;/p>
+&lt;p>下图是加了ollvm的bcf选项的反汇编结果，可见添加了许多虚假控制流，真正执行的循环是左半部分，他把for循环结束之后的该执行的语句放到了右半部分，在添加虚假控制流&lt;/p>
+&lt;p>看反汇编的代码，他把for循环放入了一个while循环里，然后用一个if控制是否结束原来的循环，加入结束，就用&lt;code>goto&lt;/code>到达最后执行的语句里，这里又写了一个假的while，经我看下来，这个while也就执行一次，循环就退出了，果然混淆后想搞懂流程贼麻烦&lt;/p>
+&lt;p>&lt;img src="test_bcf_ida.png" alt="test_bcf_ida">&lt;/p>
+&lt;p>ollvm编译fla选项，由于适配llvm9.0的fla选项失败了，所以这边是引用-split选项得出来的反汇编结果，split也就是fla平坦化所选择的选项&lt;/p>
+&lt;p>对比原来的clang反汇编出来的结果是不是多了许多可供选择的路，正如wiki所说是用switch控制的&lt;/p>
+&lt;p>反汇编出来的代码嵌套了多层while循环，并加入if判断，低层应该就是用switch实现的，然后再某几个switch case加入break破坏循环达到控制流程的目的&lt;/p>
+&lt;p>&lt;img src="test_split_ida.png" alt="ollvm-fla">&lt;/p>
+&lt;p>这个是最简单的，和clang编译的版本对比，主要区别在于分块之后的左边的块，他把其指令进行了替换，具体咋替换看我后面的源码分析&lt;/p>
+&lt;p>不过可惜的是，这个代码替换对于ida来说好像不是什么大事情，利用万能的F5反汇编时，他成功把循环里的加法还原了，产生的代码和clang版本没混淆的一模一样&lt;/p>
+&lt;p>可能这需要和其他几个选项一起使用会比较好&lt;/p>
+&lt;p>&lt;img src="test_sub_ida.png" alt="ollvm-sub">&lt;/p>
+&lt;p>//TODO：字符串混淆&lt;/p>
+&lt;h3 id="o-llvm源码分析">o-llvm源码分析&lt;/h3>
+&lt;p>通过我们手动将ollvm与llvm9.0打包的过程，我们可以非常清楚地了解了ollvm的源码结构&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">./include/llvm/Transforms/Obfuscation/ &lt;span class="c1"># obfuscation的头文件&lt;/span>
+./include/llvm/Transforms/CryptoUtils.h &lt;span class="c1"># obfuscation的加密工具类的头文件&lt;/span>
+./lib/Transforms/IPO/LLVMBuild.txt &lt;span class="c1"># pass模块编译的模块注册&lt;/span>
+./lib/Transforms/IPO/PassManagerBuilder.cpp &lt;span class="c1"># Pass注册&lt;/span>
+./lib/Transforms/Obfuscation/ &lt;span class="c1"># obfuscation source code&lt;/span>
+./lib/Transforms/CMakeLists.txt &lt;span class="c1"># 加入子目录&lt;/span>
+./lib/Transforms/LLVMBuild.txt &lt;span class="c1"># 加入LLVM编译子目录&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>我们知道，ollvm就是通过编写llvm的pass来将其中间语言IR进行不同程度的混淆&lt;/p>
+&lt;h4 id="bogus-control-flow">Bogus Control Flow&lt;/h4>
+&lt;p>&lt;strong>Bogus Control Flow&lt;/strong>的功能是为函数增加新的虚假控制流和添加垃圾指令。&lt;/p>
+&lt;p>其中文件位于&lt;code>./include/llvm/Transforms/Obfuscation/BogusControlFlow.cpp&lt;/code>&lt;/p>
+&lt;p>其中的注释跟我们非常形象的演示了其的工作内容&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="c1">// This file implements BogusControlFlow&amp;#39;s pass, inserting bogus control flow.
+&lt;/span>&lt;span class="c1">// It adds bogus flow to a given basic block this way:
+&lt;/span>&lt;span class="c1">//
+&lt;/span>&lt;span class="c1">// Before :
+&lt;/span>&lt;span class="c1">// entry
+&lt;/span>&lt;span class="c1">// |
+&lt;/span>&lt;span class="c1">// ______v______
+&lt;/span>&lt;span class="c1">// | Original |
+&lt;/span>&lt;span class="c1">// |_____________|
+&lt;/span>&lt;span class="c1">// |
+&lt;/span>&lt;span class="c1">// v
+&lt;/span>&lt;span class="c1">// return
+&lt;/span>&lt;span class="c1">//
+&lt;/span>&lt;span class="c1">// After :
+&lt;/span>&lt;span class="c1">// entry
+&lt;/span>&lt;span class="c1">// |
+&lt;/span>&lt;span class="c1">// ____v_____
+&lt;/span>&lt;span class="c1">// |condition*| (false)
+&lt;/span>&lt;span class="c1">// |__________|----+
+&lt;/span>&lt;span class="c1">// (true)| |
+&lt;/span>&lt;span class="c1">// | |
+&lt;/span>&lt;span class="c1">// ______v______ |
+&lt;/span>&lt;span class="c1">// +--&amp;gt;| Original* | |
+&lt;/span>&lt;span class="c1">// | |_____________| (true)
+&lt;/span>&lt;span class="c1">// | (false)| !-----------&amp;gt; return
+&lt;/span>&lt;span class="c1">// | ______v______ |
+&lt;/span>&lt;span class="c1">// | | Altered |&amp;lt;--!
+&lt;/span>&lt;span class="c1">// | |_____________|
+&lt;/span>&lt;span class="c1">// |__________|
+&lt;/span>&lt;span class="c1">//
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>他的Cpp文件先写好了Debug信息，再定义了以下为pass提供的选项常量&lt;/p>
+&lt;p>其中，我们最常见的 &lt;code>cl::opt&amp;lt;data_type&amp;gt;&lt;/code>是用来传递llvm之间pass共享的参数，也就是我们在编译时所给的&lt;code>-bcf_prob = 50&lt;/code>这个命令行编译参数可以传递到pass的核心所在&lt;/p>
+&lt;p>&lt;img src="SourceCode_bcf_1.png" alt="">&lt;/p>
+&lt;p>&lt;code>cl::opt&lt;/code>这个用法让我想起了c++中&lt;code>std::cout&lt;/code>、&lt;code>using namespace std&lt;/code>，经查询发现，这是一个类似于python的import的一个语法，namespace是为了和c的.h区分开来&lt;/p>
+&lt;blockquote>
+&lt;p>详细可见：&lt;/p>
+&lt;p>&lt;a href="https://www.cnblogs.com/MrYuan/p/4955956.html">C++ Namespace 详解&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://www.runoob.com/cplusplus/cpp-namespaces.html">C++ 命名空间&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://blog.csdn.net/fengbingchun/article/details/78575978">C++/C++11中命名空间(namespace)的使用&lt;/a>：这里面有一段折磨人的代码，读懂了应该就懂了c++的namespace的作用域&lt;/p>
+&lt;/blockquote>
+&lt;p>目前读下来，最常见的应该就是&lt;code>namespace llvm&lt;/code>和 &lt;code>namespace cl&lt;/code>了&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="k">struct&lt;/span> &lt;span class="nc">BogusControlFlow&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="k">public&lt;/span> &lt;span class="n">FunctionPass&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这里，BogusControlFlow继承至FunctionPass，因此它的入口函数即为runOnFunction&lt;/p>
+&lt;blockquote>
+&lt;p>struct的继承和class的继承有很大的区别，struct的继承是基于子类(struct)的public继承，class是基于子类(class)的private继承&lt;/p>
+&lt;/blockquote>
+&lt;p>整个namespace写了一个struct 类用于混淆&lt;/p>
+&lt;p>其中&lt;code>runOnFunction&lt;/code>为入口函数，先判断bcf的两个参数&lt;code>-bcf_loop&lt;/code>和&lt;code>-bcf_prob&lt;/code>是否符合正确范围内，然后检查是否启用了&lt;code>-bcf&lt;/code>选项，假如启用了，则进入核心函数&lt;code>bogus(F);&lt;/code>，然后继续处理&lt;code>doF(*F.getParent());&lt;/code>&lt;/p>
+&lt;p>在&lt;code>bogus()&lt;/code>函数里，先实现了Debug的相关部分，在每次进入函数前输出debug信息，用于处理debug模式下的&lt;code>-bcf&lt;/code>选项。然后定义一个list链表，用于储存BasicBlock，BasicBlock用for循环利用迭代器的模式从传入的 &lt;code>F&lt;/code> 获取。一个while循环，当基本块非空时，利用&lt;code>cryptoutils&lt;/code>工具类获取随机数，从链表中选择基本块进行混淆(用&lt;code>addBogusFlow(basicBlock, F);&lt;/code>函数)，并标记已混淆过该块，防止重复混淆某一基本块，否则就不混淆。然后弹出链表中的第一块，这样直到混淆次数为0为止。&lt;/p>
+&lt;p>&lt;code>addBogusFlow()&lt;/code>函数，将给定的基本块进行添加虚假控制流。首先获得一个基本块Basic Block，利用createAlteredBasicBlock()函数生成一个与原基本块相似的Basci Block，然后利用&lt;code>BasicBlock-&amp;gt;getTerminator()-&amp;gt;eraseFromParent();&lt;/code>把他们的父母节点擦除，然后创建两个条件恒为真的左右子节点，然后将其创建分支循环。（其过程是创建一个恒真的分支，进入分支的基本块后，加入一个判断，若真进入原基本块，若假进入假基本块，经假基本块的垃圾代码之后，再进入原基本块。在为真时，进入原基本块，将基本块主体执行完之后，在加入分支判断，正确返回结果，错误跳转至混假基本块进行循环）&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;a href="https://sq.163yun.com/blog/article/175307579596922880">https://sq.163yun.com/blog/article/175307579596922880&lt;/a>：这个讲的特别形象，配合着图一起阅读，这边借用其一张图&lt;/p>
+&lt;/blockquote>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="kt">int&lt;/span> &lt;span class="nf">add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="bcf_addBogusFlow.png" alt="">&lt;/p>
+&lt;p>如图，对于上述函数，分离其基本块，创建一个入口entry，然后加入一个恒真的分支，把生成相似的基本块放至错误分支里，即其永远不会执行的垃圾代码，将所执行的基本块放入正确分支里&lt;/p>
+&lt;p>&lt;code>createAlteredBasicBlock()&lt;/code>函数用于生成与给定基本块相似的基本块，将操作运算符进行重新映射，重新映射节点，重新映射对应的数据，然后加入随机的指令&lt;/p>
+&lt;p>对于&lt;code>doF()&lt;/code>函数，该函数的功能是将Function中所有为真的判断语句进行替换，比如之前的&lt;code>1.0 == 1.0 &lt;/code>。它的思想是定义两个全局变量x、y并且初始化为0，然后遍历Module内的所有指令，并将所有的FCMP_TRUE分支指令替换为&lt;code>y&amp;lt;10 || x*x(x-1)%2 ==0&lt;/code>，我们从反汇编的代码来看，很明显的就有y&amp;lt;10这个分支&lt;/p>
+&lt;h4 id="flattening">Flattening&lt;/h4>
+&lt;p>&lt;strong>Flattening&lt;/strong>的主要功能是为函数增加switch-case语句，使得函数变得扁平化。下面就对它的实现源码进行分析。&lt;/p>
+&lt;p>其中文件位于&lt;code>./include/llvm/Transforms/Obfuscation/Flattening.cpp&lt;/code>&lt;/p>
+&lt;p>Flattening继承了&lt;code>FunctionPass&lt;/code>，因此它的入口函数即为&lt;code>runOnFunction&lt;/code>。在&lt;code>runOnFunction&lt;/code>函数的具体实现中，首先判断是否包含了启动&lt;code>-fla&lt;/code>的命令。在编译目标程序代码时，如要启动fla模块，需要带上参数&lt;code>-mllvm -fla&lt;/code>。&lt;/p>
+&lt;p>参数检查完毕之后，调用flatten函数。flatten函数是该Pass的核心，下面对该函数进行分析。&lt;/p>
+&lt;p>先是声明了一些后面要用的变量，然后创建了一个数组，用来存储随机数种子&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="c1">// SCRAMBLER
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kt">char&lt;/span> &lt;span class="n">scrambling_key&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">16&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;span class="n">llvm&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">cryptoutils&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">get_bytes&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">scrambling_key&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">16&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="c1">// END OF SCRAMBLER
+&lt;/span>&lt;span class="c1">// Lower switch
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">FunctionPass&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">lower&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">createLowerSwitchPass&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="n">lower&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">runOnFunction&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>后两行调用了外部一个外部pass：&lt;code>creatLowerSwitchPass()&lt;/code>，用来消除当前函数的内部用switch方式的代码，将其全转换成&lt;code>if else&lt;/code>的调用，方便后面的代码块分割&lt;/p>
+&lt;p>然后一个for循环，像bcf那样，将函数分为各个基本块储存在&lt;code>vector&amp;lt;BasicBlock *&amp;gt; origBB&lt;/code>的一个向量数组里，等等的代码是针对基本块的操作，就像乐高那样一块块进行拼接。&lt;/p>
+&lt;p>然后的话，若只有一个以下的基本块，那么无法平坦化，直接返回&lt;code>false&lt;/code>&lt;/p>
+&lt;p>然后开始遍历基本块，先把第一块从vector数组中移除，因为按照他的流程平坦化的设计，第一块进行单独处理，作为整个混淆流程的开始逻辑，所以紧接着先对第一块进行处理。&lt;/p>
+&lt;p>检查第一块中是否包含条件跳转分支，如果包含条件跳转分支，则按照条件分支的位置进行代码块分割，分割逻辑跟SplitBasicBlock的逻辑一致，整个分割的目的也是为了后面进行流程平坦化准备的&lt;/p>
+&lt;p>然后开始是核心代码了&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="c1">// Create switch variable and set as it
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">switchVar&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;span class="k">new&lt;/span> &lt;span class="n">AllocaInst&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Type&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">getInt32Ty&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">getContext&lt;/span>&lt;span class="p">()),&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;switchVar&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">insert&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="k">new&lt;/span> &lt;span class="nf">StoreInst&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;span class="n">ConstantInt&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Type&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">getInt32Ty&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">getContext&lt;/span>&lt;span class="p">()),&lt;/span>
+&lt;span class="n">llvm&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">cryptoutils&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">scramble32&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">scrambling_key&lt;/span>&lt;span class="p">)),&lt;/span>
+&lt;span class="n">switchVar&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">insert&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这一段创建了一个switch用的变量，相当于是&lt;code>switch(caseVar)&lt;/code>，并通过&lt;code>StoreInst&lt;/code>进行赋值，这时就用上了之前的随机数种子，将生成的随机数用作case。&lt;/p>
+&lt;p>接着创建了两个空的基本块&lt;code>loopEntry&lt;/code>和&lt;code>loopEnd&lt;/code>，然后将switch语句放入&lt;code>loopEntry&lt;/code>中，将第一块基本块连接上&lt;code>loopEntry&lt;/code>，&lt;code>loopEnd&lt;/code>跳转回&lt;code>loopEntry&lt;/code>，在switch语句加入默认的&lt;code>swDefault&lt;/code>基本块大概成型了&lt;/p>
+&lt;p>大概就和下面这个流程图差不多了&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="c1">// +--------+
+&lt;/span>&lt;span class="c1">// |first bb|
+&lt;/span>&lt;span class="c1">// +---+----+
+&lt;/span>&lt;span class="c1">// |
+&lt;/span>&lt;span class="c1">// +----v----+
+&lt;/span>&lt;span class="c1">// |loopEntry| &amp;lt;--------+
+&lt;/span>&lt;span class="c1">// +----+----+ |
+&lt;/span>&lt;span class="c1">// | |
+&lt;/span>&lt;span class="c1">// +----v---+ |
+&lt;/span>&lt;span class="c1">// | switch | |
+&lt;/span>&lt;span class="c1">// +----+---+ |
+&lt;/span>&lt;span class="c1">// | |
+&lt;/span>&lt;span class="c1">// +------------+ |
+&lt;/span>&lt;span class="c1">// | |
+&lt;/span>&lt;span class="c1">// +------v-------+ |
+&lt;/span>&lt;span class="c1">// | default case | |
+&lt;/span>&lt;span class="c1">// +------+-------+ |
+&lt;/span>&lt;span class="c1">// | |
+&lt;/span>&lt;span class="c1">// +-----------+ |
+&lt;/span>&lt;span class="c1">// | |
+&lt;/span>&lt;span class="c1">// | |
+&lt;/span>&lt;span class="c1">// v |
+&lt;/span>&lt;span class="c1">// +-----+------+ |
+&lt;/span>&lt;span class="c1">// | loopEnd +---------+
+&lt;/span>&lt;span class="c1">// +------------+
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>骨架成型了，接下来把剩余的基本块往switch语句中填入就行了。&lt;/p>
+&lt;p>但是填入之后肯定是个死循环了，我们这时候就要活用flatten的思想，控制switch case的caseVar的值来达到控制流程的目的——很简单，在每个基本块即每个case之后，补上一条对caseVar的值更新的语句即可达到控制流程的目的&lt;/p>
+&lt;p>剩下代码就是来更新每个case中代码块对caseVar的操作了，怎么更新呢，很简单，就是更新成当前代码块原后续逻辑块在当前这个代码框架下的case值&lt;/p>
+&lt;p>接下来的操作分三种情况来进行&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>case中代码块没有后续块，那就是一个返回块，不需要更新caseVar&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>case中代码块只有一个后续块，也就是一个无条件跳转分支，直接更新成后续块对应的case即可&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>case中代码块有2个后续块，也就是一个条件跳转分支，通过successor对象（就是后续块的意思）直接在switch结构中查找出对应的case值&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="n">SelectInst&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">sel&lt;/span> &lt;span class="o">=&lt;/span>&lt;span class="n">SelectInst&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">Create&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">br&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">getCondition&lt;/span>&lt;span class="p">(),&lt;/span> &lt;span class="n">numCaseTrue&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">numCaseFalse&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">getTerminator&lt;/span>&lt;span class="p">());&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如上，使用llvm的SelectInst来实现分支选择，像227行写的，根据br-&amp;gt;getCondition()是否为True来决定是跳转到numCaseTrue还是numCaseFalse&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>最后这样就成功平坦化成功了&lt;/p>
+&lt;p>拿一个例子来理解：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="kt">int&lt;/span> &lt;span class="nf">func1&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="n">result&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;span class="n">result&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="k">else&lt;/span>&lt;span class="p">{&lt;/span>
+&lt;span class="n">result&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">result&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如下图，这是原本上面这个函数的IR图&lt;/p>
+&lt;p>&lt;img src="fla_1.png" alt="">&lt;/p>
+&lt;p>先判断第一个基本块有没有if语句，我们这个函数刚开始明显没有，先将第一块分开成一个基本块&lt;/p>
+&lt;p>&lt;img src="fla_2.png" alt="">&lt;/p>
+&lt;p>然后创建三个基本块&lt;code>loopEntry&lt;/code>、&lt;code>loopEnd&lt;/code>、&lt;code>swDefault&lt;/code>，组成如下图左边的流程&lt;/p>
+&lt;p>&lt;img src="fla_3.png" alt="">&lt;/p>
+&lt;p>这时候，switch语句我们已经可以看见了，接下来就是将vector里存储的每个基本块加入switch-case语句中，每一个basicblock对应一个case，并且caseVar为刚开始产生的随机数值，如下图所示&lt;/p>
+&lt;p>&lt;img src="fla_4.png" alt="">&lt;/p>
+&lt;p>添加完全部基本块之后，需要修改每个基本块的跳转关系，使得每个基本块执行完毕之后，会重新设置caseVar的值，从而跳转到&lt;code>loopEnd&lt;/code>块，然后回到switch-case的判断语句中，能够顺利跳转到下个case，处理后即为下图成型&lt;/p>
+&lt;p>&lt;img src="fla_5.png" alt="">&lt;/p>
+&lt;h4 id="substitution">Substitution&lt;/h4>
+&lt;p>Substitution的主要功能是对程序的一些指令进行替换。&lt;/p>
+&lt;p>其中文件位于&lt;code>./include/llvm/Transforms/Obfuscation/substitution.cpp&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="cp">#define NUMBER_ADD_SUBST 4
+&lt;/span>&lt;span class="cp">#define NUMBER_SUB_SUBST 3
+&lt;/span>&lt;span class="cp">#define NUMBER_AND_SUBST 2
+&lt;/span>&lt;span class="cp">#define NUMBER_OR_SUBST 2
+&lt;/span>&lt;span class="cp">#define NUMBER_XOR_SUBST 2
+&lt;/span>&lt;span class="cp">&lt;/span>
+&lt;span class="k">static&lt;/span> &lt;span class="n">cl&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">opt&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
+&lt;span class="n">ObfTimes&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;sub_loop&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">cl&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">desc&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;Choose how many time the -sub pass loops on a function&amp;#34;&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;span class="n">cl&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">value_desc&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;number of times&amp;#34;&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">cl&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">init&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">cl&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">Optional&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="c1">// Stats
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">STATISTIC&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Add&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;Add substitued&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">STATISTIC&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Sub&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;Sub substitued&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="c1">// STATISTIC(Mul, &amp;#34;Mul substitued&amp;#34;);
+&lt;/span>&lt;span class="c1">// STATISTIC(Div, &amp;#34;Div substitued&amp;#34;);
+&lt;/span>&lt;span class="c1">// STATISTIC(Rem, &amp;#34;Rem substitued&amp;#34;);
+&lt;/span>&lt;span class="c1">// STATISTIC(Shi, &amp;#34;Shift substitued&amp;#34;);
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">STATISTIC&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">And&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;And substitued&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">STATISTIC&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Or&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;Or substitued&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">STATISTIC&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Xor&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;Xor substitued&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如上代码，通过该文件的宏定义，就可知每种运算替换的方式有多少种，可以对哪些指令进行替换：很明显的有：加减、位的与、或、异或，五种运算的替换&lt;/p>
+&lt;p>而注释的是未实现的运算替换，在官方wiki里可以知道，为了保证混淆再恢复之后的正确性，避免浮点数运算带来的程序误差，所以没有实现这些运算的替换（乘、除、取余，移位）&lt;/p>
+&lt;p>在源文件里，类似地，在相应的namespace里定义了这些内容，与之前两个混淆方式类似，&lt;code>substitution&lt;/code>继承于&lt;code>FunctionPass&lt;/code>，以&lt;code>runOnFuntion&lt;/code>函数为入口，里面再判断flag参数正确之后，朴实无华地调用了&lt;code>substitute(tmp)&lt;/code>函数己行混淆&lt;/p>
+&lt;p>&lt;img src="sub_1.png" alt="">&lt;/p>
+&lt;p>主函数&lt;code>substitute()&lt;/code>很简单，用一个while循环维护混淆次数(即给的flag参数&lt;code>-sub_loop&lt;/code>)，然后两层&lt;code>for&lt;/code>循环。第一个for循环用来遍历函数中的基本块(Basic Block)，第二个&lt;code>for&lt;/code>循环用于遍历每个基本块中的所有指令，然后采用一个&lt;code>switch-case&lt;/code>语句用来针对不同指令的不同替换操作，case里用随机数来决定用哪种方式去替换&lt;/p>
+&lt;p>接下来的所有代码都是其替换方式的实现&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Instructions-Substitution">Instructions-Substitution&lt;/a>：在其官方wiki里都有说明是怎样的替换方式，在其注释下代码很好理解，相关的函数不懂就查查llvm的函数库就可以了&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;code>Add&lt;/code>指令支持4种替换方法，分别是&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>a = b - (-c)&lt;/code>&lt;/li>
+&lt;li>&lt;code>a = -(-b + (-c))&lt;/code>&lt;/li>
+&lt;li>&lt;code>r = rand (); a = b + r; a = a + c; a = a – r &lt;/code>&lt;/li>
+&lt;li>&lt;code>r = rand (); a = b - r; a = a + b; a = a + r &lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>Sub&lt;/code>指令支持3种替换方法，分别是&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>a = b + (-c)&lt;/code>&lt;/li>
+&lt;li>&lt;code>r = rand (); a = b + r; a = a - c; a = a – r &lt;/code>&lt;/li>
+&lt;li>&lt;code>r = rand (); a = b - r; a = a - c; a = a + r &lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>And&lt;/code> 指令支持1种替换方法，分别是&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>a = b &amp;amp; c&lt;/code> =&amp;gt; &lt;code>a = (b^~c)&amp;amp; b&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>Or&lt;/code>指令支持1种替换方法，分别是&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>a = b | c&lt;/code> =&amp;gt; &lt;code>a = (b &amp;amp; c) | (b ^ c) &lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>Xor&lt;/code> 指令支持1种替换方法，分别是&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>a = a ^ b &lt;/code>=&amp;gt; &lt;code>a = (!a &amp;amp; b) | (a &amp;amp; !b) &lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;h4 id="stringobfuscation">StringObfuscation&lt;/h4>
+&lt;p>有很多大佬对于ollvm的混淆进行了升级，每个版本对于其混淆的实现方式各不相同，这边我分析的是上海交通大学的孤挺花项目的字符串混淆实现分析，项目地址为：https://github.com/GoSSIP-SJTU/Armariris&lt;/p>
+&lt;p>与上面三种原有项目的混淆方式不同，字符串混淆的类&lt;code>StringObfuscationPass&lt;/code>继承至&lt;code>ModulePass&lt;/code>，在入口函数&lt;code>runOnModule&lt;/code>里重写了父类函数，在里面实现了加密，在私有函数中实现了解密函数，在加密的末尾实现了调用，保证函数运行的正确性&lt;/p>
+&lt;p>函数的思想：是以两个vector来存储静态变量和加密后的字符串，利用Module类的&lt;code>global_iterator&lt;/code>迭代器遍历全局变量，判断是否为&lt;code>.str.&lt;/code>类型，即字符串类型，进行加密替换，加密方式采用了最原始的异或加密&lt;/p>
+&lt;h4 id="bug寻找">bug寻找&lt;/h4>
+&lt;p>适配llvm9.0和ollvm4.0时发生了许多错误&lt;/p>
+&lt;p>可见 &lt;a href="bug_log.txt">bug_Log&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://www.cnblogs.com/wpgraceii/p/10622582.html">Segmentation Fault 的原因若干&lt;/a>&lt;/p>
+&lt;p>最快的当然还是把相关错误的llvm4.0的代码移植到llvm9.0处&lt;/p>
+&lt;p>解决string_obf error编译时报强制转换类型错误方法 ：http://hellollvm.org/slides/porting-ollvm.pdf&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;a href="http://hellollvm.org/">http://hellollvm.org/&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="对抗">对抗&lt;/h3>
+&lt;p>//TODO：大坑，现在对逆向还不是很熟悉，先对方法了解一波&lt;/p>
+&lt;p>引用项目Fllvm(虽然他不开源)中，作者对自己改写的ollvm变版fllvm的自信，来学习对抗ollvm的方式&lt;/p>
+&lt;blockquote>
+&lt;p>Fllvm与当前反混淆工具的对抗：当前应对ollvm混淆的大体方法为：自写脚本、bcf、decllvm、符合执行。前三个无论是自己找规律，还是基于capstone(反汇编引擎)，对Fllvm都只存在理论的可行性，基本用途不大。&lt;/p>
+&lt;/blockquote>
+&lt;p>由作者一段话可知，大概就是找规律写脚本复原，或者采用符号执行的方式去反混淆(原谅我真的找不到作者所说的bcf是啥)&lt;/p>
+&lt;p>我看的大多找规律的都是从原版ollvm的混淆方式入手，写反混淆的脚本去运行&lt;/p>
+&lt;p>还是能用符号执行分析的大佬比较nb&lt;/p>
+&lt;blockquote>
+&lt;p>资料：&lt;/p>
+&lt;p>&lt;a href="https://www.freebuf.com/articles/terminal/130142.html">反混淆：恢复被OLLVM保护的程序&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://bbs.pediy.com/thread-252321.htm">[原创]ARM64 OLLVM反混淆&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://www.anquanke.com/post/id/200744">Android OLLVM反混淆实战&lt;/a>：基于Angr&lt;/p>
+&lt;p>&lt;a href="https://www.hacking8.com/uploadfile/kcon/2019/24%E6%97%A5/%E5%9F%BA%E4%BA%8E%E7%AC%A6%E5%8F%B7%E6%89%A7%E8%A1%8C%E7%9A%84%E5%8F%8D%E6%B7%B7%E6%B7%86%E6%96%B9%E6%B3%95%E7%A0%94%E7%A9%B6.pdf">基于符号执行的反混淆方法研究.pdf&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://www.hacking8.com/uploadfile/kcon/2019/24%E6%97%A5/%E5%9F%BA%E4%BA%8E%E7%AC%A6%E5%8F%B7%E6%89%A7%E8%A1%8C%E7%9A%84%E5%8F%8D%E6%B7%B7%E6%B7%86%E6%96%B9%E6%B3%95%E7%A0%94%E7%A9%B6.pdf">基于符号执行的反混淆方法研究.pdf&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://security.tencent.com/index.php/blog/msg/112">利用符号执行去除控制流平坦化&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://www.cnblogs.com/h2zZhou/p/6637890.html">反混淆：恢复被OLLVM保护的程序&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://mlog.club/article/3446618">使用Binary Ninja去除ollvm流程平坦混淆&lt;/a>&lt;/p>
+&lt;blockquote>
+&lt;p>关于逆向：https://blog.yuuoniy.cn/2018/08/03/XMAN-reversing-1/&lt;/p>
+&lt;/blockquote>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;ul>
+&lt;li>基于Miasm框架(一个Python开源逆向工程框架)，进行反混淆&lt;/li>
+&lt;/ul>
+&lt;p>&lt;a href="https://github.com/cea-sec/miasm">https://github.com/cea-sec/miasm&lt;/a>
+&lt;a href="https://www.freebuf.com/articles/terminal/130142.html">反混淆：恢复被OLLVM保护的程序&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>IDA插件，利用micro code API进行反混淆&lt;/li>
+&lt;/ul>
+&lt;p>Hex-rays：&lt;a href="http://www.hexblog.com/?p=1248">Hex-Rays Microcode API vs. Obfuscating Compiler&lt;/a>
+项目地址：&lt;a href="https://github.com/RolfRolles/HexRaysDeob">Github-RolfRolles / HexRaysDeob&lt;/a>
+&lt;a href="https://xz.aliyun.com/t/6749">使用IDA microcode去除ollvm混淆(上)&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>DecLLVM，针对OLLVM的IDA分析插件
+&lt;a href="https://github.com/F8LEFT/DecLLVM">Github-F8LEFT / DecLLVM&lt;/a>
+&lt;a href="https://gitlab.com/F8LEFT/DecLLVM">Gitlab-F8LEFT / DecLLVM&lt;/a>
+&lt;a href="https://www.52pojie.cn/thread-484892-1-1.html">吾爱破解2016安全挑战赛cm7 Android CrackMe 分析详解&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Unicorn 引擎
+&lt;a href="https://bbs.pediy.com/thread-224330.htm">[翻译]Unicorn引擎教程&lt;/a>
+&lt;a href="https://bbs.pediy.com/thread-252257.htm">[原创]使用unicorn engin还原Armariris字符串混淆&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Angr 符号执行框架
+Github里有&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>关于符号执行：&lt;/p>
+&lt;p>&lt;a href="https://pdfs.semanticscholar.org/a29f/c90b207befb42f67a040c6a07ea6699f6bad.pdf">符号执行&lt;/a>是一种重要的形式化方法和软件分析技术，通过使用符号执行技术，将程序中变量的值表示为符号值和常量组成的计算表达式，符号是指取值集合的记号，程序计算的输出被表示为输入符号值的函数，其在软件测试和程序验证中发挥着重要作用，并可以应用于程序漏洞的检测。&lt;/p>
+&lt;p>符号执行的发展是从静态符号执行到动态符号执行到&lt;a href="http://dslab.epfl.ch/pubs/selsymbex.pdf">选择性符号执行&lt;/a>，动态符号执行会以具体数值作为输入来模拟执行程序，是&lt;a href="http://mir.cs.illinois.edu/marinov/publications/SenETAL05CUTE.pdf">混合执行&lt;/a>(concolic execution)的典型代表，有很高的精确度，目前较新的符号执行工具有&lt;a href="https://github.com/JonathanSalwan/Triton">Triton&lt;/a>和&lt;a href="https://github.com/angr/angr">angr&lt;/a>&lt;/p>
+&lt;p>关于符号执行的paper：https://github.com/saswatanand/symexbib&lt;/p>
+&lt;p>符号执行的框架：Miasm、Angr、Triton&lt;/p>
+&lt;/blockquote></description><category domain="https://magic-king.net/categories/reverse/">reverse</category><category domain="https://magic-king.net/categories/llvm/">llvm</category><category domain="https://magic-king.net/categories/compiler/">compiler</category><category domain="https://magic-king.net/tags/reverse/">reverse</category><category domain="https://magic-king.net/tags/ollvm/">ollvm</category></item><item><title>ssh-port-forwarding</title><link>https://magic-king.net/posts/ssh-port-forwarding/</link><guid isPermaLink="true">https://magic-king.net/posts/ssh-port-forwarding/</guid><pubDate>Sat, 22 Feb 2020 18:12:51 +0800</pubDate><author>Ma9icKing@gmail.com (Magic)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h1 id="centerssh端口转发center">&lt;center>SSH端口转发&lt;/center>&lt;/h1>
 &lt;blockquote>
 &lt;p>参考：&lt;/p>
 &lt;p>&lt;a href="https://juejin.im/post/5dabc760518825040063205e">ssh端口转发的三种方式&lt;/a>&lt;/p>
@@ -36639,865 +37500,4 @@ jsDelivr 是一家开源免费CDN，主要是对npm包进行CDN分发
 &lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">$ hexo deploy
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>More info: &lt;a href="https://hexo.io/docs/deployment.html">Deployment&lt;/a>&lt;/p></description></item><item><title/><link>https://magic-king.net/posts/</link><guid isPermaLink="true">https://magic-king.net/posts/</guid><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><author>Ma9icKing@gmail.com (Magic)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h1 id="llvm">llvm&lt;/h1>
-&lt;blockquote>
-&lt;p>参考：&lt;/p>
-&lt;p>&lt;a href="http://llvm.org/">LLVM官网&lt;/a>&lt;/p>
-&lt;p>&lt;a href="http://llvm.org/docs/">LLVM-docs&lt;/a> ：注意要查看对应版本的文档，每个版本文档都有所改变&lt;/p>
-&lt;p>&lt;a href="https://github.com/llvm/llvm-project/">Github-llvm/llvm-project&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://github.com/llvm-mirror/llvm">Github-llvm-mirror/llvm&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://www.jianshu.com/p/707c4f8af150">LLVM基础(IR简介&amp;amp;CFG图生成&amp;amp;可视化)&lt;/a>：可以生成可视化的IR流程图&lt;/p>
-&lt;p>参考的GitHub&lt;/p>
-&lt;p>&lt;a href="https://github.com/heroims/obfuscator">Github-heroims/obfuscator&lt;/a> ：移植好的ollvm9.0等&lt;/p>
-&lt;p>&lt;a href="https://heroims.github.io/2019/01/06/OLLVM%E4%BB%A3%E7%A0%81%E6%B7%B7%E6%B7%86%E7%A7%BB%E6%A4%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/">OLLVM代码混淆移植与使用&lt;/a> ：heroims的博客&lt;/p>
-&lt;p>&lt;a href="https://github.com/iamywang/obfuscator">Github-iamywang/obfuscator&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://github.com/HikariObfuscator/Hikari">Github-HikariObfuscator/Hikari&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://github.com/GoSSIP-SJTU/Armariris">Github-GoSSIP-SJTU/Armariris&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://github.com/obfuscator-llvm/obfuscator">Github-obfuscator-llvm/obfuscator&lt;/a> ：官方版本&lt;/p>
-&lt;p>&lt;a href="https://github.com/obfuscator-llvm/obfuscator/wiki">obfuscator-wiki&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://bbs.pediy.com/thread-225756.htm">pediy.com---[原创]ollvm快速学习&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://juejin.im/post/5bfba01df265da614273939a">llvm入门&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://heroims.github.io/2019/01/06/OLLVM%E4%BB%A3%E7%A0%81%E6%B7%B7%E6%B7%86%E7%A7%BB%E6%A4%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/">OLLVM代码混淆移植与使用&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://www.leadroyal.cn/?p=659">llvm学习（三）：移植ollvm等作品到单独编译的Pass&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://zhuanlan.zhihu.com/frozengene">蓝色的味道&lt;/a>：谁说不能与龙一起跳舞：Clang / LLVM&lt;/p>
-&lt;p>&lt;a href="https://www.jianshu.com/p/e0637f3169a3">OLLVM代码混淆移植与使用&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://zhuanlan.zhihu.com/llvm-tutorial">llvm入门笔记&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://www.jianshu.com/p/333cf1c02a0e">llvm编译流程&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://www.jianshu.com/p/942875aa73cc">LLVM学习总结与OLLVM项目分析&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://sq.163yun.com/blog/article/175307579596922880">Obfuscator-llvm源码分析&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://blog.csdn.net/king_jie0210/article/details/81705540">ollvm源码分析&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://bbs.pediy.com/thread-255130.htm">[原创]ollvm源码分析 - Pass之Flattening&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://bbs.pediy.com/thread-255078.htm">[原创]ollvm源码分析 - Pass之SplitBaiscBlocks&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://zhuanlan.zhihu.com/p/27617441">GoSSIP安全研究项目：孤挺花（Armariris） LLVM混淆框架&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://mp.weixin.qq.com/s/rORMNBExWVyGvWMFvYTXPw">为OLLVM添加字符串混淆功能&lt;/a>&lt;/p>
-&lt;p>&lt;a href="http://www.nagain.com/activity/article/14/">llvm之旅第四站 － 编写Pass&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://github.com/haidragon/study_obscure">Github-haidragon / study_obscure&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://bbs.pediy.com/thread-225681.htm">[原创]Fllvm（Fuck-ollvm）介绍&lt;/a>&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="啥是llvm">啥是LLVM？&lt;/h2>
-&lt;blockquote>
-&lt;p>&lt;a href="https://bbs.pediy.com/thread-247981.htm">[原创]LLVM了解篇剧场版&lt;/a>&lt;/p>
-&lt;/blockquote>
-&lt;p>以上这篇文章简要地介绍了LLVM&lt;/p>
-&lt;p>LLVM：Low Level Virtual Machine(最初)&lt;/p>
-&lt;p>官方定义：&lt;strong>LLVM是一个模块化和可重用的编译器和工具链技术的集合&lt;/strong>&lt;/p>
-&lt;p>LLVM最初是在2000年由伊利诺伊大学香槟分校(UUIC)的学生Chris Lattner及其硕士顾问Vikram Adve创建的研究项目，并在2003年发布第一个正式版本，目的是提供一种基于SSA的现代编译策略，这种策略能够支持任何编程语言的静态和动态编译。&lt;/p>
-&lt;p>有意思的是，他的作者原本想要写一个低层虚拟机的，然而他并没有被当成虚拟机来用，逐渐地偏离了他原本的方向。现在llvm不是任何单词的缩写，而是一种体系，包含了一系列的项目&lt;/p>
-&lt;p>对于LLVM核心（LLVM Core）来说，它是一个编译器基础设施框架，它包含了为我们编写编译器一系列的库（如程序分析、代码优化、机器代码生成等），并且提供了调用这些库的相关工具，如llvm-opt可以调用LLVM优化相关的库，llvm-mc可以调用LLVM机器代码生成相关的库。并为此提供了一个非常方便简单、具备类型的、平台无关的统一中间代码语言，称之为LLVM IR.&lt;/p>
-&lt;p>&lt;img src="3.png" alt="">&lt;/p>
-&lt;p>以上是一个正常编译器的流程，源代码经过前端编译成中间代码，在经过优化和后端生成相应的机器码，即可执行文件&lt;/p>
-&lt;p>&lt;img src="2.png" alt="">&lt;/p>
-&lt;p>LLVM编译一个源文件的过程：预处理 -&amp;gt; 词法分析 -&amp;gt; Token -&amp;gt; 语法分析 -&amp;gt; AST -&amp;gt; 代码生成 -&amp;gt; LLVM IR -&amp;gt; 优化 -&amp;gt; 生成汇编代码 -&amp;gt; Link -&amp;gt; 目标文件&lt;/p>
-&lt;blockquote>
-&lt;p>其中IR(intermediate representation)是前端语言生成的中间代码表示，也是Pass操作的对象，它主要包含四个部分：&lt;/p>
-&lt;p>（1）Module：比如一个.c或者.cpp文件。&lt;/p>
-&lt;p>（2）Function：代表文件中的一个函数。&lt;/p>
-&lt;p>（3）BasicBlock：每个函数会被划分为一些block，它的划分标准是：一个block只有一个入口和一个出口。&lt;/p>
-&lt;p>（4）Instruction：具体的指令。&lt;/p>
-&lt;p>IR中各部分的具体关系如下图：&lt;/p>
-&lt;p>&lt;img src="IR-relation.png" alt="">&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;img src="4.png" alt="">&lt;/p>
-&lt;p>拿个例子来说就是：首先，我们有C代码程序文件，然后经过了Clang前端（或者古老的llvm-gcc前端，这是在Clang出现以前使用的前端，可以产生LLVM IR），然后会产生LLVM IR。在这里，我们可以发现LLVM IR是以.bc结尾，缩写代表的单词是bitcode，它是序列化的数据，用以存储在磁盘中。而LLVM IR非常牛逼的创建了三种LLVM IR表示格式，除了bitcode这种用以存储的格式，第二种是用于人类可读的的格式，一般以.ll结尾。&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">$ clang a.c -S -emit-llvm# 生成.ll可读文件
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>这条命令即可产生&lt;code>.ll&lt;/code>文件&lt;/p>
-&lt;p>而第三种格式则是内存表示格式，这一般是用于我们程序开发，去操作LLVM IR。那么这里面有一个宏观的概念，那就是一个编译单元（即一个.c文件），在LLVM IR中代表着一个Module，而一个Module里面含有Global Value，主要包括Global Variable 和 Function，而至于Global Alias大家接触比较少，我们暂时忽略。而一个Function里面包含着Basic Block，而一个 Basic Block里面包含着指令，如add。那么关系你可以认为是Module -&amp;gt; Function -&amp;gt; Basic Block -&amp;gt; Instructions. 这是一个宏观的认识，需要具备。而这一个也就是我们常常去查阅的相关LLVM IR的API，如：&lt;a href="http://llvm.org/docs/doxygen/html/classllvm_1_1GlobalValue.html">llvm-GlobeValue&lt;/a>&lt;/p>
-&lt;p>而这里明确的一点是，这三者是完全等价的，并且可以转换的&lt;/p>
-&lt;p>再回到上面的流程图，即产生&lt;code>.bc&lt;/code>的阶段。产生完毕后，它这里直接进入&lt;code>llvm-link&lt;/code>阶段，其实不太完整。若是我们使用了O2等优化，我们在这里还会经历一个优化的阶段，即对这一个编译单元的优化，大约包括了40多种优化Pass，如死代码消除，内联等。而经过优化后，依然是.bc文件，然后再进入llvm-link阶段。而在llvm-link阶段，所要做的其实就是把多个.bc文件合并成一个.bc文件，并且做链接时优化，在这篇文章中提到过一个例子：&lt;a href="http://llvm.org/docs/LinkTimeOptimization.html">LLVM Link Time Optimization&lt;/a>，可以查阅一下是如何进行链接时优化的。&lt;/p>
-&lt;p>而经过&lt;code>llvm-link&lt;/code>阶段后，我们得到了一个新的&lt;code>.bc&lt;/code>文件，那么我们会再次进入优化阶段，重新再进行一次优化。因为经过&lt;code>llvm-link&lt;/code>后，我们的IR结构可能发生了一些变化，从而可能更有利于我们优化，得到更优化的IR。而这一步骤后，可以得到最终优化后的.bc，正式进入代码生成阶段。&lt;/p>
-&lt;p>而在这一幅图中，只列举出来了一个llc，即走机器代码生成的路径。其实对于LLVM来说，还可以有一个过程，那就是lli，即解释执行LLVM IR。不过我们这里不多谈，我们重点在机器代码生成。那么llc的作用就是把LLVM IR 编译成汇编文件&lt;code>.s&lt;/code>，这里你可以把LLVM IR想象成一个编程语言，然后经过了llc编译器，最后产生了汇编文件。如同C程序，经过Clang，产生了LLVM IR一般。那么，产生了汇编文件以后，就可以调用系统的汇编器，如GNU的as，从而产生目标文件object file，即&lt;code>.o&lt;/code>文件了。而细心的童鞋可能注意到了这里还有一条路径是&lt;code>llvm-mc&lt;/code>，直接走生成object file的过程。而这条路径在如今来说，并不是每个平台都会走，核心在于LLVM本身的集成汇编器，即&lt;code>-fintegrated-as&lt;/code>，使用集成汇编器既可以使用MCLoweing到MCInst，再使用MCStreamers直接到&lt;code>.o&lt;/code>，当然也可以到&lt;code>.s&lt;/code>。而目前本身的集成汇编器，我认为是并非完美，但是以发展趋势来看，会大一统的，从而做到没有平台差异，这也是LLVM做集成汇编器的一大理由。而生成完.o文件，剩下的过程就很简单了，就是链接器链接相关的库，然后和目标文件一起生存可执行文件&lt;code>.out / .exe&lt;/code>了。&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1"># 二进制代码形式&lt;/span>
-$ clang -emit-llvm -c main.c -o main.bc
-&lt;span class="c1"># 可读文本代码形式&lt;/span>
-$ clang -emit-llvm –S -c main.c -o main.ll
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;ul>
-&lt;li>
-&lt;h4 id="llvm-和-clang-的关系">llvm 和 clang 的关系&lt;/h4>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;img src="1.png" alt="">&lt;/p>
-&lt;p>对于 LLVM 来说，其前端是 clang，在编译源码文件的时候使用的编译工具也是 clang。
-而生成中间 IR 代码后，llvm需要对 IR 代码进行一些操作，例如添加一些代码混淆功能。LLVM 的做法是通过编写 Pass(其实就是对应的一个个模块，每个类实现不同的功能)来实现混淆的功
-能。所以实现混淆，其实就是编写功能性的 Pass&lt;/p>
-&lt;h3 id="obfuscator-llvm">Obfuscator-LLVM&lt;/h3>
-&lt;p>Obfuscator-LLVM是由瑞士伊夫尔东莱班的应用科学与艺术大学信息安全小组（HEIG-VD）于2010年6月发起的一个项目。&lt;/p>
-&lt;p>该项目的目的是提供&lt;a href="http://www.llvm.org/">LLVM&lt;/a>编译套件的开源分支，该套件能够通过&lt;a href="http://en.wikipedia.org/wiki/Obfuscation_(software)">代码混淆&lt;/a>和防篡改来提高软件安全性。由于我们目前大部分工作在&lt;a href="http://en.wikipedia.org/wiki/Intermediate_language">中间表示&lt;/a>（IR）级别，因此我们的工具与所有编程语言（C，C ++，Objective-C，Ada和Fortran）和目标平台（x86，x86-64，PowerPC，PowerPC-64）兼容。&lt;/p>
-&lt;p>LLVM当前支持的ARM，Thumb，SPARC，Alpha，CellSPU，MIPS，MSP430，SystemZ和XCore）。&lt;/p>
-&lt;p>Obfuscator-LLVM的目的主要是在编译时增强软件就对抗向工程和编译时修改（动态调试？）&lt;/p>
-&lt;h4 id="install">Install&lt;/h4>
-&lt;p>可以直接从github上下载源码&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;span class="lnt">6
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">$ git clone -b llvm-4.0 https://github.com/obfuscator-llvm/obfuscator.git
-$ mkdir build
-$ &lt;span class="nb">cd&lt;/span> build
-&lt;span class="c1"># 如果不想跑测试用例加上-DLLVM_INCLUDE_TESTS=OFF &lt;/span>
-$ cmake -DCMAKE_BUILD_TYPE&lt;span class="o">=&lt;/span>Release ../obfuscator/
-$ make -j7
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>然而我在4核4G虚拟机里编译将近2h，还报错了tcl&lt;/p>
-&lt;p>我现在只想再来几根内存条 :(&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;span class="lnt">6
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">error:virtual memory exhausted:Cannot allocate memory
-$ make -j7 &amp;gt;&amp;gt;40%
-$ make -j4 &amp;gt;&amp;gt;95%
-$ make -j2 &amp;gt;&amp;gt;100%
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h4 id="o-llvm手动打包">o-llvm手动打包&lt;/h4>
-&lt;blockquote>
-&lt;p>&lt;a href="http://www.few.vu.nl/~lsc300/LLVM/doxygen/index.html">http://www.few.vu.nl/~lsc300/LLVM/doxygen/index.html&lt;/a>&lt;/p>
-&lt;p>API Document&lt;/p>
-&lt;/blockquote>
-&lt;p>因为我下的ollvm9.0的&lt;code>-fla&lt;/code>有bug，所以决定亲自打包一波，顺便再深入了解ollvm&lt;/p>
-&lt;p>由Diffinity将ollvm4.0和llvm4.0进行对比，发现了以下文件的不同，也就意味着我们将ollvm打包进最新的llvm也需要修改以下文件。&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">./include/llvm/Transforms/Obfuscation/ &lt;span class="c1"># obfuscation的头文件&lt;/span>
-./include/llvm/Transforms/CryptoUtils.h &lt;span class="c1"># obfuscation的头文件&lt;/span>
-./lib/Transforms/IPO/LLVMBuild.txt
-./lib/Transforms/IPO/PassManagerBuilder.cpp &lt;span class="c1"># Pass注册&lt;/span>
-./lib/Transforms/Obfuscation/ &lt;span class="c1"># obfuscation source code&lt;/span>
-./lib/Transforms/CMakeLists.txt
-./lib/Transforms/LLVMBuild.txt
-./tools/clang &lt;span class="c1"># 集成clang,要在gitignore里取消clang的注释&lt;/span>
-./.gitignore
-./CMakeLists.txt
-./CODE_OWNERS.TXT
-./LICENSE.TXT
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>从自己的github的obfuscator仓库中clone下来，注意一定要clone，直接下载downloadzip没有.git信息，虽然他真的很慢。&lt;/p>
-&lt;p>然后创建自己的llvm9.0分支&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
-&lt;/span>&lt;span class="lnt">21
-&lt;/span>&lt;span class="lnt">22
-&lt;/span>&lt;span class="lnt">23
-&lt;/span>&lt;span class="lnt">24
-&lt;/span>&lt;span class="lnt">25
-&lt;/span>&lt;span class="lnt">26
-&lt;/span>&lt;span class="lnt">27
-&lt;/span>&lt;span class="lnt">28
-&lt;/span>&lt;span class="lnt">29
-&lt;/span>&lt;span class="lnt">30
-&lt;/span>&lt;span class="lnt">31
-&lt;/span>&lt;span class="lnt">32
-&lt;/span>&lt;span class="lnt">33
-&lt;/span>&lt;span class="lnt">34
-&lt;/span>&lt;span class="lnt">35
-&lt;/span>&lt;span class="lnt">36
-&lt;/span>&lt;span class="lnt">37
-&lt;/span>&lt;span class="lnt">38
-&lt;/span>&lt;span class="lnt">39
-&lt;/span>&lt;span class="lnt">40
-&lt;/span>&lt;span class="lnt">41
-&lt;/span>&lt;span class="lnt">42
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">$ git clone git@github.com:Magic-King/obfuscator.git
-Cloning into &lt;span class="s1">&amp;#39;obfuscator&amp;#39;&lt;/span>...
-remote: Enumerating objects: 86723, &lt;span class="k">done&lt;/span>.
-remote: Total &lt;span class="m">86723&lt;/span> &lt;span class="o">(&lt;/span>delta 0&lt;span class="o">)&lt;/span>, reused &lt;span class="m">0&lt;/span> &lt;span class="o">(&lt;/span>delta 0&lt;span class="o">)&lt;/span>, pack-reused &lt;span class="m">86723&lt;/span>
-Receiving objects: 100% &lt;span class="o">(&lt;/span>86723/86723&lt;span class="o">)&lt;/span>, 132.79 MiB &lt;span class="p">|&lt;/span> 35.00 KiB/s, &lt;span class="k">done&lt;/span>.
-Resolving deltas: 100% &lt;span class="o">(&lt;/span>15346/15346&lt;span class="o">)&lt;/span>, &lt;span class="k">done&lt;/span>.
-$ git branch -a
-* master
-remotes/origin/HEAD -&amp;gt; origin/master
-remotes/origin/clang-425.0.24
-remotes/origin/llvm-3.3
-remotes/origin/llvm-3.4
-remotes/origin/llvm-3.5
-remotes/origin/llvm-3.6.1
-remotes/origin/llvm-4.0
-remotes/origin/master
-$ git branch -r
-origin/HEAD -&amp;gt; origin/master
-origin/clang-425.0.24
-origin/llvm-3.3
-origin/llvm-3.4
-origin/llvm-3.5
-origin/llvm-3.6.1
-origin/llvm-4.0
-origin/master
-$ git remote add origin git@github.com:Magic-King/obfuscator.git
-fatal: remote origin already exists.
-$ git checkout -b llvm-9.0
-Switched to a new branch &lt;span class="s1">&amp;#39;llvm-9.0
-&lt;/span>&lt;span class="s1">
-&lt;/span>&lt;span class="s1">$ git push origin llvm-9.0
-&lt;/span>&lt;span class="s1">Total 0 (delta 0), reused 0 (delta 0)
-&lt;/span>&lt;span class="s1">remote:
-&lt;/span>&lt;span class="s1">remote: Create a pull request for &amp;#39;&lt;/span>llvm-9.0&lt;span class="err">&amp;#39;&lt;/span> on GitHub by visiting:
-remote: https://github.com/Magic-King/obfuscator/pull/new/llvm-9.0
-remote:
-To github.com:Magic-King/obfuscator.git
-* &lt;span class="o">[&lt;/span>new branch&lt;span class="o">]&lt;/span> llvm-9.0 -&amp;gt; llvm-9.0
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>然后把最新的llvm9.0.1放入&lt;code>obfuscator/&lt;/code>文件夹下，把clang放入 &lt;code>obfuscator/tools/clang&lt;/code>里&lt;/p>
-&lt;p>然后将obfuscator-llvm4.0移植到obfuscate里，具体可以查看我的github的commit记录&lt;/p>
-&lt;p>网址如下：https://github.com/Magic-King/obfuscator/commits/llvm-9.0&lt;/p>
-&lt;p>但是，手动打包之后，&lt;code>-fla&lt;/code>还是有问题，不过其他选项倒是没问题，应该是&lt;code>-fla&lt;/code>和llvm-9.0不兼容的问题&lt;/p>
-&lt;h4 id="o-llvm的特点">o-llvm的特点&lt;/h4>
-&lt;ul>
-&lt;li>&lt;a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Instructions-Substitution">nstructions Substitution&lt;/a> &lt;code>-mllvm -sub&lt;/code>：指令替换&lt;/li>
-&lt;li>&lt;a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Bogus-Control-Flow">Bogus Control Flow&lt;/a> &lt;code>-mllvm -bcf&lt;/code>：伪控制流&lt;/li>
-&lt;li>&lt;a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Control-Flow-Flattening">Control Flow Flattening&lt;/a> &lt;code>-mllvm -fla&lt;/code>：激活控制流扁平化&lt;/li>
-&lt;li>&lt;a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Functions-annotations">Functions annotations&lt;/a>：可以针对一些特定函数进行混淆（选择性混淆）&lt;/li>
-&lt;/ul>
-&lt;h5 id="nstructions-substitutionhttpsgithubcomobfuscator-llvmobfuscatorwikiinstructions-substitution">&lt;a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Instructions-Substitution">nstructions Substitution&lt;/a>&lt;/h5>
-&lt;p>这种混淆技术的目标仅在于用功能上等效但更复杂的指令序列代替标准的二进制运算符（如加，减或布尔运算符）。当几个等效的指令序列可用时，随机选择一个。&lt;/p>
-&lt;p>这种混淆非常简单，并且不会增加很多安全性，因为可以通过重新优化生成的代码轻松地将其删除。但是，如果伪随机数发生器使用不同的值作为种子，则指令替换会在生成的二进制文件中带来多样性。&lt;/p>
-&lt;p>当前，只有整数运算符可用，因为用浮点值替代运算符会带来舍入误差和不必要的数值误差。&lt;/p>
-&lt;p>可用的编译器选项：&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>-mllvm -sub&lt;/code>：激活指令替换&lt;/li>
-&lt;li>&lt;code>-mllvm -sub_loop=3&lt;/code>：如果激活了通行证，则将其应用到功能上3次。默认值：1。&lt;/li>
-&lt;/ul>
-&lt;p>wiki中提到了可替换的运算：add、sub、and、or、xor。&lt;/p>
-&lt;h5 id="bogus-control-flowhttpsgithubcomobfuscator-llvmobfuscatorwikibogus-control-flow">&lt;a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Bogus-Control-Flow">Bogus Control Flow&lt;/a>&lt;/h5>
-&lt;p>该方法通过在当前基本块之前添加一个基本块来修改函数调用图。这个新的基本块包含一个不透明的谓词，然后有条件地跳转到原始的基本块。&lt;/p>
-&lt;p>原始的基本块也将被克隆并填充以随机选择的垃圾指令。&lt;/p>
-&lt;p>可用的编译器选项：&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>-mllvm -bcf&lt;/code>：激活伪控制流程&lt;/li>
-&lt;li>&lt;code>-mllvm -bcf_loop=3&lt;/code>：如果激活了通行证，则将其应用到功能上3次。默认值：1&lt;/li>
-&lt;li>&lt;code>-mllvm -bcf_prob=40&lt;/code>：如果激活了通行证，则基本团块将以40％的概率被混淆。默认值：30&lt;/li>
-&lt;/ul>
-&lt;h5 id="control-flow-flatteninghttpsgithubcomobfuscator-llvmobfuscatorwikicontrol-flow-flattening">&lt;a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Control-Flow-Flattening">Control Flow Flattening&lt;/a>&lt;/h5>
-&lt;p>此过程的目的是完全弄平程序的控制流程图。简单来说就是拆分基本块并置于无限循环中，程序流程由switch控制&lt;/p>
-&lt;p>可用的编译器选项：&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>-mllvm -fla&lt;/code>：激活控制流展平&lt;/li>
-&lt;li>&lt;code>-mllvm -split&lt;/code>：激活基本块分割。一起使用可改善展平性。&lt;/li>
-&lt;li>&lt;code>-mllvm -split_num=3&lt;/code>：如果激活了通行证，则在每个基本块上应用3次。默认值：1&lt;/li>
-&lt;/ul>
-&lt;h5 id="functions-annotationshttpsgithubcomobfuscator-llvmobfuscatorwikifunctions-annotations">&lt;a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Functions-annotations">Functions annotations&lt;/a>&lt;/h5>
-&lt;p>注释使您可以按功能指定要应用（或不应用）混淆的功能&lt;/p>
-&lt;p>用法：只需向您的函数添加属性。&lt;/p>
-&lt;p>例如：&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="kt">int&lt;/span> &lt;span class="nf">foo&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="n">__attribute&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="n">__annotate__&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="s">&amp;#34;fla&amp;#34;&lt;/span>&lt;span class="p">))));&lt;/span>
-&lt;span class="kt">int&lt;/span> &lt;span class="nf">foo&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>您可以为每个功能添加使用一个或多个注释。如果要禁用功能的混淆，也可以使用“反向标志”（例如，如果要禁用功能的伪造控制流，请使用注释“ nobcf”）。&lt;/p>
-&lt;h4 id="对比">对比&lt;/h4>
-&lt;p>我自己写了一个测试文件，然后用于clang和ollvm混淆的各种测试&lt;/p>
-&lt;p>源代码如下，关于混淆之后的执行文件和源文件打包在了&lt;a href="./test.zip">here&lt;/a>&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;stdio.h&amp;gt;&lt;/span>&lt;span class="cp">
-&lt;/span>&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;stdlib.h&amp;gt;&lt;/span>&lt;span class="cp">
-&lt;/span>&lt;span class="cp">&lt;/span>
-&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">(){&lt;/span>
-&lt;span class="n">printf&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;Hello LLVM&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="kt">char&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;Hello fucking bug&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="c1">//a = &amp;#34;Hello O-LLVM!I will fuck you!&amp;#34;;
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="n">sum&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">&amp;lt;=&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">){&lt;/span>
-&lt;span class="n">sum&lt;/span> &lt;span class="o">+=&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="n">printf&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;%s&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s">the answer of what i do is %d&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s">&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">sum&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="n">printf&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;test finished!&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s">&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>以下是gcc编译的文件通过ida逆向所得的流程图&lt;/p>
-&lt;p>&lt;img src="test_gcc_ida.png" alt="test_gcc_ida">&lt;/p>
-&lt;p>以下是用clang9.0 编译test的流程图，可见大体的流程是和gcc相同的，不过通过ida的万能F5反编译出来的源码，clang版本的基本和源码差不多，gcc版本的循环的变量挺奇怪的，但是总体流程还是不变的&lt;/p>
-&lt;p>&lt;img src="test_clang_ida.png" alt="test_clang_ida">&lt;/p>
-&lt;p>下图是加了ollvm的bcf选项的反汇编结果，可见添加了许多虚假控制流，真正执行的循环是左半部分，他把for循环结束之后的该执行的语句放到了右半部分，在添加虚假控制流&lt;/p>
-&lt;p>看反汇编的代码，他把for循环放入了一个while循环里，然后用一个if控制是否结束原来的循环，加入结束，就用&lt;code>goto&lt;/code>到达最后执行的语句里，这里又写了一个假的while，经我看下来，这个while也就执行一次，循环就退出了，果然混淆后想搞懂流程贼麻烦&lt;/p>
-&lt;p>&lt;img src="test_bcf_ida.png" alt="test_bcf_ida">&lt;/p>
-&lt;p>ollvm编译fla选项，由于适配llvm9.0的fla选项失败了，所以这边是引用-split选项得出来的反汇编结果，split也就是fla平坦化所选择的选项&lt;/p>
-&lt;p>对比原来的clang反汇编出来的结果是不是多了许多可供选择的路，正如wiki所说是用switch控制的&lt;/p>
-&lt;p>反汇编出来的代码嵌套了多层while循环，并加入if判断，低层应该就是用switch实现的，然后再某几个switch case加入break破坏循环达到控制流程的目的&lt;/p>
-&lt;p>&lt;img src="test_split_ida.png" alt="ollvm-fla">&lt;/p>
-&lt;p>这个是最简单的，和clang编译的版本对比，主要区别在于分块之后的左边的块，他把其指令进行了替换，具体咋替换看我后面的源码分析&lt;/p>
-&lt;p>不过可惜的是，这个代码替换对于ida来说好像不是什么大事情，利用万能的F5反汇编时，他成功把循环里的加法还原了，产生的代码和clang版本没混淆的一模一样&lt;/p>
-&lt;p>可能这需要和其他几个选项一起使用会比较好&lt;/p>
-&lt;p>&lt;img src="test_sub_ida.png" alt="ollvm-sub">&lt;/p>
-&lt;p>//TODO：字符串混淆&lt;/p>
-&lt;h3 id="o-llvm源码分析">o-llvm源码分析&lt;/h3>
-&lt;p>通过我们手动将ollvm与llvm9.0打包的过程，我们可以非常清楚地了解了ollvm的源码结构&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;span class="lnt">6
-&lt;/span>&lt;span class="lnt">7
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">./include/llvm/Transforms/Obfuscation/ &lt;span class="c1"># obfuscation的头文件&lt;/span>
-./include/llvm/Transforms/CryptoUtils.h &lt;span class="c1"># obfuscation的加密工具类的头文件&lt;/span>
-./lib/Transforms/IPO/LLVMBuild.txt &lt;span class="c1"># pass模块编译的模块注册&lt;/span>
-./lib/Transforms/IPO/PassManagerBuilder.cpp &lt;span class="c1"># Pass注册&lt;/span>
-./lib/Transforms/Obfuscation/ &lt;span class="c1"># obfuscation source code&lt;/span>
-./lib/Transforms/CMakeLists.txt &lt;span class="c1"># 加入子目录&lt;/span>
-./lib/Transforms/LLVMBuild.txt &lt;span class="c1"># 加入LLVM编译子目录&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>我们知道，ollvm就是通过编写llvm的pass来将其中间语言IR进行不同程度的混淆&lt;/p>
-&lt;h4 id="bogus-control-flow">Bogus Control Flow&lt;/h4>
-&lt;p>&lt;strong>Bogus Control Flow&lt;/strong>的功能是为函数增加新的虚假控制流和添加垃圾指令。&lt;/p>
-&lt;p>其中文件位于&lt;code>./include/llvm/Transforms/Obfuscation/BogusControlFlow.cpp&lt;/code>&lt;/p>
-&lt;p>其中的注释跟我们非常形象的演示了其的工作内容&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
-&lt;/span>&lt;span class="lnt">21
-&lt;/span>&lt;span class="lnt">22
-&lt;/span>&lt;span class="lnt">23
-&lt;/span>&lt;span class="lnt">24
-&lt;/span>&lt;span class="lnt">25
-&lt;/span>&lt;span class="lnt">26
-&lt;/span>&lt;span class="lnt">27
-&lt;/span>&lt;span class="lnt">28
-&lt;/span>&lt;span class="lnt">29
-&lt;/span>&lt;span class="lnt">30
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="c1">// This file implements BogusControlFlow&amp;#39;s pass, inserting bogus control flow.
-&lt;/span>&lt;span class="c1">// It adds bogus flow to a given basic block this way:
-&lt;/span>&lt;span class="c1">//
-&lt;/span>&lt;span class="c1">// Before :
-&lt;/span>&lt;span class="c1">// entry
-&lt;/span>&lt;span class="c1">// |
-&lt;/span>&lt;span class="c1">// ______v______
-&lt;/span>&lt;span class="c1">// | Original |
-&lt;/span>&lt;span class="c1">// |_____________|
-&lt;/span>&lt;span class="c1">// |
-&lt;/span>&lt;span class="c1">// v
-&lt;/span>&lt;span class="c1">// return
-&lt;/span>&lt;span class="c1">//
-&lt;/span>&lt;span class="c1">// After :
-&lt;/span>&lt;span class="c1">// entry
-&lt;/span>&lt;span class="c1">// |
-&lt;/span>&lt;span class="c1">// ____v_____
-&lt;/span>&lt;span class="c1">// |condition*| (false)
-&lt;/span>&lt;span class="c1">// |__________|----+
-&lt;/span>&lt;span class="c1">// (true)| |
-&lt;/span>&lt;span class="c1">// | |
-&lt;/span>&lt;span class="c1">// ______v______ |
-&lt;/span>&lt;span class="c1">// +--&amp;gt;| Original* | |
-&lt;/span>&lt;span class="c1">// | |_____________| (true)
-&lt;/span>&lt;span class="c1">// | (false)| !-----------&amp;gt; return
-&lt;/span>&lt;span class="c1">// | ______v______ |
-&lt;/span>&lt;span class="c1">// | | Altered |&amp;lt;--!
-&lt;/span>&lt;span class="c1">// | |_____________|
-&lt;/span>&lt;span class="c1">// |__________|
-&lt;/span>&lt;span class="c1">//
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>他的Cpp文件先写好了Debug信息，再定义了以下为pass提供的选项常量&lt;/p>
-&lt;p>其中，我们最常见的 &lt;code>cl::opt&amp;lt;data_type&amp;gt;&lt;/code>是用来传递llvm之间pass共享的参数，也就是我们在编译时所给的&lt;code>-bcf_prob = 50&lt;/code>这个命令行编译参数可以传递到pass的核心所在&lt;/p>
-&lt;p>&lt;img src="SourceCode_bcf_1.png" alt="">&lt;/p>
-&lt;p>&lt;code>cl::opt&lt;/code>这个用法让我想起了c++中&lt;code>std::cout&lt;/code>、&lt;code>using namespace std&lt;/code>，经查询发现，这是一个类似于python的import的一个语法，namespace是为了和c的.h区分开来&lt;/p>
-&lt;blockquote>
-&lt;p>详细可见：&lt;/p>
-&lt;p>&lt;a href="https://www.cnblogs.com/MrYuan/p/4955956.html">C++ Namespace 详解&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://www.runoob.com/cplusplus/cpp-namespaces.html">C++ 命名空间&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://blog.csdn.net/fengbingchun/article/details/78575978">C++/C++11中命名空间(namespace)的使用&lt;/a>：这里面有一段折磨人的代码，读懂了应该就懂了c++的namespace的作用域&lt;/p>
-&lt;/blockquote>
-&lt;p>目前读下来，最常见的应该就是&lt;code>namespace llvm&lt;/code>和 &lt;code>namespace cl&lt;/code>了&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="k">struct&lt;/span> &lt;span class="nc">BogusControlFlow&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="k">public&lt;/span> &lt;span class="n">FunctionPass&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>这里，BogusControlFlow继承至FunctionPass，因此它的入口函数即为runOnFunction&lt;/p>
-&lt;blockquote>
-&lt;p>struct的继承和class的继承有很大的区别，struct的继承是基于子类(struct)的public继承，class是基于子类(class)的private继承&lt;/p>
-&lt;/blockquote>
-&lt;p>整个namespace写了一个struct 类用于混淆&lt;/p>
-&lt;p>其中&lt;code>runOnFunction&lt;/code>为入口函数，先判断bcf的两个参数&lt;code>-bcf_loop&lt;/code>和&lt;code>-bcf_prob&lt;/code>是否符合正确范围内，然后检查是否启用了&lt;code>-bcf&lt;/code>选项，假如启用了，则进入核心函数&lt;code>bogus(F);&lt;/code>，然后继续处理&lt;code>doF(*F.getParent());&lt;/code>&lt;/p>
-&lt;p>在&lt;code>bogus()&lt;/code>函数里，先实现了Debug的相关部分，在每次进入函数前输出debug信息，用于处理debug模式下的&lt;code>-bcf&lt;/code>选项。然后定义一个list链表，用于储存BasicBlock，BasicBlock用for循环利用迭代器的模式从传入的 &lt;code>F&lt;/code> 获取。一个while循环，当基本块非空时，利用&lt;code>cryptoutils&lt;/code>工具类获取随机数，从链表中选择基本块进行混淆(用&lt;code>addBogusFlow(basicBlock, F);&lt;/code>函数)，并标记已混淆过该块，防止重复混淆某一基本块，否则就不混淆。然后弹出链表中的第一块，这样直到混淆次数为0为止。&lt;/p>
-&lt;p>&lt;code>addBogusFlow()&lt;/code>函数，将给定的基本块进行添加虚假控制流。首先获得一个基本块Basic Block，利用createAlteredBasicBlock()函数生成一个与原基本块相似的Basci Block，然后利用&lt;code>BasicBlock-&amp;gt;getTerminator()-&amp;gt;eraseFromParent();&lt;/code>把他们的父母节点擦除，然后创建两个条件恒为真的左右子节点，然后将其创建分支循环。（其过程是创建一个恒真的分支，进入分支的基本块后，加入一个判断，若真进入原基本块，若假进入假基本块，经假基本块的垃圾代码之后，再进入原基本块。在为真时，进入原基本块，将基本块主体执行完之后，在加入分支判断，正确返回结果，错误跳转至混假基本块进行循环）&lt;/p>
-&lt;blockquote>
-&lt;p>&lt;a href="https://sq.163yun.com/blog/article/175307579596922880">https://sq.163yun.com/blog/article/175307579596922880&lt;/a>：这个讲的特别形象，配合着图一起阅读，这边借用其一张图&lt;/p>
-&lt;/blockquote>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="kt">int&lt;/span> &lt;span class="nf">add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">){&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>&lt;img src="bcf_addBogusFlow.png" alt="">&lt;/p>
-&lt;p>如图，对于上述函数，分离其基本块，创建一个入口entry，然后加入一个恒真的分支，把生成相似的基本块放至错误分支里，即其永远不会执行的垃圾代码，将所执行的基本块放入正确分支里&lt;/p>
-&lt;p>&lt;code>createAlteredBasicBlock()&lt;/code>函数用于生成与给定基本块相似的基本块，将操作运算符进行重新映射，重新映射节点，重新映射对应的数据，然后加入随机的指令&lt;/p>
-&lt;p>对于&lt;code>doF()&lt;/code>函数，该函数的功能是将Function中所有为真的判断语句进行替换，比如之前的&lt;code>1.0 == 1.0 &lt;/code>。它的思想是定义两个全局变量x、y并且初始化为0，然后遍历Module内的所有指令，并将所有的FCMP_TRUE分支指令替换为&lt;code>y&amp;lt;10 || x*x(x-1)%2 ==0&lt;/code>，我们从反汇编的代码来看，很明显的就有y&amp;lt;10这个分支&lt;/p>
-&lt;h4 id="flattening">Flattening&lt;/h4>
-&lt;p>&lt;strong>Flattening&lt;/strong>的主要功能是为函数增加switch-case语句，使得函数变得扁平化。下面就对它的实现源码进行分析。&lt;/p>
-&lt;p>其中文件位于&lt;code>./include/llvm/Transforms/Obfuscation/Flattening.cpp&lt;/code>&lt;/p>
-&lt;p>Flattening继承了&lt;code>FunctionPass&lt;/code>，因此它的入口函数即为&lt;code>runOnFunction&lt;/code>。在&lt;code>runOnFunction&lt;/code>函数的具体实现中，首先判断是否包含了启动&lt;code>-fla&lt;/code>的命令。在编译目标程序代码时，如要启动fla模块，需要带上参数&lt;code>-mllvm -fla&lt;/code>。&lt;/p>
-&lt;p>参数检查完毕之后，调用flatten函数。flatten函数是该Pass的核心，下面对该函数进行分析。&lt;/p>
-&lt;p>先是声明了一些后面要用的变量，然后创建了一个数组，用来存储随机数种子&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;span class="lnt">6
-&lt;/span>&lt;span class="lnt">7
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="c1">// SCRAMBLER
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kt">char&lt;/span> &lt;span class="n">scrambling_key&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">16&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="n">llvm&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">cryptoutils&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">get_bytes&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">scrambling_key&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">16&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="c1">// END OF SCRAMBLER
-&lt;/span>&lt;span class="c1">// Lower switch
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">FunctionPass&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">lower&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">createLowerSwitchPass&lt;/span>&lt;span class="p">();&lt;/span>
-&lt;span class="n">lower&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">runOnFunction&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>后两行调用了外部一个外部pass：&lt;code>creatLowerSwitchPass()&lt;/code>，用来消除当前函数的内部用switch方式的代码，将其全转换成&lt;code>if else&lt;/code>的调用，方便后面的代码块分割&lt;/p>
-&lt;p>然后一个for循环，像bcf那样，将函数分为各个基本块储存在&lt;code>vector&amp;lt;BasicBlock *&amp;gt; origBB&lt;/code>的一个向量数组里，等等的代码是针对基本块的操作，就像乐高那样一块块进行拼接。&lt;/p>
-&lt;p>然后的话，若只有一个以下的基本块，那么无法平坦化，直接返回&lt;code>false&lt;/code>&lt;/p>
-&lt;p>然后开始遍历基本块，先把第一块从vector数组中移除，因为按照他的流程平坦化的设计，第一块进行单独处理，作为整个混淆流程的开始逻辑，所以紧接着先对第一块进行处理。&lt;/p>
-&lt;p>检查第一块中是否包含条件跳转分支，如果包含条件跳转分支，则按照条件分支的位置进行代码块分割，分割逻辑跟SplitBasicBlock的逻辑一致，整个分割的目的也是为了后面进行流程平坦化准备的&lt;/p>
-&lt;p>然后开始是核心代码了&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;span class="lnt">6
-&lt;/span>&lt;span class="lnt">7
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="c1">// Create switch variable and set as it
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">switchVar&lt;/span> &lt;span class="o">=&lt;/span>
-&lt;span class="k">new&lt;/span> &lt;span class="n">AllocaInst&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Type&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">getInt32Ty&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">getContext&lt;/span>&lt;span class="p">()),&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;switchVar&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">insert&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="k">new&lt;/span> &lt;span class="nf">StoreInst&lt;/span>&lt;span class="p">(&lt;/span>
-&lt;span class="n">ConstantInt&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Type&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">getInt32Ty&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">getContext&lt;/span>&lt;span class="p">()),&lt;/span>
-&lt;span class="n">llvm&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">cryptoutils&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">scramble32&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">scrambling_key&lt;/span>&lt;span class="p">)),&lt;/span>
-&lt;span class="n">switchVar&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">insert&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>这一段创建了一个switch用的变量，相当于是&lt;code>switch(caseVar)&lt;/code>，并通过&lt;code>StoreInst&lt;/code>进行赋值，这时就用上了之前的随机数种子，将生成的随机数用作case。&lt;/p>
-&lt;p>接着创建了两个空的基本块&lt;code>loopEntry&lt;/code>和&lt;code>loopEnd&lt;/code>，然后将switch语句放入&lt;code>loopEntry&lt;/code>中，将第一块基本块连接上&lt;code>loopEntry&lt;/code>，&lt;code>loopEnd&lt;/code>跳转回&lt;code>loopEntry&lt;/code>，在switch语句加入默认的&lt;code>swDefault&lt;/code>基本块大概成型了&lt;/p>
-&lt;p>大概就和下面这个流程图差不多了&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
-&lt;/span>&lt;span class="lnt">21
-&lt;/span>&lt;span class="lnt">22
-&lt;/span>&lt;span class="lnt">23
-&lt;/span>&lt;span class="lnt">24
-&lt;/span>&lt;span class="lnt">25
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="c1">// +--------+
-&lt;/span>&lt;span class="c1">// |first bb|
-&lt;/span>&lt;span class="c1">// +---+----+
-&lt;/span>&lt;span class="c1">// |
-&lt;/span>&lt;span class="c1">// +----v----+
-&lt;/span>&lt;span class="c1">// |loopEntry| &amp;lt;--------+
-&lt;/span>&lt;span class="c1">// +----+----+ |
-&lt;/span>&lt;span class="c1">// | |
-&lt;/span>&lt;span class="c1">// +----v---+ |
-&lt;/span>&lt;span class="c1">// | switch | |
-&lt;/span>&lt;span class="c1">// +----+---+ |
-&lt;/span>&lt;span class="c1">// | |
-&lt;/span>&lt;span class="c1">// +------------+ |
-&lt;/span>&lt;span class="c1">// | |
-&lt;/span>&lt;span class="c1">// +------v-------+ |
-&lt;/span>&lt;span class="c1">// | default case | |
-&lt;/span>&lt;span class="c1">// +------+-------+ |
-&lt;/span>&lt;span class="c1">// | |
-&lt;/span>&lt;span class="c1">// +-----------+ |
-&lt;/span>&lt;span class="c1">// | |
-&lt;/span>&lt;span class="c1">// | |
-&lt;/span>&lt;span class="c1">// v |
-&lt;/span>&lt;span class="c1">// +-----+------+ |
-&lt;/span>&lt;span class="c1">// | loopEnd +---------+
-&lt;/span>&lt;span class="c1">// +------------+
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>骨架成型了，接下来把剩余的基本块往switch语句中填入就行了。&lt;/p>
-&lt;p>但是填入之后肯定是个死循环了，我们这时候就要活用flatten的思想，控制switch case的caseVar的值来达到控制流程的目的——很简单，在每个基本块即每个case之后，补上一条对caseVar的值更新的语句即可达到控制流程的目的&lt;/p>
-&lt;p>剩下代码就是来更新每个case中代码块对caseVar的操作了，怎么更新呢，很简单，就是更新成当前代码块原后续逻辑块在当前这个代码框架下的case值&lt;/p>
-&lt;p>接下来的操作分三种情况来进行&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>case中代码块没有后续块，那就是一个返回块，不需要更新caseVar&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>case中代码块只有一个后续块，也就是一个无条件跳转分支，直接更新成后续块对应的case即可&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>case中代码块有2个后续块，也就是一个条件跳转分支，通过successor对象（就是后续块的意思）直接在switch结构中查找出对应的case值&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="n">SelectInst&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">sel&lt;/span> &lt;span class="o">=&lt;/span>&lt;span class="n">SelectInst&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">Create&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">br&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">getCondition&lt;/span>&lt;span class="p">(),&lt;/span> &lt;span class="n">numCaseTrue&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">numCaseFalse&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">getTerminator&lt;/span>&lt;span class="p">());&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>如上，使用llvm的SelectInst来实现分支选择，像227行写的，根据br-&amp;gt;getCondition()是否为True来决定是跳转到numCaseTrue还是numCaseFalse&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;p>最后这样就成功平坦化成功了&lt;/p>
-&lt;p>拿一个例子来理解：&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="kt">int&lt;/span> &lt;span class="nf">func1&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="p">{&lt;/span>
-&lt;span class="kt">int&lt;/span> &lt;span class="n">result&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">){&lt;/span>
-&lt;span class="n">result&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="k">else&lt;/span>&lt;span class="p">{&lt;/span>
-&lt;span class="n">result&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="n">result&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>如下图，这是原本上面这个函数的IR图&lt;/p>
-&lt;p>&lt;img src="fla_1.png" alt="">&lt;/p>
-&lt;p>先判断第一个基本块有没有if语句，我们这个函数刚开始明显没有，先将第一块分开成一个基本块&lt;/p>
-&lt;p>&lt;img src="fla_2.png" alt="">&lt;/p>
-&lt;p>然后创建三个基本块&lt;code>loopEntry&lt;/code>、&lt;code>loopEnd&lt;/code>、&lt;code>swDefault&lt;/code>，组成如下图左边的流程&lt;/p>
-&lt;p>&lt;img src="fla_3.png" alt="">&lt;/p>
-&lt;p>这时候，switch语句我们已经可以看见了，接下来就是将vector里存储的每个基本块加入switch-case语句中，每一个basicblock对应一个case，并且caseVar为刚开始产生的随机数值，如下图所示&lt;/p>
-&lt;p>&lt;img src="fla_4.png" alt="">&lt;/p>
-&lt;p>添加完全部基本块之后，需要修改每个基本块的跳转关系，使得每个基本块执行完毕之后，会重新设置caseVar的值，从而跳转到&lt;code>loopEnd&lt;/code>块，然后回到switch-case的判断语句中，能够顺利跳转到下个case，处理后即为下图成型&lt;/p>
-&lt;p>&lt;img src="fla_5.png" alt="">&lt;/p>
-&lt;h4 id="substitution">Substitution&lt;/h4>
-&lt;p>Substitution的主要功能是对程序的一些指令进行替换。&lt;/p>
-&lt;p>其中文件位于&lt;code>./include/llvm/Transforms/Obfuscation/substitution.cpp&lt;/code>&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
-&lt;/span>&lt;span class="lnt">21
-&lt;/span>&lt;span class="lnt">22
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="cp">#define NUMBER_ADD_SUBST 4
-&lt;/span>&lt;span class="cp">#define NUMBER_SUB_SUBST 3
-&lt;/span>&lt;span class="cp">#define NUMBER_AND_SUBST 2
-&lt;/span>&lt;span class="cp">#define NUMBER_OR_SUBST 2
-&lt;/span>&lt;span class="cp">#define NUMBER_XOR_SUBST 2
-&lt;/span>&lt;span class="cp">&lt;/span>
-&lt;span class="k">static&lt;/span> &lt;span class="n">cl&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">opt&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
-&lt;span class="n">ObfTimes&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;sub_loop&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;span class="n">cl&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">desc&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;Choose how many time the -sub pass loops on a function&amp;#34;&lt;/span>&lt;span class="p">),&lt;/span>
-&lt;span class="n">cl&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">value_desc&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;number of times&amp;#34;&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">cl&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">init&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">cl&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">Optional&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="c1">// Stats
-&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">STATISTIC&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Add&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;Add substitued&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="n">STATISTIC&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Sub&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;Sub substitued&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="c1">// STATISTIC(Mul, &amp;#34;Mul substitued&amp;#34;);
-&lt;/span>&lt;span class="c1">// STATISTIC(Div, &amp;#34;Div substitued&amp;#34;);
-&lt;/span>&lt;span class="c1">// STATISTIC(Rem, &amp;#34;Rem substitued&amp;#34;);
-&lt;/span>&lt;span class="c1">// STATISTIC(Shi, &amp;#34;Shift substitued&amp;#34;);
-&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">STATISTIC&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">And&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;And substitued&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="n">STATISTIC&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Or&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;Or substitued&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="n">STATISTIC&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Xor&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;Xor substitued&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>如上代码，通过该文件的宏定义，就可知每种运算替换的方式有多少种，可以对哪些指令进行替换：很明显的有：加减、位的与、或、异或，五种运算的替换&lt;/p>
-&lt;p>而注释的是未实现的运算替换，在官方wiki里可以知道，为了保证混淆再恢复之后的正确性，避免浮点数运算带来的程序误差，所以没有实现这些运算的替换（乘、除、取余，移位）&lt;/p>
-&lt;p>在源文件里，类似地，在相应的namespace里定义了这些内容，与之前两个混淆方式类似，&lt;code>substitution&lt;/code>继承于&lt;code>FunctionPass&lt;/code>，以&lt;code>runOnFuntion&lt;/code>函数为入口，里面再判断flag参数正确之后，朴实无华地调用了&lt;code>substitute(tmp)&lt;/code>函数己行混淆&lt;/p>
-&lt;p>&lt;img src="sub_1.png" alt="">&lt;/p>
-&lt;p>主函数&lt;code>substitute()&lt;/code>很简单，用一个while循环维护混淆次数(即给的flag参数&lt;code>-sub_loop&lt;/code>)，然后两层&lt;code>for&lt;/code>循环。第一个for循环用来遍历函数中的基本块(Basic Block)，第二个&lt;code>for&lt;/code>循环用于遍历每个基本块中的所有指令，然后采用一个&lt;code>switch-case&lt;/code>语句用来针对不同指令的不同替换操作，case里用随机数来决定用哪种方式去替换&lt;/p>
-&lt;p>接下来的所有代码都是其替换方式的实现&lt;/p>
-&lt;blockquote>
-&lt;p>&lt;a href="https://github.com/obfuscator-llvm/obfuscator/wiki/Instructions-Substitution">Instructions-Substitution&lt;/a>：在其官方wiki里都有说明是怎样的替换方式，在其注释下代码很好理解，相关的函数不懂就查查llvm的函数库就可以了&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>&lt;code>Add&lt;/code>指令支持4种替换方法，分别是&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>a = b - (-c)&lt;/code>&lt;/li>
-&lt;li>&lt;code>a = -(-b + (-c))&lt;/code>&lt;/li>
-&lt;li>&lt;code>r = rand (); a = b + r; a = a + c; a = a – r &lt;/code>&lt;/li>
-&lt;li>&lt;code>r = rand (); a = b - r; a = a + b; a = a + r &lt;/code>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;code>Sub&lt;/code>指令支持3种替换方法，分别是&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>a = b + (-c)&lt;/code>&lt;/li>
-&lt;li>&lt;code>r = rand (); a = b + r; a = a - c; a = a – r &lt;/code>&lt;/li>
-&lt;li>&lt;code>r = rand (); a = b - r; a = a - c; a = a + r &lt;/code>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;code>And&lt;/code> 指令支持1种替换方法，分别是&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>a = b &amp;amp; c&lt;/code> =&amp;gt; &lt;code>a = (b^~c)&amp;amp; b&lt;/code>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;code>Or&lt;/code>指令支持1种替换方法，分别是&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>a = b | c&lt;/code> =&amp;gt; &lt;code>a = (b &amp;amp; c) | (b ^ c) &lt;/code>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;code>Xor&lt;/code> 指令支持1种替换方法，分别是&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>a = a ^ b &lt;/code>=&amp;gt; &lt;code>a = (!a &amp;amp; b) | (a &amp;amp; !b) &lt;/code>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/blockquote>
-&lt;h4 id="stringobfuscation">StringObfuscation&lt;/h4>
-&lt;p>有很多大佬对于ollvm的混淆进行了升级，每个版本对于其混淆的实现方式各不相同，这边我分析的是上海交通大学的孤挺花项目的字符串混淆实现分析，项目地址为：https://github.com/GoSSIP-SJTU/Armariris&lt;/p>
-&lt;p>与上面三种原有项目的混淆方式不同，字符串混淆的类&lt;code>StringObfuscationPass&lt;/code>继承至&lt;code>ModulePass&lt;/code>，在入口函数&lt;code>runOnModule&lt;/code>里重写了父类函数，在里面实现了加密，在私有函数中实现了解密函数，在加密的末尾实现了调用，保证函数运行的正确性&lt;/p>
-&lt;p>函数的思想：是以两个vector来存储静态变量和加密后的字符串，利用Module类的&lt;code>global_iterator&lt;/code>迭代器遍历全局变量，判断是否为&lt;code>.str.&lt;/code>类型，即字符串类型，进行加密替换，加密方式采用了最原始的异或加密&lt;/p>
-&lt;h4 id="bug寻找">bug寻找&lt;/h4>
-&lt;p>适配llvm9.0和ollvm4.0时发生了许多错误&lt;/p>
-&lt;p>可见 &lt;a href="bug_log.txt">bug_Log&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://www.cnblogs.com/wpgraceii/p/10622582.html">Segmentation Fault 的原因若干&lt;/a>&lt;/p>
-&lt;p>最快的当然还是把相关错误的llvm4.0的代码移植到llvm9.0处&lt;/p>
-&lt;p>解决string_obf error编译时报强制转换类型错误方法 ：http://hellollvm.org/slides/porting-ollvm.pdf&lt;/p>
-&lt;blockquote>
-&lt;p>&lt;a href="http://hellollvm.org/">http://hellollvm.org/&lt;/a>&lt;/p>
-&lt;/blockquote>
-&lt;h3 id="对抗">对抗&lt;/h3>
-&lt;p>//TODO：大坑，现在对逆向还不是很熟悉，先对方法了解一波&lt;/p>
-&lt;p>引用项目Fllvm(虽然他不开源)中，作者对自己改写的ollvm变版fllvm的自信，来学习对抗ollvm的方式&lt;/p>
-&lt;blockquote>
-&lt;p>Fllvm与当前反混淆工具的对抗：当前应对ollvm混淆的大体方法为：自写脚本、bcf、decllvm、符合执行。前三个无论是自己找规律，还是基于capstone(反汇编引擎)，对Fllvm都只存在理论的可行性，基本用途不大。&lt;/p>
-&lt;/blockquote>
-&lt;p>由作者一段话可知，大概就是找规律写脚本复原，或者采用符号执行的方式去反混淆(原谅我真的找不到作者所说的bcf是啥)&lt;/p>
-&lt;p>我看的大多找规律的都是从原版ollvm的混淆方式入手，写反混淆的脚本去运行&lt;/p>
-&lt;p>还是能用符号执行分析的大佬比较nb&lt;/p>
-&lt;blockquote>
-&lt;p>资料：&lt;/p>
-&lt;p>&lt;a href="https://www.freebuf.com/articles/terminal/130142.html">反混淆：恢复被OLLVM保护的程序&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://bbs.pediy.com/thread-252321.htm">[原创]ARM64 OLLVM反混淆&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://www.anquanke.com/post/id/200744">Android OLLVM反混淆实战&lt;/a>：基于Angr&lt;/p>
-&lt;p>&lt;a href="https://www.hacking8.com/uploadfile/kcon/2019/24%E6%97%A5/%E5%9F%BA%E4%BA%8E%E7%AC%A6%E5%8F%B7%E6%89%A7%E8%A1%8C%E7%9A%84%E5%8F%8D%E6%B7%B7%E6%B7%86%E6%96%B9%E6%B3%95%E7%A0%94%E7%A9%B6.pdf">基于符号执行的反混淆方法研究.pdf&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://www.hacking8.com/uploadfile/kcon/2019/24%E6%97%A5/%E5%9F%BA%E4%BA%8E%E7%AC%A6%E5%8F%B7%E6%89%A7%E8%A1%8C%E7%9A%84%E5%8F%8D%E6%B7%B7%E6%B7%86%E6%96%B9%E6%B3%95%E7%A0%94%E7%A9%B6.pdf">基于符号执行的反混淆方法研究.pdf&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://security.tencent.com/index.php/blog/msg/112">利用符号执行去除控制流平坦化&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://www.cnblogs.com/h2zZhou/p/6637890.html">反混淆：恢复被OLLVM保护的程序&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://mlog.club/article/3446618">使用Binary Ninja去除ollvm流程平坦混淆&lt;/a>&lt;/p>
-&lt;blockquote>
-&lt;p>关于逆向：https://blog.yuuoniy.cn/2018/08/03/XMAN-reversing-1/&lt;/p>
-&lt;/blockquote>
-&lt;/blockquote>
-&lt;blockquote>
-&lt;ul>
-&lt;li>基于Miasm框架(一个Python开源逆向工程框架)，进行反混淆&lt;/li>
-&lt;/ul>
-&lt;p>&lt;a href="https://github.com/cea-sec/miasm">https://github.com/cea-sec/miasm&lt;/a>
-&lt;a href="https://www.freebuf.com/articles/terminal/130142.html">反混淆：恢复被OLLVM保护的程序&lt;/a>&lt;/p>
-&lt;ul>
-&lt;li>IDA插件，利用micro code API进行反混淆&lt;/li>
-&lt;/ul>
-&lt;p>Hex-rays：&lt;a href="http://www.hexblog.com/?p=1248">Hex-Rays Microcode API vs. Obfuscating Compiler&lt;/a>
-项目地址：&lt;a href="https://github.com/RolfRolles/HexRaysDeob">Github-RolfRolles / HexRaysDeob&lt;/a>
-&lt;a href="https://xz.aliyun.com/t/6749">使用IDA microcode去除ollvm混淆(上)&lt;/a>&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>DecLLVM，针对OLLVM的IDA分析插件
-&lt;a href="https://github.com/F8LEFT/DecLLVM">Github-F8LEFT / DecLLVM&lt;/a>
-&lt;a href="https://gitlab.com/F8LEFT/DecLLVM">Gitlab-F8LEFT / DecLLVM&lt;/a>
-&lt;a href="https://www.52pojie.cn/thread-484892-1-1.html">吾爱破解2016安全挑战赛cm7 Android CrackMe 分析详解&lt;/a>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Unicorn 引擎
-&lt;a href="https://bbs.pediy.com/thread-224330.htm">[翻译]Unicorn引擎教程&lt;/a>
-&lt;a href="https://bbs.pediy.com/thread-252257.htm">[原创]使用unicorn engin还原Armariris字符串混淆&lt;/a>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Angr 符号执行框架
-Github里有&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;/blockquote>
-&lt;blockquote>
-&lt;p>关于符号执行：&lt;/p>
-&lt;p>&lt;a href="https://pdfs.semanticscholar.org/a29f/c90b207befb42f67a040c6a07ea6699f6bad.pdf">符号执行&lt;/a>是一种重要的形式化方法和软件分析技术，通过使用符号执行技术，将程序中变量的值表示为符号值和常量组成的计算表达式，符号是指取值集合的记号，程序计算的输出被表示为输入符号值的函数，其在软件测试和程序验证中发挥着重要作用，并可以应用于程序漏洞的检测。&lt;/p>
-&lt;p>符号执行的发展是从静态符号执行到动态符号执行到&lt;a href="http://dslab.epfl.ch/pubs/selsymbex.pdf">选择性符号执行&lt;/a>，动态符号执行会以具体数值作为输入来模拟执行程序，是&lt;a href="http://mir.cs.illinois.edu/marinov/publications/SenETAL05CUTE.pdf">混合执行&lt;/a>(concolic execution)的典型代表，有很高的精确度，目前较新的符号执行工具有&lt;a href="https://github.com/JonathanSalwan/Triton">Triton&lt;/a>和&lt;a href="https://github.com/angr/angr">angr&lt;/a>&lt;/p>
-&lt;p>关于符号执行的paper：https://github.com/saswatanand/symexbib&lt;/p>
-&lt;p>符号执行的框架：Miasm、Angr、Triton&lt;/p>
-&lt;/blockquote></description></item></channel></rss>
+&lt;/div>&lt;p>More info: &lt;a href="https://hexo.io/docs/deployment.html">Deployment&lt;/a>&lt;/p></description></item></channel></rss>
